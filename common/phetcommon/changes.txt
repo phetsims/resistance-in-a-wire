@@ -1,0 +1,15 @@
+3/4/13 moved Inheritance.js from model to util directory
+2/26/13 migrate DOM images loader to phetcommon
+2/26/13 migrate PerformanceMonitor and its dependency (stats.js) to phetcommon from example-sim
+2/19/13 add Inheritance.callSuper for calling overridden super-type methods
+2/19/13 add optional defaultValue arg to Range constructor
+2/14/13 test change log entry
+2/12/13 fix bug introduced in BooleanProperty, prototype chaining must be done before prototype assignment
+2/12/13 added .gitignore for images/Thumbs.db
+2/11/13 reformat all js code with 2-space indentation
+2/11/13 use uppercase for symbolic names in requirejs imports, eg 'PHETCOMMON' instead of 'phetcommon'
+2/11/13 add Inheritance
+2/11/13 add CanvasQuirks
+2/11/13 SVN and git repos of phetcommon diverged, copied SVN files over top of git files
+1/30/13 add Vector2D.times
+1/30/13 add Point2D.equals
