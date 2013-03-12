@@ -9,7 +9,7 @@ define( [
   "easel"
 ], function ( Easel ) {
   'use strict';
-  return function ( model ) {
+  return function ( model, x, y ) {
     var root = new Easel.Container();
 
     //texts parts of full string
@@ -18,21 +18,21 @@ define( [
       {
         val: "R",
         scale: 6,
-        x: 200,
+        x: x,
         targetProperty: "resistance",
         color: "#ed1c24"
       },
       {
         val: "ρ",
         scale: 1.5,
-        x: 420,
+        x: x + 220,
         targetProperty: "length",
         color: "#0f0ffb"
       },
       {
         val: "L",
         scale: 0.05,
-        x: 550,
+        x: x + 350,
         targetProperty: "resistance",
         color: "#0f0ffb"
       },
@@ -45,7 +45,6 @@ define( [
       }
     ];
 
-    var y = 60;
     texts.forEach( function ( entry ) {
       entry.view = new Easel.Text( entry.val, "14px Courier New bold", entry.color ).setTransform( entry.x, y );
       entry.view.regX = entry.view.getMeasuredWidth() / 2;
@@ -59,7 +58,7 @@ define( [
     } );
 
     //static text
-    var text = new Easel.Text( "=", "140px Georgia bold", "#000" ).setTransform( 300, 60 );
+    var text = new Easel.Text( "=", "140px Georgia bold", "#000" ).setTransform( x + 100, y );
     root.addChild( text );
 
     return root;

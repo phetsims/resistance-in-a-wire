@@ -7,8 +7,9 @@
 define( [
   'easel',
   'view/shapes/SlidersBox',
-  'view/shapes/FormulaView'
-], function ( Easel, SlidersBox, FormulaView ) {
+  'view/shapes/FormulaView',
+  'view/shapes/ResistorView'
+], function ( Easel, SlidersBox, FormulaView, ResistorView ) {
   'use strict';
   return function ( model, view ) {
     var root = new Easel.Container();
@@ -18,8 +19,9 @@ define( [
     background.graphics.beginFill( '#ffffdf' ).rect( 0, 0, view.defaultW, view.defaultH );
     root.addChild( background );
 
-    root.addChild( new FormulaView( model ) );
-    root.addChild( new SlidersBox( model, view ) );
+    root.addChild( new FormulaView( model, 200, 400 ) );
+    root.addChild( new SlidersBox( model, view, 600, 80 ) );
+    root.addChild( new ResistorView( model, view, 20, 40 ) );
 
     return root;
   };

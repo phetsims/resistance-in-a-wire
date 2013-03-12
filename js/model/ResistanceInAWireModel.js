@@ -32,7 +32,7 @@ define(
           MIN: 0.01,
           MAX: 15,
           acc: 2,
-          DEFAULT: 4
+          DEFAULT: 7.5
         }
       ];
 

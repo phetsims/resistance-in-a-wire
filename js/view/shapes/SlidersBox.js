@@ -8,21 +8,21 @@
 define( [
   "easel",
   "i18n!../../../nls/resistance-in-a-wire-strings",
-  "view/shapes/WhiteBox",
-  "view/shapes/Slider",
+  "view/shapes/SliderBox/WhiteBox",
+  "view/shapes/SliderBox/Slider",
   "image!images/slider.png",
-  "view/shapes/CurrentResistanceView"
+  "view/shapes/SliderBox/CurrentResistanceView"
 ], function ( Easel, i18n, WhiteBox, Slider, sliderImage, CurrentResistanceView ) {
   'use strict';
-  return function ( model, view ) {
+  return function ( model, view,x,y ) {
 
     var root = new Easel.Container();
 
     //rect around sliders
     var rectW = 380,
       rectH = 500,
-      rectX = 600,
-      rectY = 80;
+      rectX = x,
+      rectY = y;
     root.addChild( new WhiteBox( rectX, rectY, rectW, rectH ) );
 
     //texts for slider1, slider2
