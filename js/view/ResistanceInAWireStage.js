@@ -52,12 +52,17 @@ define(
       //mouseover events
       this.stage.enableMouseOver();
 
+      //prevent default scrolling on iPad
+      canvas.addEventListener( "touchstart", function ( e ) {
+        e.preventDefault();
+      } );
+
       //update when any value changed
-      ['resistivity','length','area'].forEach(function(entry) {
-        model[entry].addObserver(function(){
+      ['resistivity', 'length', 'area'].forEach( function ( entry ) {
+        model[entry].addObserver( function () {
           self.stage.update();
-        });
-      });
+        } );
+      } );
 
     }
 

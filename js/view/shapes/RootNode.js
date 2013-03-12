@@ -21,7 +21,7 @@ define( [
 
     root.addChild( new FormulaView( model, 200, 400 ) );
     root.addChild( new SlidersBox( model, view, 600, 80 ) );
-    root.addChild( new ResistorView( model, view, 20, 40 ) );
+    root.addChild( new ResistorView( model, view, 10, 40 ) );
 
     return root;
   };
