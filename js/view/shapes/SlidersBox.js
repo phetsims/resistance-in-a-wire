@@ -14,7 +14,7 @@ define( [
   "view/shapes/SliderBox/CurrentResistanceView"
 ], function ( Easel, i18n, WhiteBox, Slider, sliderImage, CurrentResistanceView ) {
   'use strict';
-  return function ( model, view,x,y ) {
+  return function ( model, view, x, y ) {
 
     var root = new Easel.Container();
 
@@ -32,7 +32,8 @@ define( [
       [
         {
           val: "ρ",
-          font: "60px Courier New bold"
+          font: "60px Georgia",
+          dy: -10
         },
         {
           val: i18n.resistivity,
@@ -49,7 +50,7 @@ define( [
       [
         {
           val: "L",
-          font: "60px Georgia bold"
+          font: "60px Georgia"
         },
         {
           val: i18n.length,
@@ -66,7 +67,7 @@ define( [
       [
         {
           val: "A",
-          font: "60px Courier New bold"
+          font: "60px Georgia"
         },
         {
           val: i18n.area,
@@ -82,7 +83,7 @@ define( [
       ]
     ];
     //xy Grid
-    var yCoords = [85, 140, 420 , 450];
+    var yCoords = [60, 120, 405 , 445];
     var xCoords = [95, 190, 285];
 
     //set texts
@@ -90,11 +91,18 @@ define( [
       var textI = texts[i];
       for ( var j = 0, l1 = textI.length; j < l1; j++ ) {
         textI[j].view = new Easel.Text( textI[j].val, textI[j].font || defaultFont, textI[j].color || defaultColor );
-        textI[j].view.setTransform( rectX + xCoords[i] + (textI[j].dx || 0), rectY + yCoords[j] );
+        textI[j].view.setTransform( rectX + xCoords[i] + (textI[j].dx || 0), rectY + yCoords[j] + (textI[j].dy || 0) );
         textI[j].view.textAlign = textI[j].textAlign || "center";
+        textI[j].view.textBaseline = textI[j].textBaseline || "top";
         root.addChild( textI[j].view );
       }
     }
+
+    //additional square (2) on area units, tt = target text, where sup added
+    var targetText = texts[2][3];
+    var sqr = new Easel.Text( "2", "20px Verdana",targetText.color || defaultColor );
+    sqr.setTransform( rectX + xCoords[2]+texts[2][3].view.getMeasuredWidth()/2, rectY + yCoords[3] + (targetText.dy || 0)-10);
+    root.addChild( sqr );
 
     var c = 0;
     ['resistivity', 'length', 'area'].forEach( function ( entry ) {
@@ -105,7 +113,7 @@ define( [
         };
       }( c ) );
       //add slider
-      root.addChild( new Slider( view, rectX + xCoords[c], rectY + 170, 240, model[entry], sliderImage ) );
+      root.addChild( new Slider( view, rectX + xCoords[c], rectY + 145, 260, model[entry], sliderImage ) );
       c++;
     } );
 

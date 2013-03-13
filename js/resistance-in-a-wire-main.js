@@ -1,16 +1,17 @@
 /**
  * Copyright 2002-2013, University of Colorado
- * Main entry point for the "ohms law" sim.
+ * Main entry point for the "resistance in a wire" sim.
  * Author: Vasily Shakhov (Mlearner)
  */
+
 require(
   [
     "PHETCOMMON/view/CanvasQuirks",
     "model/ResistanceInAWireModel",
-    "view/ResistanceInAWireStage",
+    "view/ResistanceInAWireView",
     "i18n!../nls/resistance-in-a-wire-strings"
   ],
-  function ( CanvasQuirks, ResistanceInAWireModel,ResistanceInAWireStage, Strings ) {
+  function ( CanvasQuirks, ResistanceInAWireModel, ResistanceInAWireView, Strings ) {
     'use strict';
     // Title --------------------------------------------------------------------
     $( 'title' ).html( Strings.title );
@@ -18,11 +19,12 @@ require(
     // Model --------------------------------------------------------------------
     var model = new ResistanceInAWireModel();
 
+    var container = $( "#canvasContainer" ).css( 'position', 'relative' );
     // View --------------------------------------------------------------------
-    var canvas = document.getElementById( 'canvas' );
-    CanvasQuirks.fixTextCursor( canvas );
-    var stage = new ResistanceInAWireStage( canvas, model );
+    var view = new ResistanceInAWireView( container, model );
+
+    CanvasQuirks.fixTextCursor( view.$canvas );
 
     //Touch
-    createjs.Touch.enable( stage, false, false );
+    createjs.Touch.enable( view.$stage, false, false );
   } );

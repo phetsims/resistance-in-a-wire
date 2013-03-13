@@ -42,6 +42,7 @@ define(
           self[entry.name] = new Property();
           self[entry.name].MIN = entry.MIN;
           self[entry.name].MAX = entry.MAX;
+          self[entry.name].DEFAULT = entry.DEFAULT;
         } );
         this.resistance = new Property();
 
@@ -54,11 +55,11 @@ define(
           self[entry.name].addObserver( updateResistance );
         } );
 
-        this.setDefault();
+        this.reset();
       };
 
       //initialize default values
-      this.setDefault = function () {
+      this.reset = function () {
         props.forEach( function ( entry ) {
           self[entry.name].set( entry.DEFAULT );
         } );
