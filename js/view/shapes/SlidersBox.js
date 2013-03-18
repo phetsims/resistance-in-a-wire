@@ -6,13 +6,13 @@
 
 
 define( [
-  "easel",
-  "i18n!../../../nls/resistance-in-a-wire-strings",
-  "view/shapes/SliderBox/WhiteBox",
-  "view/shapes/SliderBox/Slider",
-  "image!images/slider.png",
-  "view/shapes/SliderBox/CurrentResistanceView"
-], function ( Easel, i18n, WhiteBox, Slider, sliderImage, CurrentResistanceView ) {
+          "easel",
+          "i18n!../../../nls/resistance-in-a-wire-strings",
+          "view/shapes/SliderBox/WhiteBox",
+          "view/shapes/SliderBox/Slider",
+          "image!images/slider.png",
+          "view/shapes/SliderBox/CurrentResistanceView"
+        ], function ( Easel, i18n, WhiteBox, Slider, sliderImage, CurrentResistanceView ) {
   'use strict';
   return function ( model, view, x, y ) {
 
@@ -20,14 +20,14 @@ define( [
 
     //rect around sliders
     var rectW = 380,
-      rectH = 500,
-      rectX = x,
-      rectY = y;
+        rectH = 500,
+        rectX = x,
+        rectY = y;
     root.addChild( new WhiteBox( rectX, rectY, rectW, rectH ) );
 
     //texts for slider1, slider2
     var defaultFont = "30px Verdana",
-      defaultColor = "#0f0ffb";
+        defaultColor = "#0f0ffb";
     var texts = [
       [
         {
@@ -100,8 +100,8 @@ define( [
 
     //additional square (2) on area units, tt = target text, where sup added
     var targetText = texts[2][3];
-    var sqr = new Easel.Text( "2", "20px Verdana",targetText.color || defaultColor );
-    sqr.setTransform( rectX + xCoords[2]+texts[2][3].view.getMeasuredWidth()/2, rectY + yCoords[3] + (targetText.dy || 0)-10);
+    var sqr = new Easel.Text( "2", "20px Verdana", targetText.color || defaultColor );
+    sqr.setTransform( rectX + xCoords[2] + texts[2][3].view.getMeasuredWidth() / 2, rectY + yCoords[3] + (targetText.dy || 0) - 10 );
     root.addChild( sqr );
 
     var c = 0;

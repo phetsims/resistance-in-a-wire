@@ -4,16 +4,16 @@
  * Author: Vasily Shakhov (Mlearner)
  */
 define( [
-  "easel",
-  "view/shapes/ResistorView/Arrow",
-  "view/shapes/ResistorView/Resistor"
-], function ( Easel, Arrow, Resistor ) {
+          "easel",
+          "view/shapes/ResistorView/Arrow",
+          "view/shapes/ResistorView/Resistor"
+        ], function ( Easel, Arrow, Resistor ) {
   'use strict';
   return function ( model, view, x, y ) {
     var root = new Easel.Container();
 
     var width = 480,
-      height = 180;
+        height = 180;
 
     //arrow width
     var arroww = 150;

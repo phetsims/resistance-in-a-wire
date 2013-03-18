@@ -6,17 +6,17 @@
 
 
 define( [
-  "easel",
-  "i18n!../../../../nls/resistance-in-a-wire-strings"
-], function ( Easel, i18n ) {
+          "easel",
+          "i18n!../../../../nls/resistance-in-a-wire-strings"
+        ], function ( Easel, i18n ) {
   'use strict';
   return function ( model, x, y, w ) {
     var root = new Easel.Container();
 
     //text size and y point of texts
     var textSize = 30,
-      midY = y + 10,
-      midX = x + w / 2;
+        midY = y + 10,
+        midX = x + w / 2;
 
     //texts parts of full string
     var texts = [
@@ -45,10 +45,11 @@ define( [
 
     //observer, changes view when current value changes
     model.resistance.addObserver( function ( val ) {
-      if(val.charAt(3)=='.') {
-        val = val.substring(0,5);
-      } else {
-        val = val.substring(0,4);
+      if ( val.charAt( 3 ) == '.' ) {
+        val = val.substring( 0, 5 );
+      }
+      else {
+        val = val.substring( 0, 4 );
       }
       texts[1].view.text = val;
     } );

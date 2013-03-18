@@ -4,8 +4,8 @@
  * Author: Vasily Shakhov (Mlearner)
  */
 define( [
-  "easel"
-], function ( Easel ) {
+          "easel"
+        ], function ( Easel ) {
   'use strict';
   return function ( model, x, y, width, height ) {
     var self = this;
@@ -15,10 +15,10 @@ define( [
     var box = new Easel.Shape();
 
     //default vars
-    var minw = height/2,
-      minh = 5,
-      maxw = width,
-      maxh = height;
+    var minw = height / 2,
+        minh = 5,
+        maxw = width,
+        maxh = height;
 
     //current params
     self.width = width;
@@ -31,13 +31,13 @@ define( [
       //ellipse params
       var kappa = 0.5522848;
       var ox = (height / 4) * kappa, // control point offset horizontal
-        oy = (height / 2) * kappa, // control point offset vertical
-        ye = height,           // y-end
-        ym = height / 2,       // y-middle
-        xe = width,           // x-end for end
-        xm = width - height / 4,       // x-middle  for end
-        xe1 = height / 2,  // x-end for start
-        xm1 = height / 4;  // x-middle for start
+          oy = (height / 2) * kappa, // control point offset vertical
+          ye = height,           // y-end
+          ym = height / 2,       // y-middle
+          xe = width,           // x-end for end
+          xm = width - height / 4,       // x-middle  for end
+          xe1 = height / 2,  // x-end for start
+          xm1 = height / 4;  // x-middle for start
 
       var ctx = box.graphics;
 
@@ -49,22 +49,23 @@ define( [
       ctx.bezierCurveTo( xe, ym + oy, xm + ox, ye, xm, ye );
       ctx.lt( height / 4, height );
       ctx.bezierCurveTo( xm1 - ox, ye, 0, ym + oy, 0, ym );
-      ctx.bezierCurveTo( 0, ym - oy, xm1 - ox, 0, xm1, 0 ).endFill().closePath();;
+      ctx.bezierCurveTo( 0, ym - oy, xm1 - ox, 0, xm1, 0 ).endFill().closePath();
+      ;
       ctx.mt( xm1, 0 ).bezierCurveTo( xm1 + ox, 0, xe1, ym - oy, xe1, ym );
       ctx.bezierCurveTo( xe1, ym + oy, xm1 + ox, ye, xm1, ye );
 
-      dotsContainer.mask=box;
+      dotsContainer.mask = box;
     };
 
     //black points
     //black points in the resistor
     var dotsContainer = new Easel.Container();
     var maxPoints = 900,
-      a = (maxh - 3) * (maxw + minw - 3) / maxPoints,    //area per dot
-      d = Math.pow( a, 0.5 ), //NN dot separation
-      nRows = Math.round( maxh / d ),
-      nCols = Math.round( (maxw + minw) / d ),
-      c = 0; //counter
+        a = (maxh - 3) * (maxw + minw - 3) / maxPoints,    //area per dot
+        d = Math.pow( a, 0.5 ), //NN dot separation
+        nRows = Math.round( maxh / d ),
+        nCols = Math.round( (maxw + minw) / d ),
+        c = 0; //counter
 
     var points = [];
 

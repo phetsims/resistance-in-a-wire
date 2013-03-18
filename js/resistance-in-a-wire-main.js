@@ -5,26 +5,26 @@
  */
 
 require(
-  [
-    "PHETCOMMON/view/CanvasQuirks",
-    "model/ResistanceInAWireModel",
-    "view/ResistanceInAWireView",
-    "i18n!../nls/resistance-in-a-wire-strings"
-  ],
-  function ( CanvasQuirks, ResistanceInAWireModel, ResistanceInAWireView, Strings ) {
-    'use strict';
-    // Title --------------------------------------------------------------------
-    $( 'title' ).html( Strings.title );
+    [
+      "PHETCOMMON/view/CanvasQuirks",
+      "model/ResistanceInAWireModel",
+      "view/ResistanceInAWireView",
+      "i18n!../nls/resistance-in-a-wire-strings"
+    ],
+    function ( CanvasQuirks, ResistanceInAWireModel, ResistanceInAWireView, Strings ) {
+      'use strict';
+      // Title --------------------------------------------------------------------
+      $( 'title' ).html( Strings.title );
 
-    // Model --------------------------------------------------------------------
-    var model = new ResistanceInAWireModel();
+      // Model --------------------------------------------------------------------
+      var model = new ResistanceInAWireModel();
 
-    var container = $( "#canvasContainer" ).css( 'position', 'relative' );
-    // View --------------------------------------------------------------------
-    var view = new ResistanceInAWireView( container, model );
+      var container = $( "#canvasContainer" ).css( 'position', 'relative' );
+      // View --------------------------------------------------------------------
+      var view = new ResistanceInAWireView( container, model );
 
-    CanvasQuirks.fixTextCursor( view.$canvas );
+      CanvasQuirks.fixTextCursor( view.$canvas );
 
-    //Touch
-    createjs.Touch.enable( view.$stage, false, false );
-  } );
+      //Touch
+      createjs.Touch.enable( view.$stage, false, false );
+    } );

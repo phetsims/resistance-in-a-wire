@@ -12,8 +12,8 @@
 
 
 define( [
-  "easel"
-], function ( Easel ) {
+          "easel"
+        ], function ( Easel ) {
   //TODO setCursorHand must be in PHET COMMON?
 
   //TODO slider must be in PHET COMMON and be horizontal too?
@@ -59,12 +59,12 @@ define( [
       var ty = e.stageY / view.stage.scaleX - offset.y;
       ty = Math.max( y, Math.min( ty, y + h ) );
       imgShape.y = ty;
-      targetProperty.set( targetProperty.MIN + (targetProperty.MAX - targetProperty.MIN) * (y - ty+h) / h );
+      targetProperty.set( targetProperty.MIN + (targetProperty.MAX - targetProperty.MIN) * (y - ty + h) / h );
     };
 
     //observer, set position when changed
     targetProperty.addObserver( function () {
-      imgShape.y = y + h-h * (targetProperty.get() - targetProperty.MIN) / (targetProperty.MAX - targetProperty.MIN);
+      imgShape.y = y + h - h * (targetProperty.get() - targetProperty.MIN) / (targetProperty.MAX - targetProperty.MIN);
     } );
 
     return root;

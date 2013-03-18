@@ -6,8 +6,8 @@
 
 
 define( [
-  "easel"
-], function ( Easel ) {
+          "easel"
+        ], function ( Easel ) {
   'use strict';
   return function ( x, y, w, h ) {
     var rect = new Easel.Shape();

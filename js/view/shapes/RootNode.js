@@ -5,11 +5,11 @@
  */
 
 define( [
-  'easel',
-  'view/shapes/SlidersBox',
-  'view/shapes/FormulaView',
-  'view/shapes/ResistorView'
-], function ( Easel, SlidersBox, FormulaView, ResistorView ) {
+          'easel',
+          'view/shapes/SlidersBox',
+          'view/shapes/FormulaView',
+          'view/shapes/ResistorView'
+        ], function ( Easel, SlidersBox, FormulaView, ResistorView ) {
   'use strict';
   return function ( model, view ) {
     var root = new Easel.Container();

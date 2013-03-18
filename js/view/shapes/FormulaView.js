@@ -6,8 +6,8 @@
 
 
 define( [
-  "easel"
-], function ( Easel ) {
+          "easel"
+        ], function ( Easel ) {
   'use strict';
   return function ( model, x, y ) {
     var root = new Easel.Container();
@@ -16,7 +16,7 @@ define( [
     var text = new Easel.Text( "=", "100px Georgia bold", "#000" ).setTransform( x + 100, y );
     root.addChild( text );
     var shape = new Easel.Shape();
-    shape.graphics.ss(8).s("#000").mt(x+200,y+text.getMeasuredHeight()/2+3 ).lt(x+400,y+text.getMeasuredHeight()/2 +3 );
+    shape.graphics.ss( 8 ).s( "#000" ).mt( x + 200, y + text.getMeasuredHeight() / 2 + 3 ).lt( x + 400, y + text.getMeasuredHeight() / 2 + 3 );
     root.addChild( shape );
 
     //texts parts of full string
@@ -24,16 +24,16 @@ define( [
     var texts = [
       {
         val: "R",
-        scale :3/2,
-        x: x+50,
-        y: y+60,
+        scale: 3 / 2,
+        x: x + 50,
+        y: y + 60,
         targetProperty: "resistance",
         color: "#ed1c24"
       },
       {
         val: "ρ",
         x: x + 250,
-        y: y-30,
+        y: y - 30,
         targetProperty: "resistivity",
         color: "#0f0ffb"
       },
@@ -46,8 +46,8 @@ define( [
       },
       {
         val: "A",
-        x: x+300,
-        y: y+130,
+        x: x + 300,
+        y: y + 130,
         targetProperty: "area",
         color: "#0f0ffb"
       }
@@ -58,7 +58,7 @@ define( [
       entry.view.regX = entry.view.getMeasuredWidth() / 2;
       entry.view.regY = entry.view.getMeasuredHeight() * 1 / 2;
       root.addChild( entry.view );
-      entry.scale =  entry.scale || 1/model[entry.targetProperty].DEFAULT;
+      entry.scale = entry.scale || 1 / model[entry.targetProperty].DEFAULT;
       model[entry.targetProperty].addObserver( function ( val ) {
         entry.view.scaleX = entry.scale * val;
         entry.view.scaleY = entry.scale * val;

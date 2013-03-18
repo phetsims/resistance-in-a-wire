@@ -5,22 +5,22 @@
  */
 
 define(
-  [
-    "i18n!../../nls/resistance-in-a-wire-strings",
-    'tpl!../../html/reset.html'
-  ],
-  function ( i18n, resetButton ) {
-    "use strict";
+    [
+      "i18n!../../nls/resistance-in-a-wire-strings",
+      'tpl!../../html/reset.html'
+    ],
+    function ( i18n, resetButton ) {
+      "use strict";
 
-    function ControlPanel( container, model ) {
+      function ControlPanel( container, model ) {
 
-      //reset button
-      var reset = $( resetButton( {} ) );
-      container.append( reset );
-      reset.bind( 'click', function () {
-        model.reset();
-      } );
-    }
+        //reset button
+        var reset = $( resetButton( {} ) );
+        container.append( reset );
+        reset.bind( 'click', function () {
+          model.reset();
+        } );
+      }
 
-    return ControlPanel;
-  } );
+      return ControlPanel;
+    } );
