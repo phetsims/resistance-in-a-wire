@@ -6,9 +6,9 @@
 
 define( [
           'easel',
-          'view/shapes/SlidersBox',
-          'view/shapes/FormulaView',
-          'view/shapes/ResistorView'
+          'view/shapes/sliders-box',
+          'view/shapes/formula-view',
+          'view/shapes/resistor-view'
         ], function ( Easel, SlidersBox, FormulaView, ResistorView ) {
   'use strict';
   return function ( model, view ) {

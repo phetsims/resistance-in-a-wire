@@ -8,10 +8,10 @@
 define( [
           "easel",
           "i18n!../../../nls/resistance-in-a-wire-strings",
-          "view/shapes/SliderBox/WhiteBox",
-          "view/shapes/SliderBox/Slider",
+          "view/shapes/SliderBox/white-box",
+          "view/shapes/SliderBox/slider",
           "image!images/slider.png",
-          "view/shapes/SliderBox/CurrentResistanceView"
+          "view/shapes/SliderBox/current-resistance-view"
         ], function ( Easel, i18n, WhiteBox, Slider, sliderImage, CurrentResistanceView ) {
   'use strict';
   return function ( model, view, x, y ) {

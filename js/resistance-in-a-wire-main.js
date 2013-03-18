@@ -8,8 +8,8 @@ require(
     [
       "easel",
       "PHETCOMMON/view/CanvasQuirks",
-      "model/ResistanceInAWireModel",
-      "view/ResistanceInAWireView",
+      "model/resistance-in-a-wire-model",
+      "view/resistance-in-a-wire-view",
       "i18n!../nls/resistance-in-a-wire-strings"
     ],
     function (Easel, CanvasQuirks, ResistanceInAWireModel, ResistanceInAWireView, Strings ) {

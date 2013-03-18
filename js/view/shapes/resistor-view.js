@@ -5,8 +5,8 @@
  */
 define( [
           "easel",
-          "view/shapes/ResistorView/Arrow",
-          "view/shapes/ResistorView/Resistor"
+          "view/shapes/ResistorView/arrow",
+          "view/shapes/ResistorView/resistor"
         ], function ( Easel, Arrow, Resistor ) {
   'use strict';
   return function ( model, view, x, y ) {

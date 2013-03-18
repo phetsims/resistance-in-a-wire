@@ -7,7 +7,7 @@
 define(
     [
       'easel',
-      'view/shapes/RootNode'
+      'view/shapes/root-node'
     ],
     function ( Easel, RootNode ) {
       'use strict';

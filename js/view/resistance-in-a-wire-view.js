@@ -6,8 +6,8 @@
 
 define(
     [
-      'view/ResistanceInAWireStage',
-      'view/HTMLElements'
+      'view/resistance-in-a-wire-stage',
+      'view/html-elements'
     ],
     function ( ResistanceInAWireStage, HTMLElements ) {
       'use strict';
