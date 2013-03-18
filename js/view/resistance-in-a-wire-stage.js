@@ -23,7 +23,7 @@ define(
         this.stage.addChild( new RootNode( self.model, self ) );
 
         //Enable touch and prevent default
-        Easel.Touch.enable( this.stage, false, true );
+        Easel.Touch.enable( this.stage, false, false );
 
         //mouseover events
         this.stage.enableMouseOver();

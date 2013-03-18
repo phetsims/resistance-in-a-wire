@@ -12,7 +12,7 @@ require(
       "view/resistance-in-a-wire-view",
       "i18n!../nls/resistance-in-a-wire-strings"
     ],
-    function (Easel, CanvasQuirks, ResistanceInAWireModel, ResistanceInAWireView, Strings ) {
+    function ( Easel, CanvasQuirks, ResistanceInAWireModel, ResistanceInAWireView, Strings ) {
       'use strict';
       // Title --------------------------------------------------------------------
       $( 'title' ).html( Strings.title );
@@ -20,12 +20,10 @@ require(
       // Model --------------------------------------------------------------------
       var model = new ResistanceInAWireModel();
 
-      var container = $( "#canvasContainer" ).css( 'position', 'relative' );
+      var $container = $( "#canvasContainer" );
       // View --------------------------------------------------------------------
-      var view = new ResistanceInAWireView( container, model );
+      var view = new ResistanceInAWireView( $container, model );
 
       CanvasQuirks.fixTextCursor( view.$canvas );
 
-      //Touch
-      Easel.Touch.enable( view.$stage, false, false );
     } );

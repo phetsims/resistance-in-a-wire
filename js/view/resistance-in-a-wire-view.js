@@ -11,13 +11,15 @@ define(
     ],
     function ( ResistanceInAWireStage, HTMLElements ) {
       'use strict';
-      function ResistanceInAWireView( container, model ) {
+      function ResistanceInAWireView( $container, model ) {
         var self = this;
         self.model = model;
 
-        this.$canvas = container.find( "canvas" ).css( 'position', 'relative' );
-        this.$stage = new ResistanceInAWireStage( this.$canvas[0], model );
-        this.$htmlElements = new HTMLElements( container, model );
+        this.$canvas = $container.find( "canvas" );
+        this.stage = new ResistanceInAWireStage( this.$canvas[0], model );
+        this.htmlElements = new HTMLElements( $container, model );
+
+        //default width and height of model, when scale = 1, from blueprint and original flash model
         this.defaultW = 1000;
         this.defaultH = 640;
 
@@ -37,20 +39,15 @@ define(
           self.$canvas[0].setAttribute( 'height', canvasH + 'px' );
 
           //resize main container
-          container.css( {
-                           width: canvasW + 'px',
-                           height: canvasH + 'px',
-                           left: (width - canvasW) / 2 + 'px'
-                         } );
+          $container.css( {
+                            width: canvasW + 'px',
+                            height: canvasH + 'px',
+                            left: (width - canvasW) / 2 + 'px'
+                          } );
 
-          self.$stage.resize( scale );
+          self.stage.resize( scale );
 
         };
-
-        //prevent default scrolling on iPad
-        this.$canvas[0].addEventListener( "touchstart", function ( e ) {
-          e.preventDefault();
-        } );
 
         $( window ).resize( handleResize );
         handleResize(); // initial size

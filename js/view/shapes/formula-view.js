@@ -1,6 +1,6 @@
 /**
  * Copyright 2002-2013, University of Colorado
- * Block shows U = IR formula with letters scaling
+ * Block shows R = ρL/A formula with letters scaling
  * Author: Vasily Shakhov (Mlearner)
  */
 
@@ -13,8 +13,11 @@ define( [
     var root = new Easel.Container();
 
     //static text
+    // "="
     var text = new Easel.Text( "=", "100px Georgia bold", "#000" ).setTransform( x + 100, y );
     root.addChild( text );
+
+    //"---" line between ρL and A
     var shape = new Easel.Shape();
     shape.graphics.ss( 8 ).s( "#000" ).mt( x + 200, y + text.getMeasuredHeight() / 2 + 3 ).lt( x + 400, y + text.getMeasuredHeight() / 2 + 3 );
     root.addChild( shape );

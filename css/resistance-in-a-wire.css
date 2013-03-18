@@ -2,6 +2,14 @@ body {
   background-color: #ffffdf;
 }
 
+#canvasContainer {
+  position: relative;
+}
+
+canvas {
+  position: relative;
+}
+
 .reset-all-button {
   position: absolute;
   left: 60%;

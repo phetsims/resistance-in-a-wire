@@ -1,6 +1,6 @@
 // Copyright 2002-2013, University of Colorado
 /**
- * Model container for the "OhmsLaw" module.
+ * Model container for the "resistance-in-a-wire" module.
  */
 define(
     [
@@ -39,12 +39,12 @@ define(
         var init = function () {
           //initialize all variables
           self.props.forEach( function ( entry ) {
-            self[entry.name] = new Property();
+            self[entry.name] = new Property( entry.DEFAULT );
             self[entry.name].MIN = entry.MIN;
             self[entry.name].MAX = entry.MAX;
             self[entry.name].DEFAULT = entry.DEFAULT;
           } );
-          this.resistance = new Property();
+          self.resistance = new Property();
 
           //@overrides set, with accuracy and adds observer - resistance update
           self.props.forEach( function ( entry ) {
@@ -55,7 +55,7 @@ define(
             self[entry.name].addObserver( updateResistance );
           } );
 
-          this.reset();
+          self.reset();
         };
 
         //sets resistance if any props changed
@@ -77,7 +77,7 @@ define(
       ResistanceInAWireModel.prototype.reset = function () {
         var self = this;
         this.props.forEach( function ( entry ) {
-          self[entry.name].set( entry.DEFAULT );
+          self[entry.name].reset();
         } );
       };
 
