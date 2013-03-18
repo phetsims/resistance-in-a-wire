@@ -12,7 +12,7 @@ define(
         var self = this;
 
         //properties
-        var props = [
+        this.props = [
           {
             name: 'resistivity',
             MIN: 0.01,
@@ -36,9 +36,9 @@ define(
           }
         ];
 
-        this.init = function () {
+        var init = function () {
           //initialize all variables
-          props.forEach( function ( entry ) {
+          self.props.forEach( function ( entry ) {
             self[entry.name] = new Property();
             self[entry.name].MIN = entry.MIN;
             self[entry.name].MAX = entry.MAX;
@@ -47,7 +47,7 @@ define(
           this.resistance = new Property();
 
           //@overrides set, with accuracy and adds observer - resistance update
-          props.forEach( function ( entry ) {
+          self.props.forEach( function ( entry ) {
             self['oldSet' + entry.name] = self[entry.name].set;
             self[entry.name].set = function ( val ) {
               self['oldSet' + entry.name]( setAccuracy( val, entry.acc ) );
@@ -56,13 +56,6 @@ define(
           } );
 
           this.reset();
-        };
-
-        //initialize default values
-        this.reset = function () {
-          props.forEach( function ( entry ) {
-            self[entry.name].set( entry.DEFAULT );
-          } );
         };
 
         //sets resistance if any props changed
@@ -77,8 +70,16 @@ define(
           return (Math.round( val * tens ) / tens).toFixed( acc );
         };
 
-        this.init();
+        init();
       }
+
+      //initialize default values
+      ResistanceInAWireModel.prototype.reset = function () {
+        var self = this;
+        this.props.forEach( function ( entry ) {
+          self[entry.name].set( entry.DEFAULT );
+        } );
+      };
 
       return ResistanceInAWireModel;
     } );

@@ -22,13 +22,6 @@ define(
         // rendering order
         this.stage.addChild( new RootNode( self.model, self ) );
 
-        // resize handler
-        this.resize = function ( scale ) {
-          self.stage.scaleX = self.stage.scaleY = scale;
-          // force rendering update
-          self.stage.update();
-        };
-
         //Enable touch and prevent default
         Easel.Touch.enable( this.stage, false, true );
 
@@ -43,6 +36,13 @@ define(
         } );
 
       }
+
+      // resize handler
+      ResistanceInAWireStage.prototype.resize = function ( scale ) {
+        this.stage.scaleX = this.stage.scaleY = scale;
+        // force rendering update
+        this.stage.update();
+      };
 
       return ResistanceInAWireStage;
     } );
