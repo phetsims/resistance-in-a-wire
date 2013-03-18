@@ -6,12 +6,13 @@
 
 require(
     [
+      "easel",
       "PHETCOMMON/view/CanvasQuirks",
       "model/ResistanceInAWireModel",
       "view/ResistanceInAWireView",
       "i18n!../nls/resistance-in-a-wire-strings"
     ],
-    function ( CanvasQuirks, ResistanceInAWireModel, ResistanceInAWireView, Strings ) {
+    function (Easel, CanvasQuirks, ResistanceInAWireModel, ResistanceInAWireView, Strings ) {
       'use strict';
       // Title --------------------------------------------------------------------
       $( 'title' ).html( Strings.title );
@@ -26,5 +27,5 @@ require(
       CanvasQuirks.fixTextCursor( view.$canvas );
 
       //Touch
-      createjs.Touch.enable( view.$stage, false, false );
+      Easel.Touch.enable( view.$stage, false, false );
     } );

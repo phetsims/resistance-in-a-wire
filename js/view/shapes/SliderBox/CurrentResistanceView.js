@@ -45,7 +45,7 @@ define( [
 
     //observer, changes view when current value changes
     model.resistance.addObserver( function ( val ) {
-      if ( val.charAt( 3 ) == '.' ) {
+      if ( val.charAt( 3 ) === '.' ) {
         val = val.substring( 0, 5 );
       }
       else {

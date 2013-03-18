@@ -56,7 +56,7 @@ define( [
     texts.forEach( function ( entry ) {
       entry.view = new Easel.Text( entry.val, "140px Georgia", entry.color ).setTransform( entry.x, entry.y );
       entry.view.regX = entry.view.getMeasuredWidth() / 2;
-      entry.view.regY = entry.view.getMeasuredHeight() * 1 / 2;
+      entry.view.regY = entry.view.getMeasuredHeight() / 2;
       root.addChild( entry.view );
       entry.scale = entry.scale || 1 / model[entry.targetProperty].DEFAULT;
       model[entry.targetProperty].addObserver( function ( val ) {

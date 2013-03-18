@@ -50,7 +50,7 @@ define( [
       ctx.lt( height / 4, height );
       ctx.bezierCurveTo( xm1 - ox, ye, 0, ym + oy, 0, ym );
       ctx.bezierCurveTo( 0, ym - oy, xm1 - ox, 0, xm1, 0 ).endFill().closePath();
-      ;
+
       ctx.mt( xm1, 0 ).bezierCurveTo( xm1 + ox, 0, xe1, ym - oy, xe1, ym );
       ctx.bezierCurveTo( xe1, ym + oy, xm1 + ox, ye, xm1, ye );
 
@@ -91,7 +91,7 @@ define( [
 
     //observers for value changes
     model.area.addObserver( function ( val ) {
-      self.height = minh + maxh * (val - model.area.MIN) / (model.area.MAX - model.area.MIN)
+      self.height = minh + maxh * (val - model.area.MIN) / (model.area.MAX - model.area.MIN);
       drawBox( self.width, self.height );
     } );
 

@@ -14,9 +14,8 @@
 define( [
           "easel"
         ], function ( Easel ) {
-  //TODO setCursorHand must be in PHET COMMON?
 
-  //TODO slider must be in PHET COMMON and be horizontal too?
+  'use strict';
   function showPointer() {
     document.body.style.cursor = "pointer";
   }
