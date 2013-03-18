@@ -5,10 +5,11 @@
  */
 
 
-define( [
-          "easel"
-        ], function ( Easel ) {
+define( function ( require ) {
   'use strict';
+
+  var Easel = require( "easel" );
+
   return function ( model, x, y, width ) {
     var line = new Easel.Shape();
 

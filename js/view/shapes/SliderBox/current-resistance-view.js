@@ -5,11 +5,12 @@
  */
 
 
-define( [
-          "easel",
-          "i18n!../../../../nls/resistance-in-a-wire-strings"
-        ], function ( Easel, i18n ) {
+define(function ( require) {
   'use strict';
+
+  var Easel = require("easel");
+  var i18n = require("i18n!../../../../nls/resistance-in-a-wire-strings");
+
   return function ( model, x, y, w ) {
     var root = new Easel.Container();
 

@@ -4,23 +4,21 @@
  * Author: Vasily Shakhov (Mlearner)
  */
 
-define(
-    [
-      "i18n!../../nls/resistance-in-a-wire-strings",
-      'tpl!../../html/reset.html'
-    ],
-    function ( i18n, resetButton ) {
-      "use strict";
+define( function ( require ) {
+  'use strict';
 
-      function ControlPanel( container, model ) {
+  var resetButton = require( "tpl!../../html/reset.html" );
+  var i18n = require( "i18n!../../nls/resistance-in-a-wire-strings" );
 
-        //reset button
-        var reset = $( resetButton( {} ) );
-        container.append( reset );
-        reset.bind( 'click', function () {
-          model.reset();
-        } );
-      }
+  function ControlPanel( container, model ) {
 
-      return ControlPanel;
+    //reset button
+    var reset = $( resetButton( {} ) );
+    container.append( reset );
+    reset.bind( 'click', function () {
+      model.reset();
     } );
+  }
+
+  return ControlPanel;
+} );

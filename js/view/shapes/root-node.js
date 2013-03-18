@@ -4,13 +4,14 @@
  * Author: Vasily Shakhov (Mlearner)
  */
 
-define( [
-          'easel',
-          'view/shapes/sliders-box',
-          'view/shapes/formula-view',
-          'view/shapes/resistor-view'
-        ], function ( Easel, SlidersBox, FormulaView, ResistorView ) {
+define( function ( require ) {
   'use strict';
+
+  var Easel = require( "easel" );
+  var SlidersBox = require( "view/shapes/sliders-box" );
+  var FormulaView = require( "view/shapes/formula-view" );
+  var ResistorView = require( "view/shapes/resistor-view" );
+
   return function ( model, view ) {
     var root = new Easel.Container();
 

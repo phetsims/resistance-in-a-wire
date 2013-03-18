@@ -4,56 +4,55 @@
  * Author: Vasily Shakhov (Mlearner)
  */
 
-define(
-    [
-      'view/resistance-in-a-wire-stage',
-      'view/html-elements'
-    ],
-    function ( ResistanceInAWireStage, HTMLElements ) {
-      'use strict';
-      function ResistanceInAWireView( $container, model ) {
-        var self = this;
-        self.model = model;
+define( function ( require ) {
+  'use strict';
 
-        this.$canvas = $container.find( "canvas" );
-        this.stage = new ResistanceInAWireStage( this.$canvas[0], model );
-        this.htmlElements = new HTMLElements( $container, model );
+  var ResistanceInAWireStage = require( 'view/resistance-in-a-wire-stage' );
+  var HTMLElements = require( "view/html-elements" );
 
-        //default width and height of model, when scale = 1, from blueprint and original flash model
-        this.defaultW = 1000;
-        this.defaultH = 640;
+  function ResistanceInAWireView( $container, model ) {
+    var self = this;
+    self.model = model;
 
-        // resize handler
-        var handleResize = function () {
+    this.$canvas = $container.find( "canvas" );
+    this.stage = new ResistanceInAWireStage( this.$canvas[0], model );
+    this.htmlElements = new HTMLElements( $container, model );
 
-          //Gets rid of scroll bars
-          var width = $( window ).width();
-          var height = $( window ).height();
+    //default width and height of model, when scale = 1, from blueprint and original flash model
+    this.defaultW = 1000;
+    this.defaultH = 640;
 
-          var scale = Math.min( width / self.defaultW, height / self.defaultH );
-          var canvasW = scale * self.defaultW;
-          var canvasH = scale * self.defaultH;
+    // resize handler
+    var handleResize = function () {
 
-          //Allow the canvas to fill the screen, but still center the content within the window.
-          self.$canvas[0].setAttribute( 'width', canvasW + 'px' );
-          self.$canvas[0].setAttribute( 'height', canvasH + 'px' );
+      //Gets rid of scroll bars
+      var width = $( window ).width();
+      var height = $( window ).height();
 
-          //resize main container
-          $container.css( {
-                            width: canvasW + 'px',
-                            height: canvasH + 'px',
-                            left: (width - canvasW) / 2 + 'px'
-                          } );
+      var scale = Math.min( width / self.defaultW, height / self.defaultH );
+      var canvasW = scale * self.defaultW;
+      var canvasH = scale * self.defaultH;
 
-          self.stage.resize( scale );
+      //Allow the canvas to fill the screen, but still center the content within the window.
+      self.$canvas[0].setAttribute( 'width', canvasW + 'px' );
+      self.$canvas[0].setAttribute( 'height', canvasH + 'px' );
 
-        };
+      //resize main container
+      $container.css( {
+                        width: canvasW + 'px',
+                        height: canvasH + 'px',
+                        left: (width - canvasW) / 2 + 'px'
+                      } );
 
-        $( window ).resize( handleResize );
-        handleResize(); // initial size
-      }
+      self.stage.resize( scale );
 
-      return ResistanceInAWireView;
+    };
 
-    } )
+    $( window ).resize( handleResize );
+    handleResize(); // initial size
+  }
+
+  return ResistanceInAWireView;
+
+} )
 ;

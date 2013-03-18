@@ -4,45 +4,44 @@
  * Author: Vasily Shakhov (Mlearner)
  */
 
-define(
-    [
-      'easel',
-      'view/shapes/root-node'
-    ],
-    function ( Easel, RootNode ) {
-      'use strict';
-      function ResistanceInAWireStage( canvas, model ) {
-        var self = this;
-        self.model = model;
+define( function ( require ) {
+  'use strict';
 
-        this.stage = new Easel.Stage( canvas );
-        this.defaultW = 1000;
-        this.defaultH = 640;
+  var Easel = require( "easel" );
+  var RootNode = require( "view/shapes/root-node" );
 
-        // rendering order
-        this.stage.addChild( new RootNode( self.model, self ) );
+  function ResistanceInAWireStage( canvas, model ) {
+    var self = this;
+    self.model = model;
 
-        //Enable touch and prevent default
-        Easel.Touch.enable( this.stage, false, false );
+    this.stage = new Easel.Stage( canvas );
+    this.defaultW = 1000;
+    this.defaultH = 640;
 
-        //mouseover events
-        this.stage.enableMouseOver();
+    // rendering order
+    this.stage.addChild( new RootNode( self.model, self ) );
 
-        //update when any value changed
-        ['resistivity', 'length', 'area'].forEach( function ( entry ) {
-          model[entry].addObserver( function () {
-            self.stage.update();
-          } );
-        } );
+    //Enable touch and prevent default
+    Easel.Touch.enable( this.stage, false, false );
 
-      }
+    //mouseover events
+    this.stage.enableMouseOver();
 
-      // resize handler
-      ResistanceInAWireStage.prototype.resize = function ( scale ) {
-        this.stage.scaleX = this.stage.scaleY = scale;
-        // force rendering update
-        this.stage.update();
-      };
-
-      return ResistanceInAWireStage;
+    //update when any value changed
+    ['resistivity', 'length', 'area'].forEach( function ( entry ) {
+      model[entry].addObserver( function () {
+        self.stage.update();
+      } );
     } );
+
+  }
+
+  // resize handler
+  ResistanceInAWireStage.prototype.resize = function ( scale ) {
+    this.stage.scaleX = this.stage.scaleY = scale;
+    // force rendering update
+    this.stage.update();
+  };
+
+  return ResistanceInAWireStage;
+} );

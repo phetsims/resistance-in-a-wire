@@ -4,26 +4,25 @@
  * Author: Vasily Shakhov (Mlearner)
  */
 
-require(
-    [
-      "easel",
-      "PHETCOMMON/view/CanvasQuirks",
-      "model/resistance-in-a-wire-model",
-      "view/resistance-in-a-wire-view",
-      "i18n!../nls/resistance-in-a-wire-strings"
-    ],
-    function ( Easel, CanvasQuirks, ResistanceInAWireModel, ResistanceInAWireView, Strings ) {
-      'use strict';
-      // Title --------------------------------------------------------------------
-      $( 'title' ).html( Strings.title );
+define( function ( require ) {
+  'use strict';
 
-      // Model --------------------------------------------------------------------
-      var model = new ResistanceInAWireModel();
+  var Easel = require( 'easel' );
+  var CanvasQuirks = require( "PHETCOMMON/view/CanvasQuirks" );
+  var ResistanceInAWireModel = require( 'model/resistance-in-a-wire-model' );
+  var ResistanceInAWireView = require( "view/resistance-in-a-wire-view" );
+  var Strings = require( 'i18n!../nls/resistance-in-a-wire-strings' );
 
-      var $container = $( "#canvasContainer" );
-      // View --------------------------------------------------------------------
-      var view = new ResistanceInAWireView( $container, model );
+  // Title --------------------------------------------------------------------
+  $( 'title' ).html( Strings.title );
 
-      CanvasQuirks.fixTextCursor( view.$canvas );
+  // Model --------------------------------------------------------------------
+  var model = new ResistanceInAWireModel();
 
-    } );
+  var $container = $( "#canvasContainer" );
+  // View --------------------------------------------------------------------
+  var view = new ResistanceInAWireView( $container, model );
+
+  CanvasQuirks.fixTextCursor( view.$canvas );
+
+} );

@@ -3,12 +3,13 @@
  * Container for resistor and nearby graphics
  * Author: Vasily Shakhov (Mlearner)
  */
-define( [
-          "easel",
-          "view/shapes/ResistorView/arrow",
-          "view/shapes/ResistorView/resistor"
-        ], function ( Easel, Arrow, Resistor ) {
+define( function ( require ) {
   'use strict';
+
+  var Easel = require( "easel" );
+  var Arrow = require( "view/shapes/ResistorView/arrow" );
+  var Resistor = require( "view/shapes/ResistorView/resistor" );
+
   return function ( model, view, x, y ) {
     var root = new Easel.Container();
 

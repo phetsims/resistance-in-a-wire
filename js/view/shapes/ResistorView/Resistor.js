@@ -3,10 +3,11 @@
  * View for resistor
  * Author: Vasily Shakhov (Mlearner)
  */
-define( [
-          "easel"
-        ], function ( Easel ) {
+define( function ( require) {
   'use strict';
+
+  var Easel = require('easel');
+
   return function ( model, x, y, width, height ) {
     var self = this;
     var container = new Easel.Container();

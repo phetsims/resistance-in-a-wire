@@ -5,15 +5,16 @@
  */
 
 
-define( [
-          "easel",
-          "i18n!../../../nls/resistance-in-a-wire-strings",
-          "view/shapes/SliderBox/white-box",
-          "view/shapes/SliderBox/slider",
-          "image!images/slider.png",
-          "view/shapes/SliderBox/current-resistance-view"
-        ], function ( Easel, i18n, WhiteBox, Slider, sliderImage, CurrentResistanceView ) {
+define( function ( require ) {
   'use strict';
+
+  var Easel = require( "easel" );
+  var i18n = require( "i18n!../../../nls/resistance-in-a-wire-strings" );
+  var WhiteBox = require( "view/shapes/SliderBox/white-box" );
+  var Slider = require( "view/shapes/SliderBox/slider" );
+  var sliderImage = require( "image!images/slider.png" );
+  var CurrentResistanceView = require( "view/shapes/SliderBox/current-resistance-view" );
+
   return function ( model, view, x, y ) {
 
     var root = new Easel.Container();
