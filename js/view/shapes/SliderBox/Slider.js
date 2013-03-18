@@ -11,10 +11,10 @@
  */
 
 
-define(function ( require) {
+define( function ( require ) {
   'use strict';
 
-  var Easel = require("easel");
+  var Easel = require( "easel" );
 
   function showPointer() {
     document.body.style.cursor = "pointer";

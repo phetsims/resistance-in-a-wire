@@ -3,10 +3,10 @@
  * View for resistor
  * Author: Vasily Shakhov (Mlearner)
  */
-define( function ( require) {
+define( function ( require ) {
   'use strict';
 
-  var Easel = require('easel');
+  var Easel = require( 'easel' );
 
   return function ( model, x, y, width, height ) {
     var self = this;

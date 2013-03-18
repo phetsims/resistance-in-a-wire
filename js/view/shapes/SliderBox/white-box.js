@@ -5,10 +5,10 @@
  */
 
 
-define(function ( require) {
+define( function ( require ) {
   'use strict';
 
-  var Easel = require("easel");
+  var Easel = require( "easel" );
 
   return function ( x, y, w, h ) {
     var rect = new Easel.Shape();

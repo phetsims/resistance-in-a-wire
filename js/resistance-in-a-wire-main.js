@@ -7,7 +7,6 @@
 define( function ( require ) {
   'use strict';
 
-  var Easel = require( 'easel' );
   var CanvasQuirks = require( "PHETCOMMON/view/CanvasQuirks" );
   var ResistanceInAWireModel = require( 'model/resistance-in-a-wire-model' );
   var ResistanceInAWireView = require( "view/resistance-in-a-wire-view" );
