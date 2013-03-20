@@ -64,9 +64,8 @@ define( function ( require ) {
       root.addChild( entry.view );
       entry.scale = entry.scale || 1 / model[entry.targetProperty].DEFAULT;
       model[entry.targetProperty].addObserver( function ( val ) {
-        entry.view.scaleX = entry.scale * val+0.125;
-        entry.view.scaleY = entry.scale * val+0.125;
-        //TODO scales incorrectly
+        entry.view.scaleX = entry.scale * val + 0.125;
+        entry.view.scaleY = entry.scale * val + 0.125;
       } );
     } );
 
