@@ -22,6 +22,10 @@ define( function ( require ) {
   // View --------------------------------------------------------------------
   var view = new ResistanceInAWireView( $container, model );
 
+
+  //title on bottom pane
+  $( document.body ).find( ".tab-name" ).html( Strings.title );
+
   CanvasQuirks.fixTextCursor( view.$canvas );
 
 } );

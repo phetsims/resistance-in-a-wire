@@ -27,7 +27,8 @@ define( function ( require ) {
 
       //Gets rid of scroll bars
       var width = $( window ).width();
-      var height = $( window ).height();
+      var height = $( window ).height()-50;
+      //50 - height of tabpane on the bottom of the page
 
       var scale = Math.min( width / self.defaultW, height / self.defaultH );
       var canvasW = scale * self.defaultW;
