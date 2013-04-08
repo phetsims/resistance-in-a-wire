@@ -58,12 +58,12 @@ define( function ( require ) {
       var ty = e.stageY / view.stage.scaleX - offset.y;
       ty = Math.max( y, Math.min( ty, y + h ) );
       imgShape.y = ty;
-      targetProperty.set( targetProperty.MIN + (targetProperty.MAX - targetProperty.MIN) * (y - ty + h) / h );
+      targetProperty.property.set( targetProperty.MIN + (targetProperty.MAX - targetProperty.MIN) * (y - ty + h) / h );
     };
 
     //observer, set position when changed
-    targetProperty.addObserver( function () {
-      imgShape.y = y + h - h * (targetProperty.get() - targetProperty.MIN) / (targetProperty.MAX - targetProperty.MIN);
+    targetProperty.property.addObserver( function () {
+      imgShape.y = y + h - h * (targetProperty.property.get() - targetProperty.MIN) / (targetProperty.MAX - targetProperty.MIN);
     } );
 
     return root;

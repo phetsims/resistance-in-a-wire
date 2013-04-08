@@ -91,17 +91,17 @@ define( function ( require ) {
     }
 
     //observers for value changes
-    model.area.addObserver( function ( val ) {
+    model.area.property.addObserver( function ( val ) {
       self.height = minh + maxh * (val - model.area.MIN) / (model.area.MAX - model.area.MIN);
       drawBox( self.width, self.height );
     } );
 
-    model.length.addObserver( function ( val ) {
+    model.length.property.addObserver( function ( val ) {
       self.width = minw + maxw * (val - model.length.MIN) / (model.length.MAX - model.length.MIN);
       drawBox( self.width, self.height );
     } );
 
-    model.resistivity.addObserver( function ( val ) {
+    model.resistivity.property.addObserver( function ( val ) {
       var borderNumber = maxPoints * (val) / (model.resistivity.MAX);
       for ( var i = 0; i < maxPoints; i++ ) {
         points[i].visible = i < borderNumber;

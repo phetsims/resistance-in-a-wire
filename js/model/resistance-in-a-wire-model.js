@@ -11,47 +11,44 @@ define( function ( require ) {
     var self = this;
 
     //properties
-    this.props = [
-      {
-        name: 'resistivity',
-        MIN: 0.01,
-        MAX: 1,
-        acc: 2,
-        DEFAULT: 0.5
-      },
-      {
-        name: 'length',
-        MIN: 0.1,
-        MAX: 20,
-        acc: 1,
-        DEFAULT: 10
-      },
-      {
-        name: 'area',
-        MIN: 0.01,
-        MAX: 15,
-        acc: 2,
-        DEFAULT: 7.5
-      }
-    ];
+    self.resistivity = {
+      property: new Property( 0.5 ),
+      MIN: 0.01,
+      MAX: 1,
+      acc: 2,
+      name: "resistivity"
+    };
+
+    self.length = {
+      property: new Property( 10 ),
+      MIN: 0.1,
+      MAX: 20,
+      acc: 2,
+      name: "length"
+    };
+
+    self.area = {
+      property: new Property( 7.5 ),
+      MIN: 0.01,
+      MAX: 15,
+      acc: 2,
+      name: "area"
+    };
+
+    self.props = [self.resistivity, self.length, self.area];
+
 
     var init = function () {
-      //initialize all variables
-      self.props.forEach( function ( entry ) {
-        self[entry.name] = new Property( entry.DEFAULT );
-        self[entry.name].MIN = entry.MIN;
-        self[entry.name].MAX = entry.MAX;
-        self[entry.name].DEFAULT = entry.DEFAULT;
-      } );
-      self.resistance = new Property();
+      //initialize variables
+      self.resistance = {property: new Property()};
 
       //@overrides set, with accuracy and adds observer - resistance update
       self.props.forEach( function ( entry ) {
-        self['oldSet' + entry.name] = self[entry.name].set;
-        self[entry.name].set = function ( val ) {
-          self['oldSet' + entry.name]( setAccuracy( val, entry.acc ) );
+        self['oldSet' + entry.name] = entry.property.set;
+        entry.property.set = function ( val ) {
+          self['oldSet' + entry.name]( round( val, entry.acc ) );
         };
-        self[entry.name].addObserver( updateResistance );
+        entry.property.addObserver( updateResistance );
       } );
 
       self.reset();
@@ -59,12 +56,12 @@ define( function ( require ) {
 
     //sets resistance if any props changed
     var updateResistance = function () {
-      var val = self.resistivity.get() * self.length.get() / self.area.get();
-      self.resistance.set( setAccuracy( val, 2 ) );
+      var val = self.resistivity.property.get() * self.length.property.get() / self.area.property.get();
+      self.resistance.property.set( round( val, 2 ) );
     };
 
     //round val to acc
-    var setAccuracy = function ( val, acc ) {
+    var round = function ( val, acc ) {
       var tens = Math.pow( 10, acc );
       return (Math.round( val * tens ) / tens).toFixed( acc );
     };
@@ -76,7 +73,7 @@ define( function ( require ) {
   ResistanceInAWireModel.prototype.reset = function () {
     var self = this;
     this.props.forEach( function ( entry ) {
-      self[entry.name].reset();
+      entry.property.reset();
     } );
   };
 

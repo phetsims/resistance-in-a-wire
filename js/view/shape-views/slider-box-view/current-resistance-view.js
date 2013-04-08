@@ -45,7 +45,7 @@ define( function ( require ) {
     texts[1].view.setTransform( texts[1].view.x + texts[1].width, midY );
 
     //observer, changes view when current value changes
-    model.resistance.addObserver( function ( val ) {
+    model.resistance.property.addObserver( function ( val ) {
       if ( val.charAt( 3 ) === '.' ) {
         val = val.substring( 0, 5 );
       }

@@ -29,7 +29,7 @@ define( function ( require ) {
 
     //update when any value changed
     ['resistivity', 'length', 'area'].forEach( function ( entry ) {
-      model[entry].addObserver( function () {
+      model[entry].property.addObserver( function () {
         self.stage.update();
       } );
     } );

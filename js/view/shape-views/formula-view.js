@@ -62,8 +62,8 @@ define( function ( require ) {
       entry.view.textBaseline = "middle";
       entry.view.regX = entry.view.getMeasuredWidth() / 2;
       root.addChild( entry.view );
-      entry.scale = entry.scale || 1 / model[entry.targetProperty].DEFAULT;
-      model[entry.targetProperty].addObserver( function ( val ) {
+      entry.scale = entry.scale || 1 / model[entry.targetProperty].property.get();
+      model[entry.targetProperty].property.addObserver( function ( val ) {
         entry.view.scaleX = entry.scale * val + 0.125;
         entry.view.scaleY = entry.scale * val + 0.125;
       } );

@@ -41,7 +41,7 @@ define( function ( require ) {
           font: "16px Verdana"
         },
         {
-          val: model.resistivity.get(),
+          val: model.resistivity.property.get(),
           color: "#000"
         },
         {
@@ -58,7 +58,7 @@ define( function ( require ) {
           font: "16px Verdana"
         },
         {
-          val: model.length.get(),
+          val: model.length.property.get(),
           color: "#000"
         },
         {
@@ -75,7 +75,7 @@ define( function ( require ) {
           font: "16px Verdana"
         },
         {
-          val: model.area.get(),
+          val: model.area.property.get(),
           color: "#000"
         },
         {
@@ -108,7 +108,7 @@ define( function ( require ) {
     var c = 0;
     ['resistivity', 'length', 'area'].forEach( function ( entry ) {
       //observer, changes view when props value changes
-      model[entry].addObserver( function ( c ) {
+      model[entry].property.addObserver( function ( c ) {
         return function ( val ) {
           texts[c][2].view.text = val;
         };
