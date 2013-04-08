@@ -16,7 +16,7 @@ require.config( {
                     tpl: "../contrib/tpl-0.2",
 
                     // common directories, uppercase names to identify them in require imports
-                    PHETCOMMON: "../common/phetcommon/js"
+                    PHETCOMMON: "../../phetcommon/js"
                   },
 
                   shim: {
