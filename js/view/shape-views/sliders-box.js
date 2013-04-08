@@ -10,10 +10,10 @@ define( function ( require ) {
 
   var Easel = require( "easel" );
   var i18n = require( "i18n!../../../nls/resistance-in-a-wire-strings" );
-  var WhiteBox = require( "view/shapes/SliderBox/white-box" );
-  var Slider = require( "view/shapes/SliderBox/slider" );
+  var WhiteBox = require( "view/shape-views/slider-box-view/white-box" );
+  var Slider = require( "view/shape-views/slider-box-view/slider" );
   var sliderImage = require( "image!images/slider.png" );
-  var CurrentResistanceView = require( "view/shapes/SliderBox/current-resistance-view" );
+  var CurrentResistanceView = require( "view/shape-views/slider-box-view/current-resistance-view" );
 
   return function ( model, view, x, y ) {
 

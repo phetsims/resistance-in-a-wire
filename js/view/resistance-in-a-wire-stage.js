@@ -8,7 +8,7 @@ define( function ( require ) {
   'use strict';
 
   var Easel = require( "easel" );
-  var RootNode = require( "view/shapes/root-node" );
+  var RootNode = require( "view/shape-views/root-node" );
 
   function ResistanceInAWireStage( canvas, model ) {
     var self = this;
