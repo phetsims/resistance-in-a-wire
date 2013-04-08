@@ -16,7 +16,7 @@ define( function ( require ) {
 
     this.$canvas = $container.find( "canvas" );
     this.stage = new ResistanceInAWireStage( this.$canvas[0], model );
-    this.htmlElements = new HTMLElements( $container, model );
+    this.htmlElements = new HTMLElements( model );
 
     //default width and height of model, when scale = 1, from blueprint and original flash model
     this.defaultW = 1000;

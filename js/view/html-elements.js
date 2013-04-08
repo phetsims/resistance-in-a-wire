@@ -7,15 +7,11 @@
 define( function ( require ) {
   'use strict';
 
-  var resetButton = require( "tpl!../../html/reset.html" );
   var i18n = require( "i18n!../../nls/resistance-in-a-wire-strings" );
 
-  function ControlPanel( container, model ) {
+  function ControlPanel( model ) {
 
-    //reset button
-    var reset = $( resetButton( {} ) );
-    container.append( reset );
-    reset.bind( 'click', function () {
+    $("#resetAllButton" ).bind( 'click', function () {
       model.reset();
     } );
   }
