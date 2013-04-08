@@ -37,14 +37,14 @@ define( function ( require ) {
       {
         val: "ρ",
         x: x + 250,
-        y: y - 30,
+        y: y - 63,
         targetProperty: "resistivity",
         color: "#0f0ffb"
       },
       {
         val: "L",
         x: x + 340,
-        y: y,
+        y: y-33,
         targetProperty: "length",
         color: "#0f0ffb"
       },
@@ -59,8 +59,8 @@ define( function ( require ) {
 
     texts.forEach( function ( entry ) {
       entry.view = new Easel.Text( entry.val, "130px Georgia", entry.color ).setTransform( entry.x, entry.y );
+      entry.view.textBaseline = "middle";
       entry.view.regX = entry.view.getMeasuredWidth() / 2;
-      entry.view.regY = entry.view.getMeasuredHeight() / 2;
       root.addChild( entry.view );
       entry.scale = entry.scale || 1 / model[entry.targetProperty].DEFAULT;
       model[entry.targetProperty].addObserver( function ( val ) {

@@ -20,7 +20,7 @@ define( function ( require ) {
     background.graphics.beginFill( '#ffffdf' ).rect( 0, 0, view.defaultW, view.defaultH );
     root.addChild( background );
 
-    root.addChild( new FormulaView( model, 70, 350 ) );
+    root.addChild( new FormulaView( model, 70, 400 ) );
     root.addChild( new SlidersBox( model, view, 600, 80 ) );
     root.addChild( new ResistorView( model, view, 10, 40 ) );
 
