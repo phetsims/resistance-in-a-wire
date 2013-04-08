@@ -11,6 +11,9 @@ define( function ( require ) {
   var ResistanceInAWireModel = require( 'model/resistance-in-a-wire-model' );
   var ResistanceInAWireView = require( "view/resistance-in-a-wire-view" );
   var Strings = require( 'i18n!../nls/resistance-in-a-wire-strings' );
+  var FastClick = require( "contrib/fastclick.js" );
+
+  new FastClick( document.body );
 
   // Title --------------------------------------------------------------------
   $( 'title' ).html( Strings.title );
