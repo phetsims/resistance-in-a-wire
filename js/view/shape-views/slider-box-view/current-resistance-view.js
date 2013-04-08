@@ -11,7 +11,7 @@ define( function ( require ) {
   var Easel = require( "easel" );
   var i18n = require( "i18n!../../../../nls/resistance-in-a-wire-strings" );
 
-  return function ( model, x, y, w ) {
+  return function CurrentResistanceView( model, x, y, w ) {
     var root = new Easel.Container();
 
     //text size and y point of texts

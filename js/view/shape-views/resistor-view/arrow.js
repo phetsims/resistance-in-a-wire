@@ -10,7 +10,7 @@ define( function ( require ) {
 
   var Easel = require( "easel" );
 
-  return function ( model, x, y, width ) {
+  return function Arrow( model, x, y, width ) {
     var line = new Easel.Shape();
 
     //line params , lineWidth, width, height, arrowtipwidth,arrowtipdeep

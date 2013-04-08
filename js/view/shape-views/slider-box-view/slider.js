@@ -29,7 +29,7 @@ define( function ( require ) {
     displayObject.onMouseOut = showDefault;
   }
 
-  return function ( view, x, y, h, targetProperty, img ) {
+  return function Slider( view, x, y, h, targetProperty, img ) {
     var root = new Easel.Container();
 
     //background

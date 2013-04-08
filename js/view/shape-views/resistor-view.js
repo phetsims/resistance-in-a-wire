@@ -10,7 +10,7 @@ define( function ( require ) {
   var Arrow = require( "view/shape-views/resistor-view/arrow" );
   var Resistor = require( "view/shape-views/resistor-view/resistor" );
 
-  return function ( model, view, x, y ) {
+  return function ResistorView( model, view, x, y ) {
     var root = new Easel.Container();
 
     var width = 480,

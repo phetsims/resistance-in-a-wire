@@ -10,7 +10,7 @@ define( function ( require ) {
 
   var Easel = require( "easel" );
 
-  return function ( model, x, y ) {
+  return function FormulaView ( model, x, y ) {
     var root = new Easel.Container();
 
     //static text

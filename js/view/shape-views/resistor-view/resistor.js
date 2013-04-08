@@ -8,7 +8,7 @@ define( function ( require ) {
 
   var Easel = require( 'easel' );
 
-  return function ( model, x, y, width, height ) {
+  return function Resistor( model, x, y, width, height ) {
     var self = this;
     var container = new Easel.Container();
 

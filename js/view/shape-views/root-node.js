@@ -12,7 +12,7 @@ define( function ( require ) {
   var FormulaView = require( "view/shape-views/formula-view" );
   var ResistorView = require( "view/shape-views/resistor-view" );
 
-  return function ( model, view ) {
+  return function RootNode( model, view ) {
     var root = new Easel.Container();
 
     //background

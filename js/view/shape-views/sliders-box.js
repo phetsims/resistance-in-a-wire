@@ -15,7 +15,7 @@ define( function ( require ) {
   var sliderImage = require( "image!images/slider.png" );
   var CurrentResistanceView = require( "view/shape-views/slider-box-view/current-resistance-view" );
 
-  return function ( model, view, x, y ) {
+  return function SliderBox( model, view, x, y ) {
 
     var root = new Easel.Container();
 
