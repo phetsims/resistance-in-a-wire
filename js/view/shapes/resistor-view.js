@@ -7,8 +7,8 @@ define( function ( require ) {
   'use strict';
 
   var Easel = require( "easel" );
-  var Arrow = require( "view/shapes/ResistorView/arrow" );
-  var Resistor = require( "view/shapes/ResistorView/resistor" );
+  var Arrow = require( "view/shapes/resistor-view/arrow" );
+  var Resistor = require( "view/shapes/resistor-view/resistor" );
 
   return function ( model, view, x, y ) {
     var root = new Easel.Container();
