@@ -27,15 +27,15 @@ define( function ( require ) {
     ];
 
     //init and transform texts
-    var totW = 0;
+    var totWidth = 0;
     texts.forEach( function ( entry ) {
       entry.view = new Easel.Text( entry.val, textSize + "px Verdana", "#F00" );
       root.addChild( entry.view );
       entry.width = entry.view.getMeasuredWidth();
-      totW += entry.width;
+      totWidth += entry.width;
     } );
 
-    var offset = midX - totW / 2;
+    var offset = midX - totWidth / 2;
     texts.forEach( function ( entry ) {
       entry.view.setTransform( offset, midY );
       offset += entry.width;
