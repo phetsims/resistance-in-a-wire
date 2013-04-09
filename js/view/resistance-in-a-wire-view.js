@@ -19,8 +19,8 @@ define( function ( require ) {
     this.htmlElements = new HTMLElements( model );
 
     //default width and height of model, when scale = 1, from blueprint and original flash model
-    this.defaultW = 1000;
-    this.defaultH = 640;
+    this.DEFAULTWIDTH = 1000;
+    this.DEFAULTHEIGHT = 640;
 
     // resize handler
     var handleResize = function () {
@@ -30,9 +30,9 @@ define( function ( require ) {
       var height = $( window ).height()-50;
       //50 - height of tabpane on the bottom of the page
 
-      var scale = Math.min( width / self.defaultW, height / self.defaultH );
-      var canvasW = scale * self.defaultW;
-      var canvasH = scale * self.defaultH;
+      var scale = Math.min( width / self.DEFAULTWIDTH, height / self.DEFAULTHEIGHT );
+      var canvasW = scale * self.DEFAULTWIDTH;
+      var canvasH = scale * self.DEFAULTHEIGHT;
 
       //Allow the canvas to fill the screen, but still center the content within the window.
       self.$canvas[0].setAttribute( 'width', canvasW + 'px' );

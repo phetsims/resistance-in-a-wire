@@ -17,8 +17,8 @@ define( function ( require ) {
         height = 180;
 
     //arrow width
-    var arroww = 150;
-    root.addChild( new Arrow( model, x + width / 2 - arroww / 4, y + height + 10, arroww ) );
+    var arrowWidth = 150;
+    root.addChild( new Arrow( model, x + width / 2 - arrowWidth / 4, y + height + 10, arrowWidth ) );
 
     //resistor
     var resistor = new Resistor( model, x, y, width, height );

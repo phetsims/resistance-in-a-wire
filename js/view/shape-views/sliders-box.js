@@ -29,67 +29,35 @@ define( function ( require ) {
     //texts for slider1, slider2
     var defaultFont = "30px Verdana",
         defaultColor = "#0f0ffb";
-    var texts = [
-      [
-        {
-          val: "ρ",
-          font: "60px Georgia",
-          dy: -10
-        },
-        {
-          val: i18n.resistivity,
-          font: "16px Verdana"
-        },
-        {
-          val: model.resistivity.property.get(),
-          color: "#000"
-        },
-        {
-          val: "Ω" + i18n.cm
-        }
+    var texts = {
+      resistivity: [
+        {val: "ρ", font: "60px Georgia", dy: -10},
+        {val: i18n.resistivity, font: "16px Verdana"},
+        {val: model.resistivity.property.get(), color: "#000"},
+        {val: "Ω" + i18n.cm}
       ],
-      [
-        {
-          val: "L",
-          font: "60px Georgia"
-        },
-        {
-          val: i18n.length,
-          font: "16px Verdana"
-        },
-        {
-          val: model.length.property.get(),
-          color: "#000"
-        },
-        {
-          val: i18n.cm
-        }
+      length: [
+        {val: "L", font: "60px Georgia"},
+        {val: i18n.length, font: "16px Verdana"},
+        {val: model.length.property.get(), color: "#000"},
+        {val: i18n.cm}
       ],
-      [
-        {
-          val: "A",
-          font: "60px Georgia"
-        },
-        {
-          val: i18n.area,
-          font: "16px Verdana"
-        },
-        {
-          val: model.area.property.get(),
-          color: "#000"
-        },
-        {
-          val: i18n.cm
-        }
+      area: [
+        {val: "A", font: "60px Georgia"},
+        {val: i18n.area, font: "16px Verdana"},
+        {val: model.area.property.get(), color: "#000"},
+        {val: i18n.cm}
       ]
-    ];
+    };
     //xy Grid
     var yCoords = [60, 120, 405 , 445];
     var xCoords = [95, 190, 285];
 
+    var listOfValues = ['resistivity', 'length', 'area'];
+
     //set texts
-    for ( var i = 0, l = texts.length; i < l; i++ ) {
-      var textI = texts[i];
+    for ( var i = 0, l = listOfValues.length; i < l; i++ ) {
+      var textI = texts[listOfValues[i]];
       for ( var j = 0, l1 = textI.length; j < l1; j++ ) {
         textI[j].view = new Easel.Text( textI[j].val, textI[j].font || defaultFont, textI[j].color || defaultColor );
         textI[j].view.setTransform( rectX + xCoords[i] + (textI[j].dx || 0), rectY + yCoords[j] + (textI[j].dy || 0) );
@@ -100,19 +68,17 @@ define( function ( require ) {
     }
 
     //additional square (2) on area units, tt = target text, where sup added
-    var targetText = texts[2][3];
+    var targetText = texts.area[3];
     var sqr = new Easel.Text( "2", "20px Verdana", targetText.color || defaultColor );
-    sqr.setTransform( rectX + xCoords[2] + texts[2][3].view.getMeasuredWidth() / 2, rectY + yCoords[3] + (targetText.dy || 0) - 10 );
+    sqr.setTransform( rectX + xCoords[2] + targetText.view.getMeasuredWidth() / 2, rectY + yCoords[3] + (targetText.dy || 0) - 10 );
     root.addChild( sqr );
 
     var c = 0;
-    ['resistivity', 'length', 'area'].forEach( function ( entry ) {
+    listOfValues.forEach( function ( entry ) {
       //observer, changes view when props value changes
-      model[entry].property.addObserver( function ( c ) {
-        return function ( val ) {
-          texts[c][2].view.text = val;
-        };
-      }( c ) );
+      model[entry].property.addObserver( function ( val ) {
+        texts[entry][2].view.text = val;
+      } );
       //add slider
       root.addChild( new Slider( view, rectX + xCoords[c], rectY + 145, 260, model[entry], sliderImage ) );
       c++;

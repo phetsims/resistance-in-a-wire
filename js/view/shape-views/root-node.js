@@ -17,7 +17,7 @@ define( function ( require ) {
 
     //background
     var background = new Easel.Shape();
-    background.graphics.beginFill( '#ffffdf' ).rect( 0, 0, view.defaultW, view.defaultH );
+    background.graphics.beginFill( '#ffffdf' ).rect( 0, 0, view.DEFAULTWIDTH, view.DEFAULTHEIGHT );
     root.addChild( background );
 
     root.addChild( new FormulaView( model, 70, 400 ) );

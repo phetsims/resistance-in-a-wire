@@ -15,8 +15,8 @@ define( function ( require ) {
     self.model = model;
 
     this.stage = new Easel.Stage( canvas );
-    this.defaultW = 1000;
-    this.defaultH = 640;
+    this.DEFAULTWIDTH = 1000;
+    this.DEFAULTHEIGHT = 640;
 
     // rendering order
     this.stage.addChild( new RootNode( self.model, self ) );

@@ -27,7 +27,7 @@ define( function ( require ) {
     //scale - multiplier
     var texts = [
       {
-        val: "R",
+        label: "R",
         scale: 3 / 2,
         x: x + 50,
         y: y + 60,
@@ -35,21 +35,21 @@ define( function ( require ) {
         color: "#ed1c24"
       },
       {
-        val: "ρ",
+        label: "ρ",
         x: x + 250,
         y: y - 63,
         targetProperty: "resistivity",
         color: "#0f0ffb"
       },
       {
-        val: "L",
+        label: "L",
         x: x + 340,
         y: y-33,
         targetProperty: "length",
         color: "#0f0ffb"
       },
       {
-        val: "A",
+        label: "A",
         x: x + 300,
         y: y + 130,
         targetProperty: "area",
@@ -57,11 +57,14 @@ define( function ( require ) {
       }
     ];
 
+    //create all texts and place them in x,y coords, then set basepoint and add to container
     texts.forEach( function ( entry ) {
-      entry.view = new Easel.Text( entry.val, "130px Georgia", entry.color ).setTransform( entry.x, entry.y );
+      entry.view = new Easel.Text( entry.label, "130px Georgia", entry.color ).setTransform( entry.x, entry.y );
       entry.view.textBaseline = "middle";
       entry.view.regX = entry.view.getMeasuredWidth() / 2;
       root.addChild( entry.view );
+      //scale - coefficient between real value and visual size, by default 1/startValue, if not override by params above
+      //never changes
       entry.scale = entry.scale || 1 / model[entry.targetProperty].property.get();
       model[entry.targetProperty].property.addObserver( function ( val ) {
         entry.view.scaleX = entry.scale * val + 0.125;
