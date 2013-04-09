@@ -1,11 +1,5 @@
 /**
  * Copyright 2002-2013, University of Colorado
- * view for vertical slider control
- * Author: Vasily Shakhov (Mlearner)
- */
-
-/**
- * Copyright 2002-2013, University of Colorado
  * Container for sliders and circumjacent text
  * Author: Vasily Shakhov (Mlearner)
  */
@@ -55,10 +49,10 @@ define( function ( require ) {
       e.onMouseOver = showPointer;
     };
     var drag = function ( e ) {
-      var ty = e.stageY / view.stage.scaleX - offset.y;
-      ty = Math.max( y, Math.min( ty, y + h ) );
-      imgShape.y = ty;
-      targetProperty.property.set( targetProperty.MIN + (targetProperty.MAX - targetProperty.MIN) * (y - ty + h) / h );
+      var topY = e.stageY / view.stage.scaleX - offset.y;
+      topY = Math.max( y, Math.min( topY, y + h ) );
+      imgShape.y = topY;
+      targetProperty.property.set( targetProperty.MIN + (targetProperty.MAX - targetProperty.MIN) * (y - topY + h) / h );
     };
 
     //observer, set position when changed

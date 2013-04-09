@@ -27,15 +27,15 @@ define( function ( require ) {
     ];
 
     //init and transform texts
-    var totWidth = 0;
+    var totalWidth = 0;
     texts.forEach( function ( entry ) {
       entry.view = new Easel.Text( entry.val, textSize + "px Verdana", "#F00" );
       root.addChild( entry.view );
       entry.width = entry.view.getMeasuredWidth();
-      totWidth += entry.width;
+      totalWidth += entry.width;
     } );
 
-    var offset = midX - totWidth / 2;
+    var offset = midX - totalWidth / 2;
     texts.forEach( function ( entry ) {
       entry.view.setTransform( offset, midY );
       offset += entry.width;
@@ -45,8 +45,9 @@ define( function ( require ) {
     texts[1].view.setTransform( texts[1].view.x + texts[1].width, midY );
 
     //observer, changes view when current value changes
+    // we must always show <=4 digits, so 1500.12 -> 1500, 150.12 -> 150.1
     model.resistance.property.addObserver( function ( val ) {
-      if ( val.charAt( 3 ) === '.' ) {
+      if ( val.charAt( 3 ) === '.' || val.charAt( 3 ) === ',' ) {
         val = val.substring( 0, 5 );
       }
       else {

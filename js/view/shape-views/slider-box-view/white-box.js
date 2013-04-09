@@ -1,6 +1,6 @@
 /**
  * Copyright 2002-2013, University of Colorado
- * White Block with black border container
+ * White Block with black border container, decorator for slider's block
  * Author: Vasily Shakhov (Mlearner)
  */
 
