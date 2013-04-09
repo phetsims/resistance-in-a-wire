@@ -30,6 +30,9 @@ define( function ( require ) {
       container.setTransform( x + minw / 2 + maxw / 2 - width / 2, y + maxh / 2 - height / 2 );
 
       //ellipse params
+      // kappa is koefficient for Bezier Curves (when we draw ellipse)
+      // see, for reference, http://www.whizkidtech.redprince.net/bezier/circle/kappa/
+      // or http://www.tinaja.com/glib/ellipse4.pdf
       var kappa = 0.5522848;
       var ox = (height / 4) * kappa, // control point offset horizontal
           oy = (height / 2) * kappa, // control point offset vertical
@@ -43,23 +46,31 @@ define( function ( require ) {
       var ctx = box.graphics;
 
       ctx.clear();
+      //set gradient filling
       ctx.beginLinearGradientFill( ['#e4e4e4', "#FFF", '#FFF', '#bfbfbf', '#575757'], [0, 0.2, 0.5, 0.81, 1], 0, 0, 0, height );
 
+      //draw top line of resistor
       ctx.s( 1 ).mt( height / 4, 0 ).lt( width - height / 4, 0 );
+
+      //draw right half-ellipse
       ctx.bezierCurveTo( xm + ox, 0, xe, ym - oy, xe, ym );
       ctx.bezierCurveTo( xe, ym + oy, xm + ox, ye, xm, ye );
+
+      //bottom line
       ctx.lt( height / 4, height );
+
+      //left ellipse
       ctx.bezierCurveTo( xm1 - ox, ye, 0, ym + oy, 0, ym );
       ctx.bezierCurveTo( 0, ym - oy, xm1 - ox, 0, xm1, 0 ).endFill().closePath();
-
       ctx.mt( xm1, 0 ).bezierCurveTo( xm1 + ox, 0, xe1, ym - oy, xe1, ym );
       ctx.bezierCurveTo( xe1, ym + oy, xm1 + ox, ye, xm1, ye );
 
+      // mask for black dots. Dots drawing in width x height container
+      // Then we apply mask (resistor) on this container to show points only in resistor
       dotsContainer.mask = box;
     };
 
-    //black points
-    //black points in the resistor
+    //black dots in the resistor
     var dotsContainer = new Easel.Container();
     var maxPoints = 900,
         a = (maxh - 3) * (maxw + minw - 3) / maxPoints,    //area per dot
@@ -70,6 +81,7 @@ define( function ( require ) {
 
     var points = [];
 
+    // create all possible black dots within dotsContainer
     for ( var i = 1; i <= nRows; i++ ) {
       for ( var j = 1; j <= nCols; j++ ) {
         var p = new Easel.Shape();
@@ -83,6 +95,7 @@ define( function ( require ) {
     }
     maxPoints = c;
 
+    //shuffle array of points to show them evenly
     for ( i = points.length - 1; i > -1; i-- ) {
       var pos = parseInt( Math.random() * i, 10 );
       var tt = points[i];
@@ -101,6 +114,7 @@ define( function ( require ) {
       drawBox( self.width, self.height );
     } );
 
+    //show only % of dots proportional to resistivity/maxResistivity
     model.resistivity.property.addObserver( function ( val ) {
       var borderNumber = maxPoints * (val) / (model.resistivity.MAX);
       for ( var i = 0; i < maxPoints; i++ ) {
