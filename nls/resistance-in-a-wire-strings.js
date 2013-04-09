@@ -2,7 +2,7 @@
 define(
   {
     "root": {
-      title: "Resistance in a Wire",
+      simTitle: "Resistance in a Wire",
       cm: "cm",
       ohm: "ohm",
       resistivity : "resistivity",
