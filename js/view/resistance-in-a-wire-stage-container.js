@@ -24,7 +24,7 @@ define( function ( require ) {
     //Enable touch and prevent default
     Easel.Touch.enable( this.stage, false, false );
 
-    //mouseover events
+    //enable mouseover events and change the mouse cursor icon
     this.stage.enableMouseOver();
 
     //update when any value changed

@@ -7,7 +7,7 @@
 define( function ( require ) {
   'use strict';
 
-  var ResistanceInAWireStage = require( 'view/resistance-in-a-wire-stage' );
+  var ResistanceInAWireStage = require( 'view/resistance-in-a-wire-stage-container' );
   var HTMLElements = require( "view/html-elements" );
 
   function ResistanceInAWireView( $container, model ) {

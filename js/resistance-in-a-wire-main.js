@@ -13,7 +13,7 @@ define( function ( require ) {
   var Strings = require( 'i18n!../nls/resistance-in-a-wire-strings' );
   var FastClick = require( "contrib/fastclick.js" );
 
-  new FastClick( document.body );
+  var fastClick = new FastClick( document.body );
 
   // Title --------------------------------------------------------------------
   $( 'title' ).html( Strings.title );
