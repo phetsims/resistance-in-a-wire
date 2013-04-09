@@ -16,7 +16,7 @@ define( function ( require ) {
   var fastClick = new FastClick( document.body );
 
   // Title --------------------------------------------------------------------
-  $( 'title' ).html( Strings.title );
+  $( 'title' ).html( Strings.simTitle );
 
   // Model --------------------------------------------------------------------
   var model = new ResistanceInAWireModel();
