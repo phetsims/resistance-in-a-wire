@@ -10,13 +10,13 @@ define( function ( require ) {
   var CanvasQuirks = require( "PHETCOMMON/view/CanvasQuirks" );
   var ResistanceInAWireModel = require( 'model/resistance-in-a-wire-model' );
   var ResistanceInAWireView = require( "view/resistance-in-a-wire-view" );
-  var Strings = require( 'resistance-in-a-wire-strings' );
+  var i18n = require( 'resistance-in-a-wire-strings' );
   var FastClick = require( "contrib/fastclick.js" );
 
   new FastClick( document.body );
 
   // Title --------------------------------------------------------------------
-  $( 'title' ).html( Strings.simTitle );
+  $( 'title' ).html( i18n.simTitle );
 
   // Model --------------------------------------------------------------------
   var model = new ResistanceInAWireModel();
@@ -27,7 +27,7 @@ define( function ( require ) {
 
 
   //title on bottom pane
-  $( document.body ).find( ".tab-name" ).html( Strings.title );
+  $( document.body ).find( ".tab-name" ).html( i18n.title );
 
   CanvasQuirks.fixTextCursor( view.$canvas );
 
