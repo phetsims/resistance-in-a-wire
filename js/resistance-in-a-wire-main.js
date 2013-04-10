@@ -13,7 +13,7 @@ define( function ( require ) {
   var Strings = require( 'resistance-in-a-wire-strings' );
   var FastClick = require( "contrib/fastclick.js" );
 
-  var fastClick = new FastClick( document.body );
+  new FastClick( document.body );
 
   // Title --------------------------------------------------------------------
   $( 'title' ).html( Strings.simTitle );
