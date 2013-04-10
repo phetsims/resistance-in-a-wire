@@ -21,7 +21,7 @@ define( function ( require ) {
 
     //texts parts of full string
     var texts = [
-      {val: i18n.resistance + " = "},
+      {val: i18n.resistanceEq+" "},
       {val: "1.250"},
       {val: " " + i18n.ohm}
     ];

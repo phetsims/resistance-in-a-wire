@@ -8,7 +8,7 @@ define(
         resistivity: "resistivity",
         length: "length",
         area: "area",
-        resistance: "Resistance"
+        resistanceEq: "Resistance ="
       },
       "am": true,
       "ar": true,
