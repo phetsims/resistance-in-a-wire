@@ -9,7 +9,7 @@ define( function ( require ) {
   'use strict';
 
   var Easel = require( "easel" );
-  var i18n = require( "i18n!../../../../nls/resistance-in-a-wire-strings" );
+  var i18n = require( 'resistance-in-a-wire-strings' );
 
   return function CurrentResistanceView( model, x, y, w ) {
     var root = new Easel.Container();

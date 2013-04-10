@@ -10,7 +10,7 @@ define( function ( require ) {
   var CanvasQuirks = require( "PHETCOMMON/view/CanvasQuirks" );
   var ResistanceInAWireModel = require( 'model/resistance-in-a-wire-model' );
   var ResistanceInAWireView = require( "view/resistance-in-a-wire-view" );
-  var Strings = require( 'i18n!../nls/resistance-in-a-wire-strings' );
+  var Strings = require( 'resistance-in-a-wire-strings' );
   var FastClick = require( "contrib/fastclick.js" );
 
   var fastClick = new FastClick( document.body );

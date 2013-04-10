@@ -7,8 +7,6 @@
 define( function ( require ) {
   'use strict';
 
-  var i18n = require( "i18n!../../nls/resistance-in-a-wire-strings" );
-
   function ControlPanel( model ) {
 
     $("#resetAllButton" ).bind( 'click', function () {
