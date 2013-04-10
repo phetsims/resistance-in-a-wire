@@ -4,6 +4,7 @@
  *
  * Load the strings only once and from a single location, because loading them from different relative paths
  * causes them to fall back to the root language sometimes for unknown reasons.
+ * See #17 at https://github.com/phetsims/resistance-in-a-wire/issues/17
  *
  */
 define( function( require ) {
