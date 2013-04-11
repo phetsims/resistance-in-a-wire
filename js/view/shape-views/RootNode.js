@@ -8,9 +8,9 @@ define( function ( require ) {
   'use strict';
 
   var Easel = require( "easel" );
-  var SlidersBox = require( "view/shape-views/sliders-box" );
-  var FormulaView = require( "view/shape-views/formula-view" );
-  var ResistorView = require( "view/shape-views/resistor-view" );
+  var SlidersBox = require( "view/shape-views/SlidersBox" );
+  var FormulaView = require( "view/shape-views/FormulaView" );
+  var ResistorView = require( "view/shape-views/ResistorView" );
 
   return function RootNode( model, view ) {
     var root = new Easel.Container();
