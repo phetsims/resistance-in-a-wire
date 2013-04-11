@@ -21,8 +21,8 @@ define( function ( require ) {
 
     //texts parts of full string
     var texts = [
-      {val: i18n.resistanceEq+" "},
-      {val: "1.250"},
+      {val: i18n.resistanceEq + " "},
+      {val: "100"},
       {val: " " + i18n.ohm}
     ];
 
@@ -48,7 +48,7 @@ define( function ( require ) {
     // we must always show <=4 digits, so 1500.12 -> 1500, 150.12 -> 150.1
     model.resistance.property.addObserver( function ( val ) {
       if ( val.charAt( 3 ) === '.' || val.charAt( 3 ) === ',' ) {
-        val = val.substring( 0, 5 );
+        val = val.substring( 0, 3 );
       }
       else {
         val = val.substring( 0, 4 );
