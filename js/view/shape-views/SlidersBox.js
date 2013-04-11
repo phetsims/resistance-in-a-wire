@@ -52,7 +52,7 @@ define( function ( require ) {
     };
     //xy Grid
     var yCoords = [60, 120, 410 , 445];
-    var xCoords = [95, 190, 285];
+    var xCoords = [70, 195, 320];
 
     var listOfValues = ['resistivity', 'length', 'area'];
 
