@@ -16,8 +16,8 @@ define( function ( require ) {
     var box = new Easel.Shape();
 
     //default vars
-    var minw = height / 2,
-        minh = 5,
+    var minw = height / 2 + 5,
+        minh = 1,
         maxw = width,
         maxh = height;
 
@@ -25,9 +25,11 @@ define( function ( require ) {
     self.width = width;
     self.height = width;
 
+    var centX = x + (maxw + minw) / 2;
     //draws resistor
     var drawBox = function ( width, height ) {
-      container.setTransform( x + minw / 2 + maxw / 2 - width / 2, y + maxh / 2 - height / 2 );
+      width += minw;
+      container.setTransform( centX - width / 2, y + maxh / 2 - height / 2 );
 
       //ellipse params
       // kappa is koefficient for Bezier Curves (when we draw ellipse)
@@ -106,11 +108,12 @@ define( function ( require ) {
     //observers for value changes
     model.area.property.addObserver( function ( val ) {
       self.height = minh + maxh * (val - model.area.MIN) / (model.area.MAX - model.area.MIN);
+      minw = self.height / 2 + 5;
       drawBox( self.width, self.height );
     } );
 
     model.length.property.addObserver( function ( val ) {
-      self.width = minw + maxw * (val - model.length.MIN) / (model.length.MAX - model.length.MIN);
+      self.width = maxw * (val - model.length.MIN) / (model.length.MAX - model.length.MIN);
       drawBox( self.width, self.height );
     } );
 
