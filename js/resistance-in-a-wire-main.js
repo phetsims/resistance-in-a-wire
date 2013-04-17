@@ -8,8 +8,8 @@ define( function ( require ) {
   'use strict';
 
   var CanvasQuirks = require( "PHETCOMMON/view/CanvasQuirks" );
-  var ResistanceInAWireModel = require( 'model/resistanceInAWireModel' );
-  var ResistanceInAWireView = require( "view/resistanceInAWireView" );
+  var ResistanceInAWireModel = require( 'model/ResistanceInAWireModel' );
+  var ResistanceInAWireView = require( "view/ResistanceInAWireView" );
   var i18n = require( 'resistance-in-a-wire-strings' );
   var FastClick = require( "contrib/fastclick.js" );
 
