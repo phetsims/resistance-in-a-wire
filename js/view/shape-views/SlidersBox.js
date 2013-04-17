@@ -11,7 +11,7 @@ define( function ( require ) {
   var Easel = require( "easel" );
   var i18n = require( 'resistance-in-a-wire-strings' );
   var WhiteBox = require( "view/shape-views/slider-box-view/WhiteBox" );
-  var Slider = require( "view/shape-views/slider-box-view/Slider" );
+  var Slider = require( "view/shape-views/slider-box-view/slider" );
   var sliderImage = require( "image!images/slider.png" );
   var CurrentResistanceView = require( "view/shape-views/slider-box-view/CurrentResistanceView" );
 
