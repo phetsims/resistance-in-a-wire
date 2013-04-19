@@ -52,7 +52,7 @@ define( function ( require ) {
       ctx.beginLinearGradientFill( ['#e4e4e4', "#FFF", '#FFF', '#bfbfbf', '#575757'], [0, 0.2, 0.5, 0.81, 1], 0, 0, 0, height );
 
       //draw top line of resistor
-      ctx.s( 1 ).mt( height / 4, 0 ).lt( width - height / 4, 0 );
+      ctx.s( "#000" ).mt( height / 4, 0 ).lt( width - height / 4, 0 );
 
       //draw right half-ellipse
       ctx.bezierCurveTo( xm + ox, 0, xe, ym - oy, xe, ym );
