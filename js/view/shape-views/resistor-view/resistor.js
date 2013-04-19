@@ -64,8 +64,13 @@ define( function ( require ) {
       //left ellipse
       ctx.bezierCurveTo( xm1 - ox, ye, 0, ym + oy, 0, ym );
       ctx.bezierCurveTo( 0, ym - oy, xm1 - ox, 0, xm1, 0 ).endFill().closePath();
+
+      //left ellipse with different filling
+      ctx.beginFill( "#f2f2f2" );
+      ctx.mt( xm1, ye).s( "#000" ).bezierCurveTo( xm1 - ox, ye, 0, ym + oy, 0, ym );
+      ctx.bezierCurveTo( 0, ym - oy, xm1 - ox, 0, xm1, 0 );
       ctx.mt( xm1, 0 ).bezierCurveTo( xm1 + ox, 0, xe1, ym - oy, xe1, ym );
-      ctx.bezierCurveTo( xe1, ym + oy, xm1 + ox, ye, xm1, ye );
+      ctx.bezierCurveTo( xe1, ym + oy, xm1 + ox, ye, xm1, ye ).endFill().closePath();
 
       // mask for black dots. Dots drawing in width x height container
       // Then we apply mask (resistor) on this container to show points only in resistor
