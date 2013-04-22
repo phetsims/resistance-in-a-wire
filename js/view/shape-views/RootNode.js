@@ -20,10 +20,9 @@ define( function ( require ) {
     background.graphics.beginFill( '#ffffdf' ).rect( 0, 0, view.DEFAULTWIDTH, view.DEFAULTHEIGHT );
     root.addChild( background );
 
-    root.addChild( new FormulaView( model, 70, 400 ) );
+    root.addChild( new FormulaView( model, 70, 170 ) );
     root.addChild( new SlidersBox( model, view, 600, 60 ) );
-    root.addChild( new ResistorView( model, view, 10, 40 ) );
-
+    root.addChild( new ResistorView( model, view, 10, 400 ) );
 
     return root;
   };
