@@ -21,7 +21,7 @@ define( function ( require ) {
     root.addChild( background );
 
     root.addChild( new FormulaView( model, 70, 400 ) );
-    root.addChild( new SlidersBox( model, view, 600, 80 ) );
+    root.addChild( new SlidersBox( model, view, 600, 60 ) );
     root.addChild( new ResistorView( model, view, 10, 40 ) );
 
 
