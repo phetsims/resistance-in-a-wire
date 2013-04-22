@@ -25,11 +25,25 @@ define( function ( require ) {
     self.width = width;
     self.height = width;
 
+
+    //two points which always should be visible;
+    var pp1 = new Easel.Shape();
+    pp1.graphics.beginFill( "#000" ).drawCircle( 0, 0, 2 );
+    var pp2 = new Easel.Shape();
+    pp2.graphics.beginFill( "#000" ).drawCircle( 0, 0, 2 );
+
     var centX = x + (maxw + minw) / 2;
     //draws resistor
     var drawBox = function ( width, height ) {
+
       width += minw;
       container.setTransform( centX - width / 2, y + maxh / 2 - height / 2 );
+
+      pp1.x = width/2;
+      pp1.y = height/2;
+      pp2.x = width*2/3;
+      pp2.y = height*2/3;
+
 
       //ellipse params
       // kappa is koefficient for Bezier Curves (when we draw ellipse)
@@ -88,6 +102,9 @@ define( function ( require ) {
 
     var points = [];
 
+    dotsContainer.addChild( pp1 );
+    dotsContainer.addChild( pp2 );
+
     // create all possible black dots within dotsContainer
     for ( var i = 1; i <= nRows; i++ ) {
       for ( var j = 1; j <= nCols; j++ ) {
@@ -101,6 +118,8 @@ define( function ( require ) {
       }
     }
     maxPoints = c;
+
+
 
     //shuffle array of points to show them evenly
     for ( i = points.length - 1; i > -1; i-- ) {
