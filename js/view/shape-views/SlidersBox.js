@@ -12,7 +12,7 @@ define( function ( require ) {
   var i18n = require( 'resistance-in-a-wire-strings' );
   var WhiteBox = require( "view/shape-views/slider-box-view/WhiteBox" );
   var Slider = require( "view/shape-views/slider-box-view/slider" );
-  var sliderImage = require( "image!images/slider.png" );
+  var imageLoader = require( "imageLoader" );
   var CurrentResistanceView = require( "view/shape-views/slider-box-view/CurrentResistanceView" );
 
   return function SliderBox( model, view, x, y ) {
@@ -81,7 +81,7 @@ define( function ( require ) {
         texts[entry][2].view.text = val;
       } );
       //add slider
-      root.addChild( new Slider( view, rectX + xCoords[c], rectY + 145, 260, model[entry], sliderImage ) );
+      root.addChild( new Slider( view, rectX + xCoords[c], rectY + 145, 260, model[entry], imageLoader.getImage( 'slider.png' ) ) );
       c++;
     } );
 

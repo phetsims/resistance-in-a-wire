@@ -12,6 +12,8 @@ define( function ( require ) {
   var ResistanceInAWireView = require( "view/ResistanceInAWireView" );
   var i18n = require( 'resistance-in-a-wire-strings' );
   var FastClick = require( "fastclick" );
+  var ImagesLoader = require('PHETCOMMON/util/ImagesLoader');
+  var imageLoader = require('imageLoader');
 
   new FastClick( document.body );
 
@@ -22,13 +24,18 @@ define( function ( require ) {
   var model = new ResistanceInAWireModel();
 
   var $container = $( "#canvasContainer" );
-  // View --------------------------------------------------------------------
-  var view = new ResistanceInAWireView( $container, model );
-
 
   //title on bottom pane
   $( document.body ).find( ".tab-name" ).html( i18n.title );
 
-  CanvasQuirks.fixTextCursor( view.$canvas );
+  new ImagesLoader( function( loader ) {
 
+    //Initialize the image loader
+    imageLoader.getImage = loader.getImage;
+
+    // View --------------------------------------------------------------------
+    var view = new ResistanceInAWireView( $container, model );
+
+    CanvasQuirks.fixTextCursor( view.$canvas );
+  } );
 } );
