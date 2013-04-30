@@ -38,7 +38,7 @@ module.exports = function ( grunt ) {
           compile: {
             options: {
               mainConfigFile: "js/resistance-in-a-wire-config.js",
-              out: "dist/debug/resistance-in-a-wire-debug.js",
+              out: "deploy/debug/resistance-in-a-wire-debug.js",
               name: "resistance-in-a-wire-config",
               wrap: true,
               uglify: {
