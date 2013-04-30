@@ -14,6 +14,7 @@ require.config( {
                     i18n: "../contrib/i18n/i18n",
                     image: '../contrib/image-0.2.1',
                     tpl: "../contrib/tpl-0.2",
+                    fastclick: "../contrib/fastclick",
 
                     // common directories, uppercase names to identify them in require imports
                     PHETCOMMON: "../lib/phet/phetcommon/js"

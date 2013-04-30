@@ -11,7 +11,7 @@ define( function ( require ) {
   var ResistanceInAWireModel = require( 'model/ResistanceInAWireModel' );
   var ResistanceInAWireView = require( "view/ResistanceInAWireView" );
   var i18n = require( 'resistance-in-a-wire-strings' );
-  var FastClick = require( "contrib/fastclick.js" );
+  var FastClick = require( "fastclick" );
 
   new FastClick( document.body );
 
