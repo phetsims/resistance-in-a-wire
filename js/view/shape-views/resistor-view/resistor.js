@@ -23,7 +23,10 @@ define( function ( require ) {
 
     //current params
     self.width = width;
-    self.height = width;
+    self.height = height;
+
+    var resistorWidth = width,
+        resistorHeight = height;
 
 
     //two points which always should be visible;
@@ -31,18 +34,16 @@ define( function ( require ) {
     pp1.graphics.beginFill( "#000" ).drawCircle( 0, 0, 2 );
     var pp2 = new Easel.Shape();
     pp2.graphics.beginFill( "#000" ).drawCircle( 0, 0, 2 );
+    pp1.x = width / 2;
+    pp1.y = height / 2;
+    pp2.x = width * 2 / 3;
+    pp2.y = height * 2 / 3;
 
-    var centX = x + (maxw + minw) / 2;
+    container.setTransform( x, y );
     //draws resistor
     var drawBox = function ( width, height ) {
-
       width += minw;
-      container.setTransform( centX - width / 2, y + maxh / 2 - height / 2 );
-
-      pp1.x = width/2;
-      pp1.y = height/2;
-      pp2.x = width*2/3;
-      pp2.y = height*2/3;
+      box.setTransform( self.width / 2 - width / 2, self.height / 2 - height / 2 );
 
 
       //ellipse params
@@ -81,7 +82,7 @@ define( function ( require ) {
 
       //left ellipse with different filling
       ctx.beginFill( "#f2f2f2" );
-      ctx.mt( xm1, ye).s( "#000" ).bezierCurveTo( xm1 - ox, ye, 0, ym + oy, 0, ym );
+      ctx.mt( xm1, ye ).s( "#000" ).bezierCurveTo( xm1 - ox, ye, 0, ym + oy, 0, ym );
       ctx.bezierCurveTo( 0, ym - oy, xm1 - ox, 0, xm1, 0 );
       ctx.mt( xm1, 0 ).bezierCurveTo( xm1 + ox, 0, xe1, ym - oy, xe1, ym );
       ctx.bezierCurveTo( xe1, ym + oy, xm1 + ox, ye, xm1, ye ).endFill().closePath();
@@ -106,11 +107,11 @@ define( function ( require ) {
     dotsContainer.addChild( pp2 );
 
     // create all possible black dots within dotsContainer
-    for ( var i = 1; i <= nRows; i++ ) {
-      for ( var j = 1; j <= nCols; j++ ) {
+    for ( var i = 0; i <= nRows; i++ ) {
+      for ( var j = 0; j <= nCols; j++ ) {
         var p = new Easel.Shape();
         p.graphics.beginFill( "#000" ).drawCircle( 0, 0, 2 );
-        p.x = 0 + j * d - d / 2 + Math.random() * d * 0.7 - 3;
+        p.x = j * d - d / 2 + Math.random() * d * 0.7 - 43;
         p.y = 0 + i * d - d / 2 + Math.random() * d * 0.7;
         points.push( p );
         dotsContainer.addChild( p );
@@ -118,7 +119,6 @@ define( function ( require ) {
       }
     }
     maxPoints = c;
-
 
 
     //shuffle array of points to show them evenly
@@ -131,14 +131,14 @@ define( function ( require ) {
 
     //observers for value changes
     model.area.property.addObserver( function ( val ) {
-      self.height = minh + maxh * (val - model.area.MIN) / (model.area.MAX - model.area.MIN);
+      resistorHeight = minh + maxh * (val - model.area.MIN) / (model.area.MAX - model.area.MIN);
       minw = self.height / 2 + 5;
-      drawBox( self.width, self.height );
+      drawBox( resistorWidth, resistorHeight );
     } );
 
     model.length.property.addObserver( function ( val ) {
-      self.width = maxw * (val - model.length.MIN) / (model.length.MAX - model.length.MIN);
-      drawBox( self.width, self.height );
+      resistorWidth = maxw * (val - model.length.MIN) / (model.length.MAX - model.length.MIN);
+      drawBox( resistorWidth, resistorHeight );
     } );
 
     //show only % of dots proportional to resistivity/maxResistivity
