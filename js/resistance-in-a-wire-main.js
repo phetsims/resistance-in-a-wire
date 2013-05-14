@@ -4,7 +4,7 @@
  * Author: Vasily Shakhov (Mlearner)
  */
 
-define( function ( require ) {
+define( function( require ) {
   'use strict';
 
   var CanvasQuirks = require( "PHETCOMMON/view/CanvasQuirks" );
@@ -12,8 +12,8 @@ define( function ( require ) {
   var ResistanceInAWireView = require( "view/ResistanceInAWireView" );
   var i18n = require( 'resistance-in-a-wire-strings' );
   var FastClick = require( "fastclick" );
-  var ImagesLoader = require('PHETCOMMON/util/ImagesLoader');
-  var imageLoader = require('imageLoader');
+  var ImagesLoader = require( 'PHETCOMMON/util/ImagesLoader' );
+  var imageLoader = require( 'imageLoader' );
 
   new FastClick( document.body );
 
@@ -22,6 +22,9 @@ define( function ( require ) {
 
   // Model --------------------------------------------------------------------
   var model = new ResistanceInAWireModel();
+
+  // //prevent text cursor on dragging
+  document.onselectstart = function() { return false; };
 
   var $container = $( "#canvasContainer" );
 
