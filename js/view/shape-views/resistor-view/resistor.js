@@ -132,7 +132,7 @@ define( function ( require ) {
     //observers for value changes
     model.area.property.addObserver( function ( val ) {
       resistorHeight = minh + maxh * (val - model.area.MIN) / (model.area.MAX - model.area.MIN);
-      minw = self.height / 2 + 5;
+      minw = resistorHeight / 2 + 5;
       drawBox( resistorWidth, resistorHeight );
     } );
 
