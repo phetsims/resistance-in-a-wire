@@ -15,7 +15,13 @@ define( function ( require ) {
 
     //static text
     // "="
-    var text = new Easel.Text( "=", "100px Georgia bold", "#000" ).setTransform( x + 100, y );
+    var equalYPosition = y;
+    //hack for text position, see http://community.createjs.com/discussions/easeljs/657-text-position
+    var userAgent = window.navigator.userAgent;
+    if ( userAgent.indexOf( "Firefox" ) !== -1 || userAgent.indexOf( "Macintosh" ) !== -1 ) {
+      equalYPosition += 11;
+    }
+    var text = new Easel.Text( "=", "100px bold Georgia", "#000" ).setTransform( x + 100, equalYPosition );
     root.addChild( text );
 
     //"---" line between ρL and A
