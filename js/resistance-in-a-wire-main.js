@@ -15,6 +15,7 @@ define( function( require ) {
   var ImagesLoader = require( 'PHETCOMMON/util/ImagesLoader' );
   var imageLoader = require( 'imageLoader' );
 
+  /* jshint -W031 */ // Disable warning about using constructor for side effects
   new FastClick( document.body );
 
   // Title --------------------------------------------------------------------
@@ -31,6 +32,7 @@ define( function( require ) {
   //title on bottom pane
   $( document.body ).find( ".tab-name" ).html( i18n.title );
 
+  /* jshint -W031 */ // Disable warning about using constructor for side effects
   new ImagesLoader( function( loader ) {
 
     //Initialize the image loader
