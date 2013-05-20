@@ -3,7 +3,7 @@
   "version": "0.0.0-5",
   "resourceDirs": "images",
   "include": "../phetcommon/css/phetcommon.css ../phetcommon/js/util/query-parameters.js",
-  "phetLibs": "ohms-law phetcommon",
+  "phetLibs": "ohms-law",
   "license": "GPL",
   "devDependencies": {
     "grunt": "~0.4.1",
