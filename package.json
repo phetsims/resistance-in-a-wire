@@ -2,8 +2,7 @@
   "name": "resistance-in-a-wire",
   "version": "0.0.0-5",
   "resourceDirs": "images",
-  "include": "../phetcommon/css/phetcommon.css ../phetcommon/js/util/query-parameters.js",
-  "phetLibs": "ohms-law",
+  "phetLibs": "resistance-in-a-wire",
   "license": "GPL",
   "devDependencies": {
     "grunt": "~0.4.1",
