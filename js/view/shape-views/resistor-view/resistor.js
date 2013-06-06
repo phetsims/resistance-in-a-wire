@@ -3,7 +3,7 @@
  * View for resistor
  * Author: Vasily Shakhov (Mlearner)
  */
-define( function ( require ) {
+define( function( require ) {
   'use strict';
 
   var Easel = require( 'easel' );
@@ -17,16 +17,16 @@ define( function ( require ) {
 
     //default vars
     var minw = height / 2 + 5,
-        minh = 1,
-        maxw = width,
-        maxh = height;
+      minh = 1,
+      maxw = width,
+      maxh = height;
 
     //current params
     self.width = width;
     self.height = height;
 
     var resistorWidth = width,
-        resistorHeight = height;
+      resistorHeight = height;
 
 
     //two points which always should be visible;
@@ -41,7 +41,7 @@ define( function ( require ) {
 
     container.setTransform( x, y );
     //draws resistor
-    var drawBox = function ( width, height ) {
+    var drawBox = function( width, height ) {
       width += minw;
       box.setTransform( self.width / 2 - width / 2, self.height / 2 - height / 2 );
 
@@ -52,13 +52,13 @@ define( function ( require ) {
       // or http://www.tinaja.com/glib/ellipse4.pdf
       var kappa = 0.5522848;
       var ox = (height / 4) * kappa, // control point offset horizontal
-          oy = (height / 2) * kappa, // control point offset vertical
-          ye = height,           // y-end
-          ym = height / 2,       // y-middle
-          xe = width,           // x-end for end
-          xm = width - height / 4,       // x-middle  for end
-          xe1 = height / 2,  // x-end for start
-          xm1 = height / 4;  // x-middle for start
+        oy = (height / 2) * kappa, // control point offset vertical
+        ye = height,           // y-end
+        ym = height / 2,       // y-middle
+        xe = width,           // x-end for end
+        xm = width - height / 4,       // x-middle  for end
+        xe1 = height / 2,  // x-end for start
+        xm1 = height / 4;  // x-middle for start
 
       var ctx = box.graphics;
 
@@ -95,11 +95,11 @@ define( function ( require ) {
     //black dots in the resistor
     var dotsContainer = new Easel.Container();
     var maxPoints = 900,
-        a = (maxh - 3) * (maxw + minw - 3) / maxPoints,    //area per dot
-        d = Math.pow( a, 0.5 ), //NN dot separation
-        nRows = Math.round( maxh / d ),
-        nCols = Math.round( (maxw + minw) / d ),
-        c = 0; //counter
+      a = (maxh - 3) * (maxw + minw - 3) / maxPoints,    //area per dot
+      d = Math.pow( a, 0.5 ), //NN dot separation
+      nRows = Math.round( maxh / d ),
+      nCols = Math.round( (maxw + minw) / d ),
+      c = 0; //counter
 
     var points = [];
 
@@ -130,19 +130,19 @@ define( function ( require ) {
     }
 
     //observers for value changes
-    model.area.property.addObserver( function ( val ) {
+    model.area.property.addObserver( function( val ) {
       resistorHeight = minh + maxh * (val - model.area.MIN) / (model.area.MAX - model.area.MIN);
       minw = resistorHeight / 2 + 5;
       drawBox( resistorWidth, resistorHeight );
     } );
 
-    model.length.property.addObserver( function ( val ) {
+    model.length.property.addObserver( function( val ) {
       resistorWidth = maxw * (val - model.length.MIN) / (model.length.MAX - model.length.MIN);
       drawBox( resistorWidth, resistorHeight );
     } );
 
     //show only % of dots proportional to resistivity/maxResistivity
-    model.resistivity.property.addObserver( function ( val ) {
+    model.resistivity.property.addObserver( function( val ) {
       var borderNumber = maxPoints * (val) / (model.resistivity.MAX);
       for ( var i = 0; i < maxPoints; i++ ) {
         points[i].visible = i < borderNumber;

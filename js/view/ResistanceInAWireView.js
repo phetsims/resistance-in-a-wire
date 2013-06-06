@@ -4,7 +4,7 @@
  * Author: Vasily Shakhov (Mlearner)
  */
 
-define( function ( require ) {
+define( function( require ) {
   'use strict';
 
   var ResistanceInAWireStage = require( 'view/ResistanceInAWireStageContainer' );
@@ -23,11 +23,11 @@ define( function ( require ) {
     this.DEFAULTHEIGHT = 640;
 
     // resize handler
-    var handleResize = function () {
+    var handleResize = function() {
 
       //Gets rid of scroll bars
       var width = $( window ).width();
-      var height = $( window ).height()-50;
+      var height = $( window ).height() - 50;
       //50 - height of tabpane on the bottom of the page
 
       var scale = Math.min( width / self.DEFAULTWIDTH, height / self.DEFAULTHEIGHT );

@@ -4,14 +4,14 @@
  * Author: Vasily Shakhov (Mlearner)
  */
 
-define( function ( require ) {
+define( function( require ) {
   'use strict';
 
   function ControlPanel( model ) {
 
     var i18n = require( 'resistance-in-a-wire-strings' );
 
-    $("#resetAllButton" ).bind( 'click', function () {
+    $( "#resetAllButton" ).bind( 'click', function() {
       model.reset();
     } );
 

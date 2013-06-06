@@ -5,7 +5,7 @@
  */
 
 
-define( function ( require ) {
+define( function( require ) {
   'use strict';
 
   var Easel = require( "easel" );
@@ -21,31 +21,31 @@ define( function ( require ) {
 
     //rect around sliders
     var rectW = 380,
-        rectH = 500,
-        rectX = x,
-        rectY = y;
+      rectH = 500,
+      rectX = x,
+      rectY = y;
     root.addChild( new WhiteBox( rectX, rectY, rectW, rectH ) );
 
     //texts for slider1, slider2
     var defaultFontFamily = "Verdana",
-        defaultFont = "30px " + defaultFontFamily,
-        defaultColor = "#0f0ffb";
+      defaultFont = "30px " + defaultFontFamily,
+      defaultColor = "#0f0ffb";
     var texts = {
       resistivity: [
         {val: "ρ", font: "60px Georgia", dy: -10},
-        {val: i18n.resistivity, font: "16px "+defaultFontFamily},
+        {val: i18n.resistivity, font: "16px " + defaultFontFamily},
         {val: model.resistivity.property.get(), color: "#000"},
         {val: "Ω" + i18n.cm}
       ],
       length: [
         {val: "L", font: "60px Georgia"},
-        {val: i18n.length, font: "16px "+defaultFontFamily},
+        {val: i18n.length, font: "16px " + defaultFontFamily},
         {val: model.length.property.get(), color: "#000"},
         {val: i18n.cm}
       ],
       area: [
         {val: "A", font: "60px Georgia"},
-        {val: i18n.area, font: "16px "+defaultFontFamily},
+        {val: i18n.area, font: "16px " + defaultFontFamily},
         {val: model.area.property.get(), color: "#000"},
         {val: i18n.cm}
       ]
@@ -70,14 +70,14 @@ define( function ( require ) {
 
     //additional square (2) on area units, tt = target text, where sup added
     var targetText = texts.area[3];
-    var sqr = new Easel.Text( "2", "20px "+defaultFontFamily, targetText.color || defaultColor );
+    var sqr = new Easel.Text( "2", "20px " + defaultFontFamily, targetText.color || defaultColor );
     sqr.setTransform( rectX + xCoords[2] + targetText.view.getMeasuredWidth() / 2, rectY + yCoords[3] + (targetText.dy || 0) - 10 );
     root.addChild( sqr );
 
     var c = 0;
-    listOfValues.forEach( function ( entry ) {
+    listOfValues.forEach( function( entry ) {
       //observer, changes view when props value changes
-      model[entry].property.addObserver( function ( val ) {
+      model[entry].property.addObserver( function( val ) {
         texts[entry][2].view.text = val;
       } );
       //add slider

@@ -2,7 +2,7 @@
 /**
  * Model container for the "resistance-in-a-wire" module.
  */
-define( function ( require ) {
+define( function( require ) {
   'use strict';
 
   var Property = require( 'PHETCOMMON/model/property/Property' );
@@ -38,14 +38,14 @@ define( function ( require ) {
     self.props = [self.resistivity, self.length, self.area];
 
 
-    var init = function () {
+    var init = function() {
       //initialize variables
       self.resistance = {property: new Property()};
 
       //@overrides set, with accuracy and adds observer - resistance update
-      self.props.forEach( function ( entry ) {
+      self.props.forEach( function( entry ) {
         self['oldSet' + entry.name] = entry.property.set;
-        entry.property.set = function ( val ) {
+        entry.property.set = function( val ) {
           self['oldSet' + entry.name]( round( val, entry.acc ) );
         };
         entry.property.addObserver( updateResistance );
@@ -55,13 +55,13 @@ define( function ( require ) {
     };
 
     //sets resistance if any props changed
-    var updateResistance = function () {
+    var updateResistance = function() {
       var val = self.resistivity.property.get() * self.length.property.get() / self.area.property.get();
       self.resistance.property.set( round( val, 2 ) );
     };
 
     //round val to acc
-    var round = function ( val, acc ) {
+    var round = function( val, acc ) {
       var tens = Math.pow( 10, acc );
       return (Math.round( val * tens ) / tens).toFixed( acc );
     };
@@ -70,9 +70,9 @@ define( function ( require ) {
   }
 
   //initialize default values
-  ResistanceInAWireModel.prototype.reset = function () {
+  ResistanceInAWireModel.prototype.reset = function() {
     var self = this;
-    this.props.forEach( function ( entry ) {
+    this.props.forEach( function( entry ) {
       entry.property.reset();
     } );
   };

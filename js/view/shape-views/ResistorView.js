@@ -3,7 +3,7 @@
  * Container for resistor and nearby graphics
  * Author: Vasily Shakhov (Mlearner)
  */
-define( function ( require ) {
+define( function( require ) {
   'use strict';
 
   var Easel = require( "easel" );
@@ -14,7 +14,7 @@ define( function ( require ) {
     var root = new Easel.Container();
 
     var width = 480,
-        height = 180;
+      height = 180;
 
     //arrow width
     var arrowWidth = 150;

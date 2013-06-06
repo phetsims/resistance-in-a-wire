@@ -5,7 +5,7 @@
  */
 
 
-define( function ( require ) {
+define( function( require ) {
   'use strict';
 
   var Easel = require( "easel" );
@@ -16,7 +16,7 @@ define( function ( require ) {
 
     //text size and maxWidth
     var textSize = 30,
-        maxWidth = w * 0.95;
+      maxWidth = w * 0.95;
 
     //texts parts of full string
     var texts = [
@@ -27,7 +27,7 @@ define( function ( require ) {
 
     //init and transform texts
     var totalWidth = 0;
-    texts.forEach( function ( entry ) {
+    texts.forEach( function( entry ) {
       entry.view = new Easel.Text( entry.val, textSize + "px Verdana", "#F00" );
       root.addChild( entry.view );
       entry.width = entry.view.getMeasuredWidth();
@@ -41,19 +41,19 @@ define( function ( require ) {
     }
 
     var midY = y + 10,
-        offsetX = x + w/2 - scale*totalWidth / 2;
+      offsetX = x + w / 2 - scale * totalWidth / 2;
 
-    texts.forEach( function ( entry ) {
+    texts.forEach( function( entry ) {
       entry.view.setTransform( offsetX, midY, scale, scale );
-      offsetX += scale*entry.width;
+      offsetX += scale * entry.width;
     } );
 
     texts[1].view.textAlign = "end";
-    texts[1].view.setTransform( texts[1].view.x + scale*texts[1].width, midY, scale, scale );
+    texts[1].view.setTransform( texts[1].view.x + scale * texts[1].width, midY, scale, scale );
 
     //observer, changes view when current value changes
     // we must always show <=4 digits, so 1500.12 -> 1500, 150.12 -> 150.1
-    model.resistance.property.addObserver( function ( val ) {
+    model.resistance.property.addObserver( function( val ) {
       if ( val.charAt( 3 ) === '.' || val.charAt( 3 ) === ',' ) {
         val = val.substring( 0, 3 );
       }

@@ -4,7 +4,7 @@
  * Author: Vasily Shakhov (Mlearner)
  */
 
-define( function ( require ) {
+define( function( require ) {
   'use strict';
 
   var Easel = require( "easel" );
@@ -28,8 +28,8 @@ define( function ( require ) {
     this.stage.enableMouseOver();
 
     //update when any value changed
-    ['resistivity', 'length', 'area'].forEach( function ( entry ) {
-      model[entry].property.addObserver( function () {
+    ['resistivity', 'length', 'area'].forEach( function( entry ) {
+      model[entry].property.addObserver( function() {
         self.stage.update();
       } );
     } );
@@ -37,7 +37,7 @@ define( function ( require ) {
   }
 
   // resize handler
-  ResistanceInAWireStage.prototype.resize = function ( scale ) {
+  ResistanceInAWireStage.prototype.resize = function( scale ) {
     this.stage.scaleX = this.stage.scaleY = scale;
     // force rendering update
     this.stage.update();

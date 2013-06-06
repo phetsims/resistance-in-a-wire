@@ -5,7 +5,7 @@
  */
 
 
-define( function ( require ) {
+define( function( require ) {
   'use strict';
 
   var Easel = require( "easel" );
@@ -17,9 +17,9 @@ define( function ( require ) {
     // lw - lineWidth, length,
     // dw - arrowtipwidth, dh - arrowtipdeep
     var lw = 12,
-        length = width,
-        dw = 8,
-        dh = 45;
+      length = width,
+      dw = 8,
+      dh = 45;
 
     //set styles for arrow
     arrow.graphics.setStrokeStyle( 1 ).beginStroke( "black" ).beginFill( "#FFF" );

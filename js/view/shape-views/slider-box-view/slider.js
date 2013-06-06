@@ -5,7 +5,7 @@
  */
 
 
-define( function ( require ) {
+define( function( require ) {
   'use strict';
 
   var Easel = require( "easel" );
@@ -41,14 +41,14 @@ define( function ( require ) {
     var offset = {};
     h = h - img.height;
 
-    imgShape.onPress = function ( e ) {
+    imgShape.onPress = function( e ) {
       offset = {x: e.stageX / view.stage.scaleX - imgShape.x, y: e.stageY / view.stage.scaleX - imgShape.y};
       e.onMouseMove = drag;
     };
-    imgShape.onMouseUp = function ( e ) {
+    imgShape.onMouseUp = function( e ) {
       e.onMouseOver = showPointer;
     };
-    var drag = function ( e ) {
+    var drag = function( e ) {
       var topY = e.stageY / view.stage.scaleX - offset.y;
       topY = Math.max( y, Math.min( topY, y + h ) );
       imgShape.y = topY;
@@ -56,7 +56,7 @@ define( function ( require ) {
     };
 
     //observer, set position when changed
-    targetProperty.property.addObserver( function () {
+    targetProperty.property.addObserver( function() {
       imgShape.y = y + h - h * (targetProperty.property.get() - targetProperty.MIN) / (targetProperty.MAX - targetProperty.MIN);
     } );
 

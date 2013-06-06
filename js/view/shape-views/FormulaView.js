@@ -5,12 +5,12 @@
  */
 
 
-define( function ( require ) {
+define( function( require ) {
   'use strict';
 
   var Easel = require( "easel" );
 
-  return function FormulaView ( model, x, y ) {
+  return function FormulaView( model, x, y ) {
     var root = new Easel.Container();
 
     //static text
@@ -18,9 +18,10 @@ define( function ( require ) {
     var equalYPosition = y;
     //hack for text position, see http://community.createjs.com/discussions/easeljs/657-text-position
     var userAgent = window.navigator.userAgent;
-    if ( userAgent.indexOf( "Firefox" ) !== -1) {
+    if ( userAgent.indexOf( "Firefox" ) !== -1 ) {
       equalYPosition += 11;
-    } else if (userAgent.indexOf( "Macintosh" ) !== -1 ) {
+    }
+    else if ( userAgent.indexOf( "Macintosh" ) !== -1 ) {
       equalYPosition -= 6;
     }
     var text = new Easel.Text( "=", "100px bold Georgia", "#000" ).setTransform( x + 100, equalYPosition );
@@ -52,7 +53,7 @@ define( function ( require ) {
       {
         label: "L",
         x: x + 340,
-        y: y-33,
+        y: y - 33,
         targetProperty: "length",
         color: "#0f0ffb"
       },
@@ -66,7 +67,7 @@ define( function ( require ) {
     ];
 
     //create all texts and place them in x,y coords, then set basepoint and add to container
-    texts.forEach( function ( entry ) {
+    texts.forEach( function( entry ) {
       entry.view = new Easel.Text( entry.label, "130px Georgia", entry.color ).setTransform( entry.x, entry.y );
       entry.view.textBaseline = "middle";
       entry.view.regX = entry.view.getMeasuredWidth() / 2;
@@ -74,7 +75,7 @@ define( function ( require ) {
       //scale - coefficient between real value and visual size, by default 1/startValue, if not override by params above
       //never changes
       entry.scale = entry.scale || 1 / model[entry.targetProperty].property.get();
-      model[entry.targetProperty].property.addObserver( function ( val ) {
+      model[entry.targetProperty].property.addObserver( function( val ) {
         entry.view.scaleX = entry.scale * val + 0.125;
         entry.view.scaleY = entry.scale * val + 0.125;
       } );
