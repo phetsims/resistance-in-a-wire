@@ -18,6 +18,7 @@ require.config( {
 
                     // common directories, uppercase names to identify them in require imports
                     PHETCOMMON: "../lib/phet/phetcommon/js",
+                    AXON: '../../axon/js',
                     ASSERT: '../../assert/js'
                   },
 

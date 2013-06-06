@@ -5,7 +5,7 @@
 define( function ( require ) {
   'use strict';
 
-  var Property = require( 'PHETCOMMON/model/property/Property' );
+  var Property = require( 'AXON/Property' );
 
   function ResistanceInAWireModel() {
     var self = this;
