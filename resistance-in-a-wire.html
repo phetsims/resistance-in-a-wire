@@ -18,13 +18,14 @@
   <title></title>
 
   <!-- CSS -->
-  <link rel="stylesheet" href="lib/phet/phetcommon/css/phetcommon.css"/>
   <link rel="stylesheet" href="lib/bootstrap-2.2.1/css/bootstrap.css"/>
   <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css"/>
   <link rel="stylesheet" href="css/resistance-in-a-wire.css">
 
   <!-- jquery must be loaded here -->
   <script src="lib/jquery-1.8.3.js"></script>
+  <script src="lib/PxLoader.js"></script>
+  <script src="lib/PxLoaderImage.js"></script>
 
   <!-- sim -->
   <script data-main="js/resistance-in-a-wire-config.js" src="lib/require-2.1.2.js"></script>
@@ -32,10 +33,6 @@
 </head>
 
 <body>
-<!--Load images.  Leave them in the DOM (though hidden) so that IE can get image bounds.-->
-<div id="images" style="visibility: hidden; position: absolute">
-  <img src="images/slider.png"/>
-</div>
 
 <!-- Canvas and html-buttons above the canvas-->
 <div id='canvasContainer'>
