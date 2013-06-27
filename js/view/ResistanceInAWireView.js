@@ -1,3 +1,5 @@
+// Copyright 2002-2013, University of Colorado Boulder
+
 /**
  * Copyright 2002-2013, University of Colorado
  * View for ResistanceInAWire simulations. Contains 2 elements : canvas + htmlControls

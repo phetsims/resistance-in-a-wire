@@ -1,3 +1,5 @@
+// Copyright 2002-2013, University of Colorado Boulder
+
 /**
  * Copyright 2002-2013, University of Colorado
  * arrow beyond the resistor -  graphical element, not changed during simulation
