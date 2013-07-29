@@ -2,69 +2,50 @@
 
 /**
  * Copyright 2002-2013, University of Colorado
- * Block shows Current TextBlock inside WireBlock
- * Author: Vasily Shakhov (Mlearner)
+ * Block shows resistance TextBlock
+ * @author Vasily Shakhov (Mlearner)
+ * @author Anton Ulyanov (Mlearner)
  */
 
 
 define( function( require ) {
   'use strict';
+  var Node = require( 'SCENERY/nodes/Node' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Strings = require( 'resistance-in-a-wire-strings' );
+  var Text = require( 'SCENERY/nodes/Text' );
 
-  var Easel = require( "easel" );
-  var i18n = require( 'resistance-in-a-wire-strings' );
-
-  return function CurrentResistanceView( model, x, y, w ) {
-    var root = new Easel.Container();
-
-    //text size and maxWidth
-    var textSize = 30,
+  function CurrentResistanceView( model, x, y, w ) {
+    Node.call( this, {x: x, y: y} );
+    var nodeText = new Node();
+    var textResistance,
       maxWidth = w * 0.95;
+    nodeText.addChild( new Text( Strings.resistanceEq, { 'fontFamily': "Verdana", 'fontSize': 30, fill: "#F00", right: 200, y: 0 } ) );
+    nodeText.addChild( textResistance = new Text( "2000", { 'fontFamily': "Verdana", 'fontSize': 30, fill: "#F00", right: 290, y: 0 } ) );
+    nodeText.addChild( new Text( Strings.ohm, { 'fontFamily': "Verdana", 'fontSize': 30, fill: "#F00", left: 300, y: 0 } ) );
+    nodeText.centerX = 0;
+    nodeText.centerY = 0;
+    this.addChild( nodeText );
 
-    //texts parts of full string
-    var texts = [
-      {val: i18n.resistanceEq + " "},
-      {val: "1000"},
-      {val: " " + i18n.ohm}
-    ];
-
-    //init and transform texts
-    var totalWidth = 0;
-    texts.forEach( function( entry ) {
-      entry.view = new Easel.Text( entry.val, textSize + "px Verdana", "#F00" );
-      root.addChild( entry.view );
-      entry.width = entry.view.getMeasuredWidth();
-      totalWidth += entry.width;
-    } );
-
-    //scaling
     var scale = 1;
-    if ( totalWidth > maxWidth ) {
-      scale = maxWidth / totalWidth;
+    if ( nodeText.width > maxWidth ) {
+      scale = maxWidth / nodeText.width;
     }
+    this.scale( scale );
 
-    var midY = y + 10,
-      offsetX = x + w / 2 - scale * totalWidth / 2;
-
-    texts.forEach( function( entry ) {
-      entry.view.setTransform( offsetX, midY, scale, scale );
-      offsetX += scale * entry.width;
-    } );
-
-    texts[1].view.textAlign = "end";
-    texts[1].view.setTransform( texts[1].view.x + scale * texts[1].width, midY, scale, scale );
-
-    //observer, changes view when current value changes
-    // we must always show <=4 digits, so 1500.12 -> 1500, 150.12 -> 150.1
-    model.resistance.property.addObserver( function( val ) {
-      if ( val.charAt( 3 ) === '.' || val.charAt( 3 ) === ',' ) {
-        val = val.substring( 0, 3 );
+    model.resistanceProperty.link( function updateTextResistance( value ) {
+      textResistance.text = value.toFixed( 2 );
+      if ( value > 9 ) {
+        textResistance.text = value.toFixed( 1 );
       }
-      else {
-        val = val.substring( 0, 4 );
+      if ( value > 99 ) {
+        textResistance.text = value.toFixed( 0 );
       }
-      texts[1].view.text = val;
+      textResistance.right = 290;
     } );
+  }
 
-    return root;
-  };
+  inherit( Node, CurrentResistanceView );
+
+  return CurrentResistanceView;
 } );

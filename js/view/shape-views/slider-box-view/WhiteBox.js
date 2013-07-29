@@ -2,20 +2,24 @@
 
 /**
  * Copyright 2002-2013, University of Colorado
- * White Block with black border container, decorator for slider's block
- * Author: Vasily Shakhov (Mlearner)
+ * White Block with black border container
+ * @author Vasily Shakhov (Mlearner)
+ * @author Anton Ulyanov (Mlearner)
  */
 
 
 define( function( require ) {
   'use strict';
+  var Node = require( 'SCENERY/nodes/Node' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
 
-  var Easel = require( "easel" );
+  function WhiteBox( x, y, w, h ) {
+    Node.call( this );
+    this.addChild( new Rectangle( x, y, w, h, 12, 12, { fill: '#FFF', stroke: "#000", lineWidth: 3} ) );
+  }
 
-  return function WhiteBox( x, y, w, h ) {
-    var rect = new Easel.Shape();
-    rect.graphics.setStrokeStyle( 3 ).beginStroke( "#000" ).beginFill( "#FFF" );
-    rect.graphics.drawRoundRect( x, y, w, h, 12 );
-    return rect;
-  };
+  inherit( Node, WhiteBox );
+
+  return WhiteBox;
 } );

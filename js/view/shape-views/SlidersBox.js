@@ -3,93 +3,70 @@
 /**
  * Copyright 2002-2013, University of Colorado
  * Container for sliders and circumjacent text
- * Author: Vasily Shakhov (Mlearner)
+ * @author Vasily Shakhov (Mlearner)
+ * @author Anton Ulyanov (Mlearner)
  */
 
 
 define( function( require ) {
   'use strict';
-
-  var Easel = require( "easel" );
-  var i18n = require( 'resistance-in-a-wire-strings' );
-  var WhiteBox = require( "view/shape-views/slider-box-view/WhiteBox" );
-  var Slider = require( "view/shape-views/slider-box-view/slider" );
-  var imageLoader = require( "imageLoader" );
+  var Node = require( 'SCENERY/nodes/Node' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Strings = require( 'resistance-in-a-wire-strings' );
+  var WhiteBox = require( 'view/shape-views/slider-box-view/WhiteBox' );
+  var Slider = require( 'view/shape-views/slider-box-view/Slider' );
   var CurrentResistanceView = require( "view/shape-views/slider-box-view/CurrentResistanceView" );
+  var imageLoader = require( 'imageLoader' );
+  var Text = require( 'SCENERY/nodes/Text' );
 
-  return function SliderBox( model, view, x, y ) {
-
-    var root = new Easel.Container();
-
-    //rect around sliders
+  function SlidersBox( model, x, y ) {
+    Node.call( this, {x: x, y: y} );
     var rectW = 380,
       rectH = 500,
-      rectX = x,
-      rectY = y;
-    root.addChild( new WhiteBox( rectX, rectY, rectW, rectH ) );
-
-    //texts for slider1, slider2
-    var defaultFontFamily = "Verdana",
-      defaultFont = "30px " + defaultFontFamily,
-      defaultColor = "#0f0ffb";
-    var texts = {
-      resistivity: [
-        {val: "ρ", font: "60px Georgia", dy: -10},
-        {val: i18n.resistivity, font: "16px " + defaultFontFamily},
-        {val: model.resistivity.property.get(), color: "#000"},
-        {val: "Ω" + i18n.cm}
-      ],
-      length: [
-        {val: "L", font: "60px Georgia"},
-        {val: i18n.length, font: "16px " + defaultFontFamily},
-        {val: model.length.property.get(), color: "#000"},
-        {val: i18n.cm}
-      ],
-      area: [
-        {val: "A", font: "60px Georgia"},
-        {val: i18n.area, font: "16px " + defaultFontFamily},
-        {val: model.area.property.get(), color: "#000"},
-        {val: i18n.cm}
-      ]
-    };
+      textResistivity, textLength, textArea;
+    this.addChild( new WhiteBox( 0, 0, rectW, rectH ) );
     //xy Grid
     var yCoords = [60, 120, 410 , 453];
     var xCoords = [70, 195, 320];
 
-    var listOfValues = ['resistivity', 'length', 'area'];
+    this.addChild( new Text( "ρ", { 'fontFamily': "Times New Roman", 'fontSize': 60, fill: "#0f0ffb", centerX: xCoords[0], top: yCoords[0] - 10 } ) );
+    this.addChild( new Text( Strings.resistivity, { 'fontFamily': "Verdana", 'fontSize': 16, textAlign: "center", textAnchor: "middle", fill: "#0f0ffb", centerX: xCoords[0], top: yCoords[1] } ) );
+    this.addChild( textResistivity = new Text( model.resistivity.toFixed( 2 ), { 'fontFamily': "Verdana", 'fontSize': 30, textAlign: "end", textAnchor: "end", fill: "#000", centerX: xCoords[0], top: yCoords[2] } ) );
+    this.addChild( new Text( "Ω" + Strings.cm, { 'fontFamily': "Verdana", 'fontSize': 30, textAlign: "start", textAnchor: "start", fill: "#0f0ffb", centerX: xCoords[0], top: yCoords[3] } ) );
 
-    //set texts
-    for ( var i = 0, l = listOfValues.length; i < l; i++ ) {
-      var textI = texts[listOfValues[i]];
-      for ( var j = 0, l1 = textI.length; j < l1; j++ ) {
-        textI[j].view = new Easel.Text( textI[j].val, textI[j].font || defaultFont, textI[j].color || defaultColor );
-        textI[j].view.setTransform( rectX + xCoords[i] + (textI[j].dx || 0), rectY + yCoords[j] + (textI[j].dy || 0) );
-        textI[j].view.textAlign = textI[j].textAlign || "center";
-        textI[j].view.textBaseline = textI[j].textBaseline || "top";
-        root.addChild( textI[j].view );
-      }
-    }
+    this.addChild( new Text( "L", { 'fontFamily': "Times New Roman", 'fontSize': 60, fill: "#0f0ffb", centerX: xCoords[1], top: yCoords[0] } ) );
+    this.addChild( new Text( Strings.length, { 'fontFamily': "Verdana", 'fontSize': 16, textAlign: "center", textAnchor: "middle", fill: "#0f0ffb", centerX: xCoords[1], top: yCoords[1] } ) );
+    this.addChild( textLength = new Text( model.length.toFixed( 2 ), { 'fontFamily': "Verdana", 'fontSize': 30, textAlign: "end", textAnchor: "end", fill: "#000", centerX: xCoords[1], top: yCoords[2] } ) );
+    this.addChild( new Text( Strings.cm, { 'fontFamily': "Verdana", 'fontSize': 30, textAlign: "start", textAnchor: "start", fill: "#0f0ffb", centerX: xCoords[1], top: yCoords[3] } ) );
 
-    //additional square (2) on area units, tt = target text, where sup added
-    var targetText = texts.area[3];
-    var sqr = new Easel.Text( "2", "20px " + defaultFontFamily, targetText.color || defaultColor );
-    sqr.setTransform( rectX + xCoords[2] + targetText.view.getMeasuredWidth() / 2, rectY + yCoords[3] + (targetText.dy || 0) - 10 );
-    root.addChild( sqr );
+    this.addChild( new Text( "A", { 'fontFamily': "Times New Roman", 'fontSize': 60, fill: "#0f0ffb", centerX: xCoords[2], top: yCoords[0] } ) );
+    this.addChild( new Text( Strings.area, { 'fontFamily': "Verdana", 'fontSize': 16, textAlign: "center", textAnchor: "middle", fill: "#0f0ffb", centerX: xCoords[2], top: yCoords[1] } ) );
+    this.addChild( textArea = new Text( model.area.toFixed( 2 ), { 'fontFamily': "Verdana", 'fontSize': 30, textAlign: "end", textAnchor: "end", fill: "#000", centerX: xCoords[2], top: yCoords[2] } ) );
+    this.addChild( new Text( Strings.cm + "²", { 'fontFamily': "Verdana", 'fontSize': 30, textAlign: "start", textAnchor: "start", fill: "#0f0ffb", centerX: xCoords[2], top: yCoords[3] } ) );
 
-    var c = 0;
-    listOfValues.forEach( function( entry ) {
-      //observer, changes view when props value changes
-      model[entry].property.addObserver( function( val ) {
-        texts[entry][2].view.text = val;
-      } );
-      //add slider
-      root.addChild( new Slider( view, rectX + xCoords[c], rectY + 145, 260, model[entry], imageLoader.getImage( 'slider.png' ) ) );
-      c++;
+    this.addChild( new Slider( xCoords[0], 145, 260, model.resistivityProperty, imageLoader.getImage( 'slider.png' ), {min: model.RESISTYVITYMIN, max: model.RESISTYVITYMAX} ) );
+    this.addChild( new Slider( xCoords[1], 145, 260, model.lengthProperty, imageLoader.getImage( 'slider.png' ), {min: model.LENGTHMIN, max: model.LENGTHMAX} ) );
+    this.addChild( new Slider( xCoords[2], 145, 260, model.areaProperty, imageLoader.getImage( 'slider.png' ), {min: model.AREAMIN, max: model.AREAMAX} ) );
+
+    model.resistivityProperty.link( function updateTextResistivity( value ) {
+      textResistivity.text = value.toFixed( 2 );
+      textResistivity.centerX = xCoords[0];
+    } );
+    model.lengthProperty.link( function updateTextLength( value ) {
+      textLength.text = value.toFixed( 2 );
+      textLength.centerX = xCoords[1];
+    } );
+    model.areaProperty.link( function updateTextArea( value ) {
+      textArea.text = value.toFixed( 2 );
+      textArea.centerX = xCoords[2];
     } );
 
     //resistance value
-    root.addChild( new CurrentResistanceView( model, rectX, rectY, rectW ) );
+    this.addChild( new CurrentResistanceView( model, rectW / 2, 30, rectW ) );
 
-    return root;
-  };
+  }
+
+  inherit( Node, SlidersBox );
+
+  return SlidersBox;
 } );

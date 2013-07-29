@@ -1,81 +1,72 @@
 // Copyright 2002-2013, University of Colorado Boulder
 /**
  * Model container for the "resistance-in-a-wire" module.
+ *
+ * @author Vasily Shakhov (Mlearner)
+ * @author Anton Ulyanov (Mlearner)
  */
 define( function( require ) {
   'use strict';
+  var PropertySet = require( 'AXON/PropertySet' );
+  var inherit = require( 'PHET_CORE/inherit' );
 
-  var Property = require( 'PHETCOMMON/model/property/Property' );
+  function ResistanceInAWireModel( width, height ) {
+    var thisModel = this;
+    this.DEFAULTWIDTH = width;
+    this.DEFAULTHEIGHT = height;
+    this.RESISTYVITYMAX = 1;
+    this.RESISTYVITYMIN = 0.01;
+    this.RESISTYVITYDEFAULT = 0.5;
+    this.LENGTHMAX = 20;
+    this.LENGTHMIN = 0.1;
+    this.LENGTHDEFAULT = 10;
+    this.AREAMAX = 15;
+    this.AREAMIN = 0.01;
+    this.AREADEFAULT = 7.5;
 
-  function ResistanceInAWireModel() {
-    var self = this;
+    PropertySet.call( this, {
+      resistance: 0,
+      resistivity: thisModel.RESISTYVITYDEFAULT,
+      length: thisModel.LENGTHDEFAULT,
+      area: thisModel.AREADEFAULT
+    } );
 
-    //properties
-    self.resistivity = {
-      property: new Property( 0.5 ),
-      MIN: 0.01,
-      MAX: 1,
-      acc: 2,
-      name: "resistivity"
+    //@override resistivity.set (accuracy 0.01)
+    var oldRS = this.resistivityProperty.set.bind( this.resistivityProperty );
+    this.resistivityProperty.set = function( val ) {
+      oldRS( Math.round( val * 100 ) / 100 );
     };
 
-    self.length = {
-      property: new Property( 10 ),
-      MIN: 0.1,
-      MAX: 20,
-      acc: 2,
-      name: "length"
+    //@override length.set (accuracy 0.01)
+    var oldLS = this.lengthProperty.set.bind( this.lengthProperty );
+    this.lengthProperty.set = function( val ) {
+      oldLS( Math.round( val * 100 ) / 100 );
     };
 
-    self.area = {
-      property: new Property( 7.5 ),
-      MIN: 0.01,
-      MAX: 15,
-      acc: 2,
-      name: "area"
+    //@override area.set (accuracy 0.01)
+    var oldAS = this.areaProperty.set.bind( this.areaProperty );
+    this.areaProperty.set = function( val ) {
+      oldAS( Math.round( val * 100 ) / 100 );
     };
 
-    self.props = [self.resistivity, self.length, self.area];
-
-
-    var init = function() {
-      //initialize variables
-      self.resistance = {property: new Property()};
-
-      //@overrides set, with accuracy and adds observer - resistance update
-      self.props.forEach( function( entry ) {
-        self['oldSet' + entry.name] = entry.property.set;
-        entry.property.set = function( val ) {
-          self['oldSet' + entry.name]( round( val, entry.acc ) );
-        };
-        entry.property.addObserver( updateResistance );
-      } );
-
-      self.reset();
-    };
-
-    //sets resistance if any props changed
     var updateResistance = function() {
-      var val = self.resistivity.property.get() * self.length.property.get() / self.area.property.get();
-      self.resistance.property.set( round( val, 2 ) );
+      thisModel.resistance = Math.round( (thisModel.resistivity * thisModel.length / thisModel.area) * 100 ) / 100;
     };
+    this.resistivityProperty.link( updateResistance );
+    this.lengthProperty.link( updateResistance );
+    this.areaProperty.link( updateResistance );
 
-    //round val to acc
-    var round = function( val, acc ) {
-      var tens = Math.pow( 10, acc );
-      return (Math.round( val * tens ) / tens).toFixed( acc );
-    };
-
-    init();
+    this.reset();
   }
 
-  //initialize default values
-  ResistanceInAWireModel.prototype.reset = function() {
-    var self = this;
-    this.props.forEach( function( entry ) {
-      entry.property.reset();
-    } );
-  };
+  inherit( PropertySet, ResistanceInAWireModel, {
+    step: function() { },
+    reset: function() {
+      this.resistivity = this.RESISTYVITYDEFAULT;
+      this.length = this.LENGTHDEFAULT;
+      this.area = this.AREADEFAULT;
+    }
+  } );
 
   return ResistanceInAWireModel;
 } );
