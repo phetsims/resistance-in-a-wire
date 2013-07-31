@@ -31,26 +31,8 @@ define( function( require ) {
       area: thisModel.AREADEFAULT
     } );
 
-    //@override resistivity.set (accuracy 0.01)
-    var oldRS = this.resistivityProperty.set.bind( this.resistivityProperty );
-    this.resistivityProperty.set = function( val ) {
-      oldRS( Math.round( val * 100 ) / 100 );
-    };
-
-    //@override length.set (accuracy 0.01)
-    var oldLS = this.lengthProperty.set.bind( this.lengthProperty );
-    this.lengthProperty.set = function( val ) {
-      oldLS( Math.round( val * 100 ) / 100 );
-    };
-
-    //@override area.set (accuracy 0.01)
-    var oldAS = this.areaProperty.set.bind( this.areaProperty );
-    this.areaProperty.set = function( val ) {
-      oldAS( Math.round( val * 100 ) / 100 );
-    };
-
     var updateResistance = function() {
-      thisModel.resistance = Math.round( (thisModel.resistivity * thisModel.length / thisModel.area) * 100 ) / 100;
+      thisModel.resistance = (thisModel.resistivity * thisModel.length / thisModel.area);
     };
     this.resistivityProperty.link( updateResistance );
     this.lengthProperty.link( updateResistance );

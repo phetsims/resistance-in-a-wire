@@ -16,7 +16,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
 
   function ResistanceInAWireView( model ) {
-    TabView.call( this, { renderer: 'svg' } );
+    TabView.call( this );
     this.addChild( new ResistanceInAWireStage( model ) );
     this.addChild( new Node( { scale: 0.8, x: 600, y: 440, children: [ new ResetAllButton( function() {model.reset();} )]} ) );
   }
