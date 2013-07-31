@@ -1,5 +1,3 @@
-// Copyright 2002-2013, University of Colorado Boulder
-
 /**
  * Copyright 2002-2013, University of Colorado
  * Stage for the "ResistanceInAWire" view.
@@ -11,11 +9,25 @@ define( function( require ) {
   'use strict';
   var Node = require( 'SCENERY/nodes/Node' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var RootNode = require( "view/shape-views/RootNode" );
+  var ResetAllButton = require( 'view/ResetAllButton' );
+  var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
+  var SlidersBox = require( "view/shape-views/SlidersBox" );
+  var FormulaView = require( "view/shape-views/FormulaView" );
+  var ResistorView = require( "view/shape-views/ResistorView" );
 
   function ResistanceInAWireStage( model ) {
-    Node.call( this, {scale: 0.8} );
-    this.addChild( new RootNode( model ) );
+    Node.call( this, {scale: 0.75} );
+    var options = {
+      resistivity: {max: 1, min: 0.01},
+      length: {max: 20, min: 0.1},
+      area: {max: 15, min: 0.01}
+    };
+
+    this.addChild( new FormulaView( model, 70, 180 ) );
+    this.addChild( new ResistorView( model, 290, 470, options ) );
+    this.addChild( new ArrowNode( 200, 600, 350, 600, 50, 30, 10, {fill: "#FFF", stroke: "#000", lineWidth: 1} ) );
+    this.addChild( new SlidersBox( model, 600, 40, options ) );
+    this.addChild( new Node( { x: 750, y: 560, children: [ new ResetAllButton( function() {model.reset();} )]} ) );
   }
 
   inherit( Node, ResistanceInAWireStage );

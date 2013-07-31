@@ -1,5 +1,3 @@
-// Copyright 2002-2013, University of Colorado Boulder
-
 /**
  * Copyright 2002-2013, University of Colorado
  * Main entry point for the "resistance in a wire" sim.
@@ -17,16 +15,24 @@ define( function( require ) {
     ResistanceInAWireView = require( 'view/ResistanceInAWireView' ),
     imageLoader = require( 'imageLoader' );
 
+  var simOptions = {
+    credits: 'PhET Development Team -\n' +
+             'Lead Design: Michael Dubson\n' +
+             'Software Development: Michael Dubson\n' +
+             'Interviews: Wendy Adams, Mindy Gratny\n',
+    thanks: 'Thanks -\n' +
+            'Conversation of this simulation to HTML5 was funded by the Royal Society of Chemistry.'
+  };
   SimLauncher.launch( imageLoader, function() {
     //Create and start the sim
     new Sim( Strings.simTitle, [
       {
         name: Strings.simTitle,
         icon: new Rectangle( 0, 0, 50, 50, { fill: 'blue' } ),
-        createModel: function() { return new ResistanceInAWireModel( 1000, 650 ); },
+        createModel: function() { return new ResistanceInAWireModel(); },
         createView: function( model ) { return new ResistanceInAWireView( model ); },
         backgroundColor: "#ffffdf"
       }
-    ] ).start();
+    ], simOptions ).start();
   } );
 } );

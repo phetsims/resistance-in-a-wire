@@ -1,5 +1,5 @@
-// Copyright 2002-2013, University of Colorado Boulder
 /**
+ * Copyright 2002-2013, University of Colorado
  * Model container for the "resistance-in-a-wire" module.
  *
  * @author Vasily Shakhov (Mlearner)
@@ -10,25 +10,14 @@ define( function( require ) {
   var PropertySet = require( 'AXON/PropertySet' );
   var inherit = require( 'PHET_CORE/inherit' );
 
-  function ResistanceInAWireModel( width, height ) {
+  function ResistanceInAWireModel() {
     var thisModel = this;
-    this.DEFAULTWIDTH = width;
-    this.DEFAULTHEIGHT = height;
-    this.RESISTYVITYMAX = 1;
-    this.RESISTYVITYMIN = 0.01;
-    this.RESISTYVITYDEFAULT = 0.5;
-    this.LENGTHMAX = 20;
-    this.LENGTHMIN = 0.1;
-    this.LENGTHDEFAULT = 10;
-    this.AREAMAX = 15;
-    this.AREAMIN = 0.01;
-    this.AREADEFAULT = 7.5;
 
     PropertySet.call( this, {
       resistance: 0,
-      resistivity: thisModel.RESISTYVITYDEFAULT,
-      length: thisModel.LENGTHDEFAULT,
-      area: thisModel.AREADEFAULT
+      resistivity: 0.5,
+      length: 10,
+      area: 7.5
     } );
 
     var updateResistance = function() {
@@ -44,9 +33,9 @@ define( function( require ) {
   inherit( PropertySet, ResistanceInAWireModel, {
     step: function() { },
     reset: function() {
-      this.resistivity = this.RESISTYVITYDEFAULT;
-      this.length = this.LENGTHDEFAULT;
-      this.area = this.AREADEFAULT;
+      this.resistivityProperty.reset();
+      this.lengthProperty.reset();
+      this.areaProperty.reset();
     }
   } );
 

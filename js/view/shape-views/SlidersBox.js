@@ -1,5 +1,3 @@
-// Copyright 2002-2013, University of Colorado Boulder
-
 /**
  * Copyright 2002-2013, University of Colorado
  * Container for sliders and circumjacent text
@@ -19,7 +17,7 @@ define( function( require ) {
   var imageLoader = require( 'imageLoader' );
   var Text = require( 'SCENERY/nodes/Text' );
 
-  function SlidersBox( model, x, y ) {
+  function SlidersBox( model, x, y, options ) {
     Node.call( this, {x: x, y: y} );
     var rectW = 380,
       rectH = 500,
@@ -44,9 +42,9 @@ define( function( require ) {
     this.addChild( textArea = new Text( model.area.toFixed( 2 ), { 'fontFamily': "Verdana", 'fontSize': 30, textAlign: "end", textAnchor: "end", fill: "#000", centerX: xCoords[2], top: yCoords[2] } ) );
     this.addChild( new Text( Strings.cm + "²", { 'fontFamily': "Verdana", 'fontSize': 30, textAlign: "start", textAnchor: "start", fill: "#0f0ffb", centerX: xCoords[2], top: yCoords[3] } ) );
 
-    this.addChild( new Slider( xCoords[0], 145, 260, model.resistivityProperty, imageLoader.getImage( 'slider.png' ), {min: model.RESISTYVITYMIN, max: model.RESISTYVITYMAX} ) );
-    this.addChild( new Slider( xCoords[1], 145, 260, model.lengthProperty, imageLoader.getImage( 'slider.png' ), {min: model.LENGTHMIN, max: model.LENGTHMAX} ) );
-    this.addChild( new Slider( xCoords[2], 145, 260, model.areaProperty, imageLoader.getImage( 'slider.png' ), {min: model.AREAMIN, max: model.AREAMAX} ) );
+    this.addChild( new Slider( xCoords[0], 145, 260, model.resistivityProperty, imageLoader.getImage( 'slider.png' ), options.resistivity ) );
+    this.addChild( new Slider( xCoords[1], 145, 260, model.lengthProperty, imageLoader.getImage( 'slider.png' ), options.length ) );
+    this.addChild( new Slider( xCoords[2], 145, 260, model.areaProperty, imageLoader.getImage( 'slider.png' ), options.area ) );
 
     model.resistivityProperty.link( function updateTextResistivity( value ) {
       textResistivity.text = value.toFixed( 2 );

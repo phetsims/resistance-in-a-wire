@@ -1,5 +1,3 @@
-// Copyright 2002-2013, University of Colorado Boulder
-
 /**
  * Copyright 2002-2013, University of Colorado
  * Container for resistor and nearby graphics
@@ -17,7 +15,7 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
   var LinearFunction = require( 'DOT/LinearFunction' );
 
-  function ResistorView( model, x, y ) {
+  function ResistorView( model, x, y, options ) {
 
     Node.call( this, {x: x, y: y} );
 
@@ -35,9 +33,9 @@ define( function( require ) {
         .addColorStop( 0.5, "#FFF" )
         .addColorStop( 0.81, "#bfbfbf" )
         .addColorStop( 1, "#575757" ),
-      areaToHeight = new LinearFunction( model.AREAMIN, model.AREAMAX, 3, 200, true ),
-      lengthToWidth = new LinearFunction( model.LENGTHMIN, model.LENGTHMAX, 15, 500, true ),
-      resistivityToDot = new LinearFunction( model.RESISTYVITYMIN, model.RESISTYVITYMAX, 25, 500, true );
+      areaToHeight = new LinearFunction( options.area.min, options.area.max, 3, 200, true ),
+      lengthToWidth = new LinearFunction( options.length.min, options.length.max, 15, 500, true ),
+      resistivityToDot = new LinearFunction( options.resistivity.min, options.resistivity.max, 25, 500, true );
 
     resistor.addChild( path1 = new Path( {
       shape: resistorShape1,
