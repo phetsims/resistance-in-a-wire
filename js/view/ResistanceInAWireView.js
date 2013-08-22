@@ -8,15 +8,15 @@
 define( function( require ) {
   'use strict';
   var ResistanceInAWireStage = require( 'view/ResistanceInAWireStageContainer' );
-  var TabView = require( 'JOIST/TabView' );
+  var ScreenView = require( 'JOIST/ScreenView' );
   var inherit = require( 'PHET_CORE/inherit' );
 
   function ResistanceInAWireView( model ) {
-    TabView.call( this, { renderer: 'svg' } );
+    ScreenView.call( this, { renderer: 'svg' } );
     this.addChild( new ResistanceInAWireStage( model ) );
   }
 
-  inherit( TabView, ResistanceInAWireView );
+  inherit( ScreenView, ResistanceInAWireView );
   return ResistanceInAWireView;
 
 } )
