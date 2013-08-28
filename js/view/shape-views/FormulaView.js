@@ -14,6 +14,7 @@ define( function( require ) {
   var Matrix3 = require( 'DOT/Matrix3' );
   var Path = require( 'SCENERY/nodes/Path' );
   var Shape = require( 'KITE/Shape' );
+  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
 
   function FormulaView( model, x, y ) {
     var thisNode = this;
@@ -50,11 +51,11 @@ define( function( require ) {
       }
     ];
     //static text
-    thisNode.addChild( new Text( "=", {'fontFamily': "Georgia", 'fontSize': 100, fill: "#000", centerX: 100, centerY: 0} ) );
+    thisNode.addChild( new Text( "=", { font: new PhetFont( { family: 'Georgia', size: 100 } ), fill: "#000", centerX: 100, centerY: 0} ) );
     thisNode.addChild( new Path( { shape: Shape.lineSegment( 150, 8, 400, 8 ), stroke: 'black', lineWidth: 6 } ) );
     //dynamic text
     texts.forEach( function( entry ) {
-      entry.view = new Text( entry.label, {'fontFamily': "Georgia", 'fontSize': 130, fill: entry.color, centerX: entry.x, centerY: entry.y} );
+      entry.view = new Text( entry.label, {font: new PhetFont( { family: 'Georgia', size: 130 } ), fill: entry.color, centerX: entry.x, centerY: entry.y} );
       thisNode.addChild( entry.view );
       entry.scale = entry.scale || 1 / model[entry.targetProperty].get();
       model[entry.targetProperty].link( function updateProperty( val ) {

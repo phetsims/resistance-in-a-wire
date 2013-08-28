@@ -12,15 +12,16 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Strings = require( 'resistance-in-a-wire-strings' );
   var Text = require( 'SCENERY/nodes/Text' );
+  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
 
   function CurrentResistanceView( model, x, y, w ) {
     Node.call( this, {x: x, y: y} );
     var nodeText = new Node();
     var textResistance,
       maxWidth = w * 0.95;
-    nodeText.addChild( new Text( Strings.resistanceEq, { 'fontFamily': "Verdana", 'fontSize': 30, fill: "#F00", right: 200, y: 0 } ) );
-    nodeText.addChild( textResistance = new Text( "2000", { 'fontFamily': "Verdana", 'fontSize': 30, fill: "#F00", right: 290, y: 0 } ) );
-    nodeText.addChild( new Text( Strings.ohm, { 'fontFamily': "Verdana", 'fontSize': 30, fill: "#F00", left: 300, y: 0 } ) );
+    nodeText.addChild( new Text( Strings.resistanceEq, { font: new PhetFont( { family: 'Veranda', size: 30 } ), fill: "#F00", right: 200, y: 0 } ) );
+    nodeText.addChild( textResistance = new Text( "2000", { font: new PhetFont( { family: 'Veranda', size: 30 } ), fill: "#F00", right: 290, y: 0 } ) );
+    nodeText.addChild( new Text( Strings.ohm, { font: new PhetFont( { family: 'Veranda', size: 30 } ), fill: "#F00", left: 300, y: 0 } ) );
     nodeText.centerX = 0;
     nodeText.centerY = 0;
     this.addChild( nodeText );
