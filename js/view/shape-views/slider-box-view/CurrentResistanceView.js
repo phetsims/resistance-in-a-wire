@@ -19,9 +19,9 @@ define( function( require ) {
     var nodeText = new Node();
     var textResistance,
       maxWidth = w * 0.95;
-    nodeText.addChild( new Text( Strings.resistanceEq, { font: new PhetFont( { family: 'Veranda', size: 30 } ), fill: "#F00", right: 200, y: 0 } ) );
-    nodeText.addChild( textResistance = new Text( "2000", { font: new PhetFont( { family: 'Veranda', size: 30 } ), fill: "#F00", right: 290, y: 0 } ) );
-    nodeText.addChild( new Text( Strings.ohm, { font: new PhetFont( { family: 'Veranda', size: 30 } ), fill: "#F00", left: 300, y: 0 } ) );
+    nodeText.addChild( new Text( Strings.resistanceEq, { font: new PhetFont( { family: 'Verdana', size: 30 } ), fill: "#F00", right: 200, y: 0 } ) );
+    nodeText.addChild( textResistance = new Text( "2000", { font: new PhetFont( { family: 'Verdana', size: 30 } ), fill: "#F00", right: 290, y: 0 } ) );
+    nodeText.addChild( new Text( Strings.ohm, { font: new PhetFont( { family: 'Verdana', size: 30 } ), fill: "#F00", left: 300, y: 0 } ) );
     nodeText.centerX = 0;
     nodeText.centerY = 0;
     this.addChild( nodeText );
