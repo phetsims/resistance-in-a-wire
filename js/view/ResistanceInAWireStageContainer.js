@@ -25,7 +25,7 @@ define( function( require ) {
 
     this.addChild( new FormulaView( model, 70, 180 ) );
     this.addChild( new ResistorView( model, 290, 470, options ) );
-    this.addChild( new ArrowNode( 200, 600, 350, 600, 50, 30, 10, {fill: "#FFF", stroke: "#000", lineWidth: 1} ) );
+    this.addChild( new ArrowNode( 200, 600, 350, 600, { headHeight: 50, headWidth: 30, tailWidth: 10, fill: "#FFF", stroke: "#000", lineWidth: 1} ) );
     this.addChild( new SlidersBox( model, 600, 40, options ) );
     this.addChild( new Node( { x: 750, y: 560, children: [ new ResetAllButton( function() {model.reset();} )]} ) );
   }
