@@ -51,11 +51,11 @@ define( function( require ) {
       }
     ];
     //static text
-    thisNode.addChild( new Text( "=", { font: new PhetFont( { family: 'Georgia', size: 100 } ), fill: "#000", centerX: 100, centerY: 0} ) );
+    thisNode.addChild( new Text( "=", { font: new PhetFont( { family: 'Times New Roman', size: 100 } ), fill: "#000", centerX: 100, centerY: 0} ) );
     thisNode.addChild( new Path( { shape: Shape.lineSegment( 150, 8, 400, 8 ), stroke: 'black', lineWidth: 6 } ) );
     //dynamic text
     texts.forEach( function( entry ) {
-      entry.view = new Text( entry.label, {font: new PhetFont( { family: 'Georgia', size: 130 } ), fill: entry.color, centerX: entry.x, centerY: entry.y} );
+      entry.view = new Text( entry.label, {font: new PhetFont( { family: 'Times New Roman', size: 130 } ), fill: entry.color, centerX: entry.x, centerY: entry.y} );
       thisNode.addChild( entry.view );
       entry.scale = entry.scale || 1 / model[entry.targetProperty].get();
       model[entry.targetProperty].link( function updateProperty( val ) {
