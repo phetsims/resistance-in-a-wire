@@ -1,2 +1,4 @@
+8/29/2013 - Changed all fonts to use PhetFont
+# 01.00.00
 03/05/2013 - initial commit
 03/14/2013 - beta version
