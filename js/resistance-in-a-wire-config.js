@@ -9,6 +9,12 @@
 require.config( {
   deps: ["resistance-in-a-wire-main"],
 
+  config: {
+    i18n: {
+      locale: 'en_us',
+    }
+  },
+
   paths: {
     // third-party libs
     i18n: '../lib/i18n-2.0.2',
@@ -25,7 +31,6 @@ require.config( {
     SCENERY: '../../scenery/js',
     SCENERY_PHET: '../../scenery-phet/js',
     SUN: '../../sun/js'
-
   },
 
   urlArgs: new Date().getTime()  // cache buster to make browser refresh load all included scripts
