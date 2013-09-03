@@ -52,7 +52,7 @@ define( function( require ) {
     ];
     //static text
     thisNode.addChild( new Text( "=", { font: new PhetFont( { family: 'Times New Roman', size: 100 } ), fill: "#000", centerX: 100, centerY: 0} ) );
-    thisNode.addChild( new Path( { shape: Shape.lineSegment( 150, 8, 400, 8 ), stroke: 'black', lineWidth: 6 } ) );
+    thisNode.addChild( new Path( Shape.lineSegment( 150, 8, 400, 8 ), { stroke: 'black', lineWidth: 6 } ) );
     //dynamic text
     texts.forEach( function( entry ) {
       entry.view = new Text( entry.label, {font: new PhetFont( { family: 'Times New Roman', size: 130 } ), fill: entry.color, centerX: entry.x, centerY: entry.y} );

@@ -37,14 +37,12 @@ define( function( require ) {
       lengthToWidth = new LinearFunction( options.length.min, options.length.max, 15, 500, true ),
       resistivityToDot = new LinearFunction( options.resistivity.min, options.resistivity.max, 25, 500, true );
 
-    resistor.addChild( path1 = new Path( {
-      shape: resistorShape1,
+    resistor.addChild( path1 = new Path( resistorShape1, {
       stroke: "#000",
       fill: linearGradient1,
       lineWidth: 1
     } ) );
-    resistor.addChild( path2 = new Path( {
-      shape: resistorShape2,
+    resistor.addChild( path2 = new Path( resistorShape2, {
       stroke: "#000",
       fill: "#f2f2f2",
       lineWidth: 1
