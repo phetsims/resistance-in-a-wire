@@ -12,8 +12,7 @@ define( function( require ) {
     Strings = require( 'resistance-in-a-wire-strings' ),
     Rectangle = require( 'SCENERY/nodes/Rectangle' ),
     ResistanceInAWireModel = require( 'model/ResistanceInAWireModel' ),
-    ResistanceInAWireView = require( 'view/ResistanceInAWireView' ),
-    imageLoader = require( 'imageLoader' );
+    ResistanceInAWireView = require( 'view/ResistanceInAWireView' );
 
   var simOptions = {
     credits: 'PhET Development Team -\n' +
@@ -24,7 +23,7 @@ define( function( require ) {
     thanks: 'Thanks -\n' +
             'Thanks to Mobile Learner Labs for working with the PhET development team to convert this simulation to HTML5.'
   };
-  SimLauncher.launch( imageLoader, function() {
+  SimLauncher.launch( {imageNames: []}, function() {
     //Create and start the sim
     new Sim( Strings.simTitle, [
       {

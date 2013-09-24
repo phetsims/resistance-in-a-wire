@@ -1,3 +1,0 @@
-[submodule "lib/phet/phetcommon"]
-	path = lib/phet/phetcommon
-	url = https://github.com/phetsims/phetcommon.git

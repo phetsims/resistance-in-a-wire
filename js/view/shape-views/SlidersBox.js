@@ -14,7 +14,7 @@ define( function( require ) {
   var WhiteBox = require( 'view/shape-views/slider-box-view/WhiteBox' );
   var Slider = require( 'view/shape-views/slider-box-view/Slider' );
   var CurrentResistanceView = require( "view/shape-views/slider-box-view/CurrentResistanceView" );
-  var imageLoader = require( 'imageLoader' );
+  var sliderImage = require( 'image!RESISTANCE_IN_A_WIRE/../images/slider.png' );
   var Text = require( 'SCENERY/nodes/Text' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
 
@@ -43,9 +43,9 @@ define( function( require ) {
     this.addChild( textArea = new Text( model.area.toFixed( 2 ), { font: new PhetFont( 30 ), textAlign: "end", textAnchor: "end", fill: "#000", centerX: xCoords[2], top: yCoords[2] } ) );
     this.addChild( new Text( Strings.cm + "²", { font: new PhetFont( 30 ), textAlign: "start", textAnchor: "start", fill: "#0f0ffb", centerX: xCoords[2], top: yCoords[3] } ) );
 
-    this.addChild( new Slider( xCoords[0], 145, 260, model.resistivityProperty, imageLoader.getImage( 'slider.png' ), options.resistivity ) );
-    this.addChild( new Slider( xCoords[1], 145, 260, model.lengthProperty, imageLoader.getImage( 'slider.png' ), options.length ) );
-    this.addChild( new Slider( xCoords[2], 145, 260, model.areaProperty, imageLoader.getImage( 'slider.png' ), options.area ) );
+    this.addChild( new Slider( xCoords[0], 145, 260, model.resistivityProperty, sliderImage, options.resistivity ) );
+    this.addChild( new Slider( xCoords[1], 145, 260, model.lengthProperty, sliderImage, options.length ) );
+    this.addChild( new Slider( xCoords[2], 145, 260, model.areaProperty, sliderImage, options.area ) );
 
     model.resistivityProperty.link( function updateTextResistivity( value ) {
       textResistivity.text = value.toFixed( 2 );
