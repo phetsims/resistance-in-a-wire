@@ -7,13 +7,18 @@
 
 define( function( require ) {
   'use strict';
-  var SimLauncher = require( 'JOIST/SimLauncher' ),
-    Sim = require( 'JOIST/Sim' ),
-    Strings = require( 'resistance-in-a-wire-strings' ),
-    Rectangle = require( 'SCENERY/nodes/Rectangle' ),
-    ResistanceInAWireModel = require( 'model/ResistanceInAWireModel' ),
-    ResistanceInAWireView = require( 'view/ResistanceInAWireView' );
 
+  // Imports
+  var SimLauncher = require( 'JOIST/SimLauncher' );
+  var Sim = require( 'JOIST/Sim' );
+  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var ResistanceInAWireModel = require( 'model/ResistanceInAWireModel' );
+  var ResistanceInAWireView = require( 'view/ResistanceInAWireView' );
+
+  // Resources
+  var simTitle = require( 'string!RESISTANCE_IN_A_WIRE/simTitle' );
+
+  // Credits
   var simOptions = {
     credits: 'PhET Development Team -\n' +
              'Lead Design: Michael Dubson\n' +
@@ -25,9 +30,9 @@ define( function( require ) {
   };
   SimLauncher.launch( function() {
     //Create and start the sim
-    new Sim( Strings.simTitle, [
+    new Sim( simTitle, [
       {
-        name: Strings.simTitle,
+        name: simTitle,
         icon: new Rectangle( 0, 0, 50, 50, { fill: 'blue' } ),
         createModel: function() { return new ResistanceInAWireModel(); },
         createView: function( model ) { return new ResistanceInAWireView( model ); },

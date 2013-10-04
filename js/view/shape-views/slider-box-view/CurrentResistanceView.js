@@ -8,22 +8,35 @@
 
 define( function( require ) {
   'use strict';
+
+  // Imports
   var Node = require( 'SCENERY/nodes/Node' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var Strings = require( 'resistance-in-a-wire-strings' );
   var Text = require( 'SCENERY/nodes/Text' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
 
+  // Resources
+  var resistanceEq = require( 'string!RESISTANCE_IN_A_WIRE/resistanceEq' );
+  var ohm = require( 'string!RESISTANCE_IN_A_WIRE/ohm' );
+
+  // Constants
   var FONT = new PhetFont( 30 );
 
+  /**
+   * @param model
+   * @param x
+   * @param y
+   * @param w
+   * @constructor
+   */
   function CurrentResistanceView( model, x, y, w ) {
     Node.call( this, {x: x, y: y} );
     var nodeText = new Node();
     var textResistance,
       maxWidth = w * 0.95;
-    nodeText.addChild( new Text( Strings.resistanceEq, { font: FONT, fill: "#F00", right: 200, y: 0 } ) );
+    nodeText.addChild( new Text( resistanceEq, { font: FONT, fill: "#F00", right: 200, y: 0 } ) );
     nodeText.addChild( textResistance = new Text( "2000", { font: FONT, fill: "#F00", right: 290, y: 0 } ) );
-    nodeText.addChild( new Text( Strings.ohm, { font: FONT, fill: "#F00", left: 300, y: 0 } ) );
+    nodeText.addChild( new Text( ohm, { font: FONT, fill: "#F00", left: 300, y: 0 } ) );
     nodeText.centerX = 0;
     nodeText.centerY = 0;
     this.addChild( nodeText );

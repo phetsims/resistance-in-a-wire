@@ -16,10 +16,14 @@ require.config( {
   },
 
   paths: {
-    //plugins
-    i18n: '../../sherpa/i18n-2.0.4',
-    image: '../../chipper/requirejs-plugins/image',
+
+    // third party libraries
+    text: '../../sherpa/text',
+
+    // plugins
     audio: '../../chipper/requirejs-plugins/audio',
+    image: '../../chipper/requirejs-plugins/image',
+    string: '../../chipper/requirejs-plugins/string',
 
     // PhET libs, uppercase names to identify them in require.js imports
     ASSERT: '../../assert/js',
@@ -33,9 +37,10 @@ require.config( {
     SCENERY: '../../scenery/js',
     SCENERY_PHET: '../../scenery-phet/js',
     SUN: '../../sun/js',
+
+    // this sim
     RESISTANCE_IN_A_WIRE: '.'
   },
 
   urlArgs: new Date().getTime()  // cache buster to make browser refresh load all included scripts
-
 } );

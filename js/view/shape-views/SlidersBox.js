@@ -8,9 +8,10 @@
 
 define( function( require ) {
   'use strict';
+
+  // Imports
   var Node = require( 'SCENERY/nodes/Node' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var Strings = require( 'resistance-in-a-wire-strings' );
   var WhiteBox = require( 'view/shape-views/slider-box-view/WhiteBox' );
   var Slider = require( 'view/shape-views/slider-box-view/Slider' );
   var CurrentResistanceView = require( "view/shape-views/slider-box-view/CurrentResistanceView" );
@@ -18,6 +19,19 @@ define( function( require ) {
   var Text = require( 'SCENERY/nodes/Text' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
 
+  // Resources
+  var resistivity = require( 'string!RESISTANCE_IN_A_WIRE/resistivity' );
+  var cm = require( 'string!RESISTANCE_IN_A_WIRE/cm' );
+  var length = require( 'string!RESISTANCE_IN_A_WIRE/length' );
+  var area = require( 'string!RESISTANCE_IN_A_WIRE/area' );
+
+  /**
+   * @param model
+   * @param x
+   * @param y
+   * @param options
+   * @constructor
+   */
   function SlidersBox( model, x, y, options ) {
     Node.call( this, {x: x, y: y} );
     var rectW = 380,
@@ -29,19 +43,19 @@ define( function( require ) {
     var xCoords = [70, 195, 320];
 
     this.addChild( new Text( "ρ", { font: new PhetFont( { family: 'Times New Roman', size: 60 } ), fill: "#0f0ffb", centerX: xCoords[0], top: yCoords[0] - 10 } ) );
-    this.addChild( new Text( Strings.resistivity, { font: new PhetFont( 16 ), textAlign: "center", textAnchor: "middle", fill: "#0f0ffb", centerX: xCoords[0], top: yCoords[1] } ) );
+    this.addChild( new Text( resistivity, { font: new PhetFont( 16 ), textAlign: "center", textAnchor: "middle", fill: "#0f0ffb", centerX: xCoords[0], top: yCoords[1] } ) );
     this.addChild( textResistivity = new Text( model.resistivity.toFixed( 2 ), { font: new PhetFont( 30 ), textAlign: "end", textAnchor: "end", fill: "#000", centerX: xCoords[0], top: yCoords[2] } ) );
-    this.addChild( new Text( "Ω" + Strings.cm, { font: new PhetFont( 30 ), textAlign: "start", textAnchor: "start", fill: "#0f0ffb", centerX: xCoords[0], top: yCoords[3] } ) );
+    this.addChild( new Text( "Ω" + cm, { font: new PhetFont( 30 ), textAlign: "start", textAnchor: "start", fill: "#0f0ffb", centerX: xCoords[0], top: yCoords[3] } ) );
 
     this.addChild( new Text( "L", { font: new PhetFont( { family: 'Times New Roman', size: 60 } ), fill: "#0f0ffb", centerX: xCoords[1], top: yCoords[0] } ) );
-    this.addChild( new Text( Strings.length, { font: new PhetFont( 16 ), textAlign: "center", textAnchor: "middle", fill: "#0f0ffb", centerX: xCoords[1], top: yCoords[1] } ) );
+    this.addChild( new Text( length, { font: new PhetFont( 16 ), textAlign: "center", textAnchor: "middle", fill: "#0f0ffb", centerX: xCoords[1], top: yCoords[1] } ) );
     this.addChild( textLength = new Text( model.length.toFixed( 2 ), { font: new PhetFont( 30 ), textAlign: "end", textAnchor: "end", fill: "#000", centerX: xCoords[1], top: yCoords[2] } ) );
-    this.addChild( new Text( Strings.cm, { font: new PhetFont( 30 ), textAlign: "start", textAnchor: "start", fill: "#0f0ffb", centerX: xCoords[1], top: yCoords[3] } ) );
+    this.addChild( new Text( cm, { font: new PhetFont( 30 ), textAlign: "start", textAnchor: "start", fill: "#0f0ffb", centerX: xCoords[1], top: yCoords[3] } ) );
 
     this.addChild( new Text( "A", { font: new PhetFont( { family: 'Times New Roman', size: 60 } ), fill: "#0f0ffb", centerX: xCoords[2], top: yCoords[0] } ) );
-    this.addChild( new Text( Strings.area, { font: new PhetFont( 16 ), textAlign: "center", textAnchor: "middle", fill: "#0f0ffb", centerX: xCoords[2], top: yCoords[1] } ) );
+    this.addChild( new Text( area, { font: new PhetFont( 16 ), textAlign: "center", textAnchor: "middle", fill: "#0f0ffb", centerX: xCoords[2], top: yCoords[1] } ) );
     this.addChild( textArea = new Text( model.area.toFixed( 2 ), { font: new PhetFont( 30 ), textAlign: "end", textAnchor: "end", fill: "#000", centerX: xCoords[2], top: yCoords[2] } ) );
-    this.addChild( new Text( Strings.cm + "²", { font: new PhetFont( 30 ), textAlign: "start", textAnchor: "start", fill: "#0f0ffb", centerX: xCoords[2], top: yCoords[3] } ) );
+    this.addChild( new Text( cm + "²", { font: new PhetFont( 30 ), textAlign: "start", textAnchor: "start", fill: "#0f0ffb", centerX: xCoords[2], top: yCoords[3] } ) );
 
     this.addChild( new Slider( xCoords[0], 145, 260, model.resistivityProperty, sliderImage, options.resistivity ) );
     this.addChild( new Slider( xCoords[1], 145, 260, model.lengthProperty, sliderImage, options.length ) );
