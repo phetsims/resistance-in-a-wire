@@ -15,7 +15,7 @@ define( function( require ) {
   var WhiteBox = require( 'view/shape-views/slider-box-view/WhiteBox' );
   var Slider = require( 'view/shape-views/slider-box-view/Slider' );
   var CurrentResistanceView = require( "view/shape-views/slider-box-view/CurrentResistanceView" );
-  var sliderImage = require( 'image!RESISTANCE_IN_A_WIRE/../images/slider.png' );
+  var sliderImage = require( 'image!RESISTANCE_IN_A_WIRE/slider.png' );
   var Text = require( 'SCENERY/nodes/Text' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
 
