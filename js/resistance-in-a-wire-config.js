@@ -9,12 +9,6 @@
 require.config( {
   deps: ["resistance-in-a-wire-main"],
 
-  config: {
-    i18n: {
-      locale: 'en_us'
-    }
-  },
-
   paths: {
 
     // third party libraries
