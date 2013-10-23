@@ -9,6 +9,7 @@ define( function( require ) {
   'use strict';
 
   // Imports
+  var Screen = require( 'JOIST/Screen' );
   var SimLauncher = require( 'JOIST/SimLauncher' );
   var Sim = require( 'JOIST/Sim' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
@@ -31,13 +32,11 @@ define( function( require ) {
   SimLauncher.launch( function() {
     //Create and start the sim
     new Sim( simTitle, [
-      {
-        name: simTitle,
-        icon: new Rectangle( 0, 0, 50, 50, { fill: 'blue' } ),
-        createModel: function() { return new ResistanceInAWireModel(); },
-        createView: function( model ) { return new ResistanceInAWireView( model ); },
-        backgroundColor: "#ffffdf"
-      }
+      new Screen( simTitle, null, /* single-screen sim, no icon */
+        function() { return new ResistanceInAWireModel(); },
+        function( model ) { return new ResistanceInAWireView( model ); },
+        { backgroundColor: "#ffffdf" }
+      )
     ], simOptions ).start();
   } );
 } );
