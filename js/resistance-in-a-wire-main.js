@@ -19,16 +19,16 @@ define( function( require ) {
   // Resources
   var simTitle = require( 'string!RESISTANCE_IN_A_WIRE/simTitle' );
 
-  // Credits
   var simOptions = {
-    credits: 'PhET Development Team -\n' +
-             'Lead Design: Michael Dubson\n' +
-             'Software Development: Michael Dubson, John Blanco\n' +
-             'Design Team: Ariel Paul\n' +
-             'Interviews: Wendy Adams, Mindy Gratny\n',
-    thanks: 'Thanks -\n' +
-            'Thanks to Mobile Learner Labs for working with the PhET development team to convert this simulation to HTML5.'
+    credits: {
+      leadDesign: 'Michael Dubson',
+      softwareDevelopment: 'Michael Dubson, John Blanco',
+      designTeam: 'Ariel Paul',
+      interviews: 'Wendy Adams, Mindy Gratny',
+      thanks: 'Thanks to Mobile Learner Labs for working with the PhET development team\nto convert this simulation to HTML5.'
+    }
   };
+
   SimLauncher.launch( function() {
     //Create and start the sim
     new Sim( simTitle, [
