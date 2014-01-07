@@ -12,7 +12,6 @@ define( function( require ) {
   var Screen = require( 'JOIST/Screen' );
   var SimLauncher = require( 'JOIST/SimLauncher' );
   var Sim = require( 'JOIST/Sim' );
-  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var ResistanceInAWireModel = require( 'model/ResistanceInAWireModel' );
   var ResistanceInAWireView = require( 'view/ResistanceInAWireView' );
 
