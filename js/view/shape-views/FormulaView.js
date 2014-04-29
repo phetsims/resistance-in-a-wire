@@ -59,7 +59,7 @@ define( function( require ) {
       thisNode.addChild( entry.view );
       entry.scale = entry.scale || 1 / model[entry.targetProperty].get();
       model[entry.targetProperty].link( function updateProperty( val ) {
-        entry.view.matrix = new Matrix3();
+        entry.view.matrix = Matrix3.identity();
         entry.view.scale( entry.scale * val + 0.125 );
         entry.view.centerX = entry.x;
         entry.view.centerY = entry.y;
