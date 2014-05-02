@@ -9,7 +9,7 @@ define( function( require ) {
   'use strict';
   var Node = require( 'SCENERY/nodes/Node' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var ResetAllButton = require( 'SCENERY_PHET/ResetAllButton' );
+  var ResetAllButtonDeprecated = require( 'SCENERY_PHET/ResetAllButtonDeprecated' );
   var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
   var SlidersBox = require( "view/shape-views/SlidersBox" );
   var FormulaView = require( "view/shape-views/FormulaView" );
@@ -28,7 +28,7 @@ define( function( require ) {
     this.addChild( new ArrowNode( 200, 600, 350, 600, { headHeight: 50, headWidth: 30, tailWidth: 10, fill: "#FFF", stroke: "#000", lineWidth: 1} ) );
     var slidersBox = new SlidersBox( model, 600, 40, options );
     this.addChild( slidersBox );
-    this.addChild( new ResetAllButton( function() { model.reset(); }, { top: slidersBox.bottom + 20, centerX: slidersBox.centerX } ) );
+    this.addChild( new ResetAllButtonDeprecated( function() { model.reset(); }, { top: slidersBox.bottom + 20, centerX: slidersBox.centerX } ) );
   }
 
   inherit( Node, ResistanceInAWireStage );
