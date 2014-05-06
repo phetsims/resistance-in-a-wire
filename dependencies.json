@@ -51,9 +51,5 @@
     "sha": "aed00968d94640815e81e2f8f4a6fa67582010db",
     "branch": "master"
   },
-  "resistance-in-a-wire": {
-    "sha": "a91d5ed3704e5cfb74636cf21ca71e6d912f9c43",
-    "branch": "1.1"
-  },
   "comment": "# resistance-in-a-wire 1.2.0-dev.1 Tue May 06 2014 13:47:31 GMT-0700 (Pacific Daylight Time)"
 }
