@@ -32,10 +32,8 @@ define( function( require ) {
       {
         listener: function() { model.reset() },
         radius: 30,
-        top: slidersBox.bottom + 20,
         centerX: slidersBox.centerX,
-        stroke: 'black',
-        lineWidth: 0.5
+        centerY: slidersBox.bottom + 60
       } ) );
   }
 
