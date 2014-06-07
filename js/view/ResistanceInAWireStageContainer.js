@@ -30,7 +30,7 @@ define( function( require ) {
     this.addChild( slidersBox );
     this.addChild( new ResetAllButton(
       {
-        listener: function() { model.reset() },
+        listener: function() { model.reset(); },
         radius: 30,
         centerX: slidersBox.centerX,
         centerY: slidersBox.bottom + 60
