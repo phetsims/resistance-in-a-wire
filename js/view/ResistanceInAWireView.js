@@ -7,17 +7,17 @@
 
 define( function( require ) {
   'use strict';
+
+  // modules
+  var Bounds2 = require( 'DOT/Bounds2' );
   var ResistanceInAWireStage = require( 'view/ResistanceInAWireStageContainer' );
   var ScreenView = require( 'JOIST/ScreenView' );
   var inherit = require( 'PHET_CORE/inherit' );
 
   function ResistanceInAWireView( model ) {
-    ScreenView.call( this, { renderer: 'svg' } );
+    ScreenView.call( this, { renderer: 'svg', layoutBounds: new Bounds2( 0, 0, 768, 504 ) } );
     this.addChild( new ResistanceInAWireStage( model ) );
   }
 
-  inherit( ScreenView, ResistanceInAWireView );
-  return ResistanceInAWireView;
-
-} )
-;
+  return inherit( ScreenView, ResistanceInAWireView );
+} );
