@@ -1,11 +1,10 @@
+// Copyright 2002-2013, University of Colorado Boulder
+
 /**
- * Copyright 2002-2013, University of Colorado
  * RequireJS configuration file for Resistance in a Wire simulation.
  * @author Vasily Shakhov (Mlearner)
  * @author Anton Ulyanov (Mlearner
  */
-
-
 require.config( {
   deps: [ "resistance-in-a-wire-main" ],
 

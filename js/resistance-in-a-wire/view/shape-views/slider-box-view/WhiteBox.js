@@ -1,11 +1,10 @@
+// Copyright 2002-2013, University of Colorado Boulder
+
 /**
- * Copyright 2002-2013, University of Colorado
  * White Block with black border container
  * @author Vasily Shakhov (Mlearner)
  * @author Anton Ulyanov (Mlearner)
  */
-
-
 define( function( require ) {
   'use strict';
   var Node = require( 'SCENERY/nodes/Node' );

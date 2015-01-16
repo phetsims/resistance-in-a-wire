@@ -1,21 +1,21 @@
+// Copyright 2002-2013, University of Colorado Boulder
+
 /**
- * Copyright 2002-2013, University of Colorado
  * Main entry point for the "resistance in a wire" sim.
  * @author Vasily Shakhov (Mlearner)
  * @author Anton Ulyanov (Mlearner)
  */
-
 define( function( require ) {
   'use strict';
 
-  // Imports
+  // modules
   var Screen = require( 'JOIST/Screen' );
   var SimLauncher = require( 'JOIST/SimLauncher' );
   var Sim = require( 'JOIST/Sim' );
-  var ResistanceInAWireModel = require( 'model/ResistanceInAWireModel' );
-  var ResistanceInAWireView = require( 'view/ResistanceInAWireView' );
+  var ResistanceInAWireModel = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/model/ResistanceInAWireModel' );
+  var ResistanceInAWireView = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/ResistanceInAWireView' );
 
-  // Resources
+  // strings
   var simTitle = require( 'string!RESISTANCE_IN_A_WIRE/simTitle' );
 
   var simOptions = {

@@ -1,5 +1,6 @@
+// Copyright 2002-2013, University of Colorado Boulder
+
 /**
- * Copyright 2002-2013, University of Colorado
  * Model container for the "resistance-in-a-wire" module.
  *
  * @author Vasily Shakhov (Mlearner)
@@ -7,6 +8,8 @@
  */
 define( function( require ) {
   'use strict';
+
+  // modules
   var PropertySet = require( 'AXON/PropertySet' );
   var inherit = require( 'PHET_CORE/inherit' );
 

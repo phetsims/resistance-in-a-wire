@@ -1,19 +1,21 @@
+// Copyright 2002-2013, University of Colorado Boulder
+
 /**
- * Copyright 2002-2013, University of Colorado
  * Stage for the "ResistanceInAWire" view.
  * @author Vasily Shakhov (Mlearner)
  * @author Anton Ulyanov (Mlearner)
  */
-
 define( function( require ) {
   'use strict';
+
+  // modules
   var Node = require( 'SCENERY/nodes/Node' );
   var inherit = require( 'PHET_CORE/inherit' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
   var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
-  var SlidersBox = require( "view/shape-views/SlidersBox" );
-  var FormulaView = require( "view/shape-views/FormulaView" );
-  var ResistorView = require( "view/shape-views/ResistorView" );
+  var SlidersBox = require( "RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/shape-views/SlidersBox" );
+  var FormulaView = require( "RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/shape-views/FormulaView" );
+  var ResistorView = require( "RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/shape-views/ResistorView" );
 
   function ResistanceInAWireStage( model ) {
     Node.call( this, { scale: 0.75 } );

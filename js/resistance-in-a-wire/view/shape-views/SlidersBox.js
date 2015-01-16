@@ -1,25 +1,26 @@
+// Copyright 2002-2013, University of Colorado Boulder
+
 /**
- * Copyright 2002-2013, University of Colorado
  * Container for sliders and circumjacent text
  * @author Vasily Shakhov (Mlearner)
  * @author Anton Ulyanov (Mlearner)
  */
-
-
 define( function( require ) {
   'use strict';
 
-  // Imports
+  // modules
   var Node = require( 'SCENERY/nodes/Node' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var WhiteBox = require( 'view/shape-views/slider-box-view/WhiteBox' );
-  var Slider = require( 'view/shape-views/slider-box-view/Slider' );
-  var CurrentResistanceView = require( "view/shape-views/slider-box-view/CurrentResistanceView" );
-  var sliderImage = require( 'image!RESISTANCE_IN_A_WIRE/slider.png' );
+  var WhiteBox = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/shape-views/slider-box-view/WhiteBox' );
+  var Slider = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/shape-views/slider-box-view/Slider' );
+  var CurrentResistanceView = require( "RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/shape-views/slider-box-view/CurrentResistanceView" );
   var Text = require( 'SCENERY/nodes/Text' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
 
-  // Resources
+  // images
+  var sliderImage = require( 'image!RESISTANCE_IN_A_WIRE/slider.png' );
+
+  // strings
   var resistivity = require( 'string!RESISTANCE_IN_A_WIRE/resistivity' );
   var cm = require( 'string!RESISTANCE_IN_A_WIRE/cm' );
   var length = require( 'string!RESISTANCE_IN_A_WIRE/length' );
