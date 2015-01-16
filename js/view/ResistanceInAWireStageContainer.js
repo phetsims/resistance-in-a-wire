@@ -16,16 +16,23 @@ define( function( require ) {
   var ResistorView = require( "view/shape-views/ResistorView" );
 
   function ResistanceInAWireStage( model ) {
-    Node.call( this, {scale: 0.75} );
+    Node.call( this, { scale: 0.75 } );
     var options = {
-      resistivity: {max: 1, min: 0.01},
-      length: {max: 20, min: 0.1},
-      area: {max: 15, min: 0.01}
+      resistivity: { max: 1, min: 0.01 },
+      length: { max: 20, min: 0.1 },
+      area: { max: 15, min: 0.01 }
     };
 
     this.addChild( new FormulaView( model, 70, 180 ) );
     this.addChild( new ResistorView( model, 290, 470, options ) );
-    this.addChild( new ArrowNode( 200, 600, 350, 600, { headHeight: 50, headWidth: 30, tailWidth: 10, fill: "#FFF", stroke: "#000", lineWidth: 1} ) );
+    this.addChild( new ArrowNode( 200, 600, 350, 600, {
+      headHeight: 50,
+      headWidth: 30,
+      tailWidth: 10,
+      fill: "#FFF",
+      stroke: "#000",
+      lineWidth: 1
+    } ) );
     var slidersBox = new SlidersBox( model, 600, 40, options );
     this.addChild( slidersBox );
     this.addChild( new ResetAllButton(

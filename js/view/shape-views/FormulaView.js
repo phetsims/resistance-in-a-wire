@@ -18,7 +18,7 @@ define( function( require ) {
 
   function FormulaView( model, x, y ) {
     var thisNode = this;
-    Node.call( this, {x: x, y: y} );
+    Node.call( this, { x: x, y: y } );
     var texts = [
       {
         label: "R",
@@ -51,14 +51,19 @@ define( function( require ) {
       }
     ];
     //static text
-    thisNode.addChild( new Text( "=", { font: new PhetFont( { family: 'Times New Roman', size: 100 } ), fill: "#000", centerX: 100, centerY: 0} ) );
+    thisNode.addChild( new Text( "=", { font: new PhetFont( { family: 'Times New Roman', size: 100 } ), fill: "#000", centerX: 100, centerY: 0 } ) );
     thisNode.addChild( new Path( Shape.lineSegment( 150, 8, 400, 8 ), { stroke: 'black', lineWidth: 6 } ) );
     //dynamic text
     texts.forEach( function( entry ) {
-      entry.view = new Text( entry.label, {font: new PhetFont( { family: 'Times New Roman', size: 130 } ), fill: entry.color, centerX: entry.x, centerY: entry.y} );
+      entry.view = new Text( entry.label, {
+        font: new PhetFont( { family: 'Times New Roman', size: 130 } ),
+        fill: entry.color,
+        centerX: entry.x,
+        centerY: entry.y
+      } );
       thisNode.addChild( entry.view );
-      entry.scale = entry.scale || 1 / model[entry.targetProperty].get();
-      model[entry.targetProperty].link( function updateProperty( val ) {
+      entry.scale = entry.scale || 1 / model[ entry.targetProperty ].get();
+      model[ entry.targetProperty ].link( function updateProperty( val ) {
         entry.view.matrix = Matrix3.identity();
         entry.view.scale( entry.scale * val + 0.125 );
         entry.view.centerX = entry.x;

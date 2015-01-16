@@ -21,13 +21,13 @@ define( function( require ) {
 
   function Slider( x, y, h, targetProperty, img, value ) {
     var thisNode = this;
-    Node.call( this, {x: x, y: y } );
-    this.addChild( new Rectangle( -3, 0, 6, h, {fill: "black" } ) );
+    Node.call( this, { x: x, y: y } );
+    this.addChild( new Rectangle( -3, 0, 6, h, { fill: "black" } ) );
 
     var knob = new Image( img );
     knob.scale( KNOB_WIDTH / knob.width );
     knob.mutate( { centerX: 0, top: 0 } );
-    var track = new Node( {children: [ knob ], cursor: "pointer"} );
+    var track = new Node( { children: [ knob ], cursor: "pointer" } );
 
     var clickYOffset,
       yMin = 0,

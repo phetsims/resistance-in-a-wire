@@ -17,7 +17,7 @@ define( function( require ) {
 
   function ResistorView( model, x, y, options ) {
 
-    Node.call( this, {x: x, y: y} );
+    Node.call( this, { x: x, y: y } );
 
 
     var height = 200,
@@ -61,7 +61,7 @@ define( function( require ) {
 
     for ( var i = 1; i <= nRows; i++ ) {
       for ( var j = 1; j <= nCols; j++ ) {
-        var p = new Circle( 2, {fill: "#000"} );
+        var p = new Circle( 2, { fill: "#000" } );
         p.y = i * d - d / 2 + Math.random() * d * 0.7 - 3;
         p.x = j * d - d / 2 + Math.random() * d * 0.7;
         points.push( p );
@@ -73,9 +73,9 @@ define( function( require ) {
 
     for ( i = points.length - 1; i > -1; i-- ) {
       var pos = parseInt( Math.random() * i, 10 );
-      var tt = points[i];
-      points[i] = points[pos];
-      points[pos] = tt;
+      var tt = points[ i ];
+      points[ i ] = points[ pos ];
+      points[ pos ] = tt;
     }
 
     this.addChild( dotGroup );
@@ -114,11 +114,11 @@ define( function( require ) {
 
       var borderNumber = resistivityToDot( model.resistivity );
       for ( var i = 0; i < maxPoints; i++ ) {
-        if ( i < borderNumber && dotInResistor( points[i], height ) ) {
-          points[i].setVisible( true );
+        if ( i < borderNumber && dotInResistor( points[ i ], height ) ) {
+          points[ i ].setVisible( true );
         }
         else {
-          points[i].setVisible( false );
+          points[ i ].setVisible( false );
         }
       }
       dotGroup.centerX = 0;

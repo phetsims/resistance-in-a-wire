@@ -30,7 +30,7 @@ define( function( require ) {
    * @constructor
    */
   function CurrentResistanceView( model, x, y, w ) {
-    Node.call( this, {x: x, y: y} );
+    Node.call( this, { x: x, y: y } );
     var nodeText = new Node();
     var textResistance,
       maxWidth = w * 0.95;
