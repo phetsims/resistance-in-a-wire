@@ -30,7 +30,7 @@ define( function( require ) {
    * @param model
    * @param x
    * @param y
-   * @param options
+   * @param {Object} [options]
    * @constructor
    */
   function SlidersBox( model, x, y, options ) {
