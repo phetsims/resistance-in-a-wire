@@ -1,0 +1,23 @@
+{
+  "resistanceEq": {
+    "value": "resistance ="
+  },
+  "resistivity": {
+    "value": "resistivity"
+  },
+  "cm": {
+    "value": "cm"
+  },
+  "ohm": {
+    "value": "ohm"
+  },
+  "simTitle": {
+    "value": "Resistance in a Wire"
+  },
+  "length": {
+    "value": "length"
+  },
+  "area": {
+    "value": "area"
+  }
+}
