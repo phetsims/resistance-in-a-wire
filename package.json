@@ -4,21 +4,7 @@
   "license": "GPLv3",
   "simTitleStringKey": "RESISTANCE_IN_A_WIRE/simTitle",
   "phetLibs": [
-    "resistance-in-a-wire",
-    "assert",
-    "axon",
-    "babel",
-    "brand",
-    "chipper",
-    "dot",
-    "joist",
-    "kite",
-    "phet-core",
-    "phetcommon",
-    "scenery",
-    "scenery-phet",
-    "sherpa",
-    "sun"
+    "resistance-in-a-wire"
   ],
   "repository": {
     "type": "git",
