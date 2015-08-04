@@ -13,6 +13,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Text = require( 'SCENERY/nodes/Text' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var Util = require( 'DOT/Util' );
 
   // strings
   var resistanceEq = require( 'string!RESISTANCE_IN_A_WIRE/resistanceEq' );
@@ -47,12 +48,12 @@ define( function( require ) {
     this.scale( scale );
 
     model.resistanceProperty.link( function updateTextResistance( value ) {
-      textResistance.text = value.toFixed( 2 );
+      textResistance.text = Util.toFixed( value, 2 );
       if ( value > 9 ) {
-        textResistance.text = value.toFixed( 1 );
+        textResistance.text = Util.toFixed( value, 1 );
       }
       if ( value > 99 ) {
-        textResistance.text = value.toFixed( 0 );
+        textResistance.text = Util.toFixed( value, 0 );
       }
       textResistance.right = 290;
     } );

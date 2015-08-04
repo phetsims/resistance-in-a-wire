@@ -16,6 +16,7 @@ define( function( require ) {
   var CurrentResistanceView = require( "RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/shape-views/slider-box-view/CurrentResistanceView" );
   var Text = require( 'SCENERY/nodes/Text' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var Util = require( 'DOT/Util' );
 
   // images
   var sliderImage = require( 'image!RESISTANCE_IN_A_WIRE/slider.png' );
@@ -57,7 +58,7 @@ define( function( require ) {
       centerX: xCoords[ 0 ],
       top: yCoords[ 1 ]
     } ) );
-    this.addChild( textResistivity = new Text( model.resistivity.toFixed( 2 ), {
+    this.addChild( textResistivity = new Text( Util.toFixed( model.resistivity, 2 ), {
       font: new PhetFont( 30 ),
       textAlign: "end",
       textAnchor: "end",
@@ -88,7 +89,7 @@ define( function( require ) {
       centerX: xCoords[ 1 ],
       top: yCoords[ 1 ]
     } ) );
-    this.addChild( textLength = new Text( model.length.toFixed( 2 ), {
+    this.addChild( textLength = new Text( Util.toFixed( model.length, 2 ), {
       font: new PhetFont( 30 ),
       textAlign: "end",
       textAnchor: "end",
@@ -119,7 +120,7 @@ define( function( require ) {
       centerX: xCoords[ 2 ],
       top: yCoords[ 1 ]
     } ) );
-    this.addChild( textArea = new Text( model.area.toFixed( 2 ), {
+    this.addChild( textArea = new Text( Util.toFixed( model.area, 2 ), {
       font: new PhetFont( 30 ),
       textAlign: "end",
       textAnchor: "end",
@@ -141,15 +142,15 @@ define( function( require ) {
     this.addChild( new Slider( xCoords[ 2 ], 145, 260, model.areaProperty, sliderImage, options.area ) );
 
     model.resistivityProperty.link( function updateTextResistivity( value ) {
-      textResistivity.text = value.toFixed( 2 );
+      textResistivity.text = Util.toFixed( value, 2 );
       textResistivity.centerX = xCoords[ 0 ];
     } );
     model.lengthProperty.link( function updateTextLength( value ) {
-      textLength.text = value.toFixed( 2 );
+      textLength.text = Util.toFixed( value, 2 );
       textLength.centerX = xCoords[ 1 ];
     } );
     model.areaProperty.link( function updateTextArea( value ) {
-      textArea.text = value.toFixed( 2 );
+      textArea.text = Util.toFixed( value, 2 );
       textArea.centerX = xCoords[ 2 ];
     } );
 
