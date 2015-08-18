@@ -15,9 +15,6 @@
   },
   "phet": {
     "requirejsNamespace": "RESISTANCE_IN_A_WIRE",
-    "simTitleStringKey": "RESISTANCE_IN_A_WIRE/simTitle",
-    "phetLibs": [
-      "resistance-in-a-wire"
-    ]
+    "simTitleStringKey": "RESISTANCE_IN_A_WIRE/simTitle"
   }
 }
