@@ -14,7 +14,6 @@
     "requirejs": "~2.1.8"
   },
   "phet": {
-    "requirejsNamespace": "RESISTANCE_IN_A_WIRE",
-    "simTitleStringKey": "RESISTANCE_IN_A_WIRE/simTitle"
+    "requirejsNamespace": "RESISTANCE_IN_A_WIRE"
   }
 }

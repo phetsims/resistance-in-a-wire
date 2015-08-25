@@ -1,4 +1,7 @@
 {
+  "resistance-in-a-wire.name": {
+    "value": "Resistance in a Wire"
+  },
   "resistanceEq": {
     "value": "resistance ="
   },
@@ -10,9 +13,6 @@
   },
   "ohm": {
     "value": "ohm"
-  },
-  "simTitle": {
-    "value": "Resistance in a Wire"
   },
   "length": {
     "value": "length"
