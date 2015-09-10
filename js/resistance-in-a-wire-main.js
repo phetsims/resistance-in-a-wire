@@ -16,7 +16,7 @@ define( function( require ) {
   var ResistanceInAWireView = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/ResistanceInAWireView' );
 
   // strings
-  var simTitle = require( 'string!RESISTANCE_IN_A_WIRE/resistance-in-a-wire.name' );
+  var simTitle = require( 'string!RESISTANCE_IN_A_WIRE/resistance-in-a-wire.title' );
 
   var simOptions = {
     credits: {
