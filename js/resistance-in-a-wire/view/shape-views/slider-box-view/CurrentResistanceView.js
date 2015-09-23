@@ -19,7 +19,7 @@ define( function( require ) {
   var resistanceEq = require( 'string!RESISTANCE_IN_A_WIRE/resistanceEq' );
   var ohm = require( 'string!RESISTANCE_IN_A_WIRE/ohm' );
 
-  // Constants
+  // constants
   var FONT = new PhetFont( 30 );
 
   /**
