@@ -6,7 +6,7 @@
  * @author Anton Ulyanov (Mlearner
  */
 require.config( {
-  deps: [ "resistance-in-a-wire-main" ],
+  deps: [ 'resistance-in-a-wire-main' ],
 
   paths: {
 

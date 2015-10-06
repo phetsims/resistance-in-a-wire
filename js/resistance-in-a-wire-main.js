@@ -33,7 +33,7 @@ define( function( require ) {
       new Screen( simTitle, null, /* single-screen sim, no icon */
         function() { return new ResistanceInAWireModel(); },
         function( model ) { return new ResistanceInAWireView( model ); },
-        { backgroundColor: "#ffffdf" }
+        { backgroundColor: '#ffffdf' }
       )
     ], simOptions ).start();
   } );

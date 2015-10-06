@@ -22,37 +22,42 @@ define( function( require ) {
     Node.call( this, { x: x, y: y } );
     var texts = [
       {
-        label: "R",
+        label: 'R',
         scale: 3 / 2,
         x: 20,
         y: 0,
-        targetProperty: "resistanceProperty",
-        color: "#ed1c24"
+        targetProperty: 'resistanceProperty',
+        color: '#ed1c24'
       },
       {
-        label: "ρ",
+        label: 'ρ',
         x: 220,
         y: -110,
-        targetProperty: "resistivityProperty",
-        color: "#0f0ffb"
+        targetProperty: 'resistivityProperty',
+        color: '#0f0ffb'
       },
       {
-        label: "L",
+        label: 'L',
         x: 320,
         y: -90,
-        targetProperty: "lengthProperty",
-        color: "#0f0ffb"
+        targetProperty: 'lengthProperty',
+        color: '#0f0ffb'
       },
       {
-        label: "A",
+        label: 'A',
         x: 280,
         y: 90,
-        targetProperty: "areaProperty",
-        color: "#0f0ffb"
+        targetProperty: 'areaProperty',
+        color: '#0f0ffb'
       }
     ];
     //static text
-    thisNode.addChild( new Text( "=", { font: new PhetFont( { family: 'Times New Roman', size: 100 } ), fill: "#000", centerX: 100, centerY: 0 } ) );
+    thisNode.addChild( new Text( '=', {
+      font: new PhetFont( { family: 'Times New Roman', size: 100 } ),
+      fill: '#000',
+      centerX: 100,
+      centerY: 0
+    } ) );
     thisNode.addChild( new Path( Shape.lineSegment( 150, 8, 400, 8 ), { stroke: 'black', lineWidth: 6 } ) );
     //dynamic text
     texts.forEach( function( entry ) {

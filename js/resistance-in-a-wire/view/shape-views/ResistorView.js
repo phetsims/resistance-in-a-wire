@@ -30,23 +30,23 @@ define( function( require ) {
       resistor = new Node(),
       path1, path2;
     var linearGradient1 = new LinearGradient( 0, 0, 0, height )
-        .addColorStop( 0, "#e4e4e4" )
-        .addColorStop( 0.2, "#FFF" )
-        .addColorStop( 0.5, "#FFF" )
-        .addColorStop( 0.81, "#bfbfbf" )
-        .addColorStop( 1, "#575757" ),
+      .addColorStop( 0, '#e4e4e4' )
+      .addColorStop( 0.2, '#FFF' )
+      .addColorStop( 0.5, '#FFF' )
+      .addColorStop( 0.81, '#bfbfbf' )
+      .addColorStop( 1, '#575757' ),
       areaToHeight = new LinearFunction( options.area.min, options.area.max, 3, 200, true ),
       lengthToWidth = new LinearFunction( options.length.min, options.length.max, 15, 500, true ),
       resistivityToDot = new LinearFunction( options.resistivity.min, options.resistivity.max, 25, 500, true );
 
     resistor.addChild( path1 = new Path( resistorShape1, {
-      stroke: "#000",
+      stroke: '#000',
       fill: linearGradient1,
       lineWidth: 1
     } ) );
     resistor.addChild( path2 = new Path( resistorShape2, {
-      stroke: "#000",
-      fill: "#f2f2f2",
+      stroke: '#000',
+      fill: '#f2f2f2',
       lineWidth: 1
     } ) );
     this.addChild( resistor );
@@ -63,7 +63,7 @@ define( function( require ) {
 
     for ( var i = 1; i <= nRows; i++ ) {
       for ( var j = 1; j <= nCols; j++ ) {
-        var p = new Circle( 2, { fill: "#000" } );
+        var p = new Circle( 2, { fill: '#000' } );
         p.y = i * d - d / 2 + Math.random() * d * 0.7 - 3;
         p.x = j * d - d / 2 + Math.random() * d * 0.7;
         points.push( p );

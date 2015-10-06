@@ -34,9 +34,9 @@ define( function( require ) {
     var nodeText = new Node();
     var textResistance,
       maxWidth = w * 0.95;
-    nodeText.addChild( new Text( resistanceEq, { font: FONT, fill: "#F00", right: 200, y: 0 } ) );
-    nodeText.addChild( textResistance = new Text( "2000", { font: FONT, fill: "#F00", right: 290, y: 0 } ) );
-    nodeText.addChild( new Text( ohm, { font: FONT, fill: "#F00", left: 300, y: 0 } ) );
+    nodeText.addChild( new Text( resistanceEq, { font: FONT, fill: '#F00', right: 200, y: 0 } ) );
+    nodeText.addChild( textResistance = new Text( '2000', { font: FONT, fill: '#F00', right: 290, y: 0 } ) );
+    nodeText.addChild( new Text( ohm, { font: FONT, fill: '#F00', left: 300, y: 0 } ) );
     nodeText.centerX = 0;
     nodeText.centerY = 0;
     this.addChild( nodeText );
