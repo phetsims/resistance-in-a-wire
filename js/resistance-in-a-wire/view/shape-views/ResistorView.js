@@ -21,23 +21,23 @@ define( function( require ) {
 
     Node.call( this, { x: x, y: y } );
 
-
-    var height = 200,
-      width = 500,
-      shift = height / 3,
-      resistorShape1 = new Shape(),
-      resistorShape2 = new Shape(),
-      resistor = new Node(),
-      path1, path2;
+    var height = 200;
+    var width = 500;
+    var shift = height / 3;
+    var resistorShape1 = new Shape();
+    var resistorShape2 = new Shape();
+    var resistor = new Node();
+    var path1;
+    var path2;
     var linearGradient1 = new LinearGradient( 0, 0, 0, height )
       .addColorStop( 0, '#e4e4e4' )
       .addColorStop( 0.2, '#FFF' )
       .addColorStop( 0.5, '#FFF' )
       .addColorStop( 0.81, '#bfbfbf' )
-      .addColorStop( 1, '#575757' ),
-      areaToHeight = new LinearFunction( options.area.min, options.area.max, 3, 200, true ),
-      lengthToWidth = new LinearFunction( options.length.min, options.length.max, 15, 500, true ),
-      resistivityToDot = new LinearFunction( options.resistivity.min, options.resistivity.max, 25, 500, true );
+      .addColorStop( 1, '#575757' );
+    var areaToHeight = new LinearFunction( options.area.min, options.area.max, 3, 200, true );
+    var lengthToWidth = new LinearFunction( options.length.min, options.length.max, 15, 500, true );
+    var resistivityToDot = new LinearFunction( options.resistivity.min, options.resistivity.max, 25, 500, true );
 
     resistor.addChild( path1 = new Path( resistorShape1, {
       stroke: '#000',
@@ -52,12 +52,12 @@ define( function( require ) {
     this.addChild( resistor );
 
     var dotGroup = new Node();
-    var maxPoints = 500,
-      a = (height - 3) * (width + shift) / maxPoints,    //area per dot
-      d = Math.pow( a, 0.5 ), //NN dot separation
-      nRows = Math.round( height / d ),
-      nCols = Math.round( (width + shift) / d ),
-      c = 0; //counter
+    var maxPoints = 500;
+    var a = (height - 3) * (width + shift) / maxPoints;    //area per dot
+    var d = Math.pow( a, 0.5 ); //NN dot separation
+    var nRows = Math.round( height / d );
+    var nCols = Math.round( (width + shift) / d );
+    var c = 0; //counter
 
     var points = [];
 

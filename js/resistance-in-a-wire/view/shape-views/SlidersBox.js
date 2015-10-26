@@ -36,9 +36,11 @@ define( function( require ) {
    */
   function SlidersBox( model, x, y, options ) {
     Node.call( this, { x: x, y: y } );
-    var rectW = 380,
-      rectH = 500,
-      textResistivity, textLength, textArea;
+    var rectW = 380;
+    var rectH = 500;
+    var textResistivity;
+    var textLength;
+    var textArea;
     this.addChild( new WhiteBox( 0, 0, rectW, rectH ) );
     //xy Grid
     var yCoords = [ 60, 120, 410, 453 ];

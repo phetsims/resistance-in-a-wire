@@ -29,9 +29,9 @@ define( function( require ) {
     knob.mutate( { centerX: 0, top: 0 } );
     var track = new Node( { children: [ knob ], cursor: 'pointer' } );
 
-    var clickYOffset,
-      yMin = 0,
-      yMax = h - track.height;
+    var clickYOffset;
+    var yMin = 0;
+    var yMax = h - track.height;
 
     var valueToPosition = new LinearFunction( value.min, value.max, yMax, yMin, true ),
       positionToValue = new LinearFunction( yMax, yMin, value.min, value.max, true );
