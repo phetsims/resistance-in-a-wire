@@ -32,7 +32,7 @@ define( function( require ) {
   function CurrentResistanceView( model, x, y, w ) {
     Node.call( this, { x: x, y: y } );
     var nodeText = new Node();
-    var textResistance
+    var textResistance;
     var maxWidth = w * 0.95;
     nodeText.addChild( new Text( resistanceEq, { font: FONT, fill: '#F00', right: 200, y: 0 } ) );
     nodeText.addChild( textResistance = new Text( '2000', { font: FONT, fill: '#F00', right: 290, y: 0 } ) );
