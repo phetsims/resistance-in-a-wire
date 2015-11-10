@@ -14,6 +14,10 @@ define( function( require ) {
   var ScreenView = require( 'JOIST/ScreenView' );
   var inherit = require( 'PHET_CORE/inherit' );
 
+  /**
+   * @param {ResistanceInAWireModel} model
+   * @constructor
+   */
   function ResistanceInAWireView( model ) {
     ScreenView.call( this, { layoutBounds: new Bounds2( 0, 0, 768, 504 ) } );
     this.addChild( new ResistanceInAWireStageContainer( model ) );

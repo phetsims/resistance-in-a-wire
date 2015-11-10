@@ -13,7 +13,11 @@ define( function( require ) {
   var PropertySet = require( 'AXON/PropertySet' );
   var inherit = require( 'PHET_CORE/inherit' );
 
+  /**
+   * @constructor
+   */
   function ResistanceInAWireModel() {
+
     var thisModel = this;
 
     PropertySet.call( this, {
@@ -26,21 +30,23 @@ define( function( require ) {
     var updateResistance = function() {
       thisModel.resistance = (thisModel.resistivity * thisModel.length / thisModel.area);
     };
-    this.resistivityProperty.link( updateResistance );
-    this.lengthProperty.link( updateResistance );
-    this.areaProperty.link( updateResistance );
+    this.resistivityProperty.link( updateResistance ); // @public
+    this.lengthProperty.link( updateResistance ); // @public
+    this.areaProperty.link( updateResistance ); // @public
 
     this.reset();
   }
 
-  inherit( PropertySet, ResistanceInAWireModel, {
+  return inherit( PropertySet, ResistanceInAWireModel, {
+
+    // @public
     step: function() { },
+
+    // @public
     reset: function() {
       this.resistivityProperty.reset();
       this.lengthProperty.reset();
       this.areaProperty.reset();
     }
   } );
-
-  return ResistanceInAWireModel;
 } );

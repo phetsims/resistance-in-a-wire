@@ -17,6 +17,13 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
   var LinearFunction = require( 'DOT/LinearFunction' );
 
+  /**
+   * @param {ResistanceInAWireModel} model
+   * @param x
+   * @param y
+   * @param options
+   * @constructor
+   */
   function ResistorView( model, x, y, options ) {
 
     Node.call( this, { x: x, y: y } );
@@ -44,6 +51,7 @@ define( function( require ) {
       fill: linearGradient1,
       lineWidth: 1
     } ) );
+
     resistor.addChild( path2 = new Path( resistorShape2, {
       stroke: '#000',
       fill: '#f2f2f2',
@@ -91,6 +99,7 @@ define( function( require ) {
     }
 
     model.resistanceProperty.link( function updateResistor( val ) {
+
       resistorShape1 = new Shape();
       resistorShape2 = new Shape();
       height = areaToHeight( model.area );
@@ -129,6 +138,5 @@ define( function( require ) {
 
   }
 
-  inherit( Node, ResistorView );
-  return ResistorView;
+  return inherit( Node, ResistorView );
 } );

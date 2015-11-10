@@ -17,9 +17,17 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
 
+  /**
+   * @param {ResistanceInAWireModel} model
+   * @param x
+   * @param y
+   * @constructor
+   */
   function FormulaView( model, x, y ) {
+
     var thisNode = this;
     Node.call( this, { x: x, y: y } );
+
     var texts = [
       {
         label: 'R',
@@ -51,6 +59,7 @@ define( function( require ) {
         color: '#0f0ffb'
       }
     ];
+
     //static text
     thisNode.addChild( new Text( '=', {
       font: new PhetFont( { family: 'Times New Roman', size: 100 } ),
@@ -58,9 +67,12 @@ define( function( require ) {
       centerX: 100,
       centerY: 0
     } ) );
+
     thisNode.addChild( new Path( Shape.lineSegment( 150, 8, 400, 8 ), { stroke: 'black', lineWidth: 6 } ) );
+
     //dynamic text
     texts.forEach( function( entry ) {
+
       entry.view = new Text( entry.label, {
         font: new PhetFont( { family: 'Times New Roman', size: 130 } ),
         fill: entry.color,
@@ -68,6 +80,7 @@ define( function( require ) {
         centerY: entry.y
       } );
       thisNode.addChild( entry.view );
+
       entry.scale = entry.scale || 1 / model[ entry.targetProperty ].get();
       model[ entry.targetProperty ].link( function updateProperty( val ) {
         entry.view.matrix = Matrix3.identity();
@@ -78,7 +91,5 @@ define( function( require ) {
     } );
   }
 
-  inherit( Node, FormulaView );
-
-  return FormulaView;
+  return inherit( Node, FormulaView );
 } );

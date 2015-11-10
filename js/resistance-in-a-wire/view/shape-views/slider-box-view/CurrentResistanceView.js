@@ -23,14 +23,16 @@ define( function( require ) {
   var FONT = new PhetFont( 30 );
 
   /**
-   * @param model
+   * @param {ResistanceInAWireModel} model
    * @param x
    * @param y
    * @param w
    * @constructor
    */
   function CurrentResistanceView( model, x, y, w ) {
+
     Node.call( this, { x: x, y: y } );
+
     var nodeText = new Node();
     var textResistance;
     var maxWidth = w * 0.95;
@@ -59,7 +61,5 @@ define( function( require ) {
     } );
   }
 
-  inherit( Node, CurrentResistanceView );
-
-  return CurrentResistanceView;
+  return inherit( Node, CurrentResistanceView );
 } );

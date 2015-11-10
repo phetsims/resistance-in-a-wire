@@ -28,14 +28,16 @@ define( function( require ) {
   var area = require( 'string!RESISTANCE_IN_A_WIRE/area' );
 
   /**
-   * @param model
+   * @param {ResistanceInAWireModel} model
    * @param x
    * @param y
    * @param {Object} [options]
    * @constructor
    */
   function SlidersBox( model, x, y, options ) {
+
     Node.call( this, { x: x, y: y } );
+
     var rectW = 380;
     var rectH = 500;
     var textResistivity;
@@ -161,7 +163,5 @@ define( function( require ) {
 
   }
 
-  inherit( Node, SlidersBox );
-
-  return SlidersBox;
+  return inherit( Node, SlidersBox );
 } );

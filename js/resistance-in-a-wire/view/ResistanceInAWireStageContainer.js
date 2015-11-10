@@ -17,13 +17,19 @@ define( function( require ) {
   var FormulaView = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/shape-views/FormulaView' );
   var ResistorView = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/shape-views/ResistorView' );
 
+  /**
+   * @param {ResistanceInAWireModel} model
+   * @constructor
+   */
   function ResistanceInAWireStage( model ) {
-    Node.call( this, { scale: 0.75 } );
+
     var options = {
       resistivity: { max: 1, min: 0.01 },
       length: { max: 20, min: 0.1 },
       area: { max: 15, min: 0.01 }
     };
+
+    Node.call( this, { scale: 0.75 } );
 
     this.addChild( new FormulaView( model, 70, 180 ) );
     this.addChild( new ResistorView( model, 290, 470, options ) );
@@ -35,8 +41,10 @@ define( function( require ) {
       stroke: '#000',
       lineWidth: 1
     } ) );
+
     var slidersBox = new SlidersBox( model, 600, 40, options );
     this.addChild( slidersBox );
+
     this.addChild( new ResetAllButton(
       {
         listener: function() { model.reset(); },
@@ -46,6 +54,5 @@ define( function( require ) {
       } ) );
   }
 
-  inherit( Node, ResistanceInAWireStage );
-  return ResistanceInAWireStage;
+  return inherit( Node, ResistanceInAWireStage );
 } );
