@@ -16,7 +16,7 @@ define( function( require ) {
   var ResistanceInAWireView = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/ResistanceInAWireView' );
 
   // strings
-  var simTitle = require( 'string!RESISTANCE_IN_A_WIRE/resistance-in-a-wire.title' );
+  var resistanceInAWireTitleString = require( 'string!RESISTANCE_IN_A_WIRE/resistance-in-a-wire.title' );
 
   var simOptions = {
     credits: {
@@ -29,8 +29,8 @@ define( function( require ) {
 
   SimLauncher.launch( function() {
     //Create and start the sim
-    new Sim( simTitle, [
-      new Screen( simTitle, null, /* single-screen sim, no icon */
+    new Sim( resistanceInAWireTitleString, [
+      new Screen( resistanceInAWireTitleString, null, /* single-screen sim, no icon */
         function() { return new ResistanceInAWireModel(); },
         function( model ) { return new ResistanceInAWireView( model ); },
         { backgroundColor: '#ffffdf' }

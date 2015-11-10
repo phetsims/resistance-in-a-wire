@@ -22,10 +22,10 @@ define( function( require ) {
   var sliderImage = require( 'image!RESISTANCE_IN_A_WIRE/slider.png' );
 
   // strings
-  var resistivity = require( 'string!RESISTANCE_IN_A_WIRE/resistivity' );
-  var cm = require( 'string!RESISTANCE_IN_A_WIRE/cm' );
-  var length = require( 'string!RESISTANCE_IN_A_WIRE/length' );
-  var area = require( 'string!RESISTANCE_IN_A_WIRE/area' );
+  var resistivityString = require( 'string!RESISTANCE_IN_A_WIRE/resistivity' );
+  var cmString = require( 'string!RESISTANCE_IN_A_WIRE/cm' );
+  var lengthString = require( 'string!RESISTANCE_IN_A_WIRE/length' );
+  var areaString = require( 'string!RESISTANCE_IN_A_WIRE/area' );
 
   /**
    * @param {ResistanceInAWireModel} model
@@ -54,7 +54,7 @@ define( function( require ) {
       centerX: xCoords[ 0 ],
       top: yCoords[ 0 ] - 10
     } ) );
-    this.addChild( new Text( resistivity, {
+    this.addChild( new Text( resistivityString, {
       font: new PhetFont( 16 ),
       textAlign: 'center',
       textAnchor: 'middle',
@@ -70,7 +70,7 @@ define( function( require ) {
       centerX: xCoords[ 0 ],
       top: yCoords[ 2 ]
     } ) );
-    this.addChild( new Text( 'Ω' + cm, {
+    this.addChild( new Text( 'Ω' + cmString, {
       font: new PhetFont( 30 ),
       textAlign: 'start',
       textAnchor: 'start',
@@ -85,7 +85,7 @@ define( function( require ) {
       centerX: xCoords[ 1 ],
       top: yCoords[ 0 ]
     } ) );
-    this.addChild( new Text( length, {
+    this.addChild( new Text( lengthString, {
       font: new PhetFont( 16 ),
       textAlign: 'center',
       textAnchor: 'middle',
@@ -101,7 +101,7 @@ define( function( require ) {
       centerX: xCoords[ 1 ],
       top: yCoords[ 2 ]
     } ) );
-    this.addChild( new Text( cm, {
+    this.addChild( new Text( cmString, {
       font: new PhetFont( 30 ),
       textAlign: 'start',
       textAnchor: 'start',
@@ -116,7 +116,7 @@ define( function( require ) {
       centerX: xCoords[ 2 ],
       top: yCoords[ 0 ]
     } ) );
-    this.addChild( new Text( area, {
+    this.addChild( new Text( areaString, {
       font: new PhetFont( 16 ),
       textAlign: 'center',
       textAnchor: 'middle',
@@ -132,7 +132,7 @@ define( function( require ) {
       centerX: xCoords[ 2 ],
       top: yCoords[ 2 ]
     } ) );
-    this.addChild( new Text( cm + '²', {
+    this.addChild( new Text( cmString + '²', {
       font: new PhetFont( 30 ),
       textAlign: 'start',
       textAnchor: 'start',

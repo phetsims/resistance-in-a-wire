@@ -16,8 +16,8 @@ define( function( require ) {
   var Util = require( 'DOT/Util' );
 
   // strings
-  var resistanceEq = require( 'string!RESISTANCE_IN_A_WIRE/resistanceEq' );
-  var ohm = require( 'string!RESISTANCE_IN_A_WIRE/ohm' );
+  var resistanceEqString = require( 'string!RESISTANCE_IN_A_WIRE/resistanceEq' );
+  var ohmString = require( 'string!RESISTANCE_IN_A_WIRE/ohm' );
 
   // constants
   var FONT = new PhetFont( 30 );
@@ -36,9 +36,9 @@ define( function( require ) {
     var nodeText = new Node();
     var textResistance;
     var maxWidth = w * 0.95;
-    nodeText.addChild( new Text( resistanceEq, { font: FONT, fill: '#F00', right: 200, y: 0 } ) );
+    nodeText.addChild( new Text( resistanceEqString, { font: FONT, fill: '#F00', right: 200, y: 0 } ) );
     nodeText.addChild( textResistance = new Text( '2000', { font: FONT, fill: '#F00', right: 290, y: 0 } ) );
-    nodeText.addChild( new Text( ohm, { font: FONT, fill: '#F00', left: 300, y: 0 } ) );
+    nodeText.addChild( new Text( ohmString, { font: FONT, fill: '#F00', left: 300, y: 0 } ) );
     nodeText.centerX = 0;
     nodeText.centerY = 0;
     this.addChild( nodeText );
