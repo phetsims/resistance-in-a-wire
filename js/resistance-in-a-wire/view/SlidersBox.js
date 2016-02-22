@@ -9,23 +9,25 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var Node = require( 'SCENERY/nodes/Node' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var WhiteBox = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/WhiteBox' );
-  var Slider = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/Slider' );
-  var CurrentResistanceView = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/CurrentResistanceView' );
-  var Text = require( 'SCENERY/nodes/Text' );
+  var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var Slider = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/Slider' );
+  var SubSupText = require( 'SCENERY_PHET/SubSupText' );
+  var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
+  var WhiteBox = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/WhiteBox' );
 
   // images
   var sliderImage = require( 'image!RESISTANCE_IN_A_WIRE/slider.png' );
 
   // strings
-  var resistivityString = require( 'string!RESISTANCE_IN_A_WIRE/resistivity' );
+  var areaString = require( 'string!RESISTANCE_IN_A_WIRE/area' );
   var cmString = require( 'string!RESISTANCE_IN_A_WIRE/cm' );
   var lengthString = require( 'string!RESISTANCE_IN_A_WIRE/length' );
-  var areaString = require( 'string!RESISTANCE_IN_A_WIRE/area' );
+  var ohmString = require( 'string!RESISTANCE_IN_A_WIRE/ohm' );
+  var resistanceEqString = require( 'string!RESISTANCE_IN_A_WIRE/resistanceEq' );
+  var resistivityString = require( 'string!RESISTANCE_IN_A_WIRE/resistivity' );
 
   /**
    * @param {ResistanceInAWireModel} model
@@ -38,15 +40,42 @@ define( function( require ) {
 
     Node.call( this, { x: x, y: y } );
 
-    var rectW = 380;
-    var rectH = 500;
+    var panelWidth = 380;
+    var panelHeight = 500;
     var textResistivity;
     var textLength;
     var textArea;
-    this.addChild( new WhiteBox( 0, 0, rectW, rectH ) );
-    //xy Grid
+    this.addChild( new WhiteBox( 0, 0, panelWidth, panelHeight ) );
+
+    // add the dynamic title that indicates the resistance
+    var dynamicTitle = new Text( '', {
+      font: new PhetFont( 30 ),
+      fill: '#F00',
+      maxWidth: panelWidth * 0.9,
+      top: 15
+    } );
+    this.addChild( dynamicTitle );
+
+    // update the title when the resistance changes
+    model.resistanceProperty.link( function( resistance ) {
+      var numDecimalDigits = 2;
+      if ( resistance > 9 ) {
+        numDecimalDigits = 1;
+      }
+      if ( resistance > 99 ) {
+        numDecimalDigits = 0;
+      }
+      dynamicTitle.text = resistanceEqString + ' ' + Util.toFixed( resistance, numDecimalDigits ) + ' ' + ohmString;
+      dynamicTitle.centerX = panelWidth / 2;
+    } );
+
+    // xy grid that controls where the sliders and associated labels appear, values empirically determined
     var yCoords = [ 60, 120, 410, 453 ];
     var xCoords = [ 70, 195, 320 ];
+
+    // Calculate a max width for the textual labels so that the labels don't overlap or go outside the bounds of the
+    // box.  The multiplier is empirically determined.
+    var maxTextWidth = panelWidth * 0.25;
 
     this.addChild( new Text( 'ρ', {
       font: new PhetFont( { family: 'Times New Roman', size: 60 } ),
@@ -60,7 +89,8 @@ define( function( require ) {
       textAnchor: 'middle',
       fill: '#0f0ffb',
       centerX: xCoords[ 0 ],
-      top: yCoords[ 1 ]
+      top: yCoords[ 1 ],
+      maxWidth: maxTextWidth
     } ) );
     this.addChild( textResistivity = new Text( Util.toFixed( model.resistivity, 2 ), {
       font: new PhetFont( 30 ),
@@ -76,7 +106,8 @@ define( function( require ) {
       textAnchor: 'start',
       fill: '#0f0ffb',
       centerX: xCoords[ 0 ],
-      top: yCoords[ 3 ]
+      top: yCoords[ 3 ],
+      maxWidth: maxTextWidth
     } ) );
 
     this.addChild( new Text( 'L', {
@@ -91,7 +122,8 @@ define( function( require ) {
       textAnchor: 'middle',
       fill: '#0f0ffb',
       centerX: xCoords[ 1 ],
-      top: yCoords[ 1 ]
+      top: yCoords[ 1 ],
+      maxWidth: maxTextWidth
     } ) );
     this.addChild( textLength = new Text( Util.toFixed( model.length, 2 ), {
       font: new PhetFont( 30 ),
@@ -107,7 +139,8 @@ define( function( require ) {
       textAnchor: 'start',
       fill: '#0f0ffb',
       centerX: xCoords[ 1 ],
-      top: yCoords[ 3 ]
+      top: yCoords[ 3 ],
+      maxWidth: maxTextWidth
     } ) );
 
     this.addChild( new Text( 'A', {
@@ -122,7 +155,8 @@ define( function( require ) {
       textAnchor: 'middle',
       fill: '#0f0ffb',
       centerX: xCoords[ 2 ],
-      top: yCoords[ 1 ]
+      top: yCoords[ 1 ],
+      maxWidth: maxTextWidth
     } ) );
     this.addChild( textArea = new Text( Util.toFixed( model.area, 2 ), {
       font: new PhetFont( 30 ),
@@ -132,13 +166,14 @@ define( function( require ) {
       centerX: xCoords[ 2 ],
       top: yCoords[ 2 ]
     } ) );
-    this.addChild( new Text( cmString + '²', {
+    this.addChild( new SubSupText( cmString + '<sup>2</sup>', {
       font: new PhetFont( 30 ),
       textAlign: 'start',
       textAnchor: 'start',
       fill: '#0f0ffb',
       centerX: xCoords[ 2 ],
-      top: yCoords[ 3 ]
+      top: yCoords[ 3 ],
+      maxWidth: maxTextWidth
     } ) );
 
     this.addChild( new Slider( xCoords[ 0 ], 145, 260, model.resistivityProperty, sliderImage, options.resistivity ) );
@@ -157,10 +192,6 @@ define( function( require ) {
       textArea.text = Util.toFixed( value, 2 );
       textArea.centerX = xCoords[ 2 ];
     } );
-
-    //resistance value
-    this.addChild( new CurrentResistanceView( model, rectW / 2, 30, rectW ) );
-
   }
 
   return inherit( Node, SlidersBox );
