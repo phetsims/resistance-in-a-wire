@@ -9,19 +9,23 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var Node = require( 'SCENERY/nodes/Node' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
   var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
-  var SlidersBox = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/SlidersBox' );
+  var Bounds2 = require( 'DOT/Bounds2' );
   var FormulaView = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/FormulaView' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Node = require( 'SCENERY/nodes/Node' );
+  var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
   var ResistorView = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/ResistorView' );
+  var ScreenView = require( 'JOIST/ScreenView' );
+  var SlidersBox = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/SlidersBox' );
 
   /**
    * @param {ResistanceInAWireModel} model
    * @constructor
    */
-  function ResistanceInAWireStage( model ) {
+  function ResistanceInAWireScreenView( model ) {
+
+    ScreenView.call( this, { layoutBounds: new Bounds2( 0, 0, 1024, 618 ) } );
 
     // TODO: These aren't options, they are required config parameters
     var options = {
@@ -29,8 +33,6 @@ define( function( require ) {
       length: { max: 20, min: 0.1 },
       area: { max: 15, min: 0.01 }
     };
-
-    Node.call( this, { scale: 0.75 } );
 
     this.addChild( new FormulaView( model, 70, 180 ) );
     this.addChild( new ResistorView( model, 290, 470, options ) );
@@ -56,5 +58,5 @@ define( function( require ) {
       } ) );
   }
 
-  return inherit( Node, ResistanceInAWireStage );
+  return inherit( ScreenView, ResistanceInAWireScreenView );
 } );

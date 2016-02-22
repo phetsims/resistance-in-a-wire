@@ -9,11 +9,9 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var Screen = require( 'JOIST/Screen' );
   var SimLauncher = require( 'JOIST/SimLauncher' );
   var Sim = require( 'JOIST/Sim' );
-  var ResistanceInAWireModel = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/model/ResistanceInAWireModel' );
-  var ResistanceInAWireView = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/ResistanceInAWireView' );
+  var ResistanceInAWireScreen = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/ResistanceInAWireScreen' );
 
   // strings
   var resistanceInAWireTitleString = require( 'string!RESISTANCE_IN_A_WIRE/resistance-in-a-wire.title' );
@@ -29,12 +27,7 @@ define( function( require ) {
 
   SimLauncher.launch( function() {
     //Create and start the sim
-    new Sim( resistanceInAWireTitleString, [
-      new Screen( resistanceInAWireTitleString, null, /* single-screen sim, no icon */
-        function() { return new ResistanceInAWireModel(); },
-        function( model ) { return new ResistanceInAWireView( model ); },
-        { backgroundColor: '#ffffdf' }
-      )
-    ], simOptions ).start();
+    var sim = new Sim( resistanceInAWireTitleString, [ new ResistanceInAWireScreen ], simOptions );
+    sim.start();
   } );
 } );
