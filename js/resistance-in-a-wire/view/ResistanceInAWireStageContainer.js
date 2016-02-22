@@ -23,6 +23,7 @@ define( function( require ) {
    */
   function ResistanceInAWireStage( model ) {
 
+    // TODO: These aren't options, they are required config parameters
     var options = {
       resistivity: { max: 1, min: 0.01 },
       length: { max: 20, min: 0.1 },
@@ -42,7 +43,8 @@ define( function( require ) {
       lineWidth: 1
     } ) );
 
-    var slidersBox = new SlidersBox( model, 600, 40, options );
+    var sliderBoxOptions = _.extend( { x: 600, y: 40 }, options );
+    var slidersBox = new SlidersBox( model, sliderBoxOptions );
     this.addChild( slidersBox );
 
     this.addChild( new ResetAllButton(

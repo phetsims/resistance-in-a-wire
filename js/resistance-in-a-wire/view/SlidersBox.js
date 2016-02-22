@@ -31,14 +31,12 @@ define( function( require ) {
 
   /**
    * @param {ResistanceInAWireModel} model
-   * @param x
-   * @param y
    * @param {Object} [options]
    * @constructor
    */
-  function SlidersBox( model, x, y, options ) {
+  function SlidersBox( model, options ) {
 
-    Node.call( this, { x: x, y: y } );
+    Node.call( this );
 
     var panelWidth = 380;
     var panelHeight = 500;
@@ -70,7 +68,7 @@ define( function( require ) {
     } );
 
     // xy grid that controls where the sliders and associated labels appear, values empirically determined
-    var yCoords = [ 60, 120, 410, 453 ];
+    var yCoords = [ 60, 120, 410, 485 ];
     var xCoords = [ 70, 195, 320 ];
 
     // Calculate a max width for the textual labels so that the labels don't overlap or go outside the bounds of the
@@ -106,7 +104,7 @@ define( function( require ) {
       textAnchor: 'start',
       fill: '#0f0ffb',
       centerX: xCoords[ 0 ],
-      top: yCoords[ 3 ],
+      bottom: yCoords[ 3 ],
       maxWidth: maxTextWidth
     } ) );
 
@@ -139,7 +137,7 @@ define( function( require ) {
       textAnchor: 'start',
       fill: '#0f0ffb',
       centerX: xCoords[ 1 ],
-      top: yCoords[ 3 ],
+      bottom: yCoords[ 3 ],
       maxWidth: maxTextWidth
     } ) );
 
@@ -172,7 +170,7 @@ define( function( require ) {
       textAnchor: 'start',
       fill: '#0f0ffb',
       centerX: xCoords[ 2 ],
-      top: yCoords[ 3 ],
+      bottom: yCoords[ 3 ],
       maxWidth: maxTextWidth
     } ) );
 
@@ -192,6 +190,9 @@ define( function( require ) {
       textArea.text = Util.toFixed( value, 2 );
       textArea.centerX = xCoords[ 2 ];
     } );
+
+    // pass options through
+    this.mutate( options );
   }
 
   return inherit( Node, SlidersBox );
