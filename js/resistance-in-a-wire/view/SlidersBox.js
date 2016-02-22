@@ -1,4 +1,4 @@
-// Copyright 2013-2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Container for sliders and circumjacent text
@@ -11,9 +11,9 @@ define( function( require ) {
   // modules
   var Node = require( 'SCENERY/nodes/Node' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var WhiteBox = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/shape-views/slider-box-view/WhiteBox' );
-  var Slider = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/shape-views/slider-box-view/Slider' );
-  var CurrentResistanceView = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/shape-views/slider-box-view/CurrentResistanceView' );
+  var WhiteBox = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/WhiteBox' );
+  var Slider = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/Slider' );
+  var CurrentResistanceView = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/CurrentResistanceView' );
   var Text = require( 'SCENERY/nodes/Text' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Util = require( 'DOT/Util' );

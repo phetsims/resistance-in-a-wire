@@ -13,9 +13,9 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
   var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
-  var SlidersBox = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/shape-views/SlidersBox' );
-  var FormulaView = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/shape-views/FormulaView' );
-  var ResistorView = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/shape-views/ResistorView' );
+  var SlidersBox = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/SlidersBox' );
+  var FormulaView = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/FormulaView' );
+  var ResistorView = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/ResistorView' );
 
   /**
    * @param {ResistanceInAWireModel} model
