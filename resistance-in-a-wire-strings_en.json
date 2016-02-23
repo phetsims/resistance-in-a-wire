@@ -2,22 +2,40 @@
   "resistance-in-a-wire.title": {
     "value": "Resistance in a Wire"
   },
-  "resistanceEq": {
-    "value": "resistance ="
+  "area": {
+    "value": "area"
   },
-  "resistivity": {
-    "value": "resistivity"
+  "areaSymbol": {
+    "value": "A"
   },
   "cm": {
     "value": "cm"
   },
-  "ohm": {
-    "value": "ohm"
+  "currentSymbol": {
+    "value": "I"
   },
   "length": {
     "value": "length"
   },
-  "area": {
-    "value": "area"
+  "lengthSymbol": {
+    "value": "L"
+  },
+  "ohm": {
+    "value": "ohm"
+  },
+  "ohmsSymbol": {
+    "value": "Ω"
+  },
+  "resistanceEq": {
+    "value": "resistance ="
+  },
+  "resistanceSymbol": {
+    "value": "R"
+  },
+  "resistivity": {
+    "value": "resistivity"
+  },
+  "resistivitySymbol": {
+    "value": "ρ"
   }
 }

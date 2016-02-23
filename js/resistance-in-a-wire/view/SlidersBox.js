@@ -23,11 +23,15 @@ define( function( require ) {
 
   // strings
   var areaString = require( 'string!RESISTANCE_IN_A_WIRE/area' );
+  var areaSymbolString = require( 'string!RESISTANCE_IN_A_WIRE/areaSymbol' );
   var cmString = require( 'string!RESISTANCE_IN_A_WIRE/cm' );
   var lengthString = require( 'string!RESISTANCE_IN_A_WIRE/length' );
+  var lengthSymbolString = require( 'string!RESISTANCE_IN_A_WIRE/lengthSymbol' );
   var ohmString = require( 'string!RESISTANCE_IN_A_WIRE/ohm' );
+  var ohmsSymbolString = require( 'string!RESISTANCE_IN_A_WIRE/ohmsSymbol' );
   var resistanceEqString = require( 'string!RESISTANCE_IN_A_WIRE/resistanceEq' );
   var resistivityString = require( 'string!RESISTANCE_IN_A_WIRE/resistivity' );
+  var resistivitySymbolString = require( 'string!RESISTANCE_IN_A_WIRE/resistivitySymbol' );
 
   /**
    * @param {ResistanceInAWireModel} model
@@ -75,11 +79,12 @@ define( function( require ) {
     // box.  The multiplier is empirically determined.
     var maxTextWidth = panelWidth * 0.25;
 
-    this.addChild( new Text( 'ρ', {
+    this.addChild( new Text( resistivitySymbolString, {
       font: new PhetFont( { family: 'Times New Roman', size: 60 } ),
       fill: '#0f0ffb',
       centerX: xCoords[ 0 ],
-      top: yCoords[ 0 ] - 10
+      top: yCoords[ 0 ] - 10,
+      maxWidth: maxTextWidth
     } ) );
     this.addChild( new Text( resistivityString, {
       font: new PhetFont( 16 ),
@@ -98,7 +103,7 @@ define( function( require ) {
       centerX: xCoords[ 0 ],
       top: yCoords[ 2 ]
     } ) );
-    this.addChild( new Text( 'Ω' + cmString, {
+    this.addChild( new Text( ohmsSymbolString + cmString, {
       font: new PhetFont( 30 ),
       textAlign: 'start',
       textAnchor: 'start',
@@ -108,11 +113,12 @@ define( function( require ) {
       maxWidth: maxTextWidth
     } ) );
 
-    this.addChild( new Text( 'L', {
+    this.addChild( new Text( lengthSymbolString, {
       font: new PhetFont( { family: 'Times New Roman', size: 60 } ),
       fill: '#0f0ffb',
       centerX: xCoords[ 1 ],
-      top: yCoords[ 0 ]
+      top: yCoords[ 0 ],
+      maxWidth: maxTextWidth
     } ) );
     this.addChild( new Text( lengthString, {
       font: new PhetFont( 16 ),
@@ -141,11 +147,12 @@ define( function( require ) {
       maxWidth: maxTextWidth
     } ) );
 
-    this.addChild( new Text( 'A', {
+    this.addChild( new Text( areaSymbolString, {
       font: new PhetFont( { family: 'Times New Roman', size: 60 } ),
       fill: '#0f0ffb',
       centerX: xCoords[ 2 ],
-      top: yCoords[ 0 ]
+      top: yCoords[ 0 ],
+      maxWidth: maxTextWidth
     } ) );
     this.addChild( new Text( areaString, {
       font: new PhetFont( 16 ),

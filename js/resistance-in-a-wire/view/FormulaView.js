@@ -17,6 +17,29 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
 
+  // strings
+  var areaSymbolString = require( 'string!RESISTANCE_IN_A_WIRE/areaSymbol' );
+  var lengthSymbolString = require( 'string!RESISTANCE_IN_A_WIRE/lengthSymbol' );
+  var resistanceSymbolString = require( 'string!RESISTANCE_IN_A_WIRE/resistanceSymbol' );
+  var resistivitySymbolString = require( 'string!RESISTANCE_IN_A_WIRE/resistivitySymbol' );
+
+  // FormulaView assumes that each symbol is a single character long.  The following code enforces this assumption so
+  // that translators can't create messed up versions of the sim.
+  function getFirstNonEmbeddingCharacter( str ){
+    var char = null;
+    for ( var i = 0; i < str.length; i++ ){
+      if ( str.charCodeAt( i ) !== 0x202a && str.charCodeAt( i ) !== 0x202c ){
+        char = str.charAt( i );
+        break;
+      }
+    }
+    return char;
+  }
+  areaSymbolString = getFirstNonEmbeddingCharacter( areaSymbolString );
+  lengthSymbolString = getFirstNonEmbeddingCharacter( lengthSymbolString );
+  resistanceSymbolString = getFirstNonEmbeddingCharacter( resistanceSymbolString );
+  resistivitySymbolString = getFirstNonEmbeddingCharacter( resistivitySymbolString );
+
   /**
    * @param {ResistanceInAWireModel} model
    * @param x
@@ -30,7 +53,7 @@ define( function( require ) {
 
     var texts = [
       {
-        label: 'R',
+        label: resistanceSymbolString,
         scale: 3 / 2,
         x: 20,
         y: 0,
@@ -38,21 +61,21 @@ define( function( require ) {
         color: '#ed1c24'
       },
       {
-        label: 'ρ',
+        label: resistivitySymbolString,
         x: 220,
-        y: -110,
+        y: -90,
         targetProperty: 'resistivityProperty',
         color: '#0f0ffb'
       },
       {
-        label: 'L',
+        label: lengthSymbolString,
         x: 320,
         y: -90,
         targetProperty: 'lengthProperty',
         color: '#0f0ffb'
       },
       {
-        label: 'A',
+        label: areaSymbolString,
         x: 280,
         y: 90,
         targetProperty: 'areaProperty',
