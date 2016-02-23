@@ -38,8 +38,8 @@ define( function( require ) {
 
     Node.call( this );
 
-    var panelWidth = 380;
-    var panelHeight = 500;
+    var panelWidth = 360;
+    var panelHeight = 450;
     var textResistivity;
     var textLength;
     var textArea;
@@ -47,10 +47,10 @@ define( function( require ) {
 
     // add the dynamic title that indicates the resistance
     var dynamicTitle = new Text( '', {
-      font: new PhetFont( 30 ),
+      font: new PhetFont( 28 ),
       fill: '#F00',
       maxWidth: panelWidth * 0.9,
-      top: 15
+      top: 12
     } );
     this.addChild( dynamicTitle );
 
@@ -68,8 +68,8 @@ define( function( require ) {
     } );
 
     // xy grid that controls where the sliders and associated labels appear, values empirically determined
-    var yCoords = [ 60, 120, 410, 485 ];
-    var xCoords = [ 70, 195, 320 ];
+    var yCoords = [ 50, 110, 380, 445 ];
+    var xCoords = [ 65, 180, 295 ];
 
     // Calculate a max width for the textual labels so that the labels don't overlap or go outside the bounds of the
     // box.  The multiplier is empirically determined.
@@ -124,7 +124,7 @@ define( function( require ) {
       maxWidth: maxTextWidth
     } ) );
     this.addChild( textLength = new Text( Util.toFixed( model.length, 2 ), {
-      font: new PhetFont( 30 ),
+      font: new PhetFont( 28 ),
       textAlign: 'end',
       textAnchor: 'end',
       fill: '#000',
@@ -132,7 +132,7 @@ define( function( require ) {
       top: yCoords[ 2 ]
     } ) );
     this.addChild( new Text( cmString, {
-      font: new PhetFont( 30 ),
+      font: new PhetFont( 28 ),
       textAlign: 'start',
       textAnchor: 'start',
       fill: '#0f0ffb',
@@ -157,7 +157,7 @@ define( function( require ) {
       maxWidth: maxTextWidth
     } ) );
     this.addChild( textArea = new Text( Util.toFixed( model.area, 2 ), {
-      font: new PhetFont( 30 ),
+      font: new PhetFont( 28 ),
       textAlign: 'end',
       textAnchor: 'end',
       fill: '#000',
@@ -165,7 +165,7 @@ define( function( require ) {
       top: yCoords[ 2 ]
     } ) );
     this.addChild( new SubSupText( cmString + '<sup>2</sup>', {
-      font: new PhetFont( 30 ),
+      font: new PhetFont( 28 ),
       textAlign: 'start',
       textAnchor: 'start',
       fill: '#0f0ffb',
@@ -174,9 +174,9 @@ define( function( require ) {
       maxWidth: maxTextWidth
     } ) );
 
-    this.addChild( new Slider( xCoords[ 0 ], 145, 260, model.resistivityProperty, sliderImage, options.resistivity ) );
-    this.addChild( new Slider( xCoords[ 1 ], 145, 260, model.lengthProperty, sliderImage, options.length ) );
-    this.addChild( new Slider( xCoords[ 2 ], 145, 260, model.areaProperty, sliderImage, options.area ) );
+    this.addChild( new Slider( xCoords[ 0 ], 135, 240, model.resistivityProperty, sliderImage, options.resistivity ) );
+    this.addChild( new Slider( xCoords[ 1 ], 135, 240, model.lengthProperty, sliderImage, options.length ) );
+    this.addChild( new Slider( xCoords[ 2 ], 135, 240, model.areaProperty, sliderImage, options.area ) );
 
     model.resistivityProperty.link( function updateTextResistivity( value ) {
       textResistivity.text = Util.toFixed( value, 2 );

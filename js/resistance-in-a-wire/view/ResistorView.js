@@ -1,4 +1,4 @@
-// Copyright 2013-2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Container for resistor and nearby graphics
@@ -28,8 +28,8 @@ define( function( require ) {
 
     Node.call( this, { x: x, y: y } );
 
-    var height = 200;
-    var width = 500;
+    var height = 180;
+    var width = 450;
     var shift = height / 3;
     var resistorShape1 = new Shape();
     var resistorShape2 = new Shape();
@@ -95,7 +95,9 @@ define( function( require ) {
     }
 
     function dotInResistor( dot, height ) {
-      return ( dot.y - 100 > -height / 2 + 3 && dot.y - 100 < height / 2 - 3 && dot.x - 290 > -width / 2 + 0 + shiftDotInResistor( dot.y, height ) && dot.x - 290 < width / 2 + 0 - shiftDotInResistor( dot.y, height ) );
+      return dot.y - 90 > -height / 2 + 3 && dot.y - 85 < height / 2 &&
+             dot.x - 260 > -width / 2 + shiftDotInResistor( dot.y, height ) &&
+             dot.x - 255 < width / 2 - shiftDotInResistor( dot.y, height );
     }
 
     model.resistanceProperty.link( function updateResistor( val ) {

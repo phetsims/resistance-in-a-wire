@@ -13,7 +13,6 @@ define( function( require ) {
   var Bounds2 = require( 'DOT/Bounds2' );
   var FormulaView = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/FormulaView' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var Node = require( 'SCENERY/nodes/Node' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
   var ResistorView = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/ResistorView' );
   var ScreenView = require( 'JOIST/ScreenView' );
@@ -35,11 +34,11 @@ define( function( require ) {
     };
 
     this.addChild( new FormulaView( model, 70, 180 ) );
-    this.addChild( new ResistorView( model, 290, 470, options ) );
-    this.addChild( new ArrowNode( 200, 600, 350, 600, {
-      headHeight: 50,
-      headWidth: 30,
-      tailWidth: 10,
+    this.addChild( new ResistorView( model, 290, 450, options ) );
+    this.addChild( new ArrowNode( 200, 550, 350, 550, {
+      headHeight: 45,
+      headWidth: 25,
+      tailWidth: 9,
       fill: '#FFF',
       stroke: '#000',
       lineWidth: 1
@@ -49,13 +48,12 @@ define( function( require ) {
     var slidersBox = new SlidersBox( model, sliderBoxOptions );
     this.addChild( slidersBox );
 
-    this.addChild( new ResetAllButton(
-      {
-        listener: function() { model.reset(); },
-        radius: 30,
-        centerX: slidersBox.centerX,
-        centerY: slidersBox.bottom + 60
-      } ) );
+    this.addChild( new ResetAllButton( {
+      listener: function() { model.reset(); },
+      radius: 30,
+      right: slidersBox.right,
+      centerY: slidersBox.bottom + 60
+    } ) );
   }
 
   return inherit( ScreenView, ResistanceInAWireScreenView );
