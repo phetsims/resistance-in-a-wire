@@ -14,7 +14,7 @@ define( function( require ) {
   var FormulaView = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/FormulaView' );
   var inherit = require( 'PHET_CORE/inherit' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
-  var ResistorView = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/ResistorView' );
+  var WireView = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/WireView' );
   var ScreenView = require( 'JOIST/ScreenView' );
   var SlidersBox = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/SlidersBox' );
 
@@ -33,12 +33,12 @@ define( function( require ) {
       area: { max: 15, min: 0.01 }
     };
 
-    this.addChild( new FormulaView( model, 70, 180 ) );
-    this.addChild( new ResistorView( model, 290, 450, options ) );
-    this.addChild( new ArrowNode( 200, 550, 350, 550, {
+    this.addChild( new FormulaView( model, 110, 180 ) );
+    this.addChild( new WireView( model, 320, 450, options ) );
+    this.addChild( new ArrowNode( 240, 570, 380, 570, {
       headHeight: 45,
-      headWidth: 25,
-      tailWidth: 9,
+      headWidth: 30,
+      tailWidth: 10,
       fill: '#FFF',
       stroke: '#000',
       lineWidth: 1
