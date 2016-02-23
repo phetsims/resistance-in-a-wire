@@ -26,8 +26,14 @@
   "ohmsSymbol": {
     "value": "Ω"
   },
-  "resistanceEq": {
-    "value": "resistance ="
+  "pattern.0label.1value.2units": {
+    "value": "{0} = {1} {2}"
+  },
+  "pattern.0resistanceUnits.1lengthUnits": {
+    "value": "{0}{1}"
+  },
+  "resistance": {
+    "value": "resistance"
   },
   "resistanceSymbol": {
     "value": "R"

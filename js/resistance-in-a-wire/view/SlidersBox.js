@@ -13,6 +13,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Slider = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/Slider' );
+  var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var SubSupText = require( 'SCENERY_PHET/SubSupText' );
   var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
@@ -29,7 +30,9 @@ define( function( require ) {
   var lengthSymbolString = require( 'string!RESISTANCE_IN_A_WIRE/lengthSymbol' );
   var ohmString = require( 'string!RESISTANCE_IN_A_WIRE/ohm' );
   var ohmsSymbolString = require( 'string!RESISTANCE_IN_A_WIRE/ohmsSymbol' );
-  var resistanceEqString = require( 'string!RESISTANCE_IN_A_WIRE/resistanceEq' );
+  var pattern0Label1Value2UnitsString = require( 'string!RESISTANCE_IN_A_WIRE/pattern.0label.1value.2units' );
+  var pattern0ResistanceUnits1LengthUnitsString = require( 'string!RESISTANCE_IN_A_WIRE/pattern.0resistanceUnits.1lengthUnits' );
+  var resistanceString = require( 'string!RESISTANCE_IN_A_WIRE/resistance' );
   var resistivityString = require( 'string!RESISTANCE_IN_A_WIRE/resistivity' );
   var resistivitySymbolString = require( 'string!RESISTANCE_IN_A_WIRE/resistivitySymbol' );
 
@@ -67,7 +70,11 @@ define( function( require ) {
       if ( resistance > 99 ) {
         numDecimalDigits = 0;
       }
-      dynamicTitle.text = resistanceEqString + ' ' + Util.toFixed( resistance, numDecimalDigits ) + ' ' + ohmString;
+      dynamicTitle.text = StringUtils.format(
+        pattern0Label1Value2UnitsString,
+        resistanceString,
+        Util.toFixed( resistance, numDecimalDigits ),
+        ohmString );
       dynamicTitle.centerX = panelWidth / 2;
     } );
 
@@ -103,7 +110,7 @@ define( function( require ) {
       centerX: xCoords[ 0 ],
       top: yCoords[ 2 ]
     } ) );
-    this.addChild( new Text( ohmsSymbolString + cmString, {
+    this.addChild( new Text( StringUtils.format( pattern0ResistanceUnits1LengthUnitsString, ohmsSymbolString, cmString ), {
       font: new PhetFont( 30 ),
       textAlign: 'start',
       textAnchor: 'start',
