@@ -5,37 +5,51 @@
  *
  * @author Vasily Shakhov (Mlearner)
  * @author Anton Ulyanov (Mlearner)
+ * @author John Blanco
  */
 define( function( require ) {
   'use strict';
 
   // modules
-  var Node = require( 'SCENERY/nodes/Node' );
-  var inherit = require( 'PHET_CORE/inherit' );
   var Circle = require( 'SCENERY/nodes/Circle' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var LinearFunction = require( 'DOT/LinearFunction' );
   var LinearGradient = require( 'SCENERY/util/LinearGradient' );
+  var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
   var Shape = require( 'KITE/Shape' );
-  var LinearFunction = require( 'DOT/LinearFunction' );
+
+  // constants
+  var INITIAL_WIDTH = 450;
+  var INITIAL_HEIGHT = 160;
+  var PERSPECTIVE_FACTOR = 0.3; // multiplier that controls the width of the ellipses on the ends of the wire
+  var DOT_RADIUS = 2;
+  var DOT_POSITION_RANDOMIZATION_FACTOR = 12; // empirically determined
+  var MIN_WIRE_VIEW_WIDTH = 15; // top width excluding rounded ends in screen coordinates, basically pixels
+  var MAX_WIRE_VIEW_WIDTH = 500; // top width excluding rounded ends in screen coordinates, basically pixels
+  var MIN_WIRE_VIEW_HEIGHT = 3; // in screen coordinates, basically pixels
+  var MAX_WIRE_VIEW_HEIGHT = 180; // in screen coordinates, basically pixels
+  var MAX_WIDTH_INCLUDING_ROUNDED_ENDS = MAX_WIRE_VIEW_WIDTH + 2 * MAX_WIRE_VIEW_HEIGHT * PERSPECTIVE_FACTOR;
+  var AREA_PER_DOT = 200; // adjust this to control the density of the dots
 
   /**
+   * Constructor - the position is set using center values since this can grow or shrink in width and height as the
+   * area and length of the wire changes.
    * @param {ResistanceInAWireModel} model
-   * @param x
-   * @param y
+   * @param {number} centerX
+   * @param {number} centerY
    * @param options
    * @constructor
    */
-  function WireView( model, x, y, options ) {
+  function WireView( model, centerX, centerY, options ) {
 
-    Node.call( this, { x: x, y: y } );
+    Node.call( this );
 
-    var height = 160;
-    var width = 450;
-    var shift = height / 3;
+    var width = INITIAL_WIDTH;
+    var height = INITIAL_HEIGHT; // width is the top of the wire, excluding the curves
     var wireBodyShape = new Shape();
     var wireEndShape = new Shape();
-    var resistor = new Node();
-    var bodyBath;
+    var bodyPath;
     var endPath;
     var linearGradient1 = new LinearGradient( 0, 0, 0, height )
       .addColorStop( 0, '#e4e4e4' )
@@ -43,103 +57,122 @@ define( function( require ) {
       .addColorStop( 0.5, '#FFF' )
       .addColorStop( 0.81, '#bfbfbf' )
       .addColorStop( 1, '#575757' );
-    var areaToHeight = new LinearFunction( options.area.min, options.area.max, 3, 180, true );
-    var lengthToWidth = new LinearFunction( options.length.min, options.length.max, 15, 500, true );
-    var resistivityToDot = new LinearFunction( options.resistivity.min, options.resistivity.max, 25, 500, true );
+    var areaToHeight = new LinearFunction( options.area.min, options.area.max, MIN_WIRE_VIEW_HEIGHT, MAX_WIRE_VIEW_HEIGHT, true );
+    var lengthToWidth = new LinearFunction( options.length.min, options.length.max, MIN_WIRE_VIEW_WIDTH, MAX_WIRE_VIEW_WIDTH, true );
 
-    resistor.addChild( bodyBath = new Path( wireBodyShape, {
+    this.addChild( bodyPath = new Path( wireBodyShape, {
       stroke: '#000',
       fill: linearGradient1,
       lineWidth: 1
     } ) );
 
-    resistor.addChild( endPath = new Path( wireEndShape, {
+    this.addChild( endPath = new Path( wireEndShape, {
       stroke: '#000',
       fill: '#f2f2f2',
       lineWidth: 1
     } ) );
-    this.addChild( resistor );
 
     var dotGroup = new Node();
-    var maxPoints = 500;
-    var a = (height - 3) * (width + shift) / maxPoints;    // area per dot
-    var d = Math.pow( a, 0.5 ); // NN dot separation
-    var nRows = Math.round( height / d );
-    var nCols = Math.round( (width + shift) / d );
-    var yugsterBugster = 0; //counter
+    var dotGridColumns = Math.round( MAX_WIDTH_INCLUDING_ROUNDED_ENDS / Math.sqrt( AREA_PER_DOT ) );
+    var dotGridRows = Math.round( MAX_WIRE_VIEW_HEIGHT / Math.sqrt( AREA_PER_DOT ) );
+    var dots = [];
 
-    var points = [];
-
-    // create the dots by placing them on a grid but moved randomly a bit to make them look irregular
-    for ( var i = 1; i <= nRows; i++ ) {
-      for ( var j = 1; j <= nCols; j++ ) {
-        var point = new Circle( 2, { fill: '#000' } );
-        point.centerY = i * d - d / 2 + Math.random() * d * 0.7;
-        point.centerX = j * d - d / 2 + Math.random() * d * 0.7;
-        points.push( point );
-        dotGroup.addChild( point );
-        yugsterBugster++;
+    // create the dots by placing them on a grid, but move each one randomly a bit to make them look irregular
+    for ( var i = 1; i < dotGridColumns; i++ ) {
+      for ( var j = 1; j < dotGridRows; j++ ) {
+        var dot = new Circle( DOT_RADIUS, {
+          fill: 'black',
+          centerX: i * ( MAX_WIDTH_INCLUDING_ROUNDED_ENDS / dotGridColumns ) -
+                   MAX_WIDTH_INCLUDING_ROUNDED_ENDS / 2 +
+                   ( Math.random() - 0.5 ) * DOT_POSITION_RANDOMIZATION_FACTOR,
+          centerY: j * ( MAX_WIRE_VIEW_HEIGHT / dotGridRows ) -
+                   MAX_WIRE_VIEW_HEIGHT / 2 +
+                   ( Math.random() - 0.5 ) * DOT_POSITION_RANDOMIZATION_FACTOR
+        } );
+        dots.push( dot );
+        dotGroup.addChild( dot );
       }
     }
-    maxPoints = yugsterBugster;
 
-    for ( i = points.length - 1; i > -1; i-- ) {
-      var pos = parseInt( Math.random() * i, 10 );
-      var tt = points[ i ];
-      points[ i ] = points[ pos ];
-      points[ pos ] = tt;
-    }
+    // function to map resistivity to number of dots
+    var maxDots = dotGridColumns * dotGridRows;
+    var resistivityToNumDots = new LinearFunction(
+      options.resistivity.min,
+      options.resistivity.max,
+      maxDots * 0.05,
+      maxDots,
+      true
+    );
+
+    // randomize the array of dots so that we can show/hide them in a random way as resistivity changes
+    dots = _.shuffle( dots );
 
     this.addChild( dotGroup );
 
-    function shiftDotInResistor( y, height ) {
-      return Math.sqrt( Math.abs( (1 - (y - 100) * (y - 100)) / ((height) * (height)) * ((height / 3) * (height / 3)) ) ) - height / 5;
-    }
-
-    function dotInResistor( dot, height ) {
-      return dot.y - 83 > -height / 2 + 3 && dot.y - 80 < height / 2 &&
-             dot.x - 260 > -width / 2 + shiftDotInResistor( dot.y, height ) &&
-             dot.x - 255 < width / 2 - shiftDotInResistor( dot.y, height );
-    }
-
     model.resistanceProperty.link( function updateResistor( val ) {
 
-      wireBodyShape = new Shape();
       wireEndShape = new Shape();
       height = areaToHeight( model.area );
       width = lengthToWidth( model.length );
-      shift = height / 3;
       linearGradient1.end.y = height;
 
-      wireBodyShape.moveTo( 5, 0 );
-      wireBodyShape.cubicCurveTo( shift + 5, 0, shift + 5, height, 5, height );
-      wireBodyShape.lineTo( width - 3, height );
-      wireBodyShape.cubicCurveTo( width - 3 + shift, height, width - 3 + shift, 0, width - 3, 0 );
+      // update the shape of the wire body, centered around the point (0,0)
+      wireBodyShape = new Shape();
+      wireBodyShape.moveTo( -width / 2, -height / 2 );
+      wireBodyShape.cubicCurveTo(
+        -width / 2 - height * PERSPECTIVE_FACTOR,
+        -height / 2,
+        -width / 2 - height * PERSPECTIVE_FACTOR,
+        height / 2,
+        -width / 2,
+        height / 2
+      );
+      wireBodyShape.lineTo( width / 2, height / 2 );
+      wireBodyShape.cubicCurveTo(
+        width / 2 + height * PERSPECTIVE_FACTOR,
+        height / 2,
+        width / 2 + height * PERSPECTIVE_FACTOR,
+        -height / 2,
+        width / 2,
+        -height / 2
+      );
       wireBodyShape.close();
 
-      wireEndShape.moveTo( 5, 0 );
-      wireEndShape.cubicCurveTo( shift + 5, 0, shift + 5, height, 5, height );
-      wireEndShape.cubicCurveTo( -shift + 5, height, -shift + 5, 0, 5, 0 );
+      // draw the end of the wire
+      wireBodyShape.moveTo( -width / 2, -height / 2 );
+      wireBodyShape.cubicCurveTo(
+        -width / 2 - height * PERSPECTIVE_FACTOR,
+        -height / 2,
+        -width / 2 - height * PERSPECTIVE_FACTOR,
+        height / 2,
+        -width / 2,
+        height / 2
+      );
+      wireBodyShape.cubicCurveTo(
+        -width / 2 + height * PERSPECTIVE_FACTOR,
+        height / 2,
+        -width / 2 + height * PERSPECTIVE_FACTOR,
+        -height / 2,
+        -width / 2,
+        -height / 2
+      );
       wireEndShape.close();
 
-      bodyBath.shape = wireBodyShape;
+      bodyPath.shape = wireBodyShape;
       endPath.shape = wireEndShape;
-      resistor.centerX = 0;
-      resistor.centerY = 0;
 
-      var borderNumber = resistivityToDot( model.resistivity );
-      for ( var i = 0; i < maxPoints; i++ ) {
-        if ( i < borderNumber && dotInResistor( points[ i ], height ) ) {
-          points[ i ].setVisible( true );
-        }
-        else {
-          points[ i ].setVisible( false );
-        }
-      }
-      dotGroup.centerX = 0;
-      dotGroup.centerY = 0;
+      // clip the dots that are shown to only include those inside the wire
+      dotGroup.clipArea = wireBodyShape;
+
+      // set the number of visible dots based on the resistivity
+      var numDotsToShow = resistivityToNumDots( model.resistivity );
+      dots.forEach( function( dot, index ){
+        dot.visible = index < numDotsToShow;
+      } );
     } );
 
+    // pass position through to parent class
+    this.mutate( { centerX: centerX, centerY: centerY } );
   }
 
   return inherit( Node, WireView );

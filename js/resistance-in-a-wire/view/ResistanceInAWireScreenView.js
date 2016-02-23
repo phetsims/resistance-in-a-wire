@@ -44,7 +44,7 @@ define( function( require ) {
       lineWidth: 1
     } ) );
 
-    var sliderBoxOptions = _.extend( { x: 600, y: 40 }, options );
+    var sliderBoxOptions = _.extend( { x: 630, y: 40 }, options );
     var slidersBox = new SlidersBox( model, sliderBoxOptions );
     this.addChild( slidersBox );
 
