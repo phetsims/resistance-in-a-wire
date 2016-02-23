@@ -1,4 +1,4 @@
-// Copyright 2013-2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Block shows R = ρL/A formula with letters scaling
@@ -62,7 +62,7 @@ define( function( require ) {
 
     //static text
     thisNode.addChild( new Text( '=', {
-      font: new PhetFont( { family: 'Times New Roman', size: 100 } ),
+      font: new PhetFont( { family: 'Times New Roman', size: 90 } ),
       fill: '#000',
       centerX: 100,
       centerY: 0
@@ -74,7 +74,7 @@ define( function( require ) {
     texts.forEach( function( entry ) {
 
       entry.view = new Text( entry.label, {
-        font: new PhetFont( { family: 'Times New Roman', size: 130 } ),
+        font: new PhetFont( { family: 'Times New Roman', size: 115 } ),
         fill: entry.color,
         centerX: entry.x,
         centerY: entry.y
