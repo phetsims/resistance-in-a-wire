@@ -5,13 +5,20 @@
  *
  * @author Vasily Shakhov (Mlearner)
  * @author Anton Ulyanov (Mlearner)
+ * @author John Blanco
  */
 define( function( require ) {
   'use strict';
 
   // modules
-  var PropertySet = require( 'AXON/PropertySet' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var Property = require( 'AXON/Property' );
+  var PropertySet = require( 'AXON/PropertySet' );
+
+  // constants
+  var DEFAULT_RESISTIVITY = 0.5;
+  var DEFAULT_LENGTH = 10;
+  var DEFAULT_AREA = 7.5;
 
   /**
    * @constructor
@@ -21,32 +28,17 @@ define( function( require ) {
     var thisModel = this;
 
     PropertySet.call( this, {
-      resistance: 0,
-      resistivity: 0.5,
-      length: 10,
-      area: 7.5
+      resistance: DEFAULT_RESISTIVITY * DEFAULT_LENGTH / DEFAULT_AREA,
+      resistivity: DEFAULT_RESISTIVITY,
+      length: DEFAULT_LENGTH,
+      area: DEFAULT_AREA
     } );
 
-    var updateResistance = function() {
-      thisModel.resistance = (thisModel.resistivity * thisModel.length / thisModel.area);
-    };
-    this.resistivityProperty.link( updateResistance ); // @public
-    this.lengthProperty.link( updateResistance ); // @public
-    this.areaProperty.link( updateResistance ); // @public
-
-    this.reset();
+    Property.multilink( [this.resistivityProperty, this.lengthProperty, this.areaProperty ],
+      function( resistivity, length, area ){
+        thisModel.resistance = resistivity * length / area;
+      } );
   }
 
-  return inherit( PropertySet, ResistanceInAWireModel, {
-
-    // @public
-    step: function() { },
-
-    // @public
-    reset: function() {
-      this.resistivityProperty.reset();
-      this.lengthProperty.reset();
-      this.areaProperty.reset();
-    }
-  } );
+  return inherit( PropertySet, ResistanceInAWireModel );
 } );
