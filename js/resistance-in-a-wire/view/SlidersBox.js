@@ -36,6 +36,9 @@ define( function( require ) {
   var resistivityString = require( 'string!RESISTANCE_IN_A_WIRE/resistivity' );
   var resistivitySymbolString = require( 'string!RESISTANCE_IN_A_WIRE/resistivitySymbol' );
 
+  // constants
+  var FONT_FAMILY = 'Times New Roman';
+
   /**
    * @param {ResistanceInAWireModel} model
    * @param {Object} [options]
@@ -87,7 +90,7 @@ define( function( require ) {
     var maxTextWidth = panelWidth * 0.25;
 
     this.addChild( new Text( resistivitySymbolString, {
-      font: new PhetFont( { family: 'Times New Roman', size: 60 } ),
+      font: new PhetFont( { family: FONT_FAMILY, size: 60 } ),
       fill: '#0f0ffb',
       centerX: xCoords[ 0 ],
       top: yCoords[ 0 ] - 10,
@@ -121,7 +124,7 @@ define( function( require ) {
     } ) );
 
     this.addChild( new Text( lengthSymbolString, {
-      font: new PhetFont( { family: 'Times New Roman', size: 60 } ),
+      font: new PhetFont( { family: FONT_FAMILY, size: 60 } ),
       fill: '#0f0ffb',
       centerX: xCoords[ 1 ],
       top: yCoords[ 0 ],
@@ -155,7 +158,7 @@ define( function( require ) {
     } ) );
 
     this.addChild( new Text( areaSymbolString, {
-      font: new PhetFont( { family: 'Times New Roman', size: 60 } ),
+      font: new PhetFont( { family: FONT_FAMILY, size: 60 } ),
       fill: '#0f0ffb',
       centerX: xCoords[ 2 ],
       top: yCoords[ 0 ],

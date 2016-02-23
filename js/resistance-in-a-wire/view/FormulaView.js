@@ -23,6 +23,9 @@ define( function( require ) {
   var resistanceSymbolString = require( 'string!RESISTANCE_IN_A_WIRE/resistanceSymbol' );
   var resistivitySymbolString = require( 'string!RESISTANCE_IN_A_WIRE/resistivitySymbol' );
 
+  // constants
+  var FONT_FAMILY = 'Times New Roman';
+
   // FormulaView assumes that each symbol is a single character long.  The following code enforces this assumption so
   // that translators can't create messed up versions of the sim.
   function getFirstNonEmbeddingCharacter( str ){
@@ -85,7 +88,7 @@ define( function( require ) {
 
     //static text
     thisNode.addChild( new Text( '=', {
-      font: new PhetFont( { family: 'Times New Roman', size: 90 } ),
+      font: new PhetFont( { family: FONT_FAMILY, size: 90 } ),
       fill: '#000',
       centerX: 100,
       centerY: 0
@@ -97,7 +100,7 @@ define( function( require ) {
     texts.forEach( function( entry ) {
 
       entry.view = new Text( entry.label, {
-        font: new PhetFont( { family: 'Times New Roman', size: 115 } ),
+        font: new PhetFont( { family: FONT_FAMILY, size: 115 } ),
         fill: entry.color,
         centerX: entry.x,
         centerY: entry.y
