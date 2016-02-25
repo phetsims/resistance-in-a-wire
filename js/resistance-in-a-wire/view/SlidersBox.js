@@ -82,7 +82,7 @@ define( function( require ) {
     } );
 
     // xy grid that controls where the sliders and associated labels appear, values empirically determined
-    var yCoords = [ 50, 110, 380, 445 ];
+    var yCoords = [ 70, 110, 380, 445 ];
     var xCoords = [ 65, 180, 295 ];
 
     // Calculate a max width for the textual labels so that the labels don't overlap or go outside the bounds of the
@@ -93,7 +93,7 @@ define( function( require ) {
       font: new PhetFont( { family: FONT_FAMILY, size: 60 } ),
       fill: '#0f0ffb',
       centerX: xCoords[ 0 ],
-      top: yCoords[ 0 ] - 10,
+      centerY: yCoords[ 0 ],
       maxWidth: maxTextWidth
     } ) );
     this.addChild( new Text( resistivityString, {
@@ -127,7 +127,7 @@ define( function( require ) {
       font: new PhetFont( { family: FONT_FAMILY, size: 60 } ),
       fill: '#0f0ffb',
       centerX: xCoords[ 1 ],
-      top: yCoords[ 0 ],
+      centerY: yCoords[ 0 ],
       maxWidth: maxTextWidth
     } ) );
     this.addChild( new Text( lengthString, {
@@ -161,7 +161,7 @@ define( function( require ) {
       font: new PhetFont( { family: FONT_FAMILY, size: 60 } ),
       fill: '#0f0ffb',
       centerX: xCoords[ 2 ],
-      top: yCoords[ 0 ],
+      centerY: yCoords[ 0 ],
       maxWidth: maxTextWidth
     } ) );
     this.addChild( new Text( areaString, {
