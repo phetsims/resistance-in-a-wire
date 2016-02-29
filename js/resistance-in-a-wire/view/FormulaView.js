@@ -31,7 +31,8 @@ define( function( require ) {
   function getFirstNonEmbeddingCharacter( str ){
     var char = null;
     for ( var i = 0; i < str.length; i++ ){
-      if ( str.charCodeAt( i ) !== 0x202a && str.charCodeAt( i ) !== 0x202c ){
+      // skip any characters related to directional control of the string, such as right-to-left embedding
+      if ( str.charCodeAt( i ) < 0x202A || str.charCodeAt( i ) > 0x202E ){
         char = str.charAt( i );
         break;
       }
