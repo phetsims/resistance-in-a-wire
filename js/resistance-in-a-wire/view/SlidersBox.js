@@ -49,7 +49,7 @@ define( function( require ) {
     Node.call( this );
 
     var panelWidth = 360;
-    var panelHeight = 450;
+    var panelHeight = 458;
     var textResistivity;
     var textLength;
     var textArea;
@@ -82,7 +82,7 @@ define( function( require ) {
     } );
 
     // xy grid that controls where the sliders and associated labels appear, values empirically determined
-    var yCoords = [ 70, 110, 380, 445 ];
+    var yCoords = [ 78, 118, 388, 453 ];
     var xCoords = [ 65, 180, 295 ];
 
     // Calculate a max width for the textual labels so that the labels don't overlap or go outside the bounds of the
@@ -191,9 +191,9 @@ define( function( require ) {
       maxWidth: maxTextWidth
     } ) );
 
-    this.addChild( new Slider( xCoords[ 0 ], 135, 240, model.resistivityProperty, sliderImage, options.resistivity ) );
-    this.addChild( new Slider( xCoords[ 1 ], 135, 240, model.lengthProperty, sliderImage, options.length ) );
-    this.addChild( new Slider( xCoords[ 2 ], 135, 240, model.areaProperty, sliderImage, options.area ) );
+    this.addChild( new Slider( xCoords[ 0 ], 143, 240, model.resistivityProperty, sliderImage, options.resistivity ) );
+    this.addChild( new Slider( xCoords[ 1 ], 143, 240, model.lengthProperty, sliderImage, options.length ) );
+    this.addChild( new Slider( xCoords[ 2 ], 143, 240, model.areaProperty, sliderImage, options.area ) );
 
     model.resistivityProperty.link( function updateTextResistivity( value ) {
       textResistivity.text = Util.toFixed( value, 2 );
