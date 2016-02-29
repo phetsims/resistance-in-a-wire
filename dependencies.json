@@ -1,63 +1,63 @@
 {
-  "comment": "# resistance-in-a-wire 1.2.0-rc.1 Fri Feb 26 2016 13:19:43 GMT-0700 (Mountain Standard Time)",
+  "comment": "# resistance-in-a-wire 1.2.0-rc.2 Mon Feb 29 2016 12:14:53 GMT-0700 (Mountain Standard Time)",
   "assert": {
     "sha": "7d27130a4d27da15aa7f8a21bbfb9245288c1b44",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "axon": {
     "sha": "6404a0f9424b7aa812be7871cecd1b93d5abfa9e",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "brand": {
     "sha": "ac9ccaa74427844b170dcd1582f3e9bb931edef4",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "chipper": {
     "sha": "40bb0057db0edede20d523e384b28c46fa6f7aea",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "dot": {
     "sha": "da78031b6f080d20bc8346beaa1d37148188371e",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "joist": {
     "sha": "28f510089c0f5312ca58526b10ff063466ebbc5a",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "kite": {
     "sha": "10ca8bf2b2712307ff528352de8451c0c8afe093",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "phet-core": {
     "sha": "c48bf32035dc5a4ed092ad611012fcbdeb5c6351",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "phetcommon": {
     "sha": "9891b43b962d5a672938517209d5813a48c7f04f",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "resistance-in-a-wire": {
-    "sha": "04826a5abcd57d05cfd7bec31c4fd7e41df83963",
+    "sha": "e92a51e94360c86bfb4ce6bcb4fc818681dbb1f1",
     "branch": "1.2"
   },
   "scenery": {
     "sha": "b34b4fea76b01c9b36a07c83ed6655930143f054",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "scenery-phet": {
     "sha": "71a9c7634c1c59de38afc9e277154126fbd83256",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "sherpa": {
     "sha": "bb68bbbc6e8e3ce98fc37a956f1e19fe8365c107",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "sun": {
     "sha": "ccc2b3bdedbf5c682683d4c29f3fd5ca66e450bb",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "tandem": {
     "sha": "2441eec6b422cb20e08682da02ab2bf7bf73250c",
-    "branch": "master"
+    "branch": "HEAD"
   }
 }
