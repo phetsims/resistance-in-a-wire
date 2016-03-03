@@ -18,6 +18,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
   var Shape = require( 'KITE/Shape' );
+  var RadialGradient = require( 'SCENERY/util/RadialGradient' );
 
   // constants
   var INITIAL_WIDTH = 450;
@@ -51,24 +52,17 @@ define( function( require ) {
     var wireEndShape = new Shape();
     var bodyPath;
     var endPath;
-    var linearGradient1 = new LinearGradient( 0, 0, 0, height )
-      .addColorStop( 0, '#e4e4e4' )
-      .addColorStop( 0.2, '#FFF' )
-      .addColorStop( 0.5, '#FFF' )
-      .addColorStop( 0.81, '#bfbfbf' )
-      .addColorStop( 1, '#575757' );
     var areaToHeight = new LinearFunction( options.area.min, options.area.max, MIN_WIRE_VIEW_HEIGHT, MAX_WIRE_VIEW_HEIGHT, true );
     var lengthToWidth = new LinearFunction( options.length.min, options.length.max, MIN_WIRE_VIEW_WIDTH, MAX_WIRE_VIEW_WIDTH, true );
 
     this.addChild( bodyPath = new Path( wireBodyShape, {
-      stroke: '#000',
-      fill: linearGradient1,
+      stroke: 'black',
       lineWidth: 1
     } ) );
 
     this.addChild( endPath = new Path( wireEndShape, {
-      stroke: '#000',
-      fill: '#f2f2f2',
+      stroke: 'black',
+      fill: '#B77355',
       lineWidth: 1
     } ) );
 
@@ -114,7 +108,6 @@ define( function( require ) {
       wireEndShape = new Shape();
       height = areaToHeight( model.area );
       width = lengthToWidth( model.length );
-      linearGradient1.end.y = height;
 
       // update the shape of the wire body, centered around the point (0,0)
       wireBodyShape = new Shape();
@@ -139,8 +132,8 @@ define( function( require ) {
       wireBodyShape.close();
 
       // draw the end of the wire
-      wireBodyShape.moveTo( -width / 2, -height / 2 );
-      wireBodyShape.cubicCurveTo(
+      wireEndShape.moveTo( -width / 2, -height / 2 );
+      wireEndShape.cubicCurveTo(
         -width / 2 - height * PERSPECTIVE_FACTOR,
         -height / 2,
         -width / 2 - height * PERSPECTIVE_FACTOR,
@@ -148,7 +141,7 @@ define( function( require ) {
         -width / 2,
         height / 2
       );
-      wireBodyShape.cubicCurveTo(
+      wireEndShape.cubicCurveTo(
         -width / 2 + height * PERSPECTIVE_FACTOR,
         height / 2,
         -width / 2 + height * PERSPECTIVE_FACTOR,
@@ -160,6 +153,15 @@ define( function( require ) {
 
       bodyPath.shape = wireBodyShape;
       endPath.shape = wireEndShape;
+
+      // set the gradient on the wire to make it look more 3D
+      var linearGradient = new LinearGradient( 0, height / 2, 0, -height / 2 )
+        .addColorStop( 0, '#792A14' )
+        .addColorStop( 0.5, '#D49059' )
+        .addColorStop( 0.65, '#E4B996' )
+        .addColorStop( 0.8, '#E4B996' )
+        .addColorStop( 1, '#913218' );
+      bodyPath.fill = linearGradient;
 
       // clip the dots that are shown to only include those inside the wire
       dotGroup.clipArea = wireBodyShape;
