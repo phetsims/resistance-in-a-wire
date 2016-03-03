@@ -156,11 +156,11 @@ define( function( require ) {
 
       // set the gradient on the wire to make it look more 3D
       var linearGradient = new LinearGradient( 0, height / 2, 0, -height / 2 )
-        .addColorStop( 0, '#792A14' )
-        .addColorStop( 0.5, '#D49059' )
-        .addColorStop( 0.65, '#E4B996' )
-        .addColorStop( 0.8, '#E4B996' )
-        .addColorStop( 1, '#913218' );
+        .addColorStop( 0, '#A7391B' )
+        .addColorStop( 0.5, '#DFAB81' )
+        .addColorStop( 0.65, '#F3D9CE' )
+        .addColorStop( 0.8, '#EED4BE' )
+        .addColorStop( 1, '#BD411F' );
       bodyPath.fill = linearGradient;
 
       // clip the dots that are shown to only include those inside the wire
