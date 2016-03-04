@@ -62,7 +62,7 @@ define( function( require ) {
 
     this.addChild( endPath = new Path( wireEndShape, {
       stroke: 'black',
-      fill: '#B77355',
+      fill: '#E8B282',
       lineWidth: 1
     } ) );
 
@@ -155,20 +155,19 @@ define( function( require ) {
       endPath.shape = wireEndShape;
 
       // set the gradient on the wire to make it look more 3D
-      var linearGradient = new LinearGradient( 0, height / 2, 0, -height / 2 )
-        .addColorStop( 0, '#A7391B' )
-        .addColorStop( 0.5, '#DFAB81' )
-        .addColorStop( 0.65, '#F3D9CE' )
-        .addColorStop( 0.8, '#EED4BE' )
-        .addColorStop( 1, '#BD411F' );
-      bodyPath.fill = linearGradient;
+      bodyPath.fill = new LinearGradient( 0, height / 2, 0, -height / 2 )
+        .addColorStop( 0, '#8C4828' )
+        .addColorStop( 0.5, '#E8B282' )
+        .addColorStop( 0.65, '#FCF5EE' )
+        .addColorStop( 0.8, '#F8E8D9' )
+        .addColorStop( 1, '#8C4828' );
 
       // clip the dots that are shown to only include those inside the wire
       dotGroup.clipArea = wireBodyShape;
 
       // set the number of visible dots based on the resistivity
       var numDotsToShow = resistivityToNumDots( model.resistivity );
-      dots.forEach( function( dot, index ){
+      dots.forEach( function( dot, index ) {
         dot.visible = index < numDotsToShow;
       } );
     } );
