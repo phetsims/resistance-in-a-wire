@@ -5,7 +5,7 @@
     "branch": "HEAD"
   },
   "axon": {
-    "sha": "6404a0f9424b7aa812be7871cecd1b93d5abfa9e",
+    "sha": "9457f36aec22935c7b5f41a9d0777255dd5d9884",
     "branch": "HEAD"
   },
   "brand": {
@@ -13,7 +13,7 @@
     "branch": "HEAD"
   },
   "chipper": {
-    "sha": "40bb0057db0edede20d523e384b28c46fa6f7aea",
+    "sha": "b3a8a3c24b598badc3b1089aa0eb28c812c47fa0",
     "branch": "HEAD"
   },
   "dot": {
@@ -33,7 +33,7 @@
     "branch": "HEAD"
   },
   "phetcommon": {
-    "sha": "9891b43b962d5a672938517209d5813a48c7f04f",
+    "sha": "380b1fb5f15d097133bfceaf119d3eaf40a3a2d4",
     "branch": "HEAD"
   },
   "resistance-in-a-wire": {
@@ -53,7 +53,7 @@
     "branch": "HEAD"
   },
   "sun": {
-    "sha": "ccc2b3bdedbf5c682683d4c29f3fd5ca66e450bb",
+    "sha": "2b83e994039b2d33845d5e51d7735d144c188d97",
     "branch": "HEAD"
   },
   "tandem": {
