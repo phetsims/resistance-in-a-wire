@@ -11,8 +11,8 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var DerivedProperty = require( 'AXON/DerivedProperty' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var Property = require( 'AXON/Property' );
   var PropertySet = require( 'AXON/PropertySet' );
 
   // constants
@@ -25,19 +25,18 @@ define( function( require ) {
    */
   function ResistanceInAWireModel() {
 
-    var thisModel = this;
-
     PropertySet.call( this, {
-      resistance: DEFAULT_RESISTIVITY * DEFAULT_LENGTH / DEFAULT_AREA,
       resistivity: DEFAULT_RESISTIVITY,
       length: DEFAULT_LENGTH,
       area: DEFAULT_AREA
     } );
 
-    Property.multilink( [this.resistivityProperty, this.lengthProperty, this.areaProperty ],
+    // create a derived property that tracks the total resistance
+    this.resistanceProperty = new DerivedProperty( [this.resistivityProperty, this.lengthProperty, this.areaProperty ],
       function( resistivity, length, area ){
-        thisModel.resistance = resistivity * length / area;
-      } );
+        return resistivity * length / area;
+      }
+    );
   }
 
   return inherit( PropertySet, ResistanceInAWireModel );

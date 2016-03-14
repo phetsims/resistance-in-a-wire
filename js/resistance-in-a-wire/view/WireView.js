@@ -102,7 +102,7 @@ define( function( require ) {
 
     this.addChild( dotGroup );
 
-    model.resistanceProperty.link( function updateResistor( val ) {
+    model.resistanceProperty.link( function updateResistor() {
 
       wireEndShape = new Shape();
       height = areaToHeight( model.area );
