@@ -17,6 +17,7 @@ define( function( require ) {
   var WireView = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/WireView' );
   var ScreenView = require( 'JOIST/ScreenView' );
   var SlidersBox = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/SlidersBox' );
+  var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
 
   /**
    * @param {ResistanceInAWireModel} model
@@ -55,6 +56,8 @@ define( function( require ) {
       centerY: slidersBox.bottom + 60
     } ) );
   }
+
+  resistanceInAWire.register( 'ResistanceInAWireScreenView', ResistanceInAWireScreenView );
 
   return inherit( ScreenView, ResistanceInAWireScreenView );
 } );

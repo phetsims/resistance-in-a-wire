@@ -16,6 +16,7 @@ define( function( require ) {
   var Path = require( 'SCENERY/nodes/Path' );
   var Shape = require( 'KITE/Shape' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
 
   // strings
   var areaSymbolString = require( 'string!RESISTANCE_IN_A_WIRE/areaSymbol' );
@@ -117,6 +118,8 @@ define( function( require ) {
       } );
     } );
   }
+
+  resistanceInAWire.register( 'FormulaView', FormulaView );
 
   return inherit( Node, FormulaView );
 } );

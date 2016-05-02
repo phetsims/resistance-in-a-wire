@@ -12,6 +12,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
 
   /**
    * @param x
@@ -24,6 +25,8 @@ define( function( require ) {
     Node.call( this );
     this.addChild( new Rectangle( x, y, w, h, 12, 12, { fill: '#FFF', stroke: '#000', lineWidth: 3 } ) );
   }
+
+  resistanceInAWire.register( 'WhiteBox', WhiteBox );
 
   return inherit( Node, WhiteBox );
 } );

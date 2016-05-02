@@ -14,6 +14,7 @@ define( function( require ) {
   var DerivedProperty = require( 'AXON/DerivedProperty' );
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
+  var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
 
   // constants
   var DEFAULT_RESISTIVITY = 0.5;
@@ -38,6 +39,8 @@ define( function( require ) {
       }
     );
   }
+
+  resistanceInAWire.register( 'ResistanceInAWireModel', ResistanceInAWireModel );
 
   return inherit( PropertySet, ResistanceInAWireModel );
 } );

@@ -18,6 +18,7 @@ define( function( require ) {
   var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
   var WhiteBox = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/WhiteBox' );
+  var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
 
   // images
   var sliderImage = require( 'image!RESISTANCE_IN_A_WIRE/slider.png' );
@@ -211,6 +212,8 @@ define( function( require ) {
     // pass options through
     this.mutate( options );
   }
+
+  resistanceInAWire.register( 'SlidersBox', SlidersBox );
 
   return inherit( Node, SlidersBox );
 } );

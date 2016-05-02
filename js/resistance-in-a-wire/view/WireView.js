@@ -18,6 +18,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
   var Shape = require( 'KITE/Shape' );
+  var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
 
   // constants
   var INITIAL_WIDTH = 450;
@@ -174,6 +175,8 @@ define( function( require ) {
     // pass position through to parent class
     this.mutate( { centerX: centerX, centerY: centerY } );
   }
+
+  resistanceInAWire.register( 'WireView', WireView );
 
   return inherit( Node, WireView );
 } );

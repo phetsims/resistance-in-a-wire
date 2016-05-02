@@ -14,6 +14,7 @@ define( function( require ) {
   var ResistanceInAWireModel = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/model/ResistanceInAWireModel' );
   var ResistanceInAWireScreenView = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/ResistanceInAWireScreenView' );
   var Screen = require( 'JOIST/Screen' );
+  var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
 
   // strings
   var resistanceInAWireTitleString = require( 'string!RESISTANCE_IN_A_WIRE/resistance-in-a-wire.title' );
@@ -30,6 +31,8 @@ define( function( require ) {
       { backgroundColor: '#ffffdf' }
     );
   }
+
+  resistanceInAWire.register( 'ResistanceInAWireScreen', ResistanceInAWireScreen );
 
   return inherit( Screen, ResistanceInAWireScreen );
 } );

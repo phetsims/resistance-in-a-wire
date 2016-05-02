@@ -15,6 +15,7 @@ define( function( require ) {
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
   var LinearFunction = require( 'DOT/LinearFunction' );
+  var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
 
   // constants
   var KNOB_WIDTH = 32;  // Empirically determined.
@@ -63,6 +64,8 @@ define( function( require ) {
       track.y = valueToPosition( value );
     } );
   }
+
+  resistanceInAWire.register( 'Slider', Slider );
 
   return inherit( Node, Slider );
 } );
