@@ -26,24 +26,6 @@ define( function( require ) {
   // constants
   var FONT_FAMILY = 'Times New Roman';
 
-  // FormulaView assumes that each symbol is a single character long.  The following code enforces this assumption so
-  // that translators can't create messed up versions of the sim.
-  function getFirstNonEmbeddingCharacter( str ){
-    var char = null;
-    for ( var i = 0; i < str.length; i++ ){
-      // skip any characters related to directional control of the string, such as right-to-left embedding
-      if ( str.charCodeAt( i ) < 0x202A || str.charCodeAt( i ) > 0x202E ){
-        char = str.charAt( i );
-        break;
-      }
-    }
-    return char;
-  }
-  areaSymbolString = getFirstNonEmbeddingCharacter( areaSymbolString );
-  lengthSymbolString = getFirstNonEmbeddingCharacter( lengthSymbolString );
-  resistanceSymbolString = getFirstNonEmbeddingCharacter( resistanceSymbolString );
-  resistivitySymbolString = getFirstNonEmbeddingCharacter( resistivitySymbolString );
-
   /**
    * @param {ResistanceInAWireModel} model
    * @param x
