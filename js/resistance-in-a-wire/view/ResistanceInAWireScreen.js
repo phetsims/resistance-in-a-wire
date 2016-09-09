@@ -20,9 +20,8 @@ define( function( require ) {
    * @constructor
    */
   function ResistanceInAWireScreen() {
-    var model = new ResistanceInAWireModel();
     Screen.call( this,
-      function() { return model; },
+      function() { return new ResistanceInAWireModel(); },
       function( model ) { return new ResistanceInAWireScreenView( model ); },
       { backgroundColor: '#ffffdf' }
     );
