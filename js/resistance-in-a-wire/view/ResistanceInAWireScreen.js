@@ -16,16 +16,12 @@ define( function( require ) {
   var Screen = require( 'JOIST/Screen' );
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
 
-  // strings
-  var resistanceInAWireTitleString = require( 'string!RESISTANCE_IN_A_WIRE/resistance-in-a-wire.title' );
-
   /**
-   * Creates the model and view for the ResistanceInAWireScreen
    * @constructor
    */
   function ResistanceInAWireScreen() {
     var model = new ResistanceInAWireModel();
-    Screen.call( this, resistanceInAWireTitleString, null /* no icon, single-screen sim */,
+    Screen.call( this,
       function() { return model; },
       function( model ) { return new ResistanceInAWireScreenView( model ); },
       { backgroundColor: '#ffffdf' }
