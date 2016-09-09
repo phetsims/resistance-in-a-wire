@@ -23,9 +23,8 @@ define( function( require ) {
    * @constructor
    */
   function ResistanceInAWireScreen() {
-    var model = new ResistanceInAWireModel();
     Screen.call( this, resistanceInAWireTitleString, null /* no icon, single-screen sim */,
-      function() { return model; },
+      function() { return new ResistanceInAWireModel(); },
       function( model ) { return new ResistanceInAWireScreenView( model ); },
       { backgroundColor: '#ffffdf' }
     );
