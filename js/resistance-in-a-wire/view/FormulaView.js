@@ -35,7 +35,7 @@ define( function( require ) {
    */
   function FormulaView( model, x, y ) {
 
-    var thisNode = this;
+    var self = this;
     Node.call( this, { x: x, y: y } );
 
     var texts = [
@@ -71,14 +71,14 @@ define( function( require ) {
     ];
 
     //static text
-    thisNode.addChild( new Text( '=', {
+    self.addChild( new Text( '=', {
       font: new PhetFont( { family: FONT_FAMILY, size: 90 } ),
       fill: '#000',
       centerX: 100,
       centerY: 0
     } ) );
 
-    thisNode.addChild( new Path( Shape.lineSegment( 150, 8, 400, 8 ), { stroke: 'black', lineWidth: 6 } ) );
+    self.addChild( new Path( Shape.lineSegment( 150, 8, 400, 8 ), { stroke: 'black', lineWidth: 6 } ) );
 
     //dynamic text
     texts.forEach( function( entry ) {
@@ -89,7 +89,7 @@ define( function( require ) {
         centerX: entry.x,
         centerY: entry.y
       } );
-      thisNode.addChild( entry.view );
+      self.addChild( entry.view );
 
       entry.scale = entry.scale || 1 / model[ entry.targetProperty ].get();
       model[ entry.targetProperty ].link( function updateProperty( val ) {
