@@ -15,6 +15,8 @@ define( function( require ) {
   var ResistanceInAWireScreenView = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/ResistanceInAWireScreenView' );
   var Screen = require( 'JOIST/Screen' );
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
+  var Property = require( 'AXON/Property' );
+  var Color = require( 'SCENERY/util/Color' );
 
   /**
    * @constructor
@@ -23,7 +25,7 @@ define( function( require ) {
     Screen.call( this,
       function() { return new ResistanceInAWireModel(); },
       function( model ) { return new ResistanceInAWireScreenView( model ); },
-      { backgroundColor: '#ffffdf' }
+      { backgroundColorProperty: new Property( Color.toColor( '#ffffdf' ) ) }
     );
   }
 
