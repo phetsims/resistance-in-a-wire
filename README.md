@@ -1,15 +1,15 @@
 Resistance in a Wire
 =============
-"Resistance in a Wire" is an educational simulation in HTML5, by <a href="http://phet.colorado.edu/" target="_blank">PhET Interactive Simulations</a>
+"Resistance in a Wire" is an educational simulation in HTML5, by <a href="https://phet.colorado.edu/" target="_blank">PhET Interactive Simulations</a>
 at the University of Colorado Boulder.
 For a description of this simulation, associated resources, and a link to the published version,
-<a href="http://phet.colorado.edu/en/simulation/resistance-in-a-wire" target="_blank">visit the simulation's web page</a>.
+<a href="https://phet.colorado.edu/en/simulation/resistance-in-a-wire" target="_blank">visit the simulation's web page</a>.
 
 ### Try it!
 
-<a href="http://phet.colorado.edu/sims/html/resistance-in-a-wire/latest/resistance-in-a-wire_en.html" target="_blank">Click here to run "Resistance in a Wire".</a>
+<a href="https://phet.colorado.edu/sims/html/resistance-in-a-wire/latest/resistance-in-a-wire_en.html" target="_blank">Click here to run "Resistance in a Wire".</a>
 
-<a href="http://phet.colorado.edu/sims/html/resistance-in-a-wire/latest/resistance-in-a-wire_en.html" target="_blank">
+<a href="https://phet.colorado.edu/sims/html/resistance-in-a-wire/latest/resistance-in-a-wire_en.html" target="_blank">
 <img src="https://raw.githubusercontent.com/phetsims/resistance-in-a-wire/master/assets/resistance-in-a-wire-screenshot.png" alt="Screenshot" style="width: 400px;"/>
 </a>
 
@@ -31,6 +31,7 @@ git clone https://github.com/phetsims/joist.git
 git clone https://github.com/phetsims/kite.git
 git clone https://github.com/phetsims/phet-core.git
 git clone https://github.com/phetsims/phetcommon.git
+git clone https://github.com/phetsims/query-string-machine.git
 git clone https://github.com/phetsims/resistance-in-a-wire.git
 git clone https://github.com/phetsims/scenery.git
 git clone https://github.com/phetsims/scenery-phet.git
