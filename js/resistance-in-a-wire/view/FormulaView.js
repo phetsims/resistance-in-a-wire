@@ -1,9 +1,10 @@
-// Copyright 2016, University of Colorado Boulder
+// Copyright 2016-2017, University of Colorado Boulder
 
 /**
  * Block shows R = ρL/A formula with letters scaling
  * @author Vasily Shakhov (Mlearner)
  * @author Anton Ulyanov (Mlearner)
+ * @author John Blanco (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';

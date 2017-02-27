@@ -1,9 +1,10 @@
-// Copyright 2013-2015, University of Colorado Boulder
+// Copyright 2013-2017, University of Colorado Boulder
 
 /**
  * Stage for the "ResistanceInAWire" view.
  * @author Vasily Shakhov (Mlearner)
  * @author Anton Ulyanov (Mlearner)
+ * @author John Blanco (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';

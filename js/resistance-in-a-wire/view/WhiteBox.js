@@ -1,9 +1,10 @@
-// Copyright 2013-2015, University of Colorado Boulder
+// Copyright 2013-2017, University of Colorado Boulder
 
 /**
  * White Block with black border container
  * @author Vasily Shakhov (Mlearner)
  * @author Anton Ulyanov (Mlearner)
+ * @author John Blanco (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';
@@ -15,10 +16,10 @@ define( function( require ) {
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
 
   /**
-   * @param x
-   * @param y
-   * @param w
-   * @param h
+   * @param {number} x - the x coordinate of the box
+   * @param {number} y - the y coordinate of the box
+   * @param {number} w - the width of the box
+   * @param {number} h - the height of the box
    * @constructor
    */
   function WhiteBox( x, y, w, h ) {
