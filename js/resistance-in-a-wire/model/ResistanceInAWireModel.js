@@ -13,7 +13,7 @@ define( function( require ) {
   // modules
   var DerivedProperty = require( 'AXON/DerivedProperty' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var PropertySet = require( 'AXON/PropertySet' );
+  var NumberProperty = require( 'AXON/NumberProperty' );
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
 
   // constants
@@ -26,15 +26,13 @@ define( function( require ) {
    */
   function ResistanceInAWireModel() {
 
-    PropertySet.call( this, {
-      resistivity: DEFAULT_RESISTIVITY,
-      length: DEFAULT_LENGTH,
-      area: DEFAULT_AREA
-    } );
+    this.resistivityProperty = new NumberProperty( DEFAULT_RESISTIVITY );
+    this.lengthProperty = new NumberProperty( DEFAULT_LENGTH );
+    this.areaProperty = new NumberProperty( DEFAULT_AREA );
 
     // create a derived property that tracks the total resistance
-    this.resistanceProperty = new DerivedProperty( [this.resistivityProperty, this.lengthProperty, this.areaProperty ],
-      function( resistivity, length, area ){
+    this.resistanceProperty = new DerivedProperty( [ this.resistivityProperty, this.lengthProperty, this.areaProperty ],
+      function( resistivity, length, area ) {
         return resistivity * length / area;
       }
     );
@@ -42,5 +40,15 @@ define( function( require ) {
 
   resistanceInAWire.register( 'ResistanceInAWireModel', ResistanceInAWireModel );
 
-  return inherit( PropertySet, ResistanceInAWireModel );
+  return inherit( Object, ResistanceInAWireModel, {
+    /**
+     * resets the properties of the model
+     * @public
+     */
+    reset: function() {
+      this.resistivityProperty.reset();
+      this.lengthProperty.reset();
+      this.areaProperty.reset();
+    }
+  } );
 } );

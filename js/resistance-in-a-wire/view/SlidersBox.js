@@ -107,7 +107,7 @@ define( function( require ) {
       top: yCoords[ 1 ],
       maxWidth: maxTextWidth
     } ) );
-    this.addChild( textResistivity = new Text( Util.toFixed( model.resistivity, 2 ), {
+    this.addChild( textResistivity = new Text( Util.toFixed( model.resistivityProperty.value, 2 ), {
       font: new PhetFont( 30 ),
       textAlign: 'end',
       textAnchor: 'end',
@@ -141,7 +141,7 @@ define( function( require ) {
       top: yCoords[ 1 ],
       maxWidth: maxTextWidth
     } ) );
-    this.addChild( textLength = new Text( Util.toFixed( model.length, 2 ), {
+    this.addChild( textLength = new Text( Util.toFixed( model.lengthProperty.value, 2 ), {
       font: new PhetFont( 28 ),
       textAlign: 'end',
       textAnchor: 'end',
@@ -175,7 +175,7 @@ define( function( require ) {
       top: yCoords[ 1 ],
       maxWidth: maxTextWidth
     } ) );
-    this.addChild( textArea = new Text( Util.toFixed( model.area, 2 ), {
+    this.addChild( textArea = new Text( Util.toFixed( model.areaProperty.value, 2 ), {
       font: new PhetFont( 28 ),
       textAlign: 'end',
       textAnchor: 'end',

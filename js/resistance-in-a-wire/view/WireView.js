@@ -106,8 +106,8 @@ define( function( require ) {
     model.resistanceProperty.link( function updateResistor() {
 
       wireEndShape = new Shape();
-      height = areaToHeight( model.area );
-      width = lengthToWidth( model.length );
+      height = areaToHeight( model.areaProperty.value );
+      width = lengthToWidth( model.lengthProperty.value );
 
       // update the shape of the wire body, centered around the point (0,0)
       wireBodyShape = new Shape();
@@ -166,7 +166,7 @@ define( function( require ) {
       dotGroup.clipArea = wireBodyShape;
 
       // set the number of visible dots based on the resistivity
-      var numDotsToShow = resistivityToNumDots( model.resistivity );
+      var numDotsToShow = resistivityToNumDots( model.resistivityProperty.value );
       dots.forEach( function( dot, index ) {
         dot.visible = index < numDotsToShow;
       } );
