@@ -30,8 +30,8 @@ define( function( require ) {
 
   /**
    * @param {ResistanceInAWireModel} model
-   * @param x
-   * @param y
+   * @param {number} x
+   * @param {number} y
    * @constructor
    */
   function FormulaView( model, x, y ) {

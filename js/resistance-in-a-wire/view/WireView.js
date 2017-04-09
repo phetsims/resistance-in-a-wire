@@ -39,7 +39,7 @@ define( function( require ) {
    * @param {ResistanceInAWireModel} model
    * @param {number} centerX
    * @param {number} centerY
-   * @param options
+   * @param {Object} [options]
    * @constructor
    */
   function WireView( model, centerX, centerY, options ) {

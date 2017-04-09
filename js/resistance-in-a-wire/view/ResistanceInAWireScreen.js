@@ -11,11 +11,11 @@ define( function( require ) {
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
+  var Property = require( 'AXON/Property' );
+  var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
   var ResistanceInAWireModel = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/model/ResistanceInAWireModel' );
   var ResistanceInAWireScreenView = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/ResistanceInAWireScreenView' );
   var Screen = require( 'JOIST/Screen' );
-  var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
-  var Property = require( 'AXON/Property' );
 
   /**
    * @constructor

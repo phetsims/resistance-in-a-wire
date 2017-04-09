@@ -14,11 +14,11 @@ define( function( require ) {
   var Bounds2 = require( 'DOT/Bounds2' );
   var FormulaView = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/FormulaView' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
-  var WireView = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/WireView' );
   var ScreenView = require( 'JOIST/ScreenView' );
   var SlidersBox = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/SlidersBox' );
-  var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
+  var WireView = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/WireView' );
 
   /**
    * @param {ResistanceInAWireModel} model
