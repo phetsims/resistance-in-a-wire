@@ -9,9 +9,9 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var ResistanceInAWireScreen = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireScreen' );
   var SimLauncher = require( 'JOIST/SimLauncher' );
   var Sim = require( 'JOIST/Sim' );
-  var ResistanceInAWireScreen = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/ResistanceInAWireScreen' );
 
   // strings
   var resistanceInAWireTitleString = require( 'string!RESISTANCE_IN_A_WIRE/resistance-in-a-wire.title' );
