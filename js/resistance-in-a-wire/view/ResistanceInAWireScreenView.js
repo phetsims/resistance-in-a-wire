@@ -28,15 +28,8 @@ define( function( require ) {
 
     ScreenView.call( this, { layoutBounds: new Bounds2( 0, 0, 1024, 618 ) } );
 
-    // TODO: These aren't options, they are required config parameters
-    var options = {
-      resistivity: { max: 1, min: 0.01 },
-      length: { max: 20, min: 0.1 },
-      area: { max: 15, min: 0.01 }
-    };
-
     this.addChild( new FormulaView( model, 110, 180 ) );
-    this.addChild( new WireView( model, 320, 450, options ) );
+    this.addChild( new WireView( model, 320, 450 ) );
     this.addChild( new ArrowNode( 240, 570, 380, 570, {
       headHeight: 45,
       headWidth: 30,
@@ -46,7 +39,7 @@ define( function( require ) {
       lineWidth: 1
     } ) );
 
-    var sliderBoxOptions = _.extend( { x: 630, y: 40 }, options );
+    var sliderBoxOptions = { x: 630, y: 40 };
     var slidersBox = new SlidersBox( model, sliderBoxOptions );
     this.addChild( slidersBox );
 

@@ -18,6 +18,7 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
   var Text = require( 'SCENERY/nodes/Text' );
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
+  var ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
 
   // strings
   var areaSymbolString = require( 'string!RESISTANCE_IN_A_WIRE/areaSymbol' );
@@ -53,21 +54,21 @@ define( function( require ) {
         x: 220,
         y: -90,
         targetProperty: 'resistivityProperty',
-        color: '#0f0ffb'
+        color: ResistanceInAWireConstants.BLUE_COLOR
       },
       {
         label: lengthSymbolString,
         x: 320,
         y: -90,
         targetProperty: 'lengthProperty',
-        color: '#0f0ffb'
+        color: ResistanceInAWireConstants.BLUE_COLOR
       },
       {
         label: areaSymbolString,
         x: 280,
         y: 90,
         targetProperty: 'areaProperty',
-        color: '#0f0ffb'
+        color: ResistanceInAWireConstants.BLUE_COLOR
       }
     ];
 
@@ -92,6 +93,7 @@ define( function( require ) {
       } );
       self.addChild( entry.view );
 
+      // TODO: use a callback rather than accessing property
       entry.scale = entry.scale || 1 / model[ entry.targetProperty ].get();
       model[ entry.targetProperty ].link( function updateProperty( val ) {
         entry.view.matrix = Matrix3.identity();

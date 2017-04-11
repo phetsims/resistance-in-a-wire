@@ -15,22 +15,24 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var NumberProperty = require( 'AXON/NumberProperty' );
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
-
-  // constants
-  var DEFAULT_RESISTIVITY = 0.5;
-  var DEFAULT_LENGTH = 10;
-  var DEFAULT_AREA = 7.5;
+  var ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
 
   /**
    * @constructor
    */
   function ResistanceInAWireModel() {
 
-    this.resistivityProperty = new NumberProperty( DEFAULT_RESISTIVITY );
-    this.lengthProperty = new NumberProperty( DEFAULT_LENGTH );
-    this.areaProperty = new NumberProperty( DEFAULT_AREA );
+    // @public {Property.<number>}  in Ohm* cm
+    this.resistivityProperty = new NumberProperty( ResistanceInAWireConstants.RESISTIVITY_RANGE.getDefaultValue() );
 
-    // create a derived property that tracks the total resistance
+    // @public {Property.<number>}  in cm
+    this.lengthProperty = new NumberProperty( ResistanceInAWireConstants.LENGTH_RANGE.getDefaultValue() );
+
+    // @public {Property.<number>}  in cm^2
+    this.areaProperty = new NumberProperty( ResistanceInAWireConstants.AREA_RANGE.getDefaultValue() );
+
+    // create a derived property that tracks the resistance of the wire
+    // @public {Property.<number>}  in Ohm
     this.resistanceProperty = new DerivedProperty( [ this.resistivityProperty, this.lengthProperty, this.areaProperty ],
       function( resistivity, length, area ) {
         return resistivity * length / area;

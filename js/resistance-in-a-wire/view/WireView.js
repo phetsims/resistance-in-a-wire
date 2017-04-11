@@ -17,8 +17,9 @@ define( function( require ) {
   var LinearGradient = require( 'SCENERY/util/LinearGradient' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
-  var Shape = require( 'KITE/Shape' );
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
+  var ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
+  var Shape = require( 'KITE/Shape' );
 
   // constants
   var INITIAL_WIDTH = 450;
@@ -39,10 +40,9 @@ define( function( require ) {
    * @param {ResistanceInAWireModel} model
    * @param {number} centerX
    * @param {number} centerY
-   * @param {Object} [options]
    * @constructor
    */
-  function WireView( model, centerX, centerY, options ) {
+  function WireView( model, centerX, centerY ) {
 
     Node.call( this );
 
@@ -52,8 +52,16 @@ define( function( require ) {
     var wireEndShape = new Shape();
     var bodyPath;
     var endPath;
-    var areaToHeight = new LinearFunction( options.area.min, options.area.max, MIN_WIRE_VIEW_HEIGHT, MAX_WIRE_VIEW_HEIGHT, true );
-    var lengthToWidth = new LinearFunction( options.length.min, options.length.max, MIN_WIRE_VIEW_WIDTH, MAX_WIRE_VIEW_WIDTH, true );
+    var areaToHeight = new LinearFunction(
+      ResistanceInAWireConstants.AREA_RANGE.min,
+      ResistanceInAWireConstants.AREA_RANGE.max,
+      MIN_WIRE_VIEW_HEIGHT,
+      MAX_WIRE_VIEW_HEIGHT, true );
+    var lengthToWidth = new LinearFunction(
+      ResistanceInAWireConstants.LENGTH_RANGE.min,
+      ResistanceInAWireConstants.LENGTH_RANGE.max,
+      MIN_WIRE_VIEW_WIDTH,
+      MAX_WIRE_VIEW_WIDTH, true );
 
     this.addChild( bodyPath = new Path( wireBodyShape, {
       stroke: 'black',
@@ -91,8 +99,8 @@ define( function( require ) {
     // function to map resistivity to number of dots
     var maxDots = dotGridColumns * dotGridRows;
     var resistivityToNumDots = new LinearFunction(
-      options.resistivity.min,
-      options.resistivity.max,
+      ResistanceInAWireConstants.RESISTIVITY_RANGE.min,
+      ResistanceInAWireConstants.RESISTIVITY_RANGE.max,
       maxDots * 0.05,
       maxDots,
       true

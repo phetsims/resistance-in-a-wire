@@ -34,6 +34,7 @@ define( function( require ) {
   var ohmsSymbolString = require( 'string!RESISTANCE_IN_A_WIRE/ohmsSymbol' );
   var pattern0Label1Value2UnitsString = require( 'string!RESISTANCE_IN_A_WIRE/pattern.0label.1value.2units' );
   var pattern0ResistanceUnits1LengthUnitsString = require( 'string!RESISTANCE_IN_A_WIRE/pattern.0resistanceUnits.1lengthUnits' );
+  var ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
   var resistanceString = require( 'string!RESISTANCE_IN_A_WIRE/resistance' );
   var resistivityString = require( 'string!RESISTANCE_IN_A_WIRE/resistivity' );
   var resistivitySymbolString = require( 'string!RESISTANCE_IN_A_WIRE/resistivitySymbol' );
@@ -93,7 +94,7 @@ define( function( require ) {
 
     this.addChild( new Text( resistivitySymbolString, {
       font: new PhetFont( { family: FONT_FAMILY, size: 60 } ),
-      fill: '#0f0ffb',
+      fill: ResistanceInAWireConstants.BLUE_COLOR,
       centerX: xCoords[ 0 ],
       centerY: yCoords[ 0 ],
       maxWidth: maxTextWidth
@@ -102,7 +103,7 @@ define( function( require ) {
       font: new PhetFont( 16 ),
       textAlign: 'center',
       textAnchor: 'middle',
-      fill: '#0f0ffb',
+      fill: ResistanceInAWireConstants.BLUE_COLOR,
       centerX: xCoords[ 0 ],
       top: yCoords[ 1 ],
       maxWidth: maxTextWidth
@@ -111,7 +112,7 @@ define( function( require ) {
       font: new PhetFont( 30 ),
       textAlign: 'end',
       textAnchor: 'end',
-      fill: '#000',
+      fill: ResistanceInAWireConstants.BLACK_COLOR,
       centerX: xCoords[ 0 ],
       top: yCoords[ 2 ]
     } ) );
@@ -119,7 +120,7 @@ define( function( require ) {
       font: new PhetFont( 30 ),
       textAlign: 'start',
       textAnchor: 'start',
-      fill: '#0f0ffb',
+      fill: ResistanceInAWireConstants.BLUE_COLOR,
       centerX: xCoords[ 0 ],
       bottom: yCoords[ 3 ],
       maxWidth: maxTextWidth
@@ -127,7 +128,7 @@ define( function( require ) {
 
     this.addChild( new Text( lengthSymbolString, {
       font: new PhetFont( { family: FONT_FAMILY, size: 60 } ),
-      fill: '#0f0ffb',
+      fill: ResistanceInAWireConstants.BLUE_COLOR,
       centerX: xCoords[ 1 ],
       centerY: yCoords[ 0 ],
       maxWidth: maxTextWidth
@@ -136,7 +137,7 @@ define( function( require ) {
       font: new PhetFont( 16 ),
       textAlign: 'center',
       textAnchor: 'middle',
-      fill: '#0f0ffb',
+      fill: ResistanceInAWireConstants.BLUE_COLOR,
       centerX: xCoords[ 1 ],
       top: yCoords[ 1 ],
       maxWidth: maxTextWidth
@@ -153,7 +154,7 @@ define( function( require ) {
       font: new PhetFont( 28 ),
       textAlign: 'start',
       textAnchor: 'start',
-      fill: '#0f0ffb',
+      fill: ResistanceInAWireConstants.BLUE_COLOR,
       centerX: xCoords[ 1 ],
       bottom: yCoords[ 3 ],
       maxWidth: maxTextWidth
@@ -161,7 +162,7 @@ define( function( require ) {
 
     this.addChild( new Text( areaSymbolString, {
       font: new PhetFont( { family: FONT_FAMILY, size: 60 } ),
-      fill: '#0f0ffb',
+      fill: ResistanceInAWireConstants.BLUE_COLOR,
       centerX: xCoords[ 2 ],
       centerY: yCoords[ 0 ],
       maxWidth: maxTextWidth
@@ -170,7 +171,7 @@ define( function( require ) {
       font: new PhetFont( 16 ),
       textAlign: 'center',
       textAnchor: 'middle',
-      fill: '#0f0ffb',
+      fill: ResistanceInAWireConstants.BLUE_COLOR,
       centerX: xCoords[ 2 ],
       top: yCoords[ 1 ],
       maxWidth: maxTextWidth
@@ -179,7 +180,7 @@ define( function( require ) {
       font: new PhetFont( 28 ),
       textAlign: 'end',
       textAnchor: 'end',
-      fill: '#000',
+      fill: ResistanceInAWireConstants.BLACK_COLOR,
       centerX: xCoords[ 2 ],
       top: yCoords[ 2 ]
     } ) );
@@ -187,15 +188,15 @@ define( function( require ) {
       font: new PhetFont( 28 ),
       textAlign: 'start',
       textAnchor: 'start',
-      fill: '#0f0ffb',
+      fill: ResistanceInAWireConstants.BLUE_COLOR,
       centerX: xCoords[ 2 ],
       bottom: yCoords[ 3 ],
       maxWidth: maxTextWidth
     } ) );
 
-    this.addChild( new Slider( xCoords[ 0 ], 143, 240, model.resistivityProperty, sliderImage, options.resistivity ) );
-    this.addChild( new Slider( xCoords[ 1 ], 143, 240, model.lengthProperty, sliderImage, options.length ) );
-    this.addChild( new Slider( xCoords[ 2 ], 143, 240, model.areaProperty, sliderImage, options.area ) );
+    this.addChild( new Slider( xCoords[ 0 ], 143, 240, model.resistivityProperty, sliderImage, ResistanceInAWireConstants.RESISTIVITY_RANGE ) );
+    this.addChild( new Slider( xCoords[ 1 ], 143, 240, model.lengthProperty, sliderImage, ResistanceInAWireConstants.LENGTH_RANGE ) );
+    this.addChild( new Slider( xCoords[ 2 ], 143, 240, model.areaProperty, sliderImage, ResistanceInAWireConstants.AREA_RANGE ) );
 
     model.resistivityProperty.link( function updateTextResistivity( value ) {
       textResistivity.text = Util.toFixed( value, 2 );
