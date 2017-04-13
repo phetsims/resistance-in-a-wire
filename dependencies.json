@@ -1,5 +1,5 @@
 {
-  "comment": "# resistance-in-a-wire 1.2.7 Thu Apr 13 2017 14:31:34 GMT-0600 (MDT)",
+  "comment": "# resistance-in-a-wire 1.2.7 Thu Apr 13 2017 17:49:24 GMT-0600 (MDT)",
   "assert": {
     "sha": "7d27130a4d27da15aa7f8a21bbfb9245288c1b44",
     "branch": "HEAD"
@@ -10,19 +10,19 @@
   },
   "brand": {
     "sha": "3c8ffd84d63ca9c5c643db9a0e60dd8aa457cfe3",
-    "branch": "resistance-in-a-wire-1.2"
+    "branch": "HEAD"
   },
   "chipper": {
     "sha": "b3a8a3c24b598badc3b1089aa0eb28c812c47fa0",
-    "branch": "resistance-in-a-wire-1.2"
+    "branch": "HEAD"
   },
   "dot": {
     "sha": "da78031b6f080d20bc8346beaa1d37148188371e",
     "branch": "HEAD"
   },
   "joist": {
-    "sha": "970fa849f7b747f64bb4c31e6bf3b88989aecc56",
-    "branch": "HEAD"
+    "sha": "5b412238d13cc9fba88c0f9609c70a1cb8dacea4",
+    "branch": "resistance-in-a-wire-1.2"
   },
   "kite": {
     "sha": "10ca8bf2b2712307ff528352de8451c0c8afe093",
@@ -34,10 +34,10 @@
   },
   "phetcommon": {
     "sha": "df68d5431db3b531e11c4b0cd8ca13b2ed3a970d",
-    "branch": "resistance-in-a-wire-1.2"
+    "branch": "HEAD"
   },
   "resistance-in-a-wire": {
-    "sha": "e25d276edfc55c046b171e17006b5fc2ff27bcde",
+    "sha": "36328bc4ee52c2704f0b34b33da819e12dcdbe92",
     "branch": "1.2"
   },
   "scenery": {
