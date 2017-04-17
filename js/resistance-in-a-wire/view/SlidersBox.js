@@ -15,7 +15,7 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Slider = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/Slider' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
-  var SubSupText = require( 'SCENERY_PHET/SubSupText' );
+  var RichText = require( 'SCENERY_PHET/RichText' );
   var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
   var WhiteBox = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/WhiteBox' );
@@ -184,7 +184,7 @@ define( function( require ) {
       centerX: xCoords[ 2 ],
       top: yCoords[ 2 ]
     } ) );
-    this.addChild( new SubSupText( cmString + '<sup>2</sup>', {
+    this.addChild( new RichText( cmString + '<sup>2</sup>', {
       font: new PhetFont( 28 ),
       textAlign: 'start',
       textAnchor: 'start',
