@@ -38,6 +38,8 @@ define( function( require ) {
 
   // constants
   var FONT_FAMILY = 'Times New Roman';
+  var PANEL_WIDTH = 360;
+  var PANEL_HEIGHT = 458;
 
   /**
    * @param {ResistanceInAWireModel} model
@@ -49,18 +51,44 @@ define( function( require ) {
 
     Node.call( this );
 
-    var panelWidth = 360;
-    var panelHeight = 458;
-    var textResistivity;
-    var textLength;
-    var textArea;
-    this.addChild( new WhiteBox( 0, 0, panelWidth, panelHeight, tandem.createTandem( 'whiteBox' ) ) );
+    // xy grid that controls where the sliders and associated labels appear, values empirically determined
+    var yCoords = [ 78, 118, 388, 453 ];
+    var xCoords = [ 65, 180, 295 ];
+
+    var textResistivity = new Text( Util.toFixed( model.resistivityProperty.value, 2 ), {
+      font: new PhetFont( 30 ),
+      textAlign: 'end',
+      textAnchor: 'end',
+      fill: ResistanceInAWireConstants.BLACK_COLOR,
+      centerX: xCoords[ 0 ],
+      top: yCoords[ 2 ],
+      tandem: tandem.createTandem( 'resistivityValueText' )
+    } );
+    var textLength = new Text( Util.toFixed( model.lengthProperty.value, 2 ), {
+      font: new PhetFont( 28 ),
+      textAlign: 'end',
+      textAnchor: 'end',
+      fill: '#000',
+      centerX: xCoords[ 1 ],
+      top: yCoords[ 2 ],
+      tandem: tandem.createTandem( 'lengthValueText' )
+    } );
+    var textArea = new Text( Util.toFixed( model.areaProperty.value, 2 ), {
+      font: new PhetFont( 28 ),
+      textAlign: 'end',
+      textAnchor: 'end',
+      fill: ResistanceInAWireConstants.BLACK_COLOR,
+      centerX: xCoords[ 2 ],
+      top: yCoords[ 2 ],
+      tandem: tandem.createTandem( 'areaValueText' )
+    } );
+    this.addChild( new WhiteBox( 0, 0, PANEL_WIDTH, PANEL_HEIGHT, tandem.createTandem( 'whiteBox' ) ) );
 
     // add the dynamic title that indicates the resistance
     var dynamicResistanceTitle = new Text( '', {
       font: new PhetFont( 28 ),
       fill: '#F00',
-      maxWidth: panelWidth * 0.9,
+      maxWidth: PANEL_WIDTH * 0.9,
       top: 12,
       tandem: tandem.createTandem( 'dynamicResistanceTitle' )
     } );
@@ -80,16 +108,12 @@ define( function( require ) {
         resistanceString,
         Util.toFixed( resistance, numDecimalDigits ),
         ohmString );
-      dynamicResistanceTitle.centerX = panelWidth / 2;
+      dynamicResistanceTitle.centerX = PANEL_WIDTH / 2;
     } );
-
-    // xy grid that controls where the sliders and associated labels appear, values empirically determined
-    var yCoords = [ 78, 118, 388, 453 ];
-    var xCoords = [ 65, 180, 295 ];
 
     // Calculate a max width for the textual labels so that the labels don't overlap or go outside the bounds of the
     // box.  The multiplier is empirically determined.
-    var maxTextWidth = panelWidth * 0.25;
+    var maxTextWidth = PANEL_WIDTH * 0.25;
 
     this.addChild( new Text( resistivitySymbolString, {
       font: new PhetFont( { family: FONT_FAMILY, size: 60 } ),
@@ -109,15 +133,7 @@ define( function( require ) {
       maxWidth: maxTextWidth,
       tandem: tandem.createTandem( 'resistivityText' )
     } ) );
-    this.addChild( textResistivity = new Text( Util.toFixed( model.resistivityProperty.value, 2 ), {
-      font: new PhetFont( 30 ),
-      textAlign: 'end',
-      textAnchor: 'end',
-      fill: ResistanceInAWireConstants.BLACK_COLOR,
-      centerX: xCoords[ 0 ],
-      top: yCoords[ 2 ],
-      tandem: tandem.createTandem( 'resistivityValueText' )
-    } ) );
+    this.addChild( textResistivity );
     this.addChild( new Text( StringUtils.format( pattern0ResistanceUnits1LengthUnitsString, ohmsSymbolString, cmString ), {
       font: new PhetFont( 30 ),
       textAlign: 'start',
@@ -147,15 +163,7 @@ define( function( require ) {
       maxWidth: maxTextWidth,
       tandem: tandem.createTandem( 'lengthText' )
     } ) );
-    this.addChild( textLength = new Text( Util.toFixed( model.lengthProperty.value, 2 ), {
-      font: new PhetFont( 28 ),
-      textAlign: 'end',
-      textAnchor: 'end',
-      fill: '#000',
-      centerX: xCoords[ 1 ],
-      top: yCoords[ 2 ],
-      tandem: tandem.createTandem( 'lengthValueText' )
-    } ) );
+    this.addChild( textLength );
     this.addChild( new Text( cmString, {
       font: new PhetFont( 28 ),
       textAlign: 'start',
@@ -185,15 +193,7 @@ define( function( require ) {
       maxWidth: maxTextWidth,
       tandem: tandem.createTandem( 'areaText' )
     } ) );
-    this.addChild( textArea = new Text( Util.toFixed( model.areaProperty.value, 2 ), {
-      font: new PhetFont( 28 ),
-      textAlign: 'end',
-      textAnchor: 'end',
-      fill: ResistanceInAWireConstants.BLACK_COLOR,
-      centerX: xCoords[ 2 ],
-      top: yCoords[ 2 ],
-      tandem: tandem.createTandem( 'areaValueText' )
-    } ) );
+    this.addChild( textArea );
     this.addChild( new RichText( cmString + '<sup>2</sup>', {
       font: new PhetFont( 28 ),
       textAlign: 'start',
@@ -212,17 +212,16 @@ define( function( require ) {
     this.addChild( new Slider( xCoords[ 2 ], model.areaProperty,
       ResistanceInAWireConstants.AREA_RANGE, tandem.createTandem( 'areaSlider' ) ) );
 
-
     // Update the text when property values change. This does not need an unlink because it exists for the life of the sim.
-    model.resistivityProperty.link( function updateTextResistivity( value ) {
+    model.resistivityProperty.link( function( value ) {
       textResistivity.text = Util.toFixed( value, 2 );
       textResistivity.centerX = xCoords[ 0 ];
     } );
-    model.lengthProperty.link( function updateTextLength( value ) {
+    model.lengthProperty.link( function( value ) {
       textLength.text = Util.toFixed( value, 2 );
       textLength.centerX = xCoords[ 1 ];
     } );
-    model.areaProperty.link( function updateTextArea( value ) {
+    model.areaProperty.link( function( value ) {
       textArea.text = Util.toFixed( value, 2 );
       textArea.centerX = xCoords[ 2 ];
     } );

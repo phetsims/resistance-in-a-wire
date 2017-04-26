@@ -117,7 +117,7 @@ define( function( require ) {
 
     // When the resistance changes, we change the shape of the wire. This does not need an unlink because it exists for
     // the life of the sim.
-    model.resistanceProperty.link( function updateResistor() {
+    model.resistanceProperty.link( function() {
 
       wireEndShape = new Shape();
       height = areaToHeight( model.areaProperty.value );

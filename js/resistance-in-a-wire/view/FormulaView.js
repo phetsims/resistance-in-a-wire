@@ -99,7 +99,7 @@ define( function( require ) {
 
       // The size of the formula letter will scale with the value the letter represents. This does not need an unlink
       // because it exists for the life of the sim.
-      entry.property.link( function updateProperty( value ) {
+      entry.property.link( function( value ) {
         view.matrix = Matrix3.scaling( scale * value + 0.125 );
         view.center = entry.position;
       } );
