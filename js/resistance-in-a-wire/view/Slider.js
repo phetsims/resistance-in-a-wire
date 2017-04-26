@@ -45,18 +45,19 @@ define( function( require ) {
     var thumb = new Image( thumbImage, {
       centerX: 0,
       top: 0,
-      scale: ResistanceInAWireConstants.THUMB_WIDTH / thumbImage.width
+      scale: ResistanceInAWireConstants.THUMB_WIDTH / thumbImage.width,
+      cursor: 'pointer',
+      tandem: tandem.createTandem( 'thumb')
     } );
-    var track = new Node( { children: [ thumb ], cursor: 'pointer' } );
 
     var clickYOffset;
     var yMin = 0;
-    var yMax = HEIGHT - track.height;
+    var yMax = HEIGHT - thumb.height;
 
     var valueToPosition = new LinearFunction( range.min, range.max, yMax, yMin, true );
     var positionToValue = new LinearFunction( yMax, yMin, range.min, range.max, true );
-    this.addChild( track );
-    track.addInputListener( new SimpleDragHandler( {
+    this.addChild( thumb );
+    thumb.addInputListener( new SimpleDragHandler( {
       allowTouchSnag: true,
       start: function( event ) {
         clickYOffset = self.globalToParentPoint( event.pointer.point ).y - event.currentTarget.y;
@@ -72,7 +73,7 @@ define( function( require ) {
     // Change the slider placement on the track when the property changes. This does not need an unlink because it
     // exists for the life of the sim.
     valueProperty.link( function( value ) {
-      track.y = valueToPosition( value );
+      thumb.y = valueToPosition( value );
     } );
   }
 

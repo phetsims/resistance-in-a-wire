@@ -20,11 +20,16 @@ define( function( require ) {
    * @param {number} y - the y coordinate of the box
    * @param {number} w - the width of the box
    * @param {number} h - the height of the box
+   * @param {Tandem} tandem
    * @constructor
    */
-  function WhiteBox( x, y, w, h ) {
+  function WhiteBox( x, y, w, h, tandem ) {
     Node.call( this );
-    this.addChild( new Rectangle( x, y, w, h, 12, 12, { fill: '#FFF', stroke: '#000', lineWidth: 3 } ) );
+    this.addChild( new Rectangle( x, y, w, h, 12, 12, {
+      fill: '#FFF',
+      stroke: '#000',
+      lineWidth: 3,
+      tandem: tandem.createTandem( 'whiteRectangle') } ) );
   }
 
   resistanceInAWire.register( 'WhiteBox', WhiteBox );

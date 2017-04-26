@@ -41,9 +41,10 @@ define( function( require ) {
    * @param {ResistanceInAWireModel} model
    * @param {number} centerX
    * @param {number} centerY
+   * @param {Tandem} tandem
    * @constructor
    */
-  function WireView( model, centerX, centerY ) {
+  function WireView( model, centerX, centerY, tandem ) {
 
     Node.call( this );
 
@@ -66,20 +67,22 @@ define( function( require ) {
 
     this.addChild( bodyPath = new Path( wireBodyShape, {
       stroke: 'black',
-      lineWidth: 1
+      lineWidth: 1,
+      tandem: tandem.createTandem( 'wireBody' )
     } ) );
 
     this.addChild( endPath = new Path( wireEndShape, {
       stroke: 'black',
       fill: '#E8B282',
-      lineWidth: 1
+      lineWidth: 1,
+      tandem: tandem.createTandem( 'wireEnd' )
     } ) );
 
-    var dotGroup = new Node();
+    var dotGroupTandem = tandem.createTandem( 'dotGroup' );
+    var dotGroup = new Node( { tandem: dotGroupTandem } );
     var dotGridColumns = Util.roundSymmetric( MAX_WIDTH_INCLUDING_ROUNDED_ENDS / Math.sqrt( AREA_PER_DOT ) );
     var dotGridRows = Util.roundSymmetric( MAX_WIRE_VIEW_HEIGHT / Math.sqrt( AREA_PER_DOT ) );
-    var dots = [];
-
+    var dotGroupGroupTandem = dotGroupTandem.createGroupTandem( 'wireDots' );
     // create the dots by placing them on a grid, but move each one randomly a bit to make them look irregular
     for ( var i = 1; i < dotGridColumns; i++ ) {
       for ( var j = 1; j < dotGridRows; j++ ) {
@@ -90,9 +93,9 @@ define( function( require ) {
                    ( phet.joist.random.nextDouble() - 0.5 ) * DOT_POSITION_RANDOMIZATION_FACTOR,
           centerY: j * ( MAX_WIRE_VIEW_HEIGHT / dotGridRows ) -
                    MAX_WIRE_VIEW_HEIGHT / 2 +
-                   ( phet.joist.random.nextDouble() - 0.5 ) * DOT_POSITION_RANDOMIZATION_FACTOR
+                   ( phet.joist.random.nextDouble() - 0.5 ) * DOT_POSITION_RANDOMIZATION_FACTOR,
+          tandem: dotGroupGroupTandem.createNextTandem()
         } );
-        dots.push( dot );
         dotGroup.addChild( dot );
       }
     }
@@ -108,7 +111,7 @@ define( function( require ) {
     );
 
     // randomize the array of dots so that we can show/hide them in a random way as resistivity changes
-    dots = _.shuffle( dots );
+    dotGroup.children = _.shuffle( dotGroup.children );
 
     this.addChild( dotGroup );
 
@@ -178,7 +181,7 @@ define( function( require ) {
 
       // set the number of visible dots based on the resistivity
       var numDotsToShow = resistivityToNumDots( model.resistivityProperty.value );
-      dots.forEach( function( dot, index ) {
+      dotGroup.children.forEach( function( dot, index ) {
         dot.visible = index < numDotsToShow;
       } );
     } );

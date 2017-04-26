@@ -33,9 +33,10 @@ define( function( require ) {
    * @param {ResistanceInAWireModel} model
    * @param {number} x
    * @param {number} y
+   * @param {Tandem} tandem
    * @constructor
    */
-  function FormulaView( model, x, y ) {
+  function FormulaView( model, x, y, tandem ) {
 
     var self = this;
     Node.call( this, { x: x, y: y } );
@@ -47,28 +48,32 @@ define( function( require ) {
         x: 20,
         y: 0,
         targetProperty: model.resistanceProperty,
-        color: '#ed1c24'
+        color: '#ed1c24',
+        tandem: tandem.createTandem( 'resistanceSymbol' )
       },
       {
         label: resistivitySymbolString,
         x: 220,
         y: -90,
         targetProperty: model.resistivityProperty,
-        color: ResistanceInAWireConstants.BLUE_COLOR
+        color: ResistanceInAWireConstants.BLUE_COLOR,
+        tandem: tandem.createTandem( 'resistivitySymbol' )
       },
       {
         label: lengthSymbolString,
         x: 320,
         y: -90,
         targetProperty: model.lengthProperty,
-        color: ResistanceInAWireConstants.BLUE_COLOR
+        color: ResistanceInAWireConstants.BLUE_COLOR,
+        tandem: tandem.createTandem( 'lengthSymbol' )
       },
       {
         label: areaSymbolString,
         x: 280,
         y: 90,
         targetProperty: model.areaProperty,
-        color: ResistanceInAWireConstants.BLUE_COLOR
+        color: ResistanceInAWireConstants.BLUE_COLOR,
+        tandem: tandem.createTandem( 'areaSymbol' )
       }
     ];
 
@@ -77,10 +82,15 @@ define( function( require ) {
       font: new PhetFont( { family: FONT_FAMILY, size: 90 } ),
       fill: '#000',
       centerX: 100,
-      centerY: 0
+      centerY: 0,
+      tandem: tandem.createTandem( 'equalsSign' )
     } ) );
 
-    self.addChild( new Path( Shape.lineSegment( 150, 8, 400, 8 ), { stroke: 'black', lineWidth: 6 } ) );
+    self.addChild( new Path( Shape.lineSegment( 150, 8, 400, 8 ), {
+      stroke: 'black',
+      lineWidth: 6,
+      tandem: tandem.createTandem( 'dividingLine' )
+    } ) );
 
     //dynamic text
     texts.forEach( function( entry ) {
@@ -89,7 +99,8 @@ define( function( require ) {
         font: new PhetFont( { family: FONT_FAMILY, size: 115 } ),
         fill: entry.color,
         centerX: entry.x,
-        centerY: entry.y
+        centerY: entry.y,
+        tandem: entry.tandem
       } );
       self.addChild( entry.view );
 

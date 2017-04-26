@@ -54,16 +54,17 @@ define( function( require ) {
     var textResistivity;
     var textLength;
     var textArea;
-    this.addChild( new WhiteBox( 0, 0, panelWidth, panelHeight ) );
+    this.addChild( new WhiteBox( 0, 0, panelWidth, panelHeight, tandem.createTandem( 'whiteBox' ) ) );
 
     // add the dynamic title that indicates the resistance
-    var dynamicTitle = new Text( '', {
+    var dynamicResistanceTitle = new Text( '', {
       font: new PhetFont( 28 ),
       fill: '#F00',
       maxWidth: panelWidth * 0.9,
-      top: 12
+      top: 12,
+      tandem: tandem.createTandem( 'dynamicResistanceTitle' )
     } );
-    this.addChild( dynamicTitle );
+    this.addChild( dynamicResistanceTitle );
 
     // Update the title when the resistance changes. This does not need an unlink because it exists for the life of the sim.
     model.resistanceProperty.link( function( resistance ) {
@@ -74,12 +75,12 @@ define( function( require ) {
       if ( resistance > 99 ) {
         numDecimalDigits = 0;
       }
-      dynamicTitle.text = StringUtils.format(
+      dynamicResistanceTitle.text = StringUtils.format(
         pattern0Label1Value2UnitsString,
         resistanceString,
         Util.toFixed( resistance, numDecimalDigits ),
         ohmString );
-      dynamicTitle.centerX = panelWidth / 2;
+      dynamicResistanceTitle.centerX = panelWidth / 2;
     } );
 
     // xy grid that controls where the sliders and associated labels appear, values empirically determined
@@ -95,7 +96,8 @@ define( function( require ) {
       fill: ResistanceInAWireConstants.BLUE_COLOR,
       centerX: xCoords[ 0 ],
       centerY: yCoords[ 0 ],
-      maxWidth: maxTextWidth
+      maxWidth: maxTextWidth,
+      tandem: tandem.createTandem( 'resistivitySymbolText' )
     } ) );
     this.addChild( new Text( resistivityString, {
       font: new PhetFont( 16 ),
@@ -104,7 +106,8 @@ define( function( require ) {
       fill: ResistanceInAWireConstants.BLUE_COLOR,
       centerX: xCoords[ 0 ],
       top: yCoords[ 1 ],
-      maxWidth: maxTextWidth
+      maxWidth: maxTextWidth,
+      tandem: tandem.createTandem( 'resistivityText' )
     } ) );
     this.addChild( textResistivity = new Text( Util.toFixed( model.resistivityProperty.value, 2 ), {
       font: new PhetFont( 30 ),
@@ -112,7 +115,8 @@ define( function( require ) {
       textAnchor: 'end',
       fill: ResistanceInAWireConstants.BLACK_COLOR,
       centerX: xCoords[ 0 ],
-      top: yCoords[ 2 ]
+      top: yCoords[ 2 ],
+      tandem: tandem.createTandem( 'resistivityValueText' )
     } ) );
     this.addChild( new Text( StringUtils.format( pattern0ResistanceUnits1LengthUnitsString, ohmsSymbolString, cmString ), {
       font: new PhetFont( 30 ),
@@ -121,7 +125,8 @@ define( function( require ) {
       fill: ResistanceInAWireConstants.BLUE_COLOR,
       centerX: xCoords[ 0 ],
       bottom: yCoords[ 3 ],
-      maxWidth: maxTextWidth
+      maxWidth: maxTextWidth,
+      tandem: tandem.createTandem( 'resistivityUnitText' )
     } ) );
 
     this.addChild( new Text( lengthSymbolString, {
@@ -129,7 +134,8 @@ define( function( require ) {
       fill: ResistanceInAWireConstants.BLUE_COLOR,
       centerX: xCoords[ 1 ],
       centerY: yCoords[ 0 ],
-      maxWidth: maxTextWidth
+      maxWidth: maxTextWidth,
+      tandem: tandem.createTandem( 'lengthSymbolText' )
     } ) );
     this.addChild( new Text( lengthString, {
       font: new PhetFont( 16 ),
@@ -138,7 +144,8 @@ define( function( require ) {
       fill: ResistanceInAWireConstants.BLUE_COLOR,
       centerX: xCoords[ 1 ],
       top: yCoords[ 1 ],
-      maxWidth: maxTextWidth
+      maxWidth: maxTextWidth,
+      tandem: tandem.createTandem( 'lengthText' )
     } ) );
     this.addChild( textLength = new Text( Util.toFixed( model.lengthProperty.value, 2 ), {
       font: new PhetFont( 28 ),
@@ -146,7 +153,8 @@ define( function( require ) {
       textAnchor: 'end',
       fill: '#000',
       centerX: xCoords[ 1 ],
-      top: yCoords[ 2 ]
+      top: yCoords[ 2 ],
+      tandem: tandem.createTandem( 'lengthValueText' )
     } ) );
     this.addChild( new Text( cmString, {
       font: new PhetFont( 28 ),
@@ -155,7 +163,8 @@ define( function( require ) {
       fill: ResistanceInAWireConstants.BLUE_COLOR,
       centerX: xCoords[ 1 ],
       bottom: yCoords[ 3 ],
-      maxWidth: maxTextWidth
+      maxWidth: maxTextWidth,
+      tandem: tandem.createTandem( 'lengthUnitsText' )
     } ) );
 
     this.addChild( new Text( areaSymbolString, {
@@ -163,7 +172,8 @@ define( function( require ) {
       fill: ResistanceInAWireConstants.BLUE_COLOR,
       centerX: xCoords[ 2 ],
       centerY: yCoords[ 0 ],
-      maxWidth: maxTextWidth
+      maxWidth: maxTextWidth,
+      tandem: tandem.createTandem( 'areaSymbolText' )
     } ) );
     this.addChild( new Text( areaString, {
       font: new PhetFont( 16 ),
@@ -172,7 +182,8 @@ define( function( require ) {
       fill: ResistanceInAWireConstants.BLUE_COLOR,
       centerX: xCoords[ 2 ],
       top: yCoords[ 1 ],
-      maxWidth: maxTextWidth
+      maxWidth: maxTextWidth,
+      tandem: tandem.createTandem( 'areaText' )
     } ) );
     this.addChild( textArea = new Text( Util.toFixed( model.areaProperty.value, 2 ), {
       font: new PhetFont( 28 ),
@@ -180,7 +191,8 @@ define( function( require ) {
       textAnchor: 'end',
       fill: ResistanceInAWireConstants.BLACK_COLOR,
       centerX: xCoords[ 2 ],
-      top: yCoords[ 2 ]
+      top: yCoords[ 2 ],
+      tandem: tandem.createTandem( 'areaValueText' )
     } ) );
     this.addChild( new RichText( cmString + '<sup>2</sup>', {
       font: new PhetFont( 28 ),
@@ -189,15 +201,16 @@ define( function( require ) {
       fill: ResistanceInAWireConstants.BLUE_COLOR,
       centerX: xCoords[ 2 ],
       bottom: yCoords[ 3 ],
-      maxWidth: maxTextWidth
+      maxWidth: maxTextWidth,
+      tandem: tandem.createTandem( 'areaUnitText' )
     } ) );
 
     this.addChild( new Slider( xCoords[ 0 ], model.resistivityProperty,
-      ResistanceInAWireConstants.RESISTIVITY_RANGE, tandem.createTandem( 'resistivitySlider') ) );
+      ResistanceInAWireConstants.RESISTIVITY_RANGE, tandem.createTandem( 'resistivitySlider' ) ) );
     this.addChild( new Slider( xCoords[ 1 ], model.lengthProperty,
-      ResistanceInAWireConstants.LENGTH_RANGE, tandem.createTandem( 'lengthSlider') ) );
+      ResistanceInAWireConstants.LENGTH_RANGE, tandem.createTandem( 'lengthSlider' ) ) );
     this.addChild( new Slider( xCoords[ 2 ], model.areaProperty,
-      ResistanceInAWireConstants.AREA_RANGE, tandem.createTandem( 'areaSlider') ) );
+      ResistanceInAWireConstants.AREA_RANGE, tandem.createTandem( 'areaSlider' ) ) );
 
 
     // Update the text when property values change. This does not need an unlink because it exists for the life of the sim.
