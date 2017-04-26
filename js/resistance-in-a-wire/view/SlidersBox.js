@@ -18,7 +18,7 @@ define( function( require ) {
   var RichText = require( 'SCENERY_PHET/RichText' );
   var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
-  var WhiteBox = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/WhiteBox' );
+  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
 
   // strings
@@ -82,7 +82,14 @@ define( function( require ) {
       top: yCoords[ 2 ],
       tandem: tandem.createTandem( 'areaValueText' )
     } );
-    this.addChild( new WhiteBox( 0, 0, PANEL_WIDTH, PANEL_HEIGHT, tandem.createTandem( 'whiteBox' ) ) );
+
+    // TODO: use Panel and correct container structuring
+    this.addChild( new Rectangle( 0, 0, PANEL_WIDTH, PANEL_HEIGHT, 12, 12, {
+      fill: '#FFF',
+      stroke: '#000',
+      lineWidth: 3,
+      tandem: tandem.createTandem( 'panel' )
+    } ) );
 
     // add the dynamic title that indicates the resistance
     var dynamicResistanceTitle = new Text( '', {
