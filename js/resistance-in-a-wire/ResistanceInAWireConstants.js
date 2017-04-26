@@ -15,7 +15,7 @@ define( function( require ) {
   var ResistanceInAWireConstants = {
 
     // constants
-    KNOB_WIDTH: 32,  // Empirically determined.
+    THUMB_WIDTH: 32,  // Empirically determined.
 
     // colors
     BLUE_COLOR: '#0f0ffb',

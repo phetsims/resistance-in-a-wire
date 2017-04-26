@@ -21,9 +21,6 @@ define( function( require ) {
   var WhiteBox = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/WhiteBox' );
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
 
-  // images
-  var sliderImage = require( 'image!RESISTANCE_IN_A_WIRE/slider.png' );
-
   // strings
   var areaString = require( 'string!RESISTANCE_IN_A_WIRE/area' );
   var areaSymbolString = require( 'string!RESISTANCE_IN_A_WIRE/areaSymbol' );
@@ -195,9 +192,12 @@ define( function( require ) {
       maxWidth: maxTextWidth
     } ) );
 
-    this.addChild( new Slider( xCoords[ 0 ], 143, 240, model.resistivityProperty, sliderImage, ResistanceInAWireConstants.RESISTIVITY_RANGE ) );
-    this.addChild( new Slider( xCoords[ 1 ], 143, 240, model.lengthProperty, sliderImage, ResistanceInAWireConstants.LENGTH_RANGE ) );
-    this.addChild( new Slider( xCoords[ 2 ], 143, 240, model.areaProperty, sliderImage, ResistanceInAWireConstants.AREA_RANGE ) );
+    this.addChild( new Slider( xCoords[ 0 ], model.resistivityProperty,
+      ResistanceInAWireConstants.RESISTIVITY_RANGE, tandem.createTandem( 'resistivitySlider') ) );
+    this.addChild( new Slider( xCoords[ 1 ], model.lengthProperty,
+      ResistanceInAWireConstants.LENGTH_RANGE, tandem.createTandem( 'lengthSlider') ) );
+    this.addChild( new Slider( xCoords[ 2 ], model.areaProperty,
+      ResistanceInAWireConstants.AREA_RANGE, tandem.createTandem( 'areaSlider') ) );
 
 
     // Update the text when property values change. This does not need an unlink because it exists for the life of the sim.

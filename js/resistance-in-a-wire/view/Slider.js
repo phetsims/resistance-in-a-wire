@@ -19,31 +19,39 @@ define( function( require ) {
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
   var ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
 
+  // constant
+  var Y_POSITION = 143;
+  var HEIGHT = 240;
+
+  // images
+  var thumbImage = require( 'image!RESISTANCE_IN_A_WIRE/thumb.png' );
+
   /**
    * @param {number} x
-   * @param {number} y
-   * @param {number} h
    * @param {Property.<number>} valueProperty
-   * @param {HTMLImageElement} image
    * @param {RangeWithValue} range
    * @param {Tandem} tandem
    * @constructor
    */
-  function Slider( x, y, h, valueProperty, image, range, tandem ) {
-
+  function Slider( x, valueProperty, range, tandem ) {
     var self = this;
-    Node.call( this, { x: x, y: y, tandem: tandem } );
+    Node.call( this, { x: x, y: Y_POSITION, tandem: tandem } );
 
-    this.addChild( new Rectangle( -3, 0, 6, h, { fill: 'black', tandem: tandem.createTandem( 'track') } ) );
+    this.addChild( new Rectangle( -3, 0, 6, HEIGHT, {
+      fill: 'black',
+      tandem: tandem.createTandem( 'track' )
+    } ) );
 
-    var knob = new Image( image );
-    knob.scale( ResistanceInAWireConstants.KNOB_WIDTH / knob.width );
-    knob.mutate( { centerX: 0, top: 0 } );
-    var track = new Node( { children: [ knob ], cursor: 'pointer' } );
+    var thumb = new Image( thumbImage, {
+      centerX: 0,
+      top: 0,
+      scale: ResistanceInAWireConstants.THUMB_WIDTH / thumbImage.width
+    } );
+    var track = new Node( { children: [ thumb ], cursor: 'pointer' } );
 
     var clickYOffset;
     var yMin = 0;
-    var yMax = h - track.height;
+    var yMax = HEIGHT - track.height;
 
     var valueToPosition = new LinearFunction( range.min, range.max, yMax, yMin, true );
     var positionToValue = new LinearFunction( yMax, yMin, range.min, range.max, true );
@@ -59,7 +67,6 @@ define( function( require ) {
         valueProperty.set( positionToValue( y ) );
       }
     } ) );
-
 
 
     // Change the slider placement on the track when the property changes. This does not need an unlink because it

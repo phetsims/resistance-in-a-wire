@@ -1,1 +1,1 @@
-The SVG asset used to generate the slider knob png can be found in the assets directory of the Ohm's Law simulation.
+The SVG asset used to generate the slider thumb png can be found in the assets directory of the Ohm's Law simulation.
