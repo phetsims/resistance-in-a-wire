@@ -55,7 +55,7 @@ define( function( require ) {
     var yCoords = [ 78, 118, 388, 453 ];
     var xCoords = [ 65, 180, 295 ];
 
-    var textResistivity = new Text( Util.toFixed( model.resistivityProperty.value, 2 ), {
+    var resistivityText = new Text( Util.toFixed( model.resistivityProperty.value, 2 ), {
       font: new PhetFont( 30 ),
       textAlign: 'end',
       textAnchor: 'end',
@@ -64,7 +64,7 @@ define( function( require ) {
       top: yCoords[ 2 ],
       tandem: tandem.createTandem( 'resistivityValueText' )
     } );
-    var textLength = new Text( Util.toFixed( model.lengthProperty.value, 2 ), {
+    var lengthText = new Text( Util.toFixed( model.lengthProperty.value, 2 ), {
       font: new PhetFont( 28 ),
       textAlign: 'end',
       textAnchor: 'end',
@@ -73,7 +73,7 @@ define( function( require ) {
       top: yCoords[ 2 ],
       tandem: tandem.createTandem( 'lengthValueText' )
     } );
-    var textArea = new Text( Util.toFixed( model.areaProperty.value, 2 ), {
+    var areaText = new Text( Util.toFixed( model.areaProperty.value, 2 ), {
       font: new PhetFont( 28 ),
       textAlign: 'end',
       textAnchor: 'end',
@@ -107,7 +107,8 @@ define( function( require ) {
         pattern0Label1Value2UnitsString,
         resistanceString,
         Util.toFixed( resistance, numDecimalDigits ),
-        ohmString );
+        ohmString
+      );
       dynamicResistanceTitle.centerX = PANEL_WIDTH / 2;
     } );
 
@@ -133,7 +134,7 @@ define( function( require ) {
       maxWidth: maxTextWidth,
       tandem: tandem.createTandem( 'resistivityText' )
     } ) );
-    this.addChild( textResistivity );
+    this.addChild( resistivityText );
     this.addChild( new Text( StringUtils.format( pattern0ResistanceUnits1LengthUnitsString, ohmsSymbolString, cmString ), {
       font: new PhetFont( 30 ),
       textAlign: 'start',
@@ -163,7 +164,7 @@ define( function( require ) {
       maxWidth: maxTextWidth,
       tandem: tandem.createTandem( 'lengthText' )
     } ) );
-    this.addChild( textLength );
+    this.addChild( lengthText );
     this.addChild( new Text( cmString, {
       font: new PhetFont( 28 ),
       textAlign: 'start',
@@ -193,7 +194,7 @@ define( function( require ) {
       maxWidth: maxTextWidth,
       tandem: tandem.createTandem( 'areaText' )
     } ) );
-    this.addChild( textArea );
+    this.addChild( areaText );
     this.addChild( new RichText( cmString + '<sup>2</sup>', {
       font: new PhetFont( 28 ),
       textAlign: 'start',
@@ -214,16 +215,16 @@ define( function( require ) {
 
     // Update the text when property values change. This does not need an unlink because it exists for the life of the sim.
     model.resistivityProperty.link( function( value ) {
-      textResistivity.text = Util.toFixed( value, 2 );
-      textResistivity.centerX = xCoords[ 0 ];
+      resistivityText.text = Util.toFixed( value, 2 );
+      resistivityText.centerX = xCoords[ 0 ];
     } );
     model.lengthProperty.link( function( value ) {
-      textLength.text = Util.toFixed( value, 2 );
-      textLength.centerX = xCoords[ 1 ];
+      lengthText.text = Util.toFixed( value, 2 );
+      lengthText.centerX = xCoords[ 1 ];
     } );
     model.areaProperty.link( function( value ) {
-      textArea.text = Util.toFixed( value, 2 );
-      textArea.centerX = xCoords[ 2 ];
+      areaText.text = Util.toFixed( value, 2 );
+      areaText.centerX = xCoords[ 2 ];
     } );
 
     // pass options through
