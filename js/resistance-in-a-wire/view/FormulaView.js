@@ -2,6 +2,7 @@
 
 /**
  * Block shows R = ρL/A formula with letters scaling
+ *
  * @author Vasily Shakhov (Mlearner)
  * @author Anton Ulyanov (Mlearner)
  * @author John Blanco (PhET Interactive Simulations)
@@ -19,6 +20,7 @@ define( function( require ) {
   var Text = require( 'SCENERY/nodes/Text' );
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
   var ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
+  var Vector2 = require( 'DOT/Vector2' );
 
   // strings
   var areaSymbolString = require( 'string!RESISTANCE_IN_A_WIRE/areaSymbol' );
@@ -41,43 +43,34 @@ define( function( require ) {
     var self = this;
     Node.call( this, { x: x, y: y } );
 
-    var texts = [
-      {
-        label: resistanceSymbolString,
-        scale: 3 / 2,
-        x: 20,
-        y: 0,
-        targetProperty: model.resistanceProperty,
-        color: '#ed1c24',
-        tandem: tandem.createTandem( 'resistanceSymbol' )
-      },
-      {
-        label: resistivitySymbolString,
-        x: 220,
-        y: -90,
-        targetProperty: model.resistivityProperty,
-        color: ResistanceInAWireConstants.BLUE_COLOR,
-        tandem: tandem.createTandem( 'resistivitySymbol' )
-      },
-      {
-        label: lengthSymbolString,
-        x: 320,
-        y: -90,
-        targetProperty: model.lengthProperty,
-        color: ResistanceInAWireConstants.BLUE_COLOR,
-        tandem: tandem.createTandem( 'lengthSymbol' )
-      },
-      {
-        label: areaSymbolString,
-        x: 280,
-        y: 90,
-        targetProperty: model.areaProperty,
-        color: ResistanceInAWireConstants.BLUE_COLOR,
-        tandem: tandem.createTandem( 'areaSymbol' )
-      }
-    ];
+    var texts = [ {
+      label: resistanceSymbolString,
+      scale: 3 / 2,
+      position: new Vector2( 20, 0 ),
+      property: model.resistanceProperty,
+      color: '#ed1c24',
+      tandem: tandem.createTandem( 'resistanceSymbol' )
+    }, {
+      label: resistivitySymbolString,
+      position: new Vector2( 220, -90 ),
+      property: model.resistivityProperty,
+      color: ResistanceInAWireConstants.BLUE_COLOR,
+      tandem: tandem.createTandem( 'resistivitySymbol' )
+    }, {
+      label: lengthSymbolString,
+      position: new Vector2( 320, -90 ),
+      property: model.lengthProperty,
+      color: ResistanceInAWireConstants.BLUE_COLOR,
+      tandem: tandem.createTandem( 'lengthSymbol' )
+    }, {
+      label: areaSymbolString,
+      position: new Vector2( 280, 90 ),
+      property: model.areaProperty,
+      color: ResistanceInAWireConstants.BLUE_COLOR,
+      tandem: tandem.createTandem( 'areaSymbol' )
+    } ];
 
-    //static text
+    // static text
     self.addChild( new Text( '=', {
       font: new PhetFont( { family: FONT_FAMILY, size: 90 } ),
       fill: '#000',
@@ -92,29 +85,26 @@ define( function( require ) {
       tandem: tandem.createTandem( 'dividingLine' )
     } ) );
 
-    //dynamic text
+    // dynamic text
     texts.forEach( function( entry ) {
 
-      entry.view = new Text( entry.label, {
+      var view = new Text( entry.label, {
         font: new PhetFont( { family: FONT_FAMILY, size: 115 } ),
         fill: entry.color,
-        centerX: entry.x,
-        centerY: entry.y,
+        center: entry.position,
         tandem: entry.tandem
       } );
-      self.addChild( entry.view );
 
-
-      entry.scale = entry.scale || 1 / entry.targetProperty.value;
+      var scale = entry.scale || 1 / entry.property.value;
 
       // The size of the formula letter will scale with the value the letter represents. This does not need an unlink
       // because it exists for the life of the sim.
-      entry.targetProperty.link( function updateProperty( val ) {
-        entry.view.matrix = Matrix3.identity();
-        entry.view.scale( entry.scale * val + 0.125 );
-        entry.view.centerX = entry.x;
-        entry.view.centerY = entry.y;
+      entry.property.link( function updateProperty( value ) {
+        view.matrix = Matrix3.scaling( scale * value + 0.125 );
+        view.center = entry.position;
       } );
+
+      self.addChild( view );
     } );
   }
 

@@ -1,7 +1,7 @@
 // Copyright 2013-2017, University of Colorado Boulder
 
 /**
- * Model container for the "resistance-in-a-wire" module.
+ * Model which includes resistivity, length, area and resistance.
  *
  * @author Vasily Shakhov (Mlearner)
  * @author Anton Ulyanov (Mlearner)
@@ -26,32 +26,44 @@ define( function( require ) {
    */
   function ResistanceInAWireModel( tandem ) {
 
-    // @public {Property.<number>}  in Ohm* cm
+    // @public {Property.<number>} in Ohm*cm
     this.resistivityProperty = new NumberProperty( ResistanceInAWireConstants.RESISTIVITY_RANGE.getDefaultValue(), {
       tandem: tandem.createTandem( 'resistivityProperty' ),
-      phetioValueType: TNumber( {type: 'FloatingPoint', units: 'ohm-centimeters', range: ResistanceInAWireConstants.RESISTIVITY_RANGE})
+      phetioValueType: TNumber( {
+        type: 'FloatingPoint',
+        units: 'ohm-centimeters',
+        range: ResistanceInAWireConstants.RESISTIVITY_RANGE
+      } )
     } );
 
-    // @public {Property.<number>}  in cm
+    // @public {Property.<number>} in cm
     this.lengthProperty = new NumberProperty( ResistanceInAWireConstants.LENGTH_RANGE.getDefaultValue(), {
       tandem: tandem.createTandem( 'lengthProperty' ),
-      phetioValueType: TNumber( {type: 'FloatingPoint', units: 'centimeters', range: ResistanceInAWireConstants.LENGTH_RANGE})
+      phetioValueType: TNumber( {
+        type: 'FloatingPoint',
+        units: 'centimeters',
+        range: ResistanceInAWireConstants.LENGTH_RANGE
+      } )
     } );
 
-    // @public {Property.<number>}  in cm^2
+    // @public {Property.<number>} in cm^2
     this.areaProperty = new NumberProperty( ResistanceInAWireConstants.AREA_RANGE.getDefaultValue(), {
       tandem: tandem.createTandem( 'areaProperty' ),
-      phetioValueType: TNumber( {type: 'FloatingPoint', units: 'centimeters-squared', range: ResistanceInAWireConstants.AREA_RANGE})
+      phetioValueType: TNumber( {
+        type: 'FloatingPoint',
+        units: 'centimeters-squared',
+        range: ResistanceInAWireConstants.AREA_RANGE
+      } )
     } );
 
     // create a derived property that tracks the resistance of the wire
-    // @public {Property.<number>}  in Ohm
+    // @public {Property.<number>} in Ohms
     this.resistanceProperty = new DerivedProperty( [ this.resistivityProperty, this.lengthProperty, this.areaProperty ],
       function( resistivity, length, area ) {
         return resistivity * length / area;
       }, {
         tandem: tandem.createTandem( 'resistanceProperty' ),
-        phetioValueType: TNumber( {type: 'FloatingPoint', units: 'ohms'})
+        phetioValueType: TNumber( { type: 'FloatingPoint', units: 'ohms' } )
       }
     );
   }
@@ -59,6 +71,7 @@ define( function( require ) {
   resistanceInAWire.register( 'ResistanceInAWireModel', ResistanceInAWireModel );
 
   return inherit( Object, ResistanceInAWireModel, {
+
     /**
      * resets the properties of the model
      * @public
