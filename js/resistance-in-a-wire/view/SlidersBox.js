@@ -52,6 +52,7 @@ define( function( require ) {
     Node.call( this );
 
     // xy grid that controls where the sliders and associated labels appear, values empirically determined
+    // TODO: name these?
     var yCoords = [ 78, 118, 388, 453 ];
     var xCoords = [ 65, 180, 295 ];
 
