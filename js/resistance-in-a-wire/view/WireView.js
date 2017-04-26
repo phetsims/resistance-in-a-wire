@@ -20,6 +20,7 @@ define( function( require ) {
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
   var ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
   var Shape = require( 'KITE/Shape' );
+  var Util = require( 'DOT/Util' );
 
   // constants
   var INITIAL_WIDTH = 450;
@@ -75,8 +76,8 @@ define( function( require ) {
     } ) );
 
     var dotGroup = new Node();
-    var dotGridColumns = Math.round( MAX_WIDTH_INCLUDING_ROUNDED_ENDS / Math.sqrt( AREA_PER_DOT ) );
-    var dotGridRows = Math.round( MAX_WIRE_VIEW_HEIGHT / Math.sqrt( AREA_PER_DOT ) );
+    var dotGridColumns = Util.roundSymmetric( MAX_WIDTH_INCLUDING_ROUNDED_ENDS / Math.sqrt( AREA_PER_DOT ) );
+    var dotGridRows = Util.roundSymmetric( MAX_WIRE_VIEW_HEIGHT / Math.sqrt( AREA_PER_DOT ) );
     var dots = [];
 
     // create the dots by placing them on a grid, but move each one randomly a bit to make them look irregular
