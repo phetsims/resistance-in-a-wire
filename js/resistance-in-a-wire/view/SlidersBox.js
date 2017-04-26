@@ -67,8 +67,7 @@ define( function( require ) {
     } );
     this.addChild( dynamicTitle );
 
-    // Update the title when the resistance changes. There is no need for unlink here, because the SlidersBox is never
-    // deleted, and it stays persistent throughout the whole life of the sim.
+    // Update the title when the resistance changes. This does not need an unlink because it exists for the life of the sim.
     model.resistanceProperty.link( function( resistance ) {
       var numDecimalDigits = 2;
       if ( resistance > 9 ) {
@@ -200,8 +199,7 @@ define( function( require ) {
     this.addChild( new Slider( xCoords[ 2 ], 143, 240, model.areaProperty, sliderImage, ResistanceInAWireConstants.AREA_RANGE ) );
 
 
-    // There is no need for unlink here, because the SlidersBox is never deleted, and it stays persistent throughout
-    // the whole life of the sim.
+    // Update the text when property values change. This does not need an unlink because it exists for the life of the sim.
     model.resistivityProperty.link( function updateTextResistivity( value ) {
       textResistivity.text = Util.toFixed( value, 2 );
       textResistivity.centerX = xCoords[ 0 ];

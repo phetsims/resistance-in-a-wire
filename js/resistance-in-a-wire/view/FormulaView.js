@@ -96,8 +96,8 @@ define( function( require ) {
 
       entry.scale = entry.scale || 1 / entry.targetProperty.value;
 
-      // There is no need for unlink here, because the FormulaView is never deleted, and it stays persistent throughout
-      // the whole life of the sim.
+      // The size of the formula letter will scale with the value the letter represents. This does not need an unlink
+      // because it exists for the life of the sim.
       entry.targetProperty.link( function updateProperty( val ) {
         entry.view.matrix = Matrix3.identity();
         entry.view.scale( entry.scale * val + 0.125 );

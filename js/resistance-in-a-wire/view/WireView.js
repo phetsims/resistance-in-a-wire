@@ -112,8 +112,8 @@ define( function( require ) {
 
     this.addChild( dotGroup );
 
-    // There is no need for unlink here, because the WireView is never deleted, and it stays persistent throughout
-    // the whole life of the sim.
+    // When the resistance changes, we change the shape of the wire. This does not need an unlink because it exists for
+    // the life of the sim.
     model.resistanceProperty.link( function updateResistor() {
 
       wireEndShape = new Shape();

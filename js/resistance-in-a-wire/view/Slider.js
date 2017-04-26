@@ -60,8 +60,9 @@ define( function( require ) {
     } ) );
 
 
-    // There is no need for unlink here, because the Slider is never deleted, and it stays persistent throughout
-    // the whole life of the sim.
+
+    // Change the slider placement on the track when the property changes. This does not need an unlink because it
+    // exists for the life of the sim.
     valueProperty.link( function( value ) {
       track.y = valueToPosition( value );
     } );
