@@ -58,6 +58,10 @@ define( function( require ) {
         valueProperty.set( positionToValue( y ) );
       }
     } ) );
+
+
+    // There is no need for unlink here, because the Slider is never deleted, and it stays persistent throughout
+    // the whole life of the sim.
     valueProperty.link( function( value ) {
       track.y = valueToPosition( value );
     } );
