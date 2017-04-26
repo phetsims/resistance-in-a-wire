@@ -18,12 +18,13 @@ define( function( require ) {
   var Screen = require( 'JOIST/Screen' );
 
   /**
+   * @param {Tandem} tandem
    * @constructor
    */
-  function ResistanceInAWireScreen() {
+  function ResistanceInAWireScreen( tandem ) {
     Screen.call( this,
-      function() { return new ResistanceInAWireModel(); },
-      function( model ) { return new ResistanceInAWireScreenView( model ); },
+      function() { return new ResistanceInAWireModel( tandem.createTandem( 'resistanceInAWireModel' ) ); },
+      function( model ) { return new ResistanceInAWireScreenView( model, tandem.createTandem( 'resistanceInAWireScreenView' ) ); },
       { backgroundColorProperty: new Property( '#ffffdf' ) }
     );
   }

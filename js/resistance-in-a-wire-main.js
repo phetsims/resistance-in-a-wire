@@ -12,6 +12,10 @@ define( function( require ) {
   var ResistanceInAWireScreen = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireScreen' );
   var SimLauncher = require( 'JOIST/SimLauncher' );
   var Sim = require( 'JOIST/Sim' );
+  var Tandem = require( 'TANDEM/Tandem' );
+
+  // constants
+  var tandem = Tandem.createRootTandem();
 
   // strings
   var resistanceInAWireTitleString = require( 'string!RESISTANCE_IN_A_WIRE/resistance-in-a-wire.title' );
@@ -27,7 +31,8 @@ define( function( require ) {
 
   SimLauncher.launch( function() {
     //Create and start the sim
-    var sim = new Sim( resistanceInAWireTitleString, [ new ResistanceInAWireScreen ], simOptions );
+    var sim = new Sim( resistanceInAWireTitleString,
+      [ new ResistanceInAWireScreen( tandem.createTandem( 'resistanceInAWireScreen' ) ) ], simOptions );
     sim.start();
   } );
 } );

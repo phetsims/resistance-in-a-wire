@@ -17,25 +17,41 @@ define( function( require ) {
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
   var ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
 
+  // phet-io modules
+  var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
+
   /**
+   * @param {Tandem} tandem
    * @constructor
    */
-  function ResistanceInAWireModel() {
+  function ResistanceInAWireModel( tandem ) {
 
     // @public {Property.<number>}  in Ohm* cm
-    this.resistivityProperty = new NumberProperty( ResistanceInAWireConstants.RESISTIVITY_RANGE.getDefaultValue() );
+    this.resistivityProperty = new NumberProperty( ResistanceInAWireConstants.RESISTIVITY_RANGE.getDefaultValue(), {
+      tandem: tandem.createTandem( 'resistivityProperty' ),
+      phetioValueType: TNumber( {type: 'FloatingPoint', units: 'ohm-centimeters', range: ResistanceInAWireConstants.RESISTIVITY_RANGE})
+    } );
 
     // @public {Property.<number>}  in cm
-    this.lengthProperty = new NumberProperty( ResistanceInAWireConstants.LENGTH_RANGE.getDefaultValue() );
+    this.lengthProperty = new NumberProperty( ResistanceInAWireConstants.LENGTH_RANGE.getDefaultValue(), {
+      tandem: tandem.createTandem( 'lengthProperty' ),
+      phetioValueType: TNumber( {type: 'FloatingPoint', units: 'centimeters', range: ResistanceInAWireConstants.LENGTH_RANGE})
+    } );
 
     // @public {Property.<number>}  in cm^2
-    this.areaProperty = new NumberProperty( ResistanceInAWireConstants.AREA_RANGE.getDefaultValue() );
+    this.areaProperty = new NumberProperty( ResistanceInAWireConstants.AREA_RANGE.getDefaultValue(), {
+      tandem: tandem.createTandem( 'areaProperty' ),
+      phetioValueType: TNumber( {type: 'FloatingPoint', units: 'centimeters-squared', range: ResistanceInAWireConstants.AREA_RANGE})
+    } );
 
     // create a derived property that tracks the resistance of the wire
     // @public {Property.<number>}  in Ohm
     this.resistanceProperty = new DerivedProperty( [ this.resistivityProperty, this.lengthProperty, this.areaProperty ],
       function( resistivity, length, area ) {
         return resistivity * length / area;
+      }, {
+        tandem: tandem.createTandem( 'resistanceProperty' ),
+        phetioValueType: TNumber( {type: 'FloatingPoint', units: 'ohms'})
       }
     );
   }

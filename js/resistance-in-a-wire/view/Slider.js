@@ -26,14 +26,15 @@ define( function( require ) {
    * @param {Property.<number>} valueProperty
    * @param {HTMLImageElement} image
    * @param {RangeWithValue} range
+   * @param {Tandem} tandem
    * @constructor
    */
-  function Slider( x, y, h, valueProperty, image, range ) {
+  function Slider( x, y, h, valueProperty, image, range, tandem ) {
 
     var self = this;
-    Node.call( this, { x: x, y: y } );
+    Node.call( this, { x: x, y: y, tandem: tandem } );
 
-    this.addChild( new Rectangle( -3, 0, 6, h, { fill: 'black' } ) );
+    this.addChild( new Rectangle( -3, 0, 6, h, { fill: 'black', tandem: tandem.createTandem( 'track') } ) );
 
     var knob = new Image( image );
     knob.scale( ResistanceInAWireConstants.KNOB_WIDTH / knob.width );

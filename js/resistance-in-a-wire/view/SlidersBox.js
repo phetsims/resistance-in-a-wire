@@ -44,10 +44,11 @@ define( function( require ) {
 
   /**
    * @param {ResistanceInAWireModel} model
+   * @param {Tandem} tandem
    * @param {Object} [options]
    * @constructor
    */
-  function SlidersBox( model, options ) {
+  function SlidersBox( model, tandem, options ) {
 
     Node.call( this );
 
