@@ -41,8 +41,7 @@ define( function( require ) {
       tandem: tandem.createTandem( 'arrowNode' )
     } ) );
 
-    var sliderBoxOptions = { x: 630, y: 40 };
-    var slidersBox = new SlidersBox( model, tandem.createTandem( 'slidersBox' ), sliderBoxOptions );
+    var slidersBox = new SlidersBox( model, tandem.createTandem( 'slidersBox' ), { x: 630, y: 40 } );
     this.addChild( slidersBox );
 
     this.addChild( new ResetAllButton( {
