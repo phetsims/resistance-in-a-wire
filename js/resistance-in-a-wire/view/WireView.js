@@ -87,10 +87,10 @@ define( function( require ) {
           fill: 'black',
           centerX: i * ( MAX_WIDTH_INCLUDING_ROUNDED_ENDS / dotGridColumns ) -
                    MAX_WIDTH_INCLUDING_ROUNDED_ENDS / 2 +
-                   ( Math.random() - 0.5 ) * DOT_POSITION_RANDOMIZATION_FACTOR,
+                   ( phet.joist.random.nextDouble() - 0.5 ) * DOT_POSITION_RANDOMIZATION_FACTOR,
           centerY: j * ( MAX_WIRE_VIEW_HEIGHT / dotGridRows ) -
                    MAX_WIRE_VIEW_HEIGHT / 2 +
-                   ( Math.random() - 0.5 ) * DOT_POSITION_RANDOMIZATION_FACTOR
+                   ( phet.joist.random.nextDouble() - 0.5 ) * DOT_POSITION_RANDOMIZATION_FACTOR
         } );
         dots.push( dot );
         dotGroup.addChild( dot );
