@@ -47,8 +47,16 @@ define( function( require ) {
    * @constructor
    */
   function SlidersBox( model, tandem, options ) {
+    assert && assert( !options.tandem, 'Tandem should be passed as an argument, not in the options' );
 
-    Node.call( this );
+    options = _.extend( {
+      xMargin: 30,
+      yMargin: 10,
+      fill: '#FFF',
+      stroke: '#000',
+      lineWidth: 3,
+      tandem: tandem
+    }, options);
 
     // xy grid that controls where the sliders and associated labels appear, values empirically determined
     // TODO: name these?
@@ -217,14 +225,6 @@ define( function( require ) {
 
 
     // Add all of the containing
-    this.addChild( new Panel( containingNode, {
-      xMargin: 30,
-      yMargin: 10,
-      fill: '#FFF',
-      stroke: '#000',
-      lineWidth: 3,
-      tandem: tandem.createTandem( 'containingPanel' )
-    } ) );
 
     // Update the text when property values change. This does not need an unlink because it exists for the life of the sim.
     model.resistivityProperty.link( function( value ) {
@@ -241,10 +241,10 @@ define( function( require ) {
     } );
 
     // pass options through
-    this.mutate( options );
+    Panel.call( this, containingNode, options ) ;
   }
 
   resistanceInAWire.register( 'SlidersBox', SlidersBox );
 
-  return inherit( Node, SlidersBox );
+  return inherit( Panel, SlidersBox );
 } );
