@@ -64,7 +64,7 @@ define( function( require ) {
       },
       {
         label: areaSymbolString,
-        position: new Vector2( 320, 90 ),
+        position: new Vector2( 270, 90 ),
         property: model.areaProperty,
         color: ResistanceInAWireConstants.BLUE_COLOR,
         tandem: tandem.createTandem( 'areaSymbol' )
