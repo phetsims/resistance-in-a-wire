@@ -25,7 +25,7 @@ define( function( require ) {
   var Util = require( 'DOT/Util' );
 
   // constants
-  var PERSPECTIVE_FACTOR = 0.3; // multiplier that controls the width of the ellipses on the ends of the wire
+  var PERSPECTIVE_FACTOR = 0.4; // multiplier that controls the width of the ellipses on the ends of the wire
   var DOT_RADIUS = 2;
   var DOT_POSITION_RANDOMIZATION_FACTOR = 12; // empirically determined
   var WIRE_VIEW_WIDTH_RANGE = new Range( 15, 500 ); // in screen coordinates
