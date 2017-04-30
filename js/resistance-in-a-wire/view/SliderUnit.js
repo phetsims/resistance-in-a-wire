@@ -53,7 +53,7 @@ define( function( require ) {
     var slider = new HSlider( property, range, {
       trackFillEnabled: 'black',
       tandem: tandem,
-      rotation: Math.PI / 2,
+      rotation: -Math.PI / 2,
       trackSize: new Dimension2( ResistanceInAWireConstants.SLIDER_HEIGHT - 2 * thumb.height, 4 ),
       thumbNode: thumb,
       x: 0,
