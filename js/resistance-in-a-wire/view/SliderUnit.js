@@ -36,7 +36,7 @@ define( function( require ) {
    */
   function SliderUnit( property, range, symbolString, nameString, unitString, tandem ) {
 
-    Node.call( this );
+    Node.call( this, { tandem: tandem } );
 
     // positions for vertical alignment
     var symbolStringCenterY = ResistanceInAWireConstants.SLIDER_UNIT_VERTICAL_OFFSET;
@@ -66,7 +66,7 @@ define( function( require ) {
       centerX: 0,
       centerY: symbolStringCenterY,
       maxWidth: MAX_TEXT_WIDTH,
-      tandem: tandem.createTandem( 'symbolText')
+      tandem: tandem.createTandem( 'symbolText' )
     } );
 
     var nameText = new Text( nameString, {
@@ -75,7 +75,7 @@ define( function( require ) {
       centerX: 0,
       top: nameTop,
       maxWidth: MAX_TEXT_WIDTH,
-      tandem: tandem.createTandem( 'nameText')
+      tandem: tandem.createTandem( 'nameText' )
     } );
 
     var valueText = new Text( Util.toFixed( property.value, 2 ), {
@@ -83,7 +83,7 @@ define( function( require ) {
       fill: ResistanceInAWireConstants.BLACK_COLOR,
       centerX: 0,
       top: valueTextTop,
-      tandem: tandem.createTandem( 'valueText')
+      tandem: tandem.createTandem( 'valueText' )
     } );
 
     var unitText = new RichText( unitString, {
@@ -92,7 +92,7 @@ define( function( require ) {
       centerX: 0,
       bottom: unitBottom,
       maxWidth: MAX_TEXT_WIDTH,
-      tandem: tandem.createTandem( 'unitText')
+      tandem: tandem.createTandem( 'unitText' )
     } );
 
     this.addChild( symbolText );

@@ -48,7 +48,8 @@ define( function( require ) {
       font: ResistanceInAWireConstants.READOUT_FONT,
       fill: ResistanceInAWireConstants.RED_COLOR,
       maxWidth: ResistanceInAWireConstants.SLIDERS_HORIZONTAL_SEPARATION * 2.5,
-      top: 12
+      top: 12,
+      tandem: tandem.createTandem( 'resistanceReadout' )
     } );
     content.addChild( resistanceReadout );
 
@@ -110,7 +111,7 @@ define( function( require ) {
       yMargin: 20,
       lineWidth: 3,
       resize: false,
-      tandem: tandem.createTandem( 'containingPanel' )
+      tandem: tandem
     } );
   }
 
