@@ -41,9 +41,9 @@ define( function( require ) {
     // positions for vertical alignment
     var symbolStringCenterY = ResistanceInAWireConstants.SLIDER_UNIT_VERTICAL_OFFSET;
     var nameTop = symbolStringCenterY + 40;
-    var readoutTop = nameTop + ResistanceInAWireConstants.SLIDER_HEIGHT + 40;
-    var unitBottom = readoutTop + 65;
-    var sliderCenterY = (readoutTop + nameTop) / 2;
+    var valueTextTop = nameTop + ResistanceInAWireConstants.SLIDER_HEIGHT + 40;
+    var unitBottom = valueTextTop + 65;
+    var sliderCenterY = (valueTextTop + nameTop) / 2;
 
     // thumb for the slider
     var thumb = new Image( thumbImage, { rotation: Math.PI / 2, tandem: tandem.createTandem( 'thumb' ) } );
@@ -52,7 +52,7 @@ define( function( require ) {
 
     var slider = new HSlider( property, range, {
       trackFillEnabled: 'black',
-      tandem: tandem,
+      tandem: tandem.createTandem( 'slider' ),
       rotation: -Math.PI / 2,
       trackSize: new Dimension2( ResistanceInAWireConstants.SLIDER_HEIGHT - 2 * thumb.height, 4 ),
       thumbNode: thumb,
@@ -65,7 +65,8 @@ define( function( require ) {
       fill: ResistanceInAWireConstants.BLUE_COLOR,
       centerX: 0,
       centerY: symbolStringCenterY,
-      maxWidth: MAX_TEXT_WIDTH
+      maxWidth: MAX_TEXT_WIDTH,
+      tandem: tandem.createTandem( 'symbolText')
     } );
 
     var nameText = new Text( nameString, {
@@ -73,14 +74,16 @@ define( function( require ) {
       fill: ResistanceInAWireConstants.BLUE_COLOR,
       centerX: 0,
       top: nameTop,
-      maxWidth: MAX_TEXT_WIDTH
+      maxWidth: MAX_TEXT_WIDTH,
+      tandem: tandem.createTandem( 'nameText')
     } );
 
-    var readout = new Text( Util.toFixed( property.value, 2 ), {
+    var valueText = new Text( Util.toFixed( property.value, 2 ), {
       font: ResistanceInAWireConstants.READOUT_FONT,
       fill: ResistanceInAWireConstants.BLACK_COLOR,
       centerX: 0,
-      top: readoutTop
+      top: valueTextTop,
+      tandem: tandem.createTandem( 'valueText')
     } );
 
     var unitText = new RichText( unitString, {
@@ -88,20 +91,21 @@ define( function( require ) {
       fill: ResistanceInAWireConstants.BLUE_COLOR,
       centerX: 0,
       bottom: unitBottom,
-      maxWidth: MAX_TEXT_WIDTH
+      maxWidth: MAX_TEXT_WIDTH,
+      tandem: tandem.createTandem( 'unitText')
     } );
 
     this.addChild( symbolText );
     this.addChild( nameText );
     this.addChild( slider );
-    this.addChild( readout );
+    this.addChild( valueText );
     this.addChild( unitText );
 
     // no need to unlink, present for the lifetime of the simulation
     // update value of the readout
     property.link( function( value ) {
-      readout.text = Util.toFixed( value, 2 );
-      readout.centerX = 0;
+      valueText.text = Util.toFixed( value, 2 );
+      valueText.centerX = 0;
     } );
 
   }
