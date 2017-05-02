@@ -28,7 +28,10 @@ define( function( require ) {
    */
   function ResistanceInAWireScreenView( model, tandem ) {
 
-    ScreenView.call( this, { layoutBounds: new Bounds2( 0, 0, 1024, 618 ) } );
+    ScreenView.call( this, {
+      layoutBounds: new Bounds2( 0, 0, 1024, 618 ),
+      tandem: tandem
+    } );
 
     var formulaNode = new FormulaNode( model, tandem.createTandem( 'formulaNode' ) );
     var wireNode = new WireNode( model, tandem.createTandem( 'wireNode' ) );
@@ -60,7 +63,8 @@ define( function( require ) {
       tailWidth: ResistanceInAWireConstants.TAIL_WIDTH,
       fill: ResistanceInAWireConstants.WHITE_COLOR,
       stroke: ResistanceInAWireConstants.BLACK_COLOR,
-      lineWidth: 1
+      lineWidth: 1,
+      tandem: tandem.createTandem( 'arrowNode' )
     } );
 
     this.addChild( formulaNode );

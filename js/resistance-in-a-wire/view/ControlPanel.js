@@ -76,7 +76,7 @@ define( function( require ) {
       resistivitySymbolString,
       resistivityString,
       StringUtils.format( pattern0ResistanceUnits1LengthUnitsString, ohmsSymbolString, cmString ),
-      tandem );
+      tandem.createTandem( 'resistivitySlider' ) );
 
     // create the length slider with readout and labels
     var lengthSlider = new SliderUnit(
@@ -85,7 +85,7 @@ define( function( require ) {
       lengthSymbolString,
       lengthString,
       cmString,
-      tandem );
+      tandem.createTandem( 'lengthSlider' ) );
 
     // create the area slider with readout and labels
     var areaSlider = new SliderUnit(
@@ -94,7 +94,7 @@ define( function( require ) {
       areaSymbolString,
       areaString,
       cmString + '<sup>2</sup>',
-      tandem );
+      tandem.createTandem( 'areaSlider' ) );
 
     content.addChild( resistivitySlider );
     content.addChild( lengthSlider );

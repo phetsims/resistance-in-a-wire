@@ -25,7 +25,10 @@ define( function( require ) {
     Screen.call( this,
       function() { return new ResistanceInAWireModel( tandem.createTandem( 'resistanceInAWireModel' ) ); },
       function( model ) { return new ResistanceInAWireScreenView( model, tandem.createTandem( 'resistanceInAWireScreenView' ) ); },
-      { backgroundColorProperty: new Property( '#ffffdf' ) }
+      {
+        backgroundColorProperty: new Property( '#ffffdf' ),
+        tandem: tandem
+      }
     );
   }
 
