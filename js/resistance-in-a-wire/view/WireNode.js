@@ -42,7 +42,7 @@ define( function( require ) {
    */
   function WireNode( model, tandem ) {
 
-    Node.call( this );
+    Node.call( this, { tandem: tandem } );
 
     // body of the wire
     var bodyPath = new Path( null, {

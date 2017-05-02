@@ -36,7 +36,7 @@ define( function( require ) {
   function FormulaNode( model, tandem ) {
 
     var self = this;
-    Node.call( this );
+    Node.call( this, { tandem: tandem } );
 
     // an array of attributes related to text
     var texts = [
