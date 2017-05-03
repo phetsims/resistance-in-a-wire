@@ -51,7 +51,6 @@ define( function( require ) {
     controlPanel.top = 40;
     this.addChild( controlPanel );
 
-
     var tailX = wireNode.centerX - ResistanceInAWireConstants.TAIL_LENGTH / 2;
     var tipX = wireNode.centerX + ResistanceInAWireConstants.TAIL_LENGTH / 2;
     var arrowHeight = this.layoutBounds.bottom - 47;

@@ -50,10 +50,6 @@ define( function( require ) {
       tandem: tandem
     };
 
-    // Because ControlPanel extends Panel, it needs pass a content node into its constructor to surround.
-    // Add everything to the content node, then pass content to the Panel.call().
-    var content = new Node();
-
     // Add the dynamic title that indicates the resistance.
     var resistanceReadout = new Text( '', {
       font: ResistanceInAWireConstants.READOUT_FONT,
@@ -62,7 +58,6 @@ define( function( require ) {
       top: 12,
       tandem: tandem.createTandem( 'resistanceReadout' )
     } );
-    content.addChild( resistanceReadout );
 
     // Update the title when the resistance changes.
     model.resistanceProperty.link( function( resistance ) {
@@ -88,8 +83,8 @@ define( function( require ) {
       resistivitySymbolString,
       resistivityString,
       StringUtils.format( pattern0ResistanceUnits1LengthUnitsString, ohmsSymbolString, cmString ),
-      tandem.createTandem( 'resistivitySlider' ) );
-    content.addChild( resistivitySlider );
+      tandem.createTandem( 'resistivitySlider' )
+    );
 
     // Create and add the length slider with readout and labels.
     var lengthSlider = new SliderUnit(
@@ -98,8 +93,8 @@ define( function( require ) {
       lengthSymbolString,
       lengthString,
       cmString,
-      tandem.createTandem( 'lengthSlider' ) );
-    content.addChild( lengthSlider );
+      tandem.createTandem( 'lengthSlider' )
+    );
 
     // Create and add the area slider with readout and labels.
     var areaSlider = new SliderUnit(
@@ -108,13 +103,19 @@ define( function( require ) {
       areaSymbolString,
       areaString,
       cmString + '<sup>2</sup>',
-      tandem.createTandem( 'areaSlider' ) );
-    content.addChild( areaSlider );
+      tandem.createTandem( 'areaSlider' )
+    );
 
     // Set the horizontal position of the sliders, defining the middle slider as zero.
     lengthSlider.centerX = 0;
     resistivitySlider.centerX = lengthSlider.centerX - ResistanceInAWireConstants.SLIDERS_HORIZONTAL_SEPARATION;
     areaSlider.centerX = lengthSlider.centerX + ResistanceInAWireConstants.SLIDERS_HORIZONTAL_SEPARATION;
+
+    // Because ControlPanel extends Panel, it needs pass a content node into its constructor to surround.
+    // Add everything to the content node, then pass content to the Panel.call().
+    var content = new Node( {
+      children: [ resistanceReadout, resistivitySlider, lengthSlider, areaSlider ]
+    } );
 
     Panel.call( this, content, panelOptions );
   }

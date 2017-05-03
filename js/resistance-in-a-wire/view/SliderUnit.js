@@ -36,15 +36,12 @@ define( function( require ) {
    */
   function SliderUnit( property, range, symbolString, nameString, unitString, tandem ) {
 
-    Node.call( this, { tandem: tandem } );
-
     // Positions for vertical alignment
     var symbolStringCenterY = ResistanceInAWireConstants.SLIDER_UNIT_VERTICAL_OFFSET;
     var nameTop = symbolStringCenterY + 40;
     var valueTextTop = nameTop + ResistanceInAWireConstants.SLIDER_HEIGHT + 40;
     var unitBottom = valueTextTop + 65;
     var sliderCenterY = (valueTextTop + nameTop) / 2;
-
 
     var symbolText = new Text( symbolString, {
       font: ResistanceInAWireConstants.SYMBOL_FONT,
@@ -54,7 +51,6 @@ define( function( require ) {
       maxWidth: MAX_TEXT_WIDTH,
       tandem: tandem.createTandem( 'symbolText' )
     } );
-    this.addChild( symbolText );
 
     var nameText = new Text( nameString, {
       font: ResistanceInAWireConstants.NAME_FONT,
@@ -64,8 +60,6 @@ define( function( require ) {
       maxWidth: MAX_TEXT_WIDTH,
       tandem: tandem.createTandem( 'nameText' )
     } );
-    this.addChild( nameText );
-
 
     // Thumb for the slider
     var thumb = new Image( thumbImage, { rotation: Math.PI / 2, tandem: tandem.createTandem( 'thumb' ) } );
@@ -81,7 +75,6 @@ define( function( require ) {
       centerY: sliderCenterY,
       tandem: tandem.createTandem( 'slider' )
     } );
-    this.addChild( slider );
 
     var valueText = new Text( Util.toFixed( property.value, 2 ), {
       font: ResistanceInAWireConstants.READOUT_FONT,
@@ -90,7 +83,6 @@ define( function( require ) {
       top: valueTextTop,
       tandem: tandem.createTandem( 'valueText' )
     } );
-    this.addChild( valueText );
 
     var unitText = new RichText( unitString, {
       font: ResistanceInAWireConstants.UNIT_FONT,
@@ -100,7 +92,12 @@ define( function( require ) {
       maxWidth: MAX_TEXT_WIDTH,
       tandem: tandem.createTandem( 'unitText' )
     } );
-    this.addChild( unitText );
+
+    Node.call( this, {
+      children: [
+        symbolText, nameText, slider, valueText, unitText
+      ], tandem: tandem
+    } );
 
     // Update value of the readout. No need to unlink, present for the lifetime of the simulation.
     property.link( function( value ) {

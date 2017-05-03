@@ -1,7 +1,7 @@
 // Copyright 2016-2017, University of Colorado Boulder
 
 /**
- * view of the wire, includes dots that depict the level of resistivity
+ * View of the wire, includes dots that depict the level of resistivity
  *
  * @author Vasily Shakhov (Mlearner)
  * @author Anton Ulyanov (Mlearner)

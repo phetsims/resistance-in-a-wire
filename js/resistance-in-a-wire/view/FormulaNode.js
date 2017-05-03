@@ -39,36 +39,32 @@ define( function( require ) {
     Node.call( this, { tandem: tandem } );
 
     // An array of attributes related to text
-    var symbolTexts = [
-      {
-        label: resistanceSymbolString,
-        scale: 3 / 2,
-        position: new Vector2( 20, 0 ),
-        property: model.resistanceProperty,
-        color: '#ed1c24',
-        tandem: tandem.createTandem( 'resistanceSymbol' )
-      },
-      {
-        label: resistivitySymbolString,
-        position: new Vector2( 220, -90 ),
-        property: model.resistivityProperty,
-        color: ResistanceInAWireConstants.BLUE_COLOR,
-        tandem: tandem.createTandem( 'resistivitySymbol' )
-      },
-      {
-        label: lengthSymbolString,
-        position: new Vector2( 320, -90 ),
-        property: model.lengthProperty,
-        color: ResistanceInAWireConstants.BLUE_COLOR,
-        tandem: tandem.createTandem( 'lengthSymbol' )
-      },
-      {
-        label: areaSymbolString,
-        position: new Vector2( 270, 90 ),
-        property: model.areaProperty,
-        color: ResistanceInAWireConstants.BLUE_COLOR,
-        tandem: tandem.createTandem( 'areaSymbol' )
-      } ];
+    var symbolTexts = [ {
+      label: resistanceSymbolString,
+      scale: 3 / 2,
+      position: new Vector2( 20, 0 ),
+      property: model.resistanceProperty,
+      color: '#ed1c24',
+      tandem: tandem.createTandem( 'resistanceSymbol' )
+    }, {
+      label: resistivitySymbolString,
+      position: new Vector2( 220, -90 ),
+      property: model.resistivityProperty,
+      color: ResistanceInAWireConstants.BLUE_COLOR,
+      tandem: tandem.createTandem( 'resistivitySymbol' )
+    }, {
+      label: lengthSymbolString,
+      position: new Vector2( 320, -90 ),
+      property: model.lengthProperty,
+      color: ResistanceInAWireConstants.BLUE_COLOR,
+      tandem: tandem.createTandem( 'lengthSymbol' )
+    }, {
+      label: areaSymbolString,
+      position: new Vector2( 270, 90 ),
+      property: model.areaProperty,
+      color: ResistanceInAWireConstants.BLUE_COLOR,
+      tandem: tandem.createTandem( 'areaSymbol' )
+    } ];
 
     // equals sign
     this.addChild( new Text( '=', {
