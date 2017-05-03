@@ -14,7 +14,6 @@ require.config( {
     text: '../../sherpa/lib/text-2.0.12',
 
     // plugins
-    audio: '../../chipper/js/requirejs-plugins/audio',
     image: '../../chipper/js/requirejs-plugins/image',
     mipmap: '../../chipper/js/requirejs-plugins/mipmap',
     string: '../../chipper/js/requirejs-plugins/string',
