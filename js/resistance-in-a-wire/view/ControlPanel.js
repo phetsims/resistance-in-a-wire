@@ -41,9 +41,20 @@ define( function( require ) {
    */
   function ControlPanel( model, tandem ) {
 
+    // Options to be passed up to the Panel.
+    var panelOptions = {
+      xMargin: 30,
+      yMargin: 20,
+      lineWidth: 3,
+      resize: false,
+      tandem: tandem
+    };
+
+    // Because ControlPanel extends Panel, it needs pass a content node into its constructor to surround.
+    // Add everything to the content node, then pass content to the Panel.call().
     var content = new Node();
 
-    // add the dynamic title that indicates the resistance
+    // Add the dynamic title that indicates the resistance.
     var resistanceReadout = new Text( '', {
       font: ResistanceInAWireConstants.READOUT_FONT,
       fill: ResistanceInAWireConstants.RED_COLOR,
@@ -53,7 +64,7 @@ define( function( require ) {
     } );
     content.addChild( resistanceReadout );
 
-    // update the title when the resistance changes
+    // Update the title when the resistance changes.
     model.resistanceProperty.link( function( resistance ) {
       var numDecimalDigits = 2;
       if ( resistance > 9 ) {
@@ -70,7 +81,7 @@ define( function( require ) {
       resistanceReadout.centerX = 0;
     } );
 
-    // create the resistivity slider with readout and labels
+    // Create and add the resistivity slider with readout and labels.
     var resistivitySlider = new SliderUnit(
       model.resistivityProperty,
       ResistanceInAWireConstants.RESISTIVITY_RANGE,
@@ -78,8 +89,9 @@ define( function( require ) {
       resistivityString,
       StringUtils.format( pattern0ResistanceUnits1LengthUnitsString, ohmsSymbolString, cmString ),
       tandem.createTandem( 'resistivitySlider' ) );
+    content.addChild( resistivitySlider );
 
-    // create the length slider with readout and labels
+    // Create and add the length slider with readout and labels.
     var lengthSlider = new SliderUnit(
       model.lengthProperty,
       ResistanceInAWireConstants.LENGTH_RANGE,
@@ -87,8 +99,9 @@ define( function( require ) {
       lengthString,
       cmString,
       tandem.createTandem( 'lengthSlider' ) );
+    content.addChild( lengthSlider );
 
-    // create the area slider with readout and labels
+    // Create and add the area slider with readout and labels.
     var areaSlider = new SliderUnit(
       model.areaProperty,
       ResistanceInAWireConstants.AREA_RANGE,
@@ -96,23 +109,14 @@ define( function( require ) {
       areaString,
       cmString + '<sup>2</sup>',
       tandem.createTandem( 'areaSlider' ) );
-
-    content.addChild( resistivitySlider );
-    content.addChild( lengthSlider );
     content.addChild( areaSlider );
 
-    // set the horizontal position of the sliders, defining the middle slider as zero
+    // Set the horizontal position of the sliders, defining the middle slider as zero.
     lengthSlider.centerX = 0;
     resistivitySlider.centerX = lengthSlider.centerX - ResistanceInAWireConstants.SLIDERS_HORIZONTAL_SEPARATION;
     areaSlider.centerX = lengthSlider.centerX + ResistanceInAWireConstants.SLIDERS_HORIZONTAL_SEPARATION;
 
-    Panel.call( this, content, {
-      xMargin: 30,
-      yMargin: 20,
-      lineWidth: 3,
-      resize: false,
-      tandem: tandem
-    } );
+    Panel.call( this, content, panelOptions );
   }
 
   resistanceInAWire.register( 'ControlPanel', ControlPanel );

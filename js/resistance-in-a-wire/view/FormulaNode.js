@@ -38,8 +38,8 @@ define( function( require ) {
     var self = this;
     Node.call( this, { tandem: tandem } );
 
-    // an array of attributes related to text
-    var texts = [
+    // An array of attributes related to text
+    var symbolTexts = [
       {
         label: resistanceSymbolString,
         scale: 3 / 2,
@@ -86,7 +86,7 @@ define( function( require ) {
     } ) );
 
     // dynamic text
-    texts.forEach( function( entry ) {
+    symbolTexts.forEach( function( entry ) {
 
       var view = new Text( entry.label, {
         font: new PhetFont( { family: ResistanceInAWireConstants.FONT_FAMILY, size: 115 } ),

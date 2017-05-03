@@ -23,7 +23,7 @@ define( function( require ) {
   var thumbImage = require( 'image!RESISTANCE_IN_A_WIRE/thumb.png' );
 
   // constants
-  var MAX_TEXT_WIDTH = ResistanceInAWireConstants.SLIDERS_HORIZONTAL_SEPARATION * 0.90; // max text width for labels
+  var MAX_TEXT_WIDTH = ResistanceInAWireConstants.SLIDERS_HORIZONTAL_SEPARATION * 0.90; // Max text width for labels
 
   /**
    * @param {Property.<number>} property
@@ -38,27 +38,13 @@ define( function( require ) {
 
     Node.call( this, { tandem: tandem } );
 
-    // positions for vertical alignment
+    // Positions for vertical alignment
     var symbolStringCenterY = ResistanceInAWireConstants.SLIDER_UNIT_VERTICAL_OFFSET;
     var nameTop = symbolStringCenterY + 40;
     var valueTextTop = nameTop + ResistanceInAWireConstants.SLIDER_HEIGHT + 40;
     var unitBottom = valueTextTop + 65;
     var sliderCenterY = (valueTextTop + nameTop) / 2;
 
-    // thumb for the slider
-    var thumb = new Image( thumbImage, { rotation: Math.PI / 2, tandem: tandem.createTandem( 'thumb' ) } );
-    thumb.scale( ResistanceInAWireConstants.THUMB_HEIGHT / thumb.height );
-    thumb.touchArea = thumb.localBounds.dilated( 30 );
-
-    var slider = new HSlider( property, range, {
-      trackFillEnabled: 'black',
-      tandem: tandem.createTandem( 'slider' ),
-      rotation: -Math.PI / 2,
-      trackSize: new Dimension2( ResistanceInAWireConstants.SLIDER_HEIGHT - 2 * thumb.height, 4 ),
-      thumbNode: thumb,
-      x: 0,
-      centerY: sliderCenterY
-    } );
 
     var symbolText = new Text( symbolString, {
       font: ResistanceInAWireConstants.SYMBOL_FONT,
@@ -68,6 +54,7 @@ define( function( require ) {
       maxWidth: MAX_TEXT_WIDTH,
       tandem: tandem.createTandem( 'symbolText' )
     } );
+    this.addChild( symbolText );
 
     var nameText = new Text( nameString, {
       font: ResistanceInAWireConstants.NAME_FONT,
@@ -77,6 +64,24 @@ define( function( require ) {
       maxWidth: MAX_TEXT_WIDTH,
       tandem: tandem.createTandem( 'nameText' )
     } );
+    this.addChild( nameText );
+
+
+    // Thumb for the slider
+    var thumb = new Image( thumbImage, { rotation: Math.PI / 2, tandem: tandem.createTandem( 'thumb' ) } );
+    thumb.scale( ResistanceInAWireConstants.THUMB_HEIGHT / thumb.height );
+    thumb.touchArea = thumb.localBounds.dilated( 30 );
+
+    var slider = new HSlider( property, range, {
+      trackFillEnabled: 'black',
+      rotation: -Math.PI / 2,
+      trackSize: new Dimension2( ResistanceInAWireConstants.SLIDER_HEIGHT - 2 * thumb.height, 4 ),
+      thumbNode: thumb,
+      x: 0,
+      centerY: sliderCenterY,
+      tandem: tandem.createTandem( 'slider' )
+    } );
+    this.addChild( slider );
 
     var valueText = new Text( Util.toFixed( property.value, 2 ), {
       font: ResistanceInAWireConstants.READOUT_FONT,
@@ -85,6 +90,7 @@ define( function( require ) {
       top: valueTextTop,
       tandem: tandem.createTandem( 'valueText' )
     } );
+    this.addChild( valueText );
 
     var unitText = new RichText( unitString, {
       font: ResistanceInAWireConstants.UNIT_FONT,
@@ -94,20 +100,13 @@ define( function( require ) {
       maxWidth: MAX_TEXT_WIDTH,
       tandem: tandem.createTandem( 'unitText' )
     } );
-
-    this.addChild( symbolText );
-    this.addChild( nameText );
-    this.addChild( slider );
-    this.addChild( valueText );
     this.addChild( unitText );
 
-    // no need to unlink, present for the lifetime of the simulation
-    // update value of the readout
+    // Update value of the readout. No need to unlink, present for the lifetime of the simulation.
     property.link( function( value ) {
       valueText.text = Util.toFixed( value, 2 );
       valueText.centerX = 0;
     } );
-
   }
 
   resistanceInAWire.register( 'SliderUnit', SliderUnit );
