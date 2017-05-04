@@ -1,0 +1,91 @@
+{
+  "comment": "# resistance-in-a-wire 1.2.0-phetiodev.2-buildtest.1 Thu May 04 2017 14:14:47 GMT-0600 (Mountain Daylight Time)",
+  "assert": {
+    "sha": "5c3f92048a9c2ffd6df8ede54fd64f1f7a7e4ef2",
+    "branch": "master"
+  },
+  "axon": {
+    "sha": "5db49894e7dc1018e63f61c751accee25eb05bdd",
+    "branch": "master"
+  },
+  "brand": {
+    "sha": "f4b72cac70c41f724ab29eb7510d8bf9a8192901",
+    "branch": "master"
+  },
+  "chipper": {
+    "sha": "d3cd78e8f3e8395abaea0752d6e5eab6b8beb1bf",
+    "branch": "master"
+  },
+  "dot": {
+    "sha": "ef145e365ef9dd517e6178a0b2ea65e4c533d73d",
+    "branch": "master"
+  },
+  "joist": {
+    "sha": "83760a71dd74e47943578e4037d3743d18099265",
+    "branch": "master"
+  },
+  "kite": {
+    "sha": "f36771da57b8183e2973b09cb7d05e1375925c95",
+    "branch": "master"
+  },
+  "phet-core": {
+    "sha": "76ec02046b2a8da592d3273e93d52088d9b58121",
+    "branch": "master"
+  },
+  "phet-io": {
+    "sha": "cc2eb743335dcc63cafd86953d74eba249e6bd00",
+    "branch": "master"
+  },
+  "phet-io-website": {
+    "sha": "c2e6976d48aadb57d08eddb5e9b678578c71e55d",
+    "branch": "master"
+  },
+  "phet-io-wrapper-classroom-activity": {
+    "sha": "24e1c1aec39072e5e5e10da0719d64247da6807e",
+    "branch": "master"
+  },
+  "phet-io-wrapper-lab-book": {
+    "sha": "1c835b2c37664b57c3a9b037eade0bfe8f3071c3",
+    "branch": "master"
+  },
+  "phet-io-wrapper-sonification": {
+    "sha": "e67b1bfabf8c09547ce323eeb047998a5be1d230",
+    "branch": "master"
+  },
+  "phet-io-wrappers": {
+    "sha": "cc7f27e8a3f80c51ac8aa8e3b4c78b30898630df",
+    "branch": "master"
+  },
+  "phetcommon": {
+    "sha": "3ad92ec57b50aa2f2e49d52bd880ae63e24fb92c",
+    "branch": "master"
+  },
+  "query-string-machine": {
+    "sha": "e7055778b4784bd4b1c5e33a99e31b98a93cb05f",
+    "branch": "master"
+  },
+  "resistance-in-a-wire": {
+    "sha": "5d4c8aba3749768eced383bcfb2fa71db47ae8dd",
+    "branch": "master"
+  },
+  "scenery": {
+    "sha": "7bcac8e0f887d73a6215ff684f272d94fde7f7f9",
+    "branch": "master"
+  },
+  "scenery-phet": {
+    "sha": "cc034db95ec0ee011f0cc8b510b6e3f4234ea0f3",
+    "branch": "master"
+  },
+  "sherpa": {
+    "sha": "0e326d542b93f5cf3eea2b175d195c18b9bdfb6e",
+    "branch": "master"
+  },
+  "sun": {
+    "sha": "ed3e260b55d430c2980c854f27a4296f04ed6ebb",
+    "branch": "master"
+  },
+  "tandem": {
+    "sha": "30603e6651945c5adf8fb0d4861d9fa74cea385e",
+    "branch": "master"
+  }
+}
