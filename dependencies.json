@@ -1,5 +1,5 @@
 {
-  "comment": "# resistance-in-a-wire 1.2.0-phetiobuildtest.2 Thu May 04 2017 14:38:43 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# resistance-in-a-wire 1.2.0-phetiobuildtest.5 Thu May 04 2017 14:53:15 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "5c3f92048a9c2ffd6df8ede54fd64f1f7a7e4ef2",
     "branch": "master"
@@ -65,7 +65,7 @@
     "branch": "master"
   },
   "resistance-in-a-wire": {
-    "sha": "078da868034ce901c89a5b240cf3a1b227838145",
+    "sha": "9cd7eb7129760961ed91df88bd148450e90171e5",
     "branch": "master"
   },
   "scenery": {
