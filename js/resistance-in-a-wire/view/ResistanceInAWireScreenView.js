@@ -34,21 +34,24 @@ define( function( require ) {
     } );
 
     // Create the formula node that holds the equation with size changing variables.
-    var formulaNode = new FormulaNode( model, tandem.createTandem( 'formulaNode' ) );
-    formulaNode.left = 100;
-    formulaNode.centerY = 190;
+    var formulaNode = new FormulaNode( model, tandem.createTandem( 'formulaNode' ), {
+      left: 100,
+      centerY: 190
+    } );
     this.addChild( formulaNode );
 
     // Create the wire display to represent the formula
-    var wireNode = new WireNode( model, tandem.createTandem( 'wireNode' ) );
-    wireNode.centerX = formulaNode.centerX;
-    wireNode.centerY = formulaNode.centerY + 270;
+    var wireNode = new WireNode( model, tandem.createTandem( 'wireNode' ), {
+      centerX: formulaNode.centerX,
+      centerY: formulaNode.centerY + 270
+    } );
     this.addChild( wireNode );
 
     // Create the control panel with sliders that change the values of the equation's variables.
-    var controlPanel = new ControlPanel( model, tandem.createTandem( 'controlPanel' ) );
-    controlPanel.right = this.layoutBounds.right - 30;
-    controlPanel.top = 40;
+    var controlPanel = new ControlPanel( model, tandem.createTandem( 'controlPanel' ), {
+      right: this.layoutBounds.right - 30,
+      top: 40
+    } );
     this.addChild( controlPanel );
 
     var tailX = wireNode.centerX - ResistanceInAWireConstants.TAIL_LENGTH / 2;
@@ -67,14 +70,13 @@ define( function( require ) {
     } );
     this.addChild( arrowNode );
 
-    var resetAllButton = new ResetAllButton( {
+    this.addChild( new ResetAllButton( {
       listener: function() { model.reset(); },
       radius: 30,
+      right: controlPanel.right,
+      top: controlPanel.bottom + 20,
       tandem: tandem.createTandem( 'resetAllButton' )
-    } );
-    resetAllButton.right = controlPanel.right;
-    resetAllButton.top = controlPanel.bottom + 20;
-    this.addChild( resetAllButton );
+    } ) );
   }
 
   resistanceInAWire.register( 'ResistanceInAWireScreenView', ResistanceInAWireScreenView );

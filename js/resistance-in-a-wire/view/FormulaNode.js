@@ -31,9 +31,10 @@ define( function( require ) {
   /**
    * @param {ResistanceInAWireModel} model
    * @param {Tandem} tandem
+   * @param {Object} [options]
    * @constructor
    */
-  function FormulaNode( model, tandem ) {
+  function FormulaNode( model, tandem, options ) {
 
     var self = this;
     Node.call( this, { tandem: tandem } );
@@ -67,7 +68,7 @@ define( function( require ) {
     } ];
 
     // equals sign
-    this.addChild( new Text( '=', {
+    this.addChild( new Text( '=', { // we never internationalize the = sign
       font: new PhetFont( { family: ResistanceInAWireConstants.FONT_FAMILY, size: 90 } ),
       fill: ResistanceInAWireConstants.BLACK_COLOR,
       center: new Vector2( 100, 0 ),
@@ -84,24 +85,26 @@ define( function( require ) {
     // dynamic text
     symbolTexts.forEach( function( entry ) {
 
-      var view = new Text( entry.label, {
+      var text = new Text( entry.label, {
         font: new PhetFont( { family: ResistanceInAWireConstants.FONT_FAMILY, size: 115 } ),
         fill: entry.color,
         center: entry.position,
         tandem: entry.tandem
       } );
 
-      self.addChild( view );
+      self.addChild( text );
 
       var scale = entry.scale || 1 / entry.property.value;
 
       // The size of the formula letter will scale with the value the letter represents. This does not need an unlink
       // because it exists for the life of the sim.
       entry.property.link( function( value ) {
-        view.matrix = Matrix3.scaling( scale * value + 0.125 );
-        view.center = entry.position;
+        text.matrix = Matrix3.scaling( scale * value + 0.125 );
+        text.center = entry.position;
       } );
     } );
+
+    this.mutate( options );
   }
 
   resistanceInAWire.register( 'FormulaNode', FormulaNode );

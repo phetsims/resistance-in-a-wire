@@ -37,18 +37,18 @@ define( function( require ) {
   /**
    * @param {ResistanceInAWireModel} model
    * @param {Tandem} tandem
+   * @param {Object} options
    * @constructor
    */
-  function ControlPanel( model, tandem ) {
+  function ControlPanel( model, tandem, options ) {
 
-    // Options to be passed up to the Panel.
-    var panelOptions = {
+    options = _.extend( {
       xMargin: 30,
       yMargin: 20,
       lineWidth: 3,
       resize: false,
       tandem: tandem
-    };
+    }, options );
 
     // Add the dynamic title that indicates the resistance.
     var resistanceReadout = new Text( '', {
@@ -61,13 +61,11 @@ define( function( require ) {
 
     // Update the title when the resistance changes.
     model.resistanceProperty.link( function( resistance ) {
-      var numDecimalDigits = 2;
-      if ( resistance > 9 ) {
-        numDecimalDigits = 1;
-      }
-      if ( resistance > 99 ) {
-        numDecimalDigits = 0;
-      }
+
+      var numDecimalDigits = resistance >= 100 ? 0 : // Over 100, show no decimal points, like 102
+                             resistance >= 10 ? 1 : // between 10.0 and 99.9, show 2 decimal points
+                             2; // Numbers less than 10 show 2 decimal points, like 8.35
+
       resistanceReadout.text = StringUtils.format(
         pattern0Label1Value2UnitsString,
         resistanceString,
@@ -114,13 +112,14 @@ define( function( require ) {
     // Because ControlPanel extends Panel, it needs pass a content node into its constructor to surround.
     // Add everything to the content node, then pass content to the Panel.call().
     var content = new Node( {
-      children: [ resistanceReadout, resistivitySlider, lengthSlider, areaSlider ]
+      children: [ resistanceReadout, resistivitySlider, lengthSlider, areaSlider ],
+      tandem: tandem.createTandem( 'content' )
     } );
 
-    Panel.call( this, content, panelOptions );
+    Panel.call( this, content, options );
   }
 
   resistanceInAWire.register( 'ControlPanel', ControlPanel );
 
-  return inherit( Panel, ControlPanel, {} );
+  return inherit( Panel, ControlPanel );
 } );

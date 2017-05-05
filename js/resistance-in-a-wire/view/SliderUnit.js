@@ -96,7 +96,8 @@ define( function( require ) {
     Node.call( this, {
       children: [
         symbolText, nameText, slider, valueText, unitText
-      ], tandem: tandem
+      ],
+      tandem: tandem
     } );
 
     // Update value of the readout. No need to unlink, present for the lifetime of the simulation.

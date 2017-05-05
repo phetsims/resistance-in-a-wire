@@ -34,13 +34,15 @@ define( function( require ) {
   var AREA_PER_DOT = 200; // Adjust this to control the density of the dots.
 
   /**
-   * Constructor - the position is set using center values since this can grow or shrink in width and height as the
-   * area and length of the wire changes.
+   * The position is set using center values since this can grow or shrink in width and height as the area and length of
+   * the wire changes.
+   *
    * @param {ResistanceInAWireModel} model
    * @param {Tandem} tandem
+   * @param {Object} [options]
    * @constructor
    */
-  function WireNode( model, tandem ) {
+  function WireNode( model, tandem, options ) {
 
     Node.call( this, { tandem: tandem } );
 
@@ -85,6 +87,7 @@ define( function( require ) {
     var dotGridRows = Util.roundSymmetric( WIRE_VIEW_HEIGHT_RANGE.max / Math.sqrt( AREA_PER_DOT ) );
 
     // Create the dots by placing them on a grid, but move each one randomly a bit to make them look irregular.
+    // TODO: perhaps one day we should set these loops to start from 0 and re-test the densities
     for ( var i = 1; i < dotGridColumns; i++ ) {
       for ( var j = 1; j < dotGridRows; j++ ) {
         var dot = new Circle( DOT_RADIUS, {
@@ -153,6 +156,8 @@ define( function( require ) {
         } );
       }
     );
+
+    this.mutate( options );
   }
 
   resistanceInAWire.register( 'WireNode', WireNode );
