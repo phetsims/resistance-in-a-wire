@@ -1,5 +1,5 @@
 {
-  "comment": "# resistance-in-a-wire 1.3.0-rc.1 Fri May 05 2017 11:36:12 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# resistance-in-a-wire 1.3.0-phetiorc.1 Fri May 05 2017 11:45:14 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "5c3f92048a9c2ffd6df8ede54fd64f1f7a7e4ef2",
     "branch": "master"
@@ -32,6 +32,30 @@
     "sha": "76ec02046b2a8da592d3273e93d52088d9b58121",
     "branch": "master"
   },
+  "phet-io": {
+    "sha": "e8794dd1e731b9fd6605274038974d19e838fb94",
+    "branch": "master"
+  },
+  "phet-io-website": {
+    "sha": "c2e6976d48aadb57d08eddb5e9b678578c71e55d",
+    "branch": "master"
+  },
+  "phet-io-wrapper-classroom-activity": {
+    "sha": "24e1c1aec39072e5e5e10da0719d64247da6807e",
+    "branch": "master"
+  },
+  "phet-io-wrapper-lab-book": {
+    "sha": "1c835b2c37664b57c3a9b037eade0bfe8f3071c3",
+    "branch": "master"
+  },
+  "phet-io-wrapper-sonification": {
+    "sha": "f26835a431653e1619f069a8bbd51e4a1af9d944",
+    "branch": "master"
+  },
+  "phet-io-wrappers": {
+    "sha": "063dfde4476f65317f239f3d5df430d6dc3ff027",
+    "branch": "master"
+  },
   "phetcommon": {
     "sha": "3ad92ec57b50aa2f2e49d52bd880ae63e24fb92c",
     "branch": "master"
@@ -41,8 +65,8 @@
     "branch": "master"
   },
   "resistance-in-a-wire": {
-    "sha": "4c94589cb5ec8b89e31273f73e85b86fb84ae30f",
-    "branch": "1.3"
+    "sha": "b4ee380eb70ad8913a60f8f692bb1ecd5c4f592c",
+    "branch": "1.3-phetio"
   },
   "scenery": {
     "sha": "7bcac8e0f887d73a6215ff684f272d94fde7f7f9",
