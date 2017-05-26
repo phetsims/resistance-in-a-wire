@@ -83,7 +83,7 @@ define( function( require ) {
       StringUtils.format( pattern0ResistanceUnits1LengthUnitsString, ohmsSymbolString, cmString ),
       tandem.createTandem( 'resistivitySlider' ),
       {
-        keyboardStep: .1
+        keyboardStep: .01
       }
     );
 
@@ -96,7 +96,7 @@ define( function( require ) {
       cmString,
       tandem.createTandem( 'lengthSlider' ),
       {
-        keyboardStep: 0.1
+        keyboardStep: 0.05
       }
     );
 
@@ -109,7 +109,7 @@ define( function( require ) {
       cmString + '<sup>2</sup>',
       tandem.createTandem( 'areaSlider' ),
       {
-        keyboardStep: 0.1
+        keyboardStep: 0.05
       }
     );
 
