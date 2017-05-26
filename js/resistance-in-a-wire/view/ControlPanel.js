@@ -100,7 +100,8 @@ define( function( require ) {
       }
     );
 
-    // Create and add the area slider with readout and labels.
+    // Create and add the area slider with readout and labels. For keyboard dragging, the range ranges doesn't split into even steps,
+    // so we calculate a keyboard step by breaking the range into 100.
     var areaSlider = new SliderUnit(
       model.areaProperty,
       ResistanceInAWireConstants.AREA_RANGE,
@@ -109,7 +110,7 @@ define( function( require ) {
       cmString + '<sup>2</sup>',
       tandem.createTandem( 'areaSlider' ),
       {
-        keyboardStep: 0.05
+        keyboardStep: ( ResistanceInAWireConstants.AREA_RANGE.max - ResistanceInAWireConstants.AREA_RANGE.min ) / 100
       }
     );
 
