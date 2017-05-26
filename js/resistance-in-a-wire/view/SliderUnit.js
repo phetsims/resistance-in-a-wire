@@ -34,7 +34,12 @@ define( function( require ) {
    * @param {Tandem} tandem
    * @constructor
    */
-  function SliderUnit( property, range, symbolString, nameString, unitString, tandem ) {
+  function SliderUnit( property, range, symbolString, nameString, unitString, tandem, options ) {
+
+    options = _.extend( {
+      numberDecimalPlaces: 2,
+      keyboardStep: 1
+    }, options );
 
     // Positions for vertical alignment
     var symbolStringCenterY = ResistanceInAWireConstants.SLIDER_UNIT_VERTICAL_OFFSET;
@@ -73,7 +78,25 @@ define( function( require ) {
       thumbNode: thumb,
       x: 0,
       centerY: sliderCenterY,
-      tandem: tandem.createTandem( 'slider' )
+      tandem: tandem.createTandem( 'slider' ),
+
+      // a11y
+      tagName: 'input',
+      inputType: 'range'
+    } );
+
+    slider.addAccessibleInputListener( {
+      input: function( event ) {
+        property.set( Util.toFixedNumber( slider.inputValue, options.numberDecimalPlaces ) );
+      }
+    } );
+
+    slider.setAccessibleAttribute( 'min', range.min );
+    slider.setAccessibleAttribute( 'max', range.max );
+    slider.setAccessibleAttribute( 'step', options.keyboardStep );
+
+    property.link( function( value ) {
+      slider.inputValue = value;
     } );
 
     var valueText = new Text( Util.toFixed( property.value, 2 ), {

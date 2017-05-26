@@ -81,7 +81,10 @@ define( function( require ) {
       resistivitySymbolString,
       resistivityString,
       StringUtils.format( pattern0ResistanceUnits1LengthUnitsString, ohmsSymbolString, cmString ),
-      tandem.createTandem( 'resistivitySlider' )
+      tandem.createTandem( 'resistivitySlider' ),
+      {
+        keyboardStep: .1
+      }
     );
 
     // Create and add the length slider with readout and labels.
@@ -91,7 +94,10 @@ define( function( require ) {
       lengthSymbolString,
       lengthString,
       cmString,
-      tandem.createTandem( 'lengthSlider' )
+      tandem.createTandem( 'lengthSlider' ),
+      {
+        keyboardStep: 0.1
+      }
     );
 
     // Create and add the area slider with readout and labels.
@@ -101,7 +107,10 @@ define( function( require ) {
       areaSymbolString,
       areaString,
       cmString + '<sup>2</sup>',
-      tandem.createTandem( 'areaSlider' )
+      tandem.createTandem( 'areaSlider' ),
+      {
+        keyboardStep: 0.1
+      }
     );
 
     // Set the horizontal position of the sliders, defining the middle slider as zero.
