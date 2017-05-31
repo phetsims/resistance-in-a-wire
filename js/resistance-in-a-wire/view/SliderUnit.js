@@ -79,24 +79,8 @@ define( function( require ) {
       x: 0,
       centerY: sliderCenterY,
       tandem: tandem.createTandem( 'slider' ),
-
-      // a11y
-      tagName: 'input',
-      inputType: 'range'
-    } );
-
-    slider.addAccessibleInputListener( {
-      input: function( event ) {
-        property.set( Util.toFixedNumber( slider.inputValue, options.numberDecimalPlaces ) );
-      }
-    } );
-
-    slider.setAccessibleAttribute( 'min', range.min );
-    slider.setAccessibleAttribute( 'max', range.max );
-    slider.setAccessibleAttribute( 'step', options.keyboardStep );
-
-    property.link( function( value ) {
-      slider.inputValue = value;
+      numberDecimalPlaces: options.numberDecimalPlaces,
+      keyboardStep: options.keyboardStep
     } );
 
     var valueText = new Text( Util.toFixed( property.value, 2 ), {
