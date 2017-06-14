@@ -96,7 +96,7 @@ define( function( require ) {
       cmString,
       tandem.createTandem( 'lengthSlider' ),
       {
-        keyboardStep: 0.05
+        keyboardStep: 0.1
       }
     );
 
