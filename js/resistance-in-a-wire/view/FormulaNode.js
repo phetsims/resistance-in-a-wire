@@ -68,7 +68,7 @@ define( function( require ) {
     } ];
 
     // equals sign
-    this.addChild( new Text( '=', { // we never internationalize the = sign
+    this.addChild( new Text( '=', { // we never internationalize the '=' sign
       font: new PhetFont( { family: ResistanceInAWireConstants.FONT_FAMILY, size: 90 } ),
       fill: ResistanceInAWireConstants.BLACK_COLOR,
       center: new Vector2( 100, 0 ),
