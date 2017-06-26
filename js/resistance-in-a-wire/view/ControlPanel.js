@@ -96,7 +96,8 @@ define( function( require ) {
       cmString,
       tandem.createTandem( 'lengthSlider' ),
       {
-        keyboardStep: 0.1
+        keyboardStep: 0.1,
+        modifiedKeyboardStep: 0.01
       }
     );
 
@@ -110,7 +111,9 @@ define( function( require ) {
       cmString + '<sup>2</sup>',
       tandem.createTandem( 'areaSlider' ),
       {
-        keyboardStep: ( ResistanceInAWireConstants.AREA_RANGE.max - ResistanceInAWireConstants.AREA_RANGE.min ) / 100
+        // keyboardStep: ( ResistanceInAWireConstants.AREA_RANGE.max - ResistanceInAWireConstants.AREA_RANGE.min ) / 100
+        keyboardStep: 0.2,
+        modifiedKeyboardStep: 0.01
       }
     );
 

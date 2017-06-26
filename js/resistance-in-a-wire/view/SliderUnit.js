@@ -80,7 +80,8 @@ define( function( require ) {
       centerY: sliderCenterY,
       tandem: tandem.createTandem( 'slider' ),
       numberDecimalPlaces: options.numberDecimalPlaces,
-      keyboardStep: options.keyboardStep
+      keyboardStep: options.keyboardStep,
+      modifiedKeyboardStep: options.modifiedKeyboardStep
     } );
 
     var valueText = new Text( Util.toFixed( property.value, 2 ), {
