@@ -11,7 +11,6 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var HSlider = require( 'SUN/HSlider' );
-  var Image = require( 'SCENERY/nodes/Image' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
@@ -19,11 +18,10 @@ define( function( require ) {
   var ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
   var RichText = require( 'SCENERY_PHET/RichText' );
 
-  // images
-  var thumbImage = require( 'image!RESISTANCE_IN_A_WIRE/thumb.png' );
-
   // constants
   var MAX_TEXT_WIDTH = ResistanceInAWireConstants.SLIDERS_HORIZONTAL_SEPARATION * 0.90; // Max text width for labels
+  var THUMB_FILL_ENABLED = '#81aac2'; // dark grey
+  var THUMB_FILL_HIGHLIGHTED = '#a5becd'; // light steel blue
 
   /**
    * @param {Property.<number>} property
@@ -32,6 +30,7 @@ define( function( require ) {
    * @param {string} nameString
    * @param {string} unitString
    * @param {Tandem} tandem
+   * @param {object} options
    * @constructor
    */
   function SliderUnit( property, range, symbolString, nameString, unitString, tandem, options ) {
@@ -66,16 +65,12 @@ define( function( require ) {
       tandem: tandem.createTandem( 'nameText' )
     } );
 
-    // Thumb for the slider
-    var thumb = new Image( thumbImage, { rotation: Math.PI / 2, tandem: tandem.createTandem( 'thumb' ) } );
-    thumb.scale( ResistanceInAWireConstants.THUMB_HEIGHT / thumb.height );
-    thumb.touchArea = thumb.localBounds.dilated( 30 );
-
     var slider = new HSlider( property, range, {
       trackFillEnabled: 'black',
       rotation: -Math.PI / 2,
-      trackSize: new Dimension2( ResistanceInAWireConstants.SLIDER_HEIGHT - 2 * thumb.height, 4 ),
-      thumbNode: thumb,
+      trackSize: new Dimension2( ResistanceInAWireConstants.SLIDER_HEIGHT - 30, 4 ),
+      thumbFillEnabled: THUMB_FILL_ENABLED,
+      thumbFillHighlighted: THUMB_FILL_HIGHLIGHTED,
       x: 0,
       centerY: sliderCenterY,
       tandem: tandem.createTandem( 'slider' ),
