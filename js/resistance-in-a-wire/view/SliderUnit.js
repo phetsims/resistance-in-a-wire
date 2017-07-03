@@ -20,8 +20,6 @@ define( function( require ) {
 
   // constants
   var MAX_TEXT_WIDTH = ResistanceInAWireConstants.SLIDERS_HORIZONTAL_SEPARATION * 0.90; // Max text width for labels
-  var THUMB_FILL_ENABLED = '#81aac2'; // dark grey
-  var THUMB_FILL_HIGHLIGHTED = '#a5becd'; // light steel blue
 
   /**
    * @param {Property.<number>} property
@@ -69,8 +67,8 @@ define( function( require ) {
       trackFillEnabled: 'black',
       rotation: -Math.PI / 2,
       trackSize: new Dimension2( ResistanceInAWireConstants.SLIDER_HEIGHT - 30, 4 ),
-      thumbFillEnabled: THUMB_FILL_ENABLED,
-      thumbFillHighlighted: THUMB_FILL_HIGHLIGHTED,
+      thumbFillEnabled: '#c3c4c5',
+      thumbFillHighlighted: '#dedede',
       x: 0,
       centerY: sliderCenterY,
       tandem: tandem.createTandem( 'slider' ),
