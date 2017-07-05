@@ -30,9 +30,7 @@ define( function( require ) {
   var DOT_POSITION_RANDOMIZATION_FACTOR = 12; // empirically determined
 
   // Used to calculate the size of the wire in screen coordinates from the model values
-  var WIRE_DIAMETER_MAX = Math.sqrt( ResistanceInAWireConstants.AREA_RANGE.max /
-                                     ResistanceInAWireConstants.LENGTH_RANGE.min /
-                                     Math.PI ) * 2;
+  var WIRE_DIAMETER_MAX = Math.sqrt( ResistanceInAWireConstants.AREA_RANGE.max / Math.PI ) * 2;
   var WIRE_VIEW_WIDTH_RANGE = new Range( 15, 500 ); // in screen coordinates
   var WIRE_VIEW_HEIGHT_RANGE = new Range( 3, 180 ); // in screen coordinates
 
@@ -71,15 +69,13 @@ define( function( require ) {
     this.addChild( wireEnd );
 
     /**
-     * Transform to map the formula to the height of the wire.
+     * Transform to map the area to the height of the wire.
      * @param {number} area
-     * @param {number} length
      * @returns {number} - the height in screen coordinates
      */
-    var getWireHeight = function( area, length ) {
-      var radius_squared = area / length / Math.PI;
+    var areaToHeight = function( area ) {
+      var radius_squared = area / Math.PI;
       var diameter = Math.sqrt( radius_squared ) * 2; // radius to diameter
-
       return WIRE_VIEW_HEIGHT_RANGE.max / WIRE_DIAMETER_MAX * diameter;
     };
 
@@ -137,7 +133,7 @@ define( function( require ) {
       function( area, length, resistivity ) {
 
         // Height of the wire in view coordinates
-        var height = getWireHeight( area, length );
+        var height = areaToHeight( area );
 
         // Width of the wire (as measured from the top of the wire, that is excluding the rounding bits in the middle).
         var width = lengthToWidth( length );
