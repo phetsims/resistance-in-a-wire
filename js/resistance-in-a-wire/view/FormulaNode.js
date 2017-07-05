@@ -12,7 +12,6 @@ define( function( require ) {
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
-  var Matrix3 = require( 'DOT/Matrix3' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
@@ -99,7 +98,7 @@ define( function( require ) {
       // The size of the formula letter will scale with the value the letter represents. This does not need an unlink
       // because it exists for the life of the sim.
       entry.property.link( function( value ) {
-        text.setScaleMagnitude(scale * value + 0.125);
+        text.setScaleMagnitude( scale * value + 0.125 );
         text.center = entry.position;
       } );
     } );

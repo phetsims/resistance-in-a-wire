@@ -28,8 +28,14 @@ define( function( require ) {
   var PERSPECTIVE_FACTOR = 0.4; // Multiplier that controls the width of the ellipses on the ends of the wire.
   var DOT_RADIUS = 2;
   var DOT_POSITION_RANDOMIZATION_FACTOR = 12; // empirically determined
+
+  // Used to calculate the size of the wire in screen coordinates from the model values
+  var WIRE_DIAMETER_MAX = Math.sqrt( ResistanceInAWireConstants.AREA_RANGE.max /
+                                     ResistanceInAWireConstants.LENGTH_RANGE.min /
+                                     Math.PI ) * 2;
   var WIRE_VIEW_WIDTH_RANGE = new Range( 15, 500 ); // in screen coordinates
   var WIRE_VIEW_HEIGHT_RANGE = new Range( 3, 180 ); // in screen coordinates
+
   var MAX_WIDTH_INCLUDING_ROUNDED_ENDS = WIRE_VIEW_WIDTH_RANGE.max + 2 * WIRE_VIEW_HEIGHT_RANGE.max * PERSPECTIVE_FACTOR;
   var AREA_PER_DOT = 200; // Adjust this to control the density of the dots.
 
@@ -64,13 +70,20 @@ define( function( require ) {
     this.addChild( wireBody );
     this.addChild( wireEnd );
 
-    // Linear mapping transformations
-    var areaToHeight = new LinearFunction(
-      ResistanceInAWireConstants.AREA_RANGE.min,
-      ResistanceInAWireConstants.AREA_RANGE.max,
-      WIRE_VIEW_HEIGHT_RANGE.min,
-      WIRE_VIEW_HEIGHT_RANGE.max,
-      true );
+    /**
+     * Transform to map the formula to the height of the wire.
+     * @param {number} area
+     * @param {number} length
+     * @returns {number} - the height in screen coordinates
+     */
+    var getWireHeight = function( area, length ) {
+      var radius_squared = area / length / Math.PI;
+      var diameter = Math.sqrt( radius_squared ) * 2; // radius to diameter
+
+      return WIRE_VIEW_HEIGHT_RANGE.max / WIRE_DIAMETER_MAX * diameter;
+    };
+
+    // Linear mapping transform
     var lengthToWidth = new LinearFunction(
       ResistanceInAWireConstants.LENGTH_RANGE.min,
       ResistanceInAWireConstants.LENGTH_RANGE.max,
@@ -124,7 +137,8 @@ define( function( require ) {
       function( area, length, resistivity ) {
 
         // Height of the wire in view coordinates
-        var height = areaToHeight( area );
+        var height = getWireHeight( area, length );
+
         // Width of the wire (as measured from the top of the wire, that is excluding the rounding bits in the middle).
         var width = lengthToWidth( length );
 
