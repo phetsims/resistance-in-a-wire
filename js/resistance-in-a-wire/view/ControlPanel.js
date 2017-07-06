@@ -83,7 +83,8 @@ define( function( require ) {
       StringUtils.format( pattern0ResistanceUnits1LengthUnitsString, ohmsSymbolString, cmString ),
       tandem.createTandem( 'resistivitySlider' ),
       {
-        keyboardStep: .01
+        keyboardStep: 0.05, // ohm-cm
+        shiftKeyStep: 0.01 // ohms-cm
       }
     );
 
@@ -96,8 +97,8 @@ define( function( require ) {
       cmString,
       tandem.createTandem( 'lengthSlider' ),
       {
-        keyboardStep: 0.1,
-        modifiedKeyboardStep: 0.01
+        keyboardStep: 1.0, // cm
+        shiftKeyboardStep: 0.01 // cm
       }
     );
 
@@ -111,8 +112,8 @@ define( function( require ) {
       cmString + '<sup>2</sup>',
       tandem.createTandem( 'areaSlider' ),
       {
-        keyboardStep: ( ResistanceInAWireConstants.AREA_RANGE.max - ResistanceInAWireConstants.AREA_RANGE.min ) / 100,
-        modifiedKeyboardStep: 0.01
+        keyboardStep: 1.0, // cm^2
+        shiftKeyboardStep: 0.01 // cm^2
       }
     );
 
