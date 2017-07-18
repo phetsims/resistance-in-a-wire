@@ -30,8 +30,7 @@ define( function( require ) {
     AREA_RANGE: new RangeWithValue( 0.01, 15, 7.5 ), // in cm^2
 
     // control panel
-    SLIDERS_HORIZONTAL_SEPARATION: 115,
-    SLIDER_UNIT_VERTICAL_OFFSET: 78, // vertical offset measured from top of panel
+    SLIDER_WIDTH: 60,
 
     // slider unit
     THUMB_HEIGHT: 32,  // Empirically determined.

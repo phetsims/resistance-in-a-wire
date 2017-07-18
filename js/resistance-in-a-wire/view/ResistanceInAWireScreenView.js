@@ -74,7 +74,7 @@ define( function( require ) {
       listener: function() { model.reset(); },
       radius: 30,
       right: controlPanel.right,
-      top: controlPanel.bottom + 20,
+      bottom: this.layoutBounds.bottom - 20,
       tandem: tandem.createTandem( 'resetAllButton' )
     } ) );
   }

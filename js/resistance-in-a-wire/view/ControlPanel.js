@@ -12,6 +12,7 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var HBox = require( 'SCENERY/nodes/HBox' );
   var Panel = require( 'SUN/Panel' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var SliderUnit = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/SliderUnit' );
@@ -54,12 +55,12 @@ define( function( require ) {
     var resistanceReadout = new Text( '', {
       font: ResistanceInAWireConstants.READOUT_FONT,
       fill: ResistanceInAWireConstants.RED_COLOR,
-      maxWidth: ResistanceInAWireConstants.SLIDERS_HORIZONTAL_SEPARATION * 2.5,
-      top: 12,
+      maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH * 4.9,
+      centerX: 0,
       tandem: tandem.createTandem( 'resistanceReadout' )
     } );
 
-    // Update the title when the resistance changes.
+    // Update the resistance readout when the resistance changes.
     model.resistanceProperty.link( function( resistance ) {
 
       var numDecimalDigits = resistance >= 100 ? 0 : // Over 100, show no decimal points, like 102
@@ -117,15 +118,18 @@ define( function( require ) {
       }
     );
 
-    // Set the horizontal position of the sliders, defining the middle slider as zero.
-    lengthSlider.centerX = 0;
-    resistivitySlider.centerX = lengthSlider.centerX - ResistanceInAWireConstants.SLIDERS_HORIZONTAL_SEPARATION;
-    areaSlider.centerX = lengthSlider.centerX + ResistanceInAWireConstants.SLIDERS_HORIZONTAL_SEPARATION;
+    var sliders = new HBox( {
+      spacing: 48, // empirically determined
+      children: [ resistivitySlider, lengthSlider, areaSlider ],
+      centerX: 0
+    } );
+
+    resistanceReadout.bottom = sliders.top - 10;
 
     // Because ControlPanel extends Panel, it needs pass a content node into its constructor to surround.
     // Add everything to the content node, then pass content to the Panel.call().
     var content = new Node( {
-      children: [ resistanceReadout, resistivitySlider, lengthSlider, areaSlider ],
+      children: [ resistanceReadout, sliders ],
       tandem: tandem.createTandem( 'content' )
     } );
 
