@@ -2,6 +2,7 @@
 
 /**
  * Block shows R = ρL/A formula with letters scaling
+ * The layout is based off of the equals sign.
  *
  * @author Vasily Shakhov (Mlearner)
  * @author Anton Ulyanov (Mlearner)
@@ -36,45 +37,46 @@ define( function( require ) {
   function FormulaNode( model, tandem, options ) {
 
     var self = this;
-    Node.call( this, { tandem: tandem } );
+    Node.call( this );
+
+    // equals sign, hard coded
+    var equalsSignText = new Text( '=', { // we never internationalize the '=' sign
+      font: new PhetFont( { family: ResistanceInAWireConstants.FONT_FAMILY, size: 90 } ),
+      fill: ResistanceInAWireConstants.BLACK_COLOR,
+      center: new Vector2( 100, 0 ),
+      tandem: tandem.createTandem( 'equalsSign' )
+    } );
+    this.addChild( equalsSignText );
 
     // An array of attributes related to text
     var symbolTexts = [ {
       label: resistanceSymbolString,
       scale: 3 / 2,
-      position: new Vector2( 20, 0 ),
+      center: new Vector2( equalsSignText.centerX - 80, 0 ),
       property: model.resistanceProperty,
       color: '#ed1c24',
       tandem: tandem.createTandem( 'resistanceSymbol' )
     }, {
       label: resistivitySymbolString,
-      position: new Vector2( 220, -90 ),
+      center: new Vector2( equalsSignText.centerX + 120, -90 ),
       property: model.resistivityProperty,
       color: ResistanceInAWireConstants.BLUE_COLOR,
       tandem: tandem.createTandem( 'resistivitySymbol' )
     }, {
       label: lengthSymbolString,
-      position: new Vector2( 320, -90 ),
+      center: new Vector2( equalsSignText.centerX + 220, -90 ),
       property: model.lengthProperty,
       color: ResistanceInAWireConstants.BLUE_COLOR,
       tandem: tandem.createTandem( 'lengthSymbol' )
     }, {
       label: areaSymbolString,
-      position: new Vector2( 270, 90 ),
+      center: new Vector2( equalsSignText.centerX + 170, 90 ),
       property: model.areaProperty,
       color: ResistanceInAWireConstants.BLUE_COLOR,
       tandem: tandem.createTandem( 'areaSymbol' )
     } ];
 
-    // equals sign
-    this.addChild( new Text( '=', { // we never internationalize the '=' sign
-      font: new PhetFont( { family: ResistanceInAWireConstants.FONT_FAMILY, size: 90 } ),
-      fill: ResistanceInAWireConstants.BLACK_COLOR,
-      center: new Vector2( 100, 0 ),
-      tandem: tandem.createTandem( 'equalsSign' )
-    } ) );
-
-    // dividing line
+    // dividing line, hard coded
     this.addChild( new Path( Shape.lineSegment( 150, 8, 400, 8 ), {
       stroke: 'black',
       lineWidth: 6,
@@ -99,10 +101,11 @@ define( function( require ) {
       // because it exists for the life of the sim.
       entry.property.link( function( value ) {
         text.setScaleMagnitude( scale * value + 0.125 );
-        text.center = entry.position;
+        text.center = entry.center;
       } );
     } );
 
+    options.tandem = tandem;
     this.mutate( options );
   }
 
