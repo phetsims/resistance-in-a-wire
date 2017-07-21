@@ -27,7 +27,6 @@ define( function( require ) {
   // constants
   var PERSPECTIVE_FACTOR = 0.4; // Multiplier that controls the width of the ellipses on the ends of the wire.
   var DOT_RADIUS = 2;
-  var DOT_POSITION_RANDOMIZATION_FACTOR = 12; // empirically determined
 
   // Used to calculate the size of the wire in screen coordinates from the model values
   var WIRE_DIAMETER_MAX = Math.sqrt( ResistanceInAWireConstants.AREA_RANGE.max / Math.PI ) * 2;
@@ -36,6 +35,7 @@ define( function( require ) {
 
   var MAX_WIDTH_INCLUDING_ROUNDED_ENDS = WIRE_VIEW_WIDTH_RANGE.max + 2 * WIRE_VIEW_HEIGHT_RANGE.max * PERSPECTIVE_FACTOR;
   var AREA_PER_DOT = 200; // Adjust this to control the density of the dots.
+  var NUMBER_OF_DOTS = MAX_WIDTH_INCLUDING_ROUNDED_ENDS * WIRE_VIEW_HEIGHT_RANGE.max / AREA_PER_DOT;
 
   /**
    * The position is set using center values since this can grow or shrink in width and height as the area and length of
@@ -95,23 +95,20 @@ define( function( require ) {
     var dotGridColumns = Util.roundSymmetric( MAX_WIDTH_INCLUDING_ROUNDED_ENDS / Math.sqrt( AREA_PER_DOT ) );
     var dotGridRows = Util.roundSymmetric( WIRE_VIEW_HEIGHT_RANGE.max / Math.sqrt( AREA_PER_DOT ) );
 
-    // Create the dots by placing them on a grid, but move each one randomly a bit to make them look irregular.
-    // TODO: perhaps one day we should set these loops to start from 0 and re-test the densities
-    for ( var i = 1; i < dotGridColumns; i++ ) {
-      for ( var j = 1; j < dotGridRows; j++ ) {
-        var dot = new Circle( DOT_RADIUS, {
-          fill: 'black',
-          centerX: i * ( MAX_WIDTH_INCLUDING_ROUNDED_ENDS / dotGridColumns ) -
-                   MAX_WIDTH_INCLUDING_ROUNDED_ENDS / 2 +
-                   (phet.joist.random.nextDouble() - 0.5 ) * DOT_POSITION_RANDOMIZATION_FACTOR,
-          centerY: j * ( WIRE_VIEW_HEIGHT_RANGE.max / dotGridRows ) -
-                   WIRE_VIEW_HEIGHT_RANGE.max / 2 +
-                   ( phet.joist.random.nextDouble() - 0.5 ) * DOT_POSITION_RANDOMIZATION_FACTOR,
-          tandem: dotsGroupTandem.createNextTandem()
-        } );
-        dotsNode.addChild( dot );
-      }
+    // Create the dots randomly on the wire. Density is based on AREA_PER_DOT.
+    for ( var i = 0; i < NUMBER_OF_DOTS; i++ ) {
+
+      var centerX = ( phet.joist.random.nextDouble() - .5 ) * MAX_WIDTH_INCLUDING_ROUNDED_ENDS;
+      var centerY = ( phet.joist.random.nextDouble() - .5 ) * WIRE_VIEW_HEIGHT_RANGE.max;
+      var dot = new Circle( DOT_RADIUS, {
+        fill: 'black',
+        centerX: centerX,
+        centerY: centerY,
+        tandem: dotsGroupTandem.createNextTandem()
+      } );
+      dotsNode.addChild( dot );
     }
+    this.addChild( dotsNode );
 
     // Function to map resistivity to number of dots.
     var maxDots = dotGridColumns * dotGridRows;
@@ -122,11 +119,6 @@ define( function( require ) {
       maxDots,
       true
     );
-
-    // Randomize the array of dots so that we can show/hide them in a random way as resistivity changes.
-    dotsNode.children = phet.joist.random.shuffle( dotsNode.children );
-
-    this.addChild( dotsNode );
 
     // Update the resistor on change. No need to unlink, as it is present for the lifetime of the sim.
     Property.multilink( [ model.areaProperty, model.lengthProperty, model.resistivityProperty ],
