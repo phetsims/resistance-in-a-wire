@@ -36,14 +36,13 @@ define( function( require ) {
       right: this.layoutBounds.right - 30,
       top: 40
     } );
-    this.addChild( controlPanel );
 
     // Create the formula node that holds the equation with size changing variables.
     var formulaNode = new FormulaNode( model, tandem.createTandem( 'formulaNode' ), {
       centerX: controlPanel.left / 2,
       centerY: 190
     } );
-      this.addChild( formulaNode );
+    this.addChild( formulaNode );
 
     // Create the wire display to represent the formula
     var wireNode = new WireNode( model, tandem.createTandem( 'wireNode' ), {
@@ -75,6 +74,9 @@ define( function( require ) {
       bottom: this.layoutBounds.bottom - 20,
       tandem: tandem.createTandem( 'resetAllButton' )
     } ) );
+
+    // add the control panel last so it is always on top.
+    this.addChild( controlPanel );
   }
 
   resistanceInAWire.register( 'ResistanceInAWireScreenView', ResistanceInAWireScreenView );

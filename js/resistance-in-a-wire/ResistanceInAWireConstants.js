@@ -18,7 +18,7 @@ define( function( require ) {
     // colors
     BLUE_COLOR: '#0f0ffb',
     BLACK_COLOR: '#000',
-    RED_COLOR: '#F00',
+    RED_COLOR: '#F22',
     WHITE_COLOR: '#FFF',
 
     // formula
