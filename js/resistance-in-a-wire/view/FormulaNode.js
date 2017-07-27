@@ -7,6 +7,7 @@
  * @author Vasily Shakhov (Mlearner)
  * @author Anton Ulyanov (Mlearner)
  * @author John Blanco (PhET Interactive Simulations)
+ * @author Michael Kauzmann (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';
@@ -29,10 +30,6 @@ define( function( require ) {
   var resistanceSymbolString = require( 'string!RESISTANCE_IN_A_WIRE/resistanceSymbol' );
   var resistivitySymbolString = require( 'string!RESISTANCE_IN_A_WIRE/resistivitySymbol' );
 
-  // constants
-  var MAX_CAPPED_VALUE = 2.8; // empirically determined
-  var CAP_RECTANGLE_LINE_WIDTH = .5;
-
   /**
    * @param {ResistanceInAWireModel} model
    * @param {Tandem} tandem
@@ -50,12 +47,12 @@ define( function( require ) {
       center: new Vector2( 100, 0 ),
       tandem: tandem.createTandem( 'equalsSign' )
     } );
-    this.addChild( equalsSignText );
 
     // An array of attributes related to text
     var symbolTexts = [ {
       label: resistanceSymbolString,
-      scale: 3 / 2, // warning, do not change this without thinking about MAX_CAPPED_VALUE
+      scaleM: .03,
+      scaleB: .6,
       center: new Vector2( equalsSignText.centerX - 100, 0 ),
       property: model.resistanceProperty,
       color: ResistanceInAWireConstants.RED_COLOR,
@@ -63,34 +60,30 @@ define( function( require ) {
       tandem: tandem.createTandem( 'resistanceSymbol' )
     }, {
       label: resistivitySymbolString,
+      scaleB: 0.125,
       center: new Vector2( equalsSignText.centerX + 120, -90 ),
       property: model.resistivityProperty,
       color: ResistanceInAWireConstants.BLUE_COLOR,
       tandem: tandem.createTandem( 'resistivitySymbol' )
     }, {
       label: lengthSymbolString,
+      scaleB: 0.125,
       center: new Vector2( equalsSignText.centerX + 220, -90 ),
       property: model.lengthProperty,
       color: ResistanceInAWireConstants.BLUE_COLOR,
       tandem: tandem.createTandem( 'lengthSymbol' )
     }, {
       label: areaSymbolString,
+      scaleB: 0.125,
       center: new Vector2( equalsSignText.centerX + 170, 90 ),
       property: model.areaProperty,
       color: ResistanceInAWireConstants.BLUE_COLOR,
       tandem: tandem.createTandem( 'areaSymbol' )
     } ];
 
-    // dividing line, hard coded
-    this.addChild( new Path( Shape.lineSegment( 150, 8, 400, 8 ), {
-      stroke: 'black',
-      lineWidth: 6,
-      tandem: tandem.createTandem( 'dividingLine' )
-    } ) );
-
     var lettersNode = new Node();
 
-    // dynamic text
+    // dynamically sized text
     symbolTexts.forEach( function( entry ) {
 
       var text = new Text( entry.label, {
@@ -104,42 +97,33 @@ define( function( require ) {
       // Add an invisible rectangle with bounds slightly larger than the text so that artifacts aren't left on the
       // screen, see https://github.com/phetsims/ohms-law/issues/26.
       // This also serves as the rectangle surrounding the 'R' that 'caps' the scaling when it gets too big.
-      var antiArtifactRectangle = Rectangle.bounds( text.bounds.dilatedX( 3 ), {
-        lineWidth: CAP_RECTANGLE_LINE_WIDTH,
-        cornerRadius: 3
-      } );
+      var antiArtifactRectangle = Rectangle.bounds( text.bounds.dilatedX( 1 ) );
 
       var letterNode = new Node( { children: [ antiArtifactRectangle, text ] } );
       lettersNode.addChild( letterNode );
 
-      var scale = entry.scale || 1 / entry.property.value;
+      // If there is no scale provided, set the scale based on default value of the property.
+      var scale = entry.scaleM || 1 / entry.property.value;
 
       // The size of the formula letter will scale with the value the letter represents. This does not need an unlink
       // because it exists for the life of the sim.
       entry.property.link( function( value ) {
-        letterNode.setScaleMagnitude( scale * value + 0.125 );
+        letterNode.setScaleMagnitude( scale * value + entry.scaleB );
         letterNode.center = entry.center;
-
-        // If it is the capped letter (the 'R') and it is passed the capped value
-        if ( entry.cappedSize && value >= MAX_CAPPED_VALUE ) {
-
-          // Scale the line width instead of the letter once capped
-          // Max the lineWidth out so that the lowest area doesn't have too thick of a square around it.
-          var lineWidth = CAP_RECTANGLE_LINE_WIDTH + value * .01 < 3 ? CAP_RECTANGLE_LINE_WIDTH + value * .01 : 3;
-          antiArtifactRectangle.setLineWidth( lineWidth );
-          antiArtifactRectangle.setStroke( ResistanceInAWireConstants.RED_COLOR );
-          letterNode.setScaleMagnitude( scale * MAX_CAPPED_VALUE + 0.125 );
-          letterNode.center = entry.center;
-        }
-        else {
-
-          // If we are not capped or more that the max value, don't show the border
-          antiArtifactRectangle.setStroke( null );
-        }
       } );
     } );
 
     this.addChild( lettersNode );
+
+    // Add the dividing line and equals sign after the letters so that they are on top when resistance is too large
+    this.addChild( equalsSignText );
+
+    // dividing line, hard coded
+    this.addChild( new Path( Shape.lineSegment( 150, 8, 400, 8 ), {
+      stroke: 'black',
+      lineWidth: 6,
+      tandem: tandem.createTandem( 'dividingLine' )
+    } ) );
 
     options.tandem = tandem;
     this.mutate( options );
