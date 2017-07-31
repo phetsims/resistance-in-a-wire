@@ -51,8 +51,8 @@ define( function( require ) {
     // An array of attributes related to text
     var symbolTexts = [ {
       label: resistanceSymbolString,
-      scaleM: .03,
-      scaleB: .6,
+      scaleM: .5,
+      scaleB: 5,
       center: new Vector2( equalsSignText.centerX - 100, 0 ),
       property: model.resistanceProperty,
       color: ResistanceInAWireConstants.RED_COLOR,
@@ -60,21 +60,21 @@ define( function( require ) {
       tandem: tandem.createTandem( 'resistanceSymbol' )
     }, {
       label: resistivitySymbolString,
-      scaleB: 0.125,
+      scaleB: 1,
       center: new Vector2( equalsSignText.centerX + 120, -90 ),
       property: model.resistivityProperty,
       color: ResistanceInAWireConstants.BLUE_COLOR,
       tandem: tandem.createTandem( 'resistivitySymbol' )
     }, {
       label: lengthSymbolString,
-      scaleB: 0.125,
+      scaleB: 1,
       center: new Vector2( equalsSignText.centerX + 220, -90 ),
       property: model.lengthProperty,
       color: ResistanceInAWireConstants.BLUE_COLOR,
       tandem: tandem.createTandem( 'lengthSymbol' )
     }, {
       label: areaSymbolString,
-      scaleB: 0.125,
+      scaleB: 1,
       center: new Vector2( equalsSignText.centerX + 170, 90 ),
       property: model.areaProperty,
       color: ResistanceInAWireConstants.BLUE_COLOR,
@@ -87,7 +87,7 @@ define( function( require ) {
     symbolTexts.forEach( function( entry ) {
 
       var text = new Text( entry.label, {
-        font: new PhetFont( { family: ResistanceInAWireConstants.FONT_FAMILY, size: 115 } ),
+        font: new PhetFont( { family: ResistanceInAWireConstants.FONT_FAMILY, size: 15 } ),
         fill: entry.color,
         center: entry.center,
         tandem: entry.tandem,
@@ -103,7 +103,7 @@ define( function( require ) {
       lettersNode.addChild( letterNode );
 
       // If there is no scale provided, set the scale based on default value of the property.
-      var scale = entry.scaleM || 1 / entry.property.value;
+      var scale = entry.scaleM || 7.5 / entry.property.value;
 
       // The size of the formula letter will scale with the value the letter represents. This does not need an unlink
       // because it exists for the life of the sim.
