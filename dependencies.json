@@ -1,11 +1,11 @@
 {
-  "comment": "# resistance-in-a-wire 1.3.0-dev.5 Wed Jul 26 2017 16:54:04 GMT-0800 (Alaskan Daylight Time)",
+  "comment": "# resistance-in-a-wire 1.3.0-dev.5 Mon Jul 31 2017 09:45:56 GMT-0800 (Alaskan Daylight Time)",
   "assert": {
-    "sha": "5c3f92048a9c2ffd6df8ede54fd64f1f7a7e4ef2",
+    "sha": "928741cfc8fe804334d5b35292140314511f8678",
     "branch": "master"
   },
   "axon": {
-    "sha": "fd28f6a09e20467383bd261e423eb34faa7e2a3a",
+    "sha": "282cbe6997475531f95e376dbd60919aa139a4be",
     "branch": "master"
   },
   "brand": {
@@ -13,7 +13,7 @@
     "branch": "master"
   },
   "chipper": {
-    "sha": "379fe52a1462a689de5eaf772b64a37a418cd628",
+    "sha": "feb8ac28f2ca7ff445c713db9148d988d7516935",
     "branch": "master"
   },
   "dot": {
@@ -21,7 +21,7 @@
     "branch": "master"
   },
   "joist": {
-    "sha": "db4de9f6191f8ced98541563917a23b6cf3afc92",
+    "sha": "2ec167887fd94a42a44c7dd8e61b802735d48760",
     "branch": "master"
   },
   "kite": {
@@ -41,23 +41,23 @@
     "branch": "master"
   },
   "resistance-in-a-wire": {
-    "sha": "66f6745d1327e9aecdd6adc3f71e0d8bc8662350",
+    "sha": "f3e415b9a85d25fa3ae71a43054b6147af44939b",
     "branch": "master"
   },
   "scenery": {
-    "sha": "d4481c51993d6c344169ac75e4c7ea1046621ab6",
+    "sha": "1e0e867fe079952a067075459b1ff5a0848ffa34",
     "branch": "master"
   },
   "scenery-phet": {
-    "sha": "6dd22c7e76bd54f5f6940fadbb21edce8a3b571c",
+    "sha": "8cc2060f8d77fe42fced5fb5f249011ede668266",
     "branch": "master"
   },
   "sherpa": {
-    "sha": "f1937ecb1c2fd45be748815eddeb89ff6a7ad537",
+    "sha": "600020c3eb2c069b9598bf624a3bf54515ea40ba",
     "branch": "master"
   },
   "sun": {
-    "sha": "719b389c6a26db75ea91ded609eff4f6aa07ab72",
+    "sha": "f76a05df156a9cea531cd5437848eb708fc18d3d",
     "branch": "master"
   },
   "tandem": {
