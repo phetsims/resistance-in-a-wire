@@ -90,8 +90,7 @@ define( function( require ) {
         font: new PhetFont( { family: ResistanceInAWireConstants.FONT_FAMILY, size: 15 } ),
         fill: entry.color,
         center: entry.center,
-        tandem: entry.tandem,
-        boundsMethod: 'accurate'
+        tandem: entry.tandem
       } );
 
       // Add an invisible rectangle with bounds slightly larger than the text so that artifacts aren't left on the
@@ -103,7 +102,7 @@ define( function( require ) {
       lettersNode.addChild( letterNode );
 
       // If there is no scale provided, set the scale based on default value of the property.
-      var scale = entry.scaleM || 7.5 / entry.property.value;
+      var scale = entry.scaleM || 7 / entry.property.value;
 
       // The size of the formula letter will scale with the value the letter represents. This does not need an unlink
       // because it exists for the life of the sim.
