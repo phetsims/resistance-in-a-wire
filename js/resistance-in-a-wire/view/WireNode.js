@@ -22,7 +22,6 @@ define( function( require ) {
   var ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
   var Range = require( 'DOT/Range' );
   var Shape = require( 'KITE/Shape' );
-  var Util = require( 'DOT/Util' );
 
   // constants
   var PERSPECTIVE_FACTOR = 0.4; // Multiplier that controls the width of the ellipses on the ends of the wire.
@@ -92,9 +91,6 @@ define( function( require ) {
     var dotsNode = new Node( { tandem: dotsNodeTandem } );
     var dotsGroupTandem = dotsNodeTandem.createGroupTandem( 'dots' );
 
-    var dotGridColumns = Util.roundSymmetric( MAX_WIDTH_INCLUDING_ROUNDED_ENDS / Math.sqrt( AREA_PER_DOT ) );
-    var dotGridRows = Util.roundSymmetric( WIRE_VIEW_HEIGHT_RANGE.max / Math.sqrt( AREA_PER_DOT ) );
-
     // Create the dots randomly on the wire. Density is based on AREA_PER_DOT.
     for ( var i = 0; i < NUMBER_OF_DOTS; i++ ) {
 
@@ -111,12 +107,11 @@ define( function( require ) {
     this.addChild( dotsNode );
 
     // Function to map resistivity to number of dots.
-    var maxDots = dotGridColumns * dotGridRows;
-    var resistivityToNumDots = new LinearFunction(
+    var resistivityToNumberOfDots = new LinearFunction(
       ResistanceInAWireConstants.RESISTIVITY_RANGE.min,
       ResistanceInAWireConstants.RESISTIVITY_RANGE.max,
-      maxDots * 0.05,
-      maxDots,
+      NUMBER_OF_DOTS * 0.05,
+      NUMBER_OF_DOTS,
       true
     );
 
@@ -152,7 +147,7 @@ define( function( require ) {
         dotsNode.clipArea = wireBody.shape.ellipticalArc( -width / 2, 0, PERSPECTIVE_FACTOR * height / 2, height / 2, 0, 3 * Math.PI / 2, Math.PI / 2, true );
 
         // Set the number of visible dots based on the resistivity.
-        var numDotsToShow = resistivityToNumDots( resistivity );
+        var numDotsToShow = resistivityToNumberOfDots( resistivity );
         dotsNode.children.forEach( function( dot, index ) {
           dot.visible = index < numDotsToShow;
         } );
