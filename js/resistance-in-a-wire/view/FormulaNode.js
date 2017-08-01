@@ -51,8 +51,6 @@ define( function( require ) {
     // An array of attributes related to text
     var symbolTexts = [ {
       label: resistanceSymbolString,
-      scaleM: .5,
-      scaleB: 5,
       center: new Vector2( equalsSignText.centerX - 100, 0 ),
       property: model.resistanceProperty,
       color: ResistanceInAWireConstants.RED_COLOR,
@@ -60,21 +58,18 @@ define( function( require ) {
       tandem: tandem.createTandem( 'resistanceSymbol' )
     }, {
       label: resistivitySymbolString,
-      scaleB: 1,
       center: new Vector2( equalsSignText.centerX + 120, -90 ),
       property: model.resistivityProperty,
       color: ResistanceInAWireConstants.BLUE_COLOR,
       tandem: tandem.createTandem( 'resistivitySymbol' )
     }, {
       label: lengthSymbolString,
-      scaleB: 1,
       center: new Vector2( equalsSignText.centerX + 220, -90 ),
       property: model.lengthProperty,
       color: ResistanceInAWireConstants.BLUE_COLOR,
       tandem: tandem.createTandem( 'lengthSymbol' )
     }, {
       label: areaSymbolString,
-      scaleB: 1,
       center: new Vector2( equalsSignText.centerX + 170, 90 ),
       property: model.areaProperty,
       color: ResistanceInAWireConstants.BLUE_COLOR,
@@ -101,13 +96,13 @@ define( function( require ) {
       var letterNode = new Node( { children: [ antiArtifactRectangle, text ] } );
       lettersNode.addChild( letterNode );
 
-      // If there is no scale provided, set the scale based on default value of the property.
-      var scale = entry.scaleM || 7 / entry.property.value;
+      // Set the scale based on the default value of the property; normalize the scale for all letters.
+      var scale = 7 / entry.property.value; // empirically determined '7'
 
       // The size of the formula letter will scale with the value the letter represents. This does not need an unlink
       // because it exists for the life of the sim.
       entry.property.link( function( value ) {
-        letterNode.setScaleMagnitude( scale * value + entry.scaleB );
+        letterNode.setScaleMagnitude( scale * value + 1 );
         letterNode.center = entry.center;
       } );
     } );
