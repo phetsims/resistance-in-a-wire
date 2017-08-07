@@ -73,6 +73,7 @@ define( function( require ) {
       font: ResistanceInAWireConstants.READOUT_FONT,
       fill: ResistanceInAWireConstants.BLACK_COLOR,
       centerX: 0,
+      maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH,
       tandem: tandem.createTandem( 'valueText' )
     } );
 
