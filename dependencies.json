@@ -1,5 +1,5 @@
 {
-  "comment": "# resistance-in-a-wire 1.3.0-dev.9 Mon Aug 07 2017 11:19:46 GMT-0800 (Alaskan Daylight Time)",
+  "comment": "# resistance-in-a-wire 1.3.0-phetiodev.10 Mon Aug 07 2017 11:22:04 GMT-0800 (Alaskan Daylight Time)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
     "branch": "master"
@@ -21,7 +21,7 @@
     "branch": "master"
   },
   "joist": {
-    "sha": "0a8adc1cf5c8a07e82e8f67e26365d7d9df9b7a0",
+    "sha": "6e8a3c5f46c6e497493a70fc7ebdfa081e9d392e",
     "branch": "master"
   },
   "kite": {
@@ -30,6 +30,30 @@
   },
   "phet-core": {
     "sha": "d8bec6c12614029cc8635c60f23d20db1904fee6",
+    "branch": "master"
+  },
+  "phet-io": {
+    "sha": "e5e44b5e7c59a57ad139f87cb36a70b386718e76",
+    "branch": "master"
+  },
+  "phet-io-website": {
+    "sha": "14e083e65ef5ed29675554cefb2ae715a6d3d1cb",
+    "branch": "master"
+  },
+  "phet-io-wrapper-classroom-activity": {
+    "sha": "1cb7bdccecd2c3493e4eb22d57d5bd31c3b87e24",
+    "branch": "master"
+  },
+  "phet-io-wrapper-lab-book": {
+    "sha": "abf90598573366af7e9538847e89d4af0eb20166",
+    "branch": "master"
+  },
+  "phet-io-wrapper-sonification": {
+    "sha": "473d74b77bff458e50e5464fd9d31e5bb81f18b1",
+    "branch": "master"
+  },
+  "phet-io-wrappers": {
+    "sha": "4888d4d513592f21426f49fc0c31119dfb187101",
     "branch": "master"
   },
   "phetcommon": {
@@ -41,7 +65,7 @@
     "branch": "master"
   },
   "resistance-in-a-wire": {
-    "sha": "6ac5df1067e7bb508cac9256d957da22f7a91b81",
+    "sha": "1c521a0346db3f2105ebbdad6716d452c61b519e",
     "branch": "master"
   },
   "scenery": {
@@ -49,7 +73,7 @@
     "branch": "master"
   },
   "scenery-phet": {
-    "sha": "561aaaf4a8f7d72744bff1332eada2045a1ccf8a",
+    "sha": "37bf8502c5f70a2e3a1fd7adae50020b7546b321",
     "branch": "master"
   },
   "sherpa": {
@@ -61,7 +85,7 @@
     "branch": "master"
   },
   "tandem": {
-    "sha": "1d12b07c024dc43da105a1416645fcc41464a77e",
+    "sha": "e9801a1195d25cee8b7b770d04b1d2e78cb5f09f",
     "branch": "master"
   }
 }
