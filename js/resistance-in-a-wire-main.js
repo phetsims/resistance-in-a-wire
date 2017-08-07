@@ -25,14 +25,15 @@ define( function( require ) {
       leadDesign: 'Michael Dubson',
       softwareDevelopment: 'Michael Dubson, John Blanco',
       team: 'Wendy Adams, Mindy Gratny, Ariel Paul',
-      qualityAssurance: 'Steele Dalton, Alex Dornan, Bryce Griebenow, Ethan Johnson, Elise Morgan, ' +
+      qualityAssurance: 'Steele Dalton, Alex Dornan, Bryce Griebenow, Ethan Johnson, \nElise Morgan, ' +
                         'Oliver Orejola, Benjamin Roberts, Bryan Yoelin',
       thanks: 'Thanks to Mobile Learner Labs for working with the PhET development team\nto convert this simulation to HTML5.'
     }
   };
 
   SimLauncher.launch( function() {
-    //Create and start the sim
+
+    // Create and start the sim
     var sim = new Sim( resistanceInAWireTitleString,
       [ new ResistanceInAWireScreen( tandem.createTandem( 'resistanceInAWireScreen' ) ) ], simOptions );
     sim.start();
