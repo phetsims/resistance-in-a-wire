@@ -27,7 +27,8 @@ define( function( require ) {
       team: 'Wendy Adams, Mindy Gratny, Ariel Paul',
       qualityAssurance: 'Steele Dalton, Alex Dornan, Bryce Griebenow, Ethan Johnson, Elise Morgan, ' +
                         'Oliver Orejola, Benjamin Roberts, Bryan Yoelin',
-      thanks: 'Thanks to Mobile Learner Labs for working with the PhET development team\nto convert this simulation to HTML5.'
+      thanks: 'Thanks to Mobile Learner Labs for working with the PhET development team to convert this ' +
+              'simulation to HTML5.'
     }
   };
 
