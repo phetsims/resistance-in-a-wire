@@ -30,7 +30,7 @@ define( function( require ) {
    * @param {object} options
    * @constructor
    */
-  function SliderUnit( property, range, symbolString, nameString, unitString, tandem, options ) {
+  function SliderUnit( property, range, symbolString, nameString, unitString, accessibleLabel, tandem, options ) {
 
     Node.call( this );
 
@@ -65,10 +65,17 @@ define( function( require ) {
       thumbFillHighlighted: '#dedede',
       centerX: 0,
       tandem: tandem.createTandem( 'slider' ),
-      keyboardStep: options.keyboardStep,
-      shiftKeyboardStep: options.shiftKeyboardStep,
+
+      // a11y
+      keyboardStep: options.keyboardStep, // delta for keyboard step
+      shiftKeyboardStep: options.shiftKeyboardStep, // delta when holding shift
       accessibleValuePattern: options.accessibleValuePattern,
-      accessibleDecimalPlaces: options.accessibleDecimalPlaces
+      accessibleDecimalPlaces: options.accessibleDecimalPlaces, // demimal places for readout
+
+      parentContainerTagName: 'li',
+      labelTagName: 'label',
+      accessibleLabel: accessibleLabel,
+      prependLabels: true
     } );
 
     var valueText = new Text( Util.toFixed( range.max, 2 ), {

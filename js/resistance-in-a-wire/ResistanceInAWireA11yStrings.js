@@ -15,7 +15,10 @@ define( function( require ) {
   var ResistanceInAWireA11yStrings = {
     resistivityUnitsPatternString: '{{value}} ohm centimeters',
     lengthUnitsPatternString: '{{value}} centimeters',
-    areaUnitsPatternString: '{{value}} centimeters squared'
+    areaUnitsPatternString: '{{value}} centimeters squared',
+    resistivitySliderLabelString: 'rho, Resistivity',
+    lengthSliderLabelString: 'L, Length',
+    areaSliderLabelString: 'A, Area'
   };
 
   if ( phet.chipper.queryParameters.stringTest === 'xss' ) {

@@ -40,6 +40,9 @@ define( function( require ) {
   var resistivityUnitsPatternString = ResistanceInAWireA11yStrings.resistivityUnitsPatternString;
   var lengthUnitsPatternString = ResistanceInAWireA11yStrings.lengthUnitsPatternString;
   var areaUnitsPatternString = ResistanceInAWireA11yStrings.areaUnitsPatternString;
+  var resistivitySliderLabelString = ResistanceInAWireA11yStrings.resistivitySliderLabelString;
+  var lengthSliderLabelString = ResistanceInAWireA11yStrings.lengthSliderLabelString;
+  var areaSliderLabelString = ResistanceInAWireA11yStrings.areaSliderLabelString;
 
   /**
    * @param {ResistanceInAWireModel} model
@@ -88,6 +91,7 @@ define( function( require ) {
       resistivitySymbolString,
       resistivityString,
       StringUtils.format( pattern0ResistanceUnits1LengthUnitsString, ohmsSymbolString, cmString ),
+      resistivitySliderLabelString,
       tandem.createTandem( 'resistivitySlider' ), {
         maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH,
         keyboardStep: 0.05, // ohm-cm
@@ -103,6 +107,7 @@ define( function( require ) {
       lengthSymbolString,
       lengthString,
       cmString,
+      lengthSliderLabelString,
       tandem.createTandem( 'lengthSlider' ), {
         maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH,
         keyboardStep: 1.0, // cm
@@ -119,6 +124,7 @@ define( function( require ) {
       areaSymbolString,
       areaString,
       cmString + '<sup>2</sup>',
+      areaSliderLabelString,
       tandem.createTandem( 'areaSlider' ), {
         maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH,
         keyboardStep: 1.0, // cm^2
@@ -130,7 +136,10 @@ define( function( require ) {
     var sliders = new HBox( {
       spacing: 48, // empirically determined
       children: [ resistivitySlider, lengthSlider, areaSlider ],
-      centerX: 0
+      centerX: 0,
+
+      // a11y
+      tagName: 'ul'
     } );
 
     resistanceReadout.bottom = sliders.top - 10;
