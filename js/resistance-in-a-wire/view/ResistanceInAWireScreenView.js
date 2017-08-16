@@ -77,6 +77,9 @@ define( function( require ) {
 
     // add the control panel last so it is always on top.
     this.addChild( controlPanel );
+
+    // a11y - the reset all button should come last, control panel first
+    this.accessibleOrder = [ controlPanel ];
   }
 
   resistanceInAWire.register( 'ResistanceInAWireScreenView', ResistanceInAWireScreenView );
