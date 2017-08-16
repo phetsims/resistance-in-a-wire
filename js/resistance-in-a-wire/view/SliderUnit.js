@@ -35,9 +35,10 @@ define( function( require ) {
     Node.call( this );
 
     options = _.extend( {
-      numberDecimalPlaces: 2,
+      accessibleDecimalPlaces: 2,
       keyboardStep: 1,
-      shiftKeyboardStep: 0.01
+      shiftKeyboardStep: 0.01,
+      accessibleValuePattern: '{{value}}' // string pattern used for formating the value read by the screen reader
     }, options );
 
     var symbolText = new Text( symbolString, {
@@ -64,9 +65,10 @@ define( function( require ) {
       thumbFillHighlighted: '#dedede',
       centerX: 0,
       tandem: tandem.createTandem( 'slider' ),
-      numberDecimalPlaces: options.numberDecimalPlaces,
       keyboardStep: options.keyboardStep,
-      shiftKeyboardStep: options.shiftKeyboardStep
+      shiftKeyboardStep: options.shiftKeyboardStep,
+      accessibleValuePattern: options.accessibleValuePattern,
+      accessibleDecimalPlaces: options.accessibleDecimalPlaces
     } );
 
     var valueText = new Text( Util.toFixed( range.max, 2 ), {

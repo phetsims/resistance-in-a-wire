@@ -20,6 +20,7 @@ define( function( require ) {
   var Util = require( 'DOT/Util' );
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
   var ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
+  var ResistanceInAWireA11yStrings = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireA11yStrings' );
 
   // strings
   var areaString = require( 'string!RESISTANCE_IN_A_WIRE/area' );
@@ -34,6 +35,11 @@ define( function( require ) {
   var resistanceString = require( 'string!RESISTANCE_IN_A_WIRE/resistance' );
   var resistivityString = require( 'string!RESISTANCE_IN_A_WIRE/resistivity' );
   var resistivitySymbolString = require( 'string!RESISTANCE_IN_A_WIRE/resistivitySymbol' );
+
+  // a11y strings (not ready for i18n)
+  var resistivityUnitsPatternString = ResistanceInAWireA11yStrings.resistivityUnitsPatternString;
+  var lengthUnitsPatternString = ResistanceInAWireA11yStrings.lengthUnitsPatternString;
+  var areaUnitsPatternString = ResistanceInAWireA11yStrings.areaUnitsPatternString;
 
   /**
    * @param {ResistanceInAWireModel} model
@@ -85,7 +91,8 @@ define( function( require ) {
       tandem.createTandem( 'resistivitySlider' ), {
         maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH,
         keyboardStep: 0.05, // ohm-cm
-        shiftKeyStep: 0.01 // ohms-cm
+        shiftKeyStep: 0.01, // ohms-cm
+        accessibleValuePattern: resistivityUnitsPatternString
       }
     );
 
@@ -99,7 +106,8 @@ define( function( require ) {
       tandem.createTandem( 'lengthSlider' ), {
         maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH,
         keyboardStep: 1.0, // cm
-        shiftKeyboardStep: 0.01 // cm
+        shiftKeyboardStep: 0.01, // cm
+        accessibleValuePattern: lengthUnitsPatternString
       }
     );
 
@@ -114,7 +122,8 @@ define( function( require ) {
       tandem.createTandem( 'areaSlider' ), {
         maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH,
         keyboardStep: 1.0, // cm^2
-        shiftKeyboardStep: 0.01 // cm^2
+        shiftKeyboardStep: 0.01, // cm^2
+        accessibleValuePattern: areaUnitsPatternString
       }
     );
 
