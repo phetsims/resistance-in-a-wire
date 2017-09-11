@@ -28,28 +28,22 @@ define( function( require ) {
     // @public {Property.<number>} in Ohm*cm
     this.resistivityProperty = new NumberProperty( ResistanceInAWireConstants.RESISTIVITY_RANGE.defaultValue, {
       tandem: tandem.createTandem( 'resistivityProperty' ),
-      phetioValueType: TNumber( {
-        units: 'ohm-centimeters',
-        range: ResistanceInAWireConstants.RESISTIVITY_RANGE
-      } )
+      units: 'ohm-centimeters',
+      range: ResistanceInAWireConstants.RESISTIVITY_RANGE
     } );
 
     // @public {Property.<number>} in cm
     this.lengthProperty = new NumberProperty( ResistanceInAWireConstants.LENGTH_RANGE.defaultValue, {
       tandem: tandem.createTandem( 'lengthProperty' ),
-      phetioValueType: TNumber( {
-        units: 'centimeters',
-        range: ResistanceInAWireConstants.LENGTH_RANGE
-      } )
+      units: 'centimeters',
+      range: ResistanceInAWireConstants.LENGTH_RANGE
     } );
 
     // @public {Property.<number>} in cm^2
     this.areaProperty = new NumberProperty( ResistanceInAWireConstants.AREA_RANGE.defaultValue, {
       tandem: tandem.createTandem( 'areaProperty' ),
-      phetioValueType: TNumber( {
-        units: 'centimeters-squared',
-        range: ResistanceInAWireConstants.AREA_RANGE
-      } )
+      units: 'centimeters-squared',
+      range: ResistanceInAWireConstants.AREA_RANGE
     } );
 
     // Derived property that tracks the resistance of the wire
@@ -59,7 +53,8 @@ define( function( require ) {
         return resistivity * length / area;
       }, {
         tandem: tandem.createTandem( 'resistanceProperty' ),
-        phetioValueType: TNumber( { units: 'ohms' } )
+        units: 'ohms',
+        phetioValueType: TNumber
       }
     );
   }
