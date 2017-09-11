@@ -9,9 +9,9 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
-  var RangeWithValue = require( 'DOT/RangeWithValue' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var RangeWithValue = require( 'DOT/RangeWithValue' );
+  var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
 
   var ResistanceInAWireConstants = {
 

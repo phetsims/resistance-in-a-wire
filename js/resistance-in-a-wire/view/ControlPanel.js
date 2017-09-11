@@ -10,17 +10,17 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var HBox = require( 'SCENERY/nodes/HBox' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var HBox = require( 'SCENERY/nodes/HBox' );
   var Panel = require( 'SUN/Panel' );
-  var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
+  var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
+  var ResistanceInAWireA11yStrings = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireA11yStrings' );
+  var ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
   var SliderUnit = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/SliderUnit' );
+  var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
-  var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
-  var ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
-  var ResistanceInAWireA11yStrings = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireA11yStrings' );
 
   // strings
   var areaString = require( 'string!RESISTANCE_IN_A_WIRE/area' );
@@ -28,8 +28,8 @@ define( function( require ) {
   var cmString = require( 'string!RESISTANCE_IN_A_WIRE/cm' );
   var lengthString = require( 'string!RESISTANCE_IN_A_WIRE/length' );
   var lengthSymbolString = require( 'string!RESISTANCE_IN_A_WIRE/lengthSymbol' );
-  var ohmString = require( 'string!RESISTANCE_IN_A_WIRE/ohm' );
   var ohmsSymbolString = require( 'string!RESISTANCE_IN_A_WIRE/ohmsSymbol' );
+  var ohmString = require( 'string!RESISTANCE_IN_A_WIRE/ohm' );
   var pattern0Label1Value2UnitsString = require( 'string!RESISTANCE_IN_A_WIRE/pattern.0label.1value.2units' );
   var pattern0ResistanceUnits1LengthUnitsString = require( 'string!RESISTANCE_IN_A_WIRE/pattern.0resistanceUnits.1lengthUnits' );
   var resistanceString = require( 'string!RESISTANCE_IN_A_WIRE/resistance' );
