@@ -94,16 +94,14 @@ define( function( require ) {
     var sliderIconsVBox = new VBox( {
       children: [ arrowKeyContentRow.icon, shiftArrowKeyContentRow.icon, pageUpPageDownContentRow.icon, homeEndContentRow.icon ],
       align: 'right',
-      spacing: ICON_VERTICAL_SPACING,
-      tandem: tandem.createTandem( 'sliderIconsVBox' )
+      spacing: ICON_VERTICAL_SPACING
     } );
 
     // place descriptions in a left aligned box
     var sliderDescriptionsVBox = new VBox( {
       children: [ arrowKeyContentRow.description, shiftArrowKeyContentRow.description, pageUpPageDownContentRow.description, homeEndContentRow.description ],
       align: 'left',
-      spacing: ICON_VERTICAL_SPACING,
-      tandem: tandem.createTandem( 'descriptionVBox' )
+      spacing: ICON_VERTICAL_SPACING
     } );
 
     //------------------------------------------------------------------------------------------------------------------
@@ -154,16 +152,14 @@ define( function( require ) {
     var generalIconVBox = new VBox( {
       children: [ tabKeyContentRow.icon, shiftPlusTabContentRow.icon, escapeKeyContentRow.icon ],
       align: 'right',
-      spacing: ICON_VERTICAL_SPACING,
-      tandem: tandem.createTandem( 'generalIconVBox' )
+      spacing: ICON_VERTICAL_SPACING
     } );
 
     // place descriptions in a left aligned box
     var descriptionVBox = new VBox( {
       children: [ tabKeyContentRow.description, shiftPlusTabContentRow.description, escapeKeyContentRow.description ],
       align: 'left',
-      spacing: ICON_VERTICAL_SPACING,
-      tandem: tandem.createTandem( 'descriptionVBox' )
+      spacing: ICON_VERTICAL_SPACING
     } );
 
     //------------------------------------------------------------------------------------------------------------------
@@ -177,39 +173,34 @@ define( function( require ) {
     // slider icons and descriptions contained in an HBox, vertical alignment guaranteed with AlignGroup
     var sliderControlsHBox = new HBox( {
       children: [ sliderIconsBox, sliderDescriptionsVBox ],
-      spacing: 15,
-      tandem: tandem.createTandem( 'generalContentHBox' ),
+      spacing: 15
     } );
 
     // general icons and descriptions aligned horizontally, vertical spacing is guaranteed to be corrected by AlignGroup
     var generalContentHBox = new HBox( {
       children: [ generalIconsBox, descriptionVBox ],
-      spacing: 15,
-      tandem: tandem.createTandem( 'generalContentHBox' ),
+      spacing: 15
     } );
 
     // add the slider content and heading in a VBox
     var sliderContentVBox = new VBox( {
       children: [ sliderControlsHeading, sliderControlsHBox ],
       spacing: 10,
-      align: 'left',
-      tandem: tandem.createTandem( 'generalNavigationVBox' )
+      align: 'left'
     } );
 
     // add the general content and heading in a VBox
     var generalNavigationVBox = new VBox( {
       children: [ generalNavigationHeading, generalContentHBox ],
       spacing: 10,
-      align: 'left',
-      tandem: tandem.createTandem( 'generalNavigationVBox' )
+      align: 'left'
     } );
 
     // the final Dialog content box, vertically aligned to the left
     var contentVBox = new VBox( {
       children: [ sliderContentVBox, generalNavigationVBox ],
       spacing: 20,
-      align: 'left',
-      tandem: tandem.createTandem( 'generalNavigationVBox' )
+      align: 'left'
     } );
 
     Panel.call( this, contentVBox, {
