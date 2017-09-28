@@ -57,7 +57,8 @@ define( function( require ) {
       yMargin: 20,
       lineWidth: 3,
       resize: false,
-      tandem: tandem
+      tandem: tandem,
+      preventFit: true // used to avoid jostling in the control panel when the the resistance changes quickly, see https://github.com/phetsims/ohms-law/issues/68
     }, options );
 
     // Add the dynamic title that indicates the resistance.

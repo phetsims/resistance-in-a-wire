@@ -38,7 +38,7 @@ define( function( require ) {
       accessibleDecimalPlaces: 2,
       keyboardStep: 1,
       shiftKeyboardStep: 0.01,
-      accessibleValuePattern: '{{value}}' // string pattern used for formating the value read by the screen reader
+      accessibleValuePattern: '{{value}}' // string pattern used for formatting the value read by the screen reader
     }, options );
 
     var symbolText = new Text( symbolString, {
