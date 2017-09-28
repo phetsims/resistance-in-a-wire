@@ -58,7 +58,7 @@ define( function( require ) {
       lineWidth: 3,
       resize: false,
       tandem: tandem,
-      preventFit: true // used to avoid jostling in the control panel when the the resistance changes quickly, see https://github.com/phetsims/ohms-law/issues/68
+      preventFit: true
     }, options );
 
     // Add the dynamic title that indicates the resistance.
