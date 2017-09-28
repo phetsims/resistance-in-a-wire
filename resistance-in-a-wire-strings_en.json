@@ -40,5 +40,47 @@
   },
   "resistivitySymbol": {
     "value": "ρ"
+  },
+  "or": {
+    "value": "or"
+  },
+  "shiftKey": {
+    "value": "Shift"
+  },
+  "escKey": {
+    "value": "Esc"
+  },
+  "tabKey": {
+    "value": "Tab"
+  },
+  "hotKeysAndHelp": {
+    "value": "Keyboard Shortcuts"
+  },
+  "arrowKeysAdjustSliders": {
+    "value": "Arrow keys <strong>adjust</strong> the sliders."
+  },
+  "shiftArrowKeysSliders": {
+    "value": "Hold down Shift and press an arrow key to <strong>move in smaller steps</strong>."
+  },
+  "pageUpPageDownSliders": {
+    "value": "Page Up or Page Down <strong>moves in larger steps</strong>."
+  },
+  "homeEndSliders": {
+    "value": "Home or End <strong> moves to the end</strong>."
+  },
+  "tabKeyDescription": {
+    "value": "Tab key moves to the <strong>next item.</strong>"
+  },
+  "shiftTabKeyDescription": {
+    "value": "Shift plus Tab moves to the <strong>previous item.</strong>"
+  },
+  "escapeKeyDescription": {
+    "value": "Escape key <strong>exits a dialog</strong>, like this one."
+  },
+  "sliderControls": {
+    "value": "Slider Controls"
+  },
+  "generalNavigation": {
+    "value": "General Navigation"
   }
 }

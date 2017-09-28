@@ -9,6 +9,7 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var ResistanceInAWireKeyboardHelpContent = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/ResistanceInAWireKeyboardHelpContent' );
   var ResistanceInAWireScreen = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireScreen' );
   var Sim = require( 'JOIST/Sim' );
   var SimLauncher = require( 'JOIST/SimLauncher' );
@@ -20,6 +21,9 @@ define( function( require ) {
   // strings
   var resistanceInAWireTitleString = require( 'string!RESISTANCE_IN_A_WIRE/resistance-in-a-wire.title' );
 
+  // help content to describe keyboard interactions
+  var keyboardHelpContent = new ResistanceInAWireKeyboardHelpContent( Tandem.createStaticTandem( 'keyboardHelpContent' ) );
+
   var simOptions = {
     credits: {
       leadDesign: 'Michael Dubson',
@@ -29,7 +33,8 @@ define( function( require ) {
                         'Oliver Orejola, Benjamin Roberts, Bryan Yoelin',
       thanks: 'Thanks to Mobile Learner Labs for working with the PhET development team to convert this ' +
               'simulation to HTML5.'
-    }
+    },
+    keyboardHelpNode: keyboardHelpContent
   };
 
   SimLauncher.launch( function() {
