@@ -58,50 +58,67 @@ define( function( require ) {
     //------------------------------------------------------------------------------------------------------------------
     var sliderControlsHeading = new Text( ResistanceInAWireA11yStrings.sliderControlsString, {
       font: HEADING_FONT,
-      maxWidth: HEADING_MAX_WIDTH
+      maxWidth: HEADING_MAX_WIDTH,
+      tandem: tandem.createTandem( 'sliderControlsHeading' )
     } );
 
     // icons
     // arrow keys
-    var arrowKeysIcon = ResistanceInAWireKeyboardHelpContent.createArrowKeysVBox( { scale: 0.80 } );
+    var arrowKeysIcon = ResistanceInAWireKeyboardHelpContent.createArrowKeysVBox( {
+      scale: 0.80,
+      tandem: tandem.createTandem( 'arrowKeysIcon' )
+    } );
 
     // shift and tab keys, separated by plus sign
-    var shiftPlusArrowKeysIcon = ResistanceInAWireKeyboardHelpContent.createShiftPlusIconHBox( ResistanceInAWireKeyboardHelpContent.createArrowKeysVBox( { scale: 0.5 } ), { tandem: tandem } );
+    var shiftPlusArrowKeysIcon = ResistanceInAWireKeyboardHelpContent.createShiftPlusIconHBox(
+      tandem.createTandem( 'shiftPlusArrowKeysIcon' ),
+      ResistanceInAWireKeyboardHelpContent.createArrowKeysVBox( { scale: 0.5 } )
+    );
 
     // page up or page down icons, separated by 'or'
     var pageUpNode = new PageUpKeyNode();
     var pageDownNode = new PageDownKeyNode();
-    var pageUpPageDownIcon = ResistanceInAWireKeyboardHelpContent.createIconOrIconHBox( pageUpNode, pageDownNode );
+    var pageUpOrPageDownIcon = ResistanceInAWireKeyboardHelpContent.createIconOrIconHBox( pageUpNode, pageDownNode, tandem.createTandem( 'pageUpOrPageDownIcon' ) );
 
     // home or end, separated by 'or'
     var homeKeyNode = new HomeKeyNode();
     var endKeyNode = new EndKeyNode();
-    var homeOrEndIcon = ResistanceInAWireKeyboardHelpContent.createIconOrIconHBox( homeKeyNode, endKeyNode );
+    var homeOrEndIcon = ResistanceInAWireKeyboardHelpContent.createIconOrIconHBox( homeKeyNode, endKeyNode, tandem.createTandem( 'homeOrEndIcon' ) );
 
     // text descriptions for arrow key interactions
-    var arrowKeyDescription = new RichText( ResistanceInAWireA11yStrings.arrowKeysAdjustSlidersString, DESCRIPTION_OPTIONS );
-    var shiftPlusArrowKeysDescription = new RichText( ResistanceInAWireA11yStrings.shiftArrowKeysSlidersString, DESCRIPTION_OPTIONS );
-    var pageUpPageDownDescription = new RichText( ResistanceInAWireA11yStrings.pageUpPageDownSlidersString, DESCRIPTION_OPTIONS );
-    var homeEndDescription = new RichText( ResistanceInAWireA11yStrings.homeEndSlidersString, DESCRIPTION_OPTIONS );
+    var arrowKeysDescription = new RichText( ResistanceInAWireA11yStrings.arrowKeysAdjustSlidersString, _.extend( {
+      tandem: tandem.createTandem( 'arrowKeysDescription' )
+    }, DESCRIPTION_OPTIONS ) );
+    var shiftPlusArrowKeysDescription = new RichText( ResistanceInAWireA11yStrings.shiftArrowKeysSlidersString, _.extend( {
+      tandem: tandem.createTandem( 'shiftPlusArrowKeysDescription' )
+    }, DESCRIPTION_OPTIONS ) );
+    var pageUpOrPageDownDescription = new RichText( ResistanceInAWireA11yStrings.pageUpPageDownSlidersString, _.extend( {
+      tandem: tandem.createTandem( 'pageUpOrPageDownDescription' )
+    }, DESCRIPTION_OPTIONS ) );
+    var homeOrEndDescription = new RichText( ResistanceInAWireA11yStrings.homeEndSlidersString, _.extend( {
+      tandem: tandem.createTandem( 'homeOrEndDescription' )
+    }, DESCRIPTION_OPTIONS ) );
 
     // align text and icons with AlignBox so that both will have the same height for easy alignment
-    var arrowKeyContentRow = ResistanceInAWireKeyboardHelpContent.createContentRow( arrowKeysIcon, arrowKeyDescription, { descriptionYAlign: 'bottom', descriptionYOffset: 6 } );
+    var arrowKeyContentRow = ResistanceInAWireKeyboardHelpContent.createContentRow( arrowKeysIcon, arrowKeysDescription, { descriptionYAlign: 'bottom', descriptionYOffset: 6 } );
     var shiftArrowKeyContentRow = ResistanceInAWireKeyboardHelpContent.createContentRow( shiftPlusArrowKeysIcon, shiftPlusArrowKeysDescription );
-    var pageUpPageDownContentRow = ResistanceInAWireKeyboardHelpContent.createContentRow( pageUpPageDownIcon, pageUpPageDownDescription );
-    var homeEndContentRow = ResistanceInAWireKeyboardHelpContent.createContentRow( homeOrEndIcon, homeEndDescription );
+    var pageUpPageDownContentRow = ResistanceInAWireKeyboardHelpContent.createContentRow( pageUpOrPageDownIcon, pageUpOrPageDownDescription );
+    var homeEndContentRow = ResistanceInAWireKeyboardHelpContent.createContentRow( homeOrEndIcon, homeOrEndDescription );
 
     // place icons in a right aligned VBox
     var sliderIconsVBox = new VBox( {
       children: [ arrowKeyContentRow.icon, shiftArrowKeyContentRow.icon, pageUpPageDownContentRow.icon, homeEndContentRow.icon ],
       align: 'right',
-      spacing: ICON_VERTICAL_SPACING
+      spacing: ICON_VERTICAL_SPACING,
+      tandem: tandem.createTandem( 'sliderIconsVBox' )
     } );
 
     // place descriptions in a left aligned box
     var sliderDescriptionsVBox = new VBox( {
       children: [ arrowKeyContentRow.description, shiftArrowKeyContentRow.description, pageUpPageDownContentRow.description, homeEndContentRow.description ],
       align: 'left',
-      spacing: ICON_VERTICAL_SPACING
+      spacing: ICON_VERTICAL_SPACING,
+      tandem: tandem.createTandem( 'sliderDescriptionsVBox' )
     } );
 
     //------------------------------------------------------------------------------------------------------------------
@@ -109,44 +126,48 @@ define( function( require ) {
     //------------------------------------------------------------------------------------------------------------------
     var generalNavigationHeading = new Text( ResistanceInAWireA11yStrings.generalNavigationString, {
       font: HEADING_FONT,
-      maxWidth: HEADING_MAX_WIDTH
+      maxWidth: HEADING_MAX_WIDTH,
+      tandem: tandem.createTandem( 'generalNavigationHeading' )
     } );    
     
     // single tab key
-    var singleTabKeyIcon = new TabKeyNode( {
+    var generalNavigationTabKeyIcon = new TabKeyNode( {
       minKeyWidth: TEXT_KEY_WIDTH, // in ScreenView coordinates
       maxKeyWidth: TEXT_KEY_WIDTH,
-      tandem: tandem.createTandem( 'singleTabKeyIcon' )
+      tandem: tandem.createTandem( 'generalNavigationTabKeyIcon' )
     } );
 
-    var shiftTabKeyIcon = ResistanceInAWireKeyboardHelpContent.createShiftPlusIconHBox( new TabKeyNode( {
+    var generalNavigationShiftPlusTabKeyIcon = ResistanceInAWireKeyboardHelpContent.createShiftPlusIconHBox( 
+      tandem.createTandem( 'generalNavigationShiftPlusTabKeyIcon' ),
+      new TabKeyNode( {
         minKeyWidth: TEXT_KEY_WIDTH,
-        maxKeyWidth: TEXT_KEY_WIDTH
-    } ) );
+        maxKeyWidth: TEXT_KEY_WIDTH,
+      } )
+    );
 
     // escape key
-    var escapeKeyIconNode = new EscapeKeyNode( {
-      tandem: tandem.createTandem( 'escapeKeyNode' )
+    var generalNavigationEscapeKeyIcon = new EscapeKeyNode( {
+      tandem: tandem.createTandem( 'generalNavigationEscapeKeyIcon' )
     } );
 
     // descriptions for each
-    var tabKeyDescription = new RichText( ResistanceInAWireA11yStrings.tabKeyDescriptionString, _.extend( {
-      tandem: tandem.createTandem( 'tabKeyDescription' ),
+    var generalNavigationTabKeyDescription = new RichText( ResistanceInAWireA11yStrings.tabKeyDescriptionString, _.extend( {
+      tandem: tandem.createTandem( 'generalNavigationTabKeyDescription' ),
       maxWidth: TEXT_MAX_WIDTH
     }, DESCRIPTION_OPTIONS ) );
-    var shiftPlusTabDescription = new RichText( ResistanceInAWireA11yStrings.shiftTabKeyDescriptionString, _.extend( {
-      tandem: tandem.createTandem( 'shiftPlusTabDescription' ),
+    var generalNavigationShiftPlusTabKeyDescription = new RichText( ResistanceInAWireA11yStrings.shiftTabKeyDescriptionString, _.extend( {
+      tandem: tandem.createTandem( 'generalNavigationShiftPlusTabKeyDescription' ),
       maxWidth: TEXT_MAX_WIDTH
     }, DESCRIPTION_OPTIONS ) );
-    var escapeKeyDescription = new RichText( ResistanceInAWireA11yStrings.escapeKeyDescriptionString, _.extend( {
-      tandem: tandem.createTandem( 'escapeKeyDescription' ),
+    var generalNavigationEscapeKeyDescription = new RichText( ResistanceInAWireA11yStrings.escapeKeyDescriptionString, _.extend( {
+      tandem: tandem.createTandem( 'generalNavigationEscapeKeyDescription' ),
       maxWidth: TEXT_MAX_WIDTH
     }, DESCRIPTION_OPTIONS ) );
 
     // align the icons with their content using AlignBox so that icons and text have same vertical height
-    var tabKeyContentRow = ResistanceInAWireKeyboardHelpContent.createContentRow( singleTabKeyIcon, tabKeyDescription );
-    var shiftPlusTabContentRow = ResistanceInAWireKeyboardHelpContent.createContentRow( shiftTabKeyIcon, shiftPlusTabDescription );
-    var escapeKeyContentRow = ResistanceInAWireKeyboardHelpContent.createContentRow( escapeKeyIconNode, escapeKeyDescription );
+    var tabKeyContentRow = ResistanceInAWireKeyboardHelpContent.createContentRow( generalNavigationTabKeyIcon, generalNavigationTabKeyDescription );
+    var shiftPlusTabContentRow = ResistanceInAWireKeyboardHelpContent.createContentRow( generalNavigationShiftPlusTabKeyIcon, generalNavigationShiftPlusTabKeyDescription );
+    var escapeKeyContentRow = ResistanceInAWireKeyboardHelpContent.createContentRow( generalNavigationEscapeKeyIcon, generalNavigationEscapeKeyDescription );
 
     // place icons in a right aligned vbox
     var generalIconVBox = new VBox( {
@@ -244,7 +265,7 @@ define( function( require ) {
      * @param {Object} options
      * @return {HBox}
      */
-    createShiftPlusIconHBox: function( iconNode, options ) {
+    createShiftPlusIconHBox: function( tandem, iconNode, options ) {
 
       options = _.extend( {
         shiftMinKeyWidth: TEXT_KEY_WIDTH,
@@ -265,7 +286,8 @@ define( function( require ) {
       // shift, plus, and iconNode aranged in an HBox
       var shiftPlusIconHBox = new HBox( {
         children: [ shiftKeyIcon, plusIconNode, iconNode ],
-        spacing: 7
+        spacing: 7,
+        tandem: tandem
       } );
 
       return shiftPlusIconHBox;
@@ -278,7 +300,7 @@ define( function( require ) {
      * @param {Node} iconB
      * @return {HBox}
      */
-    createIconOrIconHBox: function( iconA, iconB ) {
+    createIconOrIconHBox: function( iconA, iconB, tandem ) {
 
       var orText = new Text( ResistanceInAWireA11yStrings.orString, {
         font: new PhetFont( 12 ),
@@ -287,7 +309,8 @@ define( function( require ) {
 
       var iconOrIconHBox = new  HBox( {
         children: [ iconA, orText, iconB ],
-        spacing: 11
+        spacing: 11,
+        tandem: tandem
       } );
 
       return iconOrIconHBox;
