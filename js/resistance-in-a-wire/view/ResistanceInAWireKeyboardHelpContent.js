@@ -2,7 +2,7 @@
 
 /**
  * Content for the "Hot Keys and Help" dialog that can be brought up from the sim navigation bar.
- * 
+ *
  * @author Jesse Greenberg (PhET Interactive Simulations)
  */
 define( function( require ) {
@@ -47,7 +47,7 @@ define( function( require ) {
 
   /**
    * Constructor.
-   * 
+   *
    * @param {Tandem} tandem
    * @constructor
    */
@@ -100,7 +100,10 @@ define( function( require ) {
     }, DESCRIPTION_OPTIONS ) );
 
     // align text and icons with AlignBox so that both will have the same height for easy alignment
-    var arrowKeyContentRow = ResistanceInAWireKeyboardHelpContent.createContentRow( arrowKeysIcon, arrowKeysDescription, { descriptionYAlign: 'bottom', descriptionYOffset: 6 } );
+    var arrowKeyContentRow = ResistanceInAWireKeyboardHelpContent.createContentRow( arrowKeysIcon, arrowKeysDescription, {
+      descriptionYAlign: 'bottom',
+      descriptionYOffset: 6
+    } );
     var shiftArrowKeyContentRow = ResistanceInAWireKeyboardHelpContent.createContentRow( shiftPlusArrowKeysIcon, shiftPlusArrowKeysDescription );
     var pageUpPageDownContentRow = ResistanceInAWireKeyboardHelpContent.createContentRow( pageUpOrPageDownIcon, pageUpOrPageDownDescription );
     var homeEndContentRow = ResistanceInAWireKeyboardHelpContent.createContentRow( homeOrEndIcon, homeOrEndDescription );
@@ -128,8 +131,8 @@ define( function( require ) {
       font: HEADING_FONT,
       maxWidth: HEADING_MAX_WIDTH,
       tandem: tandem.createTandem( 'generalNavigationHeading' )
-    } );    
-    
+    } );
+
     // single tab key
     var generalNavigationTabKeyIcon = new TabKeyNode( {
       minKeyWidth: TEXT_KEY_WIDTH, // in ScreenView coordinates
@@ -137,11 +140,11 @@ define( function( require ) {
       tandem: tandem.createTandem( 'generalNavigationTabKeyIcon' )
     } );
 
-    var generalNavigationShiftPlusTabKeyIcon = ResistanceInAWireKeyboardHelpContent.createShiftPlusIconHBox( 
+    var generalNavigationShiftPlusTabKeyIcon = ResistanceInAWireKeyboardHelpContent.createShiftPlusIconHBox(
       tandem.createTandem( 'generalNavigationShiftPlusTabKeyIcon' ),
       new TabKeyNode( {
         minKeyWidth: TEXT_KEY_WIDTH,
-        maxKeyWidth: TEXT_KEY_WIDTH,
+        maxKeyWidth: TEXT_KEY_WIDTH
       } )
     );
 
@@ -228,7 +231,7 @@ define( function( require ) {
       stroke: null,
       fill: 'rgb( 214, 237, 249 )',
       minWidth: MIN_CONTENT_WIDTH,
-      tandem: tandem,
+      tandem: tandem
     } );
   }
 
@@ -261,7 +264,8 @@ define( function( require ) {
      * Create a row that includes Shift '+' some icon node.  Shift is arranged to the left of several key nodes
      * so this generates it and places it next to the desired key node, separated by a '+' node.
      *
-     * @param {Node} iconNode 
+     * @param {Tandem} tandem
+     * @param {Node} iconNode
      * @param {Object} options
      * @return {HBox}
      */
@@ -307,7 +311,7 @@ define( function( require ) {
         maxWidth: TEXT_MAX_WIDTH / 5
       } );
 
-      var iconOrIconHBox = new  HBox( {
+      var iconOrIconHBox = new HBox( {
         children: [ iconA, orText, iconB ],
         spacing: 11,
         tandem: tandem
@@ -331,7 +335,10 @@ define( function( require ) {
 
       var alignGroup = new AlignGroup( { matchHorizontal: false } );
       var iconBox = alignGroup.createBox( icon );
-      var descriptionBox = alignGroup.createBox( description, { yAlign: options.descriptionYAlign, bottomMargin: options.descriptionYOffset } );
+      var descriptionBox = alignGroup.createBox( description, {
+        yAlign: options.descriptionYAlign,
+        bottomMargin: options.descriptionYOffset
+      } );
 
       return {
         icon: iconBox,
