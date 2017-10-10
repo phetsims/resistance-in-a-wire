@@ -30,7 +30,7 @@ define( function( require ) {
     AREA_RANGE: new RangeWithValue( 0.01, 15, 7.5 ), // in cm^2
 
     // control panel
-    SLIDER_WIDTH: 60,
+    SLIDER_WIDTH: 70,
 
     // slider unit
     THUMB_HEIGHT: 32,  // Empirically determined.
