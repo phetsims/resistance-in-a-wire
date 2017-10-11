@@ -65,7 +65,7 @@ define( function( require ) {
     var resistanceReadout = new Text( '', {
       font: ResistanceInAWireConstants.READOUT_FONT,
       fill: ResistanceInAWireConstants.RED_COLOR,
-      maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH * 4.9,
+      maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH * 4.7,
       centerX: 0,
       tandem: tandem.createTandem( 'resistanceReadout' )
     } );
@@ -94,7 +94,6 @@ define( function( require ) {
       StringUtils.format( pattern0ResistanceUnits1LengthUnitsString, ohmsSymbolString, cmString ),
       resistivitySliderLabelString,
       tandem.createTandem( 'resistivitySlider' ), {
-        maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH,
         keyboardStep: 0.05, // ohm-cm
         shiftKeyStep: 0.01, // ohms-cm
         accessibleValuePattern: resistivityUnitsPatternString
@@ -110,7 +109,6 @@ define( function( require ) {
       cmString,
       lengthSliderLabelString,
       tandem.createTandem( 'lengthSlider' ), {
-        maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH,
         keyboardStep: 1.0, // cm
         shiftKeyboardStep: 0.01, // cm
         accessibleValuePattern: lengthUnitsPatternString
@@ -127,17 +125,19 @@ define( function( require ) {
       cmString + '<sup>2</sup>',
       areaSliderLabelString,
       tandem.createTandem( 'areaSlider' ), {
-        maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH,
         keyboardStep: 1.0, // cm^2
         shiftKeyboardStep: 0.01, // cm^2
         accessibleValuePattern: areaUnitsPatternString
       }
     );
 
+    // place sliders in a box, aligning along the bottom
     var sliders = new HBox( {
       spacing: 48, // empirically determined
       children: [ resistivitySlider, lengthSlider, areaSlider ],
       centerX: 0,
+      align: 'bottom',
+      resize: false,
 
       // a11y
       tagName: 'ul'

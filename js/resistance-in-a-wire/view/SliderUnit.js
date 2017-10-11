@@ -13,7 +13,6 @@ define( function( require ) {
   var HSlider = require( 'SUN/HSlider' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
   var ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
   var RichText = require( 'SCENERY/nodes/RichText' );
@@ -41,18 +40,18 @@ define( function( require ) {
       accessibleValuePattern: '{{value}}' // string pattern used for formatting the value read by the screen reader
     }, options );
 
+    // text for the symbol, text bounds must be accurate for correct layou
     var symbolText = new Text( symbolString, {
       font: ResistanceInAWireConstants.SYMBOL_FONT,
       fill: ResistanceInAWireConstants.BLUE_COLOR,
       maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH,
-      centerX: 0,
+      boundsMethod: 'accurate',
       tandem: tandem.createTandem( 'symbolText' )
     } );
 
     var nameText = new Text( nameString, {
       font: ResistanceInAWireConstants.NAME_FONT,
       fill: ResistanceInAWireConstants.BLUE_COLOR,
-      centerX: 0,
       maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH,
       tandem: tandem.createTandem( 'nameText' )
     } );
@@ -63,7 +62,6 @@ define( function( require ) {
       trackSize: new Dimension2( ResistanceInAWireConstants.SLIDER_HEIGHT - 30, 4 ),
       thumbFillEnabled: '#c3c4c5',
       thumbFillHighlighted: '#dedede',
-      centerX: 0,
       tandem: tandem.createTandem( 'slider' ),
 
       // a11y
@@ -81,42 +79,48 @@ define( function( require ) {
     var valueText = new Text( Util.toFixed( range.max, 2 ), {
       font: ResistanceInAWireConstants.READOUT_FONT,
       fill: ResistanceInAWireConstants.BLACK_COLOR,
-      centerX: 0,
       maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH,
       tandem: tandem.createTandem( 'valueText' )
-    } );
-
-    var valueTextBackground = Rectangle.bounds( valueText.bounds, {
-      children: [ valueText ]
     } );
 
     var unitText = new RichText( unitString, {
       font: ResistanceInAWireConstants.UNIT_FONT,
       fill: ResistanceInAWireConstants.BLUE_COLOR,
-      centerX: 0,
       maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH,
+      boundsMethod: 'accurate',
       tandem: tandem.createTandem( 'unitText' )
     } );
 
+    // units text at the bottom, everything stacked on top of it
+    unitText.bottom = 0;
+    valueText.centerX = unitText.centerX;
 
-    // Layout
-    // Don't use centerY because the super text in units will cause problems, empirically determined
-    symbolText.bottom = slider.centerY - slider.height / 2 - 30;
-    nameText.bottom = slider.centerY - slider.height / 2 - 10;
-    valueTextBackground.bottom = slider.centerY + slider.height / 2 + 35;
-    unitText.bottom = slider.centerY + slider.height / 2 + 70;
+    // value text above unitText
+    valueText.bottom = unitText.bottom - 35;
+
+    // sliders along the top of values
+    slider.bottom = valueText.top;
+    slider.centerX = unitText.centerX;
+
+    // names along the top of the slider
+    nameText.bottom = slider.top - 5;
+    nameText.centerX = slider.centerX;
+
+    // symbol texts along the top
+    symbolText.bottom = nameText.top - 8;
+    symbolText.centerX = nameText.centerX;
 
     // Add children, from top to bottom of the slider unit
     this.addChild( symbolText );
     this.addChild( nameText );
     this.addChild( slider );
-    this.addChild( valueTextBackground );
+    this.addChild( valueText );
     this.addChild( unitText );
 
     // Update value of the readout. No need to unlink, present for the lifetime of the simulation.
     property.link( function( value ) {
       valueText.text = Util.toFixed( value, 2 );
-      valueText.centerX = 0;
+      valueText.centerX = unitText.centerX;
     } );
 
     this.mutate( options );
