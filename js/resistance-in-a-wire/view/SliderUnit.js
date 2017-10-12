@@ -96,7 +96,7 @@ define( function( require ) {
     valueText.centerX = unitText.centerX;
 
     // value text above unitText
-    valueText.y = unitText.y - 30;
+    valueText.y = unitText.y - 35;
 
     // sliders along the top of values
     slider.bottom = valueText.y - 30;
