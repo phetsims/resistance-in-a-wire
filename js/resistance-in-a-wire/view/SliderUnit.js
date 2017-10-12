@@ -92,22 +92,22 @@ define( function( require ) {
     } );
 
     // units text at the bottom, everything stacked on top of it
-    unitText.bottom = 0;
+    unitText.y = 0;
     valueText.centerX = unitText.centerX;
 
     // value text above unitText
-    valueText.bottom = unitText.bottom - 35;
+    valueText.y = unitText.y - 30;
 
     // sliders along the top of values
-    slider.bottom = valueText.top;
+    slider.bottom = valueText.y - 30;
     slider.centerX = unitText.centerX;
 
     // names along the top of the slider
-    nameText.bottom = slider.top - 5;
+    nameText.y = slider.top - 5;
     nameText.centerX = slider.centerX;
 
     // symbol texts along the top
-    symbolText.bottom = nameText.top - 8;
+    symbolText.bottom = nameText.y - 20;
     symbolText.centerX = nameText.centerX;
 
     // Add children, from top to bottom of the slider unit

@@ -21,6 +21,7 @@ define( function( require ) {
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
+  var HStrut = require( 'SCENERY/nodes/HStrut' );
 
   // strings
   var areaString = require( 'string!RESISTANCE_IN_A_WIRE/area' );
@@ -43,6 +44,9 @@ define( function( require ) {
   var resistivitySliderLabelString = ResistanceInAWireA11yStrings.resistivitySliderLabelString;
   var lengthSliderLabelString = ResistanceInAWireA11yStrings.lengthSliderLabelString;
   var areaSliderLabelString = ResistanceInAWireA11yStrings.areaSliderLabelString;
+
+  // constants
+  var SLIDER_SPACING = 50;
 
   /**
    * @param {ResistanceInAWireModel} model
@@ -131,19 +135,15 @@ define( function( require ) {
       }
     );
 
-    // place sliders in a box, aligning along the bottom
-    var sliders = new HBox( {
-      spacing: 48, // empirically determined
-      children: [ resistivitySlider, lengthSlider, areaSlider ],
-      centerX: 0,
-      align: 'bottom',
-      resize: false,
-
-      // a11y
-      tagName: 'ul'
+    var sliders = new Node( {
+      children: [ resistivitySlider, lengthSlider, areaSlider ]
     } );
 
-    resistanceReadout.bottom = sliders.top - 10;
+    // layout for the panel, HBox cannot be used because 'bottom' alignment cannot align RichText in SliderUnit
+    lengthSlider.left = resistivitySlider.right + SLIDER_SPACING;
+    areaSlider.left = lengthSlider.right + SLIDER_SPACING;
+    sliders.centerX = 0;
+    resistanceReadout.bottom = sliders.top - 12;
 
     // Because ControlPanel extends Panel, it needs pass a content node into its constructor to surround.
     // Add everything to the content node, then pass content to the Panel.call().
