@@ -11,13 +11,12 @@ define( function( require ) {
 
   // modules
   var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
-  var Bounds2 = require( 'DOT/Bounds2' );
   var ControlPanel = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/ControlPanel' );
   var FormulaNode = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/FormulaNode' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
   var ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
-  var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
   var ScreenView = require( 'JOIST/ScreenView' );
   var WireNode = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/WireNode' );
 
@@ -29,13 +28,18 @@ define( function( require ) {
   function ResistanceInAWireScreenView( model, tandem ) {
 
     ScreenView.call( this, {
-      layoutBounds: new Bounds2( 0, 0, 1024, 618 ),
       tandem: tandem
+    } );
+
+    // Create the control panel with sliders that change the values of the equation's variables. Hard coded
+    var controlPanel = new ControlPanel( model, tandem.createTandem( 'controlPanel' ), {
+      right: this.layoutBounds.right - 30,
+      top: 40
     } );
 
     // Create the formula node that holds the equation with size changing variables.
     var formulaNode = new FormulaNode( model, tandem.createTandem( 'formulaNode' ), {
-      left: 100,
+      centerX: controlPanel.left / 2,
       centerY: 190
     } );
     this.addChild( formulaNode );
@@ -46,13 +50,6 @@ define( function( require ) {
       centerY: formulaNode.centerY + 270
     } );
     this.addChild( wireNode );
-
-    // Create the control panel with sliders that change the values of the equation's variables.
-    var controlPanel = new ControlPanel( model, tandem.createTandem( 'controlPanel' ), {
-      right: this.layoutBounds.right - 30,
-      top: 40
-    } );
-    this.addChild( controlPanel );
 
     var tailX = wireNode.centerX - ResistanceInAWireConstants.TAIL_LENGTH / 2;
     var tipX = wireNode.centerX + ResistanceInAWireConstants.TAIL_LENGTH / 2;
@@ -74,9 +71,15 @@ define( function( require ) {
       listener: function() { model.reset(); },
       radius: 30,
       right: controlPanel.right,
-      top: controlPanel.bottom + 20,
+      bottom: this.layoutBounds.bottom - 20,
       tandem: tandem.createTandem( 'resetAllButton' )
     } ) );
+
+    // add the control panel last so it is always on top.
+    this.addChild( controlPanel );
+
+    // a11y - the reset all button should come last, control panel first
+    this.accessibleOrder = [ controlPanel ];
   }
 
   resistanceInAWire.register( 'ResistanceInAWireScreenView', ResistanceInAWireScreenView );

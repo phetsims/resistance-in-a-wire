@@ -1,4 +1,4 @@
-// Copyright 2015-2017, University of Colorado Boulder
+// Copyright 2017, University of Colorado Boulder
 
 /**
  * Constants used in multiple locations within the 'Resistance in a Wire' simulation.
@@ -9,16 +9,16 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
-  var RangeWithValue = require( 'DOT/RangeWithValue' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var RangeWithValue = require( 'DOT/RangeWithValue' );
+  var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
 
   var ResistanceInAWireConstants = {
 
     // colors
     BLUE_COLOR: '#0f0ffb',
     BLACK_COLOR: '#000',
-    RED_COLOR: '#F00',
+    RED_COLOR: '#F22',
     WHITE_COLOR: '#FFF',
 
     // formula
@@ -30,8 +30,7 @@ define( function( require ) {
     AREA_RANGE: new RangeWithValue( 0.01, 15, 7.5 ), // in cm^2
 
     // control panel
-    SLIDERS_HORIZONTAL_SEPARATION: 115,
-    SLIDER_UNIT_VERTICAL_OFFSET: 78, // vertical offset measured from top of panel
+    SLIDER_WIDTH: 70,
 
     // slider unit
     THUMB_HEIGHT: 32,  // Empirically determined.
