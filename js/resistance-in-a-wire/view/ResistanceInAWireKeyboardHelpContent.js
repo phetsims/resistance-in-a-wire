@@ -24,12 +24,8 @@ define( function( require ) {
    */
   function ResistanceInAWireKeyboardHelpContent( tandem ) {
 
-    var sliderControlsHelpContent = new SliderControlsHelpContent( {
-      tandem: tandem.createTandem( 'sliderControlsHelpContent' )
-    } );
-    var generalNavigationHelpContent = new GeneralNavigationHelpContent( {
-      tandem: tandem.createTandem( 'generalNavigationHelpContent' )
-    } );
+    var sliderControlsHelpContent = new SliderControlsHelpContent();
+    var generalNavigationHelpContent = new GeneralNavigationHelpContent();
 
     var content = new HBox( {
       children: [ sliderControlsHelpContent, generalNavigationHelpContent ],
