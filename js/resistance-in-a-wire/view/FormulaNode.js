@@ -17,6 +17,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var platform = require( 'PHET_CORE/platform' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
   var ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
@@ -77,6 +78,12 @@ define( function( require ) {
     } ];
 
     var lettersNode = new Node();
+
+    // if we are on a safari platform render with canvas to prevent these issues, but only on safari because
+    // canvas doesn't perform as well on other browsers
+    // https://github.com/phetsims/resistance-in-a-wire/issues/108 and
+    // https://github.com/phetsims/resistance-in-a-wire/issues/112
+    if ( platform.safari ) { lettersNode.renderer = 'canvas'; }
 
     // dynamically sized text
     symbolTexts.forEach( function( entry ) {
