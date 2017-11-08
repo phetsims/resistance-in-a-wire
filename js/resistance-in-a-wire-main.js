@@ -9,7 +9,6 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var ResistanceInAWireKeyboardHelpContent = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/ResistanceInAWireKeyboardHelpContent' );
   var ResistanceInAWireScreen = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireScreen' );
   var Sim = require( 'JOIST/Sim' );
   var SimLauncher = require( 'JOIST/SimLauncher' );
@@ -20,9 +19,6 @@ define( function( require ) {
 
   // strings
   var resistanceInAWireTitleString = require( 'string!RESISTANCE_IN_A_WIRE/resistance-in-a-wire.title' );
-
-  // help content to describe keyboard interactions
-  var keyboardHelpContent = new ResistanceInAWireKeyboardHelpContent( Tandem.createStaticTandem( 'keyboardHelpContent' ) );
 
   var simOptions = {
     credits: {
@@ -35,9 +31,8 @@ define( function( require ) {
               'simulation to HTML5.'
     },
 
-    // a11y enabled
-    keyboardHelpNode: keyboardHelpContent,
-    accessibility: true 
+    // accessibility disabled in phet-io releases until we are ready to work on features
+    accessibility: false
   };
 
   SimLauncher.launch( function() {
