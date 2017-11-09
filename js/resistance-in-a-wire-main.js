@@ -12,6 +12,7 @@ define( function( require ) {
   var ResistanceInAWireKeyboardHelpContent = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/ResistanceInAWireKeyboardHelpContent' );
   var ResistanceInAWireScreen = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireScreen' );
   var Sim = require( 'JOIST/Sim' );
+  var platform = require( 'PHET_CORE/platform' );
   var SimLauncher = require( 'JOIST/SimLauncher' );
   var Tandem = require( 'TANDEM/Tandem' );
 
@@ -37,7 +38,7 @@ define( function( require ) {
 
     // a11y enabled
     keyboardHelpNode: keyboardHelpContent,
-    accessibility: true 
+    accessibility: !platform.mobileSafari, // disable accessibility on mobile Safari until accessibility works on that platform
   };
 
   SimLauncher.launch( function() {
