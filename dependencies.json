@@ -2,43 +2,43 @@
   "comment": "# resistance-in-a-wire 1.3.0-dev.16 Wed Oct 11 2017 18:20:24 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "axon": {
     "sha": "b8dd4e51210531bb8fb2d12bfcb779821d49f95c",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "brand": {
     "sha": "cfca902dca800a6e8b80729a46611346c4f16250",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "chipper": {
-    "sha": "66763c36d9e0bbb57fd40ddafa62115ac3cdd964",
-    "branch": "master"
+    "sha": "b8a3c09ad4b7bb7d74f6382cb7baa2cbf84dd4a7",
+    "branch": "HEAD"
   },
   "dot": {
     "sha": "84bc5146e1a75e42674927d520777323f33c7e7e",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "joist": {
     "sha": "3eff115f7ee1e367630fcf45081f2ece1d92285a",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "kite": {
-    "sha": "9689a3de27640c67fa66b8b343643f47da99d9d9",
-    "branch": "master"
+    "sha": "91e2ccf15423927ec6b21136c27f89570294168c",
+    "branch": "HEAD"
   },
   "phet-core": {
-    "sha": "054b2d6db39f0ce2b76a9ba26a12ec51bce17f98",
-    "branch": "master"
+    "sha": "5b0df3e8830458686de45e8188c1a73992209f18",
+    "branch": "resistance-in-a-wire-1.4"
   },
   "phetcommon": {
     "sha": "5b0c8dd60e559bfc0062bf159f42df86fe49874d",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "query-string-machine": {
     "sha": "c74e454ec68033a9546b8181d4d962eb8ceef81f",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "resistance-in-a-wire": {
     "sha": "0a813a7ee17967942fef3c8ed15c514b99265b1d",
@@ -46,22 +46,22 @@
   },
   "scenery": {
     "sha": "db7ea875eaba59fe7f4c929d8e88832c5f0ab995",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "scenery-phet": {
-    "sha": "449f4ae57ac56a5b4d24adfabdd9482139b46068",
-    "branch": "master"
+    "sha": "71f32bfc501728b44da309d4c5f6acffdee00a78",
+    "branch": "resistance-in-a-wire-1.4"
   },
   "sherpa": {
-    "sha": "f0d5f7504e8bfc00109989c890bd84ec21ba2128",
-    "branch": "master"
+    "sha": "0d590744f991ef0461a2e854ceedfe9467a17815",
+    "branch": "HEAD"
   },
   "sun": {
-    "sha": "d57850fdc9057f33ce4a216273d0d4c08b366422",
-    "branch": "master"
+    "sha": "79c0dece11c10686301952067b65dfadd4f77394",
+    "branch": "resistance-in-a-wire-1.4"
   },
   "tandem": {
-    "sha": "f399e7ee0d418db571047da7c17201a6315cf737",
-    "branch": "master"
+    "sha": "513bc9546c9ff0373cba28d745379bb2715bd4a0",
+    "branch": "HEAD"
   }
 }
