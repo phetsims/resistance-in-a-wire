@@ -30,8 +30,8 @@ define( function( require ) {
       leadDesign: 'Michael Dubson',
       softwareDevelopment: 'Michael Dubson, John Blanco',
       team: 'Wendy Adams, Mindy Gratny, Ariel Paul',
-      qualityAssurance: 'Steele Dalton, Alex Dornan, Bryce Griebenow, Ethan Johnson, Elise Morgan, ' +
-                        'Oliver Orejola, Benjamin Roberts, Bryan Yoelin',
+      qualityAssurance: 'Steele Dalton, Kerrie Dochen, Alex Dornan, Bryce Griebenow, Ethan Johnson, Elise Morgan, Liam Mulhall, ' +
+                        'Oliver Orejola, Arnab Purkayastha, Benjamin Roberts, Clara Wilson, Bryan Yoelin',
       thanks: 'Thanks to Mobile Learner Labs for working with the PhET development team to convert this ' +
               'simulation to HTML5.'
     },
