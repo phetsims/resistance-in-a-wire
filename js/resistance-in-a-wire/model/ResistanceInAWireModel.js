@@ -15,7 +15,7 @@ define( function( require ) {
   var NumberProperty = require( 'AXON/NumberProperty' );
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
   var ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
-  var TDerivedProperty = require( 'AXON/TDerivedProperty' );
+  var DerivedPropertyIO = require( 'AXON/DerivedPropertyIO' );
 
   // phet-io modules
   var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
@@ -55,7 +55,7 @@ define( function( require ) {
       }, {
         tandem: tandem.createTandem( 'resistanceProperty' ),
         units: 'ohms',
-        phetioType: TDerivedProperty( TNumber )
+        phetioType: DerivedPropertyIO( TNumber )
       }
     );
   }
