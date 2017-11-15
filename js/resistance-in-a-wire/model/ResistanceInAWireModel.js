@@ -18,7 +18,7 @@ define( function( require ) {
   var DerivedPropertyIO = require( 'AXON/DerivedPropertyIO' );
 
   // phet-io modules
-  var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
+  var NumberIO = require( 'ifphetio!PHET_IO/types/NumberIO' );
 
   /**
    * @param {Tandem} tandem
@@ -55,7 +55,7 @@ define( function( require ) {
       }, {
         tandem: tandem.createTandem( 'resistanceProperty' ),
         units: 'ohms',
-        phetioType: DerivedPropertyIO( TNumber )
+        phetioType: DerivedPropertyIO( NumberIO )
       }
     );
   }
