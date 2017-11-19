@@ -16,13 +16,13 @@ define( function( require ) {
   var Tandem = require( 'TANDEM/Tandem' );
 
   // constants
-  var tandem = Tandem.createRootTandem();
+  var tandem = Tandem.rootTandem;
 
   // strings
   var resistanceInAWireTitleString = require( 'string!RESISTANCE_IN_A_WIRE/resistance-in-a-wire.title' );
 
   // help content to describe keyboard interactions
-  var keyboardHelpContent = new ResistanceInAWireKeyboardHelpContent( Tandem.createStaticTandem( 'keyboardHelpContent' ) );
+  var keyboardHelpContent = new ResistanceInAWireKeyboardHelpContent( Tandem.rootTandem.createTandem( 'keyboardHelpContent' ) );
 
   var simOptions = {
     credits: {
