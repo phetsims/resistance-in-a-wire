@@ -30,7 +30,7 @@ define( function( require ) {
     var content = new HBox( {
       children: [ sliderControlsHelpContent, generalNavigationHelpContent ],
       align: 'top',
-      spacing: 30
+      spacing: 35
     } );
 
     Panel.call( this, content, {
