@@ -12,12 +12,14 @@ define( function( require ) {
   // modules
   var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
   var ControlPanel = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/ControlPanel' );
+  var FocusHighlightPath = require( 'SCENERY/accessibility/FocusHighlightPath' );
   var FormulaNode = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/FormulaNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
   var ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
   var ScreenView = require( 'JOIST/ScreenView' );
+  var Shape = require( 'KITE/Shape' );
   var WireNode = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/WireNode' );
 
   /**
@@ -67,13 +69,20 @@ define( function( require ) {
     } );
     this.addChild( arrowNode );
 
-    this.addChild( new ResetAllButton( {
+    var resetAllButton = new ResetAllButton( {
       listener: function() { model.reset(); },
       radius: 30,
       right: controlPanel.right,
       bottom: this.layoutBounds.bottom - 20,
       tandem: tandem.createTandem( 'resetAllButton' )
-    } ) );
+    } );
+    this.addChild( resetAllButton );
+
+    // the outer stroke of the ResetAllButton focus highlight is black so that it is visible when the equation
+    // resistance letter grows too large
+    var highlightShape = resetAllButton.focusHighlight;
+    assert && assert( highlightShape instanceof Shape, 'highlightShape must be a Shape' );
+    resetAllButton.focusHighlight = new FocusHighlightPath( highlightShape , { outerStroke: 'black' } );
 
     // add the control panel last so it is always on top.
     this.addChild( controlPanel );
