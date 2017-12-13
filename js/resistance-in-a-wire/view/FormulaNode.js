@@ -39,7 +39,7 @@ define( function( require ) {
    */
   function FormulaNode( model, tandem, options ) {
 
-    Node.call( this );
+    Node.call( this, { tandem: tandem } );
 
     // equals sign, hard coded
     var equalsSignText = new Text( '=', { // we never internationalize the '=' sign
@@ -126,7 +126,6 @@ define( function( require ) {
       tandem: tandem.createTandem( 'dividingLine' )
     } ) );
 
-    options.tandem = tandem;
     this.mutate( options );
   }
 
