@@ -26,7 +26,7 @@ define( function( require ) {
    * @param {string} nameString
    * @param {string} unitString
    * @param {Tandem} tandem
-   * @param {object} options
+   * @param {Object} [options]
    * @constructor
    */
   function SliderUnit( property, range, symbolString, nameString, unitString, accessibleLabel, tandem, options ) {
