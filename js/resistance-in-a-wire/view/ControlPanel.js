@@ -77,6 +77,7 @@ define( function( require ) {
 
       var numDecimalDigits = resistance >= 100 ? 0 : // Over 100, show no decimal points, like 102
                              resistance >= 10 ? 1 : // between 10.0 and 99.9, show 2 decimal points
+                             resistance < 0.001 ? 4 : // when less than 0.001, show 4 decimals, see #125
                              resistance < 1 ? 3 : // when less than 1, show 3 decimal places, see #125
                              2; // Numbers less than 10 show 2 decimal points, like 8.35
 
