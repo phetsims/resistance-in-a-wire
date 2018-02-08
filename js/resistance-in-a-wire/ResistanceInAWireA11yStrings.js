@@ -14,12 +14,48 @@ define( function( require ) {
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
 
   var ResistanceInAWireA11yStrings = {
-    resistivityUnitsPatternString: '{{value}} ohm centimeters',
-    lengthUnitsPatternString: '{{value}} centimeters',
-    areaUnitsPatternString: '{{value}} centimeters squared',
-    resistivitySliderLabelString: 'rho, Resistivity',
-    lengthSliderLabelString: 'L, Length',
-    areaSliderLabelString: 'A, Area'
+    summarySimString: {
+      value: 'This is an interactive sim. Descriptions change as you play with it. It has a Play Area and Control Panel. ' +
+             'In the Play Area you find the Resistance equation, <b>R</b> equals <b>rho</b> times <b>L</b> over <b>A</b>, and a piece of wire. ' +
+             'Sliders for resistivity, length, and area allow changes to the equation and the piece of wire. ' +
+             'In the Control Panel, buttons mute sound or reset the sim.'
+    },
+    currentlyString: {
+      value: 'Currently,'
+    },
+    summaryResistancePatternString: {
+      value: 'resistance, <b>R</b>, is {{value}} ohms',
+    },
+    summaryResistivityPatternString: {
+      value: 'resistivity, <b>rho</b> is {{value}} ohm centimeters',
+    },
+    summaryLengthPatternString: {
+      value: 'length, <b>L</b> is {{value}} centimeters',
+    },
+    summaryAreaPatternString: {
+      value: 'area, <b>A</b> is {{value}} centimeters squared',
+    },
+    resistivityUnitsPatternString: {
+      value: '{{value}} ohm centimeters',
+    },
+    summaryInteractionHintString: {
+      value: 'Look for resistivity, length, and area sliders to play, or read on for details about equation and wire.'
+    },
+    lengthUnitsPatternString: {
+      value: '{{value}} centimeters',
+    },
+    areaUnitsPatternString: {
+      value: '{{value}} centimeters squared',
+    },
+    resistivitySliderLabelString: {
+      value: 'rho, Resistivity',
+    },
+    lengthSliderLabelString: {
+      value: 'L, Length',
+    },
+    areaSliderLabelString: {
+      value: 'A, Area'
+    }
   };
 
   if ( phet.chipper.queryParameters.stringTest === 'xss' ) {

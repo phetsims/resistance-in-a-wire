@@ -10,6 +10,7 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var AccessibleSummaryNode = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/AccessibleSummaryNode' );
   var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
   var ControlPanel = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/ControlPanel' );
   var FocusHighlightPath = require( 'SCENERY/accessibility/FocusHighlightPath' );
@@ -32,6 +33,10 @@ define( function( require ) {
     ScreenView.call( this, {
       tandem: tandem
     } );
+
+    // a11y - Create and add the summary for this simulation, the first thing screen reader users encounter
+    var summaryNode = new AccessibleSummaryNode( model );
+    this.addChild( summaryNode );
 
     // Create the control panel with sliders that change the values of the equation's variables. Hard coded
     var controlPanel = new ControlPanel( model, tandem.createTandem( 'controlPanel' ), {
@@ -88,7 +93,7 @@ define( function( require ) {
     this.addChild( controlPanel );
 
     // a11y - the reset all button should come last, control panel first
-    this.accessibleOrder = [ controlPanel ];
+    this.accessibleOrder = [ summaryNode, controlPanel ];
   }
 
   resistanceInAWire.register( 'ResistanceInAWireScreenView', ResistanceInAWireScreenView );

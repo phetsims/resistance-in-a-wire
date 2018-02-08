@@ -36,12 +36,12 @@ define( function( require ) {
   var resistivitySymbolString = require( 'string!RESISTANCE_IN_A_WIRE/resistivitySymbol' );
 
   // a11y strings (not ready for i18n)
-  var resistivityUnitsPatternString = ResistanceInAWireA11yStrings.resistivityUnitsPatternString;
-  var lengthUnitsPatternString = ResistanceInAWireA11yStrings.lengthUnitsPatternString;
-  var areaUnitsPatternString = ResistanceInAWireA11yStrings.areaUnitsPatternString;
-  var resistivitySliderLabelString = ResistanceInAWireA11yStrings.resistivitySliderLabelString;
-  var lengthSliderLabelString = ResistanceInAWireA11yStrings.lengthSliderLabelString;
-  var areaSliderLabelString = ResistanceInAWireA11yStrings.areaSliderLabelString;
+  var resistivityUnitsPatternString = ResistanceInAWireA11yStrings.resistivityUnitsPatternString.value;
+  var lengthUnitsPatternString = ResistanceInAWireA11yStrings.lengthUnitsPatternString.value;
+  var areaUnitsPatternString = ResistanceInAWireA11yStrings.areaUnitsPatternString.value;
+  var resistivitySliderLabelString = ResistanceInAWireA11yStrings.resistivitySliderLabelString.value;
+  var lengthSliderLabelString = ResistanceInAWireA11yStrings.lengthSliderLabelString.value;
+  var areaSliderLabelString = ResistanceInAWireA11yStrings.areaSliderLabelString.value;
 
   // constants
   var SLIDER_SPACING = 50;
