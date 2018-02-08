@@ -96,7 +96,6 @@ define( function( require ) {
 
         // the precision might change during interaction, get precision if property is a function
         var precision = typeof item.precision === 'number' ? item.precision : item.precision( value );
-        console.log( item.patternString );
         item.node.accessibleLabelAsHTML = StringUtils.fillIn( item.patternString, {
           value: Util.toFixed( value, precision )
         } );

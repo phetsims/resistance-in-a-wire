@@ -35,6 +35,42 @@ define( function( require ) {
     summaryAreaPatternString: {
       value: 'area, <b>A</b> is {{value}} centimeters squared',
     },
+    resistanceEquationString: {
+      value: 'Resistance Equation'
+    },
+    resistanceEquationDescriptionString: {
+      value: 'Resistance, <b>R</b>, is equal to resistivity, <b>rho</b>, times length, <b>L</b>, over area, <b>A</b>.'
+    },
+    rhoLAndAComparablePatternString: {
+      value: 'Size of letter R is {{rToAll}} the size of the letter rho, letter L, and letter A.'
+    },
+    lAndAComparablePatternString: {
+      value: 'Size of letter R is {{rToRho}} the size of letter rho, and {{rToLAndA}} than letter L and letter A.'
+    },
+    noneComparablePatternString: {
+      value: 'Size of letter R is {{rToRho}} the size of letter rho, {{rToL}} letter L, and {{rToA}} letter A.'
+    },
+    muchMuchSmallerThanString: {
+      value: 'much much smaller than',
+    },
+    muchSmallerThanString: {
+      value: 'much smaller than',
+    },
+    slightlySmallerThanString: {
+      value: 'slightly smaller than',
+    },
+    comparableToString: {
+      value: 'comparable to', 
+    },
+    slightlyLargerThanString: {
+      value: 'slightly larger than',
+    },
+    muchLargerThanString: {
+      value: 'much larger than',
+    },
+    muchMuchLargerThanString: {
+      value: 'much much larger than', 
+    },
     resistivityUnitsPatternString: {
       value: '{{value}} ohm centimeters',
     },

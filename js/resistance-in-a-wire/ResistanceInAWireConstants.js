@@ -11,7 +11,18 @@ define( function( require ) {
   // modules
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var RangeWithValue = require( 'DOT/RangeWithValue' );
+  var Range = require( 'DOT/Range' );
+  var ResistanceInAWireA11yStrings = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireA11yStrings' );
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
+
+  // a11y strings
+  var muchMuchSmallerThanString = ResistanceInAWireA11yStrings.muchMuchSmallerThanString.value;
+  var muchSmallerThanString = ResistanceInAWireA11yStrings.muchSmallerThanString.value;
+  var slightlySmallerThanString = ResistanceInAWireA11yStrings.slightlySmallerThanString.value;
+  var comparableToString = ResistanceInAWireA11yStrings.comparableToString.value;
+  var slightlyLargerThanString = ResistanceInAWireA11yStrings.slightlyLargerThanString.value;
+  var muchLargerThanString = ResistanceInAWireA11yStrings.muchLargerThanString.value;
+  var muchMuchLargerThanString = ResistanceInAWireA11yStrings.muchMuchLargerThanString.value;
 
   var ResistanceInAWireConstants = {
 
@@ -54,6 +65,39 @@ define( function( require ) {
              resistance < 0.001 ? 4 : // when less than 0.001, show 4 decimals, see #125
              resistance < 1 ? 3 : // when less than 1, show 3 decimal places, see #125
              2; // Numbers less than 10 show 2 decimal points, like 8.35
+    },
+
+
+    // a11y - used to map relative scale magnitudes of the letters to relative size description
+    RELATIVE_SIZE_MAP: {
+      muchMuchSmaller: {
+        description: muchMuchSmallerThanString,
+        range: new Range( 0, 0.1)
+      },
+      muchSmaller: {
+        description: muchSmallerThanString,
+        range: new Range( 0.1, 0.4 )
+      },
+      slightlySmaller: {
+        description: slightlySmallerThanString,
+        range: new Range( 0.4, 0.7 )
+      },
+      comparable: {
+        description: comparableToString,
+        range: new Range( 0.7, 1.3 )
+      },
+      slightlyLarger: {
+        description: slightlyLargerThanString,
+        range: new Range( 1.3, 2 )
+      },
+      muchLarger: {
+        description: muchLargerThanString,
+        range: new Range( 2, 20 )
+      },
+      muchMuchLarger: {
+        description: muchMuchLargerThanString, 
+        range: new Range( 20, Number.MAX_VALUE )
+      }
     }
 
   };

@@ -22,7 +22,9 @@ define( function( require ) {
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
   var ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
   var Shape = require( 'KITE/Shape' );
+  var ResistanceInAWireA11yStrings = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireA11yStrings' );
   var Text = require( 'SCENERY/nodes/Text' );
+  var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var Vector2 = require( 'DOT/Vector2' );
 
   // strings
@@ -30,6 +32,20 @@ define( function( require ) {
   var lengthSymbolString = require( 'string!RESISTANCE_IN_A_WIRE/lengthSymbol' );
   var resistanceSymbolString = require( 'string!RESISTANCE_IN_A_WIRE/resistanceSymbol' );
   var resistivitySymbolString = require( 'string!RESISTANCE_IN_A_WIRE/resistivitySymbol' );
+
+  // a11y strings
+  var resistanceEquationString = ResistanceInAWireA11yStrings.resistanceEquationString.value;
+  var resistanceEquationDescriptionString = ResistanceInAWireA11yStrings.resistanceEquationDescriptionString.value;
+  var rhoLAndAComparablePatternString = ResistanceInAWireA11yStrings.rhoLAndAComparablePatternString.value;
+  var lAndAComparablePatternString = ResistanceInAWireA11yStrings.lAndAComparablePatternString.value;
+  var noneComparablePatternString = ResistanceInAWireA11yStrings.noneComparablePatternString.value;
+
+  // constants - rather than keep a reference to each letter node, a map from key to scale magnitude is used
+  // to track letter scales
+  var RESISTANCE_KEY = 'resistance';
+  var RESISTIVITY_KEY = 'resistivity';
+  var AREA_KEY = 'area';
+  var LENGTH_KEY = 'length';
 
   /**
    * @param {ResistanceInAWireModel} model
@@ -39,7 +55,16 @@ define( function( require ) {
    */
   function FormulaNode( model, tandem, options ) {
 
-    Node.call( this, { tandem: tandem } );
+    Node.call( this, {
+      tandem: tandem,
+
+      // a11y
+      tagName: 'div',
+      labelTagName: 'h3',
+      accessibleLabel: resistanceEquationString,
+      prependLabels: true,
+      accessibleDescriptionAsHTML: resistanceEquationDescriptionString
+    } );
 
     // equals sign, hard coded
     var equalsSignText = new Text( '=', { // we never internationalize the '=' sign
@@ -49,6 +74,13 @@ define( function( require ) {
       tandem: tandem.createTandem( 'equalsSign' )
     } );
 
+    // maps identifier to scale magnitude
+    this.a11yScaleMap = {};
+    this.a11yScaleMap[ RESISTANCE_KEY ] = 0;
+    this.a11yScaleMap[ RESISTIVITY_KEY ] = 0;
+    this.a11yScaleMap[ AREA_KEY ] = 0;
+    this.a11yScaleMap[ LENGTH_KEY ] = 0;
+
     // An array of attributes related to text
     var symbolTexts = [ {
       label: resistanceSymbolString,
@@ -56,28 +88,34 @@ define( function( require ) {
       property: model.resistanceProperty,
       color: ResistanceInAWireConstants.RED_COLOR,
       cappedSize: true, // To make sure that the 'R' doesn't get too big, see https://github.com/phetsims/resistance-in-a-wire/issues/28
-      tandem: tandem.createTandem( 'resistanceSymbol' )
+      tandem: tandem.createTandem( 'resistanceSymbol' ),
+      scaleKey: RESISTANCE_KEY
     }, {
       label: resistivitySymbolString,
       center: new Vector2( equalsSignText.centerX + 120, -90 ),
       property: model.resistivityProperty,
       color: ResistanceInAWireConstants.BLUE_COLOR,
-      tandem: tandem.createTandem( 'resistivitySymbol' )
+      tandem: tandem.createTandem( 'resistivitySymbol' ),
+      scaleKey: RESISTIVITY_KEY
     }, {
       label: lengthSymbolString,
       center: new Vector2( equalsSignText.centerX + 220, -90 ),
       property: model.lengthProperty,
       color: ResistanceInAWireConstants.BLUE_COLOR,
-      tandem: tandem.createTandem( 'lengthSymbol' )
+      tandem: tandem.createTandem( 'lengthSymbol' ),
+      scaleKey: LENGTH_KEY
     }, {
       label: areaSymbolString,
       center: new Vector2( equalsSignText.centerX + 170, 90 ),
       property: model.areaProperty,
       color: ResistanceInAWireConstants.BLUE_COLOR,
-      tandem: tandem.createTandem( 'areaSymbol' )
+      tandem: tandem.createTandem( 'areaSymbol' ),
+      scaleKey: AREA_KEY
     } ];
 
-    var lettersNode = new Node();
+    // parent for all letters in the equation - given a 'p' tag for a11y because this node will hold the relative
+    // size description, see getRelativeSizeDescription()
+    var lettersNode = new Node( { tagName: 'p' } );
 
     // if we are on a safari platform render with canvas to prevent these issues, but only on safari because
     // canvas doesn't perform as well on other browsers
@@ -86,6 +124,7 @@ define( function( require ) {
     if ( platform.safari ) { lettersNode.renderer = 'canvas'; }
 
     // dynamically sized text
+    var self = this;
     symbolTexts.forEach( function( entry ) {
 
       var text = new Text( entry.label, {
@@ -106,11 +145,20 @@ define( function( require ) {
       // Set the scale based on the default value of the property; normalize the scale for all letters.
       var scale = 7 / entry.property.value; // empirically determined '7'
 
-      // The size of the formula letter will scale with the value the letter represents. This does not need an unlink
-      // because it exists for the life of the sim.
+      // The size of the formula letter will scale with the value the letter represents. The accessible description for
+      // the equation will also update. This does not need an unlink because it exists for the life of the sim.
       entry.property.link( function( value ) {
-        letterNode.setScaleMagnitude( scale * value + 1 );
+        var scaleMagnitude = scale * value + 1;
+        letterNode.setScaleMagnitude( scaleMagnitude );
         letterNode.center = entry.center;
+
+        // for lookup when describing relative letter sizes
+        self.a11yScaleMap[ entry.scaleKey ] = scaleMagnitude;
+      } );
+
+      // linked lazily so that relative scales are defined
+      entry.property.lazyLink( function() {
+        lettersNode.setAccessibleDescription( self.getRelativeSizeDescription() );
       } );
     } );
 
@@ -127,9 +175,96 @@ define( function( require ) {
     } ) );
 
     this.mutate( options );
+
+    // a11y - set the initial description
+    lettersNode.setAccessibleDescription( self.getRelativeSizeDescription() );
   }
 
   resistanceInAWire.register( 'FormulaNode', FormulaNode );
 
-  return inherit( Node, FormulaNode );
+  inherit( Node, FormulaNode, {
+
+    /**
+     * Get a description of the relative size of various letters. Size of each letter is described relative to
+     * resistance R. When all or L and A letters are the same size, a simplified sentence is used to reduce verbosity,
+     * so this function might return something like:
+     *
+     * "Size of letter R is comparable to the size of letter rho, letter L, and letter A" or
+     * "Size of letter R is much larger than the size of letter rho, and slightly larger than letter L and letter A." or
+     * "Size of letter R is much smaller than letter rho, comparable to letter L, and much much larger than letter A."
+     *
+     * @return {string}
+     * @a11y
+     */
+    getRelativeSizeDescription: function() {
+      var resistanceScale = this.a11yScaleMap[ RESISTANCE_KEY ];
+      var resistivityScale = this.a11yScaleMap[ RESISTIVITY_KEY ];
+      var areaScale = this.a11yScaleMap[ AREA_KEY ];
+      var lengthScale = this.a11yScaleMap[ LENGTH_KEY ];
+
+      var rToRho = resistanceScale / resistivityScale;
+      var rToA = resistanceScale / areaScale;
+      var rToL = resistanceScale / lengthScale;
+      var lToA = lengthScale / areaScale;
+      var lToRho = lengthScale / resistivityScale;
+
+      var rToRhoDescription = getRelativeSizeDescription( rToRho );
+      var roTLDescription = getRelativeSizeDescription( rToL );
+      var rToADescription = getRelativeSizeDescription( rToA );
+
+      var description;
+      var comparableRange = ResistanceInAWireConstants.RELATIVE_SIZE_MAP.comparable.range;
+      if ( comparableRange.contains( lToA ) && comparableRange.contains( lToRho ) ) {
+
+        // all right hand side letters are comparable in size
+        description = StringUtils.fillIn( rhoLAndAComparablePatternString, {
+          rToAll: rToRhoDescription // any size description will work
+        } );
+      }
+      else if ( comparableRange.contains( lToA ) ) {
+
+        // L and A are comparable, so they are the same size relative to R
+        description = StringUtils.fillIn( lAndAComparablePatternString, {
+          rToRho: rToRhoDescription,
+          rToLAndA: roTLDescription // either length or area relative descriptions will work
+        } );
+      }
+      else {
+
+        // all relative sizes could be unique
+        description = StringUtils.fillIn( noneComparablePatternString, {
+          rToRho: rToRhoDescription,
+          rToL: roTLDescription,
+          rToA: rToADescription
+        } );
+      }
+
+      return description;
+    }
+  } );
+
+  /**
+   * Get a relative size description from a relative scale, used to describe letters relative to each other. Will return
+   * something like
+   *
+   * "comparable to" or
+   * "much much larger than"
+   *
+   * @param {number} relativeScale
+   * @return {string}
+   */
+  var getRelativeSizeDescription = function( relativeScale ) {
+
+    // get described ranges of each relative scale
+    var keys = Object.keys( ResistanceInAWireConstants.RELATIVE_SIZE_MAP );
+    for ( var i = 0; i < keys.length; i++ ) {
+      var relativeEntry = ResistanceInAWireConstants.RELATIVE_SIZE_MAP[ keys[ i ] ];
+
+      if ( relativeEntry.range.contains( relativeScale ) ) {
+        return relativeEntry.description;
+      }
+    }
+  };
+
+  return FormulaNode;
 } );

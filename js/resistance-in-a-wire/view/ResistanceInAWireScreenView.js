@@ -11,6 +11,7 @@ define( function( require ) {
 
   // modules
   var AccessibleSummaryNode = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/AccessibleSummaryNode' );
+  var AccessibleSectionNode = require( 'SCENERY_PHET/accessibility/AccessibleSectionNode' );
   var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
   var ControlPanel = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/ControlPanel' );
   var FocusHighlightPath = require( 'SCENERY/accessibility/FocusHighlightPath' );
@@ -22,6 +23,11 @@ define( function( require ) {
   var ScreenView = require( 'JOIST/ScreenView' );
   var Shape = require( 'KITE/Shape' );
   var WireNode = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/WireNode' );
+  var JoistA11yStrings = require( 'JOIST/JoistA11yStrings' );
+
+  // a11y strings
+  var playAreaString = JoistA11yStrings.playAreaString;
+  var controlPanelString = JoistA11yStrings.controlPanelString;
 
   /**
    * @param {ResistanceInAWireModel} model
@@ -35,8 +41,16 @@ define( function( require ) {
     } );
 
     // a11y - Create and add the summary for this simulation, the first thing screen reader users encounter
-    var summaryNode = new AccessibleSummaryNode( model );
-    this.addChild( summaryNode );
+    var a11ySummaryNode = new AccessibleSummaryNode( model );
+    this.addChild( a11ySummaryNode );
+
+    // a11y - the play area for this sim, containing elements that are significant to the pedagogy of the sim
+    var a11yPlayAreaNode = new AccessibleSectionNode( playAreaString );
+    this.addChild( a11yPlayAreaNode );
+
+    // a11y - the control panel for this sim, containing supplemental controls
+    var a11yControlPanelNode = new AccessibleSectionNode( controlPanelString );
+    this.addChild( a11yControlPanelNode );
 
     // Create the control panel with sliders that change the values of the equation's variables. Hard coded
     var controlPanel = new ControlPanel( model, tandem.createTandem( 'controlPanel' ), {
@@ -49,14 +63,14 @@ define( function( require ) {
       centerX: controlPanel.left / 2,
       centerY: 190
     } );
-    this.addChild( formulaNode );
+    a11yPlayAreaNode.addChild( formulaNode );
 
     // Create the wire display to represent the formula
     var wireNode = new WireNode( model, tandem.createTandem( 'wireNode' ), {
       centerX: formulaNode.centerX,
       centerY: formulaNode.centerY + 270
     } );
-    this.addChild( wireNode );
+    a11yPlayAreaNode.addChild( wireNode );
 
     var tailX = wireNode.centerX - ResistanceInAWireConstants.TAIL_LENGTH / 2;
     var tipX = wireNode.centerX + ResistanceInAWireConstants.TAIL_LENGTH / 2;
@@ -72,7 +86,7 @@ define( function( require ) {
       lineWidth: 1,
       tandem: tandem.createTandem( 'arrowNode' )
     } );
-    this.addChild( arrowNode );
+    a11yPlayAreaNode.addChild( arrowNode );
 
     var resetAllButton = new ResetAllButton( {
       listener: function() { model.reset(); },
@@ -81,7 +95,7 @@ define( function( require ) {
       bottom: this.layoutBounds.bottom - 20,
       tandem: tandem.createTandem( 'resetAllButton' )
     } );
-    this.addChild( resetAllButton );
+    a11yControlPanelNode.addChild( resetAllButton );
 
     // the outer stroke of the ResetAllButton focus highlight is black so that it is visible when the equation
     // resistance letter grows too large
@@ -90,10 +104,10 @@ define( function( require ) {
     resetAllButton.focusHighlight = new FocusHighlightPath( highlightShape , { outerStroke: 'black' } );
 
     // add the control panel last so it is always on top.
-    this.addChild( controlPanel );
+    a11yPlayAreaNode.addChild( controlPanel );
 
     // a11y - the reset all button should come last, control panel first
-    this.accessibleOrder = [ summaryNode, controlPanel ];
+    this.accessibleOrder = [ a11ySummaryNode, a11yPlayAreaNode ];
   }
 
   resistanceInAWire.register( 'ResistanceInAWireScreenView', ResistanceInAWireScreenView );
