@@ -20,8 +20,14 @@ define( function( require ) {
   var Property = require( 'AXON/Property' );
   var Range = require( 'DOT/Range' );
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
+  var ResistanceInAWireA11yStrings = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireA11yStrings' );
   var ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
+  var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var Shape = require( 'KITE/Shape' );
+  var Util = require( 'DOT/Util' );
+
+  // a11y strings
+  var wireDescriptionPatternString = ResistanceInAWireA11yStrings.wireDescriptionPatternString.value;
 
   // constants
   var PERSPECTIVE_FACTOR = 0.4; // Multiplier that controls the width of the ellipses on the ends of the wire.
@@ -47,7 +53,19 @@ define( function( require ) {
    */
   function WireNode( model, tandem, options ) {
 
-    Node.call( this, { tandem: tandem } );
+    // @private {ResistanceInAWireModel}
+    this.model = model;
+
+    Node.call( this, {
+      tandem: tandem,
+
+      // a11y
+      tagName: 'div',
+      labelTagName: 'h3',
+      descriptionTagName: 'p',
+      accessibleLabel: 'The Wire',
+      prependLabels: true
+    } );
 
     // Body of the wire
     var wireBody = new Path( null, {
@@ -116,6 +134,7 @@ define( function( require ) {
     );
 
     // Update the resistor on change. No need to unlink, as it is present for the lifetime of the sim.
+    var self = this;
     Property.multilink( [ model.areaProperty, model.lengthProperty, model.resistivityProperty ],
       function( area, length, resistivity ) {
 
@@ -151,6 +170,8 @@ define( function( require ) {
         dotsNode.children.forEach( function( dot, index ) {
           dot.visible = index < numDotsToShow;
         } );
+
+        self.accessibleDescription = self.getWireDescription();
       }
     );
 
@@ -159,5 +180,23 @@ define( function( require ) {
 
   resistanceInAWire.register( 'WireNode', WireNode );
 
-  return inherit( Node, WireNode );
+  return inherit( Node, WireNode, {
+
+    getWireDescription: function() {
+      var lengthValue = this.model.lengthProperty.get();
+      var areaValue = this.model.areaProperty.get();
+      var resistivityValue = this.model.resistivityProperty.get();
+
+      var lengthDescription = ResistanceInAWireConstants.getValueDescriptionFromMap( lengthValue, ResistanceInAWireConstants.LENGTH_TO_DESCRIPTION_MAP );
+      var areaDescription = ResistanceInAWireConstants.getValueDescriptionFromMap( areaValue, ResistanceInAWireConstants.AREA_TO_DESCRIPTION_MAP );
+      var resistivityDescription = ResistanceInAWireConstants.getValueDescriptionFromMap( resistivityValue, ResistanceInAWireConstants.RESISTIVITY_TO_DESCRIPTION_MAP );
+
+      return StringUtils.fillIn( wireDescriptionPatternString, {
+        length: lengthDescription,
+        thickness: areaDescription,
+        impurities: resistivityDescription,
+        resistance: Util.toFixed( this.model.resistanceProperty.get(), ResistanceInAWireConstants.getResistanceDecimals( this.model.resistanceProperty.get() ) )
+      } );
+    }
+  } );
 } );

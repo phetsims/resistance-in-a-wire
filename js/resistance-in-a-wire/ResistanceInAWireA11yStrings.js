@@ -71,8 +71,74 @@ define( function( require ) {
     muchMuchLargerThanString: {
       value: 'much much larger than', 
     },
+    wireDescriptionPatternString: {
+      value: 'Currently, wire is {{length}}, {{thickness}}, and has a {{impurities}} of impurities. Resistance is {{resistance}} ohms.'
+    },
     resistivityUnitsPatternString: {
       value: '{{value}} ohm centimeters',
+    },
+    extremelyShortString: {
+      value: 'extremely short'
+    },
+    veryShortString: {
+      value: 'very short'
+    },
+    shortString: {
+      value: 'short'
+    },
+    ofMediumLengthString: {
+      value: 'of medium length'
+    },
+    longString: {
+      value: 'long'
+    },
+    veryLongString: {
+      value: 'very long'
+    },
+    extremelyLongString: {
+      value: 'extremely long'
+    },
+    extremelyThinString: {
+      value: 'extremely thin'
+    },
+    veryThinString: {
+      value: 'very thin'
+    },
+    thinString: {
+      value: 'thin'
+    },
+    ofMediumThicknessString: {
+      value: 'of medium thickness'
+    },
+    thickString: {
+      value: 'thick'
+    },
+    veryThickString: {
+      value: 'very thick'
+    },
+    extremelyThickString: {
+      value: 'extremely thick'
+    },
+    aTinyAmountOfImpuritiesString: {
+      value: 'tiny amount'
+    },
+    aVerySmallAmountOfImpuritiesString: {
+      value: 'very small amount'
+    },
+    aSmallAmountOfImpuritiesString: {
+      value: 'small amount'
+    },
+    aMediumAmountOfImpuritiesString: {
+      value: 'medium amount'
+    },
+    aLargeAmountOfImpuritiesString: {
+      value: 'large amount'
+    },
+    aVeryLargeAmountOfImpuritiesString: {
+      value: 'very large amount'
+    },
+    aHugeAmountOfImpuritiesString: {
+      value: 'huge amount'
     },
     summaryInteractionHintString: {
       value: 'Look for resistivity, length, and area sliders to play, or read on for details about equation and wire.'
