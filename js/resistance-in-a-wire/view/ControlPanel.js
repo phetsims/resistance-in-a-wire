@@ -42,6 +42,8 @@ define( function( require ) {
   var resistivitySliderLabelString = ResistanceInAWireA11yStrings.resistivitySliderLabelString.value;
   var lengthSliderLabelString = ResistanceInAWireA11yStrings.lengthSliderLabelString.value;
   var areaSliderLabelString = ResistanceInAWireA11yStrings.areaSliderLabelString.value;
+  var sliderControlsString = ResistanceInAWireA11yStrings.sliderControlsString.value;
+  var slidersDescriptionString = ResistanceInAWireA11yStrings.slidersDescriptionString.value;
 
   // constants
   var SLIDER_SPACING = 50;
@@ -60,7 +62,14 @@ define( function( require ) {
       lineWidth: 3,
       resize: false,
       tandem: tandem,
-      preventFit: true
+      preventFit: true,
+
+      // a11y
+      tagName: 'ul',
+      labelTagName: 'h3',
+      accessibleLabel: sliderControlsString,
+      accessibleDescription: slidersDescriptionString,
+      prependLabels: true
     }, options );
 
     // Add the dynamic title that indicates the resistance.

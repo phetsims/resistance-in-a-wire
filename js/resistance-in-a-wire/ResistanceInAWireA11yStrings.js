@@ -157,6 +157,12 @@ define( function( require ) {
     },
     areaSliderLabelString: {
       value: 'A, Area'
+    },
+    sliderControlsString: {
+      value: 'Slider Controls'
+    },
+    slidersDescriptionString: {
+      value: 'Resistivity, Length, and Area sliders allow changes to equation and wire.'
     }
   };
 
