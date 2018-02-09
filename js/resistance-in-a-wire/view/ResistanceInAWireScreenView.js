@@ -25,6 +25,9 @@ define( function( require ) {
   var WireNode = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/WireNode' );
   var JoistA11yStrings = require( 'JOIST/JoistA11yStrings' );
 
+  // strings
+  var resistanceInAWireTitleString = require( 'string!RESISTANCE_IN_A_WIRE/resistance-in-a-wire.title' );
+
   // a11y strings
   var playAreaString = JoistA11yStrings.playAreaString;
   var controlPanelString = JoistA11yStrings.controlPanelString;
@@ -37,7 +40,10 @@ define( function( require ) {
   function ResistanceInAWireScreenView( model, tandem ) {
 
     ScreenView.call( this, {
-      tandem: tandem
+      tandem: tandem,
+
+      // a11y
+      accessibleLabel: resistanceInAWireTitleString
     } );
 
     // a11y - Create and add the summary for this simulation, the first thing screen reader users encounter
