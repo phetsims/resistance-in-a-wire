@@ -37,7 +37,9 @@ define( function( require ) {
       accessibleDecimalPlaces: 2,
       keyboardStep: 1,
       shiftKeyboardStep: 0.01,
-      accessibleValuePattern: '{{value}}' // string pattern used for formatting the value read by the screen reader
+      accessibleValuePattern: '{{value}}', // string pattern used for formatting the value read by the screen reader
+      endDrag: function() {}, // called at end of drag by HSlider
+      startDrag: function() {}
     }, options );
 
     // text for the symbol, text bounds must be accurate for correct layou
@@ -69,6 +71,8 @@ define( function( require ) {
       shiftKeyboardStep: options.shiftKeyboardStep, // delta when holding shift
       accessibleValuePattern: options.accessibleValuePattern,
       accessibleDecimalPlaces: options.accessibleDecimalPlaces, // demimal places for readout
+      startDrag: options.startDrag,
+      endDrag: options.endDrag,
 
       parentContainerTagName: 'li',
       labelTagName: 'label',

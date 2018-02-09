@@ -27,13 +27,13 @@ define( function( require ) {
       value: 'resistance, <b>R</b>, is {{value}} ohms',
     },
     summaryResistivityPatternString: {
-      value: 'resistivity, <b>rho</b> is {{value}} ohm centimeters',
+      value: 'resistivity, <b>rho</b>, is {{value}} ohm centimeters',
     },
     summaryLengthPatternString: {
-      value: 'length, <b>L</b> is {{value}} centimeters',
+      value: 'length, <b>L</b>, is {{value}} centimeters',
     },
     summaryAreaPatternString: {
-      value: 'area, <b>A</b> is {{value}} centimeters squared',
+      value: 'area, <b>A</b>, is {{value}} centimeters squared',
     },
     resistanceEquationString: {
       value: 'Resistance Equation'
@@ -163,6 +163,30 @@ define( function( require ) {
     },
     slidersDescriptionString: {
       value: 'Resistivity, Length, and Area sliders allow changes to equation and wire.'
+    },
+    sizeChangeAlertPatternString: {
+      value: 'As letter {{letter}} {{letterChange}}, letter R {{rChange}}. Resistance now {{resistance}} ohms.'
+    },
+    letterRhoString: {
+      value: 'rho'
+    },
+    letterLString: {
+      value: 'L'
+    },
+    letterAString: {
+      value: 'A'
+    },
+    growsString: {
+      value: 'grows'
+    },
+    shrinksString: {
+      value: 'shrinks'
+    },
+    growsALotString: {
+      value: 'grows a lot'
+    },
+    shrinksALotString: {
+      value: 'shrinks a lot'
     }
   };
 

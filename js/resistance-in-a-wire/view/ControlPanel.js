@@ -16,10 +16,13 @@ define( function( require ) {
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
   var ResistanceInAWireA11yStrings = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireA11yStrings' );
   var ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
+  var ResistanceInAWireModel = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/model/ResistanceInAWireModel' );
   var SliderUnit = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/SliderUnit' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
+  var Utterance = require( 'SCENERY_PHET/accessibility/Utterance' );
+  var utteranceQueue = require( 'SCENERY_PHET/accessibility/utteranceQueue' );
 
   // strings
   var areaString = require( 'string!RESISTANCE_IN_A_WIRE/area' );
@@ -44,9 +47,21 @@ define( function( require ) {
   var areaSliderLabelString = ResistanceInAWireA11yStrings.areaSliderLabelString.value;
   var sliderControlsString = ResistanceInAWireA11yStrings.sliderControlsString.value;
   var slidersDescriptionString = ResistanceInAWireA11yStrings.slidersDescriptionString.value;
+  var sizeChangeAlertPatternString = ResistanceInAWireA11yStrings.sizeChangeAlertPatternString.value;
+  var letterRhoString = ResistanceInAWireA11yStrings.letterRhoString.value;
+  var letterLString = ResistanceInAWireA11yStrings.letterLString.value;
+  var letterAString = ResistanceInAWireA11yStrings.letterAString.value;
+  var growsString = ResistanceInAWireA11yStrings.growsString.value;
+  var shrinksString = ResistanceInAWireA11yStrings.shrinksString.value;
+  var growsALotString = ResistanceInAWireA11yStrings.growsALotString.value;
+  var shrinksALotString = ResistanceInAWireA11yStrings.shrinksALotString.value;
 
   // constants
   var SLIDER_SPACING = 50;
+
+  // a11y - if resistance changes 2 * the range of the resistance / the number of relative size descriptions, larger change
+  // is signified in description
+  var LARGE_RESISTANCE_DELTA = ( ( ResistanceInAWireModel.getResistanceRange().max - ResistanceInAWireModel.getResistanceRange().min ) / ResistanceInAWireConstants.RELATIVE_SIZE_STRINGS.length ) * 2;
 
   /**
    * @param {ResistanceInAWireModel} model
@@ -98,7 +113,12 @@ define( function( require ) {
       resistanceReadout.centerX = 0;
     } );
 
+    // a11y - when using a slider, we store the initial value on start drag so that we can describe size change after
+    // interaction
+    var resistanceOnStart = model.resistanceProperty.get();
+
     // Create and add the resistivity slider with readout and labels.
+    var rhoOnStart = model.resistivityProperty.get();
     var resistivitySlider = new SliderUnit(
       model.resistivityProperty,
       ResistanceInAWireConstants.RESISTIVITY_RANGE,
@@ -109,11 +129,29 @@ define( function( require ) {
       tandem.createTandem( 'resistivitySlider' ), {
         keyboardStep: 0.05, // ohm-cm
         shiftKeyStep: 0.01, // ohms-cm
-        accessibleValuePattern: resistivityUnitsPatternString
+        accessibleValuePattern: resistivityUnitsPatternString,
+        startDrag: function() {
+          rhoOnStart = model.resistivityProperty.get();
+          resistanceOnStart = model.resistanceProperty.get();
+        },
+        endDrag: function() {
+          var resistance = model.resistanceProperty.get();
+          var deltaRho = model.resistivityProperty.get() - rhoOnStart;
+          var deltaResistance = resistance - resistanceOnStart;
+
+          // announce to assistive technology if there is a change - no need to queue many alerts when pressing keys
+          // rapidly
+          if ( deltaRho ) {
+            utteranceQueue.addToBack( new Utterance( getSizeChangeAlert( resistance, deltaResistance, deltaRho, letterRhoString ), {
+              typeId: 'rhoChangeAlert'
+            } ) );
+          }
+        }
       }
     );
 
     // Create and add the length slider with readout and labels.
+    var lengthOnStart = model.lengthProperty.get();
     var lengthSlider = new SliderUnit(
       model.lengthProperty,
       ResistanceInAWireConstants.LENGTH_RANGE,
@@ -124,12 +162,30 @@ define( function( require ) {
       tandem.createTandem( 'lengthSlider' ), {
         keyboardStep: 1.0, // cm
         shiftKeyboardStep: 0.01, // cm
-        accessibleValuePattern: lengthUnitsPatternString
+        accessibleValuePattern: lengthUnitsPatternString,
+        startDrag: function() {
+          lengthOnStart = model.lengthProperty.get();
+          resistanceOnStart = model.resistanceProperty.get();
+        },
+        endDrag: function() {
+          var resistance = model.resistanceProperty.get();
+          var deltaLength = model.lengthProperty.get() - lengthOnStart;
+          var deltaResistance = resistance - resistanceOnStart;
+
+          // announce to assistive technology if there is a change - no need to queue many alerts when pressing keys
+          // rapidly
+          if ( deltaLength ) {
+            utteranceQueue.addToBack( new Utterance( getSizeChangeAlert( resistance, deltaResistance, deltaLength, letterLString ), {
+              typeId: 'rhoChangeAlert'
+            } ) );
+          }
+        }
       }
     );
 
     // Create and add the area slider with readout and labels. For keyboard dragging, the range ranges doesn't split into even steps,
     // so we calculate a keyboard step by breaking the range into 100.
+    var areaOnStart = model.areaProperty.get();
     var areaSlider = new SliderUnit(
       model.areaProperty,
       ResistanceInAWireConstants.AREA_RANGE,
@@ -140,7 +196,24 @@ define( function( require ) {
       tandem.createTandem( 'areaSlider' ), {
         keyboardStep: 1.0, // cm^2
         shiftKeyboardStep: 0.01, // cm^2
-        accessibleValuePattern: areaUnitsPatternString
+        accessibleValuePattern: areaUnitsPatternString,
+        startDrag: function() {
+          areaOnStart = model.areaProperty.get();
+          resistanceOnStart = model.resistanceProperty.get();
+        },
+        endDrag: function() {
+          var resistance = model.resistanceProperty.get();
+          var deltaArea = model.areaProperty.get() - areaOnStart;
+          var deltaResistance = resistance - resistanceOnStart;
+
+          // announce to assistive technology if there is a change - no need to queue many alerts when pressing keys
+          // rapidly
+          if ( deltaArea ) {
+            utteranceQueue.addToBack( new Utterance( getSizeChangeAlert( resistance, deltaResistance, deltaArea, letterAString ), {
+              typeId: 'rhoChangeAlert'
+            } ) );
+          }
+        }
       }
     );
 
@@ -165,6 +238,59 @@ define( function( require ) {
   }
 
   resistanceInAWire.register( 'ControlPanel', ControlPanel );
+
+  /**
+   * Get a description for whether a letter grows or shrinks. Optionally, if the size changes enough, an additional
+   * fragment is included that signifies this. Will return something like
+   *
+   * 'grows'
+   * 'shrinks'
+   * 'grows a lot'
+   * 'shrinks a lot'
+   * 
+   * @param {number} delta
+   * @param {boolean} describeLargeChanges
+   * @return {string}
+   */
+  var getSizeChangeFromDelta = function( delta, describeLargeChanges ) {
+    assert && assert ( delta !== 0, 'trying to describe no change in size' );
+    var description;
+
+    var useALot = ( describeLargeChanges && Math.abs( delta ) > LARGE_RESISTANCE_DELTA );
+
+    if ( delta > 0 ) {
+      description = useALot ? growsALotString : growsString;
+    }
+    else if ( delta < 0 ){
+      description = useALot ? shrinksALotString : shrinksString;
+    }
+
+    return description;
+  };
+
+  /**
+   * Get a full alert for size letter size and how R changes as well. Will return something like 
+   *
+   * "As letter rho grows, letter R grows. Resistance no 0.667 ohms." or
+   * "As letter A grows, letter R shrinks a lot. Resistance now 1.20 ohms"
+   *
+   * @param {number} resistance - current value of resistance
+   * @param {number} deltaResistance - change in 
+   * @param {number} otherDelta - change in other variable, resistivity, length, or area
+   * @param {string} letterString - the letter with size changes to describe
+   * @return {string}
+   */
+  var getSizeChangeAlert = function( resistance, deltaResistance, otherDelta, letterString ) {
+    var resistanceChangeString = getSizeChangeFromDelta( deltaResistance, true /*include 'a lot' */ );
+    var letterChangeString = getSizeChangeFromDelta( otherDelta, false /*dont include 'a lot */ );
+
+    return StringUtils.fillIn( sizeChangeAlertPatternString, {
+      letter: letterString,
+      letterChange: letterChangeString,
+      rChange: resistanceChangeString,
+      resistance: ResistanceInAWireConstants.getFormattedResistanceValue( resistance )
+    } );
+  };
 
   return inherit( Panel, ControlPanel );
 } );

@@ -14,6 +14,7 @@ define( function( require ) {
   var DerivedPropertyIO = require( 'AXON/DerivedPropertyIO' );
   var inherit = require( 'PHET_CORE/inherit' );
   var NumberProperty = require( 'AXON/NumberProperty' );
+  var Range = require( 'DOT/Range' );
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
   var ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
 
@@ -72,6 +73,18 @@ define( function( require ) {
       this.resistivityProperty.reset();
       this.lengthProperty.reset();
       this.areaProperty.reset();
+    }
+  }, {
+
+    /**
+     * Get the total range of the derived resistance from the independent Properties of this model.
+     *
+     * @return {Range}
+     */
+    getResistanceRange: function() {
+      var minResistance = ResistanceInAWireConstants.RESISTIVITY_RANGE.min * ResistanceInAWireConstants.LENGTH_RANGE.min / ResistanceInAWireConstants.AREA_RANGE.min;
+      var maxResistance = ResistanceInAWireConstants.RESISTIVITY_RANGE.max * ResistanceInAWireConstants.LENGTH_RANGE.max / ResistanceInAWireConstants.AREA_RANGE.max;
+      return new Range( minResistance, maxResistance );
     }
   } );
 } );

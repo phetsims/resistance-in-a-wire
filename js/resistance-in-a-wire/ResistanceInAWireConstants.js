@@ -14,6 +14,7 @@ define( function( require ) {
   var Range = require( 'DOT/Range' );
   var ResistanceInAWireA11yStrings = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireA11yStrings' );
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
+  var Util = require( 'DOT/Util' );
 
   // a11y strings
   var muchMuchSmallerThanString = ResistanceInAWireA11yStrings.muchMuchSmallerThanString.value;
@@ -45,6 +46,7 @@ define( function( require ) {
   var aVeryLargeAmountOfImpuritiesString = ResistanceInAWireA11yStrings.aVeryLargeAmountOfImpuritiesString.value;
   var aHugeAmountOfImpuritiesString = ResistanceInAWireA11yStrings.aHugeAmountOfImpuritiesString.value;
 
+
   // constants
   var RESISTIVITY_RANGE = new RangeWithValue( 0.01, 1.00, 0.5 ); // in Ohm * cm
   var LENGTH_RANGE = new RangeWithValue( 0.1, 20, 10 ); // in cm
@@ -53,6 +55,8 @@ define( function( require ) {
   var LENGTH_DESCRIPTIONS = [ extremelyShortString, veryShortString, shortString, ofMediumLengthString, longString, veryLongString, extremelyLongString ];
   var AREA_DESCRIPTIONS = [ extremelyThinString, veryThinString, thinString, ofMediumThicknessString, thickString, veryThickString, extremelyThickString ];
   var RESISTIVITY_DESCRIPTIONS = [ aTinyAmountOfImpuritiesString, aVerySmallAmountOfImpuritiesString, aSmallAmountOfImpuritiesString, aMediumAmountOfImpuritiesString, aLargeAmountOfImpuritiesString, aVeryLargeAmountOfImpuritiesString, aHugeAmountOfImpuritiesString ];
+
+  var RELATIVE_SIZE_STRINGS = [ muchMuchSmallerThanString, muchSmallerThanString, slightlySmallerThanString, comparableToString, slightlyLargerThanString, muchLargerThanString, muchMuchLargerThanString ];
 
   /**
    * Generate a map from physical value to accessible descripton. Each described range has a length of 
@@ -138,6 +142,8 @@ define( function( require ) {
     AREA_TO_DESCRIPTION_MAP: AREA_TO_DESCRIPTION_MAP,
     RESISTIVITY_TO_DESCRIPTION_MAP: RESISTIVITY_TO_DESCRIPTION_MAP,
 
+    RELATIVE_SIZE_STRINGS: RELATIVE_SIZE_STRINGS,
+
 
     // a11y - used to map relative scale magnitudes of the letters to relative size description
     RELATIVE_SIZE_MAP: {
@@ -197,8 +203,18 @@ define( function( require ) {
           return entry.description;
         }
       }
-    }
+    },
 
+    /**
+     * Get a formatted value for resistance - depending on size of resistance, number of decimals will change. Used
+     * for visual readout as well as for readable values in a11y.
+     *
+     * @param {number} value
+     * @return {string}
+     */
+    getFormattedResistanceValue: function( value ) {
+      return Util.toFixed( value, this.getResistanceDecimals( value ) );
+    }
   };
 
   resistanceInAWire.register( 'ResistanceInAWireConstants', ResistanceInAWireConstants );
