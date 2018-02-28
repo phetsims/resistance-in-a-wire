@@ -214,7 +214,25 @@ define( function( require ) {
 
       var description;
       var comparableRange = ResistanceInAWireConstants.RELATIVE_SIZE_MAP.comparable.range;
-      if ( comparableRange.contains( lToA ) && comparableRange.contains( lToRho ) ) {
+
+      // even if right hand side variables are not comparable in size, if R is relatively larger or smaller than all
+      // by the same amount, combine size description
+      var relativeSizeKeys = Object.keys( ResistanceInAWireConstants.RELATIVE_SIZE_MAP );
+      var allRelativeSizesSame = false;
+      for ( var i = 0; i < relativeSizeKeys.length; i++ ) {
+        var key = relativeSizeKeys[ i ];
+        var sizeRange = ResistanceInAWireConstants.RELATIVE_SIZE_MAP[ key ].range;
+        var containsRToRho = sizeRange.contains( rToRho );
+        var containsRToA = sizeRange.contains( rToA );
+        var containsRToL = sizeRange.contains( rToL );
+
+        if ( containsRToRho && containsRToA && containsRToL ) {
+          allRelativeSizesSame = true;
+          break;
+        }
+      }
+
+      if ( ( comparableRange.contains( lToA ) && comparableRange.contains( lToRho ) ) || allRelativeSizesSame ) {
 
         // all right hand side letters are comparable in size
         description = StringUtils.fillIn( rhoLAndAComparablePatternString, {
