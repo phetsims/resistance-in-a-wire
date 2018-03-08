@@ -71,6 +71,7 @@ define( function( require ) {
       shiftKeyboardStep: options.shiftKeyboardStep, // delta when holding shift
       accessibleValuePattern: options.accessibleValuePattern,
       accessibleDecimalPlaces: options.accessibleDecimalPlaces, // demimal places for readout
+      ariaOrientation: 'vertical',
       startDrag: options.startDrag,
       endDrag: options.endDrag,
 
