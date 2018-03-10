@@ -22,7 +22,7 @@ define( function( require ) {
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var Util = require( 'DOT/Util' );
 
-  var sceneSummaryString = JoistA11yStrings.sceneSummaryString;
+  var sceneSummaryString = JoistA11yStrings.sceneSummaryString.value;
   var summarySimString = ResistanceInAWireA11yStrings.summarySimString.value;
   var currentlyString = ResistanceInAWireA11yStrings.currentlyString.value;
   var summaryResistancePatternString = ResistanceInAWireA11yStrings.summaryResistancePatternString.value;
@@ -30,7 +30,7 @@ define( function( require ) {
   var summaryLengthPatternString = ResistanceInAWireA11yStrings.summaryLengthPatternString.value;
   var summaryAreaPatternString = ResistanceInAWireA11yStrings.summaryAreaPatternString.value;
   var summaryInteractionHintString = ResistanceInAWireA11yStrings.summaryInteractionHintString.value;
-  var checkOutShortcutsString  = JoistA11yStrings.checkOutShortcutsString;
+  var checkOutShortcutsString  = JoistA11yStrings.checkOutShortcutsString.value;
 
   // constants
   function AccessibleSummaryNode( model ) {

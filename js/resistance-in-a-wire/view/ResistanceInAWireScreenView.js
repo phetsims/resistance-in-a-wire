@@ -29,8 +29,8 @@ define( function( require ) {
   var resistanceInAWireTitleString = require( 'string!RESISTANCE_IN_A_WIRE/resistance-in-a-wire.title' );
 
   // a11y strings
-  var playAreaString = JoistA11yStrings.playAreaString;
-  var controlPanelString = JoistA11yStrings.controlPanelString;
+  var playAreaString = JoistA11yStrings.playAreaString.value;
+  var controlPanelString = JoistA11yStrings.controlPanelString.value;
 
   /**
    * @param {ResistanceInAWireModel} model
