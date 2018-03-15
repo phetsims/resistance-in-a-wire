@@ -22,6 +22,7 @@ define( function( require ) {
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var Util = require( 'DOT/Util' );
 
+  // a11y strings
   var sceneSummaryString = JoistA11yStrings.sceneSummary.value;
   var summarySimString = ResistanceInAWireA11yStrings.summarySimString.value;
   var currentlyString = ResistanceInAWireA11yStrings.currentlyString.value;
