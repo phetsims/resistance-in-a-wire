@@ -75,7 +75,7 @@ define( function( require ) {
       startDrag: options.startDrag,
       endDrag: options.endDrag,
 
-      parentContainerTagName: 'li',
+      containerTagName: 'li',
       labelTagName: 'label',
       accessibleLabel: accessibleLabel,
       prependLabels: true
