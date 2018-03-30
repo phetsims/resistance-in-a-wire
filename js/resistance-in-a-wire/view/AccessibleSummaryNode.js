@@ -40,11 +40,11 @@ define( function( require ) {
     // main summary for this sim - this content never changes
     this.addChild( new Node( {
       tagName: 'p',
-      accessibleLabelAsHTML: summarySimString
+      innerContent: summarySimString
     } ) );
 
     // indicates that the summary updates with model changes
-    this.addChild( new Node( { tagName: 'p', accessibleLabel: currentlyString } ) );
+    this.addChild( new Node( { tagName: 'p', innerContent: currentlyString } ) );
 
     // list that updates according to model Properties
     var listNode = new Node( { tagName: 'ul' } );
@@ -56,10 +56,10 @@ define( function( require ) {
     listNode.children = [ resistanceItemNode, resistivityItemNode, lengthItemNode, areaItemNode ];
 
     // hint to look for other elements in the UI
-    this.addChild( new Node( { tagName: 'p', accessibleLabel: summaryInteractionHintString } ) );
+    this.addChild( new Node( { tagName: 'p', innerContent: summaryInteractionHintString } ) );
 
     // hint to look for help dialog for more information
-    this.addChild( new Node( { tagName: 'p', accessibleLabel: checkOutShortcutsString } ) );
+    this.addChild( new Node( { tagName: 'p', innerContent: checkOutShortcutsString } ) );
 
     // add listeners - add all values to a list so we can easily iterate and add listeners to update descriptions
     // with each property
@@ -97,7 +97,7 @@ define( function( require ) {
 
         // the precision might change during interaction, get precision if property is a function
         var precision = typeof item.precision === 'number' ? item.precision : item.precision( value );
-        item.node.accessibleLabelAsHTML = StringUtils.fillIn( item.patternString, {
+        item.node.innerContent = StringUtils.fillIn( item.patternString, {
           value: Util.toFixed( value, precision )
         } );
       } );
