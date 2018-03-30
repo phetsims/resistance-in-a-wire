@@ -81,7 +81,7 @@ define( function( require ) {
       // a11y
       tagName: 'ul',
       labelTagName: 'h3',
-      accessibleLabel: sliderControlsString,
+      labelContent: sliderControlsString,
       accessibleDescription: slidersDescriptionString,
       prependLabels: true
     }, options );

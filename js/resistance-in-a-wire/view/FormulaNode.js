@@ -61,7 +61,7 @@ define( function( require ) {
       // a11y
       tagName: 'div',
       labelTagName: 'h3',
-      accessibleLabel: resistanceEquationString,
+      labelContent: resistanceEquationString,
       prependLabels: true,
       accessibleDescriptionAsHTML: resistanceEquationDescriptionString
     } );

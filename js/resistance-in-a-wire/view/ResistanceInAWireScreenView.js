@@ -43,7 +43,7 @@ define( function( require ) {
       tandem: tandem,
 
       // a11y
-      accessibleLabel: resistanceInAWireTitleString
+      labelContent: resistanceInAWireTitleString
     } );
 
     // a11y - Create and add the summary for this simulation, the first thing screen reader users encounter

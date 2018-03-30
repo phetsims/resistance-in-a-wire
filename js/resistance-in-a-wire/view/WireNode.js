@@ -63,7 +63,7 @@ define( function( require ) {
       tagName: 'div',
       labelTagName: 'h3',
       descriptionTagName: 'p',
-      accessibleLabel: 'The Wire',
+      labelContent: 'The Wire',
       prependLabels: true
     } );
 
