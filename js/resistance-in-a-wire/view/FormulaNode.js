@@ -63,7 +63,7 @@ define( function( require ) {
       labelTagName: 'h3',
       labelContent: resistanceEquationString,
       prependLabels: true,
-      accessibleDescriptionAsHTML: resistanceEquationDescriptionString
+      descriptionContent: resistanceEquationDescriptionString
     } );
 
     // equals sign, hard coded
@@ -158,7 +158,7 @@ define( function( require ) {
 
       // linked lazily so that relative scales are defined
       entry.property.lazyLink( function() {
-        lettersNode.setAccessibleDescription( self.getRelativeSizeDescription() );
+        lettersNode.setDescriptionContent( self.getRelativeSizeDescription() );
       } );
     } );
 
@@ -177,7 +177,7 @@ define( function( require ) {
     this.mutate( options );
 
     // a11y - set the initial description
-    lettersNode.setAccessibleDescription( self.getRelativeSizeDescription() );
+    lettersNode.setDescriptionContent( self.getRelativeSizeDescription() );
   }
 
   resistanceInAWire.register( 'FormulaNode', FormulaNode );

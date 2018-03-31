@@ -171,7 +171,7 @@ define( function( require ) {
           dot.visible = index < numDotsToShow;
         } );
 
-        self.accessibleDescription = self.getWireDescription();
+        self.descriptionContent = self.getWireDescription();
       }
     );
 

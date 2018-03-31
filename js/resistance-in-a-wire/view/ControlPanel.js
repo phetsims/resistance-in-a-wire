@@ -82,7 +82,7 @@ define( function( require ) {
       tagName: 'ul',
       labelTagName: 'h3',
       labelContent: sliderControlsString,
-      accessibleDescription: slidersDescriptionString,
+      descriptionContent: slidersDescriptionString,
       prependLabels: true
     }, options );
 
