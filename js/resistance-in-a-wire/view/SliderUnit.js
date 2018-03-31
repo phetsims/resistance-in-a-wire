@@ -25,11 +25,12 @@ define( function( require ) {
    * @param {string} symbolString
    * @param {string} nameString
    * @param {string} unitString
+   * @param {string} labelContent - a11y, label read by a screen reader
    * @param {Tandem} tandem
    * @param {Object} [options]
    * @constructor
    */
-  function SliderUnit( property, range, symbolString, nameString, unitString, accessibleLabel, tandem, options ) {
+  function SliderUnit( property, range, symbolString, nameString, unitString, labelContent, tandem, options ) {
 
     Node.call( this );
 
@@ -76,7 +77,7 @@ define( function( require ) {
       endDrag: options.endDrag,
 
       containerTagName: 'li',
-      labelContent: accessibleLabel,
+      labelContent: labelContent,
       prependLabels: true
     } );
 
