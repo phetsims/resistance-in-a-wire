@@ -82,8 +82,7 @@ define( function( require ) {
       tagName: 'ul',
       labelTagName: 'h3',
       labelContent: sliderControlsString,
-      descriptionContent: slidersDescriptionString,
-      prependLabels: true
+      descriptionContent: slidersDescriptionString
     }, options );
 
     // Add the dynamic title that indicates the resistance.

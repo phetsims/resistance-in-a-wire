@@ -76,9 +76,9 @@ define( function( require ) {
       startDrag: options.startDrag,
       endDrag: options.endDrag,
 
+      // a11y
       containerTagName: 'li',
-      labelContent: labelContent,
-      prependLabels: true
+      labelContent: labelContent
     } );
 
     var valueText = new Text( Util.toFixed( range.max, 2 ), {

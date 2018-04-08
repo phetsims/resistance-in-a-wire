@@ -62,7 +62,6 @@ define( function( require ) {
       tagName: 'div',
       labelTagName: 'h3',
       labelContent: resistanceEquationString,
-      prependLabels: true,
       descriptionContent: resistanceEquationDescriptionString
     } );
 

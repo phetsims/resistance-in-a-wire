@@ -63,8 +63,7 @@ define( function( require ) {
       tagName: 'div',
       labelTagName: 'h3',
       descriptionTagName: 'p',
-      labelContent: 'The Wire',
-      prependLabels: true
+      labelContent: 'The Wire'
     } );
 
     // Body of the wire
