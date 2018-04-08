@@ -78,7 +78,8 @@ define( function( require ) {
 
       // a11y
       containerTagName: 'li',
-      labelContent: labelContent
+      labelContent: labelContent,
+      labelTagName: 'label'
     } );
 
     var valueText = new Text( Util.toFixed( range.max, 2 ), {
