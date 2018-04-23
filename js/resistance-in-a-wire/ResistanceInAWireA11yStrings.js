@@ -15,7 +15,7 @@ define( function( require ) {
 
   var ResistanceInAWireA11yStrings = {
     summarySimString: {
-      value: 'This is an interactive sim. Descriptions change as you play with it. It has a Play Area and Control Panel. ' +
+      value: 'This is an interactive sim. It changes as you play with it. It has a Play Area and Control Panel. ' +
              'In the Play Area you find the Resistance equation, <b>R</b> equals <b>rho</b> times <b>L</b> over <b>A</b>, and a piece of wire. ' +
              'Sliders for resistivity, length, and area allow changes to the equation and the piece of wire. ' +
              'The Control Panel has a button to reset the sim.'
