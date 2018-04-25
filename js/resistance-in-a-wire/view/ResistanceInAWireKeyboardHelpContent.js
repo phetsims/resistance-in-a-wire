@@ -12,7 +12,6 @@ define( function( require ) {
   var GeneralNavigationHelpContent = require( 'SCENERY_PHET/keyboard/help/GeneralNavigationHelpContent' );
   var HBox = require( 'SCENERY/nodes/HBox' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var Panel = require( 'SUN/Panel' );
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
   var SliderControlsHelpContent = require( 'SCENERY_PHET/keyboard/help/SliderControlsHelpContent' );
 
@@ -27,20 +26,15 @@ define( function( require ) {
     var sliderControlsHelpContent = new SliderControlsHelpContent();
     var generalNavigationHelpContent = new GeneralNavigationHelpContent();
 
-    var content = new HBox( {
+    HBox.call( this, {
       children: [ sliderControlsHelpContent, generalNavigationHelpContent ],
       align: 'top',
-      spacing: 35
-    } );
-
-    Panel.call( this, content, {
-      stroke: null,
-      fill: 'rgb( 214, 237, 249 )',
+      spacing: 35,
       tandem: tandem
     } );
   }
 
   resistanceInAWire.register( 'ResistanceInAWireKeyboardHelpContent', ResistanceInAWireKeyboardHelpContent );
 
-  return inherit( Panel, ResistanceInAWireKeyboardHelpContent );
+  return inherit( HBox, ResistanceInAWireKeyboardHelpContent );
 } );
