@@ -279,8 +279,8 @@ define( function( require ) {
    * @return {string}
    */
   var getSizeChangeAlert = function( resistance, deltaResistance, otherDelta, letterString ) {
-    var resistanceChangeString = getSizeChangeFromDelta( deltaResistance, true /*include 'a lot' */ );
-    var letterChangeString = getSizeChangeFromDelta( otherDelta, false /*dont include 'a lot */ );
+    var resistanceChangeString = getSizeChangeFromDelta( deltaResistance, true /* include 'a lot' */ );
+    var letterChangeString = getSizeChangeFromDelta( otherDelta, false /* don't include 'a lot */ );
 
     return StringUtils.fillIn( sizeChangeAlertPatternString, {
       letter: letterString,
