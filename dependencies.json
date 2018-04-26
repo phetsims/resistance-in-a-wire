@@ -1,5 +1,5 @@
 {
-  "comment": "# resistance-in-a-wire 1.5.0-rc.1 Thu Apr 26 2018 11:01:19 GMT-0800 (Alaskan Daylight Time)",
+  "comment": "# resistance-in-a-wire 1.5.0-rc.2 Thu Apr 26 2018 11:07:06 GMT-0800 (Alaskan Daylight Time)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
     "branch": "HEAD"
@@ -22,7 +22,7 @@
   },
   "joist": {
     "sha": "f047fb1b48a3924b55112a4b75e438ea918ac8ae",
-    "branch": "resistance-in-a-wire-1.5"
+    "branch": "HEAD"
   },
   "kite": {
     "sha": "b607147875dca2c350235f96d4f5546617bc6e4b",
@@ -61,12 +61,12 @@
     "branch": "HEAD"
   },
   "resistance-in-a-wire": {
-    "sha": "a6c4aa3a50c6ae6574c9737a7df6d390da74d16c",
+    "sha": "113e9ebb6f97a62db3b36102864b20f14970e7ad",
     "branch": "1.5"
   },
   "scenery": {
     "sha": "64f0c409873154d17998c0a149ffbec95daf270a",
-    "branch": "resistance-in-a-wire-1.5"
+    "branch": "HEAD"
   },
   "scenery-phet": {
     "sha": "42b0cff2831c6cf1be20fcbcad3c2235caa0d14e",
