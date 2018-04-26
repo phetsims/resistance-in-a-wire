@@ -72,7 +72,7 @@ define( function( require ) {
       value: 'much much larger than', 
     },
     wireDescriptionPatternString: {
-      value: 'Currently, wire is {{length}}, {{thickness}}, and there is a {{impurities}} of impurities in the wire. Resistance is {{resistance}} ohms.'
+      value: 'Currently, wire is {{length}}, {{thickness}}, and there is a {{impurities}} of impurities in wire. Resistance is {{resistance}} ohms.'
     },
     resistivityUnitsPatternString: {
       value: '{{value}} ohm centimeters',
