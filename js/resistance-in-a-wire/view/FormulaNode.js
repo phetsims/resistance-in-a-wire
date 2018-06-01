@@ -137,7 +137,7 @@ define( function( require ) {
       // Add an invisible rectangle with bounds slightly larger than the text so that artifacts aren't left on the
       // screen, see https://github.com/phetsims/ohms-law/issues/26.
       // This also serves as the rectangle surrounding the 'R' that 'caps' the scaling when it gets too big.
-      var antiArtifactRectangle = Rectangle.bounds( text.bounds.dilatedX( 1 ) );
+      var antiArtifactRectangle = Rectangle.bounds( text.bounds.dilated( 1 ) );
 
       var letterNode = new Node( { children: [ antiArtifactRectangle, text ] } );
       lettersNode.addChild( letterNode );
