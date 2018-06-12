@@ -24,16 +24,16 @@ define( function( require ) {
       value: 'Currently,'
     },
     summaryResistancePatternString: {
-      value: 'resistance, <b>R</b>, is {{value}} ohms',
+      value: 'resistance, <b>R</b>, is {{value}} ohms'
     },
     summaryResistivityPatternString: {
-      value: 'resistivity, <b>rho</b>, is {{value}} ohm centimeters',
+      value: 'resistivity, <b>rho</b>, is {{value}} ohm centimeters'
     },
     summaryLengthPatternString: {
-      value: 'length, <b>L</b>, is {{value}} centimeters',
+      value: 'length, <b>L</b>, is {{value}} centimeters'
     },
     summaryAreaPatternString: {
-      value: 'area, <b>A</b>, is {{value}} centimeters squared',
+      value: 'area, <b>A</b>, is {{value}} centimeters squared'
     },
     resistanceEquationString: {
       value: 'Resistance Equation'
@@ -51,31 +51,31 @@ define( function( require ) {
       value: 'Size of letter R is {{rToRho}} the size of letter rho, {{rToL}} letter L, and {{rToA}} letter A.'
     },
     muchMuchSmallerThanString: {
-      value: 'much much smaller than',
+      value: 'much much smaller than'
     },
     muchSmallerThanString: {
-      value: 'much smaller than',
+      value: 'much smaller than'
     },
     slightlySmallerThanString: {
-      value: 'slightly smaller than',
+      value: 'slightly smaller than'
     },
     comparableToString: {
-      value: 'comparable to', 
+      value: 'comparable to' 
     },
     slightlyLargerThanString: {
-      value: 'slightly larger than',
+      value: 'slightly larger than'
     },
     muchLargerThanString: {
-      value: 'much larger than',
+      value: 'much larger than'
     },
     muchMuchLargerThanString: {
-      value: 'much much larger than', 
+      value: 'much much larger than' 
     },
     wireDescriptionPatternString: {
       value: 'Currently, wire is {{length}}, {{thickness}}, and there is a {{impurities}} of impurities in wire. Resistance is {{resistance}} ohms.'
     },
     resistivityUnitsPatternString: {
-      value: '{{value}} ohm centimeters',
+      value: '{{value}} ohm centimeters'
     },
     extremelyShortString: {
       value: 'extremely short'
@@ -144,16 +144,16 @@ define( function( require ) {
       value: 'Look for resistivity, length, and area sliders to play, or read on for details about equation and wire.'
     },
     lengthUnitsPatternString: {
-      value: '{{value}} centimeters',
+      value: '{{value}} centimeters'
     },
     areaUnitsPatternString: {
-      value: '{{value}} centimeters squared',
+      value: '{{value}} centimeters squared'
     },
     resistivitySliderLabelString: {
-      value: 'rho, Resistivity',
+      value: 'rho, Resistivity'
     },
     lengthSliderLabelString: {
-      value: 'L, Length',
+      value: 'L, Length'
     },
     areaSliderLabelString: {
       value: 'A, Area'
