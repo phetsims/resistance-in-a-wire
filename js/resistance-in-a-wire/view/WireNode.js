@@ -17,13 +17,14 @@ define( function( require ) {
   var LinearGradient = require( 'SCENERY/util/LinearGradient' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
+  var platform = require( 'PHET_CORE/platform' );
   var Property = require( 'AXON/Property' );
   var Range = require( 'DOT/Range' );
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
   var ResistanceInAWireA11yStrings = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireA11yStrings' );
   var ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
-  var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var Shape = require( 'KITE/Shape' );
+  var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var Util = require( 'DOT/Util' );
 
   // a11y strings
@@ -66,19 +67,22 @@ define( function( require ) {
       labelContent: 'The Wire'
     } );
 
+    // See https://github.com/phetsims/resistance-in-a-wire/issues/158
+    var wireBodyRenderer = platform.android ? 'canvas' : null;
+
     // Body of the wire
     var wireBody = new Path( null, {
       stroke: 'black',
-      lineWidth: 1,
-      tandem: tandem.createTandem( 'wireBody' )
+      tandem: tandem.createTandem( 'wireBody' ),
+      renderer: wireBodyRenderer
     } );
 
     // Cap/end of the wire
     var wireEnd = new Path( null, {
       stroke: 'black',
       fill: '#E8B282',
-      lineWidth: 1,
-      tandem: tandem.createTandem( 'wireEnd' )
+      tandem: tandem.createTandem( 'wireEnd' ),
+      renderer: wireBodyRenderer
     } );
 
     this.addChild( wireBody );
