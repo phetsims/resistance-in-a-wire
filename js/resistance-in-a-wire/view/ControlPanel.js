@@ -247,13 +247,13 @@ define( function( require ) {
    * 'shrinks'
    * 'grows a lot'
    * 'shrinks a lot'
-   * 
+   *
    * @param {number} delta
    * @param {boolean} describeLargeChanges
    * @return {string}
    */
   var getSizeChangeFromDelta = function( delta, describeLargeChanges ) {
-    assert && assert ( delta !== 0, 'trying to describe no change in size' );
+    assert && assert( delta !== 0, 'trying to describe no change in size' );
     var description;
 
     var useALot = ( describeLargeChanges && Math.abs( delta ) > LARGE_RESISTANCE_DELTA );
@@ -261,7 +261,7 @@ define( function( require ) {
     if ( delta > 0 ) {
       description = useALot ? growsALotString : growsString;
     }
-    else if ( delta < 0 ){
+    else if ( delta < 0 ) {
       description = useALot ? shrinksALotString : shrinksString;
     }
 
@@ -269,13 +269,13 @@ define( function( require ) {
   };
 
   /**
-   * Get a full alert for size letter size and how R changes as well. Will return something like 
+   * Get a full alert for size letter size and how R changes as well. Will return something like
    *
    * "As letter rho grows, letter R grows. Resistance no 0.667 ohms." or
    * "As letter A grows, letter R shrinks a lot. Resistance now 1.20 ohms"
    *
    * @param {number} resistance - current value of resistance
-   * @param {number} deltaResistance - change in 
+   * @param {number} deltaResistance - change in
    * @param {number} otherDelta - change in other variable, resistivity, length, or area
    * @param {string} letterString - the letter with size changes to describe
    * @return {string}
