@@ -23,6 +23,7 @@ define( function( require ) {
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
   var ResistanceInAWireA11yStrings = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireA11yStrings' );
   var ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
+  var ResistanceInAWireModel = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/model/ResistanceInAWireModel' );
   var Shape = require( 'KITE/Shape' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var Text = require( 'SCENERY/nodes/Text' );
@@ -143,6 +144,7 @@ define( function( require ) {
 
       // Set the scale based on the default value of the property; normalize the scale for all letters.
       var scale = 7 / entry.property.value; // empirically determined '7'
+      var resistanceThreshold = 10; // in ohms, to offset the strange zoom on chrome os, see https://github.com/phetsims/resistance-in-a-wire/issues/157
 
       // The size of the formula letter will scale with the value the letter represents. The accessible description for
       // the equation will also update. This does not need an unlink because it exists for the life of the sim.
@@ -150,6 +152,13 @@ define( function( require ) {
         var scaleMagnitude = scale * value + 1;
         letterNode.setScaleMagnitude( scaleMagnitude );
         letterNode.center = entry.center;
+
+        // special case for resistance, label is arbitrary way of telling the difference
+        // to offset the strange zoom on chrome os, see https://github.com/phetsims/resistance-in-a-wire/issues/157
+        if ( entry.label === resistanceSymbolString && value > resistanceThreshold ) {
+          var difference = value - resistanceThreshold;
+          letterNode.center.y += difference / 10;
+        }
 
         // for lookup when describing relative letter sizes
         self.a11yScaleMap[ entry.scaleKey ] = scaleMagnitude;
