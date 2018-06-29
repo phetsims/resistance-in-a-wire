@@ -25,9 +25,6 @@ define( function( require ) {
   var WireNode = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/WireNode' );
   var JoistA11yStrings = require( 'JOIST/JoistA11yStrings' );
 
-  // strings
-  var resistanceInAWireTitleString = require( 'string!RESISTANCE_IN_A_WIRE/resistance-in-a-wire.title' );
-
   // a11y strings
   var playAreaString = JoistA11yStrings.playArea.value;
   var controlPanelString = JoistA11yStrings.controlPanel.value;
