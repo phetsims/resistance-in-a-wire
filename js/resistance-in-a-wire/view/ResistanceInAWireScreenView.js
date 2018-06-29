@@ -40,10 +40,7 @@ define( function( require ) {
   function ResistanceInAWireScreenView( model, tandem ) {
 
     ScreenView.call( this, {
-      tandem: tandem,
-
-      // a11y
-      labelContent: resistanceInAWireTitleString
+      tandem: tandem
     } );
 
     // a11y - Create and add the summary for this simulation, the first thing screen reader users encounter
