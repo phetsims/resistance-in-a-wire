@@ -1,5 +1,5 @@
 {
-  "comment": "# resistance-in-a-wire 1.5.0-rc.7 Thu Jun 28 2018 15:30:37 GMT-0800 (Alaskan Daylight Time)",
+  "comment": "# resistance-in-a-wire 1.5.0-rc.7 Thu Jul 05 2018 15:12:37 GMT-0800 (Alaskan Daylight Time)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
     "branch": "HEAD"
@@ -17,8 +17,8 @@
     "branch": "HEAD"
   },
   "dot": {
-    "sha": "0dd6ee8e4b6a024c22ca2a3989d800dd5a9cc315",
-    "branch": "HEAD"
+    "sha": "56c1d4b8d1e703752297a405b544f1efd87b3449",
+    "branch": "resistance-in-a-wire-1.5"
   },
   "joist": {
     "sha": "f047fb1b48a3924b55112a4b75e438ea918ac8ae",
@@ -61,12 +61,12 @@
     "branch": "HEAD"
   },
   "resistance-in-a-wire": {
-    "sha": "0520d7c146d559f5938ef25eaa776b15e1575b70",
+    "sha": "966ef9c108c7727709e84ce0e0ced04a779b89a1",
     "branch": "1.5"
   },
   "scenery": {
     "sha": "33290b5e78b38bd33456cc2cb3f2919f2252c899",
-    "branch": "HEAD"
+    "branch": "resistance-in-a-wire-1.5"
   },
   "scenery-phet": {
     "sha": "42b0cff2831c6cf1be20fcbcad3c2235caa0d14e",
@@ -77,8 +77,8 @@
     "branch": "HEAD"
   },
   "sun": {
-    "sha": "6a7c923a70bfb7c0b84b0b6beae9d9d6feca04bb",
-    "branch": "HEAD"
+    "sha": "2e7beb5584cabe7dc8327db4de77f1aaa3415c15",
+    "branch": "resistance-in-a-wire-1.5"
   },
   "tandem": {
     "sha": "7f499d9e1b8b26d94f4ccfa032ec8064c0e64daa",
