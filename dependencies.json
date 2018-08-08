@@ -1,5 +1,5 @@
 {
-  "comment": "# resistance-in-a-wire 1.4.2-rc.2 Mon Jul 30 2018 21:19:49 GMT-0600 (MDT)",
+  "comment": "# resistance-in-a-wire 1.4.2 Wed Aug 08 2018 14:26:17 GMT-0600 (MDT)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
     "branch": "HEAD"
@@ -41,7 +41,7 @@
     "branch": "HEAD"
   },
   "resistance-in-a-wire": {
-    "sha": "619488f62be2a905285b8e64afa2bb5b9344fa78",
+    "sha": "848505590dfe15074eaa94dea879cce51363fb1c",
     "branch": "1.4"
   },
   "scenery": {
