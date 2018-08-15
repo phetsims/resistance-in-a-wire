@@ -1,7 +1,7 @@
 // Copyright 2018, University of Colorado Boulder
 
 /**
- * The Scene Summary for Resistance in a Wire. This summary is at the top of the document, and is the first thing
+ * The Screen Summary for Resistance in a Wire. This summary is at the top of the document, and is the first thing
  * that a screen reader user reads when using the sim. It provides overview information about the resistance
  * equation, visualization of the circuit, and the controls in the interface.
  * 
@@ -14,7 +14,6 @@ define( function( require ) {
   // modules
   var AccessibleSectionNode = require( 'SCENERY_PHET/accessibility/AccessibleSectionNode' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var JoistA11yStrings = require( 'JOIST/JoistA11yStrings' );
   var Node = require( 'SCENERY/nodes/Node' );
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
   var ResistanceInAWireA11yStrings = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireA11yStrings' );
@@ -23,7 +22,6 @@ define( function( require ) {
   var Util = require( 'DOT/Util' );
 
   // a11y strings
-  var sceneSummaryString = JoistA11yStrings.sceneSummary.value;
   var summarySimString = ResistanceInAWireA11yStrings.summarySimString.value;
   var currentlyString = ResistanceInAWireA11yStrings.currentlyString.value;
   var summaryResistancePatternString = ResistanceInAWireA11yStrings.summaryResistancePatternString.value;
@@ -31,11 +29,10 @@ define( function( require ) {
   var summaryLengthPatternString = ResistanceInAWireA11yStrings.summaryLengthPatternString.value;
   var summaryAreaPatternString = ResistanceInAWireA11yStrings.summaryAreaPatternString.value;
   var summaryInteractionHintString = ResistanceInAWireA11yStrings.summaryInteractionHintString.value;
-  var checkOutShortcutsString  = JoistA11yStrings.checkOutShortcuts.value;
 
   // constants
   function AccessibleSummaryNode( model ) {
-    AccessibleSectionNode.call( this, sceneSummaryString );
+    Node.call( this );
 
     // main summary for this sim - this content never changes
     this.addChild( new Node( {
@@ -57,9 +54,6 @@ define( function( require ) {
 
     // hint to look for other elements in the UI
     this.addChild( new Node( { tagName: 'p', innerContent: summaryInteractionHintString } ) );
-
-    // hint to look for help dialog for more information
-    this.addChild( new Node( { tagName: 'p', innerContent: checkOutShortcutsString } ) );
 
     // add listeners - add all values to a list so we can easily iterate and add listeners to update descriptions
     // with each property
@@ -90,7 +84,7 @@ define( function( require ) {
       }
     ];
 
-    // register listeners that update the labels in the scene summary - this summary exists for life of sim,
+    // register listeners that update the labels in the screen summary - this summary exists for life of sim,
     // no need to dispose
     valueItemList.forEach( function( item ) {
       item.property.link( function( value ) {

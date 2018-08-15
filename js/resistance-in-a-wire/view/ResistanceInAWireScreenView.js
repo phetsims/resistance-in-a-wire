@@ -37,12 +37,15 @@ define( function( require ) {
   function ResistanceInAWireScreenView( model, tandem ) {
 
     ScreenView.call( this, {
-      tandem: tandem
+      tandem: tandem,
+
+      // a11y - TODO: Remove this option once https://github.com/phetsims/scenery-phet/issues/393 is complete
+      addScreenSummaryNode: true
     } );
 
     // a11y - Create and add the summary for this simulation, the first thing screen reader users encounter
     var a11ySummaryNode = new AccessibleSummaryNode( model );
-    this.addChild( a11ySummaryNode );
+    this.screenSummaryNode.addChild( a11ySummaryNode );
 
     // a11y - the play area for this sim, containing elements that are significant to the pedagogy of the sim
     var a11yPlayAreaNode = new AccessibleSectionNode( playAreaString );
@@ -105,9 +108,6 @@ define( function( require ) {
 
     // add the control panel last so it is always on top.
     a11yPlayAreaNode.addChild( controlPanel );
-
-    // a11y - the reset all button should come last, control panel first
-    this.accessibleOrder = [ a11ySummaryNode, a11yPlayAreaNode ];
   }
 
   resistanceInAWire.register( 'ResistanceInAWireScreenView', ResistanceInAWireScreenView );

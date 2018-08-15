@@ -14,9 +14,8 @@ define( function( require ) {
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
 
   var ResistanceInAWireA11yStrings = {
-    summarySimString: {
-      value: 'This is an interactive sim. It changes as you play with it. It has a Play Area and Control Panel. ' +
-             'In the Play Area you find the Resistance equation, <b>R</b> equals <b>rho</b> times <b>L</b> over <b>A</b>, and a piece of wire. ' +
+    summarySimString: { 
+      value: 'In the Play Area you find the Resistance equation, <b>R</b> equals <b>rho</b> times <b>L</b> over <b>A</b>, and a piece of wire. ' +
              'Sliders for resistivity, length, and area allow changes to the equation and the piece of wire. ' +
              'The Control Panel has a button to reset the sim.'
     },
