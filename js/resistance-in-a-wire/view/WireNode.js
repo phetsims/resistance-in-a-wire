@@ -109,8 +109,12 @@ define( function( require ) {
 
     // Create a container node for the dots, and the tandems to go along with it.
     var dotsNodeTandem = tandem.createTandem( 'dotsNode' );
-    var dotsNode = new Node( { tandem: dotsNodeTandem } );
     var dotsGroupTandem = dotsNodeTandem.createGroupTandem( 'dots' );
+
+    // render the dots in canvas in FF for a performance improvement in that platform. Especially needed for a11y to
+    // improve performance when JAWS is in use, see https://github.com/phetsims/resistance-in-a-wire/issues/164
+    var dotsRenderer = platform.firefox ? 'canvas' : null;
+    var dotsNode = new Node( { tandem: dotsNodeTandem, renderer: dotsRenderer } );
 
     // Create the dots randomly on the wire. Density is based on AREA_PER_DOT.
     for ( var i = 0; i < NUMBER_OF_DOTS; i++ ) {
