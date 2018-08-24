@@ -28,7 +28,10 @@ define( function( require ) {
     // Used to calculate the size of the wire in screen coordinates from the model values
     WIRE_DIAMETER_MAX: WIRE_DIAMETER_MAX,
     WIRE_VIEW_WIDTH_RANGE: WIRE_VIEW_WIDTH_RANGE, 
-    WIRE_VIEW_HEIGHT_RANGE: WIRE_VIEW_HEIGHT_RANGE, 
+    WIRE_VIEW_HEIGHT_RANGE: WIRE_VIEW_HEIGHT_RANGE,
+
+    // used when drawing dots in the wire
+    DOT_RADIUS: 2,
 
     // Linear mapping transform
     lengthToWidth: new LinearFunction(

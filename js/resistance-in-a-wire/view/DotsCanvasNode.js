@@ -21,8 +21,6 @@ define( function( require ) {
   var WireShapeConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/WireShapeConstants' );
 
   // constants
-  var DOT_RADIUS = 2;
-
   // to calculate the number of dots
   var MAX_WIDTH_INCLUDING_ROUNDED_ENDS = WireShapeConstants.WIRE_VIEW_WIDTH_RANGE.max + 2 * WireShapeConstants.WIRE_VIEW_HEIGHT_RANGE.max * WireShapeConstants.PERSPECTIVE_FACTOR;
   var AREA_PER_DOT = 200; // Adjust this to control the density of the dots.
@@ -111,7 +109,7 @@ define( function( require ) {
         // the left and the right of the rectangular wire shape
         if ( i < numDotsToShow && this.dotsClipArea.containsPoint( this.dotCenters[ i ] ) ) {
           context.beginPath();
-          context.arc( this.dotCenters[ i ].x, this.dotCenters[ i ].y, DOT_RADIUS, 0, 2 * Math.PI, true );
+          context.arc( this.dotCenters[ i ].x, this.dotCenters[ i ].y, WireShapeConstants.DOT_RADIUS, 0, 2 * Math.PI, true );
           context.fill();
         }
       }
