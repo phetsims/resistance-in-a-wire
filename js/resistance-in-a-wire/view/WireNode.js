@@ -15,6 +15,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var LinearGradient = require( 'SCENERY/util/LinearGradient' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var Matrix3 = require( 'DOT/Matrix3' );
   var Path = require( 'SCENERY/nodes/Path' );
   var platform = require( 'PHET_CORE/platform' );
   var Property = require( 'AXON/Property' );
@@ -108,9 +109,11 @@ define( function( require ) {
           .addColorStop( 1, '#8C4828' );
 
         // Clip the dots that are shown to only include those inside the wire (including the wireEnd). Don't use
-        // clipArea setter directly because it is too slow, but but the area is still used by
-        // DotsCanvasNode.paintCanvas
-        dotsNode.dotsClipArea = wireBody.shape.ellipticalArc( -width / 2, 0, WireShapeConstants.PERSPECTIVE_FACTOR * height / 2, height / 2, 0, 3 * Math.PI / 2, Math.PI / 2, true );
+        // clipArea setter directly because it is too slow, but but the area is still used by DotsCanvasNode to
+        // determine where to place the dots. Shape is scaled down so that the dots don't stick out beyond the shape
+        var dotsClipArea = wireBody.shape.ellipticalArc( -width / 2, 0, WireShapeConstants.PERSPECTIVE_FACTOR * height / 2, height / 2, 0, 3 * Math.PI / 2, Math.PI / 2, true );
+        var scale = ( width - WireShapeConstants.DOT_RADIUS ) / width;
+        dotsNode.dotsClipArea = dotsClipArea.transformed( Matrix3.scaling( scale, 1.0 ) );
 
         // redraw the dots representing resistivity
         dotsNode.invalidatePaint();
