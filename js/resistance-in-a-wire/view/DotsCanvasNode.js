@@ -1,7 +1,7 @@
 // Copyright 2018, University of Colorado Boulder
 
 /**
- * Draw the dots in the wire with a CanvasNode as a performance enhancement. This is much faster than drawing drawing
+ * Draw the dots in the wire with a CanvasNode as a performance enhancement. This is much faster than drawing
  * each dot as a Circle node and updating their visibility. Dots are redrawn whenever model Properties change that
  * might change the shape of the wire or add or remove dots (length, area, resistivity).
  * 
