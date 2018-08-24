@@ -101,6 +101,11 @@ define( function( require ) {
       context.lineTo( -width / 2 - WireShapeConstants.PERSPECTIVE_FACTOR * height / 2, -height / 2 );
       context.clip();
 
+      // fillstyle required for dots to show up in screenshot feature, see
+      // https://github.com/phetsims/resistance-in-a-wire/issues/171
+      // NOTE: Maybe this can be removed once https://github.com/phetsims/scenery/issues/848 is sorted?
+      context.fillStyle = 'black';
+
       // draw dots whose centers are within the shape of the wire
       var numDotsToShow = resistivityToNumberOfDots( this.resistivityProperty.get() );
       for ( var i = 0; i < this.dotCenters.length; i++ ) {
