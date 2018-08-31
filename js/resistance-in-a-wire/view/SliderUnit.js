@@ -1,4 +1,4 @@
-// Copyright 2017-2018, University of Colorado Boulder
+// Copyright 2018, University of Colorado Boulder
 
 /**
  * Slider unit with a vertical slider, a title above the slider and a readout display below the slider. Layout is dynamic
@@ -10,7 +10,6 @@ define( function( require ) {
 
   // modules
   var Dimension2 = require( 'DOT/Dimension2' );
-  var HSlider = require( 'SUN/HSlider' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
@@ -18,6 +17,7 @@ define( function( require ) {
   var RichText = require( 'SCENERY/nodes/RichText' );
   var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
+  var VSlider = require( 'SUN/VSlider' );
 
   /**
    * @param {Property.<number>} property
@@ -59,9 +59,8 @@ define( function( require ) {
       tandem: tandem.createTandem( 'nameText' )
     } );
 
-    var slider = new HSlider( property, range, {
+    var slider = new VSlider( property, range, {
       trackFillEnabled: 'black',
-      rotation: -Math.PI / 2,
       trackSize: new Dimension2( ResistanceInAWireConstants.SLIDER_HEIGHT - 30, 4 ),
       thumbFillEnabled: '#c3c4c5',
       thumbFillHighlighted: '#dedede',
