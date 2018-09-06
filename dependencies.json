@@ -1,5 +1,5 @@
 {
-  "comment": "# resistance-in-a-wire 1.5.0-rc.8 Thu Aug 23 2018 14:03:39 GMT-0800 (Alaskan Daylight Time)",
+  "comment": "# resistance-in-a-wire 1.5.0-rc.8 Thu Sep 06 2018 10:11:37 GMT-0800 (Alaskan Daylight Time)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
     "branch": "HEAD"
@@ -61,12 +61,12 @@
     "branch": "HEAD"
   },
   "resistance-in-a-wire": {
-    "sha": "b70a62da5f4c6b526b3d278dd7b3531cec5ba586",
+    "sha": "4fc3080a13a357f641f0a871ed0b903b93e42428",
     "branch": "1.5"
   },
   "scenery": {
-    "sha": "33290b5e78b38bd33456cc2cb3f2919f2252c899",
-    "branch": "HEAD"
+    "sha": "a7a0ca9e76335ccc3ee3dc9f0dc859b8d017ce3e",
+    "branch": "resistance-in-a-wire-1.5"
   },
   "scenery-phet": {
     "sha": "42b0cff2831c6cf1be20fcbcad3c2235caa0d14e",
