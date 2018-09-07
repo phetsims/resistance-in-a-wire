@@ -112,7 +112,7 @@ define( function( require ) {
         // clipArea setter directly because it is too slow, but but the area is still used by DotsCanvasNode to
         // determine where to place the dots. Shape is scaled down so that the dots don't stick out beyond the shape
         var dotsClipArea = wireBody.shape.ellipticalArc( -width / 2, 0, WireShapeConstants.PERSPECTIVE_FACTOR * height / 2, height / 2, 0, 3 * Math.PI / 2, Math.PI / 2, true );
-        var scale = ( width - WireShapeConstants.DOT_RADIUS ) / width;
+        var scale = ( width - WireShapeConstants.DOT_RADIUS * 1.2 ) / width;
         dotsNode.dotsClipArea = dotsClipArea.transformed( Matrix3.scaling( scale, 1.0 ) );
 
         // redraw the dots representing resistivity
