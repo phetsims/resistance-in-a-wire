@@ -44,7 +44,7 @@ define( function( require ) {
       value: 'Size of letter R is {{rToAll}} the size of the letter rho, letter L, and letter A.'
     },
     lAndAComparablePatternString: {
-      value: 'Size of letter R is {{rToRho}} the size of letter rho, and {{rToLAndA}} than letter L and letter A.'
+      value: 'Size of letter R is {{rToRho}} the size of letter rho, and {{rToLAndA}} letter L and letter A.'
     },
     noneComparablePatternString: {
       value: 'Size of letter R is {{rToRho}} the size of letter rho, {{rToL}} letter L, and {{rToA}} letter A.'
