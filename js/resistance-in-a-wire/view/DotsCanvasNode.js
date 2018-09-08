@@ -59,9 +59,6 @@ define( function( require ) {
     this.areaProperty = model.areaProperty;
     this.lengthProperty = model.lengthProperty;
 
-    // @public - dots outside of this area will be invisible, set when shape is recalculated in WireNode
-    this.dotsClipArea = null;
-
     // calculate bounds for the canvas - wire center is at (0, 0)
     var height = WireShapeConstants.areaToHeight( ResistanceInAWireConstants.AREA_RANGE.max );
     var width = WireShapeConstants.lengthToWidth( ResistanceInAWireConstants.LENGTH_RANGE.max );
