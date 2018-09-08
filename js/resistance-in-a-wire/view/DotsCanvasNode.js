@@ -74,7 +74,7 @@ define( function( require ) {
 
   resistanceInAWire.register( 'DotsCanvasNode', DotsCanvasNode );
 
-  return inherit( CanvasNode, DotsCanvasNode, {
+  inherit( CanvasNode, DotsCanvasNode, {
 
     /**
      * Draw the required dots.
@@ -91,14 +91,27 @@ define( function( require ) {
       // Width of the wire (as measured from the top of the wire, that is excluding the rounding bits in the middle).
       var width = WireShapeConstants.lengthToWidth( this.lengthProperty.get() );
 
-      // Rectangular shape of the body excluding the arcs at the ends, used as the clip area. Using and changing clip
-      // area that includes the arcs at the end of the wire is too slow. But using a clip area for the main body of the
-      // wire looks nice, and allows dots to be seen partially when the wire is at is minimum height.
+      // for readability, these are relative to the rectangular body
+      var top = -height / 2;
+      var bottom = height / 2;
+      var left = -width / 2;
+      var right = width / 2;
+
+      // Rectangular shape of the body, used as the clip area. Using and changing clip area that includes the ends
+      // of the wire with Shape.ellipticalArc is too slow. But approximating arcs with fewer segments is much faster.
+      // See https://github.com/phetsims/resistance-in-a-wire/issues/170 and approxEllipticalArc()
       context.beginPath();
-      context.moveTo( -width / 2 - WireShapeConstants.PERSPECTIVE_FACTOR * height / 2, height / 2 );
-      context.lineTo( width / 2 + WireShapeConstants.PERSPECTIVE_FACTOR * height / 2, height / 2 );
-      context.lineTo( width / 2 + WireShapeConstants.PERSPECTIVE_FACTOR * height / 2, -height / 2 );
-      context.lineTo( -width / 2 - WireShapeConstants.PERSPECTIVE_FACTOR * height / 2, -height / 2 );
+      context.moveTo( left, bottom );
+
+      // arc around the left side of the wire
+      approxEllipticalArc( context, height, left, Math.PI / 2, 3 * Math.PI / 2 );
+      context.lineTo( right, top );
+
+      // arc around the right side of the wire
+      approxEllipticalArc( context, height, right, 3 * Math.PI / 2, 5 * Math.PI / 2 );
+      context.lineTo( left, bottom );
+
+      // use this shape with "arcs" as the clip shape
       context.clip();
 
       // fillstyle required for dots to show up in screenshot feature, see
@@ -106,13 +119,10 @@ define( function( require ) {
       // NOTE: Maybe this can be removed once https://github.com/phetsims/scenery/issues/848 is sorted?
       context.fillStyle = 'black';
 
-      // draw dots whose centers are within the shape of the wire
+      // draw the dots, number depending on the resistivity Property
       var numDotsToShow = resistivityToNumberOfDots( this.resistivityProperty.get() );
       for ( var i = 0; i < this.dotCenters.length; i++ ) {
-
-        // only draw dots that are within the current shape of the wire to clip dots that extend beyond
-        // the left and the right of the rectangular wire shape
-        if ( i < numDotsToShow && this.dotsClipArea.containsPoint( this.dotCenters[ i ] ) ) {
+        if ( i < numDotsToShow ) {
           context.beginPath();
           context.arc( this.dotCenters[ i ].x, this.dotCenters[ i ].y, WireShapeConstants.DOT_RADIUS, 0, 2 * Math.PI, true );
           context.fill();
@@ -120,4 +130,36 @@ define( function( require ) {
       }
     }
   } );
+
+  /**
+   * Using Shape.ellipticalArc for the clip area is too slow, so we approximate ellipcitcal arcs with segments.
+   * The 'segments' variable can be increased to get more accurate elliptical shapes, or reduced for (possibly)
+   * faster drawing.
+   * 
+   * @param {CanvasContext2D} context - canvas context to draw to
+   * @param {number} height - height of the wire
+   * @param {number} centerX - centerX offset for the ellipse
+   * @param {number} startAngle - start angle for the ellipse
+   * @param {number} endAngle - end angle for the ellipse
+   */
+  function approxEllipticalArc( context, height, centerX, startAngle, endAngle ) {
+
+    // with 9 segments, the elliptical shape is almost perfect
+    var segments = 9;
+    var delta = ( endAngle - startAngle ) / segments;
+
+    var xRadius = WireShapeConstants.PERSPECTIVE_FACTOR * height / 2;
+    var yRadius = height / 2;
+
+    var t = startAngle;
+    while( t <= endAngle ) {
+      var x = centerX + xRadius * Math.cos( t );
+      var y = yRadius * Math.sin( t );
+      context.lineTo( x, y );
+
+      t += delta;
+    }
+  }
+
+  return DotsCanvasNode;
 } );
