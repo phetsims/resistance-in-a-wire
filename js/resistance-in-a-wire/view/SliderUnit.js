@@ -66,6 +66,11 @@ define( function( require ) {
       thumbFillHighlighted: '#dedede',
       tandem: tandem.createTandem( 'slider' ),
 
+      // physical values in this sim can have up to 2 decimals
+      constrainValue: function( value ) {
+        return Util.toFixedNumber( value, 2 );
+      },
+
       // a11y
       keyboardStep: options.keyboardStep, // delta for keyboard step
       shiftKeyboardStep: options.shiftKeyboardStep, // delta when holding shift
