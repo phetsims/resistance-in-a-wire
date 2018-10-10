@@ -55,11 +55,17 @@ define( function( require ) {
       }
     }
 
+    // TODO: There is some code duplication below that could be converted to an inner type or something
+
     var resistivityBin = -1;
     config.resistivityProperty.lazyLink( function( resistivity ) {
       var proportion = ( resistivity - MIN_RESISTIVITY ) / ( MAX_RESISTIVITY - MIN_RESISTIVITY );
       var bin = Math.floor( proportion * BINS_PER_SLIDER );
-      if ( bin !== resistivityBin || resistivity === MIN_RESISTIVITY || resistivity === MAX_RESISTIVITY ) {
+
+      // Play the sound if a change has occurred due to keyboard interaction, if the area value has moved to a new bin,
+      // or if a min or max has been reached.
+      if ( !config.resistivitySlider.thumbDragging || bin !== resistivityBin ||
+           resistivity === MIN_RESISTIVITY || resistivity === MAX_RESISTIVITY ) {
         playResistanceSound();
       }
       resistivityBin = bin;
@@ -69,7 +75,10 @@ define( function( require ) {
     config.lengthProperty.lazyLink( function( length ) {
       var proportion = ( length - MIN_LENGTH ) / ( MAX_LENGTH - MIN_LENGTH );
       var bin = Math.floor( proportion * BINS_PER_SLIDER );
-      if ( bin !== lengthBin || length === MIN_LENGTH || length === MAX_LENGTH ) {
+
+      // Play the sound if a change has occurred due to keyboard interaction, if the area value has moved to a new bin,
+      // or if a min or max has been reached.
+      if ( !config.lengthSlider.thumbDragging || bin !== lengthBin || length === MIN_LENGTH || length === MAX_LENGTH ) {
         playResistanceSound();
       }
       lengthBin = bin;
@@ -77,9 +86,13 @@ define( function( require ) {
 
     var areaBin = -1;
     config.areaProperty.lazyLink( function( area ) {
+
       var proportion = ( area - MIN_AREA ) / ( MAX_AREA - MIN_AREA );
       var bin = Math.floor( proportion * BINS_PER_SLIDER );
-      if ( bin !== areaBin || area === MIN_AREA || area === MAX_AREA ) {
+
+      // Play the sound if a change has occurred due to keyboard interaction, if the area value has moved to a new bin,
+      // or if a min or max has been reached.
+      if ( !config.areaSlider.thumbDragging || bin !== areaBin || area === MIN_AREA || area === MAX_AREA ) {
         playResistanceSound();
       }
       areaBin = bin;

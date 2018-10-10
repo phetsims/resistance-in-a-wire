@@ -59,7 +59,8 @@ define( function( require ) {
       tandem: tandem.createTandem( 'nameText' )
     } );
 
-    var slider = new VSlider( property, range, {
+    // @private
+    this.slider = new VSlider( property, range, {
       trackFillEnabled: 'black',
       trackSize: new Dimension2( ResistanceInAWireConstants.SLIDER_HEIGHT - 30, 4 ),
       thumbFillEnabled: '#c3c4c5',
@@ -109,12 +110,12 @@ define( function( require ) {
     valueText.y = unitText.y - 35;
 
     // sliders along the top of values
-    slider.bottom = valueText.y - 30;
-    slider.centerX = unitText.centerX;
+    this.slider.bottom = valueText.y - 30;
+    this.slider.centerX = unitText.centerX;
 
     // names along the top of the slider
-    nameText.y = slider.top - 5;
-    nameText.centerX = slider.centerX;
+    nameText.y = this.slider.top - 5;
+    nameText.centerX = this.slider.centerX;
 
     // symbol texts along the top
     symbolText.bottom = nameText.y - 20;
@@ -123,7 +124,7 @@ define( function( require ) {
     // Add children, from top to bottom of the slider unit
     this.addChild( symbolText );
     this.addChild( nameText );
-    this.addChild( slider );
+    this.addChild( this.slider );
     this.addChild( valueText );
     this.addChild( unitText );
 
@@ -138,5 +139,16 @@ define( function( require ) {
 
   resistanceInAWire.register( 'SliderUnit', SliderUnit );
 
-  return inherit( Node, SliderUnit );
+  return inherit( Node, SliderUnit, {
+
+    /**
+     * flag indicating whether the slider thumb is being dragged
+     * @return {boolean}
+     */
+    get thumbDragging() {
+
+      // pass the value through from the actual slider component
+      return this.slider.thumbDragging;
+    }
+  } );
 } );
