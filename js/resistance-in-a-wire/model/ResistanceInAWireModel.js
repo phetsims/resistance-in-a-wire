@@ -10,6 +10,7 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var BooleanProperty = require( 'AXON/BooleanProperty' );
   var DerivedProperty = require( 'AXON/DerivedProperty' );
   var DerivedPropertyIO = require( 'AXON/DerivedPropertyIO' );
   var inherit = require( 'PHET_CORE/inherit' );
@@ -59,6 +60,9 @@ define( function( require ) {
         phetioType: DerivedPropertyIO( NumberIO )
       }
     );
+
+    // @public {BooleanProperty} - indicates when a reset is in progress
+    this.resetInProgressProperty = new BooleanProperty( false );
   }
 
   resistanceInAWire.register( 'ResistanceInAWireModel', ResistanceInAWireModel );
@@ -70,9 +74,11 @@ define( function( require ) {
      * @public
      */
     reset: function() {
+      this.resetInProgressProperty.set( true );
       this.resistivityProperty.reset();
       this.lengthProperty.reset();
       this.areaProperty.reset();
+      this.resetInProgressProperty.set( false );
     }
   }, {
 
