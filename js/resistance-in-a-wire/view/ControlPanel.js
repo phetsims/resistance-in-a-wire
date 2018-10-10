@@ -141,7 +141,7 @@ define( function( require ) {
           // rapidly
           if ( deltaRho && deltaResistance ) {
             utteranceQueue.addToBack( new Utterance( getSizeChangeAlert( resistance, deltaResistance, deltaRho, letterRhoString ), {
-              typeId: 'rhoChangeAlert'
+              uniqueGroupId: 'rhoChangeAlert'
             } ) );
           }
         }
@@ -174,7 +174,7 @@ define( function( require ) {
           // rapidly
           if ( deltaLength && deltaResistance ) {
             utteranceQueue.addToBack( new Utterance( getSizeChangeAlert( resistance, deltaResistance, deltaLength, letterLString ), {
-              typeId: 'rhoChangeAlert'
+              uniqueGroupId: 'rhoChangeAlert'
             } ) );
           }
         }
@@ -208,7 +208,7 @@ define( function( require ) {
           // rapidly
           if ( deltaArea && deltaResistance ) {
             utteranceQueue.addToBack( new Utterance( getSizeChangeAlert( resistance, deltaResistance, deltaArea, letterAString ), {
-              typeId: 'rhoChangeAlert'
+              uniqueGroupId: 'rhoChangeAlert'
             } ) );
           }
         }
