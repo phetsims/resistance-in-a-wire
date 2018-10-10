@@ -107,8 +107,14 @@ define( function( require ) {
 
     // range for sliders with default values
     RESISTIVITY_RANGE: RESISTIVITY_RANGE, 
-    LENGTH_RANGE: LENGTH_RANGE, 
-    AREA_RANGE: AREA_RANGE, 
+    LENGTH_RANGE: LENGTH_RANGE,
+    AREA_RANGE: AREA_RANGE,
+
+    // resistance range, based on formula R = ( resistivity * length ) / area
+    RESISTANCE_RANGE: new Range(
+      RESISTIVITY_RANGE.min * LENGTH_RANGE.min / AREA_RANGE.max,
+      RESISTIVITY_RANGE.max * LENGTH_RANGE.max / AREA_RANGE.min
+    ),
 
     // control panel
     SLIDER_WIDTH: 70,

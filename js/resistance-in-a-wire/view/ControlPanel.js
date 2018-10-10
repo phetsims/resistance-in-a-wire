@@ -18,7 +18,9 @@ define( function( require ) {
   var ResistanceInAWireA11yStrings = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireA11yStrings' );
   var ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
   var ResistanceInAWireModel = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/model/ResistanceInAWireModel' );
+  var ResistanceSoundGenerator = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/ResistanceSoundGenerator' );
   var SliderUnit = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/SliderUnit' );
+  var soundManager = require( 'TAMBO/soundManager' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
@@ -218,6 +220,18 @@ define( function( require ) {
     var sliders = new Node( {
       children: [ resistivitySlider, lengthSlider, areaSlider ]
     } );
+
+    // add the sound generator for the resistance level
+    soundManager.addSoundGenerator( new ResistanceSoundGenerator( {
+      resistanceProperty: model.resistanceProperty,
+      resistivityProperty: model.resistivityProperty,
+      resistivitySlider: resistivitySlider,
+      lengthProperty: model.lengthProperty,
+      lengthSlider: lengthSlider,
+      areaProperty: model.areaProperty,
+      areaSlider: areaSlider,
+      resetInProgressProperty: model.resetInProgressProperty
+    } ) );
 
     // layout for the panel, HBox cannot be used because 'bottom' alignment cannot align RichText in SliderUnit
     lengthSlider.left = resistivitySlider.right + SLIDER_SPACING;
