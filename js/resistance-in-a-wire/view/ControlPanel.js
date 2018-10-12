@@ -142,7 +142,8 @@ define( function( require ) {
           // announce to assistive technology if there is a change - no need to queue many alerts when pressing keys
           // rapidly
           if ( deltaRho && deltaResistance ) {
-            utteranceQueue.addToBack( new Utterance( getSizeChangeAlert( resistance, deltaResistance, deltaRho, letterRhoString ), {
+            utteranceQueue.addToBack( new Utterance( {
+              alert: getSizeChangeAlert( resistance, deltaResistance, deltaRho, letterRhoString ),
               uniqueGroupId: 'rhoChangeAlert'
             } ) );
           }
@@ -175,7 +176,8 @@ define( function( require ) {
           // announce to assistive technology if there is a change - no need to queue many alerts when pressing keys
           // rapidly
           if ( deltaLength && deltaResistance ) {
-            utteranceQueue.addToBack( new Utterance( getSizeChangeAlert( resistance, deltaResistance, deltaLength, letterLString ), {
+            utteranceQueue.addToBack( new Utterance( {
+              alert: getSizeChangeAlert( resistance, deltaResistance, deltaLength, letterLString ),
               uniqueGroupId: 'rhoChangeAlert'
             } ) );
           }
@@ -209,7 +211,8 @@ define( function( require ) {
           // announce to assistive technology if there is a change - no need to queue many alerts when pressing keys
           // rapidly
           if ( deltaArea && deltaResistance ) {
-            utteranceQueue.addToBack( new Utterance( getSizeChangeAlert( resistance, deltaResistance, deltaArea, letterAString ), {
+            utteranceQueue.addToBack( new Utterance( {
+              alert: getSizeChangeAlert( resistance, deltaResistance, deltaArea, letterAString ),
               uniqueGroupId: 'rhoChangeAlert'
             } ) );
           }
