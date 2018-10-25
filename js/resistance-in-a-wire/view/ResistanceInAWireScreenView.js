@@ -10,13 +10,14 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var AccessibleSummaryNode = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/AccessibleSummaryNode' );
   var AccessibleSectionNode = require( 'SCENERY_PHET/accessibility/AccessibleSectionNode' );
+  var AccessibleSummaryNode = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/AccessibleSummaryNode' );
   var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
   var ControlPanel = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/ControlPanel' );
   var FocusHighlightPath = require( 'SCENERY/accessibility/FocusHighlightPath' );
   var FormulaNode = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/FormulaNode' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var JoistA11yStrings = require( 'JOIST/JoistA11yStrings' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
   var ResetAllSoundGenerator = require( 'TAMBO/sound-generators/ResetAllSoundGenerator' );
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
@@ -25,7 +26,6 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
   var soundManager = require( 'TAMBO/soundManager' );
   var WireNode = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/WireNode' );
-  var JoistA11yStrings = require( 'JOIST/JoistA11yStrings' );
 
   // a11y strings
   var playAreaString = JoistA11yStrings.playArea.value;
