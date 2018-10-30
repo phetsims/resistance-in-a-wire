@@ -15,7 +15,7 @@ define( function( require ) {
   var SoundClip = require( 'TAMBO/sound-generators/SoundClip' );
 
   // constants
-  var BINS_PER_SLIDER = 10;
+  var BINS_PER_SLIDER = 9; // odd numbers generally work best because a bin then spans the middle initial value
   var MIN_RESISTANCE = ResistanceInAWireConstants.RESISTANCE_RANGE.min;
   var MAX_RESISTANCE = ResistanceInAWireConstants.RESISTANCE_RANGE.max;
   var MIN_RESISTIVITY = ResistanceInAWireConstants.RESISTIVITY_RANGE.min;
@@ -55,12 +55,11 @@ define( function( require ) {
       }
     }
 
-    // TODO: There is some code duplication below that could be converted to an inner type or something
-
-    var resistivityBin = -1;
+    // add sound for the resistivity slider
+    var resistivityBinSelector = new BinSelector( MIN_RESISTIVITY, MAX_RESISTIVITY, BINS_PER_SLIDER );
+    var resistivityBin = resistivityBinSelector.selectBin( config.resistivityProperty.value );
     config.resistivityProperty.lazyLink( function( resistivity ) {
-      var proportion = ( resistivity - MIN_RESISTIVITY ) / ( MAX_RESISTIVITY - MIN_RESISTIVITY );
-      var bin = Math.floor( proportion * BINS_PER_SLIDER );
+      var bin = resistivityBinSelector.selectBin( resistivity );
 
       // Play the sound if a change has occurred due to keyboard interaction, if the area value has moved to a new bin,
       // or if a min or max has been reached.
@@ -71,34 +70,75 @@ define( function( require ) {
       resistivityBin = bin;
     } );
 
-    var lengthBin = -1;
+    // add sound for the length slider
+    var lengthBinSelector = new BinSelector( MIN_LENGTH, MAX_LENGTH, BINS_PER_SLIDER );
+    var lengthBin = lengthBinSelector.selectBin( config.lengthProperty.value );
     config.lengthProperty.lazyLink( function( length ) {
-      var proportion = ( length - MIN_LENGTH ) / ( MAX_LENGTH - MIN_LENGTH );
-      var bin = Math.floor( proportion * BINS_PER_SLIDER );
+      var bin = lengthBinSelector.selectBin( length );
 
       // Play the sound if a change has occurred due to keyboard interaction, if the area value has moved to a new bin,
       // or if a min or max has been reached.
-      if ( !config.lengthSlider.thumbDragging || bin !== lengthBin || length === MIN_LENGTH || length === MAX_LENGTH ) {
+      if ( !config.lengthSlider.thumbDragging || bin !== lengthBin ||
+           length === MIN_LENGTH || length === MAX_LENGTH ) {
         playResistanceSound();
       }
       lengthBin = bin;
     } );
 
-    var areaBin = -1;
+    // add sound for the area slider
+    var areaBinSelector = new BinSelector( MIN_AREA, MAX_AREA, BINS_PER_SLIDER );
+    var areaBin = areaBinSelector.selectBin( config.areaProperty.value );
     config.areaProperty.lazyLink( function( area ) {
-
-      var proportion = ( area - MIN_AREA ) / ( MAX_AREA - MIN_AREA );
-      var bin = Math.floor( proportion * BINS_PER_SLIDER );
+      var bin = areaBinSelector.selectBin( area );
 
       // Play the sound if a change has occurred due to keyboard interaction, if the area value has moved to a new bin,
       // or if a min or max has been reached.
-      if ( !config.areaSlider.thumbDragging || bin !== areaBin || area === MIN_AREA || area === MAX_AREA ) {
+      if ( !config.areaSlider.thumbDragging || bin !== areaBin ||
+           area === MIN_AREA || area === MAX_AREA ) {
         playResistanceSound();
       }
       areaBin = bin;
     } );
 
   }
+
+  /**
+   * inner type for placing values in a bin
+   * @param {number} minValue
+   * @param {number} maxValue
+   * @param {number} numBins
+   * @constructor
+   */
+  function BinSelector( minValue, maxValue, numBins ) {
+
+    // parameter checking
+    assert && assert( maxValue > minValue );
+    assert && assert( numBins > 0 );
+
+    // @private
+    this.minValue = minValue;
+    this.maxValue = maxValue;
+    this.span = this.maxValue - this.minValue;
+    this.numBins = numBins;
+
+  }
+
+  inherit( Object, BinSelector, {
+
+    /**
+     * put the provided value in a bin
+     * @param value
+     * @return {number}
+     */
+    selectBin: function( value ) {
+      assert && assert( value <= this.maxValue );
+      assert && assert( value >= this.minValue );
+
+      // this calculation means that values on the boundaries will go into the higher bin except for the max value
+      var proportion = ( value - this.minValue ) / ( this.span );
+      return Math.min( Math.floor( proportion * this.numBins ), this.numBins - 1 );
+    }
+  } );
 
   resistanceInAWire.register( 'ResistanceSoundGenerator', ResistanceSoundGenerator );
 
