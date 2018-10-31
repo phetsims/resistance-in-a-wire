@@ -92,25 +92,18 @@ define( function( require ) {
       font: ResistanceInAWireConstants.READOUT_FONT,
       fill: ResistanceInAWireConstants.RED_COLOR,
       maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH * 4.7,
-      centerX: 0,
       tandem: tandem.createTandem( 'resistanceReadout' )
     } );
 
+    // Set the resistance readout to its initial value, then set the position.  Previously, the readout position was
+    // re-centered every time the resistance changed, but it was decided that this looked too jumpy, so now it's
+    // positioned only once, see https://github.com/phetsims/resistance-in-a-wire/issues/181.
+    resistanceReadout.text = getResistanceReadoutText( model.resistanceProperty.value );
+    resistanceReadout.centerX = 0;
+
     // Update the resistance readout when the resistance changes.
     model.resistanceProperty.link( function( resistance ) {
-
-      var numDecimalDigits = resistance >= 100 ? 0 : // Over 100, show no decimal points, like 102
-                             resistance >= 10 ? 1 : // between 10.0 and 99.9, show 2 decimal points
-                             resistance < 0.001 ? 4 : // when less than 0.001, show 4 decimals, see #125
-                             resistance < 1 ? 3 : // when less than 1, show 3 decimal places, see #125
-                             2; // Numbers less than 10 show 2 decimal points, like 8.35
-
-      resistanceReadout.text = StringUtils.format(
-        pattern0Label1Value2UnitsString,
-        resistanceString,
-        Util.toFixed( resistance, numDecimalDigits ),
-        ohmString );
-      resistanceReadout.centerX = 0;
+      resistanceReadout.text = getResistanceReadoutText( resistance );
     } );
 
     // a11y - when using a slider, we store the initial value on start drag so that we can describe size change after
@@ -267,7 +260,7 @@ define( function( require ) {
    * @param {boolean} describeLargeChanges
    * @return {string}
    */
-  var getSizeChangeFromDelta = function( delta, describeLargeChanges ) {
+  function getSizeChangeFromDelta( delta, describeLargeChanges ) {
     assert && assert( delta !== 0, 'trying to describe no change in size' );
     var description;
 
@@ -281,7 +274,7 @@ define( function( require ) {
     }
 
     return description;
-  };
+  }
 
   /**
    * Get a full alert for size letter size and how R changes as well. Will return something like
@@ -295,7 +288,7 @@ define( function( require ) {
    * @param {string} letterString - the letter with size changes to describe
    * @return {string}
    */
-  var getSizeChangeAlert = function( resistance, deltaResistance, otherDelta, letterString ) {
+  function getSizeChangeAlert( resistance, deltaResistance, otherDelta, letterString ) {
     var resistanceChangeString = getSizeChangeFromDelta( deltaResistance, true /* include 'a lot' */ );
     var letterChangeString = getSizeChangeFromDelta( otherDelta, false /* don't include 'a lot */ );
 
@@ -305,7 +298,29 @@ define( function( require ) {
       rChange: resistanceChangeString,
       resistance: ResistanceInAWireConstants.getFormattedResistanceValue( resistance )
     } );
-  };
+  }
+
+  /**
+   * get the string that should be shown on the resistance readout for a given resistance value
+   * @param {number} resistance
+   * @return {string}
+   */
+  function getResistanceReadoutText( resistance ) {
+
+    // the number of digits shown varies based on the range
+    var numDecimalDigits = resistance >= 100 ? 0 : // Over 100, show no decimal points, like 102
+                           resistance >= 10 ? 1 : // between 10.0 and 99.9, show 2 decimal points
+                           resistance < 0.001 ? 4 : // when less than 0.001, show 4 decimals, see #125
+                           resistance < 1 ? 3 : // when less than 1, show 3 decimal places, see #125
+                           2; // Numbers less than 10 show 2 decimal points, like 8.35
+
+    return StringUtils.format(
+      pattern0Label1Value2UnitsString,
+      resistanceString,
+      Util.toFixed( resistance, numDecimalDigits ),
+      ohmString
+    );
+  }
 
   return inherit( Panel, ControlPanel );
 } );
