@@ -1,5 +1,8 @@
 Resistance in a Wire
 =============
+Note: The 1.5 branch was abandoned without being published because it took a while to get the screen reader issues
+worked out and the sonification effort basically caught up with it.
+
 "Resistance in a Wire" is an educational simulation in HTML5, by <a href="https://phet.colorado.edu/" target="_blank">PhET Interactive Simulations</a>
 at the University of Colorado Boulder.
 For a description of this simulation, associated resources, and a link to the published version,
