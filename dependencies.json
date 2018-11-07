@@ -1,5 +1,5 @@
 {
-  "comment": "# resistance-in-a-wire 1.6.0-dev.5 Tue Nov 06 2018 09:44:12 GMT-0700 (Mountain Standard Time)",
+  "comment": "# resistance-in-a-wire 1.6.0-rc.0 Wed Nov 07 2018 11:22:21 GMT-0700 (Mountain Standard Time)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
     "branch": "master"
@@ -61,23 +61,23 @@
     "branch": "master"
   },
   "resistance-in-a-wire": {
-    "sha": "02e9add8761676e53bfca9a645b205f18d54f011",
-    "branch": "master"
+    "sha": "773040ba984142466deb4ad15370872a40852834",
+    "branch": "1.6"
   },
   "scenery": {
-    "sha": "5013941c0103b2d47b46ba740588198fb045e51f",
+    "sha": "517166749983f4caf66fc0670b49f33fd4b20f12",
     "branch": "master"
   },
   "scenery-phet": {
-    "sha": "3238df3863961eb15b73a9b07419e229fabde8f5",
+    "sha": "15dec251ba0fa08a5f919817dadacc8083c7538e",
     "branch": "master"
   },
   "sherpa": {
-    "sha": "97e7054076ae6f74b2eabbb9822fdd2e0a75eeb4",
+    "sha": "2cd50500f6102ba43972c294f8857aebf483c4e2",
     "branch": "master"
   },
   "sun": {
-    "sha": "b891734089dc2c3052ccf7f6605e84fd5e32f54e",
+    "sha": "5244d45e85ec93bb2e756a84fa2fee491cbb4d95",
     "branch": "master"
   },
   "tambo": {
@@ -85,7 +85,7 @@
     "branch": "master"
   },
   "tandem": {
-    "sha": "688d0abed6a951c40483aac472af45d2fa0a57cd",
+    "sha": "4f37a91022b587cd917ef868f0da3965103544e7",
     "branch": "master"
   }
 }
