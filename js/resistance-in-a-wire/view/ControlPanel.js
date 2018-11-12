@@ -60,6 +60,10 @@ define( function( require ) {
   // constants
   var SLIDER_SPACING = 50;
 
+  // a11y - time between aria-valuetext is read and the alert, the extra time prevents alerts from reaching the assistive
+  // device too quickly (like in cases during rapid interaction)
+  var ALERT_DELAY = 1000;
+
   // a11y - if resistance changes 2 * the range of the resistance / the number of relative size descriptions, larger change
   // is signified in description
   var LARGE_RESISTANCE_DELTA = ( ( ResistanceInAWireModel.getResistanceRange().max - ResistanceInAWireModel.getResistanceRange().min ) / ResistanceInAWireConstants.RELATIVE_SIZE_STRINGS.length ) * 2;
@@ -137,7 +141,8 @@ define( function( require ) {
           if ( deltaRho && deltaResistance ) {
             utteranceQueue.addToBack( new Utterance( {
               alert: getSizeChangeAlert( resistance, deltaResistance, deltaRho, letterRhoString ),
-              uniqueGroupId: 'rhoChangeAlert'
+              uniqueGroupId: 'rhoChangeAlert',
+              delayTime: ALERT_DELAY
             } ) );
           }
         }
@@ -171,7 +176,8 @@ define( function( require ) {
           if ( deltaLength && deltaResistance ) {
             utteranceQueue.addToBack( new Utterance( {
               alert: getSizeChangeAlert( resistance, deltaResistance, deltaLength, letterLString ),
-              uniqueGroupId: 'rhoChangeAlert'
+              uniqueGroupId: 'rhoChangeAlert',
+              delayTime: ALERT_DELAY
             } ) );
           }
         }
@@ -206,7 +212,8 @@ define( function( require ) {
           if ( deltaArea && deltaResistance ) {
             utteranceQueue.addToBack( new Utterance( {
               alert: getSizeChangeAlert( resistance, deltaResistance, deltaArea, letterAString ),
-              uniqueGroupId: 'rhoChangeAlert'
+              uniqueGroupId: 'rhoChangeAlert',
+              delayTime: ALERT_DELAY
             } ) );
           }
         }
