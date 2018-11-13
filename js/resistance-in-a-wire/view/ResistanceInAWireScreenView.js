@@ -98,6 +98,7 @@ define( function( require ) {
       radius: 30,
       right: controlPanel.right,
       bottom: this.layoutBounds.bottom - 20,
+      touchAreaDilation: 12,
       tandem: tandem.createTandem( 'resetAllButton' )
     } );
     a11yControlPanelNode.addChild( resetAllButton );
