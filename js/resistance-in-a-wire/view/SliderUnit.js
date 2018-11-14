@@ -78,6 +78,7 @@ define( function( require ) {
       accessibleValuePattern: options.accessibleValuePattern,
       accessibleDecimalPlaces: options.accessibleDecimalPlaces, // demimal places for readout
       ariaOrientation: 'vertical',
+      roundToStepSize: true, // default keyboard step rounds to pedegogically useful values
       startDrag: options.startDrag,
       endDrag: options.endDrag,
 
