@@ -20,6 +20,9 @@
   "ohm": {
     "value": "ohms"
   },
+  "ohmsSymbol": {
+    "value": "Ω"
+  },
   "pattern.0label.1value.2units": {
     "value": "{0} = {1} {2}"
   },
@@ -34,5 +37,8 @@
   },
   "resistivity": {
     "value": "resistivity"
+  },
+  "resistivitySymbol": {
+    "value": "ρ"
   }
 }
