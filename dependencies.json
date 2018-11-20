@@ -5,7 +5,7 @@
     "branch": "HEAD"
   },
   "axon": {
-    "sha": "ff00a0bb08819a1803c8593038e14db7169934cc",
+    "sha": "3441ae4ff74d3e6ec534af2b3ad793f6325e52ee",
     "branch": "HEAD"
   },
   "brand": {
@@ -69,7 +69,7 @@
     "branch": "HEAD"
   },
   "scenery-phet": {
-    "sha": "15dec251ba0fa08a5f919817dadacc8083c7538e",
+    "sha": "15ed6d542a95f30d933043fa253c579de42c5a1e",
     "branch": "HEAD"
   },
   "sherpa": {
