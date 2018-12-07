@@ -149,7 +149,7 @@ define( function( require ) {
     get thumbDragging() {
 
       // pass the value through from the actual slider component
-      return this.slider.thumbDragging;
+      return this.slider.isThumbDraggingProperty.value;
     }
   } );
 } );
