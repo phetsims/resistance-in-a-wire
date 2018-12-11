@@ -26,7 +26,7 @@ define( function( require ) {
   var MAX_LENGTH = ResistanceInAWireConstants.LENGTH_RANGE.max;
 
   // sounds
-  var brightMarimbaSound = require( 'sound!TAMBO/bright-marimba.mp3' );
+  var brightMarimbaSound = require( 'sound!TAMBO/bright-marimba-short.mp3' );
 
   /**
    * @constructor
