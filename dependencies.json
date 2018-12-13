@@ -1,5 +1,5 @@
 {
-  "comment": "# resistance-in-a-wire 1.6.0-rc.1 Wed Dec 12 2018 18:09:04 GMT-0500 (Eastern Standard Time)",
+  "comment": "# resistance-in-a-wire 1.6.0-rc.2 Thu Dec 13 2018 09:31:15 GMT-0700 (Mountain Standard Time)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
     "branch": "HEAD"
@@ -61,12 +61,12 @@
     "branch": "HEAD"
   },
   "resistance-in-a-wire": {
-    "sha": "9f7db0ca24e1c61d2cb33197e31723502acac361",
+    "sha": "c996a2e361b4d40aa681e6605d41b52662c22a20",
     "branch": "1.6"
   },
   "scenery": {
     "sha": "9953c5f7e5aea63a89594ce06254404e74223e65",
-    "branch": "resistance-in-a-wire-1.6"
+    "branch": "HEAD"
   },
   "scenery-phet": {
     "sha": "15ed6d542a95f30d933043fa253c579de42c5a1e",
@@ -78,7 +78,7 @@
   },
   "sun": {
     "sha": "9ee727594b3e000cd6604a4a465d2ceec95fbaf5",
-    "branch": "resistance-in-a-wire-1.6"
+    "branch": "HEAD"
   },
   "tambo": {
     "sha": "65315b329b279eebfc8bd7915654ad57983ba60e",
