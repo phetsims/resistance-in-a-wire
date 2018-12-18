@@ -30,6 +30,7 @@ define( function( require ) {
       children: [ sliderControlsHelpContent, generalNavigationHelpContent ],
       align: 'top',
       spacing: 35,
+      maxWidth: 650, // empirically determined to have some margin relative to max width
       tandem: tandem
     } );
   }
