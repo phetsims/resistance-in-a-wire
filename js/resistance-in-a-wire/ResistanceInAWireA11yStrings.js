@@ -17,7 +17,7 @@ define( function( require ) {
     summarySimString: { 
       value: 'In the Play Area you find the Resistance equation, <b>R</b> equals <b>rho</b> times <b>L</b> over <b>A</b>, and a piece of wire. ' +
              'Sliders for resistivity, length, and area allow changes to the equation and the piece of wire. ' +
-             'The Control Panel has a button to reset the sim.'
+             'The Control Area has a button to reset the sim.'
     },
     currentlyString: {
       value: 'Currently,'
