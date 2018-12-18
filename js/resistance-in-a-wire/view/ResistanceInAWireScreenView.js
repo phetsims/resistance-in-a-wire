@@ -29,7 +29,7 @@ define( function( require ) {
 
   // a11y strings
   var playAreaString = JoistA11yStrings.playArea.value;
-  var controlPanelString = JoistA11yStrings.controlPanel.value;
+  var controlAreaString = JoistA11yStrings.controlArea.value;
 
   /**
    * @param {ResistanceInAWireModel} model
@@ -54,7 +54,7 @@ define( function( require ) {
     this.addChild( a11yPlayAreaNode );
 
     // a11y - the control panel for this sim, containing supplemental controls
-    var a11yControlPanelNode = new AccessibleSectionNode( controlPanelString );
+    var a11yControlPanelNode = new AccessibleSectionNode( controlAreaString );
     this.addChild( a11yControlPanelNode );
 
     // Create the control panel with sliders that change the values of the equation's variables. Hard coded
@@ -110,7 +110,7 @@ define( function( require ) {
     // resistance letter grows too large
     var highlightShape = resetAllButton.focusHighlight;
     assert && assert( highlightShape instanceof Shape, 'highlightShape must be a Shape' );
-    resetAllButton.focusHighlight = new FocusHighlightPath( highlightShape , { outerStroke: 'black' } );
+    resetAllButton.focusHighlight = new FocusHighlightPath( highlightShape, { outerStroke: 'black' } );
 
     // add the control panel last so it is always on top.
     a11yPlayAreaNode.addChild( controlPanel );
