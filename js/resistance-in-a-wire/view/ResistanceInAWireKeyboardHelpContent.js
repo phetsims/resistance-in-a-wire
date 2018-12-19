@@ -30,7 +30,11 @@ define( function( require ) {
       children: [ sliderControlsHelpContent, generalNavigationHelpContent ],
       align: 'top',
       spacing: 35,
-      maxWidth: 650, // empirically determined to have some margin relative to max width
+
+      // empirically determined to have some margin relative to max width
+      // TODO: We may limit content width in the dialog itself, see https://github.com/phetsims/joist/issues/546
+      // TODO: If we proceed with that issue, this line could be removed
+      maxWidth: 650,
       tandem: tandem
     } );
   }
