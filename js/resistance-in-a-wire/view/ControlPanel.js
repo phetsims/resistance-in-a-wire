@@ -32,13 +32,13 @@ define( function( require ) {
   var cmString = require( 'string!RESISTANCE_IN_A_WIRE/cm' );
   var lengthString = require( 'string!RESISTANCE_IN_A_WIRE/length' );
   var lengthSymbolString = require( 'string!RESISTANCE_IN_A_WIRE/lengthSymbol' );
-  var ohmsSymbolString = require( 'string!RESISTANCE_IN_A_WIRE/ohmsSymbol' );
+  var symbolOhmsString = require( 'string!SCENERY_PHET/symbol.ohms' );
   var ohmString = require( 'string!RESISTANCE_IN_A_WIRE/ohm' );
   var pattern0Label1Value2UnitsString = require( 'string!RESISTANCE_IN_A_WIRE/pattern.0label.1value.2units' );
   var pattern0ResistanceUnits1LengthUnitsString = require( 'string!RESISTANCE_IN_A_WIRE/pattern.0resistanceUnits.1lengthUnits' );
   var resistanceString = require( 'string!RESISTANCE_IN_A_WIRE/resistance' );
   var resistivityString = require( 'string!RESISTANCE_IN_A_WIRE/resistivity' );
-  var resistivitySymbolString = require( 'string!RESISTANCE_IN_A_WIRE/resistivitySymbol' );
+  var symbolResistivityString = require( 'string!SCENERY_PHET/symbol.resistivity' );
 
   // a11y strings (not ready for i18n)
   var resistivityUnitsPatternString = ResistanceInAWireA11yStrings.resistivityUnitsPatternString.value;
@@ -120,9 +120,9 @@ define( function( require ) {
     var resistivitySlider = new SliderUnit(
       model.resistivityProperty,
       ResistanceInAWireConstants.RESISTIVITY_RANGE,
-      resistivitySymbolString,
+      symbolResistivityString,
       resistivityString,
-      StringUtils.format( pattern0ResistanceUnits1LengthUnitsString, ohmsSymbolString, cmString ),
+      StringUtils.format( pattern0ResistanceUnits1LengthUnitsString, symbolOhmsString, cmString ),
       resistivitySliderLabelString,
       tandem.createTandem( 'resistivitySlider' ), {
         keyboardStep: 0.05, // ohm-cm
