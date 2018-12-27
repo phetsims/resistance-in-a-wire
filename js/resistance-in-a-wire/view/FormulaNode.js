@@ -31,7 +31,7 @@ define( function( require ) {
   var areaSymbolString = require( 'string!RESISTANCE_IN_A_WIRE/areaSymbol' );
   var lengthSymbolString = require( 'string!RESISTANCE_IN_A_WIRE/lengthSymbol' );
   var resistanceSymbolString = require( 'string!RESISTANCE_IN_A_WIRE/resistanceSymbol' );
-  var resistivitySymbolString = require( 'string!RESISTANCE_IN_A_WIRE/resistivitySymbol' );
+  var symbolResistivityString = require( 'string!SCENERY_PHET/symbol.resistivity' );
 
   // a11y strings
   var resistanceEquationString = ResistanceInAWireA11yStrings.resistanceEquationString.value;
@@ -90,7 +90,7 @@ define( function( require ) {
       tandem: tandem.createTandem( 'resistanceSymbol' ),
       scaleKey: RESISTANCE_KEY
     }, {
-      label: resistivitySymbolString,
+      label: symbolResistivityString,
       center: new Vector2( equalsSignText.centerX + 120, -90 ),
       property: model.resistivityProperty,
       color: ResistanceInAWireConstants.BLUE_COLOR,
