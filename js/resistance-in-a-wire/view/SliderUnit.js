@@ -149,6 +149,17 @@ define( function( require ) {
 
       // pass the value through from the actual slider component
       return this.slider.thumbDragging;
+    },
+
+    /**
+     * flag indicating whether the slider thumb is being dragged
+     * @return {boolean}
+     */
+    get trackDragging() {
+
+      // pass the value through from the actual slider component
+      return this.slider.track.trackDragging;
     }
+
   } );
 } );

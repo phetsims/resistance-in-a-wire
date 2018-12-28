@@ -30,7 +30,6 @@ define( function( require ) {
 
   /**
    * @constructor
-   * TODO: document when finalized
    * {Object} config
    */
   function ResistanceSoundGenerator( config ) {
@@ -60,11 +59,11 @@ define( function( require ) {
     var resistivityBin = resistivityBinSelector.selectBin( config.resistivityProperty.value );
     config.resistivityProperty.lazyLink( function( resistivity ) {
       var bin = resistivityBinSelector.selectBin( resistivity );
+      var changedViaKeyboard = !config.resistivitySlider.thumbDragging && !config.resistivitySlider.trackDragging;
 
       // Play the sound if a change has occurred due to keyboard interaction, if the area value has moved to a new bin,
       // or if a min or max has been reached.
-      if ( !config.resistivitySlider.thumbDragging || bin !== resistivityBin ||
-           resistivity === MIN_RESISTIVITY || resistivity === MAX_RESISTIVITY ) {
+      if ( changedViaKeyboard || bin !== resistivityBin || resistivity === MIN_RESISTIVITY || resistivity === MAX_RESISTIVITY ) {
         playResistanceSound();
       }
       resistivityBin = bin;
@@ -75,11 +74,11 @@ define( function( require ) {
     var lengthBin = lengthBinSelector.selectBin( config.lengthProperty.value );
     config.lengthProperty.lazyLink( function( length ) {
       var bin = lengthBinSelector.selectBin( length );
+      var changedViaKeyboard = !config.lengthSlider.thumbDragging && !config.lengthSlider.trackDragging;
 
       // Play the sound if a change has occurred due to keyboard interaction, if the area value has moved to a new bin,
       // or if a min or max has been reached.
-      if ( !config.lengthSlider.thumbDragging || bin !== lengthBin ||
-           length === MIN_LENGTH || length === MAX_LENGTH ) {
+      if ( changedViaKeyboard || bin !== lengthBin || length === MIN_LENGTH || length === MAX_LENGTH ) {
         playResistanceSound();
       }
       lengthBin = bin;
@@ -90,11 +89,11 @@ define( function( require ) {
     var areaBin = areaBinSelector.selectBin( config.areaProperty.value );
     config.areaProperty.lazyLink( function( area ) {
       var bin = areaBinSelector.selectBin( area );
+      var changedViaKeyboard = !config.areaSlider.thumbDragging && !config.areaSlider.trackDragging;
 
       // Play the sound if a change has occurred due to keyboard interaction, if the area value has moved to a new bin,
       // or if a min or max has been reached.
-      if ( !config.areaSlider.thumbDragging || bin !== areaBin ||
-           area === MIN_AREA || area === MAX_AREA ) {
+      if ( changedViaKeyboard || bin !== areaBin || area === MIN_AREA || area === MAX_AREA ) {
         playResistanceSound();
       }
       areaBin = bin;
