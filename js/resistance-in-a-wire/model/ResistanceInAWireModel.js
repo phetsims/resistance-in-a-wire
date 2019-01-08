@@ -83,7 +83,7 @@ define( function( require ) {
     /**
      * Get the total range of the derived resistance from the independent Properties of this model.
      *
-     * @return {Range}
+     * @returns {Range}
      */
     getResistanceRange: function() {
       var minResistance = ResistanceInAWireConstants.RESISTIVITY_RANGE.min * ResistanceInAWireConstants.LENGTH_RANGE.min / ResistanceInAWireConstants.AREA_RANGE.min;

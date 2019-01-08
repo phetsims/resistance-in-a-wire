@@ -128,7 +128,7 @@ define( function( require ) {
     /**
      * put the provided value in a bin
      * @param value
-     * @return {number}
+     * @returns {number}
      */
     selectBin: function( value ) {
       assert && assert( value <= this.maxValue );

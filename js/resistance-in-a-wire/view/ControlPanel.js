@@ -266,7 +266,7 @@ define( function( require ) {
    *
    * @param {number} delta
    * @param {boolean} describeLargeChanges
-   * @return {string}
+   * @returns {string}
    */
   function getSizeChangeFromDelta( delta, describeLargeChanges ) {
     assert && assert( delta !== 0, 'trying to describe no change in size' );
@@ -294,7 +294,7 @@ define( function( require ) {
    * @param {number} deltaResistance - change in
    * @param {number} otherDelta - change in other variable, resistivity, length, or area
    * @param {string} letterString - the letter with size changes to describe
-   * @return {string}
+   * @returns {string}
    */
   function getSizeChangeAlert( resistance, deltaResistance, otherDelta, letterString ) {
     var resistanceChangeString = getSizeChangeFromDelta( deltaResistance, true /* include 'a lot' */ );
@@ -311,7 +311,7 @@ define( function( require ) {
   /**
    * get the string that should be shown on the resistance readout for a given resistance value
    * @param {number} resistance
-   * @return {string}
+   * @returns {string}
    */
   function getResistanceReadoutText( resistance ) {
 

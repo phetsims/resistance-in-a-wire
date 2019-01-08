@@ -145,7 +145,7 @@ define( function( require ) {
 
     /**
      * flag indicating whether the slider thumb is being dragged
-     * @return {boolean}
+     * @returns {boolean}
      */
     get thumbDragging() {
 

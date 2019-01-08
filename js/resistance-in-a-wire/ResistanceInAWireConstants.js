@@ -65,7 +65,7 @@ define( function( require ) {
    * @param {[].string} descriptionArray
    * @param {RangeWithValue} valueRange
    *
-   * @return {[type]} [description]
+   * @returns {[type]} [description]
    */
   var generateDescriptionMap = function( descriptionArray, valueRange ) {
     var map = {};
@@ -196,7 +196,7 @@ define( function( require ) {
      * "much much larger than"
      *
      * @param {number} value
-     * @return {string}
+     * @returns {string}
      */
     getValueDescriptionFromMap: function( value, map ) {
 
@@ -216,7 +216,7 @@ define( function( require ) {
      * for visual readout as well as for readable values in a11y.
      *
      * @param {number} value
-     * @return {string}
+     * @returns {string}
      */
     getFormattedResistanceValue: function( value ) {
       return Util.toFixed( value, this.getResistanceDecimals( value ) );

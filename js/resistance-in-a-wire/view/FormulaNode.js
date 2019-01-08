@@ -192,7 +192,7 @@ define( function( require ) {
      * "Size of letter R is much larger than the size of letter rho, and slightly larger than letter L and letter A." or
      * "Size of letter R is much smaller than letter rho, comparable to letter L, and much much larger than letter A."
      *
-     * @return {string}
+     * @returns {string}
      * @a11y
      */
     getRelativeSizeDescription: function() {
@@ -268,7 +268,7 @@ define( function( require ) {
    * "much much larger than"
    *
    * @param {number} relativeScale
-   * @return {string}
+   * @returns {string}
    */
   var getRelativeSizeDescription = function( relativeScale ) {
 
