@@ -1,5 +1,5 @@
 {
-  "comment": "# resistance-in-a-wire 1.7.0-dev.1 Wed Jan 09 2019 12:20:46 GMT-0700 (Mountain Standard Time)",
+  "comment": "# resistance-in-a-wire 1.7.0-dev.2 Wed Jan 09 2019 12:26:32 GMT-0700 (Mountain Standard Time)",
   "assert": {
     "sha": "5407993d77f0bb5a1ad63c112103ed4d22dbd1b7",
     "branch": "master"
@@ -61,7 +61,7 @@
     "branch": "master"
   },
   "resistance-in-a-wire": {
-    "sha": "1160eba59124027f85b7fbf00d71a2a679b6001f",
+    "sha": "d571ff3517882d4708f4b714c2888d0720904d43",
     "branch": "master"
   },
   "scenery": {
@@ -81,7 +81,7 @@
     "branch": "master"
   },
   "tambo": {
-    "sha": "222058cbc908d574ed5835d48302363806d6456b",
+    "sha": "a0712bd59f2ce5c46af4ef6be9b241d904e6788f",
     "branch": "master"
   },
   "tandem": {
