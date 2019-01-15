@@ -12,6 +12,7 @@ define( function( require ) {
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
+  var Range = require( 'DOT/Range' );
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
   var ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
   var SoundClip = require( 'TAMBO/sound-generators/SoundClip' );
@@ -57,51 +58,31 @@ define( function( require ) {
       }
     }
 
-    // add sound for the resistivity slider
-    var resistivityBinSelector = new BinSelector( MIN_RESISTIVITY, MAX_RESISTIVITY, BINS_PER_SLIDER );
-    var resistivityBin = resistivityBinSelector.selectBin( config.resistivityProperty.value );
-    config.resistivityProperty.lazyLink( function( resistivity ) {
-      var bin = resistivityBinSelector.selectBin( resistivity );
+    // @private - objects that monitor the parameter and play the sound, references kept for debugging and clarity
+    var resistivityMonitor = new ParameterMonitor(
+      config.resistivityProperty,
+      config.resistivitySlider,
+      new Range( MIN_RESISTIVITY, MAX_RESISTIVITY ),
+      playResistanceSound
+    );
+    var lengthMonitor = new ParameterMonitor(
+      config.lengthProperty,
+      config.lengthSlider,
+      new Range( MIN_LENGTH, MAX_LENGTH ),
+      playResistanceSound
+    );
+    var areaMonitor = new ParameterMonitor(
+      config.areaProperty,
+      config.areaSlider,
+      new Range( MIN_AREA, MAX_AREA ),
+      playResistanceSound
+    );
 
-      // Play the sound if a change has occurred due to keyboard interaction, if the area value has moved to a new bin,
-      // or if a min or max has been reached.
-      if ( config.resistivitySlider.keyboardDragging || bin !== resistivityBin ||
-           resistivity === MIN_RESISTIVITY || resistivity === MAX_RESISTIVITY ) {
-        playResistanceSound();
-      }
-      resistivityBin = bin;
-    } );
-
-    // add sound for the length slider
-    var lengthBinSelector = new BinSelector( MIN_LENGTH, MAX_LENGTH, BINS_PER_SLIDER );
-    var lengthBin = lengthBinSelector.selectBin( config.lengthProperty.value );
-    config.lengthProperty.lazyLink( function( length ) {
-      var bin = lengthBinSelector.selectBin( length );
-
-      // Play the sound if a change has occurred due to keyboard interaction, if the area value has moved to a new bin,
-      // or if a min or max has been reached.
-      if ( config.lengthSlider.keyboardDragging || bin !== lengthBin ||
-           length === MIN_LENGTH || length === MAX_LENGTH ) {
-        playResistanceSound();
-      }
-      lengthBin = bin;
-    } );
-
-    // add sound for the area slider
-    var areaBinSelector = new BinSelector( MIN_AREA, MAX_AREA, BINS_PER_SLIDER );
-    var areaBin = areaBinSelector.selectBin( config.areaProperty.value );
-    config.areaProperty.lazyLink( function( area ) {
-      var bin = areaBinSelector.selectBin( area );
-
-      // Play the sound if a change has occurred due to keyboard interaction, if the area value has moved to a new bin,
-      // or if a min or max has been reached.
-      if ( config.areaSlider.keyboardDragging || bin !== areaBin ||
-           area === MIN_AREA || area === MAX_AREA ) {
-        playResistanceSound();
-      }
-      areaBin = bin;
-    } );
-
+    this.disposeResistanceSoundGenerator = function() {
+      resistivityMonitor.dispose();
+      lengthMonitor.dispose();
+      areaMonitor.dispose();
+    };
   }
 
   /**
@@ -142,7 +123,55 @@ define( function( require ) {
     }
   } );
 
+  /**
+   * inner type for monitoring a parameter a playing a sound when warranted
+   * @param {NumberProperty} valueProperty - the value of the parameter, enclosed in an Axon Property
+   * @param {SliderUnit} sliderUnit - the slider unit that controls the parameter's value
+   * @param {Range} parameterRange - the range of values that the parameter can take on
+   * @param {function} generateSound - function that will be called to generate the sound
+   * @constructor
+   */
+  function ParameterMonitor( valueProperty, sliderUnit, parameterRange, generateSound ) {
+    var binSelector = new BinSelector( parameterRange.min, parameterRange.max, BINS_PER_SLIDER );
+    var selectedBin = binSelector.selectBin( valueProperty.value );
+
+    // @private - for dispose
+    this.valueProperty = valueProperty;
+
+    // @private - for dispose
+    this.valuePropertyListener = function( parameterValue ) {
+      var bin = binSelector.selectBin( parameterValue );
+
+      // Play the sound if a change has occurred due to keyboard interaction, if the area value has moved to a new bin,
+      // or if a min or max has been reached.
+      if ( sliderUnit.keyboardDragging || bin !== selectedBin ||
+           parameterValue === parameterRange.min || parameterValue === parameterRange.max ) {
+        generateSound();
+      }
+      selectedBin = bin;
+    };
+
+    // hook up the listener
+    valueProperty.lazyLink( this.valuePropertyListener );
+  }
+
+  inherit( Object, ParameterMonitor, {
+
+    /**
+     * dispose
+     * @public
+     */
+    dispose: function() {
+      this.valueProperty.unlink( this.valuePropertyListener );
+    }
+  } );
+
   resistanceInAWire.register( 'ResistanceSoundGenerator', ResistanceSoundGenerator );
 
-  return inherit( SoundClip, ResistanceSoundGenerator );
+  return inherit( SoundClip, ResistanceSoundGenerator, {
+
+    dispose: function() {
+      this.disposeResistanceSoundGenerator();
+    }
+  } );
 } );
