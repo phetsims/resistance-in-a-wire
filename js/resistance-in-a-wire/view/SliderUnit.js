@@ -32,6 +32,7 @@ define( function( require ) {
    */
   function SliderUnit( property, range, symbolString, nameString, unitString, labelContent, tandem, options ) {
 
+    var self = this;
     Node.call( this );
 
     options = _.extend( {
@@ -39,8 +40,8 @@ define( function( require ) {
       keyboardStep: 1,
       shiftKeyboardStep: 0.01,
       accessibleValuePattern: '{{value}}', // string pattern used for formatting the value read by the screen reader
-      endDrag: function() {}, // called at end of drag by HSlider
-      startDrag: function() {}
+      startDrag: _.noop,
+      endDrag: _.noop
     }, options );
 
     // text for the symbol, text bounds must be accurate for correct layou
@@ -59,14 +60,27 @@ define( function( require ) {
       tandem: tandem.createTandem( 'nameText' )
     } );
 
+    // @public (read-only) {boolean} - flag that indicates whether the slider is being dragged by the keyboard
+    this.keyboardDragging = false;
+
     // @private
-    this.slider = new VSlider( property, range, {
+    var slider = new VSlider( property, range, {
       trackFillEnabled: 'black',
       trackSize: new Dimension2( ResistanceInAWireConstants.SLIDER_HEIGHT - 30, 4 ),
       thumbSize: new Dimension2( 22, 45 ),
       thumbFillEnabled: '#c3c4c5',
       thumbFillHighlighted: '#dedede',
       tandem: tandem.createTandem( 'slider' ),
+      startDrag: function( event ) {
+        if ( event.type === 'keydown' ) {
+          self.keyboardDragging = true;
+        }
+        options.startDrag && options.startDrag( event );
+      },
+      endDrag: function() {
+        self.keyboardDragging = false;
+        options.endDrag && options.endDrag( event );
+      },
 
       // physical values in this sim can have up to 2 decimals
       constrainValue: function( value ) {
@@ -80,8 +94,6 @@ define( function( require ) {
       accessibleDecimalPlaces: options.accessibleDecimalPlaces, // demimal places for readout
       ariaOrientation: 'vertical',
       roundToStepSize: true, // default keyboard step rounds to pedegogically useful values
-      startDrag: options.startDrag,
-      endDrag: options.endDrag,
 
       // a11y
       containerTagName: 'li',
@@ -112,12 +124,12 @@ define( function( require ) {
     valueText.y = unitText.y - 35;
 
     // sliders along the top of values
-    this.slider.bottom = valueText.y - 30;
-    this.slider.centerX = unitText.centerX;
+    slider.bottom = valueText.y - 30;
+    slider.centerX = unitText.centerX;
 
     // names along the top of the slider
-    nameText.y = this.slider.top - 5;
-    nameText.centerX = this.slider.centerX;
+    nameText.y = slider.top - 5;
+    nameText.centerX = slider.centerX;
 
     // symbol texts along the top
     symbolText.bottom = nameText.y - 20;
@@ -126,7 +138,7 @@ define( function( require ) {
     // Add children, from top to bottom of the slider unit
     this.addChild( symbolText );
     this.addChild( nameText );
-    this.addChild( this.slider );
+    this.addChild( slider );
     this.addChild( valueText );
     this.addChild( unitText );
 
@@ -141,16 +153,5 @@ define( function( require ) {
 
   resistanceInAWire.register( 'SliderUnit', SliderUnit );
 
-  return inherit( Node, SliderUnit, {
-
-    /**
-     * flag indicating whether the slider thumb is being dragged
-     * @returns {boolean}
-     */
-    get thumbDragging() {
-
-      // pass the value through from the actual slider component
-      return this.slider.isThumbDraggingProperty.value;
-    }
-  } );
+  return inherit( Node, SliderUnit );
 } );

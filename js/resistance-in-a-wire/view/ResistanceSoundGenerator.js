@@ -1,7 +1,9 @@
 // Copyright 2018, University of Colorado Boulder
 
 /**
- * a sound generator used to indicate the resistance level in the RIAW simulation
+ * A sound generator used to indicate the resistance level in the RIAW simulation.  This uses the values for the
+ * resistivity, length, and area of the wire to decide WHEN to generate a sound, and the value of the resistance to
+ * determine the nature of the sound to be generated.
  *
  * @author John Blanco
  */
@@ -30,8 +32,8 @@ define( function( require ) {
 
   /**
    * @constructor
-   * TODO: document when finalized
-   * {Object} config
+   * {Object} config - a configuration object that includes property values for the resistivity, area, and length of
+   * the wire and the sliders that control each, as well as a property the indicates whether a reset is in progress.
    */
   function ResistanceSoundGenerator( config ) {
 
@@ -63,7 +65,7 @@ define( function( require ) {
 
       // Play the sound if a change has occurred due to keyboard interaction, if the area value has moved to a new bin,
       // or if a min or max has been reached.
-      if ( !config.resistivitySlider.thumbDragging || bin !== resistivityBin ||
+      if ( config.resistivitySlider.keyboardDragging || bin !== resistivityBin ||
            resistivity === MIN_RESISTIVITY || resistivity === MAX_RESISTIVITY ) {
         playResistanceSound();
       }
@@ -78,7 +80,7 @@ define( function( require ) {
 
       // Play the sound if a change has occurred due to keyboard interaction, if the area value has moved to a new bin,
       // or if a min or max has been reached.
-      if ( !config.lengthSlider.thumbDragging || bin !== lengthBin ||
+      if ( config.lengthSlider.keyboardDragging || bin !== lengthBin ||
            length === MIN_LENGTH || length === MAX_LENGTH ) {
         playResistanceSound();
       }
@@ -93,7 +95,7 @@ define( function( require ) {
 
       // Play the sound if a change has occurred due to keyboard interaction, if the area value has moved to a new bin,
       // or if a min or max has been reached.
-      if ( !config.areaSlider.thumbDragging || bin !== areaBin ||
+      if ( config.areaSlider.keyboardDragging || bin !== areaBin ||
            area === MIN_AREA || area === MAX_AREA ) {
         playResistanceSound();
       }
