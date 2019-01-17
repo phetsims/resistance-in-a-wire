@@ -15,6 +15,9 @@ define( function( require ) {
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
   var SliderControlsHelpContent = require( 'SCENERY_PHET/keyboard/help/SliderControlsHelpContent' );
 
+  // constants
+  var LABEL_MAX_WIDTH = 150; // i18n, for inspection so that the help contents fits side by side
+
   /**
    * Constructor.
    *
@@ -23,8 +26,16 @@ define( function( require ) {
    */
   function ResistanceInAWireKeyboardHelpContent( tandem ) {
 
-    var sliderControlsHelpContent = new SliderControlsHelpContent();
-    var generalNavigationHelpContent = new GeneralNavigationHelpContent();
+    var sliderControlsHelpContent = new SliderControlsHelpContent( {
+      labelOptions: {
+        maxWidth: LABEL_MAX_WIDTH
+      }
+    } );
+    var generalNavigationHelpContent = new GeneralNavigationHelpContent( {
+      labelOptions: {
+        maxWidth: LABEL_MAX_WIDTH
+      }
+    } );
 
     HBox.call( this, {
       children: [ sliderControlsHelpContent, generalNavigationHelpContent ],
