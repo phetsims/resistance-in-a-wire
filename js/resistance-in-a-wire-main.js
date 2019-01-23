@@ -29,10 +29,11 @@ define( function( require ) {
   var simOptions = {
     credits: {
       leadDesign: 'Michael Dubson',
-      softwareDevelopment: 'Michael Dubson, John Blanco',
+      softwareDevelopment: 'Michael Dubson, John Blanco, Jesse Greenberg, Michael Kauzmann',
       team: 'Wendy Adams, Mindy Gratny, Ariel Paul',
-      qualityAssurance: 'Steele Dalton, Kerrie Dochen, Alex Dornan, Bryce Griebenow, Ethan Johnson, Elise Morgan, Liam Mulhall, ' +
-                        'Oliver Orejola, Arnab Purkayastha, Benjamin Roberts, Clara Wilson, Bryan Yoelin',
+      qualityAssurance: 'Steele Dalton, Kerrie Dochen, Alex Dornan, Bryce Griebenow, Ethan Johnson, Megan Lai, ' +
+                        'Elise Morgan, Liam Mulhall, Oliver Orejola, Arnab Purkayastha, Laura Rea, Benjamin Roberts, ' +
+                        'Jacob Romero, Clara Wilson, Kathryn Woessner, Kelly Wurtz, Bryan Yoelin',
       thanks: 'Thanks to Mobile Learner Labs for working with the PhET development team to convert this ' +
               'simulation to HTML5.'
     },
