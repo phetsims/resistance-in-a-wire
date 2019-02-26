@@ -39,7 +39,10 @@ define( function( require ) {
   function ResistanceSoundGenerator( config ) {
 
     var self = this;
-    SoundClip.call( this, brightMarimbaSound, { initialOutputLevel: 0.5 } );
+    SoundClip.call( this, brightMarimbaSound, {
+      initialOutputLevel: 0.5,
+      rateChangesAffectPlayingSounds: false
+    } );
 
     // function to map the resistance to a playback speed and play the sound
     function playResistanceSound() {
