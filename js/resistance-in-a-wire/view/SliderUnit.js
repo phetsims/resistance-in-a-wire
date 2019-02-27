@@ -77,7 +77,7 @@ define( function( require ) {
         }
         options.startDrag && options.startDrag( event );
       },
-      endDrag: function() {
+      endDrag: function( event ) {
         self.keyboardDragging = false;
         options.endDrag && options.endDrag( event );
       },
