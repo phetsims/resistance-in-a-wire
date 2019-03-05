@@ -68,7 +68,7 @@ define( function( require ) {
       trackFillEnabled: 'black',
       trackSize: new Dimension2( ResistanceInAWireConstants.SLIDER_HEIGHT - 30, 4 ),
       thumbSize: new Dimension2( 22, 45 ),
-      thumbFillEnabled: '#c3c4c5',
+      thumbFill: '#c3c4c5',
       thumbFillHighlighted: '#dedede',
       tandem: tandem.createTandem( 'slider' ),
       startDrag: function( event ) {
