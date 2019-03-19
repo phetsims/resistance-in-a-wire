@@ -1,5 +1,5 @@
 {
-  "comment": "# resistance-in-a-wire 1.6.0 Fri Mar 08 2019 14:05:06 GMT-0500 (EST)",
+  "comment": "# resistance-in-a-wire 1.6.0 Tue Mar 19 2019 17:17:09 GMT-0400 (EDT)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
     "branch": "HEAD"
@@ -10,11 +10,11 @@
   },
   "brand": {
     "sha": "9e969c0cbfab3b793430d16d1bc67bd07718304f",
-    "branch": "resistance-in-a-wire-1.6"
+    "branch": "HEAD"
   },
   "chipper": {
-    "sha": "fa2fbadfe93127d4df488c0961638df8505a6f5e",
-    "branch": "HEAD"
+    "sha": "ade596e558e2d702c6685c0bb585394fb2678a98",
+    "branch": "resistance-in-a-wire-1.6"
   },
   "dot": {
     "sha": "bbbd8526aaacc999255f1ae4c8bbf09d986ff7a8",
@@ -22,7 +22,7 @@
   },
   "joist": {
     "sha": "15bb57c106d5ba72b9d1b8de6b46f2c9dd32ad05",
-    "branch": "resistance-in-a-wire-1.6"
+    "branch": "HEAD"
   },
   "kite": {
     "sha": "380cef530ae6a8ae4aa644ff4f09baf85326ad9f",
@@ -56,12 +56,16 @@
     "sha": "cd63d89a2a440e58b2f2987144193b64b57174cf",
     "branch": "HEAD"
   },
+  "phetmarks": {
+    "sha": "a0d4b0ad6267da7d284fc01a178c15f55cec6c84",
+    "branch": "HEAD"
+  },
   "query-string-machine": {
     "sha": "06ed6276418df2566f9822abe0eb4dc3d3698e3b",
     "branch": "HEAD"
   },
   "resistance-in-a-wire": {
-    "sha": "7b234221935a21b64e351de51ed70451ff7a6ccf",
+    "sha": "651c686f30470667744eaf2c90a5a11764f91e83",
     "branch": "1.6"
   },
   "scenery": {
@@ -87,9 +91,5 @@
   "tandem": {
     "sha": "ed8f8f1dea9c627b897d9bc9b2073b1249bdebf5",
     "branch": "HEAD"
-  },
-  "phetmarks": {
-    "branch": "master",
-    "sha": "a0d4b0ad6267da7d284fc01a178c15f55cec6c84"
   }
 }
