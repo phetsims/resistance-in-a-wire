@@ -36,10 +36,12 @@ define( function( require ) {
     Node.call( this );
 
     options = _.extend( {
-      accessibleDecimalPlaces: 2,
+      a11yDecimalPlaces: 2,
       keyboardStep: 1,
       shiftKeyboardStep: 0.01,
-      accessibleValuePattern: '{{value}}', // string pattern used for formatting the value read by the screen reader
+
+      // TODO: this is redundant, https://github.com/phetsims/scenery/issues/951
+      a11yValuePattern: '{{value}}', // string pattern used for formatting the value read by the screen reader
       startDrag: _.noop,
       endDrag: _.noop
     }, options );
@@ -90,8 +92,8 @@ define( function( require ) {
       // a11y
       keyboardStep: options.keyboardStep, // delta for keyboard step
       shiftKeyboardStep: options.shiftKeyboardStep, // delta when holding shift
-      accessibleValuePattern: options.accessibleValuePattern,
-      accessibleDecimalPlaces: options.accessibleDecimalPlaces, // demimal places for readout
+      a11yValuePattern: options.a11yValuePattern,
+      a11yDecimalPlaces: options.a11yDecimalPlaces, // decimal places for readout
       ariaOrientation: 'vertical',
       roundToStepSize: true, // default keyboard step rounds to pedegogically useful values
 

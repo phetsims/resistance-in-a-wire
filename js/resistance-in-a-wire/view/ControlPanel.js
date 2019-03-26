@@ -127,7 +127,7 @@ define( function( require ) {
       tandem.createTandem( 'resistivitySlider' ), {
         keyboardStep: 0.05, // ohm-cm
         shiftKeyStep: 0.01, // ohms-cm
-        accessibleValuePattern: resistivityUnitsPatternString,
+        a11yValuePattern: resistivityUnitsPatternString,
         startDrag: function() {
           rhoOnStart = model.resistivityProperty.get();
           resistanceOnStart = model.resistanceProperty.get();
@@ -162,7 +162,7 @@ define( function( require ) {
       tandem.createTandem( 'lengthSlider' ), {
         keyboardStep: 1.0, // cm
         shiftKeyboardStep: 0.01, // cm
-        accessibleValuePattern: lengthUnitsPatternString,
+        a11yValuePattern: lengthUnitsPatternString,
         startDrag: function() {
           lengthOnStart = model.lengthProperty.get();
           resistanceOnStart = model.resistanceProperty.get();
@@ -198,7 +198,7 @@ define( function( require ) {
       tandem.createTandem( 'areaSlider' ), {
         keyboardStep: 1.0, // cm^2
         shiftKeyboardStep: 0.01, // cm^2
-        accessibleValuePattern: areaUnitsPatternString,
+        a11yValuePattern: areaUnitsPatternString,
         startDrag: function() {
           areaOnStart = model.areaProperty.get();
           resistanceOnStart = model.resistanceProperty.get();
