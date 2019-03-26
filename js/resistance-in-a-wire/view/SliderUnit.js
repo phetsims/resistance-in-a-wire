@@ -39,9 +39,6 @@ define( function( require ) {
       a11yDecimalPlaces: 2,
       keyboardStep: 1,
       shiftKeyboardStep: 0.01,
-
-      // TODO: this is redundant, https://github.com/phetsims/scenery/issues/951
-      a11yValuePattern: '{{value}}', // string pattern used for formatting the value read by the screen reader
       startDrag: _.noop,
       endDrag: _.noop
     }, options );
