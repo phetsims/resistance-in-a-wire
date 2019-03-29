@@ -1,5 +1,5 @@
 {
-  "comment": "# resistance-in-a-wire 1.6.1-rc.1 Thu Mar 28 2019 14:20:55 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# resistance-in-a-wire 1.6.1-rc.1 Thu Mar 28 2019 23:39:17 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
     "branch": "HEAD"
@@ -9,12 +9,12 @@
     "branch": "HEAD"
   },
   "brand": {
-    "sha": "9e969c0cbfab3b793430d16d1bc67bd07718304f",
-    "branch": "HEAD"
+    "sha": "137c34c3e79b95ad2fcc8112a7722d8d95276f86",
+    "branch": "resistance-in-a-wire-1.6"
   },
   "chipper": {
     "sha": "cec1ea3d6512021b24a7bdb3e87340324f2693ee",
-    "branch": "resistance-in-a-wire-1.6"
+    "branch": "HEAD"
   },
   "dot": {
     "sha": "bbbd8526aaacc999255f1ae4c8bbf09d986ff7a8",
@@ -65,7 +65,7 @@
     "branch": "HEAD"
   },
   "resistance-in-a-wire": {
-    "sha": "21027ccadc4a56297090ee0c9e4cbda190ba4714",
+    "sha": "3942d0f99500b8b7d7f30075ecf8f30fd850fc8d",
     "branch": "1.6"
   },
   "scenery": {
