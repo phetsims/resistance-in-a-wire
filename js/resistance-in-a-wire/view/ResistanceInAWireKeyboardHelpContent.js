@@ -24,10 +24,10 @@ define( function( require ) {
   function ResistanceInAWireKeyboardHelpContent( tandem ) {
 
     var sliderKeyboardHelpSection = new SliderKeyboardHelpSection();
-    var generalNavigationHelpContent = new GeneralKeyboardHelpSection();
+    var generalNavigationHelpSection = new GeneralKeyboardHelpSection();
 
     HBox.call( this, {
-      children: [ sliderKeyboardHelpSection, generalNavigationHelpContent ],
+      children: [ sliderKeyboardHelpSection, generalNavigationHelpSection ],
       align: 'top',
       spacing: 35,
       tandem: tandem
