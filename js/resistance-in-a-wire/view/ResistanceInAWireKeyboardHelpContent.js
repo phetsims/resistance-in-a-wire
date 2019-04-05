@@ -13,7 +13,7 @@ define( function( require ) {
   var HBox = require( 'SCENERY/nodes/HBox' );
   var inherit = require( 'PHET_CORE/inherit' );
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
-  var SliderControlsHelpContent = require( 'SCENERY_PHET/keyboard/help/SliderControlsHelpContent' );
+  var SliderKeyboardHelpSection = require( 'SCENERY_PHET/keyboard/help/SliderKeyboardHelpSection' );
 
   /**
    * Constructor.
@@ -23,11 +23,11 @@ define( function( require ) {
    */
   function ResistanceInAWireKeyboardHelpContent( tandem ) {
 
-    var sliderControlsHelpContent = new SliderControlsHelpContent();
+    var sliderKeyboardHelpSection = new SliderKeyboardHelpSection();
     var generalNavigationHelpContent = new GeneralKeyboardHelpSection();
 
     HBox.call( this, {
-      children: [ sliderControlsHelpContent, generalNavigationHelpContent ],
+      children: [ sliderKeyboardHelpSection, generalNavigationHelpContent ],
       align: 'top',
       spacing: 35,
       tandem: tandem
