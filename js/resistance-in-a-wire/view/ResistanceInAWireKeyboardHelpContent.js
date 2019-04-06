@@ -5,36 +5,35 @@
  *
  * @author Jesse Greenberg (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var GeneralKeyboardHelpSection = require( 'SCENERY_PHET/keyboard/help/GeneralKeyboardHelpSection' );
-  var HBox = require( 'SCENERY/nodes/HBox' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
-  var SliderKeyboardHelpSection = require( 'SCENERY_PHET/keyboard/help/SliderKeyboardHelpSection' );
+  const GeneralKeyboardHelpSection = require( 'SCENERY_PHET/keyboard/help/GeneralKeyboardHelpSection' );
+  const HBox = require( 'SCENERY/nodes/HBox' );
+  const resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
+  const SliderKeyboardHelpSection = require( 'SCENERY_PHET/keyboard/help/SliderKeyboardHelpSection' );
 
-  /**
-   * Constructor.
-   *
-   * @param {Tandem} tandem
-   * @constructor
-   */
-  function ResistanceInAWireKeyboardHelpContent( tandem ) {
+  class ResistanceInAWireKeyboardHelpContent extends HBox {
+    
+    /**
+     * Constructor.
+     *
+     * @param {Tandem} tandem
+     * @constructor
+     */
+    constructor( tandem ) {
+      const sliderKeyboardHelpSection = new SliderKeyboardHelpSection();
+      const generalNavigationHelpSection = new GeneralKeyboardHelpSection();
 
-    var sliderKeyboardHelpSection = new SliderKeyboardHelpSection();
-    var generalNavigationHelpSection = new GeneralKeyboardHelpSection();
-
-    HBox.call( this, {
-      children: [ sliderKeyboardHelpSection, generalNavigationHelpSection ],
-      align: 'top',
-      spacing: 35,
-      tandem: tandem
-    } );
+      super( {
+        children: [ sliderKeyboardHelpSection, generalNavigationHelpSection ],
+        align: 'top',
+        spacing: 35,
+        tandem: tandem
+      } );
+    }
   }
 
-  resistanceInAWire.register( 'ResistanceInAWireKeyboardHelpContent', ResistanceInAWireKeyboardHelpContent );
-
-  return inherit( HBox, ResistanceInAWireKeyboardHelpContent );
+  return resistanceInAWire.register( 'ResistanceInAWireKeyboardHelpContent', ResistanceInAWireKeyboardHelpContent );
 } );
