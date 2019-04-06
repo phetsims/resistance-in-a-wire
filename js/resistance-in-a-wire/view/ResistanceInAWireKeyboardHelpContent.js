@@ -13,12 +13,11 @@ define( require => {
   const HBox = require( 'SCENERY/nodes/HBox' );
   const resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
   const SliderKeyboardHelpSection = require( 'SCENERY_PHET/keyboard/help/SliderKeyboardHelpSection' );
+  const TwoColumnKeyboardHelpContent = require( 'SCENERY_PHET/keyboard/help/TwoColumnKeyboardHelpContent' );
 
-  class ResistanceInAWireKeyboardHelpContent extends HBox {
-    
+  class ResistanceInAWireKeyboardHelpContent extends TwoColumnKeyboardHelpContent {
+
     /**
-     * Constructor.
-     *
      * @param {Tandem} tandem
      * @constructor
      */
@@ -26,10 +25,7 @@ define( require => {
       const sliderKeyboardHelpSection = new SliderKeyboardHelpSection();
       const generalNavigationHelpSection = new GeneralKeyboardHelpSection();
 
-      super( {
-        children: [ sliderKeyboardHelpSection, generalNavigationHelpSection ],
-        align: 'top',
-        spacing: 35,
+      super( sliderKeyboardHelpSection, generalNavigationHelpSection, {
         tandem: tandem
       } );
     }
