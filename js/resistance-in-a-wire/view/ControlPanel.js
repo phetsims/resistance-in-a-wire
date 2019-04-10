@@ -61,10 +61,6 @@ define( function( require ) {
   // constants
   var SLIDER_SPACING = 50;
 
-  // a11y - time between aria-valuetext is read and the alert, the extra time prevents alerts from reaching the assistive
-  // device too quickly (like in cases during rapid interaction)
-  var ALERT_DELAY = 1000;
-
   // a11y - if resistance changes 2 * the range of the resistance / the number of relative size descriptions, larger change
   // is signified in description
   var LARGE_RESISTANCE_DELTA = ( ( ResistanceInAWireModel.getResistanceRange().max - ResistanceInAWireModel.getResistanceRange().min ) / ResistanceInAWireConstants.RELATIVE_SIZE_STRINGS.length ) * 2;
@@ -115,6 +111,9 @@ define( function( require ) {
     // interaction
     var resistanceOnStart = model.resistanceProperty.get();
 
+    // a11y - an utterance for whenever physical values change
+    const changeUtterance = new Utterance();
+
     // Create and add the resistivity slider with readout and labels.
     var rhoOnStart = model.resistivityProperty.get();
     var resistivitySlider = new SliderUnit(
@@ -140,11 +139,8 @@ define( function( require ) {
           // announce to assistive technology if there is a change - no need to queue many alerts when pressing keys
           // rapidly
           if ( deltaRho && deltaResistance ) {
-            utteranceQueue.addToBack( new Utterance( {
-              alert: getSizeChangeAlert( resistance, deltaResistance, deltaRho, letterRhoString ),
-              uniqueGroupId: 'rhoChangeAlert',
-              delayTime: ALERT_DELAY
-            } ) );
+            changeUtterance.alert = getSizeChangeAlert( resistance, deltaResistance, deltaRho, letterRhoString );
+            utteranceQueue.addToBack( changeUtterance );
           }
         }
       }
@@ -175,11 +171,8 @@ define( function( require ) {
           // announce to assistive technology if there is a change - no need to queue many alerts when pressing keys
           // rapidly
           if ( deltaLength && deltaResistance ) {
-            utteranceQueue.addToBack( new Utterance( {
-              alert: getSizeChangeAlert( resistance, deltaResistance, deltaLength, letterLString ),
-              uniqueGroupId: 'rhoChangeAlert',
-              delayTime: ALERT_DELAY
-            } ) );
+            changeUtterance.alert = getSizeChangeAlert( resistance, deltaResistance, deltaLength, letterLString );
+            utteranceQueue.addToBack( changeUtterance );
           }
         }
       }
@@ -211,11 +204,8 @@ define( function( require ) {
           // announce to assistive technology if there is a change - no need to queue many alerts when pressing keys
           // rapidly
           if ( deltaArea && deltaResistance ) {
-            utteranceQueue.addToBack( new Utterance( {
-              alert: getSizeChangeAlert( resistance, deltaResistance, deltaArea, letterAString ),
-              uniqueGroupId: 'rhoChangeAlert',
-              delayTime: ALERT_DELAY
-            } ) );
+            changeUtterance.alert = getSizeChangeAlert( resistance, deltaResistance, deltaArea, letterAString );
+            utteranceQueue.addToBack( changeUtterance );
           }
         }
       }
