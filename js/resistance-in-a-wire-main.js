@@ -9,10 +9,10 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var ResistanceInAWireKeyboardHelpContent = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/ResistanceInAWireKeyboardHelpContent' );
   var ResistanceInAWireScreen = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireScreen' );
   var Sim = require( 'JOIST/Sim' );
   var SimLauncher = require( 'JOIST/SimLauncher' );
+  var SliderAndGeneralKeyboardHelpContent = require( 'SCENERY_PHET/keyboard/help/SliderAndGeneralKeyboardHelpContent' );
   var Tandem = require( 'TANDEM/Tandem' );
 
   // constants
@@ -22,9 +22,9 @@ define( function( require ) {
   var resistanceInAWireTitleString = require( 'string!RESISTANCE_IN_A_WIRE/resistance-in-a-wire.title' );
 
   // help content to describe keyboard interactions
-  var keyboardHelpContent = new ResistanceInAWireKeyboardHelpContent(
-    Tandem.rootTandem.createTandem( 'keyboardHelpContent' )
-  );
+  var keyboardHelpContent = new SliderAndGeneralKeyboardHelpContent( {
+    tandem: Tandem.rootTandem.createTandem( 'keyboardHelpContent' )
+  } );
 
   var simOptions = {
     credits: {
