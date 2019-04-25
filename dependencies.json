@@ -1,5 +1,5 @@
 {
-  "comment": "# resistance-in-a-wire 1.3.6-phetiorc.1 Thu Apr 18 2019 10:57:43 GMT-0800 (Alaskan Daylight Time)",
+  "comment": "# resistance-in-a-wire 1.3.6-phetio Wed Apr 24 2019 16:58:05 GMT-0800 (Alaskan Daylight Time)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
     "branch": "HEAD"
@@ -69,7 +69,7 @@
     "branch": "HEAD"
   },
   "resistance-in-a-wire": {
-    "sha": "f2cd2fcba98b09c0f51408fd9d4b40661e40ed2a",
+    "sha": "77d0c99abf600e8a0ec22426c19430400ca37082",
     "branch": "1.3-phetio"
   },
   "scenery": {
