@@ -1,5 +1,5 @@
 /* eslint-disable */
-window.phet.phetio.phetioElementsBaseline =
+window.phet.phetio.phetioElementsBaseline = assert &&
   {
     "phetioEngine": {
       "phetioDocumentation": "Central point for PhET-iO interoperability",
