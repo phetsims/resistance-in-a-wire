@@ -23,7 +23,7 @@ define( function( require ) {
 
   // help content to describe keyboard interactions
   var keyboardHelpContent = new SliderAndGeneralKeyboardHelpContent( {
-    tandem: Tandem.rootTandem.createTandem( 'keyboardHelpContent' )
+    tandem: Tandem.globalTandem.createTandem( 'keyboardHelpContent' )
   } );
 
   var simOptions = {
