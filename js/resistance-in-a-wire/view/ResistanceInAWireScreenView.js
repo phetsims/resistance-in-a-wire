@@ -40,14 +40,8 @@ define( function( require ) {
 
     ScreenView.call( this, {
       tandem: tandem,
-
-      // a11y - TODO: Remove this option once https://github.com/phetsims/scenery-phet/issues/393 is complete
-      addScreenSummaryNode: true
+      screenSummaryContent: new AccessibleSummaryNode( model )
     } );
-
-    // a11y - Create and add the summary for this simulation, the first thing screen reader users encounter
-    var a11ySummaryNode = new AccessibleSummaryNode( model );
-    this.screenSummaryNode.addChild( a11ySummaryNode );
 
     // a11y - the play area for this sim, containing elements that are significant to the pedagogy of the sim
     var a11yPlayAreaNode = new AccessibleSectionNode( playAreaString );
