@@ -10,14 +10,12 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var AccessibleSectionNode = require( 'SCENERY_PHET/accessibility/AccessibleSectionNode' );
   var AccessibleSummaryNode = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/AccessibleSummaryNode' );
   var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
   var ControlPanel = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/ControlPanel' );
   var FocusHighlightPath = require( 'SCENERY/accessibility/FocusHighlightPath' );
   var FormulaNode = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/FormulaNode' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var JoistA11yStrings = require( 'JOIST/JoistA11yStrings' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
   var ResetAllSoundGenerator = require( 'TAMBO/sound-generators/ResetAllSoundGenerator' );
   var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
@@ -26,10 +24,6 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
   var soundManager = require( 'TAMBO/soundManager' );
   var WireNode = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/WireNode' );
-
-  // a11y strings
-  var playAreaString = JoistA11yStrings.playArea.value;
-  var controlAreaString = JoistA11yStrings.controlArea.value;
 
   /**
    * @param {ResistanceInAWireModel} model
@@ -43,14 +37,6 @@ define( function( require ) {
       screenSummaryContent: new AccessibleSummaryNode( model )
     } );
 
-    // a11y - the play area for this sim, containing elements that are significant to the pedagogy of the sim
-    var a11yPlayAreaNode = new AccessibleSectionNode( playAreaString );
-    this.addChild( a11yPlayAreaNode );
-
-    // a11y - the control panel for this sim, containing supplemental controls
-    var a11yControlPanelNode = new AccessibleSectionNode( controlAreaString );
-    this.addChild( a11yControlPanelNode );
-
     // Create the control panel with sliders that change the values of the equation's variables. Hard coded
     var controlPanel = new ControlPanel( model, tandem.createTandem( 'controlPanel' ), {
       right: this.layoutBounds.right - 30,
@@ -62,14 +48,14 @@ define( function( require ) {
       centerX: controlPanel.left / 2,
       centerY: 190
     } );
-    a11yPlayAreaNode.addChild( formulaNode );
+    this.playAreaNode.addChild( formulaNode );
 
     // Create the wire display to represent the formula
     var wireNode = new WireNode( model, tandem.createTandem( 'wireNode' ), {
       centerX: formulaNode.centerX,
       centerY: formulaNode.centerY + 270
     } );
-    a11yPlayAreaNode.addChild( wireNode );
+    this.playAreaNode.addChild( wireNode );
 
     var tailX = wireNode.centerX - ResistanceInAWireConstants.TAIL_LENGTH / 2;
     var tipX = wireNode.centerX + ResistanceInAWireConstants.TAIL_LENGTH / 2;
@@ -85,7 +71,7 @@ define( function( require ) {
       lineWidth: 1,
       tandem: tandem.createTandem( 'arrowNode' )
     } );
-    a11yPlayAreaNode.addChild( arrowNode );
+    this.playAreaNode.addChild( arrowNode );
 
     var resetAllButton = new ResetAllButton( {
       listener: function() { model.reset(); },
@@ -94,7 +80,7 @@ define( function( require ) {
       bottom: this.layoutBounds.bottom - 20,
       tandem: tandem.createTandem( 'resetAllButton' )
     } );
-    a11yControlPanelNode.addChild( resetAllButton );
+    this.controlAreaNode.addChild( resetAllButton );
     soundManager.addSoundGenerator( new ResetAllSoundGenerator( model.resetInProgressProperty, {
       initialOutputLevel: 0.7
     } ) );
@@ -106,7 +92,7 @@ define( function( require ) {
     resetAllButton.focusHighlight = new FocusHighlightPath( highlightShape, { outerStroke: 'black' } );
 
     // add the control panel last so it is always on top.
-    a11yPlayAreaNode.addChild( controlPanel );
+    this.playAreaNode.addChild( controlPanel );
   }
 
   resistanceInAWire.register( 'ResistanceInAWireScreenView', ResistanceInAWireScreenView );
