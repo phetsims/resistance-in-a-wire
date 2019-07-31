@@ -49,7 +49,6 @@ define( function( require ) {
       // a11y
       tagName: 'div',
       labelTagName: 'h3',
-      descriptionTagName: 'p',
       labelContent: 'The Wire'
     } );
 
