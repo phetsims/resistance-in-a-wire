@@ -1,5 +1,5 @@
 {
-  "comment": "# resistance-in-a-wire 1.6.5 Mon Aug 05 2019 16:45:13 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# resistance-in-a-wire 1.6.5 Mon Aug 19 2019 14:43:10 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
     "branch": "HEAD"
@@ -21,8 +21,8 @@
     "branch": "HEAD"
   },
   "joist": {
-    "sha": "15bb57c106d5ba72b9d1b8de6b46f2c9dd32ad05",
-    "branch": "HEAD"
+    "sha": "aa32ab3091cd465b4aaa087d620e57b83f439b7f",
+    "branch": "resistance-in-a-wire-1.6"
   },
   "kite": {
     "sha": "380cef530ae6a8ae4aa644ff4f09baf85326ad9f",
@@ -53,16 +53,16 @@
     "branch": "HEAD"
   },
   "resistance-in-a-wire": {
-    "sha": "d94bb3787aeb9ecd120ee4d434e2c1d3bad80230",
+    "sha": "dd39f5333facbc0f6df38411d2c273c110ee32de",
     "branch": "1.6"
   },
   "scenery": {
-    "sha": "9953c5f7e5aea63a89594ce06254404e74223e65",
-    "branch": "HEAD"
+    "sha": "2bc3af54a052a4f122f72958294aff2ebc32e5f7",
+    "branch": "resistance-in-a-wire-1.6"
   },
   "scenery-phet": {
-    "sha": "7d0ce8b6e9f98d385a065361d7659ebf1d797f03",
-    "branch": "HEAD"
+    "sha": "f4b2caf053d7002d280f9dadf753a3c8b42ab9d0",
+    "branch": "resistance-in-a-wire-1.6"
   },
   "sherpa": {
     "sha": "2cd50500f6102ba43972c294f8857aebf483c4e2",
