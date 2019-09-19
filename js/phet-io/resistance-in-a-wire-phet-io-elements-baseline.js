@@ -23,7 +23,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.general.barrierRectangle": {
       "phetioDocumentation": "Semi-transparent barrier used to block input events when a dialog is shown, also fades out the background",
@@ -47,7 +47,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "EmitterIO.<>"
+      "phetioTypeName": "EmitterIO<>"
     },
     "resistanceInAWire.general.barrierRectangle.inputListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event. The arguments are:<br/><ol><li>event: EventIO</li></ol>",
@@ -59,10 +59,10 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<EventIO>"
+      "phetioTypeName": "ActionIO<EventIO>"
     },
     "resistanceInAWire.general.barrierRectangle.inputListener.releaseAction": {
-      "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO.<EventIO></li></ol>",
+      "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO<EventIO></li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
@@ -71,7 +71,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<NullableIO.<EventIO>>"
+      "phetioTypeName": "ActionIO<NullableIO<EventIO>>"
     },
     "resistanceInAWire.general.barrierRectangle.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
@@ -95,7 +95,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": true,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.general.barrierRectangle.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -107,7 +107,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": true,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.general.browserTabVisibleProperty": {
       "phetioDocumentation": "Indicates whether the browser tab containing the simulation is currently visible",
@@ -119,7 +119,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": true,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.general.controller.input.changeAction": {
       "phetioDocumentation": "Emits when the PDOM root gets the change DOM event. The arguments are:<br/><ol><li>event: DOMEventIO</li></ol>",
@@ -131,7 +131,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<DOMEventIO>"
+      "phetioTypeName": "ActionIO<DOMEventIO>"
     },
     "resistanceInAWire.general.controller.input.clickAction": {
       "phetioDocumentation": "Emits when the PDOM root gets the click DOM event. The arguments are:<br/><ol><li>event: DOMEventIO</li></ol>",
@@ -143,7 +143,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<DOMEventIO>"
+      "phetioTypeName": "ActionIO<DOMEventIO>"
     },
     "resistanceInAWire.general.controller.input.focusinAction": {
       "phetioDocumentation": "Emits when the PDOM root gets the focusin DOM event. The arguments are:<br/><ol><li>event: DOMEventIO</li></ol>",
@@ -155,7 +155,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<DOMEventIO>"
+      "phetioTypeName": "ActionIO<DOMEventIO>"
     },
     "resistanceInAWire.general.controller.input.focusoutAction": {
       "phetioDocumentation": "Emits when the PDOM root gets the focusout DOM event. The arguments are:<br/><ol><li>event: DOMEventIO</li></ol>",
@@ -167,7 +167,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<DOMEventIO>"
+      "phetioTypeName": "ActionIO<DOMEventIO>"
     },
     "resistanceInAWire.general.controller.input.inputAction": {
       "phetioDocumentation": "Emits when the PDOM root gets the input DOM event. The arguments are:<br/><ol><li>event: DOMEventIO</li></ol>",
@@ -179,7 +179,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<DOMEventIO>"
+      "phetioTypeName": "ActionIO<DOMEventIO>"
     },
     "resistanceInAWire.general.controller.input.keydownAction": {
       "phetioDocumentation": "Emits when the PDOM root gets the keydown DOM event. The arguments are:<br/><ol><li>event: DOMEventIO</li></ol>",
@@ -191,7 +191,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<DOMEventIO>"
+      "phetioTypeName": "ActionIO<DOMEventIO>"
     },
     "resistanceInAWire.general.controller.input.keyupAction": {
       "phetioDocumentation": "Emits when the PDOM root gets the keyup DOM event. The arguments are:<br/><ol><li>event: DOMEventIO</li></ol>",
@@ -203,7 +203,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<DOMEventIO>"
+      "phetioTypeName": "ActionIO<DOMEventIO>"
     },
     "resistanceInAWire.general.controller.input.mouseDownAction": {
       "phetioDocumentation": "Emits when a mouse button is pressed The arguments are:<br/><ol><li>point: Vector2IO</li><br/><li>event: DOMEventIO</li></ol>",
@@ -215,7 +215,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<Vector2IO, DOMEventIO>"
+      "phetioTypeName": "ActionIO<Vector2IO, DOMEventIO>"
     },
     "resistanceInAWire.general.controller.input.mouseMovedAction": {
       "phetioDocumentation": "Emits when the mouse is moved The arguments are:<br/><ol><li>point: Vector2IO</li><br/><li>event: DOMEventIO</li></ol>",
@@ -227,7 +227,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<Vector2IO, DOMEventIO>"
+      "phetioTypeName": "ActionIO<Vector2IO, DOMEventIO>"
     },
     "resistanceInAWire.general.controller.input.mouseOutAction": {
       "phetioDocumentation": "Emits when the mouse moves out of the display The arguments are:<br/><ol><li>point: Vector2IO</li><br/><li>event: DOMEventIO</li></ol>",
@@ -239,7 +239,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<Vector2IO, DOMEventIO>"
+      "phetioTypeName": "ActionIO<Vector2IO, DOMEventIO>"
     },
     "resistanceInAWire.general.controller.input.mouseOverAction": {
       "phetioDocumentation": "Emits when the mouse is moved over a Node The arguments are:<br/><ol><li>point: Vector2IO</li><br/><li>event: DOMEventIO</li></ol>",
@@ -251,7 +251,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<Vector2IO, DOMEventIO>"
+      "phetioTypeName": "ActionIO<Vector2IO, DOMEventIO>"
     },
     "resistanceInAWire.general.controller.input.mouseUpAction": {
       "phetioDocumentation": "Emits when a mouse button is released The arguments are:<br/><ol><li>point: Vector2IO</li><br/><li>event: DOMEventIO</li></ol>",
@@ -263,7 +263,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<Vector2IO, DOMEventIO>"
+      "phetioTypeName": "ActionIO<Vector2IO, DOMEventIO>"
     },
     "resistanceInAWire.general.controller.input.penCancelAction": {
       "phetioDocumentation": "Emits when a pen is canceled The arguments are:<br/><ol><li>id: NumberIO</li><br/><li>point: Vector2IO</li><br/><li>event: DOMEventIO</li></ol>",
@@ -275,7 +275,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<NumberIO, Vector2IO, DOMEventIO>"
+      "phetioTypeName": "ActionIO<NumberIO, Vector2IO, DOMEventIO>"
     },
     "resistanceInAWire.general.controller.input.penEndAction": {
       "phetioDocumentation": "Emits when a pen is lifted The arguments are:<br/><ol><li>id: NumberIO</li><br/><li>point: Vector2IO</li><br/><li>event: DOMEventIO</li></ol>",
@@ -287,7 +287,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<NumberIO, Vector2IO, DOMEventIO>"
+      "phetioTypeName": "ActionIO<NumberIO, Vector2IO, DOMEventIO>"
     },
     "resistanceInAWire.general.controller.input.penMoveAction": {
       "phetioDocumentation": "Emits when a pen is moved The arguments are:<br/><ol><li>id: NumberIO</li><br/><li>point: Vector2IO</li><br/><li>event: DOMEventIO</li></ol>",
@@ -299,7 +299,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<NumberIO, Vector2IO, DOMEventIO>"
+      "phetioTypeName": "ActionIO<NumberIO, Vector2IO, DOMEventIO>"
     },
     "resistanceInAWire.general.controller.input.penStartAction": {
       "phetioDocumentation": "Emits when a pen touches the screen The arguments are:<br/><ol><li>id: NumberIO</li><br/><li>point: Vector2IO</li><br/><li>event: DOMEventIO</li></ol>",
@@ -311,7 +311,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<NumberIO, Vector2IO, DOMEventIO>"
+      "phetioTypeName": "ActionIO<NumberIO, Vector2IO, DOMEventIO>"
     },
     "resistanceInAWire.general.controller.input.touchCancelAction": {
       "phetioDocumentation": "Emits when a touch is canceled The arguments are:<br/><ol><li>id: NumberIO</li><br/><li>point: Vector2IO</li><br/><li>event: DOMEventIO</li></ol>",
@@ -323,7 +323,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<NumberIO, Vector2IO, DOMEventIO>"
+      "phetioTypeName": "ActionIO<NumberIO, Vector2IO, DOMEventIO>"
     },
     "resistanceInAWire.general.controller.input.touchEndAction": {
       "phetioDocumentation": "Emits when a touch ends The arguments are:<br/><ol><li>id: NumberIO</li><br/><li>point: Vector2IO</li><br/><li>event: DOMEventIO</li></ol>",
@@ -335,7 +335,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<NumberIO, Vector2IO, DOMEventIO>"
+      "phetioTypeName": "ActionIO<NumberIO, Vector2IO, DOMEventIO>"
     },
     "resistanceInAWire.general.controller.input.touchMoveAction": {
       "phetioDocumentation": "Emits when a touch moves The arguments are:<br/><ol><li>id: NumberIO</li><br/><li>point: Vector2IO</li><br/><li>event: DOMEventIO</li></ol>",
@@ -347,7 +347,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<NumberIO, Vector2IO, DOMEventIO>"
+      "phetioTypeName": "ActionIO<NumberIO, Vector2IO, DOMEventIO>"
     },
     "resistanceInAWire.general.controller.input.touchStartAction": {
       "phetioDocumentation": "Emits when a touch begins The arguments are:<br/><ol><li>id: NumberIO</li><br/><li>point: Vector2IO</li><br/><li>event: DOMEventIO</li></ol>",
@@ -359,7 +359,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<NumberIO, Vector2IO, DOMEventIO>"
+      "phetioTypeName": "ActionIO<NumberIO, Vector2IO, DOMEventIO>"
     },
     "resistanceInAWire.general.controller.input.validatePointersAction": {
       "phetioDocumentation": "A function that executes. No arguments.",
@@ -371,7 +371,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<>"
+      "phetioTypeName": "ActionIO<>"
     },
     "resistanceInAWire.general.controller.input.wheelScrollAction": {
       "phetioDocumentation": "Emits when the mouse wheel scrolls The arguments are:<br/><ol><li>event: DOMEventIO</li></ol>",
@@ -383,7 +383,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<DOMEventIO>"
+      "phetioTypeName": "ActionIO<DOMEventIO>"
     },
     "resistanceInAWire.general.focusProperty": {
       "phetioDocumentation": "Stores the current focus for the simulation, null if there is not focus. This is not updated based on mouse or touch input, only keyboard and other alternative inputs.",
@@ -395,7 +395,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": true,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<FocusIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<FocusIO>>"
     },
     "resistanceInAWire.general.navigationBar.a11yButtonsHBox.keyboardHelpButton": {
       "phetioDocumentation": "",
@@ -419,7 +419,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.general.navigationBar.a11yButtonsHBox.keyboardHelpButton.firedEmitter": {
       "phetioDocumentation": "Emits when the button is fired No arguments.",
@@ -431,7 +431,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "EmitterIO.<>"
+      "phetioTypeName": "EmitterIO<>"
     },
     "resistanceInAWire.general.navigationBar.a11yButtonsHBox.keyboardHelpButton.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
@@ -455,7 +455,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.general.navigationBar.a11yButtonsHBox.keyboardHelpButton.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event. The arguments are:<br/><ol><li>event: EventIO</li></ol>",
@@ -467,10 +467,10 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<EventIO>"
+      "phetioTypeName": "ActionIO<EventIO>"
     },
     "resistanceInAWire.general.navigationBar.a11yButtonsHBox.keyboardHelpButton.pressListener.releaseAction": {
-      "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO.<EventIO></li></ol>",
+      "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO<EventIO></li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
@@ -479,7 +479,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<NullableIO.<EventIO>>"
+      "phetioTypeName": "ActionIO<NullableIO<EventIO>>"
     },
     "resistanceInAWire.general.navigationBar.a11yButtonsHBox.keyboardHelpButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -491,7 +491,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.general.navigationBar.phetButton": {
       "phetioDocumentation": "The button that appears at the right side of the navigation bar, which shows a menu when pressed",
@@ -515,7 +515,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.general.navigationBar.phetButton.firedEmitter": {
       "phetioDocumentation": "Emits when the button is fired No arguments.",
@@ -527,7 +527,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "EmitterIO.<>"
+      "phetioTypeName": "EmitterIO<>"
     },
     "resistanceInAWire.general.navigationBar.phetButton.phetMenu": {
       "phetioDocumentation": "This menu is displayed when the PhET button is pressed.",
@@ -563,7 +563,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "EmitterIO.<>"
+      "phetioTypeName": "EmitterIO<>"
     },
     "resistanceInAWire.general.navigationBar.phetButton.phetMenu.aboutMenuItem.inputListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event. The arguments are:<br/><ol><li>event: EventIO</li></ol>",
@@ -575,10 +575,10 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<EventIO>"
+      "phetioTypeName": "ActionIO<EventIO>"
     },
     "resistanceInAWire.general.navigationBar.phetButton.phetMenu.aboutMenuItem.inputListener.releaseAction": {
-      "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO.<EventIO></li></ol>",
+      "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO<EventIO></li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
@@ -587,7 +587,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<NullableIO.<EventIO>>"
+      "phetioTypeName": "ActionIO<NullableIO<EventIO>>"
     },
     "resistanceInAWire.general.navigationBar.phetButton.phetMenu.aboutMenuItem.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
@@ -611,7 +611,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.general.navigationBar.phetButton.phetMenu.aboutMenuItem.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -623,7 +623,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.general.navigationBar.phetButton.phetMenu.screenshotMenuItem": {
       "phetioDocumentation": "This menu item captures a screenshot from the simulation and saves it to the file system.",
@@ -647,7 +647,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "EmitterIO.<>"
+      "phetioTypeName": "EmitterIO<>"
     },
     "resistanceInAWire.general.navigationBar.phetButton.phetMenu.screenshotMenuItem.inputListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event. The arguments are:<br/><ol><li>event: EventIO</li></ol>",
@@ -659,10 +659,10 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<EventIO>"
+      "phetioTypeName": "ActionIO<EventIO>"
     },
     "resistanceInAWire.general.navigationBar.phetButton.phetMenu.screenshotMenuItem.inputListener.releaseAction": {
-      "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO.<EventIO></li></ol>",
+      "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO<EventIO></li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
@@ -671,7 +671,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<NullableIO.<EventIO>>"
+      "phetioTypeName": "ActionIO<NullableIO<EventIO>>"
     },
     "resistanceInAWire.general.navigationBar.phetButton.phetMenu.screenshotMenuItem.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
@@ -695,7 +695,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.general.navigationBar.phetButton.phetMenu.screenshotMenuItem.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -707,7 +707,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.general.navigationBar.phetButton.pickableProperty": {
       "phetioDocumentation": "Set whether the phetButton will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -719,7 +719,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.general.navigationBar.phetButton.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event. The arguments are:<br/><ol><li>event: EventIO</li></ol>",
@@ -731,10 +731,10 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<EventIO>"
+      "phetioTypeName": "ActionIO<EventIO>"
     },
     "resistanceInAWire.general.navigationBar.phetButton.pressListener.releaseAction": {
-      "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO.<EventIO></li></ol>",
+      "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO<EventIO></li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
@@ -743,7 +743,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<NullableIO.<EventIO>>"
+      "phetioTypeName": "ActionIO<NullableIO<EventIO>>"
     },
     "resistanceInAWire.general.navigationBar.titleTextNode": {
       "phetioDocumentation": "Displays the title of the simulation in the navigation bar (bottom left)",
@@ -779,7 +779,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.general.navigationBar.titleTextNode.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
@@ -791,7 +791,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<StringIO>"
+      "phetioTypeName": "PropertyIO<StringIO>"
     },
     "resistanceInAWire.general.navigationBar.titleTextNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -803,7 +803,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.general.phetioCommandProcessor": {
       "phetioDocumentation": "Processes messages from the wrapper frame and returns the results. This serves as the source of PhET-iO data stream messages when commands are invoked from the wrapper.",
@@ -827,7 +827,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<NumberIO, NumberIO>"
+      "phetioTypeName": "ActionIO<NumberIO, NumberIO>"
     },
     "resistanceInAWire.general.screenIndexProperty": {
       "phetioDocumentation": "Indicates which screen is selected (0-indexed)",
@@ -851,7 +851,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.general.stepSimulationAction": {
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>dt: NumberIO</li></ol>",
@@ -863,7 +863,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<NumberIO>"
+      "phetioTypeName": "ActionIO<NumberIO>"
     },
     "resistanceInAWire.general.utteranceQueue": {
       "phetioDocumentation": "",
@@ -887,7 +887,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": true,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.model.areaProperty": {
       "phetioDocumentation": "",
@@ -923,7 +923,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": true,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "DerivedPropertyIO.<NumberIO>"
+      "phetioTypeName": "DerivedPropertyIO<NumberIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.model.resistivityProperty": {
       "phetioDocumentation": "",
@@ -983,7 +983,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.arrowNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -995,7 +995,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel": {
       "phetioDocumentation": "",
@@ -1043,7 +1043,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.areaSlider.nameText.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
@@ -1055,7 +1055,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<StringIO>"
+      "phetioTypeName": "PropertyIO<StringIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.areaSlider.nameText.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -1067,7 +1067,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.areaSlider.slider": {
       "phetioDocumentation": "",
@@ -1091,7 +1091,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.areaSlider.slider.enabledRangeProperty": {
       "phetioDocumentation": "",
@@ -1103,7 +1103,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<RangeIO>"
+      "phetioTypeName": "PropertyIO<RangeIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.areaSlider.slider.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
@@ -1127,7 +1127,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.areaSlider.slider.thumb": {
       "phetioDocumentation": "",
@@ -1163,7 +1163,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.areaSlider.slider.thumb.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -1175,7 +1175,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.areaSlider.slider.thumbInputListener": {
       "phetioDocumentation": "",
@@ -1199,7 +1199,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<Vector2IO>"
+      "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.areaSlider.slider.thumbInputListener.dragEndAction": {
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag end in view coordinates</li></ol>",
@@ -1211,7 +1211,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<Vector2IO>"
+      "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.areaSlider.slider.thumbInputListener.dragStartAction": {
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag start in view coordinates</li></ol>",
@@ -1223,7 +1223,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<Vector2IO>"
+      "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.areaSlider.slider.thumbInputListener.isDraggingProperty": {
       "phetioDocumentation": "Indicates whether the object is dragging",
@@ -1235,7 +1235,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": true,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.areaSlider.slider.track.trackInputListener": {
       "phetioDocumentation": "",
@@ -1259,7 +1259,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<Vector2IO>"
+      "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.areaSlider.slider.track.trackInputListener.dragEndAction": {
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag end in view coordinates</li></ol>",
@@ -1271,7 +1271,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<Vector2IO>"
+      "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.areaSlider.slider.track.trackInputListener.dragStartAction": {
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag start in view coordinates</li></ol>",
@@ -1283,7 +1283,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<Vector2IO>"
+      "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.areaSlider.slider.track.trackInputListener.isDraggingProperty": {
       "phetioDocumentation": "Indicates whether the object is dragging",
@@ -1295,7 +1295,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": true,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.areaSlider.slider.valueProperty": {
       "phetioDocumentation": "",
@@ -1319,7 +1319,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.areaSlider.symbolText": {
       "phetioDocumentation": "",
@@ -1355,7 +1355,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.areaSlider.symbolText.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
@@ -1367,7 +1367,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<StringIO>"
+      "phetioTypeName": "PropertyIO<StringIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.areaSlider.symbolText.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -1379,7 +1379,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.areaSlider.unitText": {
       "phetioDocumentation": "",
@@ -1415,7 +1415,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.areaSlider.unitText.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
@@ -1427,7 +1427,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<StringIO>"
+      "phetioTypeName": "PropertyIO<StringIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.areaSlider.unitText.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -1439,7 +1439,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.areaSlider.valueText": {
       "phetioDocumentation": "",
@@ -1475,7 +1475,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.areaSlider.valueText.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
@@ -1487,7 +1487,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<StringIO>"
+      "phetioTypeName": "PropertyIO<StringIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.areaSlider.valueText.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -1499,7 +1499,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.content": {
       "phetioDocumentation": "",
@@ -1535,7 +1535,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.content.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -1547,7 +1547,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.lengthSlider.nameText": {
       "phetioDocumentation": "",
@@ -1583,7 +1583,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.lengthSlider.nameText.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
@@ -1595,7 +1595,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<StringIO>"
+      "phetioTypeName": "PropertyIO<StringIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.lengthSlider.nameText.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -1607,7 +1607,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.lengthSlider.slider": {
       "phetioDocumentation": "",
@@ -1631,7 +1631,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.lengthSlider.slider.enabledRangeProperty": {
       "phetioDocumentation": "",
@@ -1643,7 +1643,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<RangeIO>"
+      "phetioTypeName": "PropertyIO<RangeIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.lengthSlider.slider.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
@@ -1667,7 +1667,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.lengthSlider.slider.thumb": {
       "phetioDocumentation": "",
@@ -1703,7 +1703,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.lengthSlider.slider.thumb.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -1715,7 +1715,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.lengthSlider.slider.thumbInputListener": {
       "phetioDocumentation": "",
@@ -1739,7 +1739,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<Vector2IO>"
+      "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.lengthSlider.slider.thumbInputListener.dragEndAction": {
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag end in view coordinates</li></ol>",
@@ -1751,7 +1751,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<Vector2IO>"
+      "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.lengthSlider.slider.thumbInputListener.dragStartAction": {
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag start in view coordinates</li></ol>",
@@ -1763,7 +1763,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<Vector2IO>"
+      "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.lengthSlider.slider.thumbInputListener.isDraggingProperty": {
       "phetioDocumentation": "Indicates whether the object is dragging",
@@ -1775,7 +1775,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": true,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.lengthSlider.slider.track.trackInputListener": {
       "phetioDocumentation": "",
@@ -1799,7 +1799,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<Vector2IO>"
+      "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.lengthSlider.slider.track.trackInputListener.dragEndAction": {
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag end in view coordinates</li></ol>",
@@ -1811,7 +1811,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<Vector2IO>"
+      "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.lengthSlider.slider.track.trackInputListener.dragStartAction": {
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag start in view coordinates</li></ol>",
@@ -1823,7 +1823,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<Vector2IO>"
+      "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.lengthSlider.slider.track.trackInputListener.isDraggingProperty": {
       "phetioDocumentation": "Indicates whether the object is dragging",
@@ -1835,7 +1835,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": true,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.lengthSlider.slider.valueProperty": {
       "phetioDocumentation": "",
@@ -1859,7 +1859,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.lengthSlider.symbolText": {
       "phetioDocumentation": "",
@@ -1895,7 +1895,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.lengthSlider.symbolText.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
@@ -1907,7 +1907,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<StringIO>"
+      "phetioTypeName": "PropertyIO<StringIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.lengthSlider.symbolText.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -1919,7 +1919,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.lengthSlider.unitText": {
       "phetioDocumentation": "",
@@ -1955,7 +1955,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.lengthSlider.unitText.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
@@ -1967,7 +1967,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<StringIO>"
+      "phetioTypeName": "PropertyIO<StringIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.lengthSlider.unitText.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -1979,7 +1979,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.lengthSlider.valueText": {
       "phetioDocumentation": "",
@@ -2015,7 +2015,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.lengthSlider.valueText.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
@@ -2027,7 +2027,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<StringIO>"
+      "phetioTypeName": "PropertyIO<StringIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.lengthSlider.valueText.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -2039,7 +2039,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
@@ -2063,7 +2063,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.resistanceReadout": {
       "phetioDocumentation": "",
@@ -2099,7 +2099,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.resistanceReadout.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
@@ -2111,7 +2111,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<StringIO>"
+      "phetioTypeName": "PropertyIO<StringIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.resistanceReadout.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -2123,7 +2123,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.resistivitySlider.nameText": {
       "phetioDocumentation": "",
@@ -2159,7 +2159,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.resistivitySlider.nameText.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
@@ -2171,7 +2171,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<StringIO>"
+      "phetioTypeName": "PropertyIO<StringIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.resistivitySlider.nameText.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -2183,7 +2183,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.resistivitySlider.slider": {
       "phetioDocumentation": "",
@@ -2207,7 +2207,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.resistivitySlider.slider.enabledRangeProperty": {
       "phetioDocumentation": "",
@@ -2219,7 +2219,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<RangeIO>"
+      "phetioTypeName": "PropertyIO<RangeIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.resistivitySlider.slider.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
@@ -2243,7 +2243,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.resistivitySlider.slider.thumb": {
       "phetioDocumentation": "",
@@ -2279,7 +2279,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.resistivitySlider.slider.thumb.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -2291,7 +2291,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.resistivitySlider.slider.thumbInputListener": {
       "phetioDocumentation": "",
@@ -2315,7 +2315,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<Vector2IO>"
+      "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.resistivitySlider.slider.thumbInputListener.dragEndAction": {
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag end in view coordinates</li></ol>",
@@ -2327,7 +2327,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<Vector2IO>"
+      "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.resistivitySlider.slider.thumbInputListener.dragStartAction": {
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag start in view coordinates</li></ol>",
@@ -2339,7 +2339,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<Vector2IO>"
+      "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.resistivitySlider.slider.thumbInputListener.isDraggingProperty": {
       "phetioDocumentation": "Indicates whether the object is dragging",
@@ -2351,7 +2351,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": true,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.resistivitySlider.slider.track.trackInputListener": {
       "phetioDocumentation": "",
@@ -2375,7 +2375,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<Vector2IO>"
+      "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.resistivitySlider.slider.track.trackInputListener.dragEndAction": {
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag end in view coordinates</li></ol>",
@@ -2387,7 +2387,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<Vector2IO>"
+      "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.resistivitySlider.slider.track.trackInputListener.dragStartAction": {
       "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>point: Vector2IO. the position of the drag start in view coordinates</li></ol>",
@@ -2399,7 +2399,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<Vector2IO>"
+      "phetioTypeName": "ActionIO<Vector2IO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.resistivitySlider.slider.track.trackInputListener.isDraggingProperty": {
       "phetioDocumentation": "Indicates whether the object is dragging",
@@ -2411,7 +2411,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": true,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.resistivitySlider.slider.valueProperty": {
       "phetioDocumentation": "",
@@ -2435,7 +2435,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.resistivitySlider.symbolText": {
       "phetioDocumentation": "",
@@ -2471,7 +2471,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.resistivitySlider.symbolText.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
@@ -2483,7 +2483,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<StringIO>"
+      "phetioTypeName": "PropertyIO<StringIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.resistivitySlider.symbolText.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -2495,7 +2495,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.resistivitySlider.unitText": {
       "phetioDocumentation": "",
@@ -2531,7 +2531,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.resistivitySlider.unitText.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
@@ -2543,7 +2543,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<StringIO>"
+      "phetioTypeName": "PropertyIO<StringIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.resistivitySlider.unitText.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -2555,7 +2555,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.resistivitySlider.valueText": {
       "phetioDocumentation": "",
@@ -2591,7 +2591,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.resistivitySlider.valueText.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
@@ -2603,7 +2603,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<StringIO>"
+      "phetioTypeName": "PropertyIO<StringIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.resistivitySlider.valueText.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -2615,7 +2615,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.controlPanel.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -2627,7 +2627,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.formulaNode": {
       "phetioDocumentation": "",
@@ -2675,7 +2675,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.formulaNode.areaSymbol.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
@@ -2687,7 +2687,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<StringIO>"
+      "phetioTypeName": "PropertyIO<StringIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.formulaNode.areaSymbol.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -2699,7 +2699,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.formulaNode.dividingLine": {
       "phetioDocumentation": "",
@@ -2735,7 +2735,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.formulaNode.dividingLine.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -2747,7 +2747,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.formulaNode.equalsSign": {
       "phetioDocumentation": "",
@@ -2783,7 +2783,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.formulaNode.equalsSign.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
@@ -2795,7 +2795,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<StringIO>"
+      "phetioTypeName": "PropertyIO<StringIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.formulaNode.equalsSign.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -2807,7 +2807,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.formulaNode.lengthSymbol": {
       "phetioDocumentation": "",
@@ -2843,7 +2843,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.formulaNode.lengthSymbol.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
@@ -2855,7 +2855,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<StringIO>"
+      "phetioTypeName": "PropertyIO<StringIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.formulaNode.lengthSymbol.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -2867,7 +2867,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.formulaNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
@@ -2891,7 +2891,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.formulaNode.resistanceSymbol": {
       "phetioDocumentation": "",
@@ -2927,7 +2927,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.formulaNode.resistanceSymbol.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
@@ -2939,7 +2939,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<StringIO>"
+      "phetioTypeName": "PropertyIO<StringIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.formulaNode.resistanceSymbol.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -2951,7 +2951,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.formulaNode.resistivitySymbol": {
       "phetioDocumentation": "",
@@ -2987,7 +2987,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.formulaNode.resistivitySymbol.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
@@ -2999,7 +2999,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<StringIO>"
+      "phetioTypeName": "PropertyIO<StringIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.formulaNode.resistivitySymbol.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -3011,7 +3011,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.formulaNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -3023,7 +3023,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
@@ -3047,7 +3047,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.resetAllButton": {
       "phetioDocumentation": "The orange, round button that can be used to restore the initial state",
@@ -3071,7 +3071,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.resetAllButton.firedEmitter": {
       "phetioDocumentation": "Emits when the button is fired No arguments.",
@@ -3083,7 +3083,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "EmitterIO.<>"
+      "phetioTypeName": "EmitterIO<>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.resetAllButton.isFiringProperty": {
       "phetioDocumentation": "Temporarily becomes true while the Reset All button is firing.  Commonly used to disable audio effects during reset.",
@@ -3095,7 +3095,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": true,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "DerivedPropertyIO.<BooleanIO>"
+      "phetioTypeName": "DerivedPropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.resetAllButton.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
@@ -3119,7 +3119,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.resetAllButton.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event. The arguments are:<br/><ol><li>event: EventIO</li></ol>",
@@ -3131,10 +3131,10 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<EventIO>"
+      "phetioTypeName": "ActionIO<EventIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.resetAllButton.pressListener.releaseAction": {
-      "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO.<EventIO></li></ol>",
+      "phetioDocumentation": "Executes whenever a release occurs. The arguments are:<br/><ol><li>event: NullableIO<EventIO></li></ol>",
       "phetioDynamicElement": false,
       "phetioEventType": "USER",
       "phetioFeatured": false,
@@ -3143,7 +3143,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "ActionIO.<NullableIO.<EventIO>>"
+      "phetioTypeName": "ActionIO<NullableIO<EventIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.resetAllButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -3155,7 +3155,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -3167,7 +3167,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.wireNode": {
       "phetioDocumentation": "",
@@ -3203,7 +3203,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.wireNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -3215,7 +3215,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.wireNode.wireBody": {
       "phetioDocumentation": "",
@@ -3251,7 +3251,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.wireNode.wireBody.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -3263,7 +3263,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.wireNode.wireEnd": {
       "phetioDocumentation": "",
@@ -3299,7 +3299,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
+      "phetioTypeName": "PropertyIO<NullableIO<BooleanIO>>"
     },
     "resistanceInAWire.resistanceInAWireScreen.view.wireNode.wireEnd.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
@@ -3311,6 +3311,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<BooleanIO>"
+      "phetioTypeName": "PropertyIO<BooleanIO>"
     }
   };
