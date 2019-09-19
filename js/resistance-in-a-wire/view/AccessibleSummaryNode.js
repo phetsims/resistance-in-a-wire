@@ -22,13 +22,13 @@ define( require => {
   const Util = require( 'DOT/Util' );
 
   // a11y strings
-  var summarySimString = ResistanceInAWireA11yStrings.summarySimString.value;
-  var currentlyString = ResistanceInAWireA11yStrings.currentlyString.value;
-  var summaryResistancePatternString = ResistanceInAWireA11yStrings.summaryResistancePatternString.value;
-  var summaryResistivityPatternString = ResistanceInAWireA11yStrings.summaryResistivityPatternString.value;
-  var summaryLengthPatternString = ResistanceInAWireA11yStrings.summaryLengthPatternString.value;
-  var summaryAreaPatternString = ResistanceInAWireA11yStrings.summaryAreaPatternString.value;
-  var summaryInteractionHintString = ResistanceInAWireA11yStrings.summaryInteractionHintString.value;
+  const summarySimString = ResistanceInAWireA11yStrings.summarySimString.value;
+  const currentlyString = ResistanceInAWireA11yStrings.currentlyString.value;
+  const summaryResistancePatternString = ResistanceInAWireA11yStrings.summaryResistancePatternString.value;
+  const summaryResistivityPatternString = ResistanceInAWireA11yStrings.summaryResistivityPatternString.value;
+  const summaryLengthPatternString = ResistanceInAWireA11yStrings.summaryLengthPatternString.value;
+  const summaryAreaPatternString = ResistanceInAWireA11yStrings.summaryAreaPatternString.value;
+  const summaryInteractionHintString = ResistanceInAWireA11yStrings.summaryInteractionHintString.value;
 
   // constants
   function AccessibleSummaryNode( model ) {
@@ -44,11 +44,11 @@ define( require => {
     this.addChild( new Node( { tagName: 'p', innerContent: currentlyString } ) );
 
     // list that updates according to model Properties
-    var listNode = new Node( { tagName: 'ul' } );
-    var resistanceItemNode = new Node( { tagName: 'li' } );
-    var resistivityItemNode = new Node( { tagName: 'li' } );
-    var lengthItemNode = new Node( { tagName: 'li' } );
-    var areaItemNode = new Node( { tagName: 'li' } );
+    const listNode = new Node( { tagName: 'ul' } );
+    const resistanceItemNode = new Node( { tagName: 'li' } );
+    const resistivityItemNode = new Node( { tagName: 'li' } );
+    const lengthItemNode = new Node( { tagName: 'li' } );
+    const areaItemNode = new Node( { tagName: 'li' } );
     this.addChild( listNode );
     listNode.children = [ resistanceItemNode, resistivityItemNode, lengthItemNode, areaItemNode ];
 
@@ -57,7 +57,7 @@ define( require => {
 
     // add listeners - add all values to a list so we can easily iterate and add listeners to update descriptions
     // with each property
-    var valueItemList = [
+    const valueItemList = [
       {
         property: model.resistivityProperty,
         patternString: summaryResistivityPatternString,
@@ -90,7 +90,7 @@ define( require => {
       item.property.link( function( value ) {
 
         // the precision might change during interaction, get precision if property is a function
-        var precision = typeof item.precision === 'number' ? item.precision : item.precision( value );
+        const precision = typeof item.precision === 'number' ? item.precision : item.precision( value );
         item.node.innerContent = StringUtils.fillIn( item.patternString, {
           value: Util.toFixed( value, precision )
         } );

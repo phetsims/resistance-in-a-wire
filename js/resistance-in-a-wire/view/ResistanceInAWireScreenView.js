@@ -38,31 +38,31 @@ define( require => {
     } );
 
     // Create the control panel with sliders that change the values of the equation's variables. Hard coded
-    var controlPanel = new ControlPanel( model, tandem.createTandem( 'controlPanel' ), {
+    const controlPanel = new ControlPanel( model, tandem.createTandem( 'controlPanel' ), {
       right: this.layoutBounds.right - 30,
       top: 40
     } );
 
     // Create the formula node that holds the equation with size changing variables.
-    var formulaNode = new FormulaNode( model, tandem.createTandem( 'formulaNode' ), {
+    const formulaNode = new FormulaNode( model, tandem.createTandem( 'formulaNode' ), {
       centerX: controlPanel.left / 2,
       centerY: 190
     } );
     this.playAreaNode.addChild( formulaNode );
 
     // Create the wire display to represent the formula
-    var wireNode = new WireNode( model, tandem.createTandem( 'wireNode' ), {
+    const wireNode = new WireNode( model, tandem.createTandem( 'wireNode' ), {
       centerX: formulaNode.centerX,
       centerY: formulaNode.centerY + 270
     } );
     this.playAreaNode.addChild( wireNode );
 
-    var tailX = wireNode.centerX - ResistanceInAWireConstants.TAIL_LENGTH / 2;
-    var tipX = wireNode.centerX + ResistanceInAWireConstants.TAIL_LENGTH / 2;
-    var arrowHeight = this.layoutBounds.bottom - 47;
+    const tailX = wireNode.centerX - ResistanceInAWireConstants.TAIL_LENGTH / 2;
+    const tipX = wireNode.centerX + ResistanceInAWireConstants.TAIL_LENGTH / 2;
+    const arrowHeight = this.layoutBounds.bottom - 47;
 
     // create static arrow below the wire
-    var arrowNode = new ArrowNode( tailX, arrowHeight, tipX, arrowHeight, {
+    const arrowNode = new ArrowNode( tailX, arrowHeight, tipX, arrowHeight, {
       headHeight: ResistanceInAWireConstants.HEAD_HEIGHT,
       headWidth: ResistanceInAWireConstants.HEAD_WIDTH,
       tailWidth: ResistanceInAWireConstants.TAIL_WIDTH,
@@ -73,7 +73,7 @@ define( require => {
     } );
     this.playAreaNode.addChild( arrowNode );
 
-    var resetAllButton = new ResetAllButton( {
+    const resetAllButton = new ResetAllButton( {
       listener: function() { model.reset(); },
       radius: 30,
       right: controlPanel.right,
@@ -87,7 +87,7 @@ define( require => {
 
     // the outer stroke of the ResetAllButton focus highlight is black so that it is visible when the equation
     // resistance letter grows too large
-    var highlightShape = resetAllButton.focusHighlight;
+    const highlightShape = resetAllButton.focusHighlight;
     assert && assert( highlightShape instanceof Shape, 'highlightShape must be a Shape' );
     resetAllButton.focusHighlight = new FocusHighlightPath( highlightShape, { outerStroke: 'black' } );
 

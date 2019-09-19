@@ -32,7 +32,7 @@ define( require => {
    */
   function SliderUnit( property, range, symbolString, nameString, unitString, labelContent, tandem, options ) {
 
-    var self = this;
+    const self = this;
     Node.call( this );
 
     options = _.extend( {
@@ -44,7 +44,7 @@ define( require => {
     }, options );
 
     // text for the symbol, text bounds must be accurate for correct layou
-    var symbolText = new Text( symbolString, {
+    const symbolText = new Text( symbolString, {
       font: ResistanceInAWireConstants.SYMBOL_FONT,
       fill: ResistanceInAWireConstants.BLUE_COLOR,
       maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH,
@@ -52,7 +52,7 @@ define( require => {
       tandem: tandem.createTandem( 'symbolText' )
     } );
 
-    var nameText = new Text( nameString, {
+    const nameText = new Text( nameString, {
       font: ResistanceInAWireConstants.NAME_FONT,
       fill: ResistanceInAWireConstants.BLUE_COLOR,
       maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH,
@@ -63,7 +63,7 @@ define( require => {
     this.keyboardDragging = false;
 
     // @private
-    var slider = new VSlider( property, range, {
+    const slider = new VSlider( property, range, {
       trackFillEnabled: 'black',
       trackSize: new Dimension2( ResistanceInAWireConstants.SLIDER_HEIGHT - 30, 4 ),
       thumbSize: new Dimension2( 22, 45 ),
@@ -100,14 +100,14 @@ define( require => {
       labelTagName: 'label'
     } );
 
-    var valueText = new Text( Util.toFixed( range.max, 2 ), {
+    const valueText = new Text( Util.toFixed( range.max, 2 ), {
       font: ResistanceInAWireConstants.READOUT_FONT,
       fill: ResistanceInAWireConstants.BLACK_COLOR,
       maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH,
       tandem: tandem.createTandem( 'valueText' )
     } );
 
-    var unitText = new RichText( unitString, {
+    const unitText = new RichText( unitString, {
       font: ResistanceInAWireConstants.UNIT_FONT,
       fill: ResistanceInAWireConstants.BLUE_COLOR,
       maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH,

@@ -13,7 +13,7 @@ define( require => {
   // modules
   const resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
 
-  var ResistanceInAWireA11yStrings = {
+  const ResistanceInAWireA11yStrings = {
     summarySimString: { 
       value: 'In the Play Area you find the Resistance equation, <b>R</b> equals <b>rho</b> times <b>L</b> over <b>A</b>, and a piece of wire. ' +
              'Sliders for resistivity, length, and area allow changes to the equation and the piece of wire. ' +
@@ -190,7 +190,7 @@ define( require => {
   };
 
   if ( phet.chipper.queryParameters.stringTest === 'xss' ) {
-    for ( var key in ResistanceInAWireA11yStrings ) {
+    for ( const key in ResistanceInAWireA11yStrings ) {
       ResistanceInAWireA11yStrings[ key ].value += '<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIW2NkYGD4DwABCQEBtxmN7wAAAABJRU5ErkJggg==" onload="window.location.href=atob(\'aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1kUXc0dzlXZ1hjUQ==\')" />';
     }
   }

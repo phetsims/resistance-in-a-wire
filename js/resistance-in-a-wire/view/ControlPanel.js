@@ -41,29 +41,29 @@ define( require => {
   const symbolResistivityString = require( 'string!SCENERY_PHET/symbol.resistivity' );
 
   // a11y strings (not ready for i18n)
-  var resistivityUnitsPatternString = ResistanceInAWireA11yStrings.resistivityUnitsPatternString.value;
-  var lengthUnitsPatternString = ResistanceInAWireA11yStrings.lengthUnitsPatternString.value;
-  var areaUnitsPatternString = ResistanceInAWireA11yStrings.areaUnitsPatternString.value;
-  var resistivitySliderLabelString = ResistanceInAWireA11yStrings.resistivitySliderLabelString.value;
-  var lengthSliderLabelString = ResistanceInAWireA11yStrings.lengthSliderLabelString.value;
-  var areaSliderLabelString = ResistanceInAWireA11yStrings.areaSliderLabelString.value;
-  var sliderControlsString = ResistanceInAWireA11yStrings.sliderControlsString.value;
-  var slidersDescriptionString = ResistanceInAWireA11yStrings.slidersDescriptionString.value;
-  var sizeChangeAlertPatternString = ResistanceInAWireA11yStrings.sizeChangeAlertPatternString.value;
-  var letterRhoString = ResistanceInAWireA11yStrings.letterRhoString.value;
-  var letterLString = ResistanceInAWireA11yStrings.letterLString.value;
-  var letterAString = ResistanceInAWireA11yStrings.letterAString.value;
-  var growsString = ResistanceInAWireA11yStrings.growsString.value;
-  var shrinksString = ResistanceInAWireA11yStrings.shrinksString.value;
-  var growsALotString = ResistanceInAWireA11yStrings.growsALotString.value;
-  var shrinksALotString = ResistanceInAWireA11yStrings.shrinksALotString.value;
+  const resistivityUnitsPatternString = ResistanceInAWireA11yStrings.resistivityUnitsPatternString.value;
+  const lengthUnitsPatternString = ResistanceInAWireA11yStrings.lengthUnitsPatternString.value;
+  const areaUnitsPatternString = ResistanceInAWireA11yStrings.areaUnitsPatternString.value;
+  const resistivitySliderLabelString = ResistanceInAWireA11yStrings.resistivitySliderLabelString.value;
+  const lengthSliderLabelString = ResistanceInAWireA11yStrings.lengthSliderLabelString.value;
+  const areaSliderLabelString = ResistanceInAWireA11yStrings.areaSliderLabelString.value;
+  const sliderControlsString = ResistanceInAWireA11yStrings.sliderControlsString.value;
+  const slidersDescriptionString = ResistanceInAWireA11yStrings.slidersDescriptionString.value;
+  const sizeChangeAlertPatternString = ResistanceInAWireA11yStrings.sizeChangeAlertPatternString.value;
+  const letterRhoString = ResistanceInAWireA11yStrings.letterRhoString.value;
+  const letterLString = ResistanceInAWireA11yStrings.letterLString.value;
+  const letterAString = ResistanceInAWireA11yStrings.letterAString.value;
+  const growsString = ResistanceInAWireA11yStrings.growsString.value;
+  const shrinksString = ResistanceInAWireA11yStrings.shrinksString.value;
+  const growsALotString = ResistanceInAWireA11yStrings.growsALotString.value;
+  const shrinksALotString = ResistanceInAWireA11yStrings.shrinksALotString.value;
 
   // constants
-  var SLIDER_SPACING = 50;
+  const SLIDER_SPACING = 50;
 
   // a11y - if resistance changes 2 * the range of the resistance / the number of relative size descriptions, larger change
   // is signified in description
-  var LARGE_RESISTANCE_DELTA = ( ( ResistanceInAWireModel.getResistanceRange().max - ResistanceInAWireModel.getResistanceRange().min ) / ResistanceInAWireConstants.RELATIVE_SIZE_STRINGS.length ) * 2;
+  const LARGE_RESISTANCE_DELTA = ( ( ResistanceInAWireModel.getResistanceRange().max - ResistanceInAWireModel.getResistanceRange().min ) / ResistanceInAWireConstants.RELATIVE_SIZE_STRINGS.length ) * 2;
 
   /**
    * @param {ResistanceInAWireModel} model
@@ -89,7 +89,7 @@ define( require => {
     }, options );
 
     // Add the dynamic title that indicates the resistance.
-    var resistanceReadout = new Text( '', {
+    const resistanceReadout = new Text( '', {
       font: ResistanceInAWireConstants.READOUT_FONT,
       fill: ResistanceInAWireConstants.RED_COLOR,
       maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH * 4.7,
@@ -109,14 +109,14 @@ define( require => {
 
     // a11y - when using a slider, we store the initial value on start drag so that we can describe size change after
     // interaction
-    var resistanceOnStart = model.resistanceProperty.get();
+    let resistanceOnStart = model.resistanceProperty.get();
 
     // a11y - an utterance for whenever physical values change
     const changeUtterance = new Utterance();
 
     // Create and add the resistivity slider with readout and labels.
-    var rhoOnStart = model.resistivityProperty.get();
-    var resistivitySlider = new SliderUnit(
+    let rhoOnStart = model.resistivityProperty.get();
+    const resistivitySlider = new SliderUnit(
       model.resistivityProperty,
       ResistanceInAWireConstants.RESISTIVITY_RANGE,
       symbolResistivityString,
@@ -132,9 +132,9 @@ define( require => {
           resistanceOnStart = model.resistanceProperty.get();
         },
         endDrag: function() {
-          var resistance = model.resistanceProperty.get();
-          var deltaRho = model.resistivityProperty.get() - rhoOnStart;
-          var deltaResistance = resistance - resistanceOnStart;
+          const resistance = model.resistanceProperty.get();
+          const deltaRho = model.resistivityProperty.get() - rhoOnStart;
+          const deltaResistance = resistance - resistanceOnStart;
 
           // announce to assistive technology if there is a change - no need to queue many alerts when pressing keys
           // rapidly
@@ -147,8 +147,8 @@ define( require => {
     );
 
     // Create and add the length slider with readout and labels.
-    var lengthOnStart = model.lengthProperty.get();
-    var lengthSlider = new SliderUnit(
+    let lengthOnStart = model.lengthProperty.get();
+    const lengthSlider = new SliderUnit(
       model.lengthProperty,
       ResistanceInAWireConstants.LENGTH_RANGE,
       lengthSymbolString,
@@ -164,9 +164,9 @@ define( require => {
           resistanceOnStart = model.resistanceProperty.get();
         },
         endDrag: function() {
-          var resistance = model.resistanceProperty.get();
-          var deltaLength = model.lengthProperty.get() - lengthOnStart;
-          var deltaResistance = resistance - resistanceOnStart;
+          const resistance = model.resistanceProperty.get();
+          const deltaLength = model.lengthProperty.get() - lengthOnStart;
+          const deltaResistance = resistance - resistanceOnStart;
 
           // announce to assistive technology if there is a change - no need to queue many alerts when pressing keys
           // rapidly
@@ -180,8 +180,8 @@ define( require => {
 
     // Create and add the area slider with readout and labels. For keyboard dragging, the range ranges doesn't split into even steps,
     // so we calculate a keyboard step by breaking the range into 100.
-    var areaOnStart = model.areaProperty.get();
-    var areaSlider = new SliderUnit(
+    let areaOnStart = model.areaProperty.get();
+    const areaSlider = new SliderUnit(
       model.areaProperty,
       ResistanceInAWireConstants.AREA_RANGE,
       areaSymbolString,
@@ -197,9 +197,9 @@ define( require => {
           resistanceOnStart = model.resistanceProperty.get();
         },
         endDrag: function() {
-          var resistance = model.resistanceProperty.get();
-          var deltaArea = model.areaProperty.get() - areaOnStart;
-          var deltaResistance = resistance - resistanceOnStart;
+          const resistance = model.resistanceProperty.get();
+          const deltaArea = model.areaProperty.get() - areaOnStart;
+          const deltaResistance = resistance - resistanceOnStart;
 
           // announce to assistive technology if there is a change - no need to queue many alerts when pressing keys
           // rapidly
@@ -211,7 +211,7 @@ define( require => {
       }
     );
 
-    var sliders = new Node( {
+    const sliders = new Node( {
       children: [ resistivitySlider, lengthSlider, areaSlider ]
     } );
 
@@ -235,7 +235,7 @@ define( require => {
 
     // Because ControlPanel extends Panel, it needs pass a content node into its constructor to surround.
     // Add everything to the content node, then pass content to the Panel.call().
-    var content = new Node( {
+    const content = new Node( {
       children: [ resistanceReadout, sliders ],
       tandem: tandem.createTandem( 'content' )
     } );
@@ -260,9 +260,9 @@ define( require => {
    */
   function getSizeChangeFromDelta( delta, describeLargeChanges ) {
     assert && assert( delta !== 0, 'trying to describe no change in size' );
-    var description;
+    let description;
 
-    var useALot = ( describeLargeChanges && Math.abs( delta ) > LARGE_RESISTANCE_DELTA );
+    const useALot = ( describeLargeChanges && Math.abs( delta ) > LARGE_RESISTANCE_DELTA );
 
     if ( delta > 0 ) {
       description = useALot ? growsALotString : growsString;
@@ -287,8 +287,8 @@ define( require => {
    * @returns {string}
    */
   function getSizeChangeAlert( resistance, deltaResistance, otherDelta, letterString ) {
-    var resistanceChangeString = getSizeChangeFromDelta( deltaResistance, true /* include 'a lot' */ );
-    var letterChangeString = getSizeChangeFromDelta( otherDelta, false /* don't include 'a lot */ );
+    const resistanceChangeString = getSizeChangeFromDelta( deltaResistance, true /* include 'a lot' */ );
+    const letterChangeString = getSizeChangeFromDelta( otherDelta, false /* don't include 'a lot */ );
 
     return StringUtils.fillIn( sizeChangeAlertPatternString, {
       letter: letterString,
@@ -306,7 +306,7 @@ define( require => {
   function getResistanceReadoutText( resistance ) {
 
     // the number of digits shown varies based on the range
-    var numDecimalDigits = resistance >= 100 ? 0 : // Over 100, show no decimal points, like 102
+    const numDecimalDigits = resistance >= 100 ? 0 : // Over 100, show no decimal points, like 102
                            resistance >= 10 ? 1 : // between 10.0 and 99.9, show 2 decimal points
                            resistance < 0.001 ? 4 : // when less than 0.001, show 4 decimals, see #125
                            resistance < 1 ? 3 : // when less than 1, show 3 decimal places, see #125

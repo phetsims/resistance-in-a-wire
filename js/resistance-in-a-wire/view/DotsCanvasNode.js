@@ -22,12 +22,12 @@ define( require => {
 
   // constants
   // to calculate the number of dots
-  var MAX_WIDTH_INCLUDING_ROUNDED_ENDS = WireShapeConstants.WIRE_VIEW_WIDTH_RANGE.max + 2 * WireShapeConstants.WIRE_VIEW_HEIGHT_RANGE.max * WireShapeConstants.PERSPECTIVE_FACTOR;
-  var AREA_PER_DOT = 200; // Adjust this to control the density of the dots.
-  var NUMBER_OF_DOTS = MAX_WIDTH_INCLUDING_ROUNDED_ENDS * WireShapeConstants.WIRE_VIEW_HEIGHT_RANGE.max / AREA_PER_DOT;
+  const MAX_WIDTH_INCLUDING_ROUNDED_ENDS = WireShapeConstants.WIRE_VIEW_WIDTH_RANGE.max + 2 * WireShapeConstants.WIRE_VIEW_HEIGHT_RANGE.max * WireShapeConstants.PERSPECTIVE_FACTOR;
+  const AREA_PER_DOT = 200; // Adjust this to control the density of the dots.
+  const NUMBER_OF_DOTS = MAX_WIDTH_INCLUDING_ROUNDED_ENDS * WireShapeConstants.WIRE_VIEW_HEIGHT_RANGE.max / AREA_PER_DOT;
 
   // Function to map resistivity to number of dots.
-  var resistivityToNumberOfDots = new LinearFunction(
+  const resistivityToNumberOfDots = new LinearFunction(
     ResistanceInAWireConstants.RESISTIVITY_RANGE.min,
     ResistanceInAWireConstants.RESISTIVITY_RANGE.max,
     NUMBER_OF_DOTS * 0.05,
@@ -48,9 +48,9 @@ define( require => {
 
     // @private - Locations for dots randomly on the wire. Density is based on AREA_PER_DOT.
     this.dotCenters = [];
-    for ( var i = 0; i < NUMBER_OF_DOTS; i++ ) {
-      var centerX = ( phet.joist.random.nextDouble() - .5 ) * MAX_WIDTH_INCLUDING_ROUNDED_ENDS;
-      var centerY = ( phet.joist.random.nextDouble() - .5 ) * WireShapeConstants.WIRE_VIEW_HEIGHT_RANGE.max;
+    for ( let i = 0; i < NUMBER_OF_DOTS; i++ ) {
+      const centerX = ( phet.joist.random.nextDouble() - .5 ) * MAX_WIDTH_INCLUDING_ROUNDED_ENDS;
+      const centerY = ( phet.joist.random.nextDouble() - .5 ) * WireShapeConstants.WIRE_VIEW_HEIGHT_RANGE.max;
       this.dotCenters.push( new Vector2( centerX, centerY ) );
     }
 
@@ -60,9 +60,9 @@ define( require => {
     this.lengthProperty = model.lengthProperty;
 
     // calculate bounds for the canvas - wire center is at (0, 0)
-    var height = WireShapeConstants.areaToHeight( ResistanceInAWireConstants.AREA_RANGE.max );
-    var width = WireShapeConstants.lengthToWidth( ResistanceInAWireConstants.LENGTH_RANGE.max );
-    var dotsBounds = new Bounds2( -width / 2 - WireShapeConstants.PERSPECTIVE_FACTOR * height / 2, -height / 2, width / 2 + WireShapeConstants.PERSPECTIVE_FACTOR * height / 2, height / 2 );
+    const height = WireShapeConstants.areaToHeight( ResistanceInAWireConstants.AREA_RANGE.max );
+    const width = WireShapeConstants.lengthToWidth( ResistanceInAWireConstants.LENGTH_RANGE.max );
+    const dotsBounds = new Bounds2( -width / 2 - WireShapeConstants.PERSPECTIVE_FACTOR * height / 2, -height / 2, width / 2 + WireShapeConstants.PERSPECTIVE_FACTOR * height / 2, height / 2 );
 
     CanvasNode.call( this, options );
     this.setCanvasBounds( dotsBounds );
@@ -83,16 +83,16 @@ define( require => {
     paintCanvas: function( context ) {
 
       // Height of the wire in view coordinates
-      var height = WireShapeConstants.areaToHeight( this.areaProperty.get() );
+      const height = WireShapeConstants.areaToHeight( this.areaProperty.get() );
 
       // Width of the wire (as measured from the top of the wire, that is excluding the rounding bits in the middle).
-      var width = WireShapeConstants.lengthToWidth( this.lengthProperty.get() );
+      const width = WireShapeConstants.lengthToWidth( this.lengthProperty.get() );
 
       // for readability, these are relative to the rectangular body
-      var top = -height / 2;
-      var bottom = height / 2;
-      var left = -width / 2;
-      var right = width / 2;
+      const top = -height / 2;
+      const bottom = height / 2;
+      const left = -width / 2;
+      const right = width / 2;
 
       // Rectangular shape of the body, used as the clip area. Using and changing clip area that includes the ends
       // of the wire with Shape.ellipticalArc is too slow. But approximating arcs with fewer segments is much faster.
@@ -117,8 +117,8 @@ define( require => {
       context.fillStyle = 'black';
 
       // draw the dots, number depending on the resistivity Property
-      var numDotsToShow = resistivityToNumberOfDots( this.resistivityProperty.get() );
-      for ( var i = 0; i < this.dotCenters.length; i++ ) {
+      const numDotsToShow = resistivityToNumberOfDots( this.resistivityProperty.get() );
+      for ( let i = 0; i < this.dotCenters.length; i++ ) {
         if ( i < numDotsToShow ) {
           context.beginPath();
           context.arc( this.dotCenters[ i ].x, this.dotCenters[ i ].y, WireShapeConstants.DOT_RADIUS, 0, 2 * Math.PI, true );
@@ -142,16 +142,16 @@ define( require => {
   function approxEllipticalArc( context, height, centerX, startAngle, endAngle ) {
 
     // with 9 segments, the elliptical shape is almost perfect
-    var segments = 9;
-    var delta = ( endAngle - startAngle ) / segments;
+    const segments = 9;
+    const delta = ( endAngle - startAngle ) / segments;
 
-    var xRadius = WireShapeConstants.PERSPECTIVE_FACTOR * height / 2;
-    var yRadius = height / 2;
+    const xRadius = WireShapeConstants.PERSPECTIVE_FACTOR * height / 2;
+    const yRadius = height / 2;
 
-    var t = startAngle;
+    let t = startAngle;
     while( t <= endAngle ) {
-      var x = centerX + xRadius * Math.cos( t );
-      var y = yRadius * Math.sin( t );
+      const x = centerX + xRadius * Math.cos( t );
+      const y = yRadius * Math.sin( t );
       context.lineTo( x, y );
 
       t += delta;

@@ -34,18 +34,18 @@ define( require => {
   const symbolResistivityString = require( 'string!SCENERY_PHET/symbol.resistivity' );
 
   // a11y strings
-  var resistanceEquationString = ResistanceInAWireA11yStrings.resistanceEquationString.value;
-  var resistanceEquationDescriptionString = ResistanceInAWireA11yStrings.resistanceEquationDescriptionString.value;
-  var rhoLAndAComparablePatternString = ResistanceInAWireA11yStrings.rhoLAndAComparablePatternString.value;
-  var lAndAComparablePatternString = ResistanceInAWireA11yStrings.lAndAComparablePatternString.value;
-  var noneComparablePatternString = ResistanceInAWireA11yStrings.noneComparablePatternString.value;
+  const resistanceEquationString = ResistanceInAWireA11yStrings.resistanceEquationString.value;
+  const resistanceEquationDescriptionString = ResistanceInAWireA11yStrings.resistanceEquationDescriptionString.value;
+  const rhoLAndAComparablePatternString = ResistanceInAWireA11yStrings.rhoLAndAComparablePatternString.value;
+  const lAndAComparablePatternString = ResistanceInAWireA11yStrings.lAndAComparablePatternString.value;
+  const noneComparablePatternString = ResistanceInAWireA11yStrings.noneComparablePatternString.value;
 
   // constants - rather than keep a reference to each letter node, a map from key to scale magnitude is used
   // to track letter scales
-  var RESISTANCE_KEY = 'resistance';
-  var RESISTIVITY_KEY = 'resistivity';
-  var AREA_KEY = 'area';
-  var LENGTH_KEY = 'length';
+  const RESISTANCE_KEY = 'resistance';
+  const RESISTIVITY_KEY = 'resistivity';
+  const AREA_KEY = 'area';
+  const LENGTH_KEY = 'length';
 
   /**
    * @param {ResistanceInAWireModel} model
@@ -66,7 +66,7 @@ define( require => {
     } );
 
     // equals sign, hard coded
-    var equalsSignText = new Text( '=', { // we never internationalize the '=' sign
+    const equalsSignText = new Text( '=', { // we never internationalize the '=' sign
       font: new PhetFont( { family: ResistanceInAWireConstants.FONT_FAMILY, size: 90 } ),
       fill: ResistanceInAWireConstants.BLACK_COLOR,
       center: new Vector2( 100, 0 ),
@@ -81,7 +81,7 @@ define( require => {
     this.a11yScaleMap[ LENGTH_KEY ] = 0;
 
     // An array of attributes related to text
-    var symbolTexts = [ {
+    const symbolTexts = [ {
       label: resistanceSymbolString,
       center: new Vector2( equalsSignText.centerX - 100, 0 ),
       property: model.resistanceProperty,
@@ -114,7 +114,7 @@ define( require => {
 
     // parent for all letters in the equation - given a 'p' tag for a11y because this node will hold the relative
     // size description, see getRelativeSizeDescription()
-    var lettersNode = new Node( { tagName: 'p' } );
+    const lettersNode = new Node( { tagName: 'p' } );
 
     // if we are on a safari platform render with canvas to prevent these issues, but only on safari because
     // canvas doesn't perform as well on other browsers
@@ -123,10 +123,10 @@ define( require => {
     if ( platform.safari ) { lettersNode.renderer = 'canvas'; }
 
     // dynamically sized text
-    var self = this;
+    const self = this;
     symbolTexts.forEach( function( entry ) {
 
-      var text = new Text( entry.label, {
+      const text = new Text( entry.label, {
         font: new PhetFont( { family: ResistanceInAWireConstants.FONT_FAMILY, size: 15 } ),
         fill: entry.color,
         center: entry.center,
@@ -136,18 +136,18 @@ define( require => {
       // Add an invisible rectangle with bounds slightly larger than the text so that artifacts aren't left on the
       // screen, see https://github.com/phetsims/ohms-law/issues/26.
       // This also serves as the rectangle surrounding the 'R' that 'caps' the scaling when it gets too big.
-      var antiArtifactRectangle = Rectangle.bounds( text.bounds.dilated( 1 ) );
+      const antiArtifactRectangle = Rectangle.bounds( text.bounds.dilated( 1 ) );
 
-      var letterNode = new Node( { children: [ antiArtifactRectangle, text ] } );
+      const letterNode = new Node( { children: [ antiArtifactRectangle, text ] } );
       lettersNode.addChild( letterNode );
 
       // Set the scale based on the default value of the property; normalize the scale for all letters.
-      var scale = 7 / entry.property.value; // empirically determined '7'
+      const scale = 7 / entry.property.value; // empirically determined '7'
 
       // The size of the formula letter will scale with the value the letter represents. The accessible description for
       // the equation will also update. This does not need an unlink because it exists for the life of the sim.
       entry.property.link( function( value ) {
-        var scaleMagnitude = scale * value + 1;
+        const scaleMagnitude = scale * value + 1;
         letterNode.setScaleMagnitude( scaleMagnitude );
         letterNode.center = entry.center;
 
@@ -196,34 +196,34 @@ define( require => {
      * @a11y
      */
     getRelativeSizeDescription: function() {
-      var resistanceScale = this.a11yScaleMap[ RESISTANCE_KEY ];
-      var resistivityScale = this.a11yScaleMap[ RESISTIVITY_KEY ];
-      var areaScale = this.a11yScaleMap[ AREA_KEY ];
-      var lengthScale = this.a11yScaleMap[ LENGTH_KEY ];
+      const resistanceScale = this.a11yScaleMap[ RESISTANCE_KEY ];
+      const resistivityScale = this.a11yScaleMap[ RESISTIVITY_KEY ];
+      const areaScale = this.a11yScaleMap[ AREA_KEY ];
+      const lengthScale = this.a11yScaleMap[ LENGTH_KEY ];
 
-      var rToRho = resistanceScale / resistivityScale;
-      var rToA = resistanceScale / areaScale;
-      var rToL = resistanceScale / lengthScale;
-      var lToA = lengthScale / areaScale;
-      var lToRho = lengthScale / resistivityScale;
+      const rToRho = resistanceScale / resistivityScale;
+      const rToA = resistanceScale / areaScale;
+      const rToL = resistanceScale / lengthScale;
+      const lToA = lengthScale / areaScale;
+      const lToRho = lengthScale / resistivityScale;
 
-      var rToRhoDescription = getRelativeSizeDescription( rToRho );
-      var roTLDescription = getRelativeSizeDescription( rToL );
-      var rToADescription = getRelativeSizeDescription( rToA );
+      const rToRhoDescription = getRelativeSizeDescription( rToRho );
+      const roTLDescription = getRelativeSizeDescription( rToL );
+      const rToADescription = getRelativeSizeDescription( rToA );
 
-      var description;
-      var comparableRange = ResistanceInAWireConstants.RELATIVE_SIZE_MAP.comparable.range;
+      let description;
+      const comparableRange = ResistanceInAWireConstants.RELATIVE_SIZE_MAP.comparable.range;
 
       // even if right hand side variables are not comparable in size, if R is relatively larger or smaller than all
       // by the same amount, combine size description
-      var relativeSizeKeys = Object.keys( ResistanceInAWireConstants.RELATIVE_SIZE_MAP );
-      var allRelativeSizesSame = false;
-      for ( var i = 0; i < relativeSizeKeys.length; i++ ) {
-        var key = relativeSizeKeys[ i ];
-        var sizeRange = ResistanceInAWireConstants.RELATIVE_SIZE_MAP[ key ].range;
-        var containsRToRho = sizeRange.contains( rToRho );
-        var containsRToA = sizeRange.contains( rToA );
-        var containsRToL = sizeRange.contains( rToL );
+      const relativeSizeKeys = Object.keys( ResistanceInAWireConstants.RELATIVE_SIZE_MAP );
+      let allRelativeSizesSame = false;
+      for ( let i = 0; i < relativeSizeKeys.length; i++ ) {
+        const key = relativeSizeKeys[ i ];
+        const sizeRange = ResistanceInAWireConstants.RELATIVE_SIZE_MAP[ key ].range;
+        const containsRToRho = sizeRange.contains( rToRho );
+        const containsRToA = sizeRange.contains( rToA );
+        const containsRToL = sizeRange.contains( rToL );
 
         if ( containsRToRho && containsRToA && containsRToL ) {
           allRelativeSizesSame = true;
@@ -273,9 +273,9 @@ define( require => {
   var getRelativeSizeDescription = function( relativeScale ) {
 
     // get described ranges of each relative scale
-    var keys = Object.keys( ResistanceInAWireConstants.RELATIVE_SIZE_MAP );
-    for ( var i = 0; i < keys.length; i++ ) {
-      var relativeEntry = ResistanceInAWireConstants.RELATIVE_SIZE_MAP[ keys[ i ] ];
+    const keys = Object.keys( ResistanceInAWireConstants.RELATIVE_SIZE_MAP );
+    for ( let i = 0; i < keys.length; i++ ) {
+      const relativeEntry = ResistanceInAWireConstants.RELATIVE_SIZE_MAP[ keys[ i ] ];
 
       if ( relativeEntry.range.contains( relativeScale ) ) {
         return relativeEntry.description;

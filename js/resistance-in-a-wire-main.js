@@ -16,15 +16,15 @@ define( require => {
   const Tandem = require( 'TANDEM/Tandem' );
 
   // constants
-  var tandem = Tandem.rootTandem;
+  const tandem = Tandem.rootTandem;
 
   // strings
   const resistanceInAWireTitleString = require( 'string!RESISTANCE_IN_A_WIRE/resistance-in-a-wire.title' );
 
   // help content to describe keyboard interactions
-  var keyboardHelpContent = new SliderAndGeneralKeyboardHelpContent();
+  const keyboardHelpContent = new SliderAndGeneralKeyboardHelpContent();
 
-  var simOptions = {
+  const simOptions = {
     credits: {
       leadDesign: 'Michael Dubson',
       softwareDevelopment: 'Michael Dubson, John Blanco, Jesse Greenberg, Michael Kauzmann',
@@ -46,7 +46,7 @@ define( require => {
   SimLauncher.launch( function() {
 
     // Create and start the sim
-    var sim = new Sim( resistanceInAWireTitleString,
+    const sim = new Sim( resistanceInAWireTitleString,
       [ new ResistanceInAWireScreen( tandem.createTandem( 'resistanceInAWireScreen' ) ) ], simOptions );
     sim.start();
   } );

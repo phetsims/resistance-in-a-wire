@@ -27,7 +27,7 @@ define( require => {
   const WireShapeConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/WireShapeConstants' );
 
   // a11y strings
-  var wireDescriptionPatternString = ResistanceInAWireA11yStrings.wireDescriptionPatternString.value;
+  const wireDescriptionPatternString = ResistanceInAWireA11yStrings.wireDescriptionPatternString.value;
 
   /**
    * The position is set using center values since this can grow or shrink in width and height as the area and length of
@@ -53,17 +53,17 @@ define( require => {
     } );
 
     // See https://github.com/phetsims/resistance-in-a-wire/issues/158
-    var wireBodyRenderer = platform.android ? 'canvas' : null;
+    const wireBodyRenderer = platform.android ? 'canvas' : null;
 
     // Body of the wire
-    var wireBody = new Path( null, {
+    const wireBody = new Path( null, {
       stroke: 'black',
       tandem: tandem.createTandem( 'wireBody' ),
       renderer: wireBodyRenderer
     } );
 
     // Cap/end of the wire
-    var wireEnd = new Path( null, {
+    const wireEnd = new Path( null, {
       stroke: 'black',
       fill: '#E8B282',
       tandem: tandem.createTandem( 'wireEnd' ),
@@ -74,19 +74,19 @@ define( require => {
     this.addChild( wireEnd );
 
     // all dots representing resistivity
-    var dotsNode = new DotsCanvasNode( model );
+    const dotsNode = new DotsCanvasNode( model );
     this.addChild( dotsNode );
 
     // Update the resistor on change. No need to unlink, as it is present for the lifetime of the sim.
-    var self = this;
+    const self = this;
     Property.multilink( [ model.areaProperty, model.lengthProperty, model.resistivityProperty ],
       function( area, length, resistivity ) {
 
         // Height of the wire in view coordinates
-        var height = WireShapeConstants.areaToHeight( area );
+        const height = WireShapeConstants.areaToHeight( area );
 
         // Width of the wire (as measured from the top of the wire, that is excluding the rounding bits in the middle).
-        var width = WireShapeConstants.lengthToWidth( length );
+        const width = WireShapeConstants.lengthToWidth( length );
 
         // Set the (face) body shape of the wire.
         // Recall that (zero,zero) is defined as the center of the wire.
@@ -121,13 +121,13 @@ define( require => {
   return inherit( Node, WireNode, {
 
     getWireDescription: function() {
-      var lengthValue = this.model.lengthProperty.get();
-      var areaValue = this.model.areaProperty.get();
-      var resistivityValue = this.model.resistivityProperty.get();
+      const lengthValue = this.model.lengthProperty.get();
+      const areaValue = this.model.areaProperty.get();
+      const resistivityValue = this.model.resistivityProperty.get();
 
-      var lengthDescription = ResistanceInAWireConstants.getValueDescriptionFromMap( lengthValue, ResistanceInAWireConstants.LENGTH_TO_DESCRIPTION_MAP );
-      var areaDescription = ResistanceInAWireConstants.getValueDescriptionFromMap( areaValue, ResistanceInAWireConstants.AREA_TO_DESCRIPTION_MAP );
-      var resistivityDescription = ResistanceInAWireConstants.getValueDescriptionFromMap( resistivityValue, ResistanceInAWireConstants.RESISTIVITY_TO_DESCRIPTION_MAP );
+      const lengthDescription = ResistanceInAWireConstants.getValueDescriptionFromMap( lengthValue, ResistanceInAWireConstants.LENGTH_TO_DESCRIPTION_MAP );
+      const areaDescription = ResistanceInAWireConstants.getValueDescriptionFromMap( areaValue, ResistanceInAWireConstants.AREA_TO_DESCRIPTION_MAP );
+      const resistivityDescription = ResistanceInAWireConstants.getValueDescriptionFromMap( resistivityValue, ResistanceInAWireConstants.RESISTIVITY_TO_DESCRIPTION_MAP );
 
       return StringUtils.fillIn( wireDescriptionPatternString, {
         length: lengthDescription,

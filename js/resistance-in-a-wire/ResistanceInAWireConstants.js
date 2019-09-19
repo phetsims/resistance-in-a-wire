@@ -17,46 +17,46 @@ define( require => {
   const Util = require( 'DOT/Util' );
 
   // a11y strings
-  var muchMuchSmallerThanString = ResistanceInAWireA11yStrings.muchMuchSmallerThanString.value;
-  var muchSmallerThanString = ResistanceInAWireA11yStrings.muchSmallerThanString.value;
-  var slightlySmallerThanString = ResistanceInAWireA11yStrings.slightlySmallerThanString.value;
-  var comparableToString = ResistanceInAWireA11yStrings.comparableToString.value;
-  var slightlyLargerThanString = ResistanceInAWireA11yStrings.slightlyLargerThanString.value;
-  var muchLargerThanString = ResistanceInAWireA11yStrings.muchLargerThanString.value;
-  var muchMuchLargerThanString = ResistanceInAWireA11yStrings.muchMuchLargerThanString.value;
-  var extremelyShortString = ResistanceInAWireA11yStrings.extremelyShortString.value;
-  var veryShortString = ResistanceInAWireA11yStrings.veryShortString.value;
-  var shortString = ResistanceInAWireA11yStrings.shortString.value;
-  var ofMediumLengthString = ResistanceInAWireA11yStrings.ofMediumLengthString.value;
-  var longString = ResistanceInAWireA11yStrings.longString.value;
-  var veryLongString = ResistanceInAWireA11yStrings.veryLongString.value;
-  var extremelyLongString = ResistanceInAWireA11yStrings.extremelyLongString.value;
-  var extremelyThinString = ResistanceInAWireA11yStrings.extremelyThinString.value;
-  var veryThinString = ResistanceInAWireA11yStrings.veryThinString.value;
-  var thinString = ResistanceInAWireA11yStrings.thinString.value;
-  var ofMediumThicknessString = ResistanceInAWireA11yStrings.ofMediumThicknessString.value;
-  var thickString = ResistanceInAWireA11yStrings.thickString.value;
-  var veryThickString = ResistanceInAWireA11yStrings.veryThickString.value;
-  var extremelyThickString = ResistanceInAWireA11yStrings.extremelyThickString.value;
-  var aTinyAmountOfImpuritiesString = ResistanceInAWireA11yStrings.aTinyAmountOfImpuritiesString.value;
-  var aVerySmallAmountOfImpuritiesString = ResistanceInAWireA11yStrings.aVerySmallAmountOfImpuritiesString.value;
-  var aSmallAmountOfImpuritiesString = ResistanceInAWireA11yStrings.aSmallAmountOfImpuritiesString.value;
-  var aMediumAmountOfImpuritiesString = ResistanceInAWireA11yStrings.aMediumAmountOfImpuritiesString.value;
-  var aLargeAmountOfImpuritiesString = ResistanceInAWireA11yStrings.aLargeAmountOfImpuritiesString.value;
-  var aVeryLargeAmountOfImpuritiesString = ResistanceInAWireA11yStrings.aVeryLargeAmountOfImpuritiesString.value;
-  var aHugeAmountOfImpuritiesString = ResistanceInAWireA11yStrings.aHugeAmountOfImpuritiesString.value;
+  const muchMuchSmallerThanString = ResistanceInAWireA11yStrings.muchMuchSmallerThanString.value;
+  const muchSmallerThanString = ResistanceInAWireA11yStrings.muchSmallerThanString.value;
+  const slightlySmallerThanString = ResistanceInAWireA11yStrings.slightlySmallerThanString.value;
+  const comparableToString = ResistanceInAWireA11yStrings.comparableToString.value;
+  const slightlyLargerThanString = ResistanceInAWireA11yStrings.slightlyLargerThanString.value;
+  const muchLargerThanString = ResistanceInAWireA11yStrings.muchLargerThanString.value;
+  const muchMuchLargerThanString = ResistanceInAWireA11yStrings.muchMuchLargerThanString.value;
+  const extremelyShortString = ResistanceInAWireA11yStrings.extremelyShortString.value;
+  const veryShortString = ResistanceInAWireA11yStrings.veryShortString.value;
+  const shortString = ResistanceInAWireA11yStrings.shortString.value;
+  const ofMediumLengthString = ResistanceInAWireA11yStrings.ofMediumLengthString.value;
+  const longString = ResistanceInAWireA11yStrings.longString.value;
+  const veryLongString = ResistanceInAWireA11yStrings.veryLongString.value;
+  const extremelyLongString = ResistanceInAWireA11yStrings.extremelyLongString.value;
+  const extremelyThinString = ResistanceInAWireA11yStrings.extremelyThinString.value;
+  const veryThinString = ResistanceInAWireA11yStrings.veryThinString.value;
+  const thinString = ResistanceInAWireA11yStrings.thinString.value;
+  const ofMediumThicknessString = ResistanceInAWireA11yStrings.ofMediumThicknessString.value;
+  const thickString = ResistanceInAWireA11yStrings.thickString.value;
+  const veryThickString = ResistanceInAWireA11yStrings.veryThickString.value;
+  const extremelyThickString = ResistanceInAWireA11yStrings.extremelyThickString.value;
+  const aTinyAmountOfImpuritiesString = ResistanceInAWireA11yStrings.aTinyAmountOfImpuritiesString.value;
+  const aVerySmallAmountOfImpuritiesString = ResistanceInAWireA11yStrings.aVerySmallAmountOfImpuritiesString.value;
+  const aSmallAmountOfImpuritiesString = ResistanceInAWireA11yStrings.aSmallAmountOfImpuritiesString.value;
+  const aMediumAmountOfImpuritiesString = ResistanceInAWireA11yStrings.aMediumAmountOfImpuritiesString.value;
+  const aLargeAmountOfImpuritiesString = ResistanceInAWireA11yStrings.aLargeAmountOfImpuritiesString.value;
+  const aVeryLargeAmountOfImpuritiesString = ResistanceInAWireA11yStrings.aVeryLargeAmountOfImpuritiesString.value;
+  const aHugeAmountOfImpuritiesString = ResistanceInAWireA11yStrings.aHugeAmountOfImpuritiesString.value;
 
 
   // constants
-  var RESISTIVITY_RANGE = new RangeWithValue( 0.01, 1.00, 0.5 ); // in Ohm * cm
-  var LENGTH_RANGE = new RangeWithValue( 0.1, 20, 10 ); // in cm
-  var AREA_RANGE = new RangeWithValue( 0.01, 15, 7.5 ); // in cm^2
+  const RESISTIVITY_RANGE = new RangeWithValue( 0.01, 1.00, 0.5 ); // in Ohm * cm
+  const LENGTH_RANGE = new RangeWithValue( 0.1, 20, 10 ); // in cm
+  const AREA_RANGE = new RangeWithValue( 0.01, 15, 7.5 ); // in cm^2
 
-  var LENGTH_DESCRIPTIONS = [ extremelyShortString, veryShortString, shortString, ofMediumLengthString, longString, veryLongString, extremelyLongString ];
-  var AREA_DESCRIPTIONS = [ extremelyThinString, veryThinString, thinString, ofMediumThicknessString, thickString, veryThickString, extremelyThickString ];
-  var RESISTIVITY_DESCRIPTIONS = [ aTinyAmountOfImpuritiesString, aVerySmallAmountOfImpuritiesString, aSmallAmountOfImpuritiesString, aMediumAmountOfImpuritiesString, aLargeAmountOfImpuritiesString, aVeryLargeAmountOfImpuritiesString, aHugeAmountOfImpuritiesString ];
+  const LENGTH_DESCRIPTIONS = [ extremelyShortString, veryShortString, shortString, ofMediumLengthString, longString, veryLongString, extremelyLongString ];
+  const AREA_DESCRIPTIONS = [ extremelyThinString, veryThinString, thinString, ofMediumThicknessString, thickString, veryThickString, extremelyThickString ];
+  const RESISTIVITY_DESCRIPTIONS = [ aTinyAmountOfImpuritiesString, aVerySmallAmountOfImpuritiesString, aSmallAmountOfImpuritiesString, aMediumAmountOfImpuritiesString, aLargeAmountOfImpuritiesString, aVeryLargeAmountOfImpuritiesString, aHugeAmountOfImpuritiesString ];
 
-  var RELATIVE_SIZE_STRINGS = [ muchMuchSmallerThanString, muchSmallerThanString, slightlySmallerThanString, comparableToString, slightlyLargerThanString, muchLargerThanString, muchMuchLargerThanString ];
+  const RELATIVE_SIZE_STRINGS = [ muchMuchSmallerThanString, muchSmallerThanString, slightlySmallerThanString, comparableToString, slightlyLargerThanString, muchLargerThanString, muchMuchLargerThanString ];
 
   /**
    * Generate a map from physical value to accessible descripton. Each described range has a length of 
@@ -67,13 +67,13 @@ define( require => {
    *
    * @returns {[type]} [description]
    */
-  var generateDescriptionMap = function( descriptionArray, valueRange ) {
-    var map = {};
+  const generateDescriptionMap = function( descriptionArray, valueRange ) {
+    const map = {};
 
-    var minValue = valueRange.min;
-    for ( var i = 0; i < descriptionArray.length; i++ ) {
+    let minValue = valueRange.min;
+    for ( let i = 0; i < descriptionArray.length; i++ ) {
 
-      var nextMin = minValue + valueRange.getLength() / descriptionArray.length;
+      const nextMin = minValue + valueRange.getLength() / descriptionArray.length;
 
       map[ i ] = {};
       map[ i ].description = descriptionArray[ i ];
@@ -90,11 +90,11 @@ define( require => {
     return map;
   };
 
-  var LENGTH_TO_DESCRIPTION_MAP = generateDescriptionMap( LENGTH_DESCRIPTIONS, LENGTH_RANGE );
-  var AREA_TO_DESCRIPTION_MAP = generateDescriptionMap( AREA_DESCRIPTIONS, AREA_RANGE );
-  var RESISTIVITY_TO_DESCRIPTION_MAP = generateDescriptionMap( RESISTIVITY_DESCRIPTIONS, RESISTIVITY_RANGE );
+  const LENGTH_TO_DESCRIPTION_MAP = generateDescriptionMap( LENGTH_DESCRIPTIONS, LENGTH_RANGE );
+  const AREA_TO_DESCRIPTION_MAP = generateDescriptionMap( AREA_DESCRIPTIONS, AREA_RANGE );
+  const RESISTIVITY_TO_DESCRIPTION_MAP = generateDescriptionMap( RESISTIVITY_DESCRIPTIONS, RESISTIVITY_RANGE );
 
-  var ResistanceInAWireConstants = {
+  const ResistanceInAWireConstants = {
 
     // colors
     BLUE_COLOR: '#0f0ffb',
@@ -201,9 +201,9 @@ define( require => {
     getValueDescriptionFromMap: function( value, map ) {
 
       // get described ranges of each value
-      var keys = Object.keys( map );
-      for ( var i = 0; i < keys.length; i++ ) {
-        var entry = map[ keys[ i ] ];
+      const keys = Object.keys( map );
+      for ( let i = 0; i < keys.length; i++ ) {
+        const entry = map[ keys[ i ] ];
 
         if ( entry.range.contains( value, map ) ) {
           return entry.description;
