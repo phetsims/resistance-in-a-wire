@@ -6,39 +6,39 @@
  * @author Anton Ulyanov (Mlearner)
  * @author John Blanco (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var Panel = require( 'SUN/Panel' );
-  var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
-  var ResistanceInAWireA11yStrings = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireA11yStrings' );
-  var ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
-  var ResistanceInAWireModel = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/model/ResistanceInAWireModel' );
-  var ResistanceSoundGenerator = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/ResistanceSoundGenerator' );
-  var SliderUnit = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/SliderUnit' );
-  var soundManager = require( 'TAMBO/soundManager' );
-  var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
-  var Text = require( 'SCENERY/nodes/Text' );
-  var Util = require( 'DOT/Util' );
-  var Utterance = require( 'SCENERY_PHET/accessibility/Utterance' );
-  var utteranceQueue = require( 'SCENERY_PHET/accessibility/utteranceQueue' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const Panel = require( 'SUN/Panel' );
+  const resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
+  const ResistanceInAWireA11yStrings = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireA11yStrings' );
+  const ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
+  const ResistanceInAWireModel = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/model/ResistanceInAWireModel' );
+  const ResistanceSoundGenerator = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/ResistanceSoundGenerator' );
+  const SliderUnit = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/SliderUnit' );
+  const soundManager = require( 'TAMBO/soundManager' );
+  const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
+  const Text = require( 'SCENERY/nodes/Text' );
+  const Util = require( 'DOT/Util' );
+  const Utterance = require( 'SCENERY_PHET/accessibility/Utterance' );
+  const utteranceQueue = require( 'SCENERY_PHET/accessibility/utteranceQueue' );
 
   // strings
-  var areaString = require( 'string!RESISTANCE_IN_A_WIRE/area' );
-  var areaSymbolString = require( 'string!RESISTANCE_IN_A_WIRE/areaSymbol' );
-  var cmString = require( 'string!RESISTANCE_IN_A_WIRE/cm' );
-  var lengthString = require( 'string!RESISTANCE_IN_A_WIRE/length' );
-  var lengthSymbolString = require( 'string!RESISTANCE_IN_A_WIRE/lengthSymbol' );
-  var symbolOhmsString = require( 'string!SCENERY_PHET/symbol.ohms' );
-  var ohmString = require( 'string!RESISTANCE_IN_A_WIRE/ohm' );
-  var pattern0Label1Value2UnitsString = require( 'string!RESISTANCE_IN_A_WIRE/pattern.0label.1value.2units' );
-  var pattern0ResistanceUnits1LengthUnitsString = require( 'string!RESISTANCE_IN_A_WIRE/pattern.0resistanceUnits.1lengthUnits' );
-  var resistanceString = require( 'string!RESISTANCE_IN_A_WIRE/resistance' );
-  var resistivityString = require( 'string!RESISTANCE_IN_A_WIRE/resistivity' );
-  var symbolResistivityString = require( 'string!SCENERY_PHET/symbol.resistivity' );
+  const areaString = require( 'string!RESISTANCE_IN_A_WIRE/area' );
+  const areaSymbolString = require( 'string!RESISTANCE_IN_A_WIRE/areaSymbol' );
+  const cmString = require( 'string!RESISTANCE_IN_A_WIRE/cm' );
+  const lengthString = require( 'string!RESISTANCE_IN_A_WIRE/length' );
+  const lengthSymbolString = require( 'string!RESISTANCE_IN_A_WIRE/lengthSymbol' );
+  const symbolOhmsString = require( 'string!SCENERY_PHET/symbol.ohms' );
+  const ohmString = require( 'string!RESISTANCE_IN_A_WIRE/ohm' );
+  const pattern0Label1Value2UnitsString = require( 'string!RESISTANCE_IN_A_WIRE/pattern.0label.1value.2units' );
+  const pattern0ResistanceUnits1LengthUnitsString = require( 'string!RESISTANCE_IN_A_WIRE/pattern.0resistanceUnits.1lengthUnits' );
+  const resistanceString = require( 'string!RESISTANCE_IN_A_WIRE/resistance' );
+  const resistivityString = require( 'string!RESISTANCE_IN_A_WIRE/resistivity' );
+  const symbolResistivityString = require( 'string!SCENERY_PHET/symbol.resistivity' );
 
   // a11y strings (not ready for i18n)
   var resistivityUnitsPatternString = ResistanceInAWireA11yStrings.resistivityUnitsPatternString.value;

@@ -6,14 +6,14 @@
  * @author Jesse Greenberg
  */
 
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var LinearFunction = require( 'DOT/LinearFunction' );
-  var Range = require( 'DOT/Range' );
-  var resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
-  var ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
+  const LinearFunction = require( 'DOT/LinearFunction' );
+  const Range = require( 'DOT/Range' );
+  const resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
+  const ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
 
   // constants
   var WIRE_VIEW_WIDTH_RANGE = new Range( 15, 500 ); // in screen coordinates
