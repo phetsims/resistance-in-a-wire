@@ -2,7 +2,7 @@
 
 /**
  * Collection of constants and functions that determine the visual shape of the Wire.
- * 
+ *
  * @author Jesse Greenberg
  */
 
@@ -27,7 +27,7 @@ define( require => {
 
     // Used to calculate the size of the wire in screen coordinates from the model values
     WIRE_DIAMETER_MAX: WIRE_DIAMETER_MAX,
-    WIRE_VIEW_WIDTH_RANGE: WIRE_VIEW_WIDTH_RANGE, 
+    WIRE_VIEW_WIDTH_RANGE: WIRE_VIEW_WIDTH_RANGE,
     WIRE_VIEW_HEIGHT_RANGE: WIRE_VIEW_HEIGHT_RANGE,
 
     // used when drawing dots in the wire

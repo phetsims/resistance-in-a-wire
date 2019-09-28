@@ -14,7 +14,7 @@ define( require => {
   const resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
 
   const ResistanceInAWireA11yStrings = {
-    summarySimString: { 
+    summarySimString: {
       value: 'In the Play Area you find the Resistance equation, <b>R</b> equals <b>rho</b> times <b>L</b> over <b>A</b>, and a piece of wire. ' +
              'Sliders for resistivity, length, and area allow changes to the equation and the piece of wire. ' +
              'The Control Area has a button to reset the sim.'
@@ -59,7 +59,7 @@ define( require => {
       value: 'slightly smaller than'
     },
     comparableToString: {
-      value: 'comparable to' 
+      value: 'comparable to'
     },
     slightlyLargerThanString: {
       value: 'slightly larger than'
@@ -68,7 +68,7 @@ define( require => {
       value: 'much larger than'
     },
     muchMuchLargerThanString: {
-      value: 'much much larger than' 
+      value: 'much much larger than'
     },
     wireDescriptionPatternString: {
       value: 'Currently, wire is {{length}}, {{thickness}}, and there is a {{impurities}} of impurities in wire. Resistance is {{resistance}} ohms.'

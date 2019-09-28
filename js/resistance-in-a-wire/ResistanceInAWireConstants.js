@@ -59,7 +59,7 @@ define( require => {
   const RELATIVE_SIZE_STRINGS = [ muchMuchSmallerThanString, muchSmallerThanString, slightlySmallerThanString, comparableToString, slightlyLargerThanString, muchLargerThanString, muchMuchLargerThanString ];
 
   /**
-   * Generate a map from physical value to accessible descripton. Each described range has a length of 
+   * Generate a map from physical value to accessible descripton. Each described range has a length of
    * valueRange / descriptionArray.length
    *
    * @param {[].string} descriptionArray
@@ -106,7 +106,7 @@ define( require => {
     FONT_FAMILY: 'Times New Roman',
 
     // range for sliders with default values
-    RESISTIVITY_RANGE: RESISTIVITY_RANGE, 
+    RESISTIVITY_RANGE: RESISTIVITY_RANGE,
     LENGTH_RANGE: LENGTH_RANGE,
     AREA_RANGE: AREA_RANGE,
 
@@ -155,7 +155,7 @@ define( require => {
     RELATIVE_SIZE_MAP: {
       muchMuchSmaller: {
         description: muchMuchSmallerThanString,
-        range: new Range( 0, 0.1)
+        range: new Range( 0, 0.1 )
       },
       muchSmaller: {
         description: muchSmallerThanString,
@@ -178,7 +178,7 @@ define( require => {
         range: new Range( 2, 20 )
       },
       muchMuchLarger: {
-        description: muchMuchLargerThanString, 
+        description: muchMuchLargerThanString,
         range: new Range( 20, Number.MAX_VALUE )
       }
     },
