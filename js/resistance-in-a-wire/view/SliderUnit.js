@@ -91,7 +91,6 @@ define( require => {
       shiftKeyboardStep: options.shiftKeyboardStep, // delta when holding shift
       a11yValuePattern: options.a11yValuePattern,
       a11yDecimalPlaces: options.a11yDecimalPlaces, // decimal places for readout
-      ariaOrientation: 'vertical',
       roundToStepSize: true, // default keyboard step rounds to pedegogically useful values
 
       // a11y
