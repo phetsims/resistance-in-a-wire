@@ -36,7 +36,7 @@ define( require => {
     Node.call( this );
 
     options = _.extend( {
-      a11yDecimalPlaces: 2,
+      a11yMapValue: value => Util.toFixedNumber( value, 2 ),
       keyboardStep: 1,
       shiftKeyboardStep: 0.01,
       startDrag: _.noop,
@@ -90,7 +90,7 @@ define( require => {
       keyboardStep: options.keyboardStep, // delta for keyboard step
       shiftKeyboardStep: options.shiftKeyboardStep, // delta when holding shift
       a11yCreateAriaValueText: options.a11yCreateAriaValueText,
-      a11yDecimalPlaces: options.a11yDecimalPlaces, // decimal places for readout
+      a11yMapValue: options.a11yMapValue,
       roundToStepSize: true, // default keyboard step rounds to pedegogically useful values
 
       // a11y
