@@ -126,7 +126,7 @@ define( require => {
       tandem.createTandem( 'resistivitySlider' ), {
         keyboardStep: 0.05, // ohm-cm
         shiftKeyStep: 0.01, // ohms-cm
-        a11yValuePattern: resistivityUnitsPatternString,
+        a11yCreateAriaValueText: value => StringUtils.fillIn( resistivityUnitsPatternString, { value: value } ),
         startDrag: function() {
           rhoOnStart = model.resistivityProperty.get();
           resistanceOnStart = model.resistanceProperty.get();
@@ -158,7 +158,7 @@ define( require => {
       tandem.createTandem( 'lengthSlider' ), {
         keyboardStep: 1.0, // cm
         shiftKeyboardStep: 0.01, // cm
-        a11yValuePattern: lengthUnitsPatternString,
+        a11yCreateAriaValueText: value => StringUtils.fillIn( lengthUnitsPatternString, { value: value } ),
         startDrag: function() {
           lengthOnStart = model.lengthProperty.get();
           resistanceOnStart = model.resistanceProperty.get();
@@ -191,7 +191,7 @@ define( require => {
       tandem.createTandem( 'areaSlider' ), {
         keyboardStep: 1.0, // cm^2
         shiftKeyboardStep: 0.01, // cm^2
-        a11yValuePattern: areaUnitsPatternString,
+        a11yCreateAriaValueText: value => StringUtils.fillIn( areaUnitsPatternString, { value: value } ),
         startDrag: function() {
           areaOnStart = model.areaProperty.get();
           resistanceOnStart = model.resistanceProperty.get();
@@ -307,10 +307,10 @@ define( require => {
 
     // the number of digits shown varies based on the range
     const numDecimalDigits = resistance >= 100 ? 0 : // Over 100, show no decimal points, like 102
-                           resistance >= 10 ? 1 : // between 10.0 and 99.9, show 2 decimal points
-                           resistance < 0.001 ? 4 : // when less than 0.001, show 4 decimals, see #125
-                           resistance < 1 ? 3 : // when less than 1, show 3 decimal places, see #125
-                           2; // Numbers less than 10 show 2 decimal points, like 8.35
+                             resistance >= 10 ? 1 : // between 10.0 and 99.9, show 2 decimal points
+                             resistance < 0.001 ? 4 : // when less than 0.001, show 4 decimals, see #125
+                             resistance < 1 ? 3 : // when less than 1, show 3 decimal places, see #125
+                             2; // Numbers less than 10 show 2 decimal points, like 8.35
 
     return StringUtils.format(
       pattern0Label1Value2UnitsString,
