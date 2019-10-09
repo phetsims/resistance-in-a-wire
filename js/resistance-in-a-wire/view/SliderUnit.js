@@ -11,6 +11,7 @@ define( require => {
   // modules
   const Dimension2 = require( 'DOT/Dimension2' );
   const inherit = require( 'PHET_CORE/inherit' );
+  const merge = require( 'PHET_CORE/merge' );
   const Node = require( 'SCENERY/nodes/Node' );
   const resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
   const ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
@@ -35,15 +36,53 @@ define( require => {
     const self = this;
     Node.call( this );
 
-    options = _.extend( {
-      a11yMapValue: value => Util.toFixedNumber( value, 2 ),
-      keyboardStep: 1,
-      shiftKeyboardStep: 0.01,
+    options = merge( {
+      sliderOptions: {
+        trackFillEnabled: 'black',
+        trackSize: new Dimension2( ResistanceInAWireConstants.SLIDER_HEIGHT - 30, 4 ),
+        thumbSize: new Dimension2( 22, 45 ),
+        thumbFill: '#c3c4c5',
+        thumbFillHighlighted: '#dedede',
+        startDrag: function( event ) {
+          if ( event.type === 'keydown' ) {
+            self.keyboardDragging = true;
+          }
+          options.startDrag && options.startDrag( event );
+        },
+        endDrag: function( event ) {
+          self.keyboardDragging = false;
+          options.endDrag && options.endDrag( event );
+        },
+
+        // physical values in this sim can have up to 2 decimals
+        constrainValue: function( value ) {
+          return Util.toFixedNumber( value, 2 );
+        },
+
+        // a11y
+        keyboardStep: 1, // delta for keyboard step
+        shiftKeyboardStep: 0.01, // delta when holding shift
+        roundToStepSize: true, // default keyboard step rounds to pedagogically useful values
+        containerTagName: 'li',
+        labelContent: labelContent,
+        labelTagName: 'label',
+        a11yMapValue: value => Util.toFixedNumber( value, 2 ),
+
+        // phet-io
+        tandem: tandem.createTandem( 'slider' )
+      },
       startDrag: _.noop,
-      endDrag: _.noop
+      endDrag: _.noop,
+
+      // {number}
+      decimalPlaces: 0,
+
+      // phet-io
+      tandem: tandem // to be passed to supertype
+
     }, options );
 
-    // text for the symbol, text bounds must be accurate for correct layou
+    // text for the symbol, text bounds must be accurate for correct layout
     const symbolText = new Text( symbolString, {
       font: ResistanceInAWireConstants.SYMBOL_FONT,
       fill: ResistanceInAWireConstants.BLUE_COLOR,
@@ -63,41 +102,7 @@ define( require => {
     this.keyboardDragging = false;
 
     // @private
-    const slider = new VSlider( property, range, {
-      trackFillEnabled: 'black',
-      trackSize: new Dimension2( ResistanceInAWireConstants.SLIDER_HEIGHT - 30, 4 ),
-      thumbSize: new Dimension2( 22, 45 ),
-      thumbFill: '#c3c4c5',
-      thumbFillHighlighted: '#dedede',
-      tandem: tandem.createTandem( 'slider' ),
-      startDrag: function( event ) {
-        if ( event.type === 'keydown' ) {
-          self.keyboardDragging = true;
-        }
-        options.startDrag && options.startDrag( event );
-      },
-      endDrag: function( event ) {
-        self.keyboardDragging = false;
-        options.endDrag && options.endDrag( event );
-      },
-
-      // physical values in this sim can have up to 2 decimals
-      constrainValue: function( value ) {
-        return Util.toFixedNumber( value, 2 );
-      },
-
-      // a11y
-      keyboardStep: options.keyboardStep, // delta for keyboard step
-      shiftKeyboardStep: options.shiftKeyboardStep, // delta when holding shift
-      a11yCreateAriaValueText: options.a11yCreateAriaValueText,
-      a11yMapValue: options.a11yMapValue,
-      roundToStepSize: true, // default keyboard step rounds to pedegogically useful values
-
-      // a11y
-      containerTagName: 'li',
-      labelContent: labelContent,
-      labelTagName: 'label'
-    } );
+    const slider = new VSlider( property, range, options.sliderOptions );
 
     const valueText = new Text( Util.toFixed( range.max, 2 ), {
       font: ResistanceInAWireConstants.READOUT_FONT,

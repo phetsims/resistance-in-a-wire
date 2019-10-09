@@ -124,23 +124,25 @@ define( require => {
       StringUtils.format( pattern0ResistanceUnits1LengthUnitsString, symbolOhmsString, cmString ),
       resistivitySliderLabelString,
       tandem.createTandem( 'resistivitySlider' ), {
-        keyboardStep: 0.05, // ohm-cm
-        shiftKeyStep: 0.01, // ohms-cm
-        a11yCreateAriaValueText: value => StringUtils.fillIn( resistivityUnitsPatternString, { value: value } ),
-        startDrag: function() {
-          rhoOnStart = model.resistivityProperty.get();
-          resistanceOnStart = model.resistanceProperty.get();
-        },
-        endDrag: function() {
-          const resistance = model.resistanceProperty.get();
-          const deltaRho = model.resistivityProperty.get() - rhoOnStart;
-          const deltaResistance = resistance - resistanceOnStart;
+        sliderOptions: {
+          keyboardStep: 0.05, // ohm-cm
+          shiftKeyStep: 0.01, // ohms-cm
+          a11yCreateAriaValueText: value => StringUtils.fillIn( resistivityUnitsPatternString, { value: value } ),
+          startDrag: function() {
+            rhoOnStart = model.resistivityProperty.get();
+            resistanceOnStart = model.resistanceProperty.get();
+          },
+          endDrag: function() {
+            const resistance = model.resistanceProperty.get();
+            const deltaRho = model.resistivityProperty.get() - rhoOnStart;
+            const deltaResistance = resistance - resistanceOnStart;
 
-          // announce to assistive technology if there is a change - no need to queue many alerts when pressing keys
-          // rapidly
-          if ( deltaRho && deltaResistance ) {
-            changeUtterance.alert = getSizeChangeAlert( resistance, deltaResistance, deltaRho, letterRhoString );
-            utteranceQueue.addToBack( changeUtterance );
+            // announce to assistive technology if there is a change - no need to queue many alerts when pressing keys
+            // rapidly
+            if ( deltaRho && deltaResistance ) {
+              changeUtterance.alert = getSizeChangeAlert( resistance, deltaResistance, deltaRho, letterRhoString );
+              utteranceQueue.addToBack( changeUtterance );
+            }
           }
         }
       }
@@ -156,23 +158,25 @@ define( require => {
       cmString,
       lengthSliderLabelString,
       tandem.createTandem( 'lengthSlider' ), {
-        keyboardStep: 1.0, // cm
-        shiftKeyboardStep: 0.01, // cm
-        a11yCreateAriaValueText: value => StringUtils.fillIn( lengthUnitsPatternString, { value: value } ),
-        startDrag: function() {
-          lengthOnStart = model.lengthProperty.get();
-          resistanceOnStart = model.resistanceProperty.get();
-        },
-        endDrag: function() {
-          const resistance = model.resistanceProperty.get();
-          const deltaLength = model.lengthProperty.get() - lengthOnStart;
-          const deltaResistance = resistance - resistanceOnStart;
+        sliderOptions: {
+          keyboardStep: 1.0, // cm
+          shiftKeyboardStep: 0.01, // cm
+          a11yCreateAriaValueText: value => StringUtils.fillIn( lengthUnitsPatternString, { value: value } ),
+          startDrag: function() {
+            lengthOnStart = model.lengthProperty.get();
+            resistanceOnStart = model.resistanceProperty.get();
+          },
+          endDrag: function() {
+            const resistance = model.resistanceProperty.get();
+            const deltaLength = model.lengthProperty.get() - lengthOnStart;
+            const deltaResistance = resistance - resistanceOnStart;
 
-          // announce to assistive technology if there is a change - no need to queue many alerts when pressing keys
-          // rapidly
-          if ( deltaLength && deltaResistance ) {
-            changeUtterance.alert = getSizeChangeAlert( resistance, deltaResistance, deltaLength, letterLString );
-            utteranceQueue.addToBack( changeUtterance );
+            // announce to assistive technology if there is a change - no need to queue many alerts when pressing keys
+            // rapidly
+            if ( deltaLength && deltaResistance ) {
+              changeUtterance.alert = getSizeChangeAlert( resistance, deltaResistance, deltaLength, letterLString );
+              utteranceQueue.addToBack( changeUtterance );
+            }
           }
         }
       }
@@ -189,23 +193,25 @@ define( require => {
       cmString + '<sup>2</sup>',
       areaSliderLabelString,
       tandem.createTandem( 'areaSlider' ), {
-        keyboardStep: 1.0, // cm^2
-        shiftKeyboardStep: 0.01, // cm^2
-        a11yCreateAriaValueText: value => StringUtils.fillIn( areaUnitsPatternString, { value: value } ),
-        startDrag: function() {
-          areaOnStart = model.areaProperty.get();
-          resistanceOnStart = model.resistanceProperty.get();
-        },
-        endDrag: function() {
-          const resistance = model.resistanceProperty.get();
-          const deltaArea = model.areaProperty.get() - areaOnStart;
-          const deltaResistance = resistance - resistanceOnStart;
+        sliderOptions: {
+          keyboardStep: 1.0, // cm^2
+          shiftKeyboardStep: 0.01, // cm^2
+          a11yCreateAriaValueText: value => StringUtils.fillIn( areaUnitsPatternString, { value: value } ),
+          startDrag: function() {
+            areaOnStart = model.areaProperty.get();
+            resistanceOnStart = model.resistanceProperty.get();
+          },
+          endDrag: function() {
+            const resistance = model.resistanceProperty.get();
+            const deltaArea = model.areaProperty.get() - areaOnStart;
+            const deltaResistance = resistance - resistanceOnStart;
 
-          // announce to assistive technology if there is a change - no need to queue many alerts when pressing keys
-          // rapidly
-          if ( deltaArea && deltaResistance ) {
-            changeUtterance.alert = getSizeChangeAlert( resistance, deltaResistance, deltaArea, letterAString );
-            utteranceQueue.addToBack( changeUtterance );
+            // announce to assistive technology if there is a change - no need to queue many alerts when pressing keys
+            // rapidly
+            if ( deltaArea && deltaResistance ) {
+              changeUtterance.alert = getSizeChangeAlert( resistance, deltaResistance, deltaArea, letterAString );
+              utteranceQueue.addToBack( changeUtterance );
+            }
           }
         }
       }
