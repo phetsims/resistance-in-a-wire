@@ -75,10 +75,7 @@ define( require => {
       endDrag: _.noop,
 
       // {number}
-      decimalPlaces: 0,
-
-      // phet-io
-      tandem: tandem // to be passed to supertype
+      decimalPlaces: 0
 
     }, options );
 
