@@ -11,6 +11,7 @@ define( require => {
 
   // modules
   const inherit = require( 'PHET_CORE/inherit' );
+  const merge = require( 'PHET_CORE/merge' );
   const Node = require( 'SCENERY/nodes/Node' );
   const Panel = require( 'SUN/Panel' );
   const resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
@@ -32,12 +33,12 @@ define( require => {
   const cmString = require( 'string!RESISTANCE_IN_A_WIRE/cm' );
   const lengthString = require( 'string!RESISTANCE_IN_A_WIRE/length' );
   const lengthSymbolString = require( 'string!RESISTANCE_IN_A_WIRE/lengthSymbol' );
-  const symbolOhmsString = require( 'string!SCENERY_PHET/symbol.ohms' );
   const ohmString = require( 'string!RESISTANCE_IN_A_WIRE/ohm' );
   const pattern0Label1Value2UnitsString = require( 'string!RESISTANCE_IN_A_WIRE/pattern.0label.1value.2units' );
   const pattern0ResistanceUnits1LengthUnitsString = require( 'string!RESISTANCE_IN_A_WIRE/pattern.0resistanceUnits.1lengthUnits' );
   const resistanceString = require( 'string!RESISTANCE_IN_A_WIRE/resistance' );
   const resistivityString = require( 'string!RESISTANCE_IN_A_WIRE/resistivity' );
+  const symbolOhmsString = require( 'string!SCENERY_PHET/symbol.ohms' );
   const symbolResistivityString = require( 'string!SCENERY_PHET/symbol.resistivity' );
 
   // a11y strings (not ready for i18n)
@@ -73,7 +74,7 @@ define( require => {
    */
   function ControlPanel( model, tandem, options ) {
 
-    options = _.extend( {
+    options = merge( {
       xMargin: 30,
       yMargin: 20,
       lineWidth: 3,

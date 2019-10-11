@@ -15,6 +15,7 @@ define( require => {
   const CanvasNode = require( 'SCENERY/nodes/CanvasNode' );
   const inherit = require( 'PHET_CORE/inherit' );
   const LinearFunction = require( 'DOT/LinearFunction' );
+  const merge = require( 'PHET_CORE/merge' );
   const resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
   const ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
   const Vector2 = require( 'DOT/Vector2' );
@@ -42,7 +43,7 @@ define( require => {
    */
   function DotsCanvasNode( model, options ) {
 
-    options = _.extend( {
+    options = merge( {
       preventFit: true // don't recompute bounds as a performance enhancement
     }, options );
 
