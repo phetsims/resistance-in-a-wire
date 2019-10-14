@@ -144,7 +144,7 @@ define( require => {
         sliderOptions: {
           keyboardStep: 0.05, // ohm-cm
           shiftKeyStep: 0.01, // ohms-cm
-          a11yCreateAriaValueText: value => StringUtils.fillIn( resistivityUnitsPatternString, { value: value } ),
+          a11yCreateAriaValueText: value => StringUtils.fillIn( resistivityUnitsPatternString, { value: value } )
         }
       }
     );
@@ -178,7 +178,7 @@ define( require => {
         sliderOptions: {
           keyboardStep: 1.0, // cm
           shiftKeyboardStep: 0.01, // cm
-          a11yCreateAriaValueText: value => StringUtils.fillIn( lengthUnitsPatternString, { value: value } ),
+          a11yCreateAriaValueText: value => StringUtils.fillIn( lengthUnitsPatternString, { value: value } )
         }
       }
     );
@@ -213,7 +213,7 @@ define( require => {
         sliderOptions: {
           keyboardStep: 1.0, // cm^2
           shiftKeyboardStep: 0.01, // cm^2
-          a11yCreateAriaValueText: value => StringUtils.fillIn( areaUnitsPatternString, { value: value } ),
+          a11yCreateAriaValueText: value => StringUtils.fillIn( areaUnitsPatternString, { value: value } )
         }
       }
     );
