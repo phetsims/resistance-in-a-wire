@@ -24,8 +24,8 @@ define( require => {
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   const Text = require( 'SCENERY/nodes/Text' );
   const Util = require( 'DOT/Util' );
-  const Utterance = require( 'SCENERY_PHET/accessibility/Utterance' );
-  const utteranceQueue = require( 'SCENERY_PHET/accessibility/utteranceQueue' );
+  const Utterance = require( 'UTTERANCE_QUEUE/Utterance' );
+  const utteranceQueue = require( 'UTTERANCE_QUEUE/utteranceQueue' );
 
   // strings
   const areaString = require( 'string!RESISTANCE_IN_A_WIRE/area' );
