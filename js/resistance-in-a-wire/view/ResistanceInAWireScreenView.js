@@ -48,14 +48,14 @@ define( require => {
       centerX: controlPanel.left / 2,
       centerY: 190
     } );
-    this.playAreaNode.addChild( formulaNode );
+    this.pdomPlayAreaNode.addChild( formulaNode );
 
     // Create the wire display to represent the formula
     const wireNode = new WireNode( model, tandem.createTandem( 'wireNode' ), {
       centerX: formulaNode.centerX,
       centerY: formulaNode.centerY + 270
     } );
-    this.playAreaNode.addChild( wireNode );
+    this.pdomPlayAreaNode.addChild( wireNode );
 
     const tailX = wireNode.centerX - ResistanceInAWireConstants.TAIL_LENGTH / 2;
     const tipX = wireNode.centerX + ResistanceInAWireConstants.TAIL_LENGTH / 2;
@@ -71,7 +71,7 @@ define( require => {
       lineWidth: 1,
       tandem: tandem.createTandem( 'arrowNode' )
     } );
-    this.playAreaNode.addChild( arrowNode );
+    this.pdomPlayAreaNode.addChild( arrowNode );
 
     const resetAllButton = new ResetAllButton( {
       listener: function() { model.reset(); },
@@ -92,7 +92,7 @@ define( require => {
     resetAllButton.focusHighlight = new FocusHighlightPath( highlightShape, { outerStroke: 'black' } );
 
     // add the control panel last so it is always on top.
-    this.playAreaNode.addChild( controlPanel );
+    this.pdomPlayAreaNode.addChild( controlPanel );
   }
 
   resistanceInAWire.register( 'ResistanceInAWireScreenView', ResistanceInAWireScreenView );
