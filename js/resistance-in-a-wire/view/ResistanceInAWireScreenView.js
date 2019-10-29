@@ -80,7 +80,7 @@ define( require => {
       bottom: this.layoutBounds.bottom - 20,
       tandem: tandem.createTandem( 'resetAllButton' )
     } );
-    this.controlAreaNode.addChild( resetAllButton );
+    this.pdomControlAreaNode.addChild( resetAllButton );
     soundManager.addSoundGenerator( new ResetAllSoundGenerator( model.resetInProgressProperty, {
       initialOutputLevel: 0.7
     } ) );
