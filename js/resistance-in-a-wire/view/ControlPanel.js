@@ -25,9 +25,7 @@ define( require => {
   const Text = require( 'SCENERY/nodes/Text' );
   const Util = require( 'DOT/Util' );
   const Utterance = require( 'UTTERANCE_QUEUE/Utterance' );
-  const utteranceQueue = require( 'UTTERANCE_QUEUE/utteranceQueue' );
-
-  // strings
+// strings
   const areaString = require( 'string!RESISTANCE_IN_A_WIRE/area' );
   const areaSymbolString = require( 'string!RESISTANCE_IN_A_WIRE/areaSymbol' );
   const cmString = require( 'string!RESISTANCE_IN_A_WIRE/cm' );
@@ -138,7 +136,7 @@ define( require => {
           // rapidly
           if ( deltaRho && deltaResistance ) {
             changeUtterance.alert = getSizeChangeAlert( resistance, deltaResistance, deltaRho, letterRhoString );
-            utteranceQueue.addToBack( changeUtterance );
+            phet.joist.sim.display.utteranceQueue.addToBack( changeUtterance );
           }
         },
         sliderOptions: {
@@ -171,7 +169,7 @@ define( require => {
           // rapidly
           if ( deltaLength && deltaResistance ) {
             changeUtterance.alert = getSizeChangeAlert( resistance, deltaResistance, deltaLength, letterLString );
-            utteranceQueue.addToBack( changeUtterance );
+            phet.joist.sim.display.utteranceQueue.addToBack( changeUtterance );
           }
         },
         sliderOptions: {
@@ -204,7 +202,7 @@ define( require => {
           // rapidly
           if ( deltaArea && deltaResistance ) {
             changeUtterance.alert = getSizeChangeAlert( resistance, deltaResistance, deltaArea, letterAString );
-            utteranceQueue.addToBack( changeUtterance );
+            phet.joist.sim.display.utteranceQueue.addToBack( changeUtterance );
           }
         },
         sliderOptions: {
