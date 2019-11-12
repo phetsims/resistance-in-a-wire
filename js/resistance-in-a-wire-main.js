@@ -39,8 +39,7 @@ define( require => {
 
     // a11y enabled
     keyboardHelpNode: keyboardHelpContent,
-    accessibility: true,
-    supportsSound: true
+    accessibility: true
   };
 
   SimLauncher.launch( function() {

@@ -18,6 +18,7 @@
       "adapted-from-phet"
     ],
     "accessible": true,
+    "supportsSound": true,
     "simulation": true
   },
   "eslintConfig": {
