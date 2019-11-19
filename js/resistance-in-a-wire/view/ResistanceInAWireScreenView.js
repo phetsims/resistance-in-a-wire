@@ -17,12 +17,10 @@ define( require => {
   const FormulaNode = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/FormulaNode' );
   const inherit = require( 'PHET_CORE/inherit' );
   const ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
-  const ResetAllSoundGenerator = require( 'TAMBO/sound-generators/ResetAllSoundGenerator' );
   const resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
   const ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
   const ScreenView = require( 'JOIST/ScreenView' );
   const Shape = require( 'KITE/Shape' );
-  const soundManager = require( 'TAMBO/soundManager' );
   const WireNode = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/WireNode' );
 
   /**
@@ -81,9 +79,6 @@ define( require => {
       tandem: tandem.createTandem( 'resetAllButton' )
     } );
     this.pdomControlAreaNode.addChild( resetAllButton );
-    soundManager.addSoundGenerator( new ResetAllSoundGenerator( model.resetInProgressProperty, {
-      initialOutputLevel: 0.7
-    } ) );
 
     // the outer stroke of the ResetAllButton focus highlight is black so that it is visible when the equation
     // resistance letter grows too large
