@@ -136,7 +136,7 @@ define( require => {
           // rapidly
           if ( deltaRho && deltaResistance ) {
             changeUtterance.alert = getSizeChangeAlert( resistance, deltaResistance, deltaRho, letterRhoString );
-            phet.joist.sim.display.utteranceQueue.addToBack( changeUtterance );
+            phet.joist.sim.utteranceQueue.addToBack( changeUtterance );
           }
         },
         sliderOptions: {
@@ -169,7 +169,7 @@ define( require => {
           // rapidly
           if ( deltaLength && deltaResistance ) {
             changeUtterance.alert = getSizeChangeAlert( resistance, deltaResistance, deltaLength, letterLString );
-            phet.joist.sim.display.utteranceQueue.addToBack( changeUtterance );
+            phet.joist.sim.utteranceQueue.addToBack( changeUtterance );
           }
         },
         sliderOptions: {
@@ -202,7 +202,7 @@ define( require => {
           // rapidly
           if ( deltaArea && deltaResistance ) {
             changeUtterance.alert = getSizeChangeAlert( resistance, deltaResistance, deltaArea, letterAString );
-            phet.joist.sim.display.utteranceQueue.addToBack( changeUtterance );
+            phet.joist.sim.utteranceQueue.addToBack( changeUtterance );
           }
         },
         sliderOptions: {
