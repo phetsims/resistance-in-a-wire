@@ -39,8 +39,8 @@ define( require => {
     options = merge( {
       sliderOptions: {
         trackFillEnabled: 'black',
-        trackSize: new Dimension2( ResistanceInAWireConstants.SLIDER_HEIGHT - 30, 4 ),
-        thumbSize: new Dimension2( 22, 45 ),
+        trackSize: new Dimension2( 4, ResistanceInAWireConstants.SLIDER_HEIGHT - 30 ),
+        thumbSize: new Dimension2( 45, 22 ),
         thumbFill: '#c3c4c5',
         thumbFillHighlighted: '#dedede',
         startDrag: function( event ) {
