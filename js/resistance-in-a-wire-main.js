@@ -16,7 +16,7 @@ define( require => {
   const Tandem = require( 'TANDEM/Tandem' );
 
   // constants
-  const tandem = Tandem.rootTandem;
+  const tandem = Tandem.ROOT;
 
   // strings
   const resistanceInAWireTitleString = require( 'string!RESISTANCE_IN_A_WIRE/resistance-in-a-wire.title' );
