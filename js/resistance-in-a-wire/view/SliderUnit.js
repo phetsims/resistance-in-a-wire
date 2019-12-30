@@ -17,7 +17,7 @@ define( require => {
   const ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
   const RichText = require( 'SCENERY/nodes/RichText' );
   const Text = require( 'SCENERY/nodes/Text' );
-  const Util = require( 'DOT/Util' );
+  const Utils = require( 'DOT/Utils' );
   const VSlider = require( 'SUN/VSlider' );
 
   /**
@@ -56,7 +56,7 @@ define( require => {
 
         // physical values in this sim can have up to 2 decimals
         constrainValue: function( value ) {
-          return Util.toFixedNumber( value, 2 );
+          return Utils.toFixedNumber( value, 2 );
         },
 
         // a11y
@@ -66,7 +66,7 @@ define( require => {
         containerTagName: 'li',
         labelContent: labelContent,
         labelTagName: 'label',
-        a11yMapValue: value => Util.toFixedNumber( value, 2 ),
+        a11yMapValue: value => Utils.toFixedNumber( value, 2 ),
 
         // phet-io
         tandem: tandem.createTandem( 'slider' )
@@ -101,7 +101,7 @@ define( require => {
     // @private
     const slider = new VSlider( property, range, options.sliderOptions );
 
-    const valueText = new Text( Util.toFixed( range.max, 2 ), {
+    const valueText = new Text( Utils.toFixed( range.max, 2 ), {
       font: ResistanceInAWireConstants.READOUT_FONT,
       fill: ResistanceInAWireConstants.BLACK_COLOR,
       maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH,
@@ -144,7 +144,7 @@ define( require => {
 
     // Update value of the readout. No need to unlink, present for the lifetime of the simulation.
     property.link( function( value ) {
-      valueText.text = Util.toFixed( value, 2 );
+      valueText.text = Utils.toFixed( value, 2 );
       valueText.centerX = unitText.centerX;
     } );
 

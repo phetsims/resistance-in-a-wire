@@ -23,7 +23,7 @@ define( require => {
   const soundManager = require( 'TAMBO/soundManager' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   const Text = require( 'SCENERY/nodes/Text' );
-  const Util = require( 'DOT/Util' );
+  const Utils = require( 'DOT/Utils' );
   const Utterance = require( 'UTTERANCE_QUEUE/Utterance' );
 // strings
   const areaString = require( 'string!RESISTANCE_IN_A_WIRE/area' );
@@ -315,7 +315,7 @@ define( require => {
     return StringUtils.format(
       pattern0Label1Value2UnitsString,
       resistanceString,
-      Util.toFixed( resistance, numDecimalDigits ),
+      Utils.toFixed( resistance, numDecimalDigits ),
       ohmString
     );
   }

@@ -14,7 +14,7 @@ define( require => {
   const RangeWithValue = require( 'DOT/RangeWithValue' );
   const resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
   const ResistanceInAWireA11yStrings = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireA11yStrings' );
-  const Util = require( 'DOT/Util' );
+  const Utils = require( 'DOT/Utils' );
 
   // a11y strings
   const muchMuchSmallerThanString = ResistanceInAWireA11yStrings.muchMuchSmallerThanString.value;
@@ -219,7 +219,7 @@ define( require => {
      * @returns {string}
      */
     getFormattedResistanceValue: function( value ) {
-      return Util.toFixed( value, this.getResistanceDecimals( value ) );
+      return Utils.toFixed( value, this.getResistanceDecimals( value ) );
     }
   };
 

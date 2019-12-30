@@ -19,7 +19,7 @@ define( require => {
   const ResistanceInAWireA11yStrings = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireA11yStrings' );
   const ResistanceInAWireConstants = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/ResistanceInAWireConstants' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
-  const Util = require( 'DOT/Util' );
+  const Utils = require( 'DOT/Utils' );
 
   // a11y strings
   const summarySimString = ResistanceInAWireA11yStrings.summarySimString.value;
@@ -92,7 +92,7 @@ define( require => {
         // the precision might change during interaction, get precision if property is a function
         const precision = typeof item.precision === 'number' ? item.precision : item.precision( value );
         item.node.innerContent = StringUtils.fillIn( item.patternString, {
-          value: Util.toFixed( value, precision )
+          value: Utils.toFixed( value, precision )
         } );
       } );
     } );
