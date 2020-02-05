@@ -43,21 +43,13 @@ define( require => {
         thumbSize: new Dimension2( 45, 22 ),
         thumbFill: '#c3c4c5',
         thumbFillHighlighted: '#dedede',
-        startDrag: function( event ) {
-          if ( event.type === 'keydown' ) {
-            self.keyboardDragging = true;
-          }
-          options.startDrag && options.startDrag( event );
-        },
-        endDrag: function( event ) {
-          self.keyboardDragging = false;
-          options.endDrag && options.endDrag( event );
-        },
 
         // physical values in this sim can have up to 2 decimals
         constrainValue: function( value ) {
           return Utils.toFixedNumber( value, 2 );
         },
+        startDrag: _.noop,
+        endDrag: _.noop,
 
         // a11y
         keyboardStep: 1, // delta for keyboard step
@@ -71,13 +63,25 @@ define( require => {
         // phet-io
         tandem: tandem.createTandem( 'slider' )
       },
-      startDrag: _.noop,
-      endDrag: _.noop,
 
       // {number}
       decimalPlaces: 0
 
     }, options );
+
+    // override the start and end drag functions in the options
+    const providedStartDragFunction = options.sliderOptions.startDrag;
+    options.sliderOptions.startDrag = function( event ) {
+      if ( event.type === 'keydown' ) {
+        self.keyboardDragging = true;
+      }
+      providedStartDragFunction && providedStartDragFunction();
+    };
+    const providedEndDragFunction = options.sliderOptions.endDrag;
+    options.sliderOptions.endDrag = function() {
+      self.keyboardDragging = false;
+      providedEndDragFunction && providedEndDragFunction();
+    };
 
     // text for the symbol, text bounds must be accurate for correct layout
     const symbolText = new Text( symbolString, {
