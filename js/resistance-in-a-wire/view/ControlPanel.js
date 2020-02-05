@@ -67,7 +67,7 @@ define( require => {
   /**
    * @param {ResistanceInAWireModel} model
    * @param {Tandem} tandem
-   * @param {Object} options
+   * @param {Object} [options]
    * @constructor
    */
   function ControlPanel( model, tandem, options ) {
