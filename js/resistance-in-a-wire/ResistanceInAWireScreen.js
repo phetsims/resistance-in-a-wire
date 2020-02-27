@@ -6,32 +6,29 @@
  *
  * @author John Blanco (PhET Interactive Simulations)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const inherit = require( 'PHET_CORE/inherit' );
-  const Property = require( 'AXON/Property' );
-  const resistanceInAWire = require( 'RESISTANCE_IN_A_WIRE/resistanceInAWire' );
-  const ResistanceInAWireModel = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/model/ResistanceInAWireModel' );
-  const ResistanceInAWireScreenView = require( 'RESISTANCE_IN_A_WIRE/resistance-in-a-wire/view/ResistanceInAWireScreenView' );
-  const Screen = require( 'JOIST/Screen' );
+import Property from '../../../axon/js/Property.js';
+import Screen from '../../../joist/js/Screen.js';
+import inherit from '../../../phet-core/js/inherit.js';
+import resistanceInAWire from '../resistanceInAWire.js';
+import ResistanceInAWireModel from './model/ResistanceInAWireModel.js';
+import ResistanceInAWireScreenView from './view/ResistanceInAWireScreenView.js';
 
-  /**
-   * @param {Tandem} tandem
-   * @constructor
-   */
-  function ResistanceInAWireScreen( tandem ) {
-    Screen.call( this,
-      function() { return new ResistanceInAWireModel( tandem.createTandem( 'model' ) ); },
-      function( model ) { return new ResistanceInAWireScreenView( model, tandem.createTandem( 'view' ) ); }, {
-        backgroundColorProperty: new Property( '#ffffdf' ),
-        tandem: tandem
-      }
-    );
-  }
+/**
+ * @param {Tandem} tandem
+ * @constructor
+ */
+function ResistanceInAWireScreen( tandem ) {
+  Screen.call( this,
+    function() { return new ResistanceInAWireModel( tandem.createTandem( 'model' ) ); },
+    function( model ) { return new ResistanceInAWireScreenView( model, tandem.createTandem( 'view' ) ); }, {
+      backgroundColorProperty: new Property( '#ffffdf' ),
+      tandem: tandem
+    }
+  );
+}
 
-  resistanceInAWire.register( 'ResistanceInAWireScreen', ResistanceInAWireScreen );
+resistanceInAWire.register( 'ResistanceInAWireScreen', ResistanceInAWireScreen );
 
-  return inherit( Screen, ResistanceInAWireScreen );
-} );
+inherit( Screen, ResistanceInAWireScreen );
+export default ResistanceInAWireScreen;
