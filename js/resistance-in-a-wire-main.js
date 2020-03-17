@@ -36,8 +36,7 @@ const simOptions = {
   },
 
   // a11y enabled
-  keyboardHelpNode: keyboardHelpContent,
-  accessibility: true
+  keyboardHelpNode: keyboardHelpContent
 };
 
 SimLauncher.launch( function() {
