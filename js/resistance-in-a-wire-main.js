@@ -11,7 +11,7 @@ import SimLauncher from '../../joist/js/SimLauncher.js';
 import SliderAndGeneralKeyboardHelpContent
   from '../../scenery-phet/js/keyboard/help/SliderAndGeneralKeyboardHelpContent.js';
 import Tandem from '../../tandem/js/Tandem.js';
-import resistanceInAWireStrings from './resistance-in-a-wire-strings.js';
+import resistanceInAWireStrings from './resistanceInAWireStrings.js';
 import ResistanceInAWireScreen from './resistance-in-a-wire/ResistanceInAWireScreen.js';
 
 // constants
