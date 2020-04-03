@@ -8,11 +8,10 @@
 
 import Sim from '../../joist/js/Sim.js';
 import SimLauncher from '../../joist/js/SimLauncher.js';
-import SliderAndGeneralKeyboardHelpContent
-  from '../../scenery-phet/js/keyboard/help/SliderAndGeneralKeyboardHelpContent.js';
+import SliderAndGeneralKeyboardHelpContent from '../../scenery-phet/js/keyboard/help/SliderAndGeneralKeyboardHelpContent.js';
 import Tandem from '../../tandem/js/Tandem.js';
-import resistanceInAWireStrings from './resistanceInAWireStrings.js';
 import ResistanceInAWireScreen from './resistance-in-a-wire/ResistanceInAWireScreen.js';
+import resistanceInAWireStrings from './resistanceInAWireStrings.js';
 
 // constants
 const tandem = Tandem.ROOT;
