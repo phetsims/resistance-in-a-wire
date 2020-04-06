@@ -20,7 +20,6 @@ import Utterance from '../../../../utterance-queue/js/Utterance.js';
 import resistanceInAWireStrings from '../../resistanceInAWireStrings.js';
 import resistanceInAWire from '../../resistanceInAWire.js';
 import ResistanceInAWireModel from '../model/ResistanceInAWireModel.js';
-import ResistanceInAWireA11yStrings from '../ResistanceInAWireA11yStrings.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 import ResistanceSoundGenerator from './ResistanceSoundGenerator.js';
 import SliderUnit from './SliderUnit.js';
@@ -38,23 +37,22 @@ const resistivityString = resistanceInAWireStrings.resistivity;
 const symbolOhmsString = sceneryPhetStrings.symbol.ohms;
 const symbolResistivityString = sceneryPhetStrings.symbol.resistivity;
 
-// a11y strings (not ready for i18n)
-const resistivityUnitsPatternString = ResistanceInAWireA11yStrings.resistivityUnitsPatternString.value;
-const lengthUnitsPatternString = ResistanceInAWireA11yStrings.lengthUnitsPatternString.value;
-const areaUnitsPatternString = ResistanceInAWireA11yStrings.areaUnitsPatternString.value;
-const resistivitySliderLabelString = ResistanceInAWireA11yStrings.resistivitySliderLabelString.value;
-const lengthSliderLabelString = ResistanceInAWireA11yStrings.lengthSliderLabelString.value;
-const areaSliderLabelString = ResistanceInAWireA11yStrings.areaSliderLabelString.value;
-const sliderControlsString = ResistanceInAWireA11yStrings.sliderControlsString.value;
-const slidersDescriptionString = ResistanceInAWireA11yStrings.slidersDescriptionString.value;
-const sizeChangeAlertPatternString = ResistanceInAWireA11yStrings.sizeChangeAlertPatternString.value;
-const letterRhoString = ResistanceInAWireA11yStrings.letterRhoString.value;
-const letterLString = ResistanceInAWireA11yStrings.letterLString.value;
-const letterAString = ResistanceInAWireA11yStrings.letterAString.value;
-const growsString = ResistanceInAWireA11yStrings.growsString.value;
-const shrinksString = ResistanceInAWireA11yStrings.shrinksString.value;
-const growsALotString = ResistanceInAWireA11yStrings.growsALotString.value;
-const shrinksALotString = ResistanceInAWireA11yStrings.shrinksALotString.value;
+const resistivityUnitsPatternString = resistanceInAWireStrings.a11y.wire.resistivityUnitsPattern;
+const lengthUnitsPatternString = resistanceInAWireStrings.a11y.controls.lengthUnitsPattern;
+const areaUnitsPatternString = resistanceInAWireStrings.a11y.controls.areaUnitsPattern;
+const resistivitySliderLabelString = resistanceInAWireStrings.a11y.controls.resistivitySliderLabel;
+const lengthSliderLabelString = resistanceInAWireStrings.a11y.controls.lengthSliderLabel;
+const areaSliderLabelString = resistanceInAWireStrings.a11y.controls.areaSliderLabel;
+const sliderControlsString = resistanceInAWireStrings.a11y.controls.sliderControls;
+const slidersDescriptionString = resistanceInAWireStrings.a11y.controls.slidersDescription;
+const sizeChangeAlertPatternString = resistanceInAWireStrings.a11y.controls.sizeChangeAlertPattern;
+const letterRhoString = resistanceInAWireStrings.a11y.controls.letterRho;
+const letterLString = resistanceInAWireStrings.a11y.controls.letterL;
+const letterAString = resistanceInAWireStrings.a11y.controls.letterA;
+const growsString = resistanceInAWireStrings.a11y.equation.alerts.grows;
+const shrinksString = resistanceInAWireStrings.a11y.equation.alerts.shrinks;
+const growsALotString = resistanceInAWireStrings.a11y.equation.alerts.growsALot;
+const shrinksALotString = resistanceInAWireStrings.a11y.equation.alerts.shrinksALot;
 
 // constants
 const SLIDER_SPACING = 50;

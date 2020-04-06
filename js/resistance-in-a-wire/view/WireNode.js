@@ -18,13 +18,13 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
 import LinearGradient from '../../../../scenery/js/util/LinearGradient.js';
 import resistanceInAWire from '../../resistanceInAWire.js';
-import ResistanceInAWireA11yStrings from '../ResistanceInAWireA11yStrings.js';
+import resistanceInAWireStrings from '../../resistanceInAWireStrings.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 import DotsCanvasNode from './DotsCanvasNode.js';
 import WireShapeConstants from './WireShapeConstants.js';
 
 // a11y strings
-const wireDescriptionPatternString = ResistanceInAWireA11yStrings.wireDescriptionPatternString.value;
+const wireDescriptionPatternString = resistanceInAWireStrings.a11y.wire.wireDescriptionPattern;
 
 /**
  * The position is set using center values since this can grow or shrink in width and height as the area and length of

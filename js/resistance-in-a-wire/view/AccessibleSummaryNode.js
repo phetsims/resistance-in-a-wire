@@ -14,17 +14,17 @@ import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import AccessibleSectionNode from '../../../../scenery-phet/js/accessibility/AccessibleSectionNode.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import resistanceInAWire from '../../resistanceInAWire.js';
-import ResistanceInAWireA11yStrings from '../ResistanceInAWireA11yStrings.js';
+import resistanceInAWireStrings from '../../resistanceInAWireStrings.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 
 // a11y strings
-const summarySimString = ResistanceInAWireA11yStrings.summarySimString.value;
-const currentlyString = ResistanceInAWireA11yStrings.currentlyString.value;
-const summaryResistancePatternString = ResistanceInAWireA11yStrings.summaryResistancePatternString.value;
-const summaryResistivityPatternString = ResistanceInAWireA11yStrings.summaryResistivityPatternString.value;
-const summaryLengthPatternString = ResistanceInAWireA11yStrings.summaryLengthPatternString.value;
-const summaryAreaPatternString = ResistanceInAWireA11yStrings.summaryAreaPatternString.value;
-const summaryInteractionHintString = ResistanceInAWireA11yStrings.summaryInteractionHintString.value;
+const summarySimString = resistanceInAWireStrings.a11y.summary.sim;
+const summaryCurrentlyString = resistanceInAWireStrings.a11y.summary.currently;
+const summaryResistancePatternString = resistanceInAWireStrings.a11y.summary.resistancePattern;
+const summaryResistivityPatternString = resistanceInAWireStrings.a11y.summary.resistivityPattern;
+const summaryLengthPatternString = resistanceInAWireStrings.a11y.summary.lengthPattern;
+const summaryAreaPatternString = resistanceInAWireStrings.a11y.summary.areaPattern;
+const summaryInteractionHintString = resistanceInAWireStrings.a11y.summary.interactionHint;
 
 // constants
 function AccessibleSummaryNode( model ) {
@@ -37,7 +37,7 @@ function AccessibleSummaryNode( model ) {
   } ) );
 
   // indicates that the summary updates with model changes
-  this.addChild( new Node( { tagName: 'p', innerContent: currentlyString } ) );
+  this.addChild( new Node( { tagName: 'p', innerContent: summaryCurrentlyString } ) );
 
   // list that updates according to model Properties
   const listNode = new Node( { tagName: 'ul' } );

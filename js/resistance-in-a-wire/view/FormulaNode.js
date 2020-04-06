@@ -23,20 +23,17 @@ import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import resistanceInAWireStrings from '../../resistanceInAWireStrings.js';
 import resistanceInAWire from '../../resistanceInAWire.js';
-import ResistanceInAWireA11yStrings from '../ResistanceInAWireA11yStrings.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 
 const areaSymbolString = resistanceInAWireStrings.areaSymbol;
 const lengthSymbolString = resistanceInAWireStrings.lengthSymbol;
 const resistanceSymbolString = resistanceInAWireStrings.resistanceSymbol;
 const symbolResistivityString = sceneryPhetStrings.symbol.resistivity;
-
-// a11y strings
-const resistanceEquationString = ResistanceInAWireA11yStrings.resistanceEquationString.value;
-const resistanceEquationDescriptionString = ResistanceInAWireA11yStrings.resistanceEquationDescriptionString.value;
-const rhoLAndAComparablePatternString = ResistanceInAWireA11yStrings.rhoLAndAComparablePatternString.value;
-const lAndAComparablePatternString = ResistanceInAWireA11yStrings.lAndAComparablePatternString.value;
-const noneComparablePatternString = ResistanceInAWireA11yStrings.noneComparablePatternString.value;
+const equationResistanceEquationString = resistanceInAWireStrings.a11y.equation.resistanceEquation;
+const resistanceEquationDescriptionString = resistanceInAWireStrings.a11y.equation.resistanceEquationDescription;
+const rhoLAndAComparablePatternString = resistanceInAWireStrings.a11y.equation.rhoLAndAComparablePattern;
+const lAndAComparablePatternString = resistanceInAWireStrings.a11y.equation.lAndAComparablePattern;
+const noneComparablePatternString = resistanceInAWireStrings.a11y.equation.noneComparablePattern;
 
 // constants - rather than keep a reference to each letter node, a map from key to scale magnitude is used
 // to track letter scales
@@ -59,7 +56,7 @@ function FormulaNode( model, tandem, options ) {
     // a11y
     tagName: 'div',
     labelTagName: 'h3',
-    labelContent: resistanceEquationString,
+    labelContent: equationResistanceEquationString,
     descriptionContent: resistanceEquationDescriptionString
   } );
 
