@@ -34,7 +34,7 @@ const simOptions = {
     soundDesign: 'Ashton Morris, Mike Winters'
   },
 
-  // a11y enabled
+  // pdom enabled
   keyboardHelpNode: keyboardHelpContent
 };
 

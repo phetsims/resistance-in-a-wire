@@ -57,7 +57,7 @@ const shrinksALotString = resistanceInAWireStrings.a11y.equation.alerts.shrinksA
 // constants
 const SLIDER_SPACING = 50;
 
-// a11y - if resistance changes 2 * the range of the resistance / the number of relative size descriptions, larger change
+// pdom - if resistance changes 2 * the range of the resistance / the number of relative size descriptions, larger change
 // is signified in description
 const LARGE_RESISTANCE_DELTA = ( ( ResistanceInAWireModel.getResistanceRange().max - ResistanceInAWireModel.getResistanceRange().min ) / ResistanceInAWireConstants.RELATIVE_SIZE_STRINGS.length ) * 2;
 
@@ -77,7 +77,7 @@ function ControlPanel( model, tandem, options ) {
     tandem: tandem,
     preventFit: true,
 
-    // a11y
+    // pdom
     tagName: 'ul',
     labelTagName: 'h3',
     labelContent: sliderControlsString,
@@ -103,11 +103,11 @@ function ControlPanel( model, tandem, options ) {
     resistanceReadout.text = getResistanceReadoutText( resistance );
   } );
 
-  // a11y - when using a slider, we store the initial value on start drag so that we can describe size change after
+  // pdom - when using a slider, we store the initial value on start drag so that we can describe size change after
   // interaction
   let resistanceOnStart = model.resistanceProperty.get();
 
-  // a11y - an utterance for whenever physical values change
+  // pdom - an utterance for whenever physical values change
   const changeUtterance = new Utterance();
 
   // Create and add the resistivity slider with readout and labels.

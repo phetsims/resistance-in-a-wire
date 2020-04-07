@@ -53,7 +53,7 @@ function FormulaNode( model, tandem, options ) {
   Node.call( this, {
     tandem: tandem,
 
-    // a11y
+    // pdom
     tagName: 'div',
     labelTagName: 'h3',
     labelContent: equationResistanceEquationString,
@@ -170,7 +170,7 @@ function FormulaNode( model, tandem, options ) {
 
   this.mutate( options );
 
-  // a11y - set the initial description
+  // pdom - set the initial description
   lettersNode.setDescriptionContent( self.getRelativeSizeDescription() );
 }
 

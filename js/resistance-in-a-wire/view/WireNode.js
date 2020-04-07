@@ -42,7 +42,7 @@ function WireNode( model, tandem, options ) {
   Node.call( this, {
     tandem: tandem,
 
-    // a11y
+    // pdom
     tagName: 'div',
     labelTagName: 'h3',
     labelContent: 'The Wire'

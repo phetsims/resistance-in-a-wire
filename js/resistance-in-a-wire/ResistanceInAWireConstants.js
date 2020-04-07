@@ -147,7 +147,7 @@ const ResistanceInAWireConstants = {
   RELATIVE_SIZE_STRINGS: RELATIVE_SIZE_STRINGS,
 
 
-  // a11y - used to map relative scale magnitudes of the letters to relative size description
+  // pdom - used to map relative scale magnitudes of the letters to relative size description
   RELATIVE_SIZE_MAP: {
     muchMuchSmaller: {
       description: muchMuchSmallerThanString,
