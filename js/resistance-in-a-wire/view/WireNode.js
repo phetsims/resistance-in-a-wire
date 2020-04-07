@@ -23,7 +23,6 @@ import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 import DotsCanvasNode from './DotsCanvasNode.js';
 import WireShapeConstants from './WireShapeConstants.js';
 
-// a11y strings
 const wireDescriptionPatternString = resistanceInAWireStrings.a11y.wire.wireDescriptionPattern;
 
 /**

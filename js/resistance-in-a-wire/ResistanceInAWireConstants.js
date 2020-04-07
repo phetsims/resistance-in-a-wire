@@ -13,7 +13,6 @@ import PhetFont from '../../../scenery-phet/js/PhetFont.js';
 import resistanceInAWire from '../resistanceInAWire.js';
 import resistanceInAWireStrings from '../resistanceInAWireStrings.js';
 
-// a11y strings
 const muchMuchSmallerThanString = resistanceInAWireStrings.a11y.equation.sizes.muchMuchSmallerThan;
 const muchSmallerThanString = resistanceInAWireStrings.a11y.equation.sizes.muchSmallerThan;
 const slightlySmallerThanString = resistanceInAWireStrings.a11y.equation.sizes.slightlySmallerThan;

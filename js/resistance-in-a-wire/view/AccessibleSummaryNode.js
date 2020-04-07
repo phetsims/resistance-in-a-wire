@@ -17,7 +17,6 @@ import resistanceInAWire from '../../resistanceInAWire.js';
 import resistanceInAWireStrings from '../../resistanceInAWireStrings.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 
-// a11y strings
 const summarySimString = resistanceInAWireStrings.a11y.summary.sim;
 const summaryCurrentlyString = resistanceInAWireStrings.a11y.summary.currently;
 const summaryResistancePatternString = resistanceInAWireStrings.a11y.summary.resistancePattern;
