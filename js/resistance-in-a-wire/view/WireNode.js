@@ -114,7 +114,7 @@ function WireNode( model, tandem, options ) {
 
 resistanceInAWire.register( 'WireNode', WireNode );
 
-export default inherit( Node, WireNode, {
+inherit( Node, WireNode, {
 
   getWireDescription: function() {
     const lengthValue = this.model.lengthProperty.get();
@@ -133,3 +133,5 @@ export default inherit( Node, WireNode, {
     } );
   }
 } );
+
+export default WireNode;

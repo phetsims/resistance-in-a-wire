@@ -62,7 +62,7 @@ function ResistanceInAWireModel( tandem ) {
 
 resistanceInAWire.register( 'ResistanceInAWireModel', ResistanceInAWireModel );
 
-export default inherit( Object, ResistanceInAWireModel, {
+inherit( Object, ResistanceInAWireModel, {
 
   /**
    * resets the properties of the model
@@ -88,3 +88,5 @@ export default inherit( Object, ResistanceInAWireModel, {
     return new Range( minResistance, maxResistance );
   }
 } );
+
+export default ResistanceInAWireModel;
