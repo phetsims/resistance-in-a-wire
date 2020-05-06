@@ -94,5 +94,5 @@ function AccessibleSummaryNode( model ) {
 }
 
 resistanceInAWire.register( 'AccessibleSummaryNode', AccessibleSummaryNode );
-
-export default inherit( AccessibleSectionNode, AccessibleSummaryNode, {} );
+inherit( AccessibleSectionNode, AccessibleSummaryNode );
+export default AccessibleSectionNode;
