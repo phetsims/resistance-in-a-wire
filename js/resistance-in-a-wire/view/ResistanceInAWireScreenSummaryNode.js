@@ -11,7 +11,6 @@
 import Utils from '../../../../dot/js/Utils.js';
 import inherit from '../../../../phet-core/js/inherit.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
-import AccessibleSectionNode from '../../../../scenery-phet/js/accessibility/AccessibleSectionNode.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import resistanceInAWire from '../../resistanceInAWire.js';
 import resistanceInAWireStrings from '../../resistanceInAWireStrings.js';
@@ -26,7 +25,7 @@ const summaryAreaPatternString = resistanceInAWireStrings.a11y.summary.areaPatte
 const summaryInteractionHintString = resistanceInAWireStrings.a11y.summary.interactionHint;
 
 // constants
-function AccessibleSummaryNode( model ) {
+function ResistanceInAWireScreenSummaryNode( model ) {
   Node.call( this );
 
   // main summary for this sim - this content never changes
@@ -93,6 +92,6 @@ function AccessibleSummaryNode( model ) {
   } );
 }
 
-resistanceInAWire.register( 'AccessibleSummaryNode', AccessibleSummaryNode );
-inherit( AccessibleSectionNode, AccessibleSummaryNode );
-export default AccessibleSectionNode;
+resistanceInAWire.register( 'ResistanceInAWireScreenSummaryNode', ResistanceInAWireScreenSummaryNode );
+inherit( Node, ResistanceInAWireScreenSummaryNode );
+export default ResistanceInAWireScreenSummaryNode;

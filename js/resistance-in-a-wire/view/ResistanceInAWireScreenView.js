@@ -15,7 +15,7 @@ import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.j
 import FocusHighlightPath from '../../../../scenery/js/accessibility/FocusHighlightPath.js';
 import resistanceInAWire from '../../resistanceInAWire.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
-import AccessibleSummaryNode from './AccessibleSummaryNode.js';
+import ResistanceInAWireScreenSummaryNode from './ResistanceInAWireScreenSummaryNode.js';
 import ControlPanel from './ControlPanel.js';
 import FormulaNode from './FormulaNode.js';
 import WireNode from './WireNode.js';
@@ -29,7 +29,7 @@ function ResistanceInAWireScreenView( model, tandem ) {
 
   ScreenView.call( this, {
     tandem: tandem,
-    screenSummaryContent: new AccessibleSummaryNode( model )
+    screenSummaryContent: new ResistanceInAWireScreenSummaryNode( model )
   } );
 
   // Create the control panel with sliders that change the values of the equation's variables. Hard coded
