@@ -44,7 +44,7 @@ function DotsCanvasNode( model, options ) {
     preventFit: true // don't recompute bounds as a performance enhancement
   }, options );
 
-  // @private - Locations for dots randomly on the wire. Density is based on AREA_PER_DOT.
+  // @private - Positions for dots randomly on the wire. Density is based on AREA_PER_DOT.
   this.dotCenters = [];
   for ( let i = 0; i < NUMBER_OF_DOTS; i++ ) {
     const centerX = ( phet.joist.random.nextDouble() - .5 ) * MAX_WIDTH_INCLUDING_ROUNDED_ENDS;
