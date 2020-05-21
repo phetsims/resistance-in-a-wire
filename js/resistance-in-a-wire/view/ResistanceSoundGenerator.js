@@ -85,6 +85,9 @@ class ResistanceSoundGenerator extends SoundClip {
     };
   }
 
+  /**
+   * @public
+   */
   dispose() {
     this.disposeResistanceSoundGenerator();
   }
@@ -118,6 +121,7 @@ class BinSelector {
    * put the provided value in a bin
    * @param value
    * @returns {number}
+   * @public
    */
   selectBin( value ) {
     assert && assert( value <= this.maxValue );
