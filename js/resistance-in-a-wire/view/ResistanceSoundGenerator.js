@@ -25,8 +25,6 @@ const MAX_AREA = ResistanceInAWireConstants.AREA_RANGE.max;
 const MIN_LENGTH = ResistanceInAWireConstants.LENGTH_RANGE.min;
 const MAX_LENGTH = ResistanceInAWireConstants.LENGTH_RANGE.max;
 
-// sounds
-
 class ResistanceSoundGenerator extends SoundClip {
 
   /**
