@@ -9,7 +9,6 @@
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import DerivedPropertyIO from '../../../../axon/js/DerivedPropertyIO.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Range from '../../../../dot/js/Range.js';
 import inherit from '../../../../phet-core/js/inherit.js';
@@ -52,7 +51,7 @@ function ResistanceInAWireModel( tandem ) {
     }, {
       tandem: tandem.createTandem( 'resistanceProperty' ),
       units: 'ohms',
-      phetioType: DerivedPropertyIO( NumberIO )
+      phetioType: DerivedProperty.DerivedPropertyIO( NumberIO )
     }
   );
 
