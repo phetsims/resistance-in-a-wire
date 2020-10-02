@@ -8,7 +8,6 @@
  */
 
 import Utils from '../../../../dot/js/Utils.js';
-import inherit from '../../../../phet-core/js/inherit.js';
 import merge from '../../../../phet-core/js/merge.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import sceneryPhetStrings from '../../../../scenery-phet/js/sceneryPhetStrings.js';
@@ -17,8 +16,8 @@ import Text from '../../../../scenery/js/nodes/Text.js';
 import Panel from '../../../../sun/js/Panel.js';
 import soundManager from '../../../../tambo/js/soundManager.js';
 import Utterance from '../../../../utterance-queue/js/Utterance.js';
-import resistanceInAWireStrings from '../../resistanceInAWireStrings.js';
 import resistanceInAWire from '../../resistanceInAWire.js';
+import resistanceInAWireStrings from '../../resistanceInAWireStrings.js';
 import ResistanceInAWireModel from '../model/ResistanceInAWireModel.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 import ResistanceSoundGenerator from './ResistanceSoundGenerator.js';
@@ -61,186 +60,186 @@ const SLIDER_SPACING = 50;
 // is signified in description
 const LARGE_RESISTANCE_DELTA = ( ( ResistanceInAWireModel.getResistanceRange().max - ResistanceInAWireModel.getResistanceRange().min ) / ResistanceInAWireConstants.RELATIVE_SIZE_STRINGS.length ) * 2;
 
-/**
- * @param {ResistanceInAWireModel} model
- * @param {Tandem} tandem
- * @param {Object} [options]
- * @constructor
- */
-function ControlPanel( model, tandem, options ) {
+class ControlPanel extends Panel {
 
-  options = merge( {
-    xMargin: 30,
-    yMargin: 20,
-    lineWidth: 3,
-    resize: false,
-    tandem: tandem,
-    preventFit: true,
+  /**
+   * @param {ResistanceInAWireModel} model
+   * @param {Tandem} tandem
+   * @param {Object} [options]
+   */
+  constructor( model, tandem, options ) {
 
-    // pdom
-    tagName: 'ul',
-    labelTagName: 'h3',
-    labelContent: sliderControlsString,
-    descriptionContent: slidersDescriptionString
-  }, options );
+    options = merge( {
+      xMargin: 30,
+      yMargin: 20,
+      lineWidth: 3,
+      resize: false,
+      tandem: tandem,
+      preventFit: true,
 
-  // Add the dynamic title that indicates the resistance.
-  const resistanceReadout = new Text( '', {
-    font: ResistanceInAWireConstants.READOUT_FONT,
-    fill: ResistanceInAWireConstants.RED_COLOR,
-    maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH * 4.7,
-    tandem: tandem.createTandem( 'resistanceReadout' )
-  } );
+      // pdom
+      tagName: 'ul',
+      labelTagName: 'h3',
+      labelContent: sliderControlsString,
+      descriptionContent: slidersDescriptionString
+    }, options );
 
-  // Set the resistance readout to its initial value, then set the position.  Previously, the readout position was
-  // re-centered every time the resistance changed, but it was decided that this looked too jumpy, so now it's
-  // positioned only once, see https://github.com/phetsims/resistance-in-a-wire/issues/181.
-  resistanceReadout.text = getResistanceReadoutText( model.resistanceProperty.value );
-  resistanceReadout.centerX = 0;
+    // Add the dynamic title that indicates the resistance.
+    const resistanceReadout = new Text( '', {
+      font: ResistanceInAWireConstants.READOUT_FONT,
+      fill: ResistanceInAWireConstants.RED_COLOR,
+      maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH * 4.7,
+      tandem: tandem.createTandem( 'resistanceReadout' )
+    } );
 
-  // Update the resistance readout when the resistance changes.
-  model.resistanceProperty.link( function( resistance ) {
-    resistanceReadout.text = getResistanceReadoutText( resistance );
-  } );
+    // Set the resistance readout to its initial value, then set the position.  Previously, the readout position was
+    // re-centered every time the resistance changed, but it was decided that this looked too jumpy, so now it's
+    // positioned only once, see https://github.com/phetsims/resistance-in-a-wire/issues/181.
+    resistanceReadout.text = getResistanceReadoutText( model.resistanceProperty.value );
+    resistanceReadout.centerX = 0;
 
-  // pdom - when using a slider, we store the initial value on start drag so that we can describe size change after
-  // interaction
-  let resistanceOnStart = model.resistanceProperty.get();
+    // Update the resistance readout when the resistance changes.
+    model.resistanceProperty.link( function( resistance ) {
+      resistanceReadout.text = getResistanceReadoutText( resistance );
+    } );
 
-  // pdom - an utterance for whenever physical values change
-  const changeUtterance = new Utterance();
+    // pdom - when using a slider, we store the initial value on start drag so that we can describe size change after
+    // interaction
+    let resistanceOnStart = model.resistanceProperty.get();
 
-  // Create and add the resistivity slider with readout and labels.
-  let rhoOnStart = model.resistivityProperty.get();
-  const resistivitySlider = new SliderUnit(
-    model.resistivityProperty,
-    ResistanceInAWireConstants.RESISTIVITY_RANGE,
-    symbolResistivityString,
-    resistivityString,
-    StringUtils.format( pattern0ResistanceUnits1LengthUnitsString, symbolOhmsString, cmString ),
-    resistivitySliderLabelString,
-    tandem.createTandem( 'resistivitySlider' ), {
-      startDrag: function() {
-        rhoOnStart = model.resistivityProperty.get();
-        resistanceOnStart = model.resistanceProperty.get();
-      },
-      endDrag: function() {
-        const resistance = model.resistanceProperty.get();
-        const deltaRho = model.resistivityProperty.get() - rhoOnStart;
-        const deltaResistance = resistance - resistanceOnStart;
+    // pdom - an utterance for whenever physical values change
+    const changeUtterance = new Utterance();
 
-        // announce to assistive technology if there is a change - no need to queue many alerts when pressing keys
-        // rapidly
-        if ( deltaRho && deltaResistance ) {
-          changeUtterance.alert = getSizeChangeAlert( resistance, deltaResistance, deltaRho, letterRhoString );
-          phet.joist.sim.utteranceQueue.addToBack( changeUtterance );
+    // Create and add the resistivity slider with readout and labels.
+    let rhoOnStart = model.resistivityProperty.get();
+    const resistivitySlider = new SliderUnit(
+      model.resistivityProperty,
+      ResistanceInAWireConstants.RESISTIVITY_RANGE,
+      symbolResistivityString,
+      resistivityString,
+      StringUtils.format( pattern0ResistanceUnits1LengthUnitsString, symbolOhmsString, cmString ),
+      resistivitySliderLabelString,
+      tandem.createTandem( 'resistivitySlider' ), {
+        startDrag: function() {
+          rhoOnStart = model.resistivityProperty.get();
+          resistanceOnStart = model.resistanceProperty.get();
+        },
+        endDrag: function() {
+          const resistance = model.resistanceProperty.get();
+          const deltaRho = model.resistivityProperty.get() - rhoOnStart;
+          const deltaResistance = resistance - resistanceOnStart;
+
+          // announce to assistive technology if there is a change - no need to queue many alerts when pressing keys
+          // rapidly
+          if ( deltaRho && deltaResistance ) {
+            changeUtterance.alert = getSizeChangeAlert( resistance, deltaResistance, deltaRho, letterRhoString );
+            phet.joist.sim.utteranceQueue.addToBack( changeUtterance );
+          }
+        },
+        sliderOptions: {
+          keyboardStep: 0.05, // ohm-cm
+          a11yCreateAriaValueText: value => StringUtils.fillIn( resistivityUnitsPatternString, { value: value } )
         }
-      },
-      sliderOptions: {
-        keyboardStep: 0.05, // ohm-cm
-        a11yCreateAriaValueText: value => StringUtils.fillIn( resistivityUnitsPatternString, { value: value } )
       }
-    }
-  );
+    );
 
-  // Create and add the length slider with readout and labels.
-  let lengthOnStart = model.lengthProperty.get();
-  const lengthSlider = new SliderUnit(
-    model.lengthProperty,
-    ResistanceInAWireConstants.LENGTH_RANGE,
-    lengthSymbolString,
-    lengthString,
-    cmString,
-    lengthSliderLabelString,
-    tandem.createTandem( 'lengthSlider' ), {
-      startDrag: function() {
-        lengthOnStart = model.lengthProperty.get();
-        resistanceOnStart = model.resistanceProperty.get();
-      },
-      endDrag: function() {
-        const resistance = model.resistanceProperty.get();
-        const deltaLength = model.lengthProperty.get() - lengthOnStart;
-        const deltaResistance = resistance - resistanceOnStart;
+    // Create and add the length slider with readout and labels.
+    let lengthOnStart = model.lengthProperty.get();
+    const lengthSlider = new SliderUnit(
+      model.lengthProperty,
+      ResistanceInAWireConstants.LENGTH_RANGE,
+      lengthSymbolString,
+      lengthString,
+      cmString,
+      lengthSliderLabelString,
+      tandem.createTandem( 'lengthSlider' ), {
+        startDrag: function() {
+          lengthOnStart = model.lengthProperty.get();
+          resistanceOnStart = model.resistanceProperty.get();
+        },
+        endDrag: function() {
+          const resistance = model.resistanceProperty.get();
+          const deltaLength = model.lengthProperty.get() - lengthOnStart;
+          const deltaResistance = resistance - resistanceOnStart;
 
-        // announce to assistive technology if there is a change - no need to queue many alerts when pressing keys
-        // rapidly
-        if ( deltaLength && deltaResistance ) {
-          changeUtterance.alert = getSizeChangeAlert( resistance, deltaResistance, deltaLength, letterLString );
-          phet.joist.sim.utteranceQueue.addToBack( changeUtterance );
+          // announce to assistive technology if there is a change - no need to queue many alerts when pressing keys
+          // rapidly
+          if ( deltaLength && deltaResistance ) {
+            changeUtterance.alert = getSizeChangeAlert( resistance, deltaResistance, deltaLength, letterLString );
+            phet.joist.sim.utteranceQueue.addToBack( changeUtterance );
+          }
+        },
+        sliderOptions: {
+          a11yCreateAriaValueText: value => StringUtils.fillIn( lengthUnitsPatternString, { value: value } )
         }
-      },
-      sliderOptions: {
-        a11yCreateAriaValueText: value => StringUtils.fillIn( lengthUnitsPatternString, { value: value } )
       }
-    }
-  );
+    );
 
-  // Create and add the area slider with readout and labels. For keyboard dragging, the range ranges doesn't split into even steps,
-  // so we calculate a keyboard step by breaking the range into 100.
-  let areaOnStart = model.areaProperty.get();
-  const areaSlider = new SliderUnit(
-    model.areaProperty,
-    ResistanceInAWireConstants.AREA_RANGE,
-    areaSymbolString,
-    areaString,
-    cmString + '<sup>2</sup>',
-    areaSliderLabelString,
-    tandem.createTandem( 'areaSlider' ), {
-      startDrag: function() {
-        areaOnStart = model.areaProperty.get();
-        resistanceOnStart = model.resistanceProperty.get();
-      },
-      endDrag: function() {
-        const resistance = model.resistanceProperty.get();
-        const deltaArea = model.areaProperty.get() - areaOnStart;
-        const deltaResistance = resistance - resistanceOnStart;
+    // Create and add the area slider with readout and labels. For keyboard dragging, the range ranges doesn't split into even steps,
+    // so we calculate a keyboard step by breaking the range into 100.
+    let areaOnStart = model.areaProperty.get();
+    const areaSlider = new SliderUnit(
+      model.areaProperty,
+      ResistanceInAWireConstants.AREA_RANGE,
+      areaSymbolString,
+      areaString,
+      cmString + '<sup>2</sup>',
+      areaSliderLabelString,
+      tandem.createTandem( 'areaSlider' ), {
+        startDrag: function() {
+          areaOnStart = model.areaProperty.get();
+          resistanceOnStart = model.resistanceProperty.get();
+        },
+        endDrag: function() {
+          const resistance = model.resistanceProperty.get();
+          const deltaArea = model.areaProperty.get() - areaOnStart;
+          const deltaResistance = resistance - resistanceOnStart;
 
-        // announce to assistive technology if there is a change - no need to queue many alerts when pressing keys
-        // rapidly
-        if ( deltaArea && deltaResistance ) {
-          changeUtterance.alert = getSizeChangeAlert( resistance, deltaResistance, deltaArea, letterAString );
-          phet.joist.sim.utteranceQueue.addToBack( changeUtterance );
+          // announce to assistive technology if there is a change - no need to queue many alerts when pressing keys
+          // rapidly
+          if ( deltaArea && deltaResistance ) {
+            changeUtterance.alert = getSizeChangeAlert( resistance, deltaResistance, deltaArea, letterAString );
+            phet.joist.sim.utteranceQueue.addToBack( changeUtterance );
+          }
+        },
+        sliderOptions: {
+          a11yCreateAriaValueText: value => StringUtils.fillIn( areaUnitsPatternString, { value: value } )
         }
-      },
-      sliderOptions: {
-        a11yCreateAriaValueText: value => StringUtils.fillIn( areaUnitsPatternString, { value: value } )
       }
-    }
-  );
+    );
 
-  const sliders = new Node( {
-    children: [ resistivitySlider, lengthSlider, areaSlider ]
-  } );
+    const sliders = new Node( {
+      children: [ resistivitySlider, lengthSlider, areaSlider ]
+    } );
 
-  // add the sound generator for the resistance level
-  soundManager.addSoundGenerator( new ResistanceSoundGenerator( {
-    resistanceProperty: model.resistanceProperty,
-    resistivityProperty: model.resistivityProperty,
-    resistivitySlider: resistivitySlider,
-    lengthProperty: model.lengthProperty,
-    lengthSlider: lengthSlider,
-    areaProperty: model.areaProperty,
-    areaSlider: areaSlider,
-    resetInProgressProperty: model.resetInProgressProperty
-  } ) );
+    // add the sound generator for the resistance level
+    soundManager.addSoundGenerator( new ResistanceSoundGenerator( {
+      resistanceProperty: model.resistanceProperty,
+      resistivityProperty: model.resistivityProperty,
+      resistivitySlider: resistivitySlider,
+      lengthProperty: model.lengthProperty,
+      lengthSlider: lengthSlider,
+      areaProperty: model.areaProperty,
+      areaSlider: areaSlider,
+      resetInProgressProperty: model.resetInProgressProperty
+    } ) );
 
-  // layout for the panel, HBox cannot be used because 'bottom' alignment cannot align RichText in SliderUnit
-  lengthSlider.left = resistivitySlider.right + SLIDER_SPACING;
-  areaSlider.left = lengthSlider.right + SLIDER_SPACING;
-  sliders.centerX = 0;
-  resistanceReadout.bottom = sliders.top - 12;
+    // layout for the panel, HBox cannot be used because 'bottom' alignment cannot align RichText in SliderUnit
+    lengthSlider.left = resistivitySlider.right + SLIDER_SPACING;
+    areaSlider.left = lengthSlider.right + SLIDER_SPACING;
+    sliders.centerX = 0;
+    resistanceReadout.bottom = sliders.top - 12;
 
-  // Because ControlPanel extends Panel, it needs pass a content node into its constructor to surround.
-  // Add everything to the content node, then pass content to the Panel.call().
-  const content = new Node( {
-    children: [ resistanceReadout, sliders ],
-    tandem: tandem.createTandem( 'content' )
-  } );
+    // Because ControlPanel extends Panel, it needs pass a content node into its constructor to surround.
+    // Add everything to the content node, then pass content to the Panel.call().
+    const content = new Node( {
+      children: [ resistanceReadout, sliders ],
+      tandem: tandem.createTandem( 'content' )
+    } );
 
-  Panel.call( this, content, options );
+   super( content, options );
+  }
 }
-
-resistanceInAWire.register( 'ControlPanel', ControlPanel );
 
 /**
  * Get a description for whether a letter grows or shrinks. Optionally, if the size changes enough, an additional
@@ -317,5 +316,5 @@ function getResistanceReadoutText( resistance ) {
   );
 }
 
-inherit( Panel, ControlPanel );
+resistanceInAWire.register( 'ControlPanel', ControlPanel );
 export default ControlPanel;
