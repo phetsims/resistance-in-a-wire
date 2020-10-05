@@ -9,6 +9,7 @@
 
 import Property from '../../../axon/js/Property.js';
 import Screen from '../../../joist/js/Screen.js';
+import SliderAndGeneralKeyboardHelpContent from '../../../scenery-phet/js/keyboard/help/SliderAndGeneralKeyboardHelpContent.js';
 import resistanceInAWire from '../resistanceInAWire.js';
 import ResistanceInAWireModel from './model/ResistanceInAWireModel.js';
 import ResistanceInAWireScreenView from './view/ResistanceInAWireScreenView.js';
@@ -23,7 +24,8 @@ class ResistanceInAWireScreen extends Screen {
       function() { return new ResistanceInAWireModel( tandem.createTandem( 'model' ) ); },
       function( model ) { return new ResistanceInAWireScreenView( model, tandem.createTandem( 'view' ) ); }, {
         backgroundColorProperty: new Property( '#ffffdf' ),
-        tandem: tandem
+        tandem: tandem,
+        keyboardHelpNode: new SliderAndGeneralKeyboardHelpContent()
       }
     );
   }

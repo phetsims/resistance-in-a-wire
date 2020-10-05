@@ -8,7 +8,6 @@
 
 import Sim from '../../joist/js/Sim.js';
 import simLauncher from '../../joist/js/simLauncher.js';
-import SliderAndGeneralKeyboardHelpContent from '../../scenery-phet/js/keyboard/help/SliderAndGeneralKeyboardHelpContent.js';
 import Tandem from '../../tandem/js/Tandem.js';
 import ResistanceInAWireScreen from './resistance-in-a-wire/ResistanceInAWireScreen.js';
 import resistanceInAWireStrings from './resistanceInAWireStrings.js';
@@ -17,9 +16,6 @@ import resistanceInAWireStrings from './resistanceInAWireStrings.js';
 const tandem = Tandem.ROOT;
 
 const resistanceInAWireTitleString = resistanceInAWireStrings[ 'resistance-in-a-wire' ].title;
-
-// help content to describe keyboard interactions
-const keyboardHelpContent = new SliderAndGeneralKeyboardHelpContent();
 
 const simOptions = {
   credits: {
@@ -33,9 +29,7 @@ const simOptions = {
             'simulation to HTML5.',
     soundDesign: 'Ashton Morris, Mike Winters'
   },
-
-  // pdom enabled
-  keyboardHelpNode: keyboardHelpContent
+  hasKeyboardHelpContent: true
 };
 
 simLauncher.launch( function() {
