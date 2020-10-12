@@ -28,12 +28,13 @@ define( function( require ) {
     credits: {
       leadDesign: 'Michael Dubson',
       softwareDevelopment: 'Michael Dubson, John Blanco, Jesse Greenberg, Michael Kauzmann',
-      team: 'Wendy Adams, Mindy Gratny, Ariel Paul',
+      team: 'Wendy Adams, Mindy Gratny, Emily B. Moore, Ariel Paul, Taliesin Smith, Brianna Tomlinson',
       qualityAssurance: 'Steele Dalton, Kerrie Dochen, Alex Dornan, Bryce Griebenow, Ethan Johnson, Megan Lai, ' +
                         'Elise Morgan, Liam Mulhall, Oliver Orejola, Arnab Purkayastha, Laura Rea, Benjamin Roberts, ' +
                         'Jacob Romero, Clara Wilson, Kathryn Woessner, Kelly Wurtz, Bryan Yoelin',
       thanks: 'Thanks to Mobile Learner Labs for working with the PhET development team to convert this ' +
-              'simulation to HTML5.'
+              'simulation to HTML5.',
+      soundDesign: 'Ashton Morris, Mike Winters'
     },
 
     // a11y enabled
