@@ -67,14 +67,14 @@ function SliderUnit( property, range, symbolString, nameString, unitString, labe
   }, options );
 
   // override the start and end drag functions in the options
-  const providedStartDragFunction = options.sliderOptions.startDrag;
+  const providedStartDragFunction = options.startDrag;
   options.sliderOptions.startDrag = function( event ) {
     if ( event.type === 'keydown' ) {
       self.keyboardDragging = true;
     }
     providedStartDragFunction && providedStartDragFunction();
   };
-  const providedEndDragFunction = options.sliderOptions.endDrag;
+  const providedEndDragFunction = options.endDrag;
   options.sliderOptions.endDrag = function() {
     self.keyboardDragging = false;
     providedEndDragFunction && providedEndDragFunction();
