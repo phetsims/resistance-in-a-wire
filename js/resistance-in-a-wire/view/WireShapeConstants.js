@@ -42,8 +42,9 @@ const WireShapeConstants = {
    * Transform to map the area to the height of the wire.
    * @param {number} area
    * @returns {number} - the height in screen coordinates
+   * @public
    */
-  areaToHeight: function( area ) {
+  areaToHeight( area ) {
     const radius_squared = area / Math.PI;
     const diameter = Math.sqrt( radius_squared ) * 2; // radius to diameter
     return WIRE_VIEW_HEIGHT_RANGE.max / WIRE_DIAMETER_MAX * diameter;

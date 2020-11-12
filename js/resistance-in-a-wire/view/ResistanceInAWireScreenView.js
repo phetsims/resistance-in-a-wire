@@ -69,7 +69,7 @@ class ResistanceInAWireScreenView extends ScreenView {
     this.pdomPlayAreaNode.addChild( arrowNode );
 
     const resetAllButton = new ResetAllButton( {
-      listener: function() { model.reset(); },
+      listener: () => { model.reset(); },
       radius: 30,
       right: controlPanel.right,
       bottom: this.layoutBounds.bottom - 20,

@@ -12,7 +12,6 @@
 
 import Vector2 from '../../../../dot/js/Vector2.js';
 import Shape from '../../../../kite/js/Shape.js';
-import inherit from '../../../../phet-core/js/inherit.js';
 import platform from '../../../../phet-core/js/platform.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
@@ -21,8 +20,8 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
-import resistanceInAWireStrings from '../../resistanceInAWireStrings.js';
 import resistanceInAWire from '../../resistanceInAWire.js';
+import resistanceInAWireStrings from '../../resistanceInAWireStrings.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 
 const areaSymbolString = resistanceInAWireStrings.areaSymbol;
@@ -42,141 +41,137 @@ const RESISTIVITY_KEY = 'resistivity';
 const AREA_KEY = 'area';
 const LENGTH_KEY = 'length';
 
-/**
- * @param {ResistanceInAWireModel} model
- * @param {Tandem} tandem
- * @param {Object} [options]
- * @constructor
- */
-function FormulaNode( model, tandem, options ) {
+class FormulaNode extends Node {
+  /**
+   * @param {ResistanceInAWireModel} model
+   * @param {Tandem} tandem
+   * @param {Object} [options]
+   */
+  constructor( model, tandem, options ) {
 
-  Node.call( this, {
-    tandem: tandem,
+    super( {
+      tandem: tandem,
 
-    // pdom
-    tagName: 'div',
-    labelTagName: 'h3',
-    labelContent: equationResistanceEquationString,
-    descriptionContent: resistanceEquationDescriptionString
-  } );
-
-  // equals sign, hard coded
-  const equalsSignText = new Text( '=', { // we never internationalize the '=' sign
-    font: new PhetFont( { family: ResistanceInAWireConstants.FONT_FAMILY, size: 90 } ),
-    fill: ResistanceInAWireConstants.BLACK_COLOR,
-    center: new Vector2( 100, 0 ),
-    tandem: tandem.createTandem( 'equalsSign' )
-  } );
-
-  // maps identifier to scale magnitude
-  this.a11yScaleMap = {};
-  this.a11yScaleMap[ RESISTANCE_KEY ] = 0;
-  this.a11yScaleMap[ RESISTIVITY_KEY ] = 0;
-  this.a11yScaleMap[ AREA_KEY ] = 0;
-  this.a11yScaleMap[ LENGTH_KEY ] = 0;
-
-  // An array of attributes related to text
-  const symbolTexts = [ {
-    label: resistanceSymbolString,
-    center: new Vector2( equalsSignText.centerX - 100, 0 ),
-    property: model.resistanceProperty,
-    color: ResistanceInAWireConstants.RED_COLOR,
-    cappedSize: true, // To make sure that the 'R' doesn't get too big, see https://github.com/phetsims/resistance-in-a-wire/issues/28
-    tandem: tandem.createTandem( 'resistanceSymbol' ),
-    scaleKey: RESISTANCE_KEY
-  }, {
-    label: symbolResistivityString,
-    center: new Vector2( equalsSignText.centerX + 120, -90 ),
-    property: model.resistivityProperty,
-    color: ResistanceInAWireConstants.BLUE_COLOR,
-    tandem: tandem.createTandem( 'resistivitySymbol' ),
-    scaleKey: RESISTIVITY_KEY
-  }, {
-    label: lengthSymbolString,
-    center: new Vector2( equalsSignText.centerX + 220, -90 ),
-    property: model.lengthProperty,
-    color: ResistanceInAWireConstants.BLUE_COLOR,
-    tandem: tandem.createTandem( 'lengthSymbol' ),
-    scaleKey: LENGTH_KEY
-  }, {
-    label: areaSymbolString,
-    center: new Vector2( equalsSignText.centerX + 170, 90 ),
-    property: model.areaProperty,
-    color: ResistanceInAWireConstants.BLUE_COLOR,
-    tandem: tandem.createTandem( 'areaSymbol' ),
-    scaleKey: AREA_KEY
-  } ];
-
-  // parent for all letters in the equation - given a 'p' tag for a11y because this node will hold the relative
-  // size description, see getRelativeSizeDescription()
-  const lettersNode = new Node( { tagName: 'p' } );
-
-  // if we are on a safari platform render with canvas to prevent these issues, but only on safari because
-  // canvas doesn't perform as well on other browsers
-  // https://github.com/phetsims/resistance-in-a-wire/issues/108 and
-  // https://github.com/phetsims/resistance-in-a-wire/issues/112
-  if ( platform.safari ) { lettersNode.renderer = 'canvas'; }
-
-  // dynamically sized text
-  const self = this;
-  symbolTexts.forEach( function( entry ) {
-
-    const text = new Text( entry.label, {
-      font: new PhetFont( { family: ResistanceInAWireConstants.FONT_FAMILY, size: 15 } ),
-      fill: entry.color,
-      center: entry.center,
-      tandem: entry.tandem
+      // pdom
+      tagName: 'div',
+      labelTagName: 'h3',
+      labelContent: equationResistanceEquationString,
+      descriptionContent: resistanceEquationDescriptionString
     } );
 
-    // Add an invisible rectangle with bounds slightly larger than the text so that artifacts aren't left on the
-    // screen, see https://github.com/phetsims/ohms-law/issues/26.
-    // This also serves as the rectangle surrounding the 'R' that 'caps' the scaling when it gets too big.
-    const antiArtifactRectangle = Rectangle.bounds( text.bounds.dilated( 1 ) );
-
-    const letterNode = new Node( { children: [ antiArtifactRectangle, text ] } );
-    lettersNode.addChild( letterNode );
-
-    // Set the scale based on the default value of the property; normalize the scale for all letters.
-    const scale = 7 / entry.property.value; // empirically determined '7'
-
-    // The size of the formula letter will scale with the value the letter represents. The accessible description for
-    // the equation will also update. This does not need an unlink because it exists for the life of the sim.
-    entry.property.link( function( value ) {
-      const scaleMagnitude = scale * value + 1;
-      letterNode.setScaleMagnitude( scaleMagnitude );
-      letterNode.center = entry.center;
-
-      // for lookup when describing relative letter sizes
-      self.a11yScaleMap[ entry.scaleKey ] = scaleMagnitude;
+    // equals sign, hard coded
+    const equalsSignText = new Text( '=', { // we never internationalize the '=' sign
+      font: new PhetFont( { family: ResistanceInAWireConstants.FONT_FAMILY, size: 90 } ),
+      fill: ResistanceInAWireConstants.BLACK_COLOR,
+      center: new Vector2( 100, 0 ),
+      tandem: tandem.createTandem( 'equalsSign' )
     } );
 
-    // linked lazily so that relative scales are defined
-    entry.property.lazyLink( function() {
-      lettersNode.setDescriptionContent( self.getRelativeSizeDescription() );
+    // maps identifier to scale magnitude
+    this.a11yScaleMap = {};
+    this.a11yScaleMap[ RESISTANCE_KEY ] = 0;
+    this.a11yScaleMap[ RESISTIVITY_KEY ] = 0;
+    this.a11yScaleMap[ AREA_KEY ] = 0;
+    this.a11yScaleMap[ LENGTH_KEY ] = 0;
+
+    // An array of attributes related to text
+    const symbolTexts = [ {
+      label: resistanceSymbolString,
+      center: new Vector2( equalsSignText.centerX - 100, 0 ),
+      property: model.resistanceProperty,
+      color: ResistanceInAWireConstants.RED_COLOR,
+      cappedSize: true, // To make sure that the 'R' doesn't get too big, see https://github.com/phetsims/resistance-in-a-wire/issues/28
+      tandem: tandem.createTandem( 'resistanceSymbol' ),
+      scaleKey: RESISTANCE_KEY
+    }, {
+      label: symbolResistivityString,
+      center: new Vector2( equalsSignText.centerX + 120, -90 ),
+      property: model.resistivityProperty,
+      color: ResistanceInAWireConstants.BLUE_COLOR,
+      tandem: tandem.createTandem( 'resistivitySymbol' ),
+      scaleKey: RESISTIVITY_KEY
+    }, {
+      label: lengthSymbolString,
+      center: new Vector2( equalsSignText.centerX + 220, -90 ),
+      property: model.lengthProperty,
+      color: ResistanceInAWireConstants.BLUE_COLOR,
+      tandem: tandem.createTandem( 'lengthSymbol' ),
+      scaleKey: LENGTH_KEY
+    }, {
+      label: areaSymbolString,
+      center: new Vector2( equalsSignText.centerX + 170, 90 ),
+      property: model.areaProperty,
+      color: ResistanceInAWireConstants.BLUE_COLOR,
+      tandem: tandem.createTandem( 'areaSymbol' ),
+      scaleKey: AREA_KEY
+    } ];
+
+    // parent for all letters in the equation - given a 'p' tag for a11y because this node will hold the relative
+    // size description, see getRelativeSizeDescription()
+    const lettersNode = new Node( { tagName: 'p' } );
+
+    // if we are on a safari platform render with canvas to prevent these issues, but only on safari because
+    // canvas doesn't perform as well on other browsers
+    // https://github.com/phetsims/resistance-in-a-wire/issues/108 and
+    // https://github.com/phetsims/resistance-in-a-wire/issues/112
+    if ( platform.safari ) { lettersNode.renderer = 'canvas'; }
+
+    // dynamically sized text
+    symbolTexts.forEach( entry => {
+
+      const text = new Text( entry.label, {
+        font: new PhetFont( { family: ResistanceInAWireConstants.FONT_FAMILY, size: 15 } ),
+        fill: entry.color,
+        center: entry.center,
+        tandem: entry.tandem
+      } );
+
+      // Add an invisible rectangle with bounds slightly larger than the text so that artifacts aren't left on the
+      // screen, see https://github.com/phetsims/ohms-law/issues/26.
+      // This also serves as the rectangle surrounding the 'R' that 'caps' the scaling when it gets too big.
+      const antiArtifactRectangle = Rectangle.bounds( text.bounds.dilated( 1 ) );
+
+      const letterNode = new Node( { children: [ antiArtifactRectangle, text ] } );
+      lettersNode.addChild( letterNode );
+
+      // Set the scale based on the default value of the property; normalize the scale for all letters.
+      const scale = 7 / entry.property.value; // empirically determined '7'
+
+      // The size of the formula letter will scale with the value the letter represents. The accessible description for
+      // the equation will also update. This does not need an unlink because it exists for the life of the sim.
+      entry.property.link( value => {
+        const scaleMagnitude = scale * value + 1;
+        letterNode.setScaleMagnitude( scaleMagnitude );
+        letterNode.center = entry.center;
+
+        // for lookup when describing relative letter sizes
+        this.a11yScaleMap[ entry.scaleKey ] = scaleMagnitude;
+      } );
+
+      // linked lazily so that relative scales are defined
+      entry.property.lazyLink( () => {
+        lettersNode.setDescriptionContent( this.getRelativeSizeDescription() );
+      } );
     } );
-  } );
 
-  this.addChild( lettersNode );
+    this.addChild( lettersNode );
 
-  // Add the dividing line and equals sign after the letters so that they are on top when resistance is too large
-  this.addChild( equalsSignText );
+    // Add the dividing line and equals sign after the letters so that they are on top when resistance is too large
+    this.addChild( equalsSignText );
 
-  // dividing line, hard coded
-  this.addChild( new Path( Shape.lineSegment( 150, 8, 400, 8 ), {
-    stroke: 'black',
-    lineWidth: 6,
-    tandem: tandem.createTandem( 'dividingLine' )
-  } ) );
+    // dividing line, hard coded
+    this.addChild( new Path( Shape.lineSegment( 150, 8, 400, 8 ), {
+      stroke: 'black',
+      lineWidth: 6,
+      tandem: tandem.createTandem( 'dividingLine' )
+    } ) );
 
-  this.mutate( options );
+    this.mutate( options );
 
-  // pdom - set the initial description
-  lettersNode.setDescriptionContent( self.getRelativeSizeDescription() );
-}
+    // pdom - set the initial description
+    lettersNode.setDescriptionContent( this.getRelativeSizeDescription() );
+  }
 
-resistanceInAWire.register( 'FormulaNode', FormulaNode );
-
-inherit( Node, FormulaNode, {
 
   /**
    * Get a description of the relative size of various letters. Size of each letter is described relative to
@@ -188,9 +183,10 @@ inherit( Node, FormulaNode, {
    * "Size of letter R is much smaller than letter rho, comparable to letter L, and much much larger than letter A."
    *
    * @returns {string}
+   * @private
    * @a11y
    */
-  getRelativeSizeDescription: function() {
+  getRelativeSizeDescription() {
     const resistanceScale = this.a11yScaleMap[ RESISTANCE_KEY ];
     const resistivityScale = this.a11yScaleMap[ RESISTIVITY_KEY ];
     const areaScale = this.a11yScaleMap[ AREA_KEY ];
@@ -253,7 +249,9 @@ inherit( Node, FormulaNode, {
 
     return description;
   }
-} );
+}
+
+resistanceInAWire.register( 'FormulaNode', FormulaNode );
 
 /**
  * Get a relative size description from a relative scale, used to describe letters relative to each other. Will return
@@ -265,7 +263,7 @@ inherit( Node, FormulaNode, {
  * @param {number} relativeScale
  * @returns {string}
  */
-var getRelativeSizeDescription = function( relativeScale ) {
+var getRelativeSizeDescription = relativeScale => {
 
   // get described ranges of each relative scale
   const keys = Object.keys( ResistanceInAWireConstants.RELATIVE_SIZE_MAP );

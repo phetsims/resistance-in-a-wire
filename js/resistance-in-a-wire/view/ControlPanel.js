@@ -99,7 +99,7 @@ class ControlPanel extends Panel {
     resistanceReadout.centerX = 0;
 
     // Update the resistance readout when the resistance changes.
-    model.resistanceProperty.link( function( resistance ) {
+    model.resistanceProperty.link( resistance => {
       resistanceReadout.text = getResistanceReadoutText( resistance );
     } );
 
@@ -120,11 +120,11 @@ class ControlPanel extends Panel {
       StringUtils.format( pattern0ResistanceUnits1LengthUnitsString, symbolOhmsString, cmString ),
       resistivitySliderLabelString,
       tandem.createTandem( 'resistivitySlider' ), {
-        startDrag: function() {
+        startDrag: () => {
           rhoOnStart = model.resistivityProperty.get();
           resistanceOnStart = model.resistanceProperty.get();
         },
-        endDrag: function() {
+        endDrag: () => {
           const resistance = model.resistanceProperty.get();
           const deltaRho = model.resistivityProperty.get() - rhoOnStart;
           const deltaResistance = resistance - resistanceOnStart;
@@ -153,11 +153,11 @@ class ControlPanel extends Panel {
       cmString,
       lengthSliderLabelString,
       tandem.createTandem( 'lengthSlider' ), {
-        startDrag: function() {
+        startDrag: () => {
           lengthOnStart = model.lengthProperty.get();
           resistanceOnStart = model.resistanceProperty.get();
         },
-        endDrag: function() {
+        endDrag: () => {
           const resistance = model.resistanceProperty.get();
           const deltaLength = model.lengthProperty.get() - lengthOnStart;
           const deltaResistance = resistance - resistanceOnStart;
@@ -186,11 +186,11 @@ class ControlPanel extends Panel {
       cmString + '<sup>2</sup>',
       areaSliderLabelString,
       tandem.createTandem( 'areaSlider' ), {
-        startDrag: function() {
+        startDrag: () => {
           areaOnStart = model.areaProperty.get();
           resistanceOnStart = model.resistanceProperty.get();
         },
-        endDrag: function() {
+        endDrag: () => {
           const resistance = model.resistanceProperty.get();
           const deltaArea = model.areaProperty.get() - areaOnStart;
           const deltaResistance = resistance - resistanceOnStart;
@@ -237,7 +237,7 @@ class ControlPanel extends Panel {
       tandem: tandem.createTandem( 'content' )
     } );
 
-   super( content, options );
+    super( content, options );
   }
 }
 

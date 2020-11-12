@@ -32,7 +32,7 @@ const simOptions = {
   hasKeyboardHelpContent: true
 };
 
-simLauncher.launch( function() {
+simLauncher.launch( () => {
 
   // Create and start the sim
   const sim = new Sim( resistanceInAWireTitleString,

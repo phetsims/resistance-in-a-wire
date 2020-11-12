@@ -9,7 +9,6 @@
  */
 
 import Utils from '../../../../dot/js/Utils.js';
-import inherit from '../../../../phet-core/js/inherit.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import resistanceInAWire from '../../resistanceInAWire.js';
@@ -24,74 +23,75 @@ const summaryLengthPatternString = resistanceInAWireStrings.a11y.summary.lengthP
 const summaryAreaPatternString = resistanceInAWireStrings.a11y.summary.areaPattern;
 const summaryInteractionHintString = resistanceInAWireStrings.a11y.summary.interactionHint;
 
-// constants
-function ResistanceInAWireScreenSummaryNode( model ) {
-  Node.call( this );
+class ResistanceInAWireScreenSummaryNode extends Node {
+  // constants
+  constructor( model ) {
+    super();
 
-  // main summary for this sim - this content never changes
-  this.addChild( new Node( {
-    tagName: 'p',
-    innerContent: summarySimString
-  } ) );
+    // main summary for this sim - this content never changes
+    this.addChild( new Node( {
+      tagName: 'p',
+      innerContent: summarySimString
+    } ) );
 
-  // indicates that the summary updates with model changes
-  this.addChild( new Node( { tagName: 'p', innerContent: summaryCurrentlyString } ) );
+    // indicates that the summary updates with model changes
+    this.addChild( new Node( { tagName: 'p', innerContent: summaryCurrentlyString } ) );
 
-  // list that updates according to model Properties
-  const listNode = new Node( { tagName: 'ul' } );
-  const resistanceItemNode = new Node( { tagName: 'li' } );
-  const resistivityItemNode = new Node( { tagName: 'li' } );
-  const lengthItemNode = new Node( { tagName: 'li' } );
-  const areaItemNode = new Node( { tagName: 'li' } );
-  this.addChild( listNode );
-  listNode.children = [ resistanceItemNode, resistivityItemNode, lengthItemNode, areaItemNode ];
+    // list that updates according to model Properties
+    const listNode = new Node( { tagName: 'ul' } );
+    const resistanceItemNode = new Node( { tagName: 'li' } );
+    const resistivityItemNode = new Node( { tagName: 'li' } );
+    const lengthItemNode = new Node( { tagName: 'li' } );
+    const areaItemNode = new Node( { tagName: 'li' } );
+    this.addChild( listNode );
+    listNode.children = [ resistanceItemNode, resistivityItemNode, lengthItemNode, areaItemNode ];
 
-  // hint to look for other elements in the UI
-  this.addChild( new Node( { tagName: 'p', innerContent: summaryInteractionHintString } ) );
+    // hint to look for other elements in the UI
+    this.addChild( new Node( { tagName: 'p', innerContent: summaryInteractionHintString } ) );
 
-  // add listeners - add all values to a list so we can easily iterate and add listeners to update descriptions
-  // with each property
-  const valueItemList = [
-    {
-      property: model.resistivityProperty,
-      patternString: summaryResistivityPatternString,
-      node: resistivityItemNode,
-      precision: ResistanceInAWireConstants.SLIDER_READOUT_DECIMALS
-    },
-    {
-      property: model.lengthProperty,
-      patternString: summaryLengthPatternString,
-      node: lengthItemNode,
-      precision: ResistanceInAWireConstants.SLIDER_READOUT_DECIMALS
-    },
-    {
-      property: model.areaProperty,
-      patternString: summaryAreaPatternString,
-      node: areaItemNode,
-      precision: ResistanceInAWireConstants.SLIDER_READOUT_DECIMALS
-    },
-    {
-      property: model.resistanceProperty,
-      patternString: summaryResistancePatternString,
-      node: resistanceItemNode,
-      precision: ResistanceInAWireConstants.getResistanceDecimals // TODO: get dynamically, it will update
-    }
-  ];
+    // add listeners - add all values to a list so we can easily iterate and add listeners to update descriptions
+    // with each property
+    const valueItemList = [
+      {
+        property: model.resistivityProperty,
+        patternString: summaryResistivityPatternString,
+        node: resistivityItemNode,
+        precision: ResistanceInAWireConstants.SLIDER_READOUT_DECIMALS
+      },
+      {
+        property: model.lengthProperty,
+        patternString: summaryLengthPatternString,
+        node: lengthItemNode,
+        precision: ResistanceInAWireConstants.SLIDER_READOUT_DECIMALS
+      },
+      {
+        property: model.areaProperty,
+        patternString: summaryAreaPatternString,
+        node: areaItemNode,
+        precision: ResistanceInAWireConstants.SLIDER_READOUT_DECIMALS
+      },
+      {
+        property: model.resistanceProperty,
+        patternString: summaryResistancePatternString,
+        node: resistanceItemNode,
+        precision: ResistanceInAWireConstants.getResistanceDecimals // TODO: get dynamically, it will update
+      }
+    ];
 
-  // register listeners that update the labels in the screen summary - this summary exists for life of sim,
-  // no need to dispose
-  valueItemList.forEach( function( item ) {
-    item.property.link( function( value ) {
+    // register listeners that update the labels in the screen summary - this summary exists for life of sim,
+    // no need to dispose
+    valueItemList.forEach( item => {
+      item.property.link( value => {
 
-      // the precision might change during interaction, get precision if property is a function
-      const precision = typeof item.precision === 'number' ? item.precision : item.precision( value );
-      item.node.innerContent = StringUtils.fillIn( item.patternString, {
-        value: Utils.toFixed( value, precision )
+        // the precision might change during interaction, get precision if property is a function
+        const precision = typeof item.precision === 'number' ? item.precision : item.precision( value );
+        item.node.innerContent = StringUtils.fillIn( item.patternString, {
+          value: Utils.toFixed( value, precision )
+        } );
       } );
     } );
-  } );
+  }
 }
 
 resistanceInAWire.register( 'ResistanceInAWireScreenSummaryNode', ResistanceInAWireScreenSummaryNode );
-inherit( Node, ResistanceInAWireScreenSummaryNode );
 export default ResistanceInAWireScreenSummaryNode;

@@ -21,8 +21,8 @@ class ResistanceInAWireScreen extends Screen {
    */
   constructor( tandem ) {
     super(
-      function() { return new ResistanceInAWireModel( tandem.createTandem( 'model' ) ); },
-      function( model ) { return new ResistanceInAWireScreenView( model, tandem.createTandem( 'view' ) ); }, {
+      () => new ResistanceInAWireModel( tandem.createTandem( 'model' ) ),
+      model => new ResistanceInAWireScreenView( model, tandem.createTandem( 'view' ) ), {
         backgroundColorProperty: new Property( '#ffffdf' ),
         tandem: tandem,
         keyboardHelpNode: new SliderAndGeneralKeyboardHelpContent()

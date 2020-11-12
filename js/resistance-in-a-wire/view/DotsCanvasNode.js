@@ -11,7 +11,6 @@
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import LinearFunction from '../../../../dot/js/LinearFunction.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
-import inherit from '../../../../phet-core/js/inherit.js';
 import merge from '../../../../phet-core/js/merge.js';
 import CanvasNode from '../../../../scenery/js/nodes/CanvasNode.js';
 import resistanceInAWire from '../../resistanceInAWire.js';
@@ -33,43 +32,42 @@ const resistivityToNumberOfDots = new LinearFunction(
   true
 );
 
-/**
- * @constructor
- * @param {Bounds2} bounds - total bounds for the canvas
- * @param {Object} [options]
- */
-function DotsCanvasNode( model, options ) {
+class DotsCanvasNode extends CanvasNode {
+  /**
+   * @param {Bounds2} bounds - total bounds for the canvas
+   * @param {Object} [options]
+   */
+  constructor( model, options ) {
 
-  options = merge( {
-    preventFit: true // don't recompute bounds as a performance enhancement
-  }, options );
+    options = merge( {
+      preventFit: true // don't recompute bounds as a performance enhancement
+    }, options );
 
-  // @private - Positions for dots randomly on the wire. Density is based on AREA_PER_DOT.
-  this.dotCenters = [];
-  for ( let i = 0; i < NUMBER_OF_DOTS; i++ ) {
-    const centerX = ( phet.joist.random.nextDouble() - .5 ) * MAX_WIDTH_INCLUDING_ROUNDED_ENDS;
-    const centerY = ( phet.joist.random.nextDouble() - .5 ) * WireShapeConstants.WIRE_VIEW_HEIGHT_RANGE.max;
-    this.dotCenters.push( new Vector2( centerX, centerY ) );
+    // calculate bounds for the canvas - wire center is at (0, 0)
+    const height = WireShapeConstants.areaToHeight( ResistanceInAWireConstants.AREA_RANGE.max );
+    const width = WireShapeConstants.lengthToWidth( ResistanceInAWireConstants.LENGTH_RANGE.max );
+    const dotsBounds = new Bounds2( -width / 2 - WireShapeConstants.PERSPECTIVE_FACTOR * height / 2, -height / 2, width / 2 + WireShapeConstants.PERSPECTIVE_FACTOR * height / 2, height / 2 );
+
+    super( options );
+
+    // @private - Positions for dots randomly on the wire. Density is based on AREA_PER_DOT.
+    this.dotCenters = [];
+    for ( let i = 0; i < NUMBER_OF_DOTS; i++ ) {
+      const centerX = ( phet.joist.random.nextDouble() - .5 ) * MAX_WIDTH_INCLUDING_ROUNDED_ENDS;
+      const centerY = ( phet.joist.random.nextDouble() - .5 ) * WireShapeConstants.WIRE_VIEW_HEIGHT_RANGE.max;
+      this.dotCenters.push( new Vector2( centerX, centerY ) );
+    }
+
+    // @private - just for use in paintCanvas
+    this.resistivityProperty = model.resistivityProperty;
+    this.areaProperty = model.areaProperty;
+    this.lengthProperty = model.lengthProperty;
+
+    this.setCanvasBounds( dotsBounds );
+    this.invalidatePaint();
+
   }
 
-  // @private - just for use in paintCanvas
-  this.resistivityProperty = model.resistivityProperty;
-  this.areaProperty = model.areaProperty;
-  this.lengthProperty = model.lengthProperty;
-
-  // calculate bounds for the canvas - wire center is at (0, 0)
-  const height = WireShapeConstants.areaToHeight( ResistanceInAWireConstants.AREA_RANGE.max );
-  const width = WireShapeConstants.lengthToWidth( ResistanceInAWireConstants.LENGTH_RANGE.max );
-  const dotsBounds = new Bounds2( -width / 2 - WireShapeConstants.PERSPECTIVE_FACTOR * height / 2, -height / 2, width / 2 + WireShapeConstants.PERSPECTIVE_FACTOR * height / 2, height / 2 );
-
-  CanvasNode.call( this, options );
-  this.setCanvasBounds( dotsBounds );
-  this.invalidatePaint();
-}
-
-resistanceInAWire.register( 'DotsCanvasNode', DotsCanvasNode );
-
-inherit( CanvasNode, DotsCanvasNode, {
 
   /**
    * Draw the required dots.
@@ -78,7 +76,7 @@ inherit( CanvasNode, DotsCanvasNode, {
    * @override
    * @public
    */
-  paintCanvas: function( context ) {
+  paintCanvas( context ) {
 
     // Height of the wire in view coordinates
     const height = WireShapeConstants.areaToHeight( this.areaProperty.get() );
@@ -124,7 +122,9 @@ inherit( CanvasNode, DotsCanvasNode, {
       }
     }
   }
-} );
+}
+
+resistanceInAWire.register( 'DotsCanvasNode', DotsCanvasNode );
 
 /**
  * Using Shape.ellipticalArc for the clip area is too slow, so we approximate ellipcitcal arcs with segments.

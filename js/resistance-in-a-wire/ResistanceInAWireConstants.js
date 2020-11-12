@@ -63,7 +63,7 @@ const RELATIVE_SIZE_STRINGS = [ muchMuchSmallerThanString, muchSmallerThanString
  *
  * @returns {[type]} [description]
  */
-const generateDescriptionMap = function( descriptionArray, valueRange ) {
+const generateDescriptionMap = ( descriptionArray, valueRange ) => {
   const map = {};
 
   let minValue = valueRange.min;
@@ -131,7 +131,7 @@ const ResistanceInAWireConstants = {
 
   // precision of values for view
   SLIDER_READOUT_DECIMALS: 2,
-  getResistanceDecimals: function( resistance ) {
+  getResistanceDecimals( resistance ) {
     return resistance >= 100 ? 0 : // Over 100, show no decimal points, like 102
            resistance >= 10 ? 1 : // between 10.0 and 99.9, show 2 decimal points
            resistance < 0.001 ? 4 : // when less than 0.001, show 4 decimals, see #125
@@ -194,7 +194,7 @@ const ResistanceInAWireConstants = {
    * @param {number} value
    * @returns {string}
    */
-  getValueDescriptionFromMap: function( value, map ) {
+  getValueDescriptionFromMap( value, map ) {
 
     // get described ranges of each value
     const keys = Object.keys( map );
@@ -214,7 +214,7 @@ const ResistanceInAWireConstants = {
    * @param {number} value
    * @returns {string}
    */
-  getFormattedResistanceValue: function( value ) {
+  getFormattedResistanceValue( value ) {
     return Utils.toFixed( value, this.getResistanceDecimals( value ) );
   }
 };
