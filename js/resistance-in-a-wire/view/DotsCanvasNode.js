@@ -9,6 +9,7 @@
  */
 
 import Bounds2 from '../../../../dot/js/Bounds2.js';
+import dotRandom from '../../../../dot/js/dotRandom.js';
 import LinearFunction from '../../../../dot/js/LinearFunction.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import merge from '../../../../phet-core/js/merge.js';
@@ -53,8 +54,8 @@ class DotsCanvasNode extends CanvasNode {
     // @private - Positions for dots randomly on the wire. Density is based on AREA_PER_DOT.
     this.dotCenters = [];
     for ( let i = 0; i < NUMBER_OF_DOTS; i++ ) {
-      const centerX = ( phet.joist.random.nextDouble() - .5 ) * MAX_WIDTH_INCLUDING_ROUNDED_ENDS;
-      const centerY = ( phet.joist.random.nextDouble() - .5 ) * WireShapeConstants.WIRE_VIEW_HEIGHT_RANGE.max;
+      const centerX = ( dotRandom.nextDouble() - .5 ) * MAX_WIDTH_INCLUDING_ROUNDED_ENDS;
+      const centerY = ( dotRandom.nextDouble() - .5 ) * WireShapeConstants.WIRE_VIEW_HEIGHT_RANGE.max;
       this.dotCenters.push( new Vector2( centerX, centerY ) );
     }
 
