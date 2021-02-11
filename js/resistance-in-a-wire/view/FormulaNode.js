@@ -129,7 +129,7 @@ class FormulaNode extends Node {
       // Add an invisible rectangle with bounds slightly larger than the text so that artifacts aren't left on the
       // screen, see https://github.com/phetsims/ohms-law/issues/26.
       // This also serves as the rectangle surrounding the 'R' that 'caps' the scaling when it gets too big.
-      const antiArtifactRectangle = Rectangle.bounds( text.bounds.dilated( 1 ) );
+      const antiArtifactRectangle = Rectangle.bounds( text.bounds.dilated( 1 ), { fill: 'transparent' } );
 
       const letterNode = new Node( { children: [ antiArtifactRectangle, text ] } );
       lettersNode.addChild( letterNode );
