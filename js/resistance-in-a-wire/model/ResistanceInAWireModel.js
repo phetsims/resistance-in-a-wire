@@ -24,21 +24,21 @@ class ResistanceInAWireModel {
     // @public {Property.<number>} in Ohm*cm
     this.resistivityProperty = new NumberProperty( ResistanceInAWireConstants.RESISTIVITY_RANGE.defaultValue, {
       tandem: tandem.createTandem( 'resistivityProperty' ),
-      units: 'ohm-centimeters',
+      units: '\u2126\u00b7cm', // Ohm-centimeters
       range: ResistanceInAWireConstants.RESISTIVITY_RANGE
     } );
 
     // @public {Property.<number>} in cm
     this.lengthProperty = new NumberProperty( ResistanceInAWireConstants.LENGTH_RANGE.defaultValue, {
       tandem: tandem.createTandem( 'lengthProperty' ),
-      units: 'centimeters',
+      units: 'cm',
       range: ResistanceInAWireConstants.LENGTH_RANGE
     } );
 
     // @public {Property.<number>} in cm^2
     this.areaProperty = new NumberProperty( ResistanceInAWireConstants.AREA_RANGE.defaultValue, {
       tandem: tandem.createTandem( 'areaProperty' ),
-      units: 'centimeters-squared',
+      units: 'cm^2',
       range: ResistanceInAWireConstants.AREA_RANGE
     } );
 
@@ -47,7 +47,7 @@ class ResistanceInAWireModel {
     this.resistanceProperty = new DerivedProperty( [ this.resistivityProperty, this.lengthProperty, this.areaProperty ],
       ( resistivity, length, area ) => resistivity * length / area, {
         tandem: tandem.createTandem( 'resistanceProperty' ),
-        units: 'ohms',
+        units: '\u2126', // ohms
         phetioType: DerivedProperty.DerivedPropertyIO( NumberIO )
       }
     );
