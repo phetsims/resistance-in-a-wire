@@ -183,7 +183,7 @@ class ControlPanel extends Panel {
       ResistanceInAWireConstants.AREA_RANGE,
       areaSymbolString,
       areaString,
-      cmString + '<sup>2</sup>',
+      `${cmString}<sup>2</sup>`,
       areaSliderLabelString,
       tandem.createTandem( 'areaSlider' ), {
         startDrag: () => {
