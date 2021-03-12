@@ -263,7 +263,7 @@ resistanceInAWire.register( 'FormulaNode', FormulaNode );
  * @param {number} relativeScale
  * @returns {string}
  */
-var getRelativeSizeDescription = relativeScale => {
+const getRelativeSizeDescription = relativeScale => {
 
   // get described ranges of each relative scale
   const keys = Object.keys( ResistanceInAWireConstants.RELATIVE_SIZE_MAP );
