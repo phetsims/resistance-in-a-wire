@@ -1,5 +1,5 @@
 {
-  "comment": "# resistance-in-a-wire 1.6.11-rc.1 Fri Apr 23 2021 15:36:18 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# resistance-in-a-wire 1.6.11-rc.1 Mon May 10 2021 12:18:50 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
     "branch": "HEAD"
@@ -45,15 +45,15 @@
     "branch": "HEAD"
   },
   "phetmarks": {
-    "sha": "58a403c7e91bbe66486ac8cc174ddba0a305c671",
-    "branch": "HEAD"
+    "sha": "5df6891b21b5902ae89fed6a2970ded58673085e",
+    "branch": "resistance-in-a-wire-1.6"
   },
   "query-string-machine": {
     "sha": "06ed6276418df2566f9822abe0eb4dc3d3698e3b",
     "branch": "HEAD"
   },
   "resistance-in-a-wire": {
-    "sha": "5c090160c5dda9dbb623dd0adfe781ee7222816b",
+    "sha": "136055a22f258a492c1623f3d38bc934b44bdc49",
     "branch": "1.6"
   },
   "scenery": {
