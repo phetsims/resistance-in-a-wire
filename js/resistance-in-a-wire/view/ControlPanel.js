@@ -133,7 +133,7 @@ class ControlPanel extends Panel {
           // rapidly
           if ( deltaRho && deltaResistance ) {
             changeUtterance.alert = getSizeChangeAlert( resistance, deltaResistance, deltaRho, letterRhoString );
-            phet.joist.sim.utteranceQueue.addToBack( changeUtterance );
+            resistivitySlider.alertDescriptionUtterance( changeUtterance );
           }
         },
         sliderOptions: {
@@ -166,7 +166,7 @@ class ControlPanel extends Panel {
           // rapidly
           if ( deltaLength && deltaResistance ) {
             changeUtterance.alert = getSizeChangeAlert( resistance, deltaResistance, deltaLength, letterLString );
-            phet.joist.sim.utteranceQueue.addToBack( changeUtterance );
+            lengthSlider.alertDescriptionUtterance( changeUtterance );
           }
         },
         sliderOptions: {
@@ -199,7 +199,7 @@ class ControlPanel extends Panel {
           // rapidly
           if ( deltaArea && deltaResistance ) {
             changeUtterance.alert = getSizeChangeAlert( resistance, deltaResistance, deltaArea, letterAString );
-            phet.joist.sim.utteranceQueue.addToBack( changeUtterance );
+            areaSlider.alertDescriptionUtterance( changeUtterance );
           }
         },
         sliderOptions: {
