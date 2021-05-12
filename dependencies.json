@@ -53,11 +53,11 @@
     "branch": "HEAD"
   },
   "resistance-in-a-wire": {
-    "sha": "ae6275d72943af3abdaad7f8aa45bc0a9f588a48",
+    "sha": "d30c2ae9720e127ec3c06cbdf6b6dbb5098cc58f",
     "branch": "1.6"
   },
   "scenery": {
-    "sha": "3cd84ff2c096eda10511e6449b76f13cf8ac1960",
+    "sha": "395fb854089ab305a5fa1aa9c31a6c2d5d9689ed",
     "branch": "resistance-in-a-wire-1.6"
   },
   "scenery-phet": {
