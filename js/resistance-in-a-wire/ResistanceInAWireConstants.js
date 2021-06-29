@@ -205,6 +205,7 @@ const ResistanceInAWireConstants = {
         return entry.description;
       }
     }
+    throw new Error( `no description for value: ${value}` );
   },
 
   /**

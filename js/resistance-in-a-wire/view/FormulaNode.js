@@ -274,6 +274,7 @@ const getRelativeSizeDescription = relativeScale => {
       return relativeEntry.description;
     }
   }
+  throw new Error( `no description found for relativeScale: ${relativeScale}` );
 };
 
 export default FormulaNode;
