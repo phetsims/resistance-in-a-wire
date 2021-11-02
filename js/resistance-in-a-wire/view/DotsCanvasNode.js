@@ -46,7 +46,7 @@ class DotsCanvasNode extends CanvasNode {
 
     // calculate bounds for the canvas - wire center is at (0, 0)
     const height = WireShapeConstants.areaToHeight( ResistanceInAWireConstants.AREA_RANGE.max );
-    const width = WireShapeConstants.lengthToWidth( ResistanceInAWireConstants.LENGTH_RANGE.max );
+    const width = WireShapeConstants.lengthToWidth.evaluate( ResistanceInAWireConstants.LENGTH_RANGE.max );
     const dotsBounds = new Bounds2( -width / 2 - WireShapeConstants.PERSPECTIVE_FACTOR * height / 2, -height / 2, width / 2 + WireShapeConstants.PERSPECTIVE_FACTOR * height / 2, height / 2 );
 
     super( options );
@@ -83,7 +83,7 @@ class DotsCanvasNode extends CanvasNode {
     const height = WireShapeConstants.areaToHeight( this.areaProperty.get() );
 
     // Width of the wire (as measured from the top of the wire, that is excluding the rounding bits in the middle).
-    const width = WireShapeConstants.lengthToWidth( this.lengthProperty.get() );
+    const width = WireShapeConstants.lengthToWidth.evaluate( this.lengthProperty.get() );
 
     // for readability, these are relative to the rectangular body
     const top = -height / 2;
@@ -114,7 +114,7 @@ class DotsCanvasNode extends CanvasNode {
     context.fillStyle = 'black';
 
     // draw the dots, number depending on the resistivity Property
-    const numDotsToShow = resistivityToNumberOfDots( this.resistivityProperty.get() );
+    const numDotsToShow = resistivityToNumberOfDots.evaluate( this.resistivityProperty.get() );
     for ( let i = 0; i < this.dotCenters.length; i++ ) {
       if ( i < numDotsToShow ) {
         context.beginPath();

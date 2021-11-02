@@ -80,7 +80,7 @@ class WireNode extends Node {
         const height = WireShapeConstants.areaToHeight( area );
 
         // Width of the wire (as measured from the top of the wire, that is excluding the rounding bits in the middle).
-        const width = WireShapeConstants.lengthToWidth( length );
+        const width = WireShapeConstants.lengthToWidth.evaluate( length );
 
         // Set the (face) body shape of the wire.
         // Recall that (zero,zero) is defined as the center of the wire.
