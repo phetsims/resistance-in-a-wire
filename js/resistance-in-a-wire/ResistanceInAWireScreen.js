@@ -1,4 +1,4 @@
-// Copyright 2016-2020, University of Colorado Boulder
+// Copyright 2016-2021, University of Colorado Boulder
 
 /**
  * The main screen class for the 'Resistance in a Wire' simulation.  This is where the main model and view instances are
