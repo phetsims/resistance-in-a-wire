@@ -10,7 +10,7 @@
 
 import Range from '../../../../dot/js/Range.js';
 import SoundClip from '../../../../tambo/js/sound-generators/SoundClip.js';
-import brightMarimbaSound from '../../../../tambo/sounds/bright-marimba-short_mp3.js';
+import brightMarimbaShort_mp3 from '../../../../tambo/sounds/brightMarimbaShort_mp3.js';
 import resistanceInAWire from '../../resistanceInAWire.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 
@@ -34,7 +34,7 @@ class ResistanceSoundGenerator extends SoundClip {
    */
   constructor( config ) {
 
-    super( brightMarimbaSound, {
+    super( brightMarimbaShort_mp3, {
       initialOutputLevel: 0.5,
       rateChangesAffectPlayingSounds: false
     } );
