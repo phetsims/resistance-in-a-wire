@@ -9,10 +9,9 @@
 import Dimension2 from '../../../../dot/js/Dimension2.js';
 import Utils from '../../../../dot/js/Utils.js';
 import merge from '../../../../phet-core/js/merge.js';
-import { Node } from '../../../../scenery/js/imports.js';
-import { RichText } from '../../../../scenery/js/imports.js';
-import { Text } from '../../../../scenery/js/imports.js';
+import { Node, RichText, Text } from '../../../../scenery/js/imports.js';
 import VSlider from '../../../../sun/js/VSlider.js';
+import ValueChangeSoundGenerator from '../../../../tambo/js/sound-generators/ValueChangeSoundGenerator.js';
 import resistanceInAWire from '../../resistanceInAWire.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 
@@ -43,6 +42,9 @@ class SliderUnit extends Node {
         constrainValue: value => Utils.toFixedNumber( value, 2 ),
         startDrag: _.noop,
         endDrag: _.noop,
+
+        // Turn off default sound generation, since this does its own in a highly customized way.
+        soundGenerator: ValueChangeSoundGenerator.NO_SOUND,
 
         // pdom
         keyboardStep: 1, // delta for keyboard step
