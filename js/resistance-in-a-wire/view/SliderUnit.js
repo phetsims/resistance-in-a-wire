@@ -11,7 +11,6 @@ import Utils from '../../../../dot/js/Utils.js';
 import merge from '../../../../phet-core/js/merge.js';
 import { Node, RichText, Text } from '../../../../scenery/js/imports.js';
 import VSlider from '../../../../sun/js/VSlider.js';
-import ValueChangeSoundGenerator from '../../../../tambo/js/sound-generators/ValueChangeSoundGenerator.js';
 import resistanceInAWire from '../../resistanceInAWire.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 
@@ -44,7 +43,7 @@ class SliderUnit extends Node {
         endDrag: _.noop,
 
         // Turn off default sound generation, since this does its own in a highly customized way.
-        soundGenerator: ValueChangeSoundGenerator.NO_SOUND,
+        soundGenerator: null,
 
         // pdom
         keyboardStep: 1, // delta for keyboard step
