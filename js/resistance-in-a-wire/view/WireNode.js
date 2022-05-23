@@ -8,7 +8,7 @@
  * @author John Blanco (PhET Interactive Simulations)
  */
 
-import Property from '../../../../axon/js/Property.js';
+import Multilink from '../../../../axon/js/Multilink.js';
 import Utils from '../../../../dot/js/Utils.js';
 import { Shape } from '../../../../kite/js/imports.js';
 import platform from '../../../../phet-core/js/platform.js';
@@ -73,7 +73,7 @@ class WireNode extends Node {
     this.addChild( dotsNode );
 
     // Update the resistor on change. No need to unlink, as it is present for the lifetime of the sim.
-    Property.multilink( [ model.areaProperty, model.lengthProperty, model.resistivityProperty ],
+    Multilink.multilink( [ model.areaProperty, model.lengthProperty, model.resistivityProperty ],
       ( area, length, resistivity ) => {
 
         // Height of the wire in view coordinates
