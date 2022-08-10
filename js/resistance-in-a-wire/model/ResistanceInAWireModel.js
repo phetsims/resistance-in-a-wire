@@ -48,7 +48,7 @@ class ResistanceInAWireModel {
       ( resistivity, length, area ) => resistivity * length / area, {
         tandem: tandem.createTandem( 'resistanceProperty' ),
         units: '\u2126', // ohms
-        phetioType: DerivedProperty.DerivedPropertyIO( NumberIO )
+        phetioValueType: NumberIO
       }
     );
 
