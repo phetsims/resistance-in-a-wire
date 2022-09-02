@@ -15,7 +15,7 @@ import resistanceInAWireStrings from './resistanceInAWireStrings.js';
 // constants
 const tandem = Tandem.ROOT;
 
-const resistanceInAWireTitleString = resistanceInAWireStrings[ 'resistance-in-a-wire' ].title;
+const resistanceInAWireTitleStringProperty = resistanceInAWireStrings[ 'resistance-in-a-wire' ].titleStringProperty;
 
 const simOptions = {
   credits: {
@@ -35,7 +35,7 @@ const simOptions = {
 simLauncher.launch( () => {
 
   // Create and start the sim
-  const sim = new Sim( resistanceInAWireTitleString,
+  const sim = new Sim( resistanceInAWireTitleStringProperty,
     [ new ResistanceInAWireScreen( tandem.createTandem( 'resistanceInAWireScreen' ) ) ], simOptions );
   sim.start();
 } );
