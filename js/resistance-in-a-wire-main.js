@@ -10,12 +10,12 @@ import Sim from '../../joist/js/Sim.js';
 import simLauncher from '../../joist/js/simLauncher.js';
 import Tandem from '../../tandem/js/Tandem.js';
 import ResistanceInAWireScreen from './resistance-in-a-wire/ResistanceInAWireScreen.js';
-import resistanceInAWireStrings from './resistanceInAWireStrings.js';
+import ResistanceInAWireStrings from './ResistanceInAWireStrings.js';
 
 // constants
 const tandem = Tandem.ROOT;
 
-const resistanceInAWireTitleStringProperty = resistanceInAWireStrings[ 'resistance-in-a-wire' ].titleStringProperty;
+const resistanceInAWireTitleStringProperty = ResistanceInAWireStrings[ 'resistance-in-a-wire' ].titleStringProperty;
 
 const simOptions = {
   credits: {

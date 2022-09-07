@@ -12,16 +12,16 @@ import Utils from '../../../../dot/js/Utils.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import { Node } from '../../../../scenery/js/imports.js';
 import resistanceInAWire from '../../resistanceInAWire.js';
-import resistanceInAWireStrings from '../../resistanceInAWireStrings.js';
+import ResistanceInAWireStrings from '../../ResistanceInAWireStrings.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 
-const summarySimString = resistanceInAWireStrings.a11y.summary.sim;
-const summaryCurrentlyString = resistanceInAWireStrings.a11y.summary.currently;
-const summaryResistancePatternString = resistanceInAWireStrings.a11y.summary.resistancePattern;
-const summaryResistivityPatternString = resistanceInAWireStrings.a11y.summary.resistivityPattern;
-const summaryLengthPatternString = resistanceInAWireStrings.a11y.summary.lengthPattern;
-const summaryAreaPatternString = resistanceInAWireStrings.a11y.summary.areaPattern;
-const summaryInteractionHintString = resistanceInAWireStrings.a11y.summary.interactionHint;
+const summarySimString = ResistanceInAWireStrings.a11y.summary.sim;
+const summaryCurrentlyString = ResistanceInAWireStrings.a11y.summary.currently;
+const summaryResistancePatternString = ResistanceInAWireStrings.a11y.summary.resistancePattern;
+const summaryResistivityPatternString = ResistanceInAWireStrings.a11y.summary.resistivityPattern;
+const summaryLengthPatternString = ResistanceInAWireStrings.a11y.summary.lengthPattern;
+const summaryAreaPatternString = ResistanceInAWireStrings.a11y.summary.areaPattern;
+const summaryInteractionHintString = ResistanceInAWireStrings.a11y.summary.interactionHint;
 
 class ResistanceInAWireScreenSummaryNode extends Node {
   // constants

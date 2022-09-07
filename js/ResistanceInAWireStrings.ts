@@ -173,8 +173,8 @@ type StringsType = {
   }
 };
 
-const resistanceInAWireStrings = getStringModule( 'RESISTANCE_IN_A_WIRE' ) as StringsType;
+const ResistanceInAWireStrings = getStringModule( 'RESISTANCE_IN_A_WIRE' ) as StringsType;
 
-resistanceInAWire.register( 'resistanceInAWireStrings', resistanceInAWireStrings );
+resistanceInAWire.register( 'ResistanceInAWireStrings', ResistanceInAWireStrings );
 
-export default resistanceInAWireStrings;
+export default ResistanceInAWireStrings;

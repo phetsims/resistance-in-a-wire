@@ -15,21 +15,21 @@ import { Shape } from '../../../../kite/js/imports.js';
 import platform from '../../../../phet-core/js/platform.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import sceneryPhetStrings from '../../../../scenery-phet/js/sceneryPhetStrings.js';
+import SceneryPhetStrings from '../../../../scenery-phet/js/SceneryPhetStrings.js';
 import { Node, Path, Rectangle, Text } from '../../../../scenery/js/imports.js';
 import resistanceInAWire from '../../resistanceInAWire.js';
-import resistanceInAWireStrings from '../../resistanceInAWireStrings.js';
+import ResistanceInAWireStrings from '../../ResistanceInAWireStrings.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 
-const areaSymbolString = resistanceInAWireStrings.areaSymbol;
-const lengthSymbolString = resistanceInAWireStrings.lengthSymbol;
-const resistanceSymbolString = resistanceInAWireStrings.resistanceSymbol;
-const symbolResistivityString = sceneryPhetStrings.symbol.resistivity;
-const equationResistanceEquationString = resistanceInAWireStrings.a11y.equation.resistanceEquation;
-const resistanceEquationDescriptionString = resistanceInAWireStrings.a11y.equation.resistanceEquationDescription;
-const rhoLAndAComparablePatternString = resistanceInAWireStrings.a11y.equation.rhoLAndAComparablePattern;
-const lAndAComparablePatternString = resistanceInAWireStrings.a11y.equation.lAndAComparablePattern;
-const noneComparablePatternString = resistanceInAWireStrings.a11y.equation.noneComparablePattern;
+const areaSymbolString = ResistanceInAWireStrings.areaSymbol;
+const lengthSymbolString = ResistanceInAWireStrings.lengthSymbol;
+const resistanceSymbolString = ResistanceInAWireStrings.resistanceSymbol;
+const symbolResistivityString = SceneryPhetStrings.symbol.resistivity;
+const equationResistanceEquationString = ResistanceInAWireStrings.a11y.equation.resistanceEquation;
+const resistanceEquationDescriptionString = ResistanceInAWireStrings.a11y.equation.resistanceEquationDescription;
+const rhoLAndAComparablePatternString = ResistanceInAWireStrings.a11y.equation.rhoLAndAComparablePattern;
+const lAndAComparablePatternString = ResistanceInAWireStrings.a11y.equation.lAndAComparablePattern;
+const noneComparablePatternString = ResistanceInAWireStrings.a11y.equation.noneComparablePattern;
 
 // constants - rather than keep a reference to each letter node, a map from key to scale magnitude is used
 // to track letter scales

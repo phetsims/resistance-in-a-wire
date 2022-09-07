@@ -15,12 +15,12 @@ import platform from '../../../../phet-core/js/platform.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import { LinearGradient, Node, Path } from '../../../../scenery/js/imports.js';
 import resistanceInAWire from '../../resistanceInAWire.js';
-import resistanceInAWireStrings from '../../resistanceInAWireStrings.js';
+import ResistanceInAWireStrings from '../../ResistanceInAWireStrings.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 import DotsCanvasNode from './DotsCanvasNode.js';
 import WireShapeConstants from './WireShapeConstants.js';
 
-const wireDescriptionPatternString = resistanceInAWireStrings.a11y.wire.wireDescriptionPattern;
+const wireDescriptionPatternString = ResistanceInAWireStrings.a11y.wire.wireDescriptionPattern;
 
 class WireNode extends Node {
   /**
