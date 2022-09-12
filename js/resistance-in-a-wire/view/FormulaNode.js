@@ -61,7 +61,7 @@ class FormulaNode extends Node {
       font: new PhetFont( { family: ResistanceInAWireConstants.FONT_FAMILY, size: 90 } ),
       fill: ResistanceInAWireConstants.BLACK_COLOR,
       center: new Vector2( 100, 0 ),
-      tandem: tandem.createTandem( 'equalsSign' )
+      tandem: tandem.createTandem( 'equalsSignText' )
     } );
 
     // maps identifier to scale magnitude
@@ -78,28 +78,28 @@ class FormulaNode extends Node {
       property: model.resistanceProperty,
       color: ResistanceInAWireConstants.RED_COLOR,
       cappedSize: true, // To make sure that the 'R' doesn't get too big, see https://github.com/phetsims/resistance-in-a-wire/issues/28
-      tandem: tandem.createTandem( 'resistanceSymbol' ),
+      tandem: tandem.createTandem( 'resistanceSymbolText' ),
       scaleKey: RESISTANCE_KEY
     }, {
       label: symbolResistivityString,
       center: new Vector2( equalsSignText.centerX + 120, -90 ),
       property: model.resistivityProperty,
       color: ResistanceInAWireConstants.BLUE_COLOR,
-      tandem: tandem.createTandem( 'resistivitySymbol' ),
+      tandem: tandem.createTandem( 'resistivitySymbolText' ),
       scaleKey: RESISTIVITY_KEY
     }, {
       label: lengthSymbolString,
       center: new Vector2( equalsSignText.centerX + 220, -90 ),
       property: model.lengthProperty,
       color: ResistanceInAWireConstants.BLUE_COLOR,
-      tandem: tandem.createTandem( 'lengthSymbol' ),
+      tandem: tandem.createTandem( 'lengthSymbolText' ),
       scaleKey: LENGTH_KEY
     }, {
       label: areaSymbolString,
       center: new Vector2( equalsSignText.centerX + 170, 90 ),
       property: model.areaProperty,
       color: ResistanceInAWireConstants.BLUE_COLOR,
-      tandem: tandem.createTandem( 'areaSymbol' ),
+      tandem: tandem.createTandem( 'areaSymbolText' ),
       scaleKey: AREA_KEY
     } ];
 

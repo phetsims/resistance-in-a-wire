@@ -84,22 +84,22 @@ class ControlPanel extends Panel {
     }, options );
 
     // Add the dynamic title that indicates the resistance.
-    const resistanceReadout = new Text( '', {
+    const resistanceText = new Text( '', {
       font: ResistanceInAWireConstants.READOUT_FONT,
       fill: ResistanceInAWireConstants.RED_COLOR,
       maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH * 4.7,
-      tandem: tandem.createTandem( 'resistanceReadout' )
+      tandem: tandem.createTandem( 'resistanceText' )
     } );
 
     // Set the resistance readout to its initial value, then set the position.  Previously, the readout position was
     // re-centered every time the resistance changed, but it was decided that this looked too jumpy, so now it's
     // positioned only once, see https://github.com/phetsims/resistance-in-a-wire/issues/181.
-    resistanceReadout.text = getResistanceReadoutText( model.resistanceProperty.value );
-    resistanceReadout.centerX = 0;
+    resistanceText.text = getResistanceReadoutText( model.resistanceProperty.value );
+    resistanceText.centerX = 0;
 
     // Update the resistance readout when the resistance changes.
     model.resistanceProperty.link( resistance => {
-      resistanceReadout.text = getResistanceReadoutText( resistance );
+      resistanceText.text = getResistanceReadoutText( resistance );
     } );
 
     // pdom - when using a slider, we store the initial value on start drag so that we can describe size change after
@@ -227,12 +227,12 @@ class ControlPanel extends Panel {
     lengthSlider.left = resistivitySlider.right + SLIDER_SPACING;
     areaSlider.left = lengthSlider.right + SLIDER_SPACING;
     sliders.centerX = 0;
-    resistanceReadout.bottom = sliders.top - 12;
+    resistanceText.bottom = sliders.top - 12;
 
     // Because ControlPanel extends Panel, it needs pass a content node into its constructor to surround.
     // Add everything to the content node, then pass content to the Panel.call().
     const content = new Node( {
-      children: [ resistanceReadout, sliders ],
+      children: [ resistanceText, sliders ],
       tandem: tandem.createTandem( 'content' )
     } );
 
