@@ -24,7 +24,7 @@ import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 const areaSymbolString = ResistanceInAWireStrings.areaSymbol;
 const lengthSymbolString = ResistanceInAWireStrings.lengthSymbol;
 const resistanceSymbolString = ResistanceInAWireStrings.resistanceSymbol;
-const symbolResistivityString = SceneryPhetStrings.symbol.resistivityStringProperty;
+const symbolResistivityStringProperty = SceneryPhetStrings.symbol.resistivityStringProperty;
 const equationResistanceEquationString = ResistanceInAWireStrings.a11y.equation.resistanceEquation;
 const resistanceEquationDescriptionString = ResistanceInAWireStrings.a11y.equation.resistanceEquationDescription;
 const rhoLAndAComparablePatternString = ResistanceInAWireStrings.a11y.equation.rhoLAndAComparablePattern;
@@ -81,7 +81,7 @@ class FormulaNode extends Node {
       tandem: tandem.createTandem( 'resistanceSymbolText' ),
       scaleKey: RESISTANCE_KEY
     }, {
-      label: symbolResistivityString,
+      label: symbolResistivityStringProperty,
       center: new Vector2( equalsSignText.centerX + 120, -90 ),
       property: model.resistivityProperty,
       color: ResistanceInAWireConstants.BLUE_COLOR,
