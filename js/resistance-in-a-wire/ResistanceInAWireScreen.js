@@ -25,7 +25,7 @@ class ResistanceInAWireScreen extends Screen {
       model => new ResistanceInAWireScreenView( model, tandem.createTandem( 'view' ) ), {
         backgroundColorProperty: new Property( '#ffffdf' ),
         tandem: tandem,
-        keyboardHelpNode: new SliderControlsAndBasicActionsKeyboardHelpContent()
+        createKeyboardHelpNode: () => new SliderControlsAndBasicActionsKeyboardHelpContent()
       }
     );
   }
