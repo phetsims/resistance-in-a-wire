@@ -32,8 +32,8 @@ const pattern0Label1Value2UnitsString = ResistanceInAWireStrings.pattern[ '0labe
 const pattern0ResistanceUnits1LengthUnitsString = ResistanceInAWireStrings.pattern[ '0resistanceUnits' ][ '1lengthUnits' ];
 const resistanceString = ResistanceInAWireStrings.resistance;
 const resistivityString = ResistanceInAWireStrings.resistivity;
-const symbolOhmsString = SceneryPhetStrings.symbol.ohms;
-const symbolResistivityString = SceneryPhetStrings.symbol.resistivity;
+const symbolOhmsString = SceneryPhetStrings.symbol.ohmsStringProperty;
+const symbolResistivityString = SceneryPhetStrings.symbol.resistivityStringProperty;
 
 const resistivityUnitsPatternString = ResistanceInAWireStrings.a11y.wire.resistivityUnitsPattern;
 const lengthUnitsPatternString = ResistanceInAWireStrings.a11y.controls.lengthUnitsPattern;

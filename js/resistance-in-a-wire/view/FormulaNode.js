@@ -24,7 +24,7 @@ import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 const areaSymbolString = ResistanceInAWireStrings.areaSymbol;
 const lengthSymbolString = ResistanceInAWireStrings.lengthSymbol;
 const resistanceSymbolString = ResistanceInAWireStrings.resistanceSymbol;
-const symbolResistivityString = SceneryPhetStrings.symbol.resistivity;
+const symbolResistivityString = SceneryPhetStrings.symbol.resistivityStringProperty;
 const equationResistanceEquationString = ResistanceInAWireStrings.a11y.equation.resistanceEquation;
 const resistanceEquationDescriptionString = ResistanceInAWireStrings.a11y.equation.resistanceEquationDescription;
 const rhoLAndAComparablePatternString = ResistanceInAWireStrings.a11y.equation.rhoLAndAComparablePattern;
