@@ -28,8 +28,7 @@ const simOptions = {
     thanks: 'Thanks to Mobile Learner Labs for working with the PhET development team to convert this ' +
             'simulation to HTML5.',
     soundDesign: 'Ashton Morris, Mike Winters'
-  },
-  hasKeyboardHelpContent: true
+  }
 };
 
 simLauncher.launch( () => {
