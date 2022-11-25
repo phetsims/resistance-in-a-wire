@@ -57,7 +57,7 @@
     "branch": "HEAD"
   },
   "resistance-in-a-wire": {
-    "sha": "413661c57cd2e66e9a51e8844cddc09b3acb1b82",
+    "sha": "1646570888793834de0fd85175f5920f4824b3e9",
     "branch": "1.3-phetio"
   },
   "scenery": {
@@ -65,7 +65,7 @@
     "branch": "HEAD"
   },
   "scenery-phet": {
-    "sha": "5bc1ceeda2223c47ce643b38d87072f9dd568106",
+    "sha": "33382573fc72d8fb4e280c92259c2c1a61edba80",
     "branch": "HEAD"
   },
   "sherpa": {
