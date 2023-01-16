@@ -74,7 +74,7 @@ class ResistanceInAWireScreenSummaryNode extends Node {
         property: model.resistanceProperty,
         patternString: summaryResistancePatternString,
         node: resistanceItemNode,
-        precision: ResistanceInAWireConstants.getResistanceDecimals // TODO: get dynamically, it will update
+        precision: ResistanceInAWireConstants.getResistanceDecimals
       }
     ];
 
