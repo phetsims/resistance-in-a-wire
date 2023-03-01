@@ -94,12 +94,12 @@ class ControlPanel extends Panel {
     // Set the resistance readout to its initial value, then set the position.  Previously, the readout position was
     // re-centered every time the resistance changed, but it was decided that this looked too jumpy, so now it's
     // positioned only once, see https://github.com/phetsims/resistance-in-a-wire/issues/181.
-    resistanceText.text = getResistanceReadoutText( model.resistanceProperty.value );
+    resistanceText.string = getResistanceReadoutText( model.resistanceProperty.value );
     resistanceText.centerX = 0;
 
     // Update the resistance readout when the resistance changes.
     model.resistanceProperty.link( resistance => {
-      resistanceText.text = getResistanceReadoutText( resistance );
+      resistanceText.string = getResistanceReadoutText( resistance );
     } );
 
     // pdom - when using a slider, we store the initial value on start drag so that we can describe size change after
