@@ -51,7 +51,7 @@ class ResistanceInAWireScreenSummaryNode extends Node {
 
     // add listeners - add all values to a list so we can easily iterate and add listeners to update descriptions
     // with each property
-    const valueItemList = [
+    [
       {
         property: model.resistivityProperty,
         patternString: summaryResistivityPatternString,
@@ -76,11 +76,10 @@ class ResistanceInAWireScreenSummaryNode extends Node {
         node: resistanceItemNode,
         precision: ResistanceInAWireConstants.getResistanceDecimals
       }
-    ];
+    ].forEach( item => {
 
-    // register listeners that update the labels in the screen summary - this summary exists for life of sim,
-    // no need to dispose
-    valueItemList.forEach( item => {
+      // register listeners that update the labels in the screen summary - this summary exists for life of sim,
+      // no need to dispose
       item.property.link( value => {
 
         // the precision might change during interaction, get precision if property is a function
