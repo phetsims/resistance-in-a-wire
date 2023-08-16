@@ -11,7 +11,7 @@ import ScreenView from '../../../../joist/js/ScreenView.js';
 import { Shape } from '../../../../kite/js/imports.js';
 import ArrowNode from '../../../../scenery-phet/js/ArrowNode.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
-import { FocusHighlightPath } from '../../../../scenery/js/imports.js';
+import { HighlightPath } from '../../../../scenery/js/imports.js';
 import resistanceInAWire from '../../resistanceInAWire.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 import ControlPanel from './ControlPanel.js';
@@ -81,7 +81,7 @@ class ResistanceInAWireScreenView extends ScreenView {
     // resistance letter grows too large
     const highlightShape = resetAllButton.focusHighlight;
     assert && assert( highlightShape instanceof Shape, 'highlightShape must be a Shape' );
-    resetAllButton.focusHighlight = new FocusHighlightPath( highlightShape, { outerStroke: 'black' } );
+    resetAllButton.focusHighlight = new HighlightPath( highlightShape, { outerStroke: 'black' } );
 
     // add the control panel last so it is always on top.
     this.pdomPlayAreaNode.addChild( controlPanel );
