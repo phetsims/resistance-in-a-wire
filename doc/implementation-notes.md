@@ -11,9 +11,9 @@ The resistivity, length and cross section area of the wire are described as `Pro
 
 ## View
 
-Listeners to the four properties described in the model are attached to the view.
-The `FormulaNode` is a large piece of the view. It displays the main resistance equation, and will adjust the size of
-the variable letters based on the other values in the equation.
+Listeners to the four properties described in the model are attached to the view. The `FormulaNode` is a large piece of
+the view. It displays the main resistance equation, and will adjust the size of the variable letters based on the other
+values in the equation.
 
 The `WireNode` is a visualization of the formula. It is similar to the `FormulaNode` in that the wire and its properties
 (length, area, resistivity) are manually updated when any of the properties of the wire change.
