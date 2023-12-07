@@ -1,5 +1,5 @@
 {
-  "comment": "# resistance-in-a-wire 1.3.23-phetio Mon Sep 25 2023 22:05:48 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# resistance-in-a-wire 1.3.24-phetiorc.1 Thu Dec 07 2023 15:24:05 GMT-0700 (Mountain Standard Time)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
     "branch": "HEAD"
@@ -57,7 +57,7 @@
     "branch": "HEAD"
   },
   "resistance-in-a-wire": {
-    "sha": "b140783fde5c932e8da79b4f8589f281b50d280d",
+    "sha": "a4e74e1aa11e0746190a6775d89c6a8fe8b3f9d2",
     "branch": "1.3-phetio"
   },
   "scenery": {
