@@ -7,6 +7,7 @@
  * @author John Blanco (PhET Interactive Simulations)
  */
 
+import { DerivedProperty } from '../../../../axon/js/imports.js';
 import Utils from '../../../../dot/js/Utils.js';
 import merge from '../../../../phet-core/js/merge.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
@@ -220,7 +221,7 @@ class ControlPanel extends Panel {
       lengthSlider: lengthSlider,
       areaProperty: model.areaProperty,
       areaSlider: areaSlider,
-      resetInProgressProperty: model.resetInProgressProperty
+      enableControlProperties: [ DerivedProperty.not( model.resetInProgressProperty ) ]
     } ) );
 
     // layout for the panel, HBox cannot be used because 'bottom' alignment cannot align RichText in SliderUnit

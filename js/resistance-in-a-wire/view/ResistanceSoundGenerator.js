@@ -9,6 +9,7 @@
  */
 
 import Range from '../../../../dot/js/Range.js';
+import { merge } from '../../../../phet-core/js/imports.js';
 import SoundClip from '../../../../tambo/js/sound-generators/SoundClip.js';
 import brightMarimbaShort_mp3 from '../../../../tambo/sounds/brightMarimbaShort_mp3.js';
 import resistanceInAWire from '../../resistanceInAWire.js';
@@ -34,15 +35,17 @@ class ResistanceSoundGenerator extends SoundClip {
    */
   constructor( config ) {
 
-    super( brightMarimbaShort_mp3, {
+    config = merge( {
       initialOutputLevel: 0.5,
       rateChangesAffectPlayingSounds: false
-    } );
+    }, config );
+
+    super( brightMarimbaShort_mp3, config );
 
     // function to map the resistance to a playback speed and play the sound
     const playResistanceSound = () => {
 
-      if ( !config.resetInProgressProperty.value ) {
+      if ( this.fullyEnabled ) {
 
         // normalize the resistance value between 0 and 1, taking into account several orders of magnitude
         const normalizedResistance = Math.log( config.resistanceProperty.value / MIN_RESISTANCE ) /
