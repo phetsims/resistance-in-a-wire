@@ -1,4 +1,4 @@
-// Copyright 2018-2022, University of Colorado Boulder
+// Copyright 2018-2024, University of Colorado Boulder
 
 /**
  * A sound generator used to indicate the resistance level in the RIAW simulation.  This uses the values for the
