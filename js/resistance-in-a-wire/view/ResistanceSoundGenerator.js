@@ -9,7 +9,7 @@
  */
 
 import Range from '../../../../dot/js/Range.js';
-import { merge } from '../../../../phet-core/js/imports.js';
+import merge from '../../../../phet-core/js/merge.js';
 import SoundClip from '../../../../tambo/js/sound-generators/SoundClip.js';
 import brightMarimbaShort_mp3 from '../../../../tambo/sounds/brightMarimbaShort_mp3.js';
 import resistanceInAWire from '../../resistanceInAWire.js';
