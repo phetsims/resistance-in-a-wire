@@ -13,7 +13,7 @@
     "branch": "HEAD"
   },
   "chipper": {
-    "sha": "7f36eb41c4686ff8e828af28b41c7f1cf16bad41",
+    "sha": "d2a4af05f206ce2806d7634c3a836af359044cfb",
     "branch": "HEAD"
   },
   "dot": {
@@ -21,7 +21,7 @@
     "branch": "HEAD"
   },
   "joist": {
-    "sha": "287477b5c3db7fbbce5d60562414cc5aa7515ebb",
+    "sha": "6e0b6116787ee75e71ad0e915fabc407eada4a59",
     "branch": "HEAD"
   },
   "kite": {
@@ -53,7 +53,7 @@
     "branch": "HEAD"
   },
   "resistance-in-a-wire": {
-    "sha": "3b6edca296766e58570b02ff1e4328b7c55d7e56",
+    "sha": "9017453aee3f31e3e18c8dd244e9d5ed6d195de0",
     "branch": "1.6"
   },
   "scenery": {
