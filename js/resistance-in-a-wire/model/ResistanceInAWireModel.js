@@ -7,7 +7,6 @@
  * @author John Blanco (PhET Interactive Simulations)
  */
 
-import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Range from '../../../../dot/js/Range.js';
@@ -51,9 +50,6 @@ class ResistanceInAWireModel {
         phetioValueType: NumberIO
       }
     );
-
-    // @public {BooleanProperty} - indicates when a reset is in progress
-    this.resetInProgressProperty = new BooleanProperty( false );
   }
 
 
@@ -62,13 +58,10 @@ class ResistanceInAWireModel {
    * @public
    */
   reset() {
-    this.resetInProgressProperty.set( true );
     this.resistivityProperty.reset();
     this.lengthProperty.reset();
     this.areaProperty.reset();
-    this.resetInProgressProperty.set( false );
   }
-
 
   /**
    * Get the total range of the derived resistance from the independent Properties of this model.

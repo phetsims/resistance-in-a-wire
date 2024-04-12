@@ -11,6 +11,7 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Utils from '../../../../dot/js/Utils.js';
 import merge from '../../../../phet-core/js/merge.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
+import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import SceneryPhetStrings from '../../../../scenery-phet/js/SceneryPhetStrings.js';
 import { Node, Text } from '../../../../scenery/js/imports.js';
 import Panel from '../../../../sun/js/Panel.js';
@@ -221,7 +222,7 @@ class ControlPanel extends Panel {
       lengthSlider: lengthSlider,
       areaProperty: model.areaProperty,
       areaSlider: areaSlider,
-      enableControlProperties: [ DerivedProperty.not( model.resetInProgressProperty ) ]
+      enableControlProperties: [ DerivedProperty.not( ResetAllButton.isResettingAllProperty ) ]
     } ) );
 
     // layout for the panel, HBox cannot be used because 'bottom' alignment cannot align RichText in SliderUnit
