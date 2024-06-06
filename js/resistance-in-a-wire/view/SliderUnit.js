@@ -52,7 +52,7 @@ class SliderUnit extends Node {
         containerTagName: 'li',
         labelContent: labelContent,
         labelTagName: 'label',
-        a11yMapPDOMValue: value => Utils.toFixedNumber( value, 2 ),
+        pdomMapPDOMValue: value => Utils.toFixedNumber( value, 2 ),
 
         // phet-io
         tandem: tandem.createTandem( 'slider' )

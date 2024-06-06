@@ -139,7 +139,7 @@ class ControlPanel extends Panel {
         },
         sliderOptions: {
           keyboardStep: 0.05, // ohm-cm
-          a11yCreateAriaValueText: value => StringUtils.fillIn( resistivityUnitsPatternString, { value: value } )
+          pdomCreateAriaValueText: value => StringUtils.fillIn( resistivityUnitsPatternString, { value: value } )
         }
       }
     );
@@ -171,7 +171,7 @@ class ControlPanel extends Panel {
           }
         },
         sliderOptions: {
-          a11yCreateAriaValueText: value => StringUtils.fillIn( lengthUnitsPatternString, { value: value } )
+          pdomCreateAriaValueText: value => StringUtils.fillIn( lengthUnitsPatternString, { value: value } )
         }
       }
     );
@@ -204,7 +204,7 @@ class ControlPanel extends Panel {
           }
         },
         sliderOptions: {
-          a11yCreateAriaValueText: value => StringUtils.fillIn( areaUnitsPatternString, { value: value } )
+          pdomCreateAriaValueText: value => StringUtils.fillIn( areaUnitsPatternString, { value: value } )
         }
       }
     );
