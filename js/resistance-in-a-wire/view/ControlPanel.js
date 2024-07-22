@@ -116,7 +116,7 @@ class ControlPanel extends Panel {
       ResistanceInAWireConstants.RESISTIVITY_RANGE,
       symbolResistivityStringProperty,
       resistivityString,
-      StringUtils.format( pattern0ResistanceUnits1LengthUnitsString, symbolOhmsStringProperty, cmString ),
+      StringUtils.format( pattern0ResistanceUnits1LengthUnitsString, symbolOhmsStringProperty.value, cmString ),
       resistivitySliderLabelString,
       tandem.createTandem( 'resistivitySlider' ), {
         startDrag: () => {
