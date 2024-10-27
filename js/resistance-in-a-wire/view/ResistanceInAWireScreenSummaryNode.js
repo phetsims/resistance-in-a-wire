@@ -9,6 +9,7 @@
  */
 
 import Utils from '../../../../dot/js/Utils.js';
+import ScreenSummaryContent from '../../../../joist/js/ScreenSummaryContent.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import { Node } from '../../../../scenery/js/imports.js';
 import resistanceInAWire from '../../resistanceInAWire.js';
@@ -23,18 +24,11 @@ const summaryLengthPatternString = ResistanceInAWireStrings.a11y.summary.lengthP
 const summaryAreaPatternString = ResistanceInAWireStrings.a11y.summary.areaPattern;
 const summaryInteractionHintString = ResistanceInAWireStrings.a11y.summary.interactionHint;
 
-class ResistanceInAWireScreenSummaryNode extends Node {
+class ResistanceInAWireScreenSummaryNode extends ScreenSummaryContent {
   // constants
   constructor( model ) {
-    super();
+    super( summarySimString );
 
-    // main summary for this sim - this content never changes
-    this.addChild( new Node( {
-      tagName: 'p',
-      innerContent: summarySimString
-    } ) );
-
-    // indicates that the summary updates with model changes
     this.addChild( new Node( { tagName: 'p', innerContent: summaryCurrentlyString } ) );
 
     // list that updates according to model Properties
