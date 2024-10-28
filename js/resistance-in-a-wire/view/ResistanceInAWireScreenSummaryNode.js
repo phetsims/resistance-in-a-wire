@@ -1,4 +1,4 @@
-// Copyright 2018-2023, University of Colorado Boulder
+// Copyright 2018-2024, University of Colorado Boulder
 
 /**
  * The Screen Summary for Resistance in a Wire. This summary is at the top of the document, and is the first thing
