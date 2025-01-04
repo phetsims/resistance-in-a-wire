@@ -27,7 +27,11 @@ const summaryInteractionHintString = ResistanceInAWireStrings.a11y.summary.inter
 class ResistanceInAWireScreenSummaryNode extends ScreenSummaryContent {
   // constants
   constructor( model ) {
-    super( summarySimString );
+    super( {
+      additionalContent: [
+        summarySimString
+      ]
+    } );
 
     this.addChild( new Node( { tagName: 'p', innerContent: summaryCurrentlyString } ) );
 
