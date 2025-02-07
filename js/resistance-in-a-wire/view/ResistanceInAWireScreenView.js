@@ -8,10 +8,10 @@
  */
 
 import ScreenView from '../../../../joist/js/ScreenView.js';
-import { Shape } from '../../../../kite/js/imports.js';
+import Shape from '../../../../kite/js/Shape.js';
 import ArrowNode from '../../../../scenery-phet/js/ArrowNode.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
-import { HighlightPath } from '../../../../scenery/js/imports.js';
+import HighlightPath from '../../../../scenery/js/accessibility/HighlightPath.js';
 import resistanceInAWire from '../../resistanceInAWire.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 import ControlPanel from './ControlPanel.js';
