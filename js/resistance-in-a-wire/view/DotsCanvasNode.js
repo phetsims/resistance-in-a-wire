@@ -1,4 +1,4 @@
-// Copyright 2018-2021, University of Colorado Boulder
+// Copyright 2018-2025, University of Colorado Boulder
 
 /**
  * Draw the dots in the wire with a CanvasNode as a performance enhancement. This is much faster than drawing
