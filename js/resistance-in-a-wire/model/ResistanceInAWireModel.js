@@ -23,7 +23,7 @@ class ResistanceInAWireModel {
     // @public {Property.<number>} in Ohm*cm
     this.resistivityProperty = new NumberProperty( ResistanceInAWireConstants.RESISTIVITY_RANGE.defaultValue, {
       tandem: tandem.createTandem( 'resistivityProperty' ),
-      units: '\u2126\u00b7cm', // Ohm-centimeters
+      units: '\u03A9\u00b7cm', // Ohm-centimeters
       range: ResistanceInAWireConstants.RESISTIVITY_RANGE
     } );
 
@@ -46,7 +46,7 @@ class ResistanceInAWireModel {
     this.resistanceProperty = new DerivedProperty( [ this.resistivityProperty, this.lengthProperty, this.areaProperty ],
       ( resistivity, length, area ) => resistivity * length / area, {
         tandem: tandem.createTandem( 'resistanceProperty' ),
-        units: '\u2126', // ohms
+        units: '\u03A9', // ohms
         phetioValueType: NumberIO
       }
     );
