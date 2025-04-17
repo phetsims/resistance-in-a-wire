@@ -79,9 +79,8 @@ class ControlPanel extends Panel {
 
       // pdom
       tagName: 'ul',
-      labelTagName: 'h3',
-      labelContent: sliderControlsString,
-      descriptionContent: slidersDescriptionString
+      accessibleHeading: sliderControlsString,
+      accessibleHelpText: slidersDescriptionString
     }, options );
 
     // Add the dynamic title that indicates the resistance.

@@ -16,6 +16,7 @@ import platform from '../../../../phet-core/js/platform.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import SceneryPhetStrings from '../../../../scenery-phet/js/SceneryPhetStrings.js';
+import ParallelDOM from '../../../../scenery/js/accessibility/pdom/ParallelDOM.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
@@ -53,10 +54,9 @@ class FormulaNode extends Node {
       tandem: tandem,
 
       // pdom
-      tagName: 'div',
-      labelTagName: 'h3',
-      labelContent: equationResistanceEquationString,
-      descriptionContent: resistanceEquationDescriptionString
+      accessibleHeading: equationResistanceEquationString,
+      accessibleHelpText: resistanceEquationDescriptionString,
+      accessibleHelpTextBehavior: ParallelDOM.HELP_TEXT_BEFORE_CONTENT
     } );
 
     // equals sign, hard coded

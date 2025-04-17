@@ -39,9 +39,7 @@ class WireNode extends Node {
       tandem: tandem,
 
       // pdom
-      tagName: 'div',
-      labelTagName: 'h3',
-      labelContent: 'The Wire'
+      accessibleHeading: 'The Wire'
     } );
 
     // @private {ResistanceInAWireModel}
