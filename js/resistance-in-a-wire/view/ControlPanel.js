@@ -10,7 +10,7 @@
 import Utils from '../../../../dot/js/Utils.js';
 import merge from '../../../../phet-core/js/merge.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
-import SceneryPhetStrings from '../../../../scenery-phet/js/SceneryPhetStrings.js';
+import SceneryPhetFluent from '../../../../scenery-phet/js/SceneryPhetFluent.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import Panel from '../../../../sun/js/Panel.js';
@@ -33,8 +33,8 @@ const pattern0Label1Value2UnitsString = ResistanceInAWireStrings.pattern[ '0labe
 const pattern0ResistanceUnits1LengthUnitsString = ResistanceInAWireStrings.pattern[ '0resistanceUnits' ][ '1lengthUnits' ];
 const resistanceString = ResistanceInAWireStrings.resistance;
 const resistivityString = ResistanceInAWireStrings.resistivity;
-const symbolOhmsStringProperty = SceneryPhetStrings.symbol.ohmsStringProperty;
-const symbolResistivityStringProperty = SceneryPhetStrings.symbol.resistivityStringProperty;
+const symbolOhmsStringProperty = SceneryPhetFluent.symbol.ohmsStringProperty;
+const symbolResistivityStringProperty = SceneryPhetFluent.symbol.resistivityStringProperty;
 
 const resistivityUnitsPatternString = ResistanceInAWireStrings.a11y.wire.resistivityUnitsPattern;
 const lengthUnitsPatternString = ResistanceInAWireStrings.a11y.controls.lengthUnitsPattern;
