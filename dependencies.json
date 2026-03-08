@@ -41,7 +41,7 @@
     "branch": "HEAD"
   },
   "phetcommon": {
-    "sha": "b92721f32a4a01367d91bcaa8a52fe6eb8b04ed1",
+    "sha": "36bc124db2dde26783c849a3aa8e5fc64cabdc64",
     "branch": "HEAD"
   },
   "phetmarks": {
@@ -53,7 +53,7 @@
     "branch": "HEAD"
   },
   "resistance-in-a-wire": {
-    "sha": "02636d37ec05d916327457a1348a5ef47605123e",
+    "sha": "f6ba690fba005054627e4377cd8a725116d58e40",
     "branch": "1.6"
   },
   "scenery": {
