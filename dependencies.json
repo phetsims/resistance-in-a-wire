@@ -13,7 +13,7 @@
     "branch": "HEAD"
   },
   "chipper": {
-    "sha": "ff3433b174f0d4ac0f5409eb599c4a0f6ea4f64b",
+    "sha": "042030770e601407cd180b4da0f0a609d9665674",
     "branch": "HEAD"
   },
   "dot": {
@@ -53,7 +53,7 @@
     "branch": "HEAD"
   },
   "resistance-in-a-wire": {
-    "sha": "ca451c96286027038f795c2eafa2ca7a670ff164",
+    "sha": "20c74723f542875ec8fa9e84db4932660eae7635",
     "branch": "1.6"
   },
   "scenery": {
