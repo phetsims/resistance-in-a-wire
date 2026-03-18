@@ -21,7 +21,7 @@
     "branch": "HEAD"
   },
   "joist": {
-    "sha": "6b19e7ea910ce29f8225d8899ab7777bc337f256",
+    "sha": "2d960828383ba320c0d5ebe94cef41235a30c6b3",
     "branch": "HEAD"
   },
   "kite": {
@@ -53,7 +53,7 @@
     "branch": "HEAD"
   },
   "resistance-in-a-wire": {
-    "sha": "0a33031d9f329b3639f09eb30369ffa97aaef6cf",
+    "sha": "d55d327bb80db70e99f98e45876dd03085243bb7",
     "branch": "1.6"
   },
   "scenery": {
