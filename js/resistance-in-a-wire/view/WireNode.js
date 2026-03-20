@@ -16,7 +16,6 @@ import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
 import LinearGradient from '../../../../scenery/js/util/LinearGradient.js';
-import resistanceInAWire from '../../resistanceInAWire.js';
 import ResistanceInAWireStrings from '../../ResistanceInAWireStrings.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 import DotsCanvasNode from './DotsCanvasNode.js';
@@ -129,7 +128,5 @@ class WireNode extends Node {
     } );
   }
 }
-
-resistanceInAWire.register( 'WireNode', WireNode );
 
 export default WireNode;

@@ -13,7 +13,6 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import RichText from '../../../../scenery/js/nodes/RichText.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import VSlider from '../../../../sun/js/VSlider.js';
-import resistanceInAWire from '../../resistanceInAWire.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 
 class SliderUnit extends Node {
@@ -151,7 +150,5 @@ class SliderUnit extends Node {
     this.mutate( options );
   }
 }
-
-resistanceInAWire.register( 'SliderUnit', SliderUnit );
 
 export default SliderUnit;

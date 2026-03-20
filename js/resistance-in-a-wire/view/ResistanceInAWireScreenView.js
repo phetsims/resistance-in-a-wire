@@ -12,7 +12,6 @@ import Shape from '../../../../kite/js/Shape.js';
 import ArrowNode from '../../../../scenery-phet/js/ArrowNode.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import HighlightPath from '../../../../scenery/js/accessibility/HighlightPath.js';
-import resistanceInAWire from '../../resistanceInAWire.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 import ControlPanel from './ControlPanel.js';
 import FormulaNode from './FormulaNode.js';
@@ -88,5 +87,4 @@ class ResistanceInAWireScreenView extends ScreenView {
   }
 }
 
-resistanceInAWire.register( 'ResistanceInAWireScreenView', ResistanceInAWireScreenView );
 export default ResistanceInAWireScreenView;

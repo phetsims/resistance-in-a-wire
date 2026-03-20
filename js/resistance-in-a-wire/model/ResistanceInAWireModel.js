@@ -11,7 +11,6 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Range from '../../../../dot/js/Range.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
-import resistanceInAWire from '../../resistanceInAWire.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 
 class ResistanceInAWireModel {
@@ -75,7 +74,5 @@ class ResistanceInAWireModel {
     return new Range( minResistance, maxResistance );
   }
 }
-
-resistanceInAWire.register( 'ResistanceInAWireModel', ResistanceInAWireModel );
 
 export default ResistanceInAWireModel;

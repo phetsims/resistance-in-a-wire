@@ -12,7 +12,6 @@ import Utils from '../../../../dot/js/Utils.js';
 import ScreenSummaryContent from '../../../../joist/js/ScreenSummaryContent.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
-import resistanceInAWire from '../../resistanceInAWire.js';
 import ResistanceInAWireStrings from '../../ResistanceInAWireStrings.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 
@@ -90,5 +89,4 @@ class ResistanceInAWireScreenSummaryNode extends ScreenSummaryContent {
   }
 }
 
-resistanceInAWire.register( 'ResistanceInAWireScreenSummaryNode', ResistanceInAWireScreenSummaryNode );
 export default ResistanceInAWireScreenSummaryNode;

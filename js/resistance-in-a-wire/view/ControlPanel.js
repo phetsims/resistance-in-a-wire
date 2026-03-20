@@ -16,7 +16,6 @@ import Text from '../../../../scenery/js/nodes/Text.js';
 import Panel from '../../../../sun/js/Panel.js';
 import soundManager from '../../../../tambo/js/soundManager.js';
 import Utterance from '../../../../utterance-queue/js/Utterance.js';
-import resistanceInAWire from '../../resistanceInAWire.js';
 import ResistanceInAWireStrings from '../../ResistanceInAWireStrings.js';
 import ResistanceInAWireModel from '../model/ResistanceInAWireModel.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
@@ -314,5 +313,4 @@ function getResistanceReadoutText( resistance ) {
   );
 }
 
-resistanceInAWire.register( 'ControlPanel', ControlPanel );
 export default ControlPanel;

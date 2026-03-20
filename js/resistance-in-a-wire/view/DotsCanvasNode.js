@@ -14,7 +14,6 @@ import LinearFunction from '../../../../dot/js/LinearFunction.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import merge from '../../../../phet-core/js/merge.js';
 import CanvasNode from '../../../../scenery/js/nodes/CanvasNode.js';
-import resistanceInAWire from '../../resistanceInAWire.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 import WireShapeConstants from './WireShapeConstants.js';
 
@@ -124,8 +123,6 @@ class DotsCanvasNode extends CanvasNode {
     }
   }
 }
-
-resistanceInAWire.register( 'DotsCanvasNode', DotsCanvasNode );
 
 /**
  * Using Shape.ellipticalArc for the clip area is too slow, so we approximate ellipcitcal arcs with segments.

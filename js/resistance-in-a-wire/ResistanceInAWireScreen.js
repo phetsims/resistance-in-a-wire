@@ -10,7 +10,6 @@
 import Property from '../../../axon/js/Property.js';
 import Screen from '../../../joist/js/Screen.js';
 import SliderControlsAndBasicActionsKeyboardHelpContent from '../../../scenery-phet/js/keyboard/help/SliderControlsAndBasicActionsKeyboardHelpContent.js';
-import resistanceInAWire from '../resistanceInAWire.js';
 import ResistanceInAWireModel from './model/ResistanceInAWireModel.js';
 import ResistanceInAWireScreenView from './view/ResistanceInAWireScreenView.js';
 
@@ -31,5 +30,4 @@ class ResistanceInAWireScreen extends Screen {
   }
 }
 
-resistanceInAWire.register( 'ResistanceInAWireScreen', ResistanceInAWireScreen );
 export default ResistanceInAWireScreen;

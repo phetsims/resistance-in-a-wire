@@ -21,7 +21,6 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
-import resistanceInAWire from '../../resistanceInAWire.js';
 import ResistanceInAWireStrings from '../../ResistanceInAWireStrings.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 
@@ -250,8 +249,6 @@ class FormulaNode extends Node {
     return description;
   }
 }
-
-resistanceInAWire.register( 'FormulaNode', FormulaNode );
 
 /**
  * Get a relative size description from a relative scale, used to describe letters relative to each other. Will return

@@ -8,7 +8,6 @@
 
 import LinearFunction from '../../../../dot/js/LinearFunction.js';
 import Range from '../../../../dot/js/Range.js';
-import resistanceInAWire from '../../resistanceInAWire.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 
 // constants
@@ -50,7 +49,5 @@ const WireShapeConstants = {
     return WIRE_VIEW_HEIGHT_RANGE.max / WIRE_DIAMETER_MAX * diameter;
   }
 };
-
-resistanceInAWire.register( 'WireShapeConstants', WireShapeConstants );
 
 export default WireShapeConstants;

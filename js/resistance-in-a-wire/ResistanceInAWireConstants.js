@@ -10,7 +10,6 @@ import Range from '../../../dot/js/Range.js';
 import RangeWithValue from '../../../dot/js/RangeWithValue.js';
 import Utils from '../../../dot/js/Utils.js';
 import PhetFont from '../../../scenery-phet/js/PhetFont.js';
-import resistanceInAWire from '../resistanceInAWire.js';
 import ResistanceInAWireStrings from '../ResistanceInAWireStrings.js';
 
 const muchMuchSmallerThanString = ResistanceInAWireStrings.a11y.equation.sizes.muchMuchSmallerThan;
@@ -219,7 +218,5 @@ const ResistanceInAWireConstants = {
     return Utils.toFixed( value, this.getResistanceDecimals( value ) );
   }
 };
-
-resistanceInAWire.register( 'ResistanceInAWireConstants', ResistanceInAWireConstants );
 
 export default ResistanceInAWireConstants;
