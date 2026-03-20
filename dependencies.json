@@ -9,7 +9,7 @@
     "branch": "HEAD"
   },
   "brand": {
-    "sha": "06c4c83ad16c73e680fff8d4bfa0f46350c09bb1",
+    "sha": "bf819376145da65905531e155f65fb4d1e1fd02c",
     "branch": "HEAD"
   },
   "chipper": {
@@ -57,7 +57,7 @@
     "branch": "HEAD"
   },
   "resistance-in-a-wire": {
-    "sha": "977829c2e94eea8415bb49b48a8bd861098286d2",
+    "sha": "84a6eb9cb9ad4261bac8075f8294692de24ffbef",
     "branch": "1.3-phetio"
   },
   "scenery": {
