@@ -178,4 +178,6 @@ type StringsType = {
 
 const ResistanceInAWireStrings = getStringModule( 'RESISTANCE_IN_A_WIRE' ) as StringsType;
 
+resistanceInAWire.register( 'ResistanceInAWireStrings', ResistanceInAWireStrings );
+
 export default ResistanceInAWireStrings;
