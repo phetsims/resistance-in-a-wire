@@ -1,5 +1,5 @@
 {
-  "comment": "# resistance-in-a-wire 1.6.30-rc.1 Sat Mar 21 2026 10:45:55 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# resistance-in-a-wire 1.6.30-rc.2 Thu Mar 26 2026 11:05:27 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
     "branch": "HEAD"
@@ -53,7 +53,7 @@
     "branch": "HEAD"
   },
   "resistance-in-a-wire": {
-    "sha": "ce4ec6fb2eafa322fce37ffc929c4a54469c3164",
+    "sha": "cd3f60b59e4b18f033a1309f7ea3bd3924882d20",
     "branch": "1.6"
   },
   "scenery": {
