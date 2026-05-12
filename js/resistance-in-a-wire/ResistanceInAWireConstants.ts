@@ -12,6 +12,13 @@ import Utils from '../../../dot/js/Utils.js';
 import PhetFont from '../../../scenery-phet/js/PhetFont.js';
 import ResistanceInAWireStrings from '../ResistanceInAWireStrings.js';
 
+type DescriptionEntry = {
+  description: string;
+  range: Range;
+};
+
+type DescriptionMap = Record<string, DescriptionEntry>;
+
 const muchMuchSmallerThanString = ResistanceInAWireStrings.a11y.equation.sizes.muchMuchSmallerThan;
 const muchSmallerThanString = ResistanceInAWireStrings.a11y.equation.sizes.muchSmallerThan;
 const slightlySmallerThanString = ResistanceInAWireStrings.a11y.equation.sizes.slightlySmallerThan;
@@ -41,8 +48,6 @@ const aLargeAmountOfImpuritiesString = ResistanceInAWireStrings.a11y.wire.aLarge
 const aVeryLargeAmountOfImpuritiesString = ResistanceInAWireStrings.a11y.wire.aVeryLargeAmountOfImpurities;
 const aHugeAmountOfImpuritiesString = ResistanceInAWireStrings.a11y.wire.aHugeAmountOfImpurities;
 
-
-// constants
 const RESISTIVITY_RANGE = new RangeWithValue( 0.01, 1.00, 0.5 ); // in Ohm * cm
 const LENGTH_RANGE = new RangeWithValue( 0.1, 20, 10 ); // in cm
 const AREA_RANGE = new RangeWithValue( 0.01, 15, 7.5 ); // in cm^2
@@ -54,30 +59,26 @@ const RESISTIVITY_DESCRIPTIONS = [ aTinyAmountOfImpuritiesString, aVerySmallAmou
 const RELATIVE_SIZE_STRINGS = [ muchMuchSmallerThanString, muchSmallerThanString, slightlySmallerThanString, comparableToString, slightlyLargerThanString, muchLargerThanString, muchMuchLargerThanString ];
 
 /**
- * Generate a map from physical value to accessible descripton. Each described range has a length of
- * valueRange / descriptionArray.length
- *
- * @param {[].string} descriptionArray
- * @param {RangeWithValue} valueRange
- *
- * @returns {[type]} [description]
+ * Generates a map from physical value to accessible description. Each described range has a length of
+ * valueRange / descriptionArray.length.
  */
-const generateDescriptionMap = ( descriptionArray, valueRange ) => {
-  const map = {};
+const generateDescriptionMap = ( descriptionArray: string[], valueRange: RangeWithValue ): DescriptionMap => {
+  const map: DescriptionMap = {};
 
   let minValue = valueRange.min;
   for ( let i = 0; i < descriptionArray.length; i++ ) {
 
     const nextMin = minValue + valueRange.getLength() / descriptionArray.length;
 
-    map[ i ] = {};
-    map[ i ].description = descriptionArray[ i ];
-    map[ i ].range = new Range( minValue, nextMin );
+    // Correct for any precision issues in the final interval.
+    const range = i === descriptionArray.length - 1 ?
+                  new Range( minValue, valueRange.max ) :
+                  new Range( minValue, nextMin );
 
-    // correct for any precision issues
-    if ( i === descriptionArray.length - 1 ) {
-      map[ descriptionArray.length - 1 ].range = new Range( minValue, valueRange.max );
-    }
+    map[ i ] = {
+      description: descriptionArray[ i ],
+      range: range
+    };
 
     minValue = nextMin;
   }
@@ -130,7 +131,7 @@ const ResistanceInAWireConstants = {
 
   // precision of values for view
   SLIDER_READOUT_DECIMALS: 2,
-  getResistanceDecimals( resistance ) {
+  getResistanceDecimals( resistance: number ): number {
     return resistance >= 100 ? 0 : // Over 100, show no decimal points, like 102
            resistance >= 10 ? 1 : // between 10.0 and 99.9, show 2 decimal points
            resistance < 0.001 ? 4 : // when less than 0.001, show 4 decimals, see #125
@@ -179,28 +180,16 @@ const ResistanceInAWireConstants = {
   },
 
   /**
-   * Get a description from a value map. The map must have keys with values that look like
-   * {
-   *   range: {Range},
-   *   description: {string}
-   * }
-   *
-   * We iterate over the map, and if the value falls in the range, the description string is returned.
-   *
-   * "comparable to" or
-   * "much much larger than"
-   *
-   * @param {number} value
-   * @returns {string}
+   * Returns the description for the range that contains the provided value.
    */
-  getValueDescriptionFromMap( value, map ) {
+  getValueDescriptionFromMap( value: number, map: DescriptionMap ): string {
 
-    // get described ranges of each value
+    // Get described ranges of each value.
     const keys = Object.keys( map );
     for ( let i = 0; i < keys.length; i++ ) {
       const entry = map[ keys[ i ] ];
 
-      if ( entry.range.contains( value, map ) ) {
+      if ( entry.range.contains( value ) ) {
         return entry.description;
       }
     }
@@ -208,13 +197,9 @@ const ResistanceInAWireConstants = {
   },
 
   /**
-   * Get a formatted value for resistance - depending on size of resistance, number of decimals will change. Used
-   * for visual readout as well as for readable values in a11y.
-   *
-   * @param {number} value
-   * @returns {string}
+   * Returns a formatted resistance value for visual readouts and accessible descriptions.
    */
-  getFormattedResistanceValue( value ) {
+  getFormattedResistanceValue( value: number ): string {
     return Utils.toFixed( value, this.getResistanceDecimals( value ) );
   }
 };
