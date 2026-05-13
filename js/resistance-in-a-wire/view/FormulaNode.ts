@@ -10,6 +10,7 @@
  * @author Michael Kauzmann (PhET Interactive Simulations)
  */
 
+import type { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import Shape from '../../../../kite/js/Shape.js';
 import platform from '../../../../phet-core/js/platform.js';
@@ -17,11 +18,13 @@ import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import SceneryPhetFluent from '../../../../scenery-phet/js/SceneryPhetFluent.js';
 import ParallelDOM from '../../../../scenery/js/accessibility/pdom/ParallelDOM.js';
-import Node from '../../../../scenery/js/nodes/Node.js';
+import Node, { type NodeOptions } from '../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
+import type Tandem from '../../../../tandem/js/Tandem.js';
 import ResistanceInAWireStrings from '../../ResistanceInAWireStrings.js';
+import type ResistanceInAWireModel from '../model/ResistanceInAWireModel.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 
 const areaSymbolString = ResistanceInAWireStrings.areaSymbol;
@@ -36,18 +39,29 @@ const noneComparablePatternString = ResistanceInAWireStrings.a11y.equation.noneC
 
 // constants - rather than keep a reference to each letter node, a map from key to scale magnitude is used
 // to track letter scales
-const RESISTANCE_KEY = 'resistance';
-const RESISTIVITY_KEY = 'resistivity';
-const AREA_KEY = 'area';
-const LENGTH_KEY = 'length';
+type ScaleKey = 'resistance' | 'resistivity' | 'area' | 'length';
 
-class FormulaNode extends Node {
-  /**
-   * @param {ResistanceInAWireModel} model
-   * @param {Tandem} tandem
-   * @param {Object} [options]
-   */
-  constructor( model, tandem, options ) {
+const RESISTANCE_KEY: ScaleKey = 'resistance';
+const RESISTIVITY_KEY: ScaleKey = 'resistivity';
+const AREA_KEY: ScaleKey = 'area';
+const LENGTH_KEY: ScaleKey = 'length';
+
+type SymbolTextEntry = {
+  label: string | TReadOnlyProperty<string>;
+  center: Vector2;
+  property: TReadOnlyProperty<number>;
+  color: string;
+  tandem: Tandem;
+  scaleKey: ScaleKey;
+  cappedSize?: boolean;
+};
+
+export default class FormulaNode extends Node {
+
+  // Maps each equation symbol to its current scale magnitude for accessible relative-size descriptions.
+  private readonly a11yScaleMap: Record<ScaleKey, number>;
+
+  public constructor( model: ResistanceInAWireModel, tandem: Tandem, providedOptions?: NodeOptions ) {
 
     super( {
       tandem: tandem,
@@ -66,15 +80,15 @@ class FormulaNode extends Node {
       tandem: tandem.createTandem( 'equalsSignText' )
     } );
 
-    // maps identifier to scale magnitude
-    this.a11yScaleMap = {};
-    this.a11yScaleMap[ RESISTANCE_KEY ] = 0;
-    this.a11yScaleMap[ RESISTIVITY_KEY ] = 0;
-    this.a11yScaleMap[ AREA_KEY ] = 0;
-    this.a11yScaleMap[ LENGTH_KEY ] = 0;
+    this.a11yScaleMap = {
+      resistance: 0,
+      resistivity: 0,
+      area: 0,
+      length: 0
+    };
 
     // An array of attributes related to text
-    const symbolTexts = [ {
+    const symbolTexts: SymbolTextEntry[] = [ {
       label: resistanceSymbolString,
       center: new Vector2( equalsSignText.centerX - 100, 0 ),
       property: model.resistanceProperty,
@@ -138,7 +152,7 @@ class FormulaNode extends Node {
 
       // The size of the formula letter will scale with the value the letter represents. The accessible description for
       // the equation will also update. This does not need an unlink because it exists for the life of the sim.
-      entry.property.link( value => {
+      entry.property.link( ( value: number ) => {
         const scaleMagnitude = scale * value + 1;
         letterNode.setScaleMagnitude( scaleMagnitude );
         letterNode.center = entry.center;
@@ -165,7 +179,7 @@ class FormulaNode extends Node {
       tandem: tandem.createTandem( 'dividingLine' )
     } ) );
 
-    this.mutate( options );
+    this.mutate( providedOptions );
 
     // pdom - set the initial description
     lettersNode.setDescriptionContent( this.getRelativeSizeDescription() );
@@ -180,12 +194,8 @@ class FormulaNode extends Node {
    * "Size of letter R is comparable to the size of letter rho, letter L, and letter A" or
    * "Size of letter R is much larger than the size of letter rho, and slightly larger than letter L and letter A." or
    * "Size of letter R is much smaller than letter rho, comparable to letter L, and much much larger than letter A."
-   *
-   * @returns {string}
-   * @private
-   * @a11y
    */
-  getRelativeSizeDescription() {
+  private getRelativeSizeDescription(): string {
     const resistanceScale = this.a11yScaleMap[ RESISTANCE_KEY ];
     const resistivityScale = this.a11yScaleMap[ RESISTIVITY_KEY ];
     const areaScale = this.a11yScaleMap[ AREA_KEY ];
@@ -201,12 +211,13 @@ class FormulaNode extends Node {
     const roTLDescription = getRelativeSizeDescription( rToL );
     const rToADescription = getRelativeSizeDescription( rToA );
 
-    let description;
+    let description: string;
     const comparableRange = ResistanceInAWireConstants.RELATIVE_SIZE_MAP.comparable.range;
 
     // even if right hand side variables are not comparable in size, if R is relatively larger or smaller than all
     // by the same amount, combine size description
-    const relativeSizeKeys = Object.keys( ResistanceInAWireConstants.RELATIVE_SIZE_MAP );
+    const relativeSizeKeys = Object.keys( ResistanceInAWireConstants.RELATIVE_SIZE_MAP ) as
+      ( keyof typeof ResistanceInAWireConstants.RELATIVE_SIZE_MAP )[];
     let allRelativeSizesSame = false;
     for ( let i = 0; i < relativeSizeKeys.length; i++ ) {
       const key = relativeSizeKeys[ i ];
@@ -256,14 +267,12 @@ class FormulaNode extends Node {
  *
  * "comparable to" or
  * "much much larger than"
- *
- * @param {number} relativeScale
- * @returns {string}
  */
-const getRelativeSizeDescription = relativeScale => {
+const getRelativeSizeDescription = ( relativeScale: number ): string => {
 
   // get described ranges of each relative scale
-  const keys = Object.keys( ResistanceInAWireConstants.RELATIVE_SIZE_MAP );
+  const keys = Object.keys( ResistanceInAWireConstants.RELATIVE_SIZE_MAP ) as
+    ( keyof typeof ResistanceInAWireConstants.RELATIVE_SIZE_MAP )[];
   for ( let i = 0; i < keys.length; i++ ) {
     const relativeEntry = ResistanceInAWireConstants.RELATIVE_SIZE_MAP[ keys[ i ] ];
 
@@ -273,5 +282,3 @@ const getRelativeSizeDescription = relativeScale => {
   }
   throw new Error( `no description found for relativeScale: ${relativeScale}` );
 };
-
-export default FormulaNode;
