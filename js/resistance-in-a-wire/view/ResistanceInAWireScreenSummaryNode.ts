@@ -1,6 +1,4 @@
 // Copyright 2018-2026, University of Colorado Boulder
-/* eslint-disable */
-// @ts-nocheck
 
 /**
  * The Screen Summary for Resistance in a Wire. This summary is at the top of the document, and is the first thing
@@ -10,14 +8,16 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  */
 
+import type { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import Utils from '../../../../dot/js/Utils.js';
 import ScreenSummaryContent from '../../../../joist/js/ScreenSummaryContent.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import ResistanceInAWireStrings from '../../ResistanceInAWireStrings.js';
+import type ResistanceInAWireModel from '../model/ResistanceInAWireModel.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 
-const summarySimString = ResistanceInAWireStrings.a11y.summary.sim;
+const summarySimStringProperty = ResistanceInAWireStrings.a11y.summary.simStringProperty;
 const summaryCurrentlyString = ResistanceInAWireStrings.a11y.summary.currently;
 const summaryResistancePatternString = ResistanceInAWireStrings.a11y.summary.resistancePattern;
 const summaryResistivityPatternString = ResistanceInAWireStrings.a11y.summary.resistivityPattern;
@@ -25,13 +25,19 @@ const summaryLengthPatternString = ResistanceInAWireStrings.a11y.summary.lengthP
 const summaryAreaPatternString = ResistanceInAWireStrings.a11y.summary.areaPattern;
 const summaryInteractionHintString = ResistanceInAWireStrings.a11y.summary.interactionHint;
 
-class ResistanceInAWireScreenSummaryNode extends ScreenSummaryContent {
-  // constants
-  constructor( model ) {
+type SummaryItem = {
+  property: TReadOnlyProperty<number>;
+  patternString: string;
+  node: Node;
+  precision: number | ( ( value: number ) => number );
+};
+
+export default class ResistanceInAWireScreenSummaryNode extends ScreenSummaryContent {
+
+  public constructor( model: ResistanceInAWireModel ) {
+
     super( {
-      additionalContent: [
-        summarySimString
-      ]
+      additionalContent: summarySimStringProperty
     } );
 
     this.addChild( new Node( { tagName: 'p', innerContent: summaryCurrentlyString } ) );
@@ -50,7 +56,7 @@ class ResistanceInAWireScreenSummaryNode extends ScreenSummaryContent {
 
     // add listeners - add all values to a list so we can easily iterate and add listeners to update descriptions
     // with each property
-    [
+    const summaryItems: SummaryItem[] = [
       {
         property: model.resistivityProperty,
         patternString: summaryResistivityPatternString,
@@ -75,11 +81,13 @@ class ResistanceInAWireScreenSummaryNode extends ScreenSummaryContent {
         node: resistanceItemNode,
         precision: ResistanceInAWireConstants.getResistanceDecimals
       }
-    ].forEach( item => {
+    ];
+
+    summaryItems.forEach( item => {
 
       // register listeners that update the labels in the screen summary - this summary exists for life of sim,
       // no need to dispose
-      item.property.link( value => {
+      item.property.link( ( value: number ) => {
 
         // the precision might change during interaction, get precision if property is a function
         const precision = typeof item.precision === 'number' ? item.precision : item.precision( value );
@@ -90,5 +98,3 @@ class ResistanceInAWireScreenSummaryNode extends ScreenSummaryContent {
     } );
   }
 }
-
-export default ResistanceInAWireScreenSummaryNode;
