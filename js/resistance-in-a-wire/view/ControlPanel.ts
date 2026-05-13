@@ -7,7 +7,8 @@
  * @author John Blanco (PhET Interactive Simulations)
  */
 
-import Utils from '../../../../dot/js/Utils.js';
+import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js';
+import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
 import optionize, { type EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import SceneryPhetFluent from '../../../../scenery-phet/js/SceneryPhetFluent.js';
@@ -26,16 +27,16 @@ import SliderUnit from './SliderUnit.js';
 type SelfOptions = EmptySelfOptions;
 type ControlPanelOptions = SelfOptions & PanelOptions;
 
-const areaString = ResistanceInAWireStrings.area;
-const areaSymbolString = ResistanceInAWireStrings.areaSymbol;
-const cmString = ResistanceInAWireStrings.cm;
-const lengthString = ResistanceInAWireStrings.length;
-const lengthSymbolString = ResistanceInAWireStrings.lengthSymbol;
-const ohmString = ResistanceInAWireStrings.ohm;
-const pattern0Label1Value2UnitsString = ResistanceInAWireStrings.pattern[ '0label' ][ '1value' ][ '2units' ];
-const pattern0ResistanceUnits1LengthUnitsString = ResistanceInAWireStrings.pattern[ '0resistanceUnits' ][ '1lengthUnits' ];
-const resistanceString = ResistanceInAWireStrings.resistance;
-const resistivityString = ResistanceInAWireStrings.resistivity;
+const areaStringProperty = ResistanceInAWireStrings.areaStringProperty;
+const areaSymbolStringProperty = ResistanceInAWireStrings.areaSymbolStringProperty;
+const cmStringProperty = ResistanceInAWireStrings.cmStringProperty;
+const lengthStringProperty = ResistanceInAWireStrings.lengthStringProperty;
+const lengthSymbolStringProperty = ResistanceInAWireStrings.lengthSymbolStringProperty;
+const ohmStringProperty = ResistanceInAWireStrings.ohmStringProperty;
+const pattern0Label1Value2UnitsStringProperty = ResistanceInAWireStrings.pattern[ '0label' ][ '1value' ][ '2unitsStringProperty' ];
+const pattern0ResistanceUnits1LengthUnitsStringProperty = ResistanceInAWireStrings.pattern[ '0resistanceUnits' ][ '1lengthUnitsStringProperty' ];
+const resistanceStringProperty = ResistanceInAWireStrings.resistanceStringProperty;
+const resistivityStringProperty = ResistanceInAWireStrings.resistivityStringProperty;
 const symbolOhmsStringProperty = SceneryPhetFluent.symbol.ohmsStringProperty;
 const symbolResistivityStringProperty = SceneryPhetFluent.symbol.resistivityStringProperty;
 
@@ -79,24 +80,32 @@ export default class ControlPanel extends Panel {
       accessibleHelpText: slidersDescriptionString
     }, providedOptions );
 
+    const resistanceReadoutStringProperty = new PatternStringProperty( pattern0Label1Value2UnitsStringProperty, {
+      label: resistanceStringProperty,
+      value: model.resistanceProperty,
+      units: ohmStringProperty
+    }, {
+
+      // This pattern still uses StringUtils.format placeholders ({0}, {1}, {2}) in the string file. formatNames maps
+      // those numbered placeholders to the named values above without changing the existing translation key or pattern.
+      formatNames: [ 'label', 'value', 'units' ],
+      maps: {
+        value: resistance => ResistanceInAWireConstants.getFormattedResistanceValue( resistance )
+      },
+      tandem: tandem.createTandem( 'resistanceReadoutStringProperty' )
+    } );
+
     // Add the dynamic title that indicates the resistance.
-    const resistanceText = new Text( '', {
+    const resistanceText = new Text( resistanceReadoutStringProperty, {
       font: ResistanceInAWireConstants.READOUT_FONT,
       fill: ResistanceInAWireConstants.RED_COLOR,
       maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH * 4.7,
       tandem: tandem.createTandem( 'resistanceText' )
     } );
 
-    // Set the resistance readout to its initial value, then set the position.  Previously, the readout position was
-    // re-centered every time the resistance changed, but it was decided that this looked too jumpy, so now it's
-    // positioned only once, see https://github.com/phetsims/resistance-in-a-wire/issues/181.
-    resistanceText.string = getResistanceReadoutText( model.resistanceProperty.value );
+    // Previously, the readout position was re-centered every time the resistance changed, but it was decided that this
+    // looked too jumpy, so now it's positioned only once, see https://github.com/phetsims/resistance-in-a-wire/issues/181.
     resistanceText.centerX = 0;
-
-    // Update the resistance readout when the resistance changes.
-    model.resistanceProperty.link( resistance => {
-      resistanceText.string = getResistanceReadoutText( resistance );
-    } );
 
     // pdom - when using a slider, we store the initial value on start drag so that we can describe size change after
     // interaction
@@ -106,13 +115,24 @@ export default class ControlPanel extends Panel {
     const changeUtterance = new Utterance();
 
     // Create and add the resistivity slider with readout and labels.
+    const resistivityUnitStringProperty = new PatternStringProperty( pattern0ResistanceUnits1LengthUnitsStringProperty, {
+      resistanceUnits: symbolOhmsStringProperty,
+      lengthUnits: cmStringProperty
+    }, {
+
+      // This pattern still uses StringUtils.format placeholders ({0}, {1}) in the string file. formatNames maps those
+      // numbered placeholders to named values so we can keep the existing key and pattern intact for translations.
+      formatNames: [ 'resistanceUnits', 'lengthUnits' ],
+      tandem: tandem.createTandem( 'resistivityUnitStringProperty' )
+    } );
+
     let rhoOnStart = model.resistivityProperty.get();
     const resistivitySlider = new SliderUnit(
       model.resistivityProperty,
       ResistanceInAWireConstants.RESISTIVITY_RANGE,
       symbolResistivityStringProperty,
-      resistivityString,
-      StringUtils.format( pattern0ResistanceUnits1LengthUnitsString, symbolOhmsStringProperty.value, cmString ),
+      resistivityStringProperty,
+      resistivityUnitStringProperty,
       resistivitySliderLabelString,
       tandem.createTandem( 'resistivitySlider' ), {
         startDrag: () => {
@@ -143,9 +163,9 @@ export default class ControlPanel extends Panel {
     const lengthSlider = new SliderUnit(
       model.lengthProperty,
       ResistanceInAWireConstants.LENGTH_RANGE,
-      lengthSymbolString,
-      lengthString,
-      cmString,
+      lengthSymbolStringProperty,
+      lengthStringProperty,
+      cmStringProperty,
       lengthSliderLabelString,
       tandem.createTandem( 'lengthSlider' ), {
         startDrag: () => {
@@ -173,12 +193,16 @@ export default class ControlPanel extends Panel {
     // Create and add the area slider with readout and labels. For keyboard dragging, the range doesn't split into
     // even steps, so SliderUnit's default round-to-step behavior is used.
     let areaOnStart = model.areaProperty.get();
+    const areaUnitStringProperty = new DerivedStringProperty( [ cmStringProperty ], cmString => `${cmString}<sup>2</sup>`, {
+      tandem: tandem.createTandem( 'areaUnitStringProperty' )
+    } );
+
     const areaSlider = new SliderUnit(
       model.areaProperty,
       ResistanceInAWireConstants.AREA_RANGE,
-      areaSymbolString,
-      areaString,
-      `${cmString}<sup>2</sup>`,
+      areaSymbolStringProperty,
+      areaStringProperty,
+      areaUnitStringProperty,
       areaSliderLabelString,
       tandem.createTandem( 'areaSlider' ), {
         startDrag: () => {
@@ -269,24 +293,4 @@ function getSizeChangeAlert( resistance: number, deltaResistance: number, otherD
     rChange: resistanceChangeString,
     resistance: ResistanceInAWireConstants.getFormattedResistanceValue( resistance )
   } );
-}
-
-/**
- * Returns the string that should be shown on the resistance readout for a given resistance value.
- */
-function getResistanceReadoutText( resistance: number ): string {
-
-  // the number of digits shown varies based on the range
-  const numDecimalDigits = resistance >= 100 ? 0 : // Over 100, show no decimal points, like 102
-                           resistance >= 10 ? 1 : // between 10.0 and 99.9, show 2 decimal points
-                           resistance < 0.001 ? 4 : // when less than 0.001, show 4 decimals, see #125
-                           resistance < 1 ? 3 : // when less than 1, show 3 decimal places, see #125
-                           2; // Numbers less than 10 show 2 decimal points, like 8.35
-
-  return StringUtils.format(
-    pattern0Label1Value2UnitsString,
-    resistanceString,
-    Utils.toFixed( resistance, numDecimalDigits ),
-    ohmString
-  );
 }

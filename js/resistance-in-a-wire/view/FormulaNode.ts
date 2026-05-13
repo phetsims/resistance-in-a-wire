@@ -29,9 +29,9 @@ import ResistanceInAWireStrings from '../../ResistanceInAWireStrings.js';
 import type ResistanceInAWireModel from '../model/ResistanceInAWireModel.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 
-const areaSymbolString = ResistanceInAWireStrings.areaSymbol;
-const lengthSymbolString = ResistanceInAWireStrings.lengthSymbol;
-const resistanceSymbolString = ResistanceInAWireStrings.resistanceSymbol;
+const areaSymbolStringProperty = ResistanceInAWireStrings.areaSymbolStringProperty;
+const lengthSymbolStringProperty = ResistanceInAWireStrings.lengthSymbolStringProperty;
+const resistanceSymbolStringProperty = ResistanceInAWireStrings.resistanceSymbolStringProperty;
 const symbolResistivityStringProperty = SceneryPhetFluent.symbol.resistivityStringProperty;
 const equationResistanceEquationString = ResistanceInAWireStrings.a11y.equation.resistanceEquation;
 const resistanceEquationDescriptionString = ResistanceInAWireStrings.a11y.equation.resistanceEquationDescription;
@@ -49,7 +49,7 @@ const AREA_KEY: ScaleKey = 'area';
 const LENGTH_KEY: ScaleKey = 'length';
 
 type SymbolTextEntry = PickRequired<PhetioObjectOptions, 'tandem'> & {
-  label: string | TReadOnlyProperty<string>;
+  labelStringProperty: TReadOnlyProperty<string>;
   center: Vector2;
   property: TReadOnlyProperty<number>;
   color: string;
@@ -90,7 +90,7 @@ export default class FormulaNode extends Node {
 
     // An array of attributes related to text
     const symbolTexts: SymbolTextEntry[] = [ {
-      label: resistanceSymbolString,
+      labelStringProperty: resistanceSymbolStringProperty,
       center: new Vector2( equalsSignText.centerX - 100, 0 ),
       property: model.resistanceProperty,
       color: ResistanceInAWireConstants.RED_COLOR,
@@ -98,21 +98,21 @@ export default class FormulaNode extends Node {
       tandem: tandem.createTandem( 'resistanceSymbolText' ),
       scaleKey: RESISTANCE_KEY
     }, {
-      label: symbolResistivityStringProperty,
+      labelStringProperty: symbolResistivityStringProperty,
       center: new Vector2( equalsSignText.centerX + 120, -90 ),
       property: model.resistivityProperty,
       color: ResistanceInAWireConstants.BLUE_COLOR,
       tandem: tandem.createTandem( 'resistivitySymbolText' ),
       scaleKey: RESISTIVITY_KEY
     }, {
-      label: lengthSymbolString,
+      labelStringProperty: lengthSymbolStringProperty,
       center: new Vector2( equalsSignText.centerX + 220, -90 ),
       property: model.lengthProperty,
       color: ResistanceInAWireConstants.BLUE_COLOR,
       tandem: tandem.createTandem( 'lengthSymbolText' ),
       scaleKey: LENGTH_KEY
     }, {
-      label: areaSymbolString,
+      labelStringProperty: areaSymbolStringProperty,
       center: new Vector2( equalsSignText.centerX + 170, 90 ),
       property: model.areaProperty,
       color: ResistanceInAWireConstants.BLUE_COLOR,
@@ -133,7 +133,7 @@ export default class FormulaNode extends Node {
     // dynamically sized text
     symbolTexts.forEach( entry => {
 
-      const text = new Text( entry.label, {
+      const text = new Text( entry.labelStringProperty, {
         font: new PhetFont( { family: ResistanceInAWireConstants.FONT_FAMILY, size: 15 } ),
         fill: entry.color,
         center: entry.center,
@@ -147,6 +147,11 @@ export default class FormulaNode extends Node {
 
       const letterNode = new Node( { children: [ antiArtifactRectangle, text ] } );
       lettersNode.addChild( letterNode );
+
+      text.boundsProperty.link( textBounds => {
+        antiArtifactRectangle.rectBounds = textBounds.dilated( 1 );
+        letterNode.center = entry.center;
+      } );
 
       // Set the scale based on the default value of the property; normalize the scale for all letters.
       const scale = 7 / entry.property.value; // empirically determined '7'

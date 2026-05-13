@@ -36,9 +36,9 @@ export default class SliderUnit extends Node {
 
   public constructor( property: PhetioProperty<number>,
                       range: RangeWithValue,
-                      symbolString: string | TReadOnlyProperty<string>,
-                      nameString: string,
-                      unitString: string,
+                      symbolString: TReadOnlyProperty<string>,
+                      nameStringProperty: TReadOnlyProperty<string>,
+                      unitString: TReadOnlyProperty<string>,
                       labelContent: string,
                       tandem: Tandem,
                       providedOptions?: SliderUnitOptions ) {
@@ -104,7 +104,7 @@ export default class SliderUnit extends Node {
       tandem: tandem.createTandem( 'symbolText' )
     } );
 
-    const nameText = new Text( nameString, {
+    const nameText = new Text( nameStringProperty, {
       font: ResistanceInAWireConstants.NAME_FONT,
       fill: ResistanceInAWireConstants.BLUE_COLOR,
       maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH,
@@ -130,24 +130,27 @@ export default class SliderUnit extends Node {
       tandem: tandem.createTandem( 'unitText' )
     } );
 
-    // units text at the bottom, everything stacked on top of it
+    // The slider is the stable anchor for the unit. Dynamic locale can change text bounds at runtime, but that should
+    // not move the slider or the other slider units in the control panel.
     unitText.y = 0;
-    valueText.centerX = unitText.centerX;
-
-    // value text above unitText
     valueText.y = unitText.y - 35;
-
-    // sliders along the top of values
     slider.bottom = valueText.y - 30;
-    slider.centerX = unitText.centerX;
+    slider.centerX = 0;
 
-    // names along the top of the slider
-    nameText.y = slider.top - 5;
-    nameText.centerX = slider.centerX;
+    const layoutText = () => {
 
-    // symbol texts along the top
-    symbolText.bottom = nameText.y - 20;
-    symbolText.centerX = nameText.centerX;
+      unitText.centerX = slider.centerX;
+      valueText.centerX = slider.centerX;
+      nameText.y = slider.top - 5;
+      nameText.centerX = slider.centerX;
+
+      symbolText.bottom = nameText.y - 20;
+      symbolText.centerX = nameText.centerX;
+    };
+
+    unitText.boundsProperty.link( layoutText );
+    nameText.boundsProperty.link( layoutText );
+    symbolText.boundsProperty.link( layoutText );
 
     // Add children, from top to bottom of the slider unit
     this.addChild( symbolText );
@@ -159,7 +162,7 @@ export default class SliderUnit extends Node {
     // Update value of the readout. No need to unlink, present for the lifetime of the simulation.
     property.link( ( value: number ) => {
       valueText.string = Utils.toFixed( value, 2 );
-      valueText.centerX = unitText.centerX;
+      valueText.centerX = slider.centerX;
     } );
 
     this.mutate( options );
