@@ -95,10 +95,24 @@ a11y:
     sliderControls:         Slider Controls
     slidersDescription:     Resistivity, Length, and Area sliders allow changes to equation and wire.
     sizeChangeAlertPattern: >-
-                            As letter { $letter } { $letterChange }, letter R { $rChange }. Resistance now
+                            As { a11y.controls.changedLetterClause }, { a11y.controls.resistanceLetterClause }. Resistance now
                             { $resistance }.
+    changedLetterClause:    letter { a11y.controls.letterName } { a11y.controls.letterSizeChange }
+    resistanceLetterClause: letter R { a11y.controls.resistanceSizeChange }
     letterName:
       select_letter:
         rho:    rho
         length: L
         area:   A
+    letterSizeChange:
+      select_letterChange:
+        grows:       grows
+        shrinks:     shrinks
+        growsALot:   grows a lot
+        shrinksALot: shrinks a lot
+    resistanceSizeChange:
+      select_rChange:
+        grows:       grows
+        shrinks:     shrinks
+        growsALot:   grows a lot
+        shrinksALot: shrinks a lot

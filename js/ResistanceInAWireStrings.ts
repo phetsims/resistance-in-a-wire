@@ -108,8 +108,16 @@ type StringsType = {
       'slidersDescriptionStringProperty': LocalizedStringProperty;
       'sizeChangeAlertPattern': string;
       'sizeChangeAlertPatternStringProperty': LocalizedStringProperty;
+      'changedLetterClause': string;
+      'changedLetterClauseStringProperty': LocalizedStringProperty;
+      'resistanceLetterClause': string;
+      'resistanceLetterClauseStringProperty': LocalizedStringProperty;
       'letterName': string;
       'letterNameStringProperty': LocalizedStringProperty;
+      'letterSizeChange': string;
+      'letterSizeChangeStringProperty': LocalizedStringProperty;
+      'resistanceSizeChange': string;
+      'resistanceSizeChangeStringProperty': LocalizedStringProperty;
     }
   }
 };

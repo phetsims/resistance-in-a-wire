@@ -122,10 +122,22 @@
         "value": "Resistivity, Length, and Area sliders allow changes to equation and wire."
       },
       "sizeChangeAlertPattern": {
-        "value": "As letter { $letter } { $letterChange }, letter R { $rChange }. Resistance now { $resistance }."
+        "value": "As { a11y_controls_changedLetterClause }, { a11y_controls_resistanceLetterClause }. Resistance now { $resistance }."
+      },
+      "changedLetterClause": {
+        "value": "letter { a11y_controls_letterName } { a11y_controls_letterSizeChange }"
+      },
+      "resistanceLetterClause": {
+        "value": "letter R { a11y_controls_resistanceSizeChange }"
       },
       "letterName": {
         "value": "{ $letter ->\n  [rho] rho\n  [length] L\n  *[area] A\n}"
+      },
+      "letterSizeChange": {
+        "value": "{ $letterChange ->\n  [grows] grows\n  [shrinks] shrinks\n  [growsALot] grows a lot\n  *[shrinksALot] shrinks a lot\n}"
+      },
+      "resistanceSizeChange": {
+        "value": "{ $rChange ->\n  [grows] grows\n  [shrinks] shrinks\n  [growsALot] grows a lot\n  *[shrinksALot] shrinks a lot\n}"
       }
     }
   }

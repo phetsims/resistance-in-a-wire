@@ -49,8 +49,6 @@ const areaSliderLabelStringProperty = ResistanceInAWireFluent.a11y.controls.area
 const sliderControlsStringProperty = ResistanceInAWireFluent.a11y.controls.sliderControlsStringProperty;
 const slidersDescriptionStringProperty = ResistanceInAWireFluent.a11y.controls.slidersDescriptionStringProperty;
 const sizeChangeAlertPattern = ResistanceInAWireFluent.a11y.controls.sizeChangeAlertPattern;
-const letterName = ResistanceInAWireFluent.a11y.controls.letterName;
-const sizeChange = ResistanceInAWireFluent.a11y.equation.sizeChange;
 
 // constants
 const SLIDER_SPACING = 50;
@@ -292,9 +290,9 @@ function getSizeChangeAlert( resistance: number, deltaResistance: number, otherD
   const letterChangeKey = getSizeChangeFromDelta( otherDelta, false /* don't include 'a lot */ );
 
   return sizeChangeAlertPattern.format( {
-    letter: letterName.format( { letter: letterKey } ),
-    letterChange: sizeChange.format( { sizeChange: letterChangeKey } ),
-    rChange: sizeChange.format( { sizeChange: resistanceChangeKey } ),
+    letter: letterKey,
+    letterChange: letterChangeKey,
+    rChange: resistanceChangeKey,
     resistance: ohmsUnit.getAccessibleString( resistance, {
       decimalPlaces: ResistanceInAWireConstants.getResistanceDecimals( resistance ),
       showTrailingZeros: false,
