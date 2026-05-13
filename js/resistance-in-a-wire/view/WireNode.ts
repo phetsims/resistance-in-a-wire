@@ -12,18 +12,17 @@ import Multilink from '../../../../axon/js/Multilink.js';
 import Utils from '../../../../dot/js/Utils.js';
 import Shape from '../../../../kite/js/Shape.js';
 import platform from '../../../../phet-core/js/platform.js';
-import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import Node, { type NodeOptions } from '../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
 import LinearGradient from '../../../../scenery/js/util/LinearGradient.js';
 import type Tandem from '../../../../tandem/js/Tandem.js';
-import ResistanceInAWireStrings from '../../ResistanceInAWireStrings.js';
+import ResistanceInAWireFluent from '../../ResistanceInAWireFluent.js';
 import type ResistanceInAWireModel from '../model/ResistanceInAWireModel.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 import DotsCanvasNode from './DotsCanvasNode.js';
 import WireShapeConstants from './WireShapeConstants.js';
 
-const wireDescriptionPatternString = ResistanceInAWireStrings.a11y.wire.wireDescriptionPattern;
+const wireDescriptionPattern = ResistanceInAWireFluent.a11y.wire.wireDescriptionPattern;
 
 export default class WireNode extends Node {
 
@@ -120,7 +119,7 @@ export default class WireNode extends Node {
     const areaDescription = ResistanceInAWireConstants.getValueDescriptionFromMap( areaValue, ResistanceInAWireConstants.AREA_TO_DESCRIPTION_MAP );
     const resistivityDescription = ResistanceInAWireConstants.getValueDescriptionFromMap( resistivityValue, ResistanceInAWireConstants.RESISTIVITY_TO_DESCRIPTION_MAP );
 
-    return StringUtils.fillIn( wireDescriptionPatternString, {
+    return wireDescriptionPattern.format( {
       length: lengthDescription,
       thickness: areaDescription,
       impurities: resistivityDescription,

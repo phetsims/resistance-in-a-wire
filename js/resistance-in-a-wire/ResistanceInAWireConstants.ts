@@ -10,7 +10,7 @@ import Range from '../../../dot/js/Range.js';
 import RangeWithValue from '../../../dot/js/RangeWithValue.js';
 import Utils from '../../../dot/js/Utils.js';
 import PhetFont from '../../../scenery-phet/js/PhetFont.js';
-import ResistanceInAWireStrings from '../ResistanceInAWireStrings.js';
+import ResistanceInAWireFluent from '../ResistanceInAWireFluent.js';
 
 type DescriptionEntry = {
   description: string;
@@ -19,34 +19,34 @@ type DescriptionEntry = {
 
 type DescriptionMap = Record<string, DescriptionEntry>;
 
-const muchMuchSmallerThanString = ResistanceInAWireStrings.a11y.equation.sizes.muchMuchSmallerThan;
-const muchSmallerThanString = ResistanceInAWireStrings.a11y.equation.sizes.muchSmallerThan;
-const slightlySmallerThanString = ResistanceInAWireStrings.a11y.equation.sizes.slightlySmallerThan;
-const comparableToString = ResistanceInAWireStrings.a11y.equation.sizes.comparableTo;
-const slightlyLargerThanString = ResistanceInAWireStrings.a11y.equation.sizes.slightlyLargerThan;
-const muchLargerThanString = ResistanceInAWireStrings.a11y.equation.sizes.muchLargerThan;
-const muchMuchLargerThanString = ResistanceInAWireStrings.a11y.equation.sizes.muchMuchLargerThan;
-const extremelyShortString = ResistanceInAWireStrings.a11y.wire.extremelyShort;
-const veryShortString = ResistanceInAWireStrings.a11y.wire.veryShort;
-const shortString = ResistanceInAWireStrings.a11y.wire.short;
-const ofMediumLengthString = ResistanceInAWireStrings.a11y.wire.ofMediumLength;
-const longString = ResistanceInAWireStrings.a11y.wire.long;
-const veryLongString = ResistanceInAWireStrings.a11y.wire.veryLong;
-const extremelyLongString = ResistanceInAWireStrings.a11y.wire.extremelyLong;
-const extremelyThinString = ResistanceInAWireStrings.a11y.wire.extremelyThin;
-const veryThinString = ResistanceInAWireStrings.a11y.wire.veryThin;
-const thinString = ResistanceInAWireStrings.a11y.wire.thin;
-const ofMediumThicknessString = ResistanceInAWireStrings.a11y.wire.ofMediumThickness;
-const thickString = ResistanceInAWireStrings.a11y.wire.thick;
-const veryThickString = ResistanceInAWireStrings.a11y.wire.veryThick;
-const extremelyThickString = ResistanceInAWireStrings.a11y.wire.extremelyThick;
-const aTinyAmountOfImpuritiesString = ResistanceInAWireStrings.a11y.wire.aTinyAmountOfImpurities;
-const aVerySmallAmountOfImpuritiesString = ResistanceInAWireStrings.a11y.wire.aVerySmallAmountOfImpurities;
-const aSmallAmountOfImpuritiesString = ResistanceInAWireStrings.a11y.wire.aSmallAmountOfImpurities;
-const aMediumAmountOfImpuritiesString = ResistanceInAWireStrings.a11y.wire.aMediumAmountOfImpurities;
-const aLargeAmountOfImpuritiesString = ResistanceInAWireStrings.a11y.wire.aLargeAmountOfImpurities;
-const aVeryLargeAmountOfImpuritiesString = ResistanceInAWireStrings.a11y.wire.aVeryLargeAmountOfImpurities;
-const aHugeAmountOfImpuritiesString = ResistanceInAWireStrings.a11y.wire.aHugeAmountOfImpurities;
+const muchMuchSmallerThanString = ResistanceInAWireFluent.a11y.equation.sizes.muchMuchSmallerThanStringProperty.value;
+const muchSmallerThanString = ResistanceInAWireFluent.a11y.equation.sizes.muchSmallerThanStringProperty.value;
+const slightlySmallerThanString = ResistanceInAWireFluent.a11y.equation.sizes.slightlySmallerThanStringProperty.value;
+const comparableToString = ResistanceInAWireFluent.a11y.equation.sizes.comparableToStringProperty.value;
+const slightlyLargerThanString = ResistanceInAWireFluent.a11y.equation.sizes.slightlyLargerThanStringProperty.value;
+const muchLargerThanString = ResistanceInAWireFluent.a11y.equation.sizes.muchLargerThanStringProperty.value;
+const muchMuchLargerThanString = ResistanceInAWireFluent.a11y.equation.sizes.muchMuchLargerThanStringProperty.value;
+const extremelyShortString = ResistanceInAWireFluent.a11y.wire.extremelyShortStringProperty.value;
+const veryShortString = ResistanceInAWireFluent.a11y.wire.veryShortStringProperty.value;
+const shortString = ResistanceInAWireFluent.a11y.wire.shortStringProperty.value;
+const ofMediumLengthString = ResistanceInAWireFluent.a11y.wire.ofMediumLengthStringProperty.value;
+const longString = ResistanceInAWireFluent.a11y.wire.longStringProperty.value;
+const veryLongString = ResistanceInAWireFluent.a11y.wire.veryLongStringProperty.value;
+const extremelyLongString = ResistanceInAWireFluent.a11y.wire.extremelyLongStringProperty.value;
+const extremelyThinString = ResistanceInAWireFluent.a11y.wire.extremelyThinStringProperty.value;
+const veryThinString = ResistanceInAWireFluent.a11y.wire.veryThinStringProperty.value;
+const thinString = ResistanceInAWireFluent.a11y.wire.thinStringProperty.value;
+const ofMediumThicknessString = ResistanceInAWireFluent.a11y.wire.ofMediumThicknessStringProperty.value;
+const thickString = ResistanceInAWireFluent.a11y.wire.thickStringProperty.value;
+const veryThickString = ResistanceInAWireFluent.a11y.wire.veryThickStringProperty.value;
+const extremelyThickString = ResistanceInAWireFluent.a11y.wire.extremelyThickStringProperty.value;
+const aTinyAmountOfImpuritiesString = ResistanceInAWireFluent.a11y.wire.aTinyAmountOfImpuritiesStringProperty.value;
+const aVerySmallAmountOfImpuritiesString = ResistanceInAWireFluent.a11y.wire.aVerySmallAmountOfImpuritiesStringProperty.value;
+const aSmallAmountOfImpuritiesString = ResistanceInAWireFluent.a11y.wire.aSmallAmountOfImpuritiesStringProperty.value;
+const aMediumAmountOfImpuritiesString = ResistanceInAWireFluent.a11y.wire.aMediumAmountOfImpuritiesStringProperty.value;
+const aLargeAmountOfImpuritiesString = ResistanceInAWireFluent.a11y.wire.aLargeAmountOfImpuritiesStringProperty.value;
+const aVeryLargeAmountOfImpuritiesString = ResistanceInAWireFluent.a11y.wire.aVeryLargeAmountOfImpuritiesStringProperty.value;
+const aHugeAmountOfImpuritiesString = ResistanceInAWireFluent.a11y.wire.aHugeAmountOfImpuritiesStringProperty.value;
 
 const RESISTIVITY_RANGE = new RangeWithValue( 0.01, 1.00, 0.5 ); // in Ohm * cm
 const LENGTH_RANGE = new RangeWithValue( 0.1, 20, 10 ); // in cm

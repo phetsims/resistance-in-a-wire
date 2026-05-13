@@ -11,23 +11,22 @@
 import type { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import Utils from '../../../../dot/js/Utils.js';
 import ScreenSummaryContent from '../../../../joist/js/ScreenSummaryContent.js';
-import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
-import ResistanceInAWireStrings from '../../ResistanceInAWireStrings.js';
+import ResistanceInAWireFluent from '../../ResistanceInAWireFluent.js';
 import type ResistanceInAWireModel from '../model/ResistanceInAWireModel.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 
-const summarySimStringProperty = ResistanceInAWireStrings.a11y.summary.simStringProperty;
-const summaryCurrentlyString = ResistanceInAWireStrings.a11y.summary.currently;
-const summaryResistancePatternString = ResistanceInAWireStrings.a11y.summary.resistancePattern;
-const summaryResistivityPatternString = ResistanceInAWireStrings.a11y.summary.resistivityPattern;
-const summaryLengthPatternString = ResistanceInAWireStrings.a11y.summary.lengthPattern;
-const summaryAreaPatternString = ResistanceInAWireStrings.a11y.summary.areaPattern;
-const summaryInteractionHintString = ResistanceInAWireStrings.a11y.summary.interactionHint;
+const summarySimStringProperty = ResistanceInAWireFluent.a11y.summary.simStringProperty;
+const summaryCurrentlyStringProperty = ResistanceInAWireFluent.a11y.summary.currentlyStringProperty;
+const summaryResistancePattern = ResistanceInAWireFluent.a11y.summary.resistancePattern;
+const summaryResistivityPattern = ResistanceInAWireFluent.a11y.summary.resistivityPattern;
+const summaryLengthPattern = ResistanceInAWireFluent.a11y.summary.lengthPattern;
+const summaryAreaPattern = ResistanceInAWireFluent.a11y.summary.areaPattern;
+const summaryInteractionHintStringProperty = ResistanceInAWireFluent.a11y.summary.interactionHintStringProperty;
 
 type SummaryItem = {
   property: TReadOnlyProperty<number>;
-  patternString: string;
+  format: ( value: string ) => string;
   node: Node;
   precision: number | ( ( value: number ) => number );
 };
@@ -40,7 +39,7 @@ export default class ResistanceInAWireScreenSummaryNode extends ScreenSummaryCon
       additionalContent: summarySimStringProperty
     } );
 
-    this.addChild( new Node( { tagName: 'p', innerContent: summaryCurrentlyString } ) );
+    this.addChild( new Node( { tagName: 'p', innerContent: summaryCurrentlyStringProperty } ) );
 
     // list that updates according to model Properties
     const listNode = new Node( { tagName: 'ul' } );
@@ -52,32 +51,32 @@ export default class ResistanceInAWireScreenSummaryNode extends ScreenSummaryCon
     listNode.children = [ resistanceItemNode, resistivityItemNode, lengthItemNode, areaItemNode ];
 
     // hint to look for other elements in the UI
-    this.addChild( new Node( { tagName: 'p', innerContent: summaryInteractionHintString } ) );
+    this.addChild( new Node( { tagName: 'p', innerContent: summaryInteractionHintStringProperty } ) );
 
     // add listeners - add all values to a list so we can easily iterate and add listeners to update descriptions
     // with each property
     const summaryItems: SummaryItem[] = [
       {
         property: model.resistivityProperty,
-        patternString: summaryResistivityPatternString,
+        format: value => summaryResistivityPattern.format( { value: value } ),
         node: resistivityItemNode,
         precision: ResistanceInAWireConstants.SLIDER_READOUT_DECIMALS
       },
       {
         property: model.lengthProperty,
-        patternString: summaryLengthPatternString,
+        format: value => summaryLengthPattern.format( { value: value } ),
         node: lengthItemNode,
         precision: ResistanceInAWireConstants.SLIDER_READOUT_DECIMALS
       },
       {
         property: model.areaProperty,
-        patternString: summaryAreaPatternString,
+        format: value => summaryAreaPattern.format( { value: value } ),
         node: areaItemNode,
         precision: ResistanceInAWireConstants.SLIDER_READOUT_DECIMALS
       },
       {
         property: model.resistanceProperty,
-        patternString: summaryResistancePatternString,
+        format: value => summaryResistancePattern.format( { value: value } ),
         node: resistanceItemNode,
         precision: ResistanceInAWireConstants.getResistanceDecimals
       }
@@ -91,9 +90,7 @@ export default class ResistanceInAWireScreenSummaryNode extends ScreenSummaryCon
 
         // the precision might change during interaction, get precision if property is a function
         const precision = typeof item.precision === 'number' ? item.precision : item.precision( value );
-        item.node.innerContent = StringUtils.fillIn( item.patternString, {
-          value: Utils.toFixed( value, precision )
-        } );
+        item.node.innerContent = item.format( Utils.toFixed( value, precision ) );
       } );
     } );
   }

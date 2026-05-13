@@ -10,7 +10,6 @@
 import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js';
 import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
 import optionize, { type EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
-import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import SceneryPhetFluent from '../../../../scenery-phet/js/SceneryPhetFluent.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
@@ -18,7 +17,7 @@ import Panel, { type PanelOptions } from '../../../../sun/js/Panel.js';
 import soundManager from '../../../../tambo/js/soundManager.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import Utterance from '../../../../utterance-queue/js/Utterance.js';
-import ResistanceInAWireStrings from '../../ResistanceInAWireStrings.js';
+import ResistanceInAWireFluent from '../../ResistanceInAWireFluent.js';
 import ResistanceInAWireModel from '../model/ResistanceInAWireModel.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 import ResistanceSoundGenerator from './ResistanceSoundGenerator.js';
@@ -27,35 +26,35 @@ import SliderUnit from './SliderUnit.js';
 type SelfOptions = EmptySelfOptions;
 type ControlPanelOptions = SelfOptions & PanelOptions;
 
-const areaStringProperty = ResistanceInAWireStrings.areaStringProperty;
-const areaSymbolStringProperty = ResistanceInAWireStrings.areaSymbolStringProperty;
-const cmStringProperty = ResistanceInAWireStrings.cmStringProperty;
-const lengthStringProperty = ResistanceInAWireStrings.lengthStringProperty;
-const lengthSymbolStringProperty = ResistanceInAWireStrings.lengthSymbolStringProperty;
-const ohmStringProperty = ResistanceInAWireStrings.ohmStringProperty;
-const pattern0Label1Value2UnitsStringProperty = ResistanceInAWireStrings.pattern[ '0label' ][ '1value' ][ '2unitsStringProperty' ];
-const pattern0ResistanceUnits1LengthUnitsStringProperty = ResistanceInAWireStrings.pattern[ '0resistanceUnits' ][ '1lengthUnitsStringProperty' ];
-const resistanceStringProperty = ResistanceInAWireStrings.resistanceStringProperty;
-const resistivityStringProperty = ResistanceInAWireStrings.resistivityStringProperty;
+const areaStringProperty = ResistanceInAWireFluent.areaStringProperty;
+const areaSymbolStringProperty = ResistanceInAWireFluent.areaSymbolStringProperty;
+const cmStringProperty = ResistanceInAWireFluent.cmStringProperty;
+const lengthStringProperty = ResistanceInAWireFluent.lengthStringProperty;
+const lengthSymbolStringProperty = ResistanceInAWireFluent.lengthSymbolStringProperty;
+const ohmStringProperty = ResistanceInAWireFluent.ohmStringProperty;
+const pattern0Label1Value2UnitsStringProperty = ResistanceInAWireFluent.pattern[ '0label' ][ '1value' ][ '2unitsStringProperty' ];
+const pattern0ResistanceUnits1LengthUnitsStringProperty = ResistanceInAWireFluent.pattern[ '0resistanceUnits' ][ '1lengthUnitsStringProperty' ];
+const resistanceStringProperty = ResistanceInAWireFluent.resistanceStringProperty;
+const resistivityStringProperty = ResistanceInAWireFluent.resistivityStringProperty;
 const symbolOhmsStringProperty = SceneryPhetFluent.symbol.ohmsStringProperty;
 const symbolResistivityStringProperty = SceneryPhetFluent.symbol.resistivityStringProperty;
 
-const resistivityUnitsPatternString = ResistanceInAWireStrings.a11y.wire.resistivityUnitsPattern;
-const lengthUnitsPatternString = ResistanceInAWireStrings.a11y.controls.lengthUnitsPattern;
-const areaUnitsPatternString = ResistanceInAWireStrings.a11y.controls.areaUnitsPattern;
-const resistivitySliderLabelString = ResistanceInAWireStrings.a11y.controls.resistivitySliderLabel;
-const lengthSliderLabelString = ResistanceInAWireStrings.a11y.controls.lengthSliderLabel;
-const areaSliderLabelString = ResistanceInAWireStrings.a11y.controls.areaSliderLabel;
-const sliderControlsString = ResistanceInAWireStrings.a11y.controls.sliderControls;
-const slidersDescriptionString = ResistanceInAWireStrings.a11y.controls.slidersDescription;
-const sizeChangeAlertPatternString = ResistanceInAWireStrings.a11y.controls.sizeChangeAlertPattern;
-const letterRhoString = ResistanceInAWireStrings.a11y.controls.letterRho;
-const letterLString = ResistanceInAWireStrings.a11y.controls.letterL;
-const letterAString = ResistanceInAWireStrings.a11y.controls.letterA;
-const growsString = ResistanceInAWireStrings.a11y.equation.alerts.grows;
-const shrinksString = ResistanceInAWireStrings.a11y.equation.alerts.shrinks;
-const growsALotString = ResistanceInAWireStrings.a11y.equation.alerts.growsALot;
-const shrinksALotString = ResistanceInAWireStrings.a11y.equation.alerts.shrinksALot;
+const resistivityUnitsPattern = ResistanceInAWireFluent.a11y.wire.resistivityUnitsPattern;
+const lengthUnitsPattern = ResistanceInAWireFluent.a11y.controls.lengthUnitsPattern;
+const areaUnitsPattern = ResistanceInAWireFluent.a11y.controls.areaUnitsPattern;
+const resistivitySliderLabelString = ResistanceInAWireFluent.a11y.controls.resistivitySliderLabelStringProperty.value;
+const lengthSliderLabelString = ResistanceInAWireFluent.a11y.controls.lengthSliderLabelStringProperty.value;
+const areaSliderLabelString = ResistanceInAWireFluent.a11y.controls.areaSliderLabelStringProperty.value;
+const sliderControlsString = ResistanceInAWireFluent.a11y.controls.sliderControlsStringProperty.value;
+const slidersDescriptionString = ResistanceInAWireFluent.a11y.controls.slidersDescriptionStringProperty.value;
+const sizeChangeAlertPattern = ResistanceInAWireFluent.a11y.controls.sizeChangeAlertPattern;
+const letterRhoString = ResistanceInAWireFluent.a11y.controls.letterRhoStringProperty.value;
+const letterLString = ResistanceInAWireFluent.a11y.controls.letterLStringProperty.value;
+const letterAString = ResistanceInAWireFluent.a11y.controls.letterAStringProperty.value;
+const growsString = ResistanceInAWireFluent.a11y.equation.alerts.growsStringProperty.value;
+const shrinksString = ResistanceInAWireFluent.a11y.equation.alerts.shrinksStringProperty.value;
+const growsALotString = ResistanceInAWireFluent.a11y.equation.alerts.growsALotStringProperty.value;
+const shrinksALotString = ResistanceInAWireFluent.a11y.equation.alerts.shrinksALotStringProperty.value;
 
 // constants
 const SLIDER_SPACING = 50;
@@ -153,7 +152,7 @@ export default class ControlPanel extends Panel {
         },
         sliderOptions: {
           keyboardStep: 0.05, // ohm-cm
-          createAriaValueText: ( value: number ) => StringUtils.fillIn( resistivityUnitsPatternString, { value: value } )
+          createAriaValueText: ( value: number ) => resistivityUnitsPattern.format( { value: value } )
         }
       }
     );
@@ -185,7 +184,7 @@ export default class ControlPanel extends Panel {
           }
         },
         sliderOptions: {
-          createAriaValueText: ( value: number ) => StringUtils.fillIn( lengthUnitsPatternString, { value: value } )
+          createAriaValueText: ( value: number ) => lengthUnitsPattern.format( { value: value } )
         }
       }
     );
@@ -222,7 +221,7 @@ export default class ControlPanel extends Panel {
           }
         },
         sliderOptions: {
-          createAriaValueText: ( value: number ) => StringUtils.fillIn( areaUnitsPatternString, { value: value } )
+          createAriaValueText: ( value: number ) => areaUnitsPattern.format( { value: value } )
         }
       }
     );
@@ -287,7 +286,7 @@ function getSizeChangeAlert( resistance: number, deltaResistance: number, otherD
   const resistanceChangeString = getSizeChangeFromDelta( deltaResistance, true /* include 'a lot' */ );
   const letterChangeString = getSizeChangeFromDelta( otherDelta, false /* don't include 'a lot */ );
 
-  return StringUtils.fillIn( sizeChangeAlertPatternString, {
+  return sizeChangeAlertPattern.format( {
     letter: letterString,
     letterChange: letterChangeString,
     rChange: resistanceChangeString,

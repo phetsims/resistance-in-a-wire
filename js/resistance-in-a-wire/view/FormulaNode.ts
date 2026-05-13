@@ -15,7 +15,6 @@ import Vector2 from '../../../../dot/js/Vector2.js';
 import Shape from '../../../../kite/js/Shape.js';
 import platform from '../../../../phet-core/js/platform.js';
 import type PickRequired from '../../../../phet-core/js/types/PickRequired.js';
-import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import SceneryPhetFluent from '../../../../scenery-phet/js/SceneryPhetFluent.js';
 import ParallelDOM from '../../../../scenery/js/accessibility/pdom/ParallelDOM.js';
@@ -25,19 +24,19 @@ import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import type { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import type Tandem from '../../../../tandem/js/Tandem.js';
-import ResistanceInAWireStrings from '../../ResistanceInAWireStrings.js';
+import ResistanceInAWireFluent from '../../ResistanceInAWireFluent.js';
 import type ResistanceInAWireModel from '../model/ResistanceInAWireModel.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 
-const areaSymbolStringProperty = ResistanceInAWireStrings.areaSymbolStringProperty;
-const lengthSymbolStringProperty = ResistanceInAWireStrings.lengthSymbolStringProperty;
-const resistanceSymbolStringProperty = ResistanceInAWireStrings.resistanceSymbolStringProperty;
+const areaSymbolStringProperty = ResistanceInAWireFluent.areaSymbolStringProperty;
+const lengthSymbolStringProperty = ResistanceInAWireFluent.lengthSymbolStringProperty;
+const resistanceSymbolStringProperty = ResistanceInAWireFluent.resistanceSymbolStringProperty;
 const symbolResistivityStringProperty = SceneryPhetFluent.symbol.resistivityStringProperty;
-const equationResistanceEquationString = ResistanceInAWireStrings.a11y.equation.resistanceEquation;
-const resistanceEquationDescriptionString = ResistanceInAWireStrings.a11y.equation.resistanceEquationDescription;
-const rhoLAndAComparablePatternString = ResistanceInAWireStrings.a11y.equation.rhoLAndAComparablePattern;
-const lAndAComparablePatternString = ResistanceInAWireStrings.a11y.equation.lAndAComparablePattern;
-const noneComparablePatternString = ResistanceInAWireStrings.a11y.equation.noneComparablePattern;
+const equationResistanceEquationString = ResistanceInAWireFluent.a11y.equation.resistanceEquationStringProperty.value;
+const resistanceEquationDescriptionString = ResistanceInAWireFluent.a11y.equation.resistanceEquationDescriptionStringProperty.value;
+const rhoLAndAComparablePattern = ResistanceInAWireFluent.a11y.equation.rhoLAndAComparablePattern;
+const lAndAComparablePattern = ResistanceInAWireFluent.a11y.equation.lAndAComparablePattern;
+const noneComparablePattern = ResistanceInAWireFluent.a11y.equation.noneComparablePattern;
 
 // constants - rather than keep a reference to each letter node, a map from key to scale magnitude is used
 // to track letter scales
@@ -241,14 +240,14 @@ export default class FormulaNode extends Node {
     if ( ( comparableRange.contains( lToA ) && comparableRange.contains( lToRho ) ) || allRelativeSizesSame ) {
 
       // all right hand side letters are comparable in size
-      description = StringUtils.fillIn( rhoLAndAComparablePatternString, {
+      description = rhoLAndAComparablePattern.format( {
         rToAll: rToRhoDescription // any size description will work
       } );
     }
     else if ( comparableRange.contains( lToA ) ) {
 
       // L and A are comparable, so they are the same size relative to R
-      description = StringUtils.fillIn( lAndAComparablePatternString, {
+      description = lAndAComparablePattern.format( {
         rToRho: rToRhoDescription,
         rToLAndA: roTLDescription // either length or area relative descriptions will work
       } );
@@ -256,7 +255,7 @@ export default class FormulaNode extends Node {
     else {
 
       // all relative sizes could be unique
-      description = StringUtils.fillIn( noneComparablePatternString, {
+      description = noneComparablePattern.format( {
         rToRho: rToRhoDescription,
         rToL: roTLDescription,
         rToA: rToADescription

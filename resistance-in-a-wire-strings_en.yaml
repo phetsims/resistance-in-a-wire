@@ -18,10 +18,10 @@ a11y:
                         resistivity, length, and area allow changes to the equation and the piece
                         of wire. The Control Area has a button to reset the sim.
     currently:          Currently,
-    resistancePattern:  resistance, <b>R</b>, is {{value}} ohms
-    resistivityPattern: resistivity, <b>rho</b>, is {{value}} ohm centimeters
-    lengthPattern:      length, <b>L</b>, is {{value}} centimeters
-    areaPattern:        area, <b>A</b>, is {{value}} centimeters squared
+    resistancePattern:  resistance, <b>R</b>, is { $value } ohms
+    resistivityPattern: resistivity, <b>rho</b>, is { $value } ohm centimeters
+    lengthPattern:      length, <b>L</b>, is { $value } centimeters
+    areaPattern:        area, <b>A</b>, is { $value } centimeters squared
     interactionHint:    >-
                         Look for resistivity, length, and area sliders to play, or read on for
                         details about equation and wire.
@@ -31,14 +31,14 @@ a11y:
                                    Resistance, <b>R</b>, is equal to resistivity, <b>rho</b>, times length,
                                    <b>L</b>, over area, <b>A</b>.
     rhoLAndAComparablePattern:     >-
-                                   Size of letter R is {{rToAll}} the size of the letter rho, letter L, and
+                                   Size of letter R is { $rToAll } the size of the letter rho, letter L, and
                                    letter A.
     lAndAComparablePattern:        >-
-                                   Size of letter R is {{rToRho}} the size of letter rho, and {{rToLAndA}}
+                                   Size of letter R is { $rToRho } the size of letter rho, and { $rToLAndA }
                                    letter L and letter A.
     noneComparablePattern:         >-
-                                   Size of letter R is {{rToRho}} the size of letter rho, {{rToL}} letter L,
-                                   and {{rToA}} letter A.
+                                   Size of letter R is { $rToRho } the size of letter rho, { $rToL } letter L,
+                                   and { $rToA } letter A.
     sizes:
       muchMuchSmallerThan: much much smaller than
       muchSmallerThan:     much smaller than
@@ -54,9 +54,9 @@ a11y:
       shrinksALot: shrinks a lot
   wire:
     wireDescriptionPattern:       >-
-                                  Currently, wire is {{length}}, {{thickness}}, and there is a
-                                  {{impurities}} of impurities in wire. Resistance is {{resistance}} ohms.
-    resistivityUnitsPattern:      '{{value}} ohm centimeters'
+                                  Currently, wire is { $length }, { $thickness }, and there is a
+                                  { $impurities } of impurities in wire. Resistance is { $resistance } ohms.
+    resistivityUnitsPattern:      '{ $value } ohm centimeters'
     extremelyShort:               extremely short
     veryShort:                    very short
     short:                        short
@@ -79,16 +79,16 @@ a11y:
     aVeryLargeAmountOfImpurities: very large amount
     aHugeAmountOfImpurities:      huge amount
   controls:
-    lengthUnitsPattern:     '{{value}} centimeters'
-    areaUnitsPattern:       '{{value}} centimeters squared'
+    lengthUnitsPattern:     '{ $value } centimeters'
+    areaUnitsPattern:       '{ $value } centimeters squared'
     resistivitySliderLabel: rho, Resistivity
     lengthSliderLabel:      L, Length
     areaSliderLabel:        A, Area
     sliderControls:         Slider Controls
     slidersDescription:     Resistivity, Length, and Area sliders allow changes to equation and wire.
     sizeChangeAlertPattern: >-
-                            As letter {{letter}} {{letterChange}}, letter R {{rChange}}. Resistance
-                            now {{resistance}} ohms.
+                            As letter { $letter } { $letterChange }, letter R { $rChange }. Resistance
+                            now { $resistance } ohms.
     letterRho:              rho
     letterL:                L
     letterA:                A
