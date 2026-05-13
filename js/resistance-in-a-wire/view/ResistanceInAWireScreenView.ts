@@ -1,6 +1,4 @@
 // Copyright 2013-2026, University of Colorado Boulder
-/* eslint-disable */
-// @ts-nocheck
 
 /**
  * Main View for the "ResistanceInAWire" screen.
@@ -14,19 +12,17 @@ import Shape from '../../../../kite/js/Shape.js';
 import ArrowNode from '../../../../scenery-phet/js/ArrowNode.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import HighlightPath from '../../../../scenery/js/accessibility/HighlightPath.js';
+import type Tandem from '../../../../tandem/js/Tandem.js';
+import type ResistanceInAWireModel from '../model/ResistanceInAWireModel.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 import ControlPanel from './ControlPanel.js';
 import FormulaNode from './FormulaNode.js';
 import ResistanceInAWireScreenSummaryNode from './ResistanceInAWireScreenSummaryNode.js';
 import WireNode from './WireNode.js';
 
-class ResistanceInAWireScreenView extends ScreenView {
+export default class ResistanceInAWireScreenView extends ScreenView {
 
-  /**
-   * @param {ResistanceInAWireModel} model
-   * @param {Tandem} tandem
-   */
-  constructor( model, tandem ) {
+  public constructor( model: ResistanceInAWireModel, tandem: Tandem ) {
 
     super( {
       tandem: tandem,
@@ -80,7 +76,7 @@ class ResistanceInAWireScreenView extends ScreenView {
 
     // the outer stroke of the ResetAllButton focus highlight is black so that it is visible when the equation
     // resistance letter grows too large
-    const highlightShape = resetAllButton.focusHighlight;
+    const highlightShape = resetAllButton.focusHighlight as Shape;
     assert && assert( highlightShape instanceof Shape, 'highlightShape must be a Shape' );
     resetAllButton.focusHighlight = new HighlightPath( highlightShape, { outerStroke: 'black' } );
 
@@ -88,5 +84,3 @@ class ResistanceInAWireScreenView extends ScreenView {
     this.pdomPlayAreaNode.addChild( controlPanel );
   }
 }
-
-export default ResistanceInAWireScreenView;

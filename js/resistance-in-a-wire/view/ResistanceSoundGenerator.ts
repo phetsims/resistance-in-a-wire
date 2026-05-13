@@ -1,6 +1,4 @@
 // Copyright 2018-2026, University of Colorado Boulder
-/* eslint-disable */
-// @ts-nocheck
 
 /**
  * A sound generator used to indicate the resistance level in the RIAW simulation.  This uses the values for the
@@ -10,11 +8,29 @@
  * @author John Blanco
  */
 
+import type { PropertyLazyLinkListener, TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import Range from '../../../../dot/js/Range.js';
-import merge from '../../../../phet-core/js/merge.js';
-import SoundClip from '../../../../tambo/js/sound-generators/SoundClip.js';
+import optionize from '../../../../phet-core/js/optionize.js';
+import SoundClip, { type SoundClipOptions } from '../../../../tambo/js/sound-generators/SoundClip.js';
 import brightMarimbaShort_mp3 from '../../../../tambo/sounds/brightMarimbaShort_mp3.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
+import type SliderUnit from './SliderUnit.js';
+
+type KeyboardDraggingSliderUnit = SliderUnit & {
+  keyboardDragging: boolean;
+};
+
+type SelfOptions = {
+  resistanceProperty: TReadOnlyProperty<number>;
+  resistivityProperty: TReadOnlyProperty<number>;
+  resistivitySlider: SliderUnit;
+  lengthProperty: TReadOnlyProperty<number>;
+  lengthSlider: SliderUnit;
+  areaProperty: TReadOnlyProperty<number>;
+  areaSlider: SliderUnit;
+};
+
+type ResistanceSoundGeneratorConfig = SelfOptions & SoundClipOptions;
 
 // constants
 const BINS_PER_SLIDER = 9; // odd numbers generally work best because a bin then spans the middle initial value
@@ -27,29 +43,29 @@ const MAX_AREA = ResistanceInAWireConstants.AREA_RANGE.max;
 const MIN_LENGTH = ResistanceInAWireConstants.LENGTH_RANGE.min;
 const MAX_LENGTH = ResistanceInAWireConstants.LENGTH_RANGE.max;
 
-class ResistanceSoundGenerator extends SoundClip {
+export default class ResistanceSoundGenerator extends SoundClip {
+
+  private readonly disposeResistanceSoundGenerator: () => void;
 
   /**
-   * @constructor
-   * {Object} config - a configuration object that includes property values for the resistivity, area, and length of
-   * the wire and the sliders that control each, as well as a property the indicates whether a reset is in progress.
+   * @param config - includes property values for the wire and the sliders that control each value.
    */
-  constructor( config ) {
+  public constructor( config: ResistanceSoundGeneratorConfig ) {
 
-    config = merge( {
+    const resolvedConfig = optionize<ResistanceSoundGeneratorConfig, SelfOptions, SoundClipOptions>()( {
       initialOutputLevel: 0.5,
       rateChangesAffectPlayingSounds: false
     }, config );
 
-    super( brightMarimbaShort_mp3, config );
+    super( brightMarimbaShort_mp3, resolvedConfig );
 
-    // function to map the resistance to a playback speed and play the sound
+    // Function to map the resistance to a playback speed and play the sound.
     const playResistanceSound = () => {
 
       if ( this.fullyEnabled ) {
 
         // normalize the resistance value between 0 and 1, taking into account several orders of magnitude
-        const normalizedResistance = Math.log( config.resistanceProperty.value / MIN_RESISTANCE ) /
+        const normalizedResistance = Math.log( resolvedConfig.resistanceProperty.value / MIN_RESISTANCE ) /
                                      Math.log( MAX_RESISTANCE / MIN_RESISTANCE );
 
         // map the normalized resistance value to a playback rate for the sound clip
@@ -60,22 +76,22 @@ class ResistanceSoundGenerator extends SoundClip {
       }
     };
 
-    // @private - objects that monitor the parameter and play the sound, references kept for debugging and clarity
+    // Objects that monitor the parameter and play the sound, references kept for disposal.
     const resistivityMonitor = new ParameterMonitor(
-      config.resistivityProperty,
-      config.resistivitySlider,
+      resolvedConfig.resistivityProperty,
+      resolvedConfig.resistivitySlider,
       new Range( MIN_RESISTIVITY, MAX_RESISTIVITY ),
       playResistanceSound
     );
     const lengthMonitor = new ParameterMonitor(
-      config.lengthProperty,
-      config.lengthSlider,
+      resolvedConfig.lengthProperty,
+      resolvedConfig.lengthSlider,
       new Range( MIN_LENGTH, MAX_LENGTH ),
       playResistanceSound
     );
     const areaMonitor = new ParameterMonitor(
-      config.areaProperty,
-      config.areaSlider,
+      resolvedConfig.areaProperty,
+      resolvedConfig.areaSlider,
       new Range( MIN_AREA, MAX_AREA ),
       playResistanceSound
     );
@@ -87,31 +103,28 @@ class ResistanceSoundGenerator extends SoundClip {
     };
   }
 
-  /**
-   * @public
-   */
-  dispose() {
+  public override dispose(): void {
     this.disposeResistanceSoundGenerator();
+    super.dispose();
   }
-
 }
 
 class BinSelector {
 
+  private readonly minValue: number;
+  private readonly maxValue: number;
+  private readonly span: number;
+  private readonly numBins: number;
+
   /**
-   * inner type for placing values in a bin
-   * @param {number} minValue
-   * @param {number} maxValue
-   * @param {number} numBins
-   * @constructor
+   * Inner type for placing values in a bin.
    */
-  constructor( minValue, maxValue, numBins ) {
+  public constructor( minValue: number, maxValue: number, numBins: number ) {
 
     // parameter checking
     assert && assert( maxValue > minValue );
     assert && assert( numBins > 0 );
 
-    // @private
     this.minValue = minValue;
     this.maxValue = maxValue;
     this.span = this.maxValue - this.minValue;
@@ -120,12 +133,9 @@ class BinSelector {
   }
 
   /**
-   * put the provided value in a bin
-   * @param value
-   * @returns {number}
-   * @public
+   * Put the provided value in a bin.
    */
-  selectBin( value ) {
+  public selectBin( value: number ): number {
     assert && assert( value <= this.maxValue );
     assert && assert( value >= this.minValue );
 
@@ -138,46 +148,39 @@ class BinSelector {
 
 class ParameterMonitor {
 
+  private readonly valueProperty: TReadOnlyProperty<number>;
+  private readonly valuePropertyListener: PropertyLazyLinkListener<number>;
+
   /**
-   * inner type for monitoring a parameter a playing a sound when warranted
-   * @param {NumberProperty} valueProperty - the value of the parameter, enclosed in an Axon Property
-   * @param {SliderUnit} sliderUnit - the slider unit that controls the parameter's value
-   * @param {Range} parameterRange - the range of values that the parameter can take on
-   * @param {function} generateSound - function that will be called to generate the sound
-   * @constructor
+   * Inner type for monitoring a parameter and playing a sound when warranted.
    */
-  constructor( valueProperty, sliderUnit, parameterRange, generateSound ) {
+  public constructor( valueProperty: TReadOnlyProperty<number>,
+                      sliderUnit: SliderUnit,
+                      parameterRange: Range,
+                      generateSound: () => void ) {
     const binSelector = new BinSelector( parameterRange.min, parameterRange.max, BINS_PER_SLIDER );
+    const keyboardDraggingSliderUnit = sliderUnit as KeyboardDraggingSliderUnit;
     let selectedBin = binSelector.selectBin( valueProperty.value );
 
-    // @private - for dispose
     this.valueProperty = valueProperty;
 
-    // @private - for dispose
-    this.valuePropertyListener = parameterValue => {
+    this.valuePropertyListener = ( parameterValue: number ) => {
       const bin = binSelector.selectBin( parameterValue );
 
       // Play the sound if a change has occurred due to keyboard interaction, if the area value has moved to a new bin,
       // or if a min or max has been reached.
-      if ( sliderUnit.keyboardDragging || bin !== selectedBin ||
+      if ( keyboardDraggingSliderUnit.keyboardDragging || bin !== selectedBin ||
            parameterValue === parameterRange.min || parameterValue === parameterRange.max ) {
         generateSound();
       }
       selectedBin = bin;
     };
 
-    // hook up the listener
+    // Hook up the listener.
     valueProperty.lazyLink( this.valuePropertyListener );
   }
 
-  /**
-   * dispose
-   * @public
-   */
-  dispose() {
+  public dispose(): void {
     this.valueProperty.unlink( this.valuePropertyListener );
   }
-
 }
-
-export default ResistanceSoundGenerator;
