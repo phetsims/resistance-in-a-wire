@@ -8,19 +8,23 @@
  */
 
 import Utils from '../../../../dot/js/Utils.js';
-import merge from '../../../../phet-core/js/merge.js';
+import optionize, { type EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import SceneryPhetFluent from '../../../../scenery-phet/js/SceneryPhetFluent.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
-import Panel from '../../../../sun/js/Panel.js';
+import Panel, { type PanelOptions } from '../../../../sun/js/Panel.js';
 import soundManager from '../../../../tambo/js/soundManager.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
 import Utterance from '../../../../utterance-queue/js/Utterance.js';
 import ResistanceInAWireStrings from '../../ResistanceInAWireStrings.js';
 import ResistanceInAWireModel from '../model/ResistanceInAWireModel.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 import ResistanceSoundGenerator from './ResistanceSoundGenerator.js';
 import SliderUnit from './SliderUnit.js';
+
+type SelfOptions = EmptySelfOptions;
+type ControlPanelOptions = SelfOptions & PanelOptions;
 
 const areaString = ResistanceInAWireStrings.area;
 const areaSymbolString = ResistanceInAWireStrings.areaSymbol;
@@ -59,16 +63,9 @@ const SLIDER_SPACING = 50;
 // is signified in description
 const LARGE_RESISTANCE_DELTA = ( ( ResistanceInAWireModel.getResistanceRange().max - ResistanceInAWireModel.getResistanceRange().min ) / ResistanceInAWireConstants.RELATIVE_SIZE_STRINGS.length ) * 2;
 
-class ControlPanel extends Panel {
-
-  /**
-   * @param {ResistanceInAWireModel} model
-   * @param {Tandem} tandem
-   * @param {Object} [options]
-   */
-  constructor( model, tandem, options ) {
-
-    options = merge( {
+export default class ControlPanel extends Panel {
+  public constructor( model: ResistanceInAWireModel, tandem: Tandem, providedOptions?: ControlPanelOptions ) {
+    const options = optionize<ControlPanelOptions, SelfOptions, PanelOptions>()( {
       xMargin: 30,
       yMargin: 20,
       lineWidth: 3,
@@ -80,7 +77,7 @@ class ControlPanel extends Panel {
       tagName: 'ul',
       accessibleHeading: sliderControlsString,
       accessibleHelpText: slidersDescriptionString
-    }, options );
+    }, providedOptions );
 
     // Add the dynamic title that indicates the resistance.
     const resistanceText = new Text( '', {
@@ -136,7 +133,7 @@ class ControlPanel extends Panel {
         },
         sliderOptions: {
           keyboardStep: 0.05, // ohm-cm
-          createAriaValueText: value => StringUtils.fillIn( resistivityUnitsPatternString, { value: value } )
+          createAriaValueText: ( value: number ) => StringUtils.fillIn( resistivityUnitsPatternString, { value: value } )
         }
       }
     );
@@ -168,13 +165,13 @@ class ControlPanel extends Panel {
           }
         },
         sliderOptions: {
-          createAriaValueText: value => StringUtils.fillIn( lengthUnitsPatternString, { value: value } )
+          createAriaValueText: ( value: number ) => StringUtils.fillIn( lengthUnitsPatternString, { value: value } )
         }
       }
     );
 
-    // Create and add the area slider with readout and labels. For keyboard dragging, the range ranges doesn't split into even steps,
-    // so we calculate a keyboard step by breaking the range into 100.
+    // Create and add the area slider with readout and labels. For keyboard dragging, the range doesn't split into
+    // even steps, so SliderUnit's default round-to-step behavior is used.
     let areaOnStart = model.areaProperty.get();
     const areaSlider = new SliderUnit(
       model.areaProperty,
@@ -201,7 +198,7 @@ class ControlPanel extends Panel {
           }
         },
         sliderOptions: {
-          createAriaValueText: value => StringUtils.fillIn( areaUnitsPatternString, { value: value } )
+          createAriaValueText: ( value: number ) => StringUtils.fillIn( areaUnitsPatternString, { value: value } )
         }
       }
     );
@@ -239,47 +236,30 @@ class ControlPanel extends Panel {
 }
 
 /**
- * Get a description for whether a letter grows or shrinks. Optionally, if the size changes enough, an additional
- * fragment is included that signifies this. Will return something like
+ * Returns a description for whether a letter grows or shrinks. For resistance changes, an additional phrase is
+ * included when the change is large enough to be pedagogically useful. Will return something like:
  *
  * 'grows'
  * 'shrinks'
  * 'grows a lot'
  * 'shrinks a lot'
- *
- * @param {number} delta
- * @param {boolean} describeLargeChanges
- * @returns {string}
  */
-function getSizeChangeFromDelta( delta, describeLargeChanges ) {
+function getSizeChangeFromDelta( delta: number, describeLargeChanges: boolean ): string {
   assert && assert( delta !== 0, 'trying to describe no change in size' );
-  let description;
 
   const useALot = ( describeLargeChanges && Math.abs( delta ) > LARGE_RESISTANCE_DELTA );
 
-  if ( delta > 0 ) {
-    description = useALot ? growsALotString : growsString;
-  }
-  else if ( delta < 0 ) {
-    description = useALot ? shrinksALotString : shrinksString;
-  }
-
-  return description;
+  return delta > 0 ? ( useALot ? growsALotString : growsString ) :
+         ( useALot ? shrinksALotString : shrinksString );
 }
 
 /**
- * Get a full alert for size letter size and how R changes as well. Will return something like
+ * Returns a full alert for a variable's size change and how R changes as well. Will return something like:
  *
- * "As letter rho grows, letter R grows. Resistance no 0.667 ohms." or
- * "As letter A grows, letter R shrinks a lot. Resistance now 1.20 ohms"
- *
- * @param {number} resistance - current value of resistance
- * @param {number} deltaResistance - change in
- * @param {number} otherDelta - change in other variable, resistivity, length, or area
- * @param {string} letterString - the letter with size changes to describe
- * @returns {string}
+ * "As letter rho grows, letter R grows. Resistance now 0.667 ohms." or
+ * "As letter A grows, letter R shrinks a lot. Resistance now 1.20 ohms."
  */
-function getSizeChangeAlert( resistance, deltaResistance, otherDelta, letterString ) {
+function getSizeChangeAlert( resistance: number, deltaResistance: number, otherDelta: number, letterString: string ): string {
   const resistanceChangeString = getSizeChangeFromDelta( deltaResistance, true /* include 'a lot' */ );
   const letterChangeString = getSizeChangeFromDelta( otherDelta, false /* don't include 'a lot */ );
 
@@ -292,11 +272,9 @@ function getSizeChangeAlert( resistance, deltaResistance, otherDelta, letterStri
 }
 
 /**
- * get the string that should be shown on the resistance readout for a given resistance value
- * @param {number} resistance
- * @returns {string}
+ * Returns the string that should be shown on the resistance readout for a given resistance value.
  */
-function getResistanceReadoutText( resistance ) {
+function getResistanceReadoutText( resistance: number ): string {
 
   // the number of digits shown varies based on the range
   const numDecimalDigits = resistance >= 100 ? 0 : // Over 100, show no decimal points, like 102
@@ -312,5 +290,3 @@ function getResistanceReadoutText( resistance ) {
     ohmString
   );
 }
-
-export default ControlPanel;
