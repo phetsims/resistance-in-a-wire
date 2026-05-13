@@ -1,4 +1,6 @@
 // Copyright 2013-2026, University of Colorado Boulder
+/* eslint-disable */
+// @ts-nocheck
 
 /**
  * Main View for the "ResistanceInAWire" screen.

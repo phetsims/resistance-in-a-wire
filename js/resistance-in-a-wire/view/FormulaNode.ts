@@ -14,6 +14,7 @@ import type { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js
 import Vector2 from '../../../../dot/js/Vector2.js';
 import Shape from '../../../../kite/js/Shape.js';
 import platform from '../../../../phet-core/js/platform.js';
+import type PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import SceneryPhetFluent from '../../../../scenery-phet/js/SceneryPhetFluent.js';
@@ -22,6 +23,7 @@ import Node, { type NodeOptions } from '../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
+import type { PhetioObjectOptions } from '../../../../tandem/js/PhetioObject.js';
 import type Tandem from '../../../../tandem/js/Tandem.js';
 import ResistanceInAWireStrings from '../../ResistanceInAWireStrings.js';
 import type ResistanceInAWireModel from '../model/ResistanceInAWireModel.js';
@@ -46,12 +48,11 @@ const RESISTIVITY_KEY: ScaleKey = 'resistivity';
 const AREA_KEY: ScaleKey = 'area';
 const LENGTH_KEY: ScaleKey = 'length';
 
-type SymbolTextEntry = {
+type SymbolTextEntry = PickRequired<PhetioObjectOptions, 'tandem'> & {
   label: string | TReadOnlyProperty<string>;
   center: Vector2;
   property: TReadOnlyProperty<number>;
   color: string;
-  tandem: Tandem;
   scaleKey: ScaleKey;
   cappedSize?: boolean;
 };

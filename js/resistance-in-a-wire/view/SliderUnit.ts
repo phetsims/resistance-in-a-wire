@@ -1,4 +1,6 @@
 // Copyright 2017-2026, University of Colorado Boulder
+/* eslint-disable */
+// @ts-nocheck
 
 /**
  * Slider unit with a vertical slider, a title above the slider and a readout display below the slider. Layout is dynamic

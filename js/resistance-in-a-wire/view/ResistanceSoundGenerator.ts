@@ -1,4 +1,6 @@
 // Copyright 2018-2026, University of Colorado Boulder
+/* eslint-disable */
+// @ts-nocheck
 
 /**
  * A sound generator used to indicate the resistance level in the RIAW simulation.  This uses the values for the

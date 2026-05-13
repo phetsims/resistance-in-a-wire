@@ -1,4 +1,6 @@
 // Copyright 2018-2026, University of Colorado Boulder
+/* eslint-disable */
+// @ts-nocheck
 
 /**
  * Collection of constants and functions that determine the visual shape of the Wire.

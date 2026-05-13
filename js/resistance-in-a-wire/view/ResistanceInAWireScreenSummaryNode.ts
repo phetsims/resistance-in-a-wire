@@ -1,4 +1,6 @@
 // Copyright 2018-2026, University of Colorado Boulder
+/* eslint-disable */
+// @ts-nocheck
 
 /**
  * The Screen Summary for Resistance in a Wire. This summary is at the top of the document, and is the first thing

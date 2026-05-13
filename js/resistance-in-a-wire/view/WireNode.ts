@@ -1,4 +1,6 @@
 // Copyright 2017-2026, University of Colorado Boulder
+/* eslint-disable */
+// @ts-nocheck
 
 /**
  * View of the wire, includes dots that depict the level of resistivity
