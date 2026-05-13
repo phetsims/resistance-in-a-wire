@@ -32,8 +32,8 @@ const areaSymbolStringProperty = ResistanceInAWireFluent.areaSymbolStringPropert
 const lengthSymbolStringProperty = ResistanceInAWireFluent.lengthSymbolStringProperty;
 const resistanceSymbolStringProperty = ResistanceInAWireFluent.resistanceSymbolStringProperty;
 const symbolResistivityStringProperty = SceneryPhetFluent.symbol.resistivityStringProperty;
-const equationResistanceEquationString = ResistanceInAWireFluent.a11y.equation.resistanceEquationStringProperty.value;
-const resistanceEquationDescriptionString = ResistanceInAWireFluent.a11y.equation.resistanceEquationDescriptionStringProperty.value;
+const equationResistanceEquationStringProperty = ResistanceInAWireFluent.a11y.equation.resistanceEquationStringProperty;
+const resistanceEquationDescriptionStringProperty = ResistanceInAWireFluent.a11y.equation.resistanceEquationDescriptionStringProperty;
 const rhoLAndAComparablePattern = ResistanceInAWireFluent.a11y.equation.rhoLAndAComparablePattern;
 const lAndAComparablePattern = ResistanceInAWireFluent.a11y.equation.lAndAComparablePattern;
 const noneComparablePattern = ResistanceInAWireFluent.a11y.equation.noneComparablePattern;
@@ -68,8 +68,8 @@ export default class FormulaNode extends Node {
       tandem: tandem,
 
       // pdom
-      accessibleHeading: equationResistanceEquationString,
-      accessibleHelpText: resistanceEquationDescriptionString,
+      accessibleHeading: equationResistanceEquationStringProperty,
+      accessibleHelpText: resistanceEquationDescriptionStringProperty,
       accessibleHelpTextBehavior: ParallelDOM.HELP_TEXT_BEFORE_CONTENT
     } );
 
