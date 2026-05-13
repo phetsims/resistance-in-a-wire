@@ -11,6 +11,10 @@ import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js'
 import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
 import optionize, { type EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import SceneryPhetFluent from '../../../../scenery-phet/js/SceneryPhetFluent.js';
+import { centimetersSquaredUnit } from '../../../../scenery-phet/js/units/centimetersSquaredUnit.js';
+import { centimetersUnit } from '../../../../scenery-phet/js/units/centimetersUnit.js';
+import { ohmCentimetersUnit } from '../../../../scenery-phet/js/units/ohmCentimetersUnit.js';
+import { ohmsUnit } from '../../../../scenery-phet/js/units/ohmsUnit.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import Panel, { type PanelOptions } from '../../../../sun/js/Panel.js';
@@ -39,9 +43,6 @@ const resistivityStringProperty = ResistanceInAWireFluent.resistivityStringPrope
 const symbolOhmsStringProperty = SceneryPhetFluent.symbol.ohmsStringProperty;
 const symbolResistivityStringProperty = SceneryPhetFluent.symbol.resistivityStringProperty;
 
-const resistivityUnitsPattern = ResistanceInAWireFluent.a11y.wire.resistivityUnitsPattern;
-const lengthUnitsPattern = ResistanceInAWireFluent.a11y.controls.lengthUnitsPattern;
-const areaUnitsPattern = ResistanceInAWireFluent.a11y.controls.areaUnitsPattern;
 const resistivitySliderLabelString = ResistanceInAWireFluent.a11y.controls.resistivitySliderLabelStringProperty.value;
 const lengthSliderLabelString = ResistanceInAWireFluent.a11y.controls.lengthSliderLabelStringProperty.value;
 const areaSliderLabelString = ResistanceInAWireFluent.a11y.controls.areaSliderLabelStringProperty.value;
@@ -58,6 +59,12 @@ const shrinksALotString = ResistanceInAWireFluent.a11y.equation.alerts.shrinksAL
 
 // constants
 const SLIDER_SPACING = 50;
+
+const ACCESSIBLE_SLIDER_VALUE_OPTIONS = {
+  decimalPlaces: ResistanceInAWireConstants.SLIDER_READOUT_DECIMALS,
+  showTrailingZeros: false,
+  showIntegersAsIntegers: true
+};
 
 // pdom - if resistance changes 2 * the range of the resistance / the number of relative size descriptions, larger change
 // is signified in description
@@ -152,7 +159,7 @@ export default class ControlPanel extends Panel {
         },
         sliderOptions: {
           keyboardStep: 0.05, // ohm-cm
-          createAriaValueText: ( value: number ) => resistivityUnitsPattern.format( { value: value } )
+          createAriaValueText: ( value: number ) => ohmCentimetersUnit.getAccessibleString( value, ACCESSIBLE_SLIDER_VALUE_OPTIONS )
         }
       }
     );
@@ -184,7 +191,7 @@ export default class ControlPanel extends Panel {
           }
         },
         sliderOptions: {
-          createAriaValueText: ( value: number ) => lengthUnitsPattern.format( { value: value } )
+          createAriaValueText: ( value: number ) => centimetersUnit.getAccessibleString( value, ACCESSIBLE_SLIDER_VALUE_OPTIONS )
         }
       }
     );
@@ -221,7 +228,7 @@ export default class ControlPanel extends Panel {
           }
         },
         sliderOptions: {
-          createAriaValueText: ( value: number ) => areaUnitsPattern.format( { value: value } )
+          createAriaValueText: ( value: number ) => centimetersSquaredUnit.getAccessibleString( value, ACCESSIBLE_SLIDER_VALUE_OPTIONS )
         }
       }
     );
@@ -290,6 +297,10 @@ function getSizeChangeAlert( resistance: number, deltaResistance: number, otherD
     letter: letterString,
     letterChange: letterChangeString,
     rChange: resistanceChangeString,
-    resistance: ResistanceInAWireConstants.getFormattedResistanceValue( resistance )
+    resistance: ohmsUnit.getAccessibleString( resistance, {
+      decimalPlaces: ResistanceInAWireConstants.getResistanceDecimals( resistance ),
+      showTrailingZeros: false,
+      showIntegersAsIntegers: true
+    } )
   } );
 }

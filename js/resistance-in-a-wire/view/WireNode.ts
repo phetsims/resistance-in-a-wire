@@ -9,9 +9,9 @@
  */
 
 import Multilink from '../../../../axon/js/Multilink.js';
-import Utils from '../../../../dot/js/Utils.js';
 import Shape from '../../../../kite/js/Shape.js';
 import platform from '../../../../phet-core/js/platform.js';
+import { ohmsUnit } from '../../../../scenery-phet/js/units/ohmsUnit.js';
 import Node, { type NodeOptions } from '../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
 import LinearGradient from '../../../../scenery/js/util/LinearGradient.js';
@@ -123,7 +123,11 @@ export default class WireNode extends Node {
       length: lengthDescription,
       thickness: areaDescription,
       impurities: resistivityDescription,
-      resistance: Utils.toFixed( this.model.resistanceProperty.get(), ResistanceInAWireConstants.getResistanceDecimals( this.model.resistanceProperty.get() ) )
+      resistance: ohmsUnit.getAccessibleString( this.model.resistanceProperty.get(), {
+        decimalPlaces: ResistanceInAWireConstants.getResistanceDecimals( this.model.resistanceProperty.get() ),
+        showTrailingZeros: false,
+        showIntegersAsIntegers: true
+      } )
     } );
   }
 }

@@ -9,8 +9,11 @@
  */
 
 import type { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
-import Utils from '../../../../dot/js/Utils.js';
 import ScreenSummaryContent from '../../../../joist/js/ScreenSummaryContent.js';
+import { centimetersSquaredUnit } from '../../../../scenery-phet/js/units/centimetersSquaredUnit.js';
+import { centimetersUnit } from '../../../../scenery-phet/js/units/centimetersUnit.js';
+import { ohmCentimetersUnit } from '../../../../scenery-phet/js/units/ohmCentimetersUnit.js';
+import { ohmsUnit } from '../../../../scenery-phet/js/units/ohmsUnit.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import ResistanceInAWireFluent from '../../ResistanceInAWireFluent.js';
 import type ResistanceInAWireModel from '../model/ResistanceInAWireModel.js';
@@ -26,7 +29,7 @@ const summaryInteractionHintStringProperty = ResistanceInAWireFluent.a11y.summar
 
 type SummaryItem = {
   property: TReadOnlyProperty<number>;
-  format: ( value: string ) => string;
+  format: ( value: number, decimalPlaces: number ) => string;
   node: Node;
   precision: number | ( ( value: number ) => number );
 };
@@ -58,25 +61,49 @@ export default class ResistanceInAWireScreenSummaryNode extends ScreenSummaryCon
     const summaryItems: SummaryItem[] = [
       {
         property: model.resistivityProperty,
-        format: value => summaryResistivityPattern.format( { value: value } ),
+        format: ( value, decimalPlaces ) => summaryResistivityPattern.format( {
+          value: ohmCentimetersUnit.getAccessibleString( value, {
+            decimalPlaces: decimalPlaces,
+            showTrailingZeros: false,
+            showIntegersAsIntegers: true
+          } )
+        } ),
         node: resistivityItemNode,
         precision: ResistanceInAWireConstants.SLIDER_READOUT_DECIMALS
       },
       {
         property: model.lengthProperty,
-        format: value => summaryLengthPattern.format( { value: value } ),
+        format: ( value, decimalPlaces ) => summaryLengthPattern.format( {
+          value: centimetersUnit.getAccessibleString( value, {
+            decimalPlaces: decimalPlaces,
+            showTrailingZeros: false,
+            showIntegersAsIntegers: true
+          } )
+        } ),
         node: lengthItemNode,
         precision: ResistanceInAWireConstants.SLIDER_READOUT_DECIMALS
       },
       {
         property: model.areaProperty,
-        format: value => summaryAreaPattern.format( { value: value } ),
+        format: ( value, decimalPlaces ) => summaryAreaPattern.format( {
+          value: centimetersSquaredUnit.getAccessibleString( value, {
+            decimalPlaces: decimalPlaces,
+            showTrailingZeros: false,
+            showIntegersAsIntegers: true
+          } )
+        } ),
         node: areaItemNode,
         precision: ResistanceInAWireConstants.SLIDER_READOUT_DECIMALS
       },
       {
         property: model.resistanceProperty,
-        format: value => summaryResistancePattern.format( { value: value } ),
+        format: ( value, decimalPlaces ) => summaryResistancePattern.format( {
+          value: ohmsUnit.getAccessibleString( value, {
+            decimalPlaces: decimalPlaces,
+            showTrailingZeros: false,
+            showIntegersAsIntegers: true
+          } )
+        } ),
         node: resistanceItemNode,
         precision: ResistanceInAWireConstants.getResistanceDecimals
       }
@@ -90,7 +117,7 @@ export default class ResistanceInAWireScreenSummaryNode extends ScreenSummaryCon
 
         // the precision might change during interaction, get precision if property is a function
         const precision = typeof item.precision === 'number' ? item.precision : item.precision( value );
-        item.node.innerContent = item.format( Utils.toFixed( value, precision ) );
+        item.node.innerContent = item.format( value, precision );
       } );
     } );
   }
