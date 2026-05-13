@@ -1,6 +1,4 @@
 // Copyright 2017-2026, University of Colorado Boulder
-/* eslint-disable */
-// @ts-nocheck
 
 /**
  * View of the wire, includes dots that depict the level of resistivity
@@ -15,26 +13,28 @@ import Utils from '../../../../dot/js/Utils.js';
 import Shape from '../../../../kite/js/Shape.js';
 import platform from '../../../../phet-core/js/platform.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
-import Node from '../../../../scenery/js/nodes/Node.js';
+import Node, { type NodeOptions } from '../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
 import LinearGradient from '../../../../scenery/js/util/LinearGradient.js';
+import type Tandem from '../../../../tandem/js/Tandem.js';
 import ResistanceInAWireStrings from '../../ResistanceInAWireStrings.js';
+import type ResistanceInAWireModel from '../model/ResistanceInAWireModel.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 import DotsCanvasNode from './DotsCanvasNode.js';
 import WireShapeConstants from './WireShapeConstants.js';
 
 const wireDescriptionPatternString = ResistanceInAWireStrings.a11y.wire.wireDescriptionPattern;
 
-class WireNode extends Node {
+export default class WireNode extends Node {
+
+  // Model Properties determine the wire dimensions, dot density, and accessible description.
+  private readonly model: ResistanceInAWireModel;
+
   /**
    * The position is set using center values since this can grow or shrink in width and height as the area and length of
    * the wire changes.
-   *
-   * @param {ResistanceInAWireModel} model
-   * @param {Tandem} tandem
-   * @param {Object} [options]
    */
-  constructor( model, tandem, options ) {
+  public constructor( model: ResistanceInAWireModel, tandem: Tandem, providedOptions?: NodeOptions ) {
 
     super( {
       tandem: tandem,
@@ -43,7 +43,6 @@ class WireNode extends Node {
       accessibleHeading: 'The Wire'
     } );
 
-    // @private {ResistanceInAWireModel}
     this.model = model;
 
     // See https://github.com/phetsims/resistance-in-a-wire/issues/158
@@ -73,7 +72,7 @@ class WireNode extends Node {
 
     // Update the resistor on change. No need to unlink, as it is present for the lifetime of the sim.
     Multilink.multilink( [ model.areaProperty, model.lengthProperty, model.resistivityProperty ],
-      ( area, length, resistivity ) => {
+      ( area, length, _resistivity ) => {
 
         // Height of the wire in view coordinates
         const height = WireShapeConstants.areaToHeight( area );
@@ -89,7 +88,7 @@ class WireNode extends Node {
           .horizontalLineToRelative( -width );
 
         // Set the cap end of the wire
-        wireEnd.shape = Shape.ellipse( -width / 2, 0, height * WireShapeConstants.PERSPECTIVE_FACTOR / 2, height / 2 );
+        wireEnd.shape = Shape.ellipse( -width / 2, 0, height * WireShapeConstants.PERSPECTIVE_FACTOR / 2, height / 2, 0 );
 
         // Set the gradient on the wire to make it look more 3D.
         wireBody.fill = new LinearGradient( 0, height / 2, 0, -height / 2 )
@@ -106,14 +105,13 @@ class WireNode extends Node {
       }
     );
 
-    this.mutate( options );
+    this.mutate( providedOptions );
   }
 
   /**
-   * @private
-   * @returns {string}
+   * Returns an accessible description of the current wire length, thickness, impurity level, and resistance.
    */
-  getWireDescription() {
+  private getWireDescription(): string {
     const lengthValue = this.model.lengthProperty.get();
     const areaValue = this.model.areaProperty.get();
     const resistivityValue = this.model.resistivityProperty.get();
@@ -130,5 +128,3 @@ class WireNode extends Node {
     } );
   }
 }
-
-export default WireNode;

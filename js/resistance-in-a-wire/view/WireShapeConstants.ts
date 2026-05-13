@@ -1,6 +1,4 @@
 // Copyright 2018-2026, University of Colorado Boulder
-/* eslint-disable */
-// @ts-nocheck
 
 /**
  * Collection of constants and functions that determine the visual shape of the Wire.
@@ -12,12 +10,22 @@ import LinearFunction from '../../../../dot/js/LinearFunction.js';
 import Range from '../../../../dot/js/Range.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 
-// constants
+type WireShapeConstantsType = {
+  PERSPECTIVE_FACTOR: number;
+  WIRE_DIAMETER_MAX: number;
+  WIRE_VIEW_WIDTH_RANGE: Range;
+  WIRE_VIEW_HEIGHT_RANGE: Range;
+  DOT_RADIUS: number;
+  lengthToWidth: LinearFunction;
+  areaToHeight: ( area: number ) => number;
+};
+
+// Constants
 const WIRE_VIEW_WIDTH_RANGE = new Range( 15, 500 ); // in screen coordinates
 const WIRE_VIEW_HEIGHT_RANGE = new Range( 3, 180 ); // in screen coordinates
 const WIRE_DIAMETER_MAX = Math.sqrt( ResistanceInAWireConstants.AREA_RANGE.max / Math.PI ) * 2;
 
-const WireShapeConstants = {
+const WireShapeConstants: WireShapeConstantsType = {
 
   // Multiplier that controls the width of the ellipses on the ends of the wire.
   PERSPECTIVE_FACTOR: 0.4,
@@ -27,10 +35,10 @@ const WireShapeConstants = {
   WIRE_VIEW_WIDTH_RANGE: WIRE_VIEW_WIDTH_RANGE,
   WIRE_VIEW_HEIGHT_RANGE: WIRE_VIEW_HEIGHT_RANGE,
 
-  // used when drawing dots in the wire
+  // Used when drawing dots in the wire.
   DOT_RADIUS: 2,
 
-  // Linear mapping transform
+  // Linear mapping transform.
   lengthToWidth: new LinearFunction(
     ResistanceInAWireConstants.LENGTH_RANGE.min,
     ResistanceInAWireConstants.LENGTH_RANGE.max,
@@ -41,13 +49,10 @@ const WireShapeConstants = {
 
   /**
    * Transform to map the area to the height of the wire.
-   * @param {number} area
-   * @returns {number} - the height in screen coordinates
-   * @public
    */
-  areaToHeight( area ) {
-    const radius_squared = area / Math.PI;
-    const diameter = Math.sqrt( radius_squared ) * 2; // radius to diameter
+  areaToHeight( area: number ): number {
+    const radiusSquared = area / Math.PI;
+    const diameter = Math.sqrt( radiusSquared ) * 2; // radius to diameter
     return WIRE_VIEW_HEIGHT_RANGE.max / WIRE_DIAMETER_MAX * diameter;
   }
 };
