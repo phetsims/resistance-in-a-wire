@@ -8,14 +8,19 @@
  * @author Jesse Greenberg
  */
 
+import type NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import dotRandom from '../../../../dot/js/dotRandom.js';
 import LinearFunction from '../../../../dot/js/LinearFunction.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
-import merge from '../../../../phet-core/js/merge.js';
-import CanvasNode from '../../../../scenery/js/nodes/CanvasNode.js';
+import optionize, { type EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import CanvasNode, { type CanvasNodeOptions } from '../../../../scenery/js/nodes/CanvasNode.js';
+import type ResistanceInAWireModel from '../model/ResistanceInAWireModel.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 import WireShapeConstants from './WireShapeConstants.js';
+
+type SelfOptions = EmptySelfOptions;
+type DotsCanvasNodeOptions = SelfOptions & CanvasNodeOptions;
 
 // constants
 // to calculate the number of dots
@@ -32,25 +37,34 @@ const resistivityToNumberOfDots = new LinearFunction(
   true
 );
 
-class DotsCanvasNode extends CanvasNode {
-  /**
-   * @param {Bounds2} bounds - total bounds for the canvas
-   * @param {Object} [options]
-   */
-  constructor( model, options ) {
+export default class DotsCanvasNode extends CanvasNode {
 
-    options = merge( {
+  // Positions for dots randomly on the wire. Density is based on AREA_PER_DOT.
+  private readonly dotCenters: Vector2[];
+
+  // Model Properties that determine the rendered wire shape and number of visible dots.
+  private readonly resistivityProperty: NumberProperty;
+  private readonly areaProperty: NumberProperty;
+  private readonly lengthProperty: NumberProperty;
+
+  public constructor( model: ResistanceInAWireModel, providedOptions?: DotsCanvasNodeOptions ) {
+
+    const options = optionize<DotsCanvasNodeOptions, SelfOptions, CanvasNodeOptions>()( {
       preventFit: true // don't recompute bounds as a performance enhancement
-    }, options );
+    }, providedOptions );
 
-    // calculate bounds for the canvas - wire center is at (0, 0)
+    // Calculate bounds for the canvas - wire center is at (0, 0).
     const height = WireShapeConstants.areaToHeight( ResistanceInAWireConstants.AREA_RANGE.max );
     const width = WireShapeConstants.lengthToWidth.evaluate( ResistanceInAWireConstants.LENGTH_RANGE.max );
-    const dotsBounds = new Bounds2( -width / 2 - WireShapeConstants.PERSPECTIVE_FACTOR * height / 2, -height / 2, width / 2 + WireShapeConstants.PERSPECTIVE_FACTOR * height / 2, height / 2 );
+    const dotsBounds = new Bounds2(
+      -width / 2 - WireShapeConstants.PERSPECTIVE_FACTOR * height / 2,
+      -height / 2,
+      width / 2 + WireShapeConstants.PERSPECTIVE_FACTOR * height / 2,
+      height / 2
+    );
 
     super( options );
 
-    // @private - Positions for dots randomly on the wire. Density is based on AREA_PER_DOT.
     this.dotCenters = [];
     for ( let i = 0; i < NUMBER_OF_DOTS; i++ ) {
       const centerX = ( dotRandom.nextDouble() - 0.5 ) * MAX_WIDTH_INCLUDING_ROUNDED_ENDS;
@@ -58,7 +72,6 @@ class DotsCanvasNode extends CanvasNode {
       this.dotCenters.push( new Vector2( centerX, centerY ) );
     }
 
-    // @private - just for use in paintCanvas
     this.resistivityProperty = model.resistivityProperty;
     this.areaProperty = model.areaProperty;
     this.lengthProperty = model.lengthProperty;
@@ -71,12 +84,8 @@ class DotsCanvasNode extends CanvasNode {
 
   /**
    * Draw the required dots.
-   *
-   * @param {CanvasRenderingContext2D} context
-   * @override
-   * @public
    */
-  paintCanvas( context ) {
+  public override paintCanvas( context: CanvasRenderingContext2D ): void {
 
     // Height of the wire in view coordinates
     const height = WireShapeConstants.areaToHeight( this.areaProperty.get() );
@@ -125,17 +134,20 @@ class DotsCanvasNode extends CanvasNode {
 }
 
 /**
- * Using Shape.ellipticalArc for the clip area is too slow, so we approximate ellipcitcal arcs with segments.
+ * Using Shape.ellipticalArc for the clip area is too slow, so we approximate elliptical arcs with segments.
  * The 'segments' variable can be increased to get more accurate elliptical shapes, or reduced for (possibly)
  * faster drawing.
- *
- * @param {CanvasContext2D} context - canvas context to draw to
- * @param {number} height - height of the wire
- * @param {number} centerX - centerX offset for the ellipse
- * @param {number} startAngle - start angle for the ellipse
- * @param {number} endAngle - end angle for the ellipse
+ * @param context - canvas context to draw to
+ * @param height - height of the wire
+ * @param centerX - centerX offset for the ellipse
+ * @param startAngle - start angle for the ellipse
+ * @param endAngle - end angle for the ellipse
  */
-function approxEllipticalArc( context, height, centerX, startAngle, endAngle ) {
+function approxEllipticalArc( context: CanvasRenderingContext2D,
+                              height: number,
+                              centerX: number,
+                              startAngle: number,
+                              endAngle: number ): void {
 
   // with 9 segments, the elliptical shape is almost perfect
   const segments = 9;
@@ -153,5 +165,3 @@ function approxEllipticalArc( context, height, centerX, startAngle, endAngle ) {
     t += delta;
   }
 }
-
-export default DotsCanvasNode;
