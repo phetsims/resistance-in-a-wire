@@ -43,11 +43,11 @@ const resistivityStringProperty = ResistanceInAWireFluent.resistivityStringPrope
 const symbolOhmsStringProperty = SceneryPhetFluent.symbol.ohmsStringProperty;
 const symbolResistivityStringProperty = SceneryPhetFluent.symbol.resistivityStringProperty;
 
-const resistivitySliderLabelString = ResistanceInAWireFluent.a11y.controls.resistivitySliderLabelStringProperty.value;
-const lengthSliderLabelString = ResistanceInAWireFluent.a11y.controls.lengthSliderLabelStringProperty.value;
-const areaSliderLabelString = ResistanceInAWireFluent.a11y.controls.areaSliderLabelStringProperty.value;
-const sliderControlsString = ResistanceInAWireFluent.a11y.controls.sliderControlsStringProperty.value;
-const slidersDescriptionString = ResistanceInAWireFluent.a11y.controls.slidersDescriptionStringProperty.value;
+const resistivitySliderLabelStringProperty = ResistanceInAWireFluent.a11y.controls.resistivitySliderLabelStringProperty;
+const lengthSliderLabelStringProperty = ResistanceInAWireFluent.a11y.controls.lengthSliderLabelStringProperty;
+const areaSliderLabelStringProperty = ResistanceInAWireFluent.a11y.controls.areaSliderLabelStringProperty;
+const sliderControlsStringProperty = ResistanceInAWireFluent.a11y.controls.sliderControlsStringProperty;
+const slidersDescriptionStringProperty = ResistanceInAWireFluent.a11y.controls.slidersDescriptionStringProperty;
 const sizeChangeAlertPattern = ResistanceInAWireFluent.a11y.controls.sizeChangeAlertPattern;
 const letterName = ResistanceInAWireFluent.a11y.controls.letterName;
 const sizeChange = ResistanceInAWireFluent.a11y.equation.sizeChange;
@@ -80,8 +80,8 @@ export default class ControlPanel extends Panel {
 
       // pdom
       tagName: 'ul',
-      accessibleHeading: sliderControlsString,
-      accessibleHelpText: slidersDescriptionString
+      accessibleHeading: sliderControlsStringProperty,
+      accessibleHelpText: slidersDescriptionStringProperty
     }, providedOptions );
 
     const resistanceReadoutStringProperty = new PatternStringProperty( pattern0Label1Value2UnitsStringProperty, {
@@ -137,7 +137,7 @@ export default class ControlPanel extends Panel {
       symbolResistivityStringProperty,
       resistivityStringProperty,
       resistivityUnitStringProperty,
-      resistivitySliderLabelString,
+      resistivitySliderLabelStringProperty,
       tandem.createTandem( 'resistivitySlider' ), {
         startDrag: () => {
           rhoOnStart = model.resistivityProperty.get();
@@ -170,7 +170,7 @@ export default class ControlPanel extends Panel {
       lengthSymbolStringProperty,
       lengthStringProperty,
       cmStringProperty,
-      lengthSliderLabelString,
+      lengthSliderLabelStringProperty,
       tandem.createTandem( 'lengthSlider' ), {
         startDrag: () => {
           lengthOnStart = model.lengthProperty.get();
@@ -207,7 +207,7 @@ export default class ControlPanel extends Panel {
       areaSymbolStringProperty,
       areaStringProperty,
       areaUnitStringProperty,
-      areaSliderLabelString,
+      areaSliderLabelStringProperty,
       tandem.createTandem( 'areaSlider' ), {
         startDrag: () => {
           areaOnStart = model.areaProperty.get();

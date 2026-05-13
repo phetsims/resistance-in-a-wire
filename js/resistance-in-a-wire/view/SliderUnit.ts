@@ -12,6 +12,7 @@ import Dimension2 from '../../../../dot/js/Dimension2.js';
 import type RangeWithValue from '../../../../dot/js/RangeWithValue.js';
 import Utils from '../../../../dot/js/Utils.js';
 import optionize from '../../../../phet-core/js/optionize.js';
+import type { PDOMValueType } from '../../../../scenery/js/accessibility/pdom/ParallelDOM.js';
 import type SceneryEvent from '../../../../scenery/js/input/SceneryEvent.js';
 import Node, { type NodeOptions } from '../../../../scenery/js/nodes/Node.js';
 import RichText from '../../../../scenery/js/nodes/RichText.js';
@@ -39,7 +40,7 @@ export default class SliderUnit extends Node {
                       symbolString: TReadOnlyProperty<string>,
                       nameStringProperty: TReadOnlyProperty<string>,
                       unitString: TReadOnlyProperty<string>,
-                      labelContent: string,
+                      labelContent: PDOMValueType,
                       tandem: Tandem,
                       providedOptions?: SliderUnitOptions ) {
 
