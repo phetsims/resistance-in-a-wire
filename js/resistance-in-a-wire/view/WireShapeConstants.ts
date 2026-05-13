@@ -10,51 +10,42 @@ import LinearFunction from '../../../../dot/js/LinearFunction.js';
 import Range from '../../../../dot/js/Range.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 
-type WireShapeConstantsType = {
-  PERSPECTIVE_FACTOR: number;
-  WIRE_DIAMETER_MAX: number;
-  WIRE_VIEW_WIDTH_RANGE: Range;
-  WIRE_VIEW_HEIGHT_RANGE: Range;
-  DOT_RADIUS: number;
-  lengthToWidth: LinearFunction;
-  areaToHeight: ( area: number ) => number;
-};
+export default class WireShapeConstants {
 
-// Constants
-const WIRE_VIEW_WIDTH_RANGE = new Range( 15, 500 ); // in screen coordinates
-const WIRE_VIEW_HEIGHT_RANGE = new Range( 3, 180 ); // in screen coordinates
-const WIRE_DIAMETER_MAX = Math.sqrt( ResistanceInAWireConstants.AREA_RANGE.max / Math.PI ) * 2;
-
-const WireShapeConstants: WireShapeConstantsType = {
+  private constructor() {
+    // Not intended for instantiation.
+  }
 
   // Multiplier that controls the width of the ellipses on the ends of the wire.
-  PERSPECTIVE_FACTOR: 0.4,
+  public static readonly PERSPECTIVE_FACTOR = 0.4;
 
-  // Used to calculate the size of the wire in screen coordinates from the model values
-  WIRE_DIAMETER_MAX: WIRE_DIAMETER_MAX,
-  WIRE_VIEW_WIDTH_RANGE: WIRE_VIEW_WIDTH_RANGE,
-  WIRE_VIEW_HEIGHT_RANGE: WIRE_VIEW_HEIGHT_RANGE,
+  // View width range for the wire, in screen coordinates.
+  public static readonly WIRE_VIEW_WIDTH_RANGE = new Range( 15, 500 );
+
+  // View height range for the wire, in screen coordinates.
+  public static readonly WIRE_VIEW_HEIGHT_RANGE = new Range( 3, 180 );
+
+  // Used to calculate the size of the wire in screen coordinates from the model values.
+  public static readonly WIRE_DIAMETER_MAX = Math.sqrt( ResistanceInAWireConstants.AREA_RANGE.max / Math.PI ) * 2;
 
   // Used when drawing dots in the wire.
-  DOT_RADIUS: 2,
+  public static readonly DOT_RADIUS = 2;
 
   // Linear mapping transform.
-  lengthToWidth: new LinearFunction(
+  public static readonly lengthToWidth = new LinearFunction(
     ResistanceInAWireConstants.LENGTH_RANGE.min,
     ResistanceInAWireConstants.LENGTH_RANGE.max,
-    WIRE_VIEW_WIDTH_RANGE.min,
-    WIRE_VIEW_WIDTH_RANGE.max,
+    WireShapeConstants.WIRE_VIEW_WIDTH_RANGE.min,
+    WireShapeConstants.WIRE_VIEW_WIDTH_RANGE.max,
     true
-  ),
+  );
 
   /**
    * Transform to map the area to the height of the wire.
    */
-  areaToHeight( area: number ): number {
+  public static areaToHeight( area: number ): number {
     const radiusSquared = area / Math.PI;
     const diameter = Math.sqrt( radiusSquared ) * 2; // radius to diameter
-    return WIRE_VIEW_HEIGHT_RANGE.max / WIRE_DIAMETER_MAX * diameter;
+    return WireShapeConstants.WIRE_VIEW_HEIGHT_RANGE.max / WireShapeConstants.WIRE_DIAMETER_MAX * diameter;
   }
-};
-
-export default WireShapeConstants;
+}
