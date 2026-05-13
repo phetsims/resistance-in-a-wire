@@ -5,6 +5,7 @@
 /* eslint-disable */
 /* @formatter:off */
 
+import { TReadOnlyProperty } from '../../axon/js/TReadOnlyProperty.js';
 import FluentLibrary from '../../chipper/js/browser-and-node/FluentLibrary.js';
 import FluentConstant from '../../chipper/js/browser/FluentConstant.js';
 import FluentContainer from '../../chipper/js/browser/FluentContainer.js';
@@ -48,40 +49,13 @@ addToMapIfDefined( 'a11y_equation_resistanceEquationDescription', 'a11y.equation
 addToMapIfDefined( 'a11y_equation_rhoLAndAComparablePattern', 'a11y.equation.rhoLAndAComparablePatternStringProperty' );
 addToMapIfDefined( 'a11y_equation_lAndAComparablePattern', 'a11y.equation.lAndAComparablePatternStringProperty' );
 addToMapIfDefined( 'a11y_equation_noneComparablePattern', 'a11y.equation.noneComparablePatternStringProperty' );
-addToMapIfDefined( 'a11y_equation_sizes_muchMuchSmallerThan', 'a11y.equation.sizes.muchMuchSmallerThanStringProperty' );
-addToMapIfDefined( 'a11y_equation_sizes_muchSmallerThan', 'a11y.equation.sizes.muchSmallerThanStringProperty' );
-addToMapIfDefined( 'a11y_equation_sizes_slightlySmallerThan', 'a11y.equation.sizes.slightlySmallerThanStringProperty' );
-addToMapIfDefined( 'a11y_equation_sizes_comparableTo', 'a11y.equation.sizes.comparableToStringProperty' );
-addToMapIfDefined( 'a11y_equation_sizes_slightlyLargerThan', 'a11y.equation.sizes.slightlyLargerThanStringProperty' );
-addToMapIfDefined( 'a11y_equation_sizes_muchLargerThan', 'a11y.equation.sizes.muchLargerThanStringProperty' );
-addToMapIfDefined( 'a11y_equation_sizes_muchMuchLargerThan', 'a11y.equation.sizes.muchMuchLargerThanStringProperty' );
-addToMapIfDefined( 'a11y_equation_alerts_grows', 'a11y.equation.alerts.growsStringProperty' );
-addToMapIfDefined( 'a11y_equation_alerts_shrinks', 'a11y.equation.alerts.shrinksStringProperty' );
-addToMapIfDefined( 'a11y_equation_alerts_growsALot', 'a11y.equation.alerts.growsALotStringProperty' );
-addToMapIfDefined( 'a11y_equation_alerts_shrinksALot', 'a11y.equation.alerts.shrinksALotStringProperty' );
+addToMapIfDefined( 'a11y_equation_relativeSizeDescription', 'a11y.equation.relativeSizeDescriptionStringProperty' );
+addToMapIfDefined( 'a11y_equation_sizeChange', 'a11y.equation.sizeChangeStringProperty' );
 addToMapIfDefined( 'a11y_wire_wireDescriptionPattern', 'a11y.wire.wireDescriptionPatternStringProperty' );
 addToMapIfDefined( 'a11y_wire_resistivityUnitsPattern', 'a11y.wire.resistivityUnitsPatternStringProperty' );
-addToMapIfDefined( 'a11y_wire_extremelyShort', 'a11y.wire.extremelyShortStringProperty' );
-addToMapIfDefined( 'a11y_wire_veryShort', 'a11y.wire.veryShortStringProperty' );
-addToMapIfDefined( 'a11y_wire_short', 'a11y.wire.shortStringProperty' );
-addToMapIfDefined( 'a11y_wire_ofMediumLength', 'a11y.wire.ofMediumLengthStringProperty' );
-addToMapIfDefined( 'a11y_wire_long', 'a11y.wire.longStringProperty' );
-addToMapIfDefined( 'a11y_wire_veryLong', 'a11y.wire.veryLongStringProperty' );
-addToMapIfDefined( 'a11y_wire_extremelyLong', 'a11y.wire.extremelyLongStringProperty' );
-addToMapIfDefined( 'a11y_wire_extremelyThin', 'a11y.wire.extremelyThinStringProperty' );
-addToMapIfDefined( 'a11y_wire_veryThin', 'a11y.wire.veryThinStringProperty' );
-addToMapIfDefined( 'a11y_wire_thin', 'a11y.wire.thinStringProperty' );
-addToMapIfDefined( 'a11y_wire_ofMediumThickness', 'a11y.wire.ofMediumThicknessStringProperty' );
-addToMapIfDefined( 'a11y_wire_thick', 'a11y.wire.thickStringProperty' );
-addToMapIfDefined( 'a11y_wire_veryThick', 'a11y.wire.veryThickStringProperty' );
-addToMapIfDefined( 'a11y_wire_extremelyThick', 'a11y.wire.extremelyThickStringProperty' );
-addToMapIfDefined( 'a11y_wire_aTinyAmountOfImpurities', 'a11y.wire.aTinyAmountOfImpuritiesStringProperty' );
-addToMapIfDefined( 'a11y_wire_aVerySmallAmountOfImpurities', 'a11y.wire.aVerySmallAmountOfImpuritiesStringProperty' );
-addToMapIfDefined( 'a11y_wire_aSmallAmountOfImpurities', 'a11y.wire.aSmallAmountOfImpuritiesStringProperty' );
-addToMapIfDefined( 'a11y_wire_aMediumAmountOfImpurities', 'a11y.wire.aMediumAmountOfImpuritiesStringProperty' );
-addToMapIfDefined( 'a11y_wire_aLargeAmountOfImpurities', 'a11y.wire.aLargeAmountOfImpuritiesStringProperty' );
-addToMapIfDefined( 'a11y_wire_aVeryLargeAmountOfImpurities', 'a11y.wire.aVeryLargeAmountOfImpuritiesStringProperty' );
-addToMapIfDefined( 'a11y_wire_aHugeAmountOfImpurities', 'a11y.wire.aHugeAmountOfImpuritiesStringProperty' );
+addToMapIfDefined( 'a11y_wire_lengthClause', 'a11y.wire.lengthClauseStringProperty' );
+addToMapIfDefined( 'a11y_wire_thicknessClause', 'a11y.wire.thicknessClauseStringProperty' );
+addToMapIfDefined( 'a11y_wire_impuritiesClause', 'a11y.wire.impuritiesClauseStringProperty' );
 addToMapIfDefined( 'a11y_controls_lengthUnitsPattern', 'a11y.controls.lengthUnitsPatternStringProperty' );
 addToMapIfDefined( 'a11y_controls_areaUnitsPattern', 'a11y.controls.areaUnitsPatternStringProperty' );
 addToMapIfDefined( 'a11y_controls_resistivitySliderLabel', 'a11y.controls.resistivitySliderLabelStringProperty' );
@@ -90,9 +64,7 @@ addToMapIfDefined( 'a11y_controls_areaSliderLabel', 'a11y.controls.areaSliderLab
 addToMapIfDefined( 'a11y_controls_sliderControls', 'a11y.controls.sliderControlsStringProperty' );
 addToMapIfDefined( 'a11y_controls_slidersDescription', 'a11y.controls.slidersDescriptionStringProperty' );
 addToMapIfDefined( 'a11y_controls_sizeChangeAlertPattern', 'a11y.controls.sizeChangeAlertPatternStringProperty' );
-addToMapIfDefined( 'a11y_controls_letterRho', 'a11y.controls.letterRhoStringProperty' );
-addToMapIfDefined( 'a11y_controls_letterL', 'a11y.controls.letterLStringProperty' );
-addToMapIfDefined( 'a11y_controls_letterA', 'a11y.controls.letterAStringProperty' );
+addToMapIfDefined( 'a11y_controls_letterName', 'a11y.controls.letterNameStringProperty' );
 
 // A function that creates contents for a new Fluent file, which will be needed if any string changes.
 const createFluentFile = (): string => {
@@ -144,46 +116,15 @@ const ResistanceInAWireFluent = {
       rhoLAndAComparablePattern: new FluentPattern<{ rToAll: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_equation_rhoLAndAComparablePattern', _.get( ResistanceInAWireStrings, 'a11y.equation.rhoLAndAComparablePatternStringProperty' ), [{"name":"rToAll"}] ),
       lAndAComparablePattern: new FluentPattern<{ rToLAndA: FluentVariable, rToRho: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_equation_lAndAComparablePattern', _.get( ResistanceInAWireStrings, 'a11y.equation.lAndAComparablePatternStringProperty' ), [{"name":"rToLAndA"},{"name":"rToRho"}] ),
       noneComparablePattern: new FluentPattern<{ rToA: FluentVariable, rToL: FluentVariable, rToRho: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_equation_noneComparablePattern', _.get( ResistanceInAWireStrings, 'a11y.equation.noneComparablePatternStringProperty' ), [{"name":"rToA"},{"name":"rToL"},{"name":"rToRho"}] ),
-      sizes: {
-        muchMuchSmallerThanStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_equation_sizes_muchMuchSmallerThan', _.get( ResistanceInAWireStrings, 'a11y.equation.sizes.muchMuchSmallerThanStringProperty' ) ),
-        muchSmallerThanStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_equation_sizes_muchSmallerThan', _.get( ResistanceInAWireStrings, 'a11y.equation.sizes.muchSmallerThanStringProperty' ) ),
-        slightlySmallerThanStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_equation_sizes_slightlySmallerThan', _.get( ResistanceInAWireStrings, 'a11y.equation.sizes.slightlySmallerThanStringProperty' ) ),
-        comparableToStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_equation_sizes_comparableTo', _.get( ResistanceInAWireStrings, 'a11y.equation.sizes.comparableToStringProperty' ) ),
-        slightlyLargerThanStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_equation_sizes_slightlyLargerThan', _.get( ResistanceInAWireStrings, 'a11y.equation.sizes.slightlyLargerThanStringProperty' ) ),
-        muchLargerThanStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_equation_sizes_muchLargerThan', _.get( ResistanceInAWireStrings, 'a11y.equation.sizes.muchLargerThanStringProperty' ) ),
-        muchMuchLargerThanStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_equation_sizes_muchMuchLargerThan', _.get( ResistanceInAWireStrings, 'a11y.equation.sizes.muchMuchLargerThanStringProperty' ) )
-      },
-      alerts: {
-        growsStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_equation_alerts_grows', _.get( ResistanceInAWireStrings, 'a11y.equation.alerts.growsStringProperty' ) ),
-        shrinksStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_equation_alerts_shrinks', _.get( ResistanceInAWireStrings, 'a11y.equation.alerts.shrinksStringProperty' ) ),
-        growsALotStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_equation_alerts_growsALot', _.get( ResistanceInAWireStrings, 'a11y.equation.alerts.growsALotStringProperty' ) ),
-        shrinksALotStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_equation_alerts_shrinksALot', _.get( ResistanceInAWireStrings, 'a11y.equation.alerts.shrinksALotStringProperty' ) )
-      }
+      relativeSizeDescription: new FluentPattern<{ relativeSize: 'muchMuchSmaller' | 'muchSmaller' | 'slightlySmaller' | 'comparable' | 'slightlyLarger' | 'muchLarger' | 'muchMuchLarger' | TReadOnlyProperty<'muchMuchSmaller' | 'muchSmaller' | 'slightlySmaller' | 'comparable' | 'slightlyLarger' | 'muchLarger' | 'muchMuchLarger'> }>( fluentSupport.bundleProperty, 'a11y_equation_relativeSizeDescription', _.get( ResistanceInAWireStrings, 'a11y.equation.relativeSizeDescriptionStringProperty' ), [{"name":"relativeSize","variants":["muchMuchSmaller","muchSmaller","slightlySmaller","comparable","slightlyLarger","muchLarger","muchMuchLarger"]}] ),
+      sizeChange: new FluentPattern<{ sizeChange: 'grows' | 'shrinks' | 'growsALot' | 'shrinksALot' | TReadOnlyProperty<'grows' | 'shrinks' | 'growsALot' | 'shrinksALot'> }>( fluentSupport.bundleProperty, 'a11y_equation_sizeChange', _.get( ResistanceInAWireStrings, 'a11y.equation.sizeChangeStringProperty' ), [{"name":"sizeChange","variants":["grows","shrinks","growsALot","shrinksALot"]}] )
     },
     wire: {
-      wireDescriptionPattern: new FluentPattern<{ impurities: FluentVariable, length: FluentVariable, resistance: FluentVariable, thickness: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_wire_wireDescriptionPattern', _.get( ResistanceInAWireStrings, 'a11y.wire.wireDescriptionPatternStringProperty' ), [{"name":"impurities"},{"name":"length"},{"name":"resistance"},{"name":"thickness"}] ),
+      wireDescriptionPattern: new FluentPattern<{ impurities: 'tiny' | 'verySmall' | 'small' | 'medium' | 'large' | 'veryLarge' | 'huge' | TReadOnlyProperty<'tiny' | 'verySmall' | 'small' | 'medium' | 'large' | 'veryLarge' | 'huge'>, length: 'extremelyShort' | 'veryShort' | 'short' | 'medium' | 'long' | 'veryLong' | 'extremelyLong' | TReadOnlyProperty<'extremelyShort' | 'veryShort' | 'short' | 'medium' | 'long' | 'veryLong' | 'extremelyLong'>, resistance: FluentVariable, thickness: 'extremelyThin' | 'veryThin' | 'thin' | 'medium' | 'thick' | 'veryThick' | 'extremelyThick' | TReadOnlyProperty<'extremelyThin' | 'veryThin' | 'thin' | 'medium' | 'thick' | 'veryThick' | 'extremelyThick'> }>( fluentSupport.bundleProperty, 'a11y_wire_wireDescriptionPattern', _.get( ResistanceInAWireStrings, 'a11y.wire.wireDescriptionPatternStringProperty' ), [{"name":"impurities","variants":["tiny","verySmall","small","medium","large","veryLarge","huge"]},{"name":"length","variants":["extremelyShort","veryShort","short","medium","long","veryLong","extremelyLong"]},{"name":"resistance"},{"name":"thickness","variants":["extremelyThin","veryThin","thin","medium","thick","veryThick","extremelyThick"]}] ),
       resistivityUnitsPattern: new FluentPattern<{ value: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_wire_resistivityUnitsPattern', _.get( ResistanceInAWireStrings, 'a11y.wire.resistivityUnitsPatternStringProperty' ), [{"name":"value"}] ),
-      extremelyShortStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_wire_extremelyShort', _.get( ResistanceInAWireStrings, 'a11y.wire.extremelyShortStringProperty' ) ),
-      veryShortStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_wire_veryShort', _.get( ResistanceInAWireStrings, 'a11y.wire.veryShortStringProperty' ) ),
-      shortStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_wire_short', _.get( ResistanceInAWireStrings, 'a11y.wire.shortStringProperty' ) ),
-      ofMediumLengthStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_wire_ofMediumLength', _.get( ResistanceInAWireStrings, 'a11y.wire.ofMediumLengthStringProperty' ) ),
-      longStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_wire_long', _.get( ResistanceInAWireStrings, 'a11y.wire.longStringProperty' ) ),
-      veryLongStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_wire_veryLong', _.get( ResistanceInAWireStrings, 'a11y.wire.veryLongStringProperty' ) ),
-      extremelyLongStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_wire_extremelyLong', _.get( ResistanceInAWireStrings, 'a11y.wire.extremelyLongStringProperty' ) ),
-      extremelyThinStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_wire_extremelyThin', _.get( ResistanceInAWireStrings, 'a11y.wire.extremelyThinStringProperty' ) ),
-      veryThinStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_wire_veryThin', _.get( ResistanceInAWireStrings, 'a11y.wire.veryThinStringProperty' ) ),
-      thinStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_wire_thin', _.get( ResistanceInAWireStrings, 'a11y.wire.thinStringProperty' ) ),
-      ofMediumThicknessStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_wire_ofMediumThickness', _.get( ResistanceInAWireStrings, 'a11y.wire.ofMediumThicknessStringProperty' ) ),
-      thickStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_wire_thick', _.get( ResistanceInAWireStrings, 'a11y.wire.thickStringProperty' ) ),
-      veryThickStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_wire_veryThick', _.get( ResistanceInAWireStrings, 'a11y.wire.veryThickStringProperty' ) ),
-      extremelyThickStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_wire_extremelyThick', _.get( ResistanceInAWireStrings, 'a11y.wire.extremelyThickStringProperty' ) ),
-      aTinyAmountOfImpuritiesStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_wire_aTinyAmountOfImpurities', _.get( ResistanceInAWireStrings, 'a11y.wire.aTinyAmountOfImpuritiesStringProperty' ) ),
-      aVerySmallAmountOfImpuritiesStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_wire_aVerySmallAmountOfImpurities', _.get( ResistanceInAWireStrings, 'a11y.wire.aVerySmallAmountOfImpuritiesStringProperty' ) ),
-      aSmallAmountOfImpuritiesStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_wire_aSmallAmountOfImpurities', _.get( ResistanceInAWireStrings, 'a11y.wire.aSmallAmountOfImpuritiesStringProperty' ) ),
-      aMediumAmountOfImpuritiesStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_wire_aMediumAmountOfImpurities', _.get( ResistanceInAWireStrings, 'a11y.wire.aMediumAmountOfImpuritiesStringProperty' ) ),
-      aLargeAmountOfImpuritiesStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_wire_aLargeAmountOfImpurities', _.get( ResistanceInAWireStrings, 'a11y.wire.aLargeAmountOfImpuritiesStringProperty' ) ),
-      aVeryLargeAmountOfImpuritiesStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_wire_aVeryLargeAmountOfImpurities', _.get( ResistanceInAWireStrings, 'a11y.wire.aVeryLargeAmountOfImpuritiesStringProperty' ) ),
-      aHugeAmountOfImpuritiesStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_wire_aHugeAmountOfImpurities', _.get( ResistanceInAWireStrings, 'a11y.wire.aHugeAmountOfImpuritiesStringProperty' ) )
+      lengthClause: new FluentPattern<{ length: 'extremelyShort' | 'veryShort' | 'short' | 'medium' | 'long' | 'veryLong' | 'extremelyLong' | TReadOnlyProperty<'extremelyShort' | 'veryShort' | 'short' | 'medium' | 'long' | 'veryLong' | 'extremelyLong'> }>( fluentSupport.bundleProperty, 'a11y_wire_lengthClause', _.get( ResistanceInAWireStrings, 'a11y.wire.lengthClauseStringProperty' ), [{"name":"length","variants":["extremelyShort","veryShort","short","medium","long","veryLong","extremelyLong"]}] ),
+      thicknessClause: new FluentPattern<{ thickness: 'extremelyThin' | 'veryThin' | 'thin' | 'medium' | 'thick' | 'veryThick' | 'extremelyThick' | TReadOnlyProperty<'extremelyThin' | 'veryThin' | 'thin' | 'medium' | 'thick' | 'veryThick' | 'extremelyThick'> }>( fluentSupport.bundleProperty, 'a11y_wire_thicknessClause', _.get( ResistanceInAWireStrings, 'a11y.wire.thicknessClauseStringProperty' ), [{"name":"thickness","variants":["extremelyThin","veryThin","thin","medium","thick","veryThick","extremelyThick"]}] ),
+      impuritiesClause: new FluentPattern<{ impurities: 'tiny' | 'verySmall' | 'small' | 'medium' | 'large' | 'veryLarge' | 'huge' | TReadOnlyProperty<'tiny' | 'verySmall' | 'small' | 'medium' | 'large' | 'veryLarge' | 'huge'> }>( fluentSupport.bundleProperty, 'a11y_wire_impuritiesClause', _.get( ResistanceInAWireStrings, 'a11y.wire.impuritiesClauseStringProperty' ), [{"name":"impurities","variants":["tiny","verySmall","small","medium","large","veryLarge","huge"]}] )
     },
     controls: {
       lengthUnitsPattern: new FluentPattern<{ value: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_controls_lengthUnitsPattern', _.get( ResistanceInAWireStrings, 'a11y.controls.lengthUnitsPatternStringProperty' ), [{"name":"value"}] ),
@@ -194,9 +135,7 @@ const ResistanceInAWireFluent = {
       sliderControlsStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_controls_sliderControls', _.get( ResistanceInAWireStrings, 'a11y.controls.sliderControlsStringProperty' ) ),
       slidersDescriptionStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_controls_slidersDescription', _.get( ResistanceInAWireStrings, 'a11y.controls.slidersDescriptionStringProperty' ) ),
       sizeChangeAlertPattern: new FluentPattern<{ letter: FluentVariable, letterChange: FluentVariable, rChange: FluentVariable, resistance: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_controls_sizeChangeAlertPattern', _.get( ResistanceInAWireStrings, 'a11y.controls.sizeChangeAlertPatternStringProperty' ), [{"name":"letter"},{"name":"letterChange"},{"name":"rChange"},{"name":"resistance"}] ),
-      letterRhoStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_controls_letterRho', _.get( ResistanceInAWireStrings, 'a11y.controls.letterRhoStringProperty' ) ),
-      letterLStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_controls_letterL', _.get( ResistanceInAWireStrings, 'a11y.controls.letterLStringProperty' ) ),
-      letterAStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_controls_letterA', _.get( ResistanceInAWireStrings, 'a11y.controls.letterAStringProperty' ) )
+      letterName: new FluentPattern<{ letter: 'rho' | 'length' | 'area' | TReadOnlyProperty<'rho' | 'length' | 'area'> }>( fluentSupport.bundleProperty, 'a11y_controls_letterName', _.get( ResistanceInAWireStrings, 'a11y.controls.letterNameStringProperty' ), [{"name":"letter","variants":["rho","length","area"]}] )
     }
   }
 };

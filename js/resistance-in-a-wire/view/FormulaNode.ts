@@ -37,6 +37,7 @@ const resistanceEquationDescriptionString = ResistanceInAWireFluent.a11y.equatio
 const rhoLAndAComparablePattern = ResistanceInAWireFluent.a11y.equation.rhoLAndAComparablePattern;
 const lAndAComparablePattern = ResistanceInAWireFluent.a11y.equation.lAndAComparablePattern;
 const noneComparablePattern = ResistanceInAWireFluent.a11y.equation.noneComparablePattern;
+const relativeSizeDescription = ResistanceInAWireFluent.a11y.equation.relativeSizeDescription;
 
 // constants - rather than keep a reference to each letter node, a map from key to scale magnitude is used
 // to track letter scales
@@ -282,7 +283,9 @@ const getRelativeSizeDescription = ( relativeScale: number ): string => {
     const relativeEntry = ResistanceInAWireConstants.RELATIVE_SIZE_MAP[ keys[ i ] ];
 
     if ( relativeEntry.range.contains( relativeScale ) ) {
-      return relativeEntry.description;
+      return relativeSizeDescription.format( {
+        relativeSize: relativeEntry.descriptionKey
+      } );
     }
   }
   throw new Error( `no description found for relativeScale: ${relativeScale}` );

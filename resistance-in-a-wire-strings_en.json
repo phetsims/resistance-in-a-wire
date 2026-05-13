@@ -75,113 +75,28 @@
       "noneComparablePattern": {
         "value": "Size of letter R is { $rToRho } the size of letter rho, { $rToL } letter L, and { $rToA } letter A."
       },
-      "sizes": {
-        "muchMuchSmallerThan": {
-          "value": "much much smaller than"
-        },
-        "muchSmallerThan": {
-          "value": "much smaller than"
-        },
-        "slightlySmallerThan": {
-          "value": "slightly smaller than"
-        },
-        "comparableTo": {
-          "value": "comparable to"
-        },
-        "slightlyLargerThan": {
-          "value": "slightly larger than"
-        },
-        "muchLargerThan": {
-          "value": "much larger than"
-        },
-        "muchMuchLargerThan": {
-          "value": "much much larger than"
-        }
+      "relativeSizeDescription": {
+        "value": "{ $relativeSize ->\n  [muchMuchSmaller] much much smaller than\n  [muchSmaller] much smaller than\n  [slightlySmaller] slightly smaller than\n  [comparable] comparable to\n  [slightlyLarger] slightly larger than\n  [muchLarger] much larger than\n  *[muchMuchLarger] much much larger than\n}"
       },
-      "alerts": {
-        "grows": {
-          "value": "grows"
-        },
-        "shrinks": {
-          "value": "shrinks"
-        },
-        "growsALot": {
-          "value": "grows a lot"
-        },
-        "shrinksALot": {
-          "value": "shrinks a lot"
-        }
+      "sizeChange": {
+        "value": "{ $sizeChange ->\n  [grows] grows\n  [shrinks] shrinks\n  [growsALot] grows a lot\n  *[shrinksALot] shrinks a lot\n}"
       }
     },
     "wire": {
       "wireDescriptionPattern": {
-        "value": "Currently, wire is { $length }, { $thickness }, and there is a { $impurities } of impurities in wire. Resistance is { $resistance }."
+        "value": "Currently, { a11y_wire_lengthClause }, { a11y_wire_thicknessClause }, and { a11y_wire_impuritiesClause }. Resistance is { $resistance }."
       },
       "resistivityUnitsPattern": {
         "value": "{ $value } ohm centimeters"
       },
-      "extremelyShort": {
-        "value": "extremely short"
+      "lengthClause": {
+        "value": "{ $length ->\n  [extremelyShort] wire is extremely short\n  [veryShort] wire is very short\n  [short] wire is short\n  [medium] wire is of medium length\n  [long] wire is long\n  [veryLong] wire is very long\n  *[extremelyLong] wire is extremely long\n}"
       },
-      "veryShort": {
-        "value": "very short"
+      "thicknessClause": {
+        "value": "{ $thickness ->\n  [extremelyThin] wire is extremely thin\n  [veryThin] wire is very thin\n  [thin] wire is thin\n  [medium] wire is of medium thickness\n  [thick] wire is thick\n  [veryThick] wire is very thick\n  *[extremelyThick] wire is extremely thick\n}"
       },
-      "short": {
-        "value": "short"
-      },
-      "ofMediumLength": {
-        "value": "of medium length"
-      },
-      "long": {
-        "value": "long"
-      },
-      "veryLong": {
-        "value": "very long"
-      },
-      "extremelyLong": {
-        "value": "extremely long"
-      },
-      "extremelyThin": {
-        "value": "extremely thin"
-      },
-      "veryThin": {
-        "value": "very thin"
-      },
-      "thin": {
-        "value": "thin"
-      },
-      "ofMediumThickness": {
-        "value": "of medium thickness"
-      },
-      "thick": {
-        "value": "thick"
-      },
-      "veryThick": {
-        "value": "very thick"
-      },
-      "extremelyThick": {
-        "value": "extremely thick"
-      },
-      "aTinyAmountOfImpurities": {
-        "value": "tiny amount"
-      },
-      "aVerySmallAmountOfImpurities": {
-        "value": "very small amount"
-      },
-      "aSmallAmountOfImpurities": {
-        "value": "small amount"
-      },
-      "aMediumAmountOfImpurities": {
-        "value": "medium amount"
-      },
-      "aLargeAmountOfImpurities": {
-        "value": "large amount"
-      },
-      "aVeryLargeAmountOfImpurities": {
-        "value": "very large amount"
-      },
-      "aHugeAmountOfImpurities": {
-        "value": "huge amount"
+      "impuritiesClause": {
+        "value": "{ $impurities ->\n  [tiny] there is a tiny amount of impurities in wire\n  [verySmall] there is a very small amount of impurities in wire\n  [small] there is a small amount of impurities in wire\n  [medium] there is a medium amount of impurities in wire\n  [large] there is a large amount of impurities in wire\n  [veryLarge] there is a very large amount of impurities in wire\n  *[huge] there is a huge amount of impurities in wire\n}"
       }
     },
     "controls": {
@@ -209,14 +124,8 @@
       "sizeChangeAlertPattern": {
         "value": "As letter { $letter } { $letterChange }, letter R { $rChange }. Resistance now { $resistance }."
       },
-      "letterRho": {
-        "value": "rho"
-      },
-      "letterL": {
-        "value": "L"
-      },
-      "letterA": {
-        "value": "A"
+      "letterName": {
+        "value": "{ $letter ->\n  [rho] rho\n  [length] L\n  *[area] A\n}"
       }
     }
   }

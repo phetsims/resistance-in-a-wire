@@ -10,60 +10,36 @@ import Range from '../../../dot/js/Range.js';
 import RangeWithValue from '../../../dot/js/RangeWithValue.js';
 import Utils from '../../../dot/js/Utils.js';
 import PhetFont from '../../../scenery-phet/js/PhetFont.js';
-import ResistanceInAWireFluent from '../ResistanceInAWireFluent.js';
 
-type DescriptionEntry = {
-  description: string;
+type LengthDescriptionKey = 'extremelyShort' | 'veryShort' | 'short' | 'medium' | 'long' | 'veryLong' | 'extremelyLong';
+type ThicknessDescriptionKey = 'extremelyThin' | 'veryThin' | 'thin' | 'medium' | 'thick' | 'veryThick' | 'extremelyThick';
+type ImpuritiesDescriptionKey = 'tiny' | 'verySmall' | 'small' | 'medium' | 'large' | 'veryLarge' | 'huge';
+type RelativeSizeKey = 'muchMuchSmaller' | 'muchSmaller' | 'slightlySmaller' | 'comparable' | 'slightlyLarger' | 'muchLarger' | 'muchMuchLarger';
+
+type DescriptionEntry<T extends string> = {
+  descriptionKey: T;
   range: Range;
 };
 
-type DescriptionMap = Record<string, DescriptionEntry>;
-
-const muchMuchSmallerThanString = ResistanceInAWireFluent.a11y.equation.sizes.muchMuchSmallerThanStringProperty.value;
-const muchSmallerThanString = ResistanceInAWireFluent.a11y.equation.sizes.muchSmallerThanStringProperty.value;
-const slightlySmallerThanString = ResistanceInAWireFluent.a11y.equation.sizes.slightlySmallerThanStringProperty.value;
-const comparableToString = ResistanceInAWireFluent.a11y.equation.sizes.comparableToStringProperty.value;
-const slightlyLargerThanString = ResistanceInAWireFluent.a11y.equation.sizes.slightlyLargerThanStringProperty.value;
-const muchLargerThanString = ResistanceInAWireFluent.a11y.equation.sizes.muchLargerThanStringProperty.value;
-const muchMuchLargerThanString = ResistanceInAWireFluent.a11y.equation.sizes.muchMuchLargerThanStringProperty.value;
-const extremelyShortString = ResistanceInAWireFluent.a11y.wire.extremelyShortStringProperty.value;
-const veryShortString = ResistanceInAWireFluent.a11y.wire.veryShortStringProperty.value;
-const shortString = ResistanceInAWireFluent.a11y.wire.shortStringProperty.value;
-const ofMediumLengthString = ResistanceInAWireFluent.a11y.wire.ofMediumLengthStringProperty.value;
-const longString = ResistanceInAWireFluent.a11y.wire.longStringProperty.value;
-const veryLongString = ResistanceInAWireFluent.a11y.wire.veryLongStringProperty.value;
-const extremelyLongString = ResistanceInAWireFluent.a11y.wire.extremelyLongStringProperty.value;
-const extremelyThinString = ResistanceInAWireFluent.a11y.wire.extremelyThinStringProperty.value;
-const veryThinString = ResistanceInAWireFluent.a11y.wire.veryThinStringProperty.value;
-const thinString = ResistanceInAWireFluent.a11y.wire.thinStringProperty.value;
-const ofMediumThicknessString = ResistanceInAWireFluent.a11y.wire.ofMediumThicknessStringProperty.value;
-const thickString = ResistanceInAWireFluent.a11y.wire.thickStringProperty.value;
-const veryThickString = ResistanceInAWireFluent.a11y.wire.veryThickStringProperty.value;
-const extremelyThickString = ResistanceInAWireFluent.a11y.wire.extremelyThickStringProperty.value;
-const aTinyAmountOfImpuritiesString = ResistanceInAWireFluent.a11y.wire.aTinyAmountOfImpuritiesStringProperty.value;
-const aVerySmallAmountOfImpuritiesString = ResistanceInAWireFluent.a11y.wire.aVerySmallAmountOfImpuritiesStringProperty.value;
-const aSmallAmountOfImpuritiesString = ResistanceInAWireFluent.a11y.wire.aSmallAmountOfImpuritiesStringProperty.value;
-const aMediumAmountOfImpuritiesString = ResistanceInAWireFluent.a11y.wire.aMediumAmountOfImpuritiesStringProperty.value;
-const aLargeAmountOfImpuritiesString = ResistanceInAWireFluent.a11y.wire.aLargeAmountOfImpuritiesStringProperty.value;
-const aVeryLargeAmountOfImpuritiesString = ResistanceInAWireFluent.a11y.wire.aVeryLargeAmountOfImpuritiesStringProperty.value;
-const aHugeAmountOfImpuritiesString = ResistanceInAWireFluent.a11y.wire.aHugeAmountOfImpuritiesStringProperty.value;
+type DescriptionMap<T extends string> = Record<string, DescriptionEntry<T>>;
+type RelativeSizeMap = Record<RelativeSizeKey, DescriptionEntry<RelativeSizeKey>>;
 
 const RESISTIVITY_RANGE = new RangeWithValue( 0.01, 1.00, 0.5 ); // in Ohm * cm
 const LENGTH_RANGE = new RangeWithValue( 0.1, 20, 10 ); // in cm
 const AREA_RANGE = new RangeWithValue( 0.01, 15, 7.5 ); // in cm^2
 
-const LENGTH_DESCRIPTIONS = [ extremelyShortString, veryShortString, shortString, ofMediumLengthString, longString, veryLongString, extremelyLongString ];
-const AREA_DESCRIPTIONS = [ extremelyThinString, veryThinString, thinString, ofMediumThicknessString, thickString, veryThickString, extremelyThickString ];
-const RESISTIVITY_DESCRIPTIONS = [ aTinyAmountOfImpuritiesString, aVerySmallAmountOfImpuritiesString, aSmallAmountOfImpuritiesString, aMediumAmountOfImpuritiesString, aLargeAmountOfImpuritiesString, aVeryLargeAmountOfImpuritiesString, aHugeAmountOfImpuritiesString ];
+const LENGTH_DESCRIPTIONS: LengthDescriptionKey[] = [ 'extremelyShort', 'veryShort', 'short', 'medium', 'long', 'veryLong', 'extremelyLong' ];
+const AREA_DESCRIPTIONS: ThicknessDescriptionKey[] = [ 'extremelyThin', 'veryThin', 'thin', 'medium', 'thick', 'veryThick', 'extremelyThick' ];
+const RESISTIVITY_DESCRIPTIONS: ImpuritiesDescriptionKey[] = [ 'tiny', 'verySmall', 'small', 'medium', 'large', 'veryLarge', 'huge' ];
 
-const RELATIVE_SIZE_STRINGS = [ muchMuchSmallerThanString, muchSmallerThanString, slightlySmallerThanString, comparableToString, slightlyLargerThanString, muchLargerThanString, muchMuchLargerThanString ];
+const RELATIVE_SIZE_KEYS: RelativeSizeKey[] = [ 'muchMuchSmaller', 'muchSmaller', 'slightlySmaller', 'comparable', 'slightlyLarger', 'muchLarger', 'muchMuchLarger' ];
 
 /**
  * Generates a map from physical value to accessible description. Each described range has a length of
  * valueRange / descriptionArray.length.
  */
-const generateDescriptionMap = ( descriptionArray: string[], valueRange: RangeWithValue ): DescriptionMap => {
-  const map: DescriptionMap = {};
+const generateDescriptionMap = <T extends string>( descriptionArray: T[], valueRange: RangeWithValue ): DescriptionMap<T> => {
+  const map: DescriptionMap<T> = {};
 
   let minValue = valueRange.min;
   for ( let i = 0; i < descriptionArray.length; i++ ) {
@@ -76,7 +52,7 @@ const generateDescriptionMap = ( descriptionArray: string[], valueRange: RangeWi
                   new Range( minValue, nextMin );
 
     map[ i ] = {
-      description: descriptionArray[ i ],
+      descriptionKey: descriptionArray[ i ],
       range: range
     };
 
@@ -89,6 +65,37 @@ const generateDescriptionMap = ( descriptionArray: string[], valueRange: RangeWi
 const LENGTH_TO_DESCRIPTION_MAP = generateDescriptionMap( LENGTH_DESCRIPTIONS, LENGTH_RANGE );
 const AREA_TO_DESCRIPTION_MAP = generateDescriptionMap( AREA_DESCRIPTIONS, AREA_RANGE );
 const RESISTIVITY_TO_DESCRIPTION_MAP = generateDescriptionMap( RESISTIVITY_DESCRIPTIONS, RESISTIVITY_RANGE );
+
+const RELATIVE_SIZE_MAP: RelativeSizeMap = {
+  muchMuchSmaller: {
+    descriptionKey: 'muchMuchSmaller',
+    range: new Range( 0, 0.1 )
+  },
+  muchSmaller: {
+    descriptionKey: 'muchSmaller',
+    range: new Range( 0.1, 0.4 )
+  },
+  slightlySmaller: {
+    descriptionKey: 'slightlySmaller',
+    range: new Range( 0.4, 0.7 )
+  },
+  comparable: {
+    descriptionKey: 'comparable',
+    range: new Range( 0.7, 1.3 )
+  },
+  slightlyLarger: {
+    descriptionKey: 'slightlyLarger',
+    range: new Range( 1.3, 2 )
+  },
+  muchLarger: {
+    descriptionKey: 'muchLarger',
+    range: new Range( 2, 20 )
+  },
+  muchMuchLarger: {
+    descriptionKey: 'muchMuchLarger',
+    range: new Range( 20, Number.MAX_VALUE )
+  }
+};
 
 const ResistanceInAWireConstants = {
 
@@ -139,50 +146,21 @@ const ResistanceInAWireConstants = {
            2; // Numbers less than 10 show 2 decimal points, like 8.35
   },
 
-  // maps from physical value to description
+  // maps from physical value to stable description key
   LENGTH_TO_DESCRIPTION_MAP: LENGTH_TO_DESCRIPTION_MAP,
   AREA_TO_DESCRIPTION_MAP: AREA_TO_DESCRIPTION_MAP,
   RESISTIVITY_TO_DESCRIPTION_MAP: RESISTIVITY_TO_DESCRIPTION_MAP,
 
-  RELATIVE_SIZE_STRINGS: RELATIVE_SIZE_STRINGS,
+  RELATIVE_SIZE_KEYS: RELATIVE_SIZE_KEYS,
 
 
   // pdom - used to map relative scale magnitudes of the letters to relative size description
-  RELATIVE_SIZE_MAP: {
-    muchMuchSmaller: {
-      description: muchMuchSmallerThanString,
-      range: new Range( 0, 0.1 )
-    },
-    muchSmaller: {
-      description: muchSmallerThanString,
-      range: new Range( 0.1, 0.4 )
-    },
-    slightlySmaller: {
-      description: slightlySmallerThanString,
-      range: new Range( 0.4, 0.7 )
-    },
-    comparable: {
-      description: comparableToString,
-      range: new Range( 0.7, 1.3 )
-    },
-    slightlyLarger: {
-      description: slightlyLargerThanString,
-      range: new Range( 1.3, 2 )
-    },
-    muchLarger: {
-      description: muchLargerThanString,
-      range: new Range( 2, 20 )
-    },
-    muchMuchLarger: {
-      description: muchMuchLargerThanString,
-      range: new Range( 20, Number.MAX_VALUE )
-    }
-  },
+  RELATIVE_SIZE_MAP: RELATIVE_SIZE_MAP,
 
   /**
-   * Returns the description for the range that contains the provided value.
+   * Returns the stable description key for the range that contains the provided value.
    */
-  getValueDescriptionFromMap( value: number, map: DescriptionMap ): string {
+  getValueDescriptionFromMap<T extends string>( value: number, map: DescriptionMap<T> ): T {
 
     // Get described ranges of each value.
     const keys = Object.keys( map );
@@ -190,7 +168,7 @@ const ResistanceInAWireConstants = {
       const entry = map[ keys[ i ] ];
 
       if ( entry.range.contains( value ) ) {
-        return entry.description;
+        return entry.descriptionKey;
       }
     }
     throw new Error( `no description for value: ${value}` );

@@ -115,14 +115,14 @@ export default class WireNode extends Node {
     const areaValue = this.model.areaProperty.get();
     const resistivityValue = this.model.resistivityProperty.get();
 
-    const lengthDescription = ResistanceInAWireConstants.getValueDescriptionFromMap( lengthValue, ResistanceInAWireConstants.LENGTH_TO_DESCRIPTION_MAP );
-    const areaDescription = ResistanceInAWireConstants.getValueDescriptionFromMap( areaValue, ResistanceInAWireConstants.AREA_TO_DESCRIPTION_MAP );
-    const resistivityDescription = ResistanceInAWireConstants.getValueDescriptionFromMap( resistivityValue, ResistanceInAWireConstants.RESISTIVITY_TO_DESCRIPTION_MAP );
+    const lengthKey = ResistanceInAWireConstants.getValueDescriptionFromMap( lengthValue, ResistanceInAWireConstants.LENGTH_TO_DESCRIPTION_MAP );
+    const thicknessKey = ResistanceInAWireConstants.getValueDescriptionFromMap( areaValue, ResistanceInAWireConstants.AREA_TO_DESCRIPTION_MAP );
+    const impuritiesKey = ResistanceInAWireConstants.getValueDescriptionFromMap( resistivityValue, ResistanceInAWireConstants.RESISTIVITY_TO_DESCRIPTION_MAP );
 
     return wireDescriptionPattern.format( {
-      length: lengthDescription,
-      thickness: areaDescription,
-      impurities: resistivityDescription,
+      length: lengthKey,
+      thickness: thicknessKey,
+      impurities: impuritiesKey,
       resistance: ohmsUnit.getAccessibleString( this.model.resistanceProperty.get(), {
         decimalPlaces: ResistanceInAWireConstants.getResistanceDecimals( this.model.resistanceProperty.get() ),
         showTrailingZeros: false,

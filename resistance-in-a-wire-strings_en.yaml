@@ -39,45 +39,53 @@ a11y:
     noneComparablePattern:         >-
                                    Size of letter R is { $rToRho } the size of letter rho, { $rToL } letter L,
                                    and { $rToA } letter A.
-    sizes:
-      muchMuchSmallerThan: much much smaller than
-      muchSmallerThan:     much smaller than
-      slightlySmallerThan: slightly smaller than
-      comparableTo:        comparable to
-      slightlyLargerThan:  slightly larger than
-      muchLargerThan:      much larger than
-      muchMuchLargerThan:  much much larger than
-    alerts:
-      grows:       grows
-      shrinks:     shrinks
-      growsALot:   grows a lot
-      shrinksALot: shrinks a lot
+    relativeSizeDescription:
+      select_relativeSize:
+        muchMuchSmaller: much much smaller than
+        muchSmaller:     much smaller than
+        slightlySmaller: slightly smaller than
+        comparable:      comparable to
+        slightlyLarger:  slightly larger than
+        muchLarger:      much larger than
+        muchMuchLarger:  much much larger than
+    sizeChange:
+      select_sizeChange:
+        grows:       grows
+        shrinks:     shrinks
+        growsALot:   grows a lot
+        shrinksALot: shrinks a lot
   wire:
-    wireDescriptionPattern:       >-
-                                  Currently, wire is { $length }, { $thickness }, and there is a
-                                  { $impurities } of impurities in wire. Resistance is { $resistance }.
-    resistivityUnitsPattern:      '{ $value } ohm centimeters'
-    extremelyShort:               extremely short
-    veryShort:                    very short
-    short:                        short
-    ofMediumLength:               of medium length
-    long:                         long
-    veryLong:                     very long
-    extremelyLong:                extremely long
-    extremelyThin:                extremely thin
-    veryThin:                     very thin
-    thin:                         thin
-    ofMediumThickness:            of medium thickness
-    thick:                        thick
-    veryThick:                    very thick
-    extremelyThick:               extremely thick
-    aTinyAmountOfImpurities:      tiny amount
-    aVerySmallAmountOfImpurities: very small amount
-    aSmallAmountOfImpurities:     small amount
-    aMediumAmountOfImpurities:    medium amount
-    aLargeAmountOfImpurities:     large amount
-    aVeryLargeAmountOfImpurities: very large amount
-    aHugeAmountOfImpurities:      huge amount
+    wireDescriptionPattern:  >-
+                             Currently, { a11y.wire.lengthClause }, { a11y.wire.thicknessClause },
+                             and { a11y.wire.impuritiesClause }. Resistance is { $resistance }.
+    resistivityUnitsPattern: '{ $value } ohm centimeters'
+    lengthClause:
+      select_length:
+        extremelyShort: wire is extremely short
+        veryShort:      wire is very short
+        short:          wire is short
+        medium:         wire is of medium length
+        long:           wire is long
+        veryLong:       wire is very long
+        extremelyLong:  wire is extremely long
+    thicknessClause:
+      select_thickness:
+        extremelyThin:  wire is extremely thin
+        veryThin:       wire is very thin
+        thin:           wire is thin
+        medium:         wire is of medium thickness
+        thick:          wire is thick
+        veryThick:      wire is very thick
+        extremelyThick: wire is extremely thick
+    impuritiesClause:
+      select_impurities:
+        tiny:      there is a tiny amount of impurities in wire
+        verySmall: there is a very small amount of impurities in wire
+        small:     there is a small amount of impurities in wire
+        medium:    there is a medium amount of impurities in wire
+        large:     there is a large amount of impurities in wire
+        veryLarge: there is a very large amount of impurities in wire
+        huge:      there is a huge amount of impurities in wire
   controls:
     lengthUnitsPattern:     '{ $value } centimeters'
     areaUnitsPattern:       '{ $value } centimeters squared'
@@ -89,6 +97,8 @@ a11y:
     sizeChangeAlertPattern: >-
                             As letter { $letter } { $letterChange }, letter R { $rChange }. Resistance now
                             { $resistance }.
-    letterRho:              rho
-    letterL:                L
-    letterA:                A
+    letterName:
+      select_letter:
+        rho:    rho
+        length: L
+        area:   A
