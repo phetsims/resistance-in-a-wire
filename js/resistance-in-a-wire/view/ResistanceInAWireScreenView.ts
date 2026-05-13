@@ -9,6 +9,7 @@
 
 import ScreenView from '../../../../joist/js/ScreenView.js';
 import Shape from '../../../../kite/js/Shape.js';
+import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import ArrowNode from '../../../../scenery-phet/js/ArrowNode.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import HighlightPath from '../../../../scenery/js/accessibility/HighlightPath.js';
@@ -77,7 +78,7 @@ export default class ResistanceInAWireScreenView extends ScreenView {
     // the outer stroke of the ResetAllButton focus highlight is black so that it is visible when the equation
     // resistance letter grows too large
     const highlightShape = resetAllButton.focusHighlight as Shape;
-    assert && assert( highlightShape instanceof Shape, 'highlightShape must be a Shape' );
+    affirm( highlightShape, 'highlightShape must be a Shape' );
     resetAllButton.focusHighlight = new HighlightPath( highlightShape, { outerStroke: 'black' } );
 
     // add the control panel last so it is always on top.
