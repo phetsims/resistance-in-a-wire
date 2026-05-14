@@ -5,6 +5,16 @@
  * resistivity, length, and area of the wire to decide WHEN to generate a sound, and the value of the resistance to
  * determine the nature of the sound to be generated.
  *
+ * NOTE:
+ * This class is intentionally more specific than Slider's built-in value change sound support. It tracks each
+ * slider's current bin state, plays on bin transitions or rmin/max, and every keyboard driven value change.
+ * It maps pitch from resulting resistance rather than from the slider value itself.
+ *
+ * Slider's built-in ValueChangeSoundPlayer can approximate this with threshold and custom playback rate mapping.
+ * But it does not preserve the exact stateful bin behavior. Matching exactly through Slider options would require
+ * pushing sim-specific state and interaction mode logic into the abstraction, which isn't a good fit. Keeping the
+ * custom generator preserves the initial design exactly and avoids a hacky layer around Slider.
+ *
  * @author John Blanco
  */
 
