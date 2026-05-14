@@ -38,6 +38,7 @@ addToMapIfDefined( 'resistance', 'resistanceStringProperty' );
 addToMapIfDefined( 'resistanceSymbol', 'resistanceSymbolStringProperty' );
 addToMapIfDefined( 'resistivity', 'resistivityStringProperty' );
 addToMapIfDefined( 'a11y_resistanceInAWireScreen_screenSummary_playArea', 'a11y.resistanceInAWireScreen.screenSummary.playAreaStringProperty' );
+addToMapIfDefined( 'a11y_resistanceInAWireScreen_screenSummary_controlArea', 'a11y.resistanceInAWireScreen.screenSummary.controlAreaStringProperty' );
 addToMapIfDefined( 'a11y_resistanceInAWireScreen_screenSummary_currentDetails_currently', 'a11y.resistanceInAWireScreen.screenSummary.currentDetails.currentlyStringProperty' );
 addToMapIfDefined( 'a11y_resistanceInAWireScreen_screenSummary_currentDetails_resistancePattern', 'a11y.resistanceInAWireScreen.screenSummary.currentDetails.resistancePatternStringProperty' );
 addToMapIfDefined( 'a11y_resistanceInAWireScreen_screenSummary_currentDetails_resistivityPattern', 'a11y.resistanceInAWireScreen.screenSummary.currentDetails.resistivityPatternStringProperty' );
@@ -45,7 +46,7 @@ addToMapIfDefined( 'a11y_resistanceInAWireScreen_screenSummary_currentDetails_le
 addToMapIfDefined( 'a11y_resistanceInAWireScreen_screenSummary_currentDetails_areaPattern', 'a11y.resistanceInAWireScreen.screenSummary.currentDetails.areaPatternStringProperty' );
 addToMapIfDefined( 'a11y_resistanceInAWireScreen_screenSummary_interactionHint', 'a11y.resistanceInAWireScreen.screenSummary.interactionHintStringProperty' );
 addToMapIfDefined( 'a11y_formulaNode_accessibleHeading', 'a11y.formulaNode.accessibleHeadingStringProperty' );
-addToMapIfDefined( 'a11y_formulaNode_accessibleHelpText', 'a11y.formulaNode.accessibleHelpTextStringProperty' );
+addToMapIfDefined( 'a11y_formulaNode_accessibleParagraph', 'a11y.formulaNode.accessibleParagraphStringProperty' );
 addToMapIfDefined( 'a11y_formulaNode_accessibleParagraphPattern_rhoLAndAComparable', 'a11y.formulaNode.accessibleParagraphPattern.rhoLAndAComparableStringProperty' );
 addToMapIfDefined( 'a11y_formulaNode_accessibleParagraphPattern_lAndAComparable', 'a11y.formulaNode.accessibleParagraphPattern.lAndAComparableStringProperty' );
 addToMapIfDefined( 'a11y_formulaNode_accessibleParagraphPattern_noneComparable', 'a11y.formulaNode.accessibleParagraphPattern.noneComparableStringProperty' );
@@ -105,6 +106,7 @@ const ResistanceInAWireFluent = {
     resistanceInAWireScreen: {
       screenSummary: {
         playAreaStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_resistanceInAWireScreen_screenSummary_playArea', _.get( ResistanceInAWireStrings, 'a11y.resistanceInAWireScreen.screenSummary.playAreaStringProperty' ) ),
+        controlAreaStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_resistanceInAWireScreen_screenSummary_controlArea', _.get( ResistanceInAWireStrings, 'a11y.resistanceInAWireScreen.screenSummary.controlAreaStringProperty' ) ),
         currentDetails: {
           currentlyStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_resistanceInAWireScreen_screenSummary_currentDetails_currently', _.get( ResistanceInAWireStrings, 'a11y.resistanceInAWireScreen.screenSummary.currentDetails.currentlyStringProperty' ) ),
           resistancePattern: new FluentPattern<{ value: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_resistanceInAWireScreen_screenSummary_currentDetails_resistancePattern', _.get( ResistanceInAWireStrings, 'a11y.resistanceInAWireScreen.screenSummary.currentDetails.resistancePatternStringProperty' ), [{"name":"value"}] ),
@@ -117,7 +119,7 @@ const ResistanceInAWireFluent = {
     },
     formulaNode: {
       accessibleHeadingStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_formulaNode_accessibleHeading', _.get( ResistanceInAWireStrings, 'a11y.formulaNode.accessibleHeadingStringProperty' ) ),
-      accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_formulaNode_accessibleHelpText', _.get( ResistanceInAWireStrings, 'a11y.formulaNode.accessibleHelpTextStringProperty' ) ),
+      accessibleParagraphStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_formulaNode_accessibleParagraph', _.get( ResistanceInAWireStrings, 'a11y.formulaNode.accessibleParagraphStringProperty' ) ),
       accessibleParagraphPattern: {
         rhoLAndAComparable: new FluentPattern<{ rToAll: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_formulaNode_accessibleParagraphPattern_rhoLAndAComparable', _.get( ResistanceInAWireStrings, 'a11y.formulaNode.accessibleParagraphPattern.rhoLAndAComparableStringProperty' ), [{"name":"rToAll"}] ),
         lAndAComparable: new FluentPattern<{ rToLAndA: FluentVariable, rToRho: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_formulaNode_accessibleParagraphPattern_lAndAComparable', _.get( ResistanceInAWireStrings, 'a11y.formulaNode.accessibleParagraphPattern.lAndAComparableStringProperty' ), [{"name":"rToLAndA"},{"name":"rToRho"}] ),

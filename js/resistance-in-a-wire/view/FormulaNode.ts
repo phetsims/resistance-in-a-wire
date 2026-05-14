@@ -17,7 +17,6 @@ import Shape from '../../../../kite/js/Shape.js';
 import platform from '../../../../phet-core/js/platform.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import SceneryPhetFluent from '../../../../scenery-phet/js/SceneryPhetFluent.js';
-import ParallelDOM from '../../../../scenery/js/accessibility/pdom/ParallelDOM.js';
 import Node, { type NodeOptions } from '../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
@@ -33,7 +32,7 @@ const lengthSymbolStringProperty = ResistanceInAWireFluent.lengthSymbolStringPro
 const resistanceSymbolStringProperty = ResistanceInAWireFluent.resistanceSymbolStringProperty;
 const symbolResistivityStringProperty = SceneryPhetFluent.symbol.resistivityStringProperty;
 const formulaNodeAccessibleHeadingStringProperty = ResistanceInAWireFluent.a11y.formulaNode.accessibleHeadingStringProperty;
-const formulaNodeAccessibleHelpTextStringProperty = ResistanceInAWireFluent.a11y.formulaNode.accessibleHelpTextStringProperty;
+const formulaNodeAccessibleParagraphStringProperty = ResistanceInAWireFluent.a11y.formulaNode.accessibleParagraphStringProperty;
 
 type FormulaSymbolEntry = {
   labelStringProperty: TReadOnlyProperty<string>;
@@ -59,8 +58,7 @@ export default class FormulaNode extends Node {
 
       // pdom
       accessibleHeading: formulaNodeAccessibleHeadingStringProperty,
-      accessibleHelpText: formulaNodeAccessibleHelpTextStringProperty,
-      accessibleHelpTextBehavior: ParallelDOM.HELP_TEXT_BEFORE_CONTENT
+      accessibleParagraph: formulaNodeAccessibleParagraphStringProperty
     } );
 
     // Equals sign, hard coded.

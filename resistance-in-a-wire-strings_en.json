@@ -39,7 +39,10 @@
     "resistanceInAWireScreen": {
       "screenSummary": {
         "playArea": {
-          "value": "In the Play Area you find the Resistance equation, <b>R</b> equals <b>rho</b> times <b>L</b> over <b>A</b>, and a piece of wire. Sliders for resistivity, length, and area allow changes to the equation and the piece of wire. The Control Area has a button to reset the sim."
+          "value": "You find the Resistance equation, <b>R</b> equals <b>rho</b> times <b>L</b> over <b>A</b>, and a piece of wire. Sliders for resistivity, length, and area allow changes to the equation and the piece of wire."
+        },
+        "controlArea": {
+          "value": "There is a button to reset the sim."
         },
         "currentDetails": {
           "currently": {
@@ -67,7 +70,7 @@
       "accessibleHeading": {
         "value": "Resistance Equation"
       },
-      "accessibleHelpText": {
+      "accessibleParagraph": {
         "value": "Resistance, <b>R</b>, is equal to resistivity, <b>rho</b>, times length, <b>L</b>, over area, <b>A</b>."
       },
       "accessibleParagraphPattern": {

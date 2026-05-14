@@ -19,11 +19,10 @@ import Text from '../../../../scenery/js/nodes/Text.js';
 import Panel, { type PanelOptions } from '../../../../sun/js/Panel.js';
 import soundManager from '../../../../tambo/js/soundManager.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import Utterance from '../../../../utterance-queue/js/Utterance.js';
 import ResistanceInAWireFluent from '../../ResistanceInAWireFluent.js';
 import type ResistanceInAWireModel from '../model/ResistanceInAWireModel.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
-import type ResistanceInAWireDescriber from './ResistanceInAWireDescriber.js';
+import ResistanceInAWireDescriber, { SliderLetterKey } from './ResistanceInAWireDescriber.js';
 import ResistanceSoundGenerator from './ResistanceSoundGenerator.js';
 import SliderUnit from './SliderUnit.js';
 
@@ -63,6 +62,7 @@ const ACCESSIBLE_SLIDER_VALUE_OPTIONS = {
 };
 
 export default class ControlPanel extends Panel {
+
   public constructor(
     model: ResistanceInAWireModel,
     describer: ResistanceInAWireDescriber,
@@ -110,12 +110,8 @@ export default class ControlPanel extends Panel {
     // looked too jumpy, so now it's positioned only once, see https://github.com/phetsims/resistance-in-a-wire/issues/181.
     resistanceText.centerX = 0;
 
-    // pdom - when using a slider, we store the initial value on start drag so that we can describe size change after
-    // interaction
+    // Store resistance at the start of slider interaction so the end response can describe how it changed.
     let resistanceOnStart = model.resistanceProperty.get();
-
-    // pdom - an utterance for whenever physical values change
-    const changeUtterance = new Utterance();
 
     // Create and add the resistivity slider with readout and labels.
     const resistivityUnitStringProperty = new PatternStringProperty( pattern0ResistanceUnits1LengthUnitsStringProperty, {
@@ -129,7 +125,6 @@ export default class ControlPanel extends Panel {
       tandem: tandem.createTandem( 'resistivityUnitStringProperty' )
     } );
 
-    let rhoOnStart = model.resistivityProperty.get();
     const resistivitySlider = new SliderUnit(
       model.resistivityProperty,
       ResistanceInAWireConstants.RESISTIVITY_RANGE,
@@ -139,35 +134,28 @@ export default class ControlPanel extends Panel {
       resistivitySliderAccessibleNameStringProperty,
       tandem.createTandem( 'resistivitySlider' ), {
         startDrag: () => {
-          rhoOnStart = model.resistivityProperty.get();
           resistanceOnStart = model.resistanceProperty.get();
-        },
-        endDrag: () => {
-          const resistance = model.resistanceProperty.get();
-          const deltaRho = model.resistivityProperty.get() - rhoOnStart;
-          const deltaResistance = resistance - resistanceOnStart;
-
-          // announce to assistive technology if there is a change - no need to queue many alerts when pressing keys
-          // rapidly
-          if ( deltaRho && deltaResistance ) {
-            changeUtterance.alert = describer.getSliderChangeAlert(
-              resistance,
-              deltaResistance,
-              deltaRho,
-              'rho'
-            );
-            resistivitySlider.addAccessibleContextResponse( changeUtterance );
-          }
         },
         sliderOptions: {
           keyboardStep: 0.05, // ohm-cm
-          createAriaValueText: ( value: number ) => ohmCentimetersUnit.getAccessibleString( value, ACCESSIBLE_SLIDER_VALUE_OPTIONS )
+          createAriaValueText: ( value: number ) => ohmCentimetersUnit.getAccessibleString(
+            value,
+            ACCESSIBLE_SLIDER_VALUE_OPTIONS
+          ),
+          createContextResponseAlert: ( _value: number, propertyValue: number, valueOnStart: number ) =>
+            ControlPanel.createSliderChangeAlert(
+              model,
+              describer,
+              resistanceOnStart,
+              propertyValue,
+              valueOnStart,
+              'rho'
+            )
         }
       }
     );
 
     // Create and add the length slider with readout and labels.
-    let lengthOnStart = model.lengthProperty.get();
     const lengthSlider = new SliderUnit(
       model.lengthProperty,
       ResistanceInAWireConstants.LENGTH_RANGE,
@@ -177,35 +165,28 @@ export default class ControlPanel extends Panel {
       lengthSliderAccessibleNameStringProperty,
       tandem.createTandem( 'lengthSlider' ), {
         startDrag: () => {
-          lengthOnStart = model.lengthProperty.get();
           resistanceOnStart = model.resistanceProperty.get();
         },
-        endDrag: () => {
-          const resistance = model.resistanceProperty.get();
-          const deltaLength = model.lengthProperty.get() - lengthOnStart;
-          const deltaResistance = resistance - resistanceOnStart;
-
-          // announce to assistive technology if there is a change - no need to queue many alerts when pressing keys
-          // rapidly
-          if ( deltaLength && deltaResistance ) {
-            changeUtterance.alert = describer.getSliderChangeAlert(
-              resistance,
-              deltaResistance,
-              deltaLength,
-              'length'
-            );
-            lengthSlider.addAccessibleContextResponse( changeUtterance );
-          }
-        },
         sliderOptions: {
-          createAriaValueText: ( value: number ) => centimetersUnit.getAccessibleString( value, ACCESSIBLE_SLIDER_VALUE_OPTIONS )
+          createAriaValueText: ( value: number ) => centimetersUnit.getAccessibleString(
+            value,
+            ACCESSIBLE_SLIDER_VALUE_OPTIONS
+          ),
+          createContextResponseAlert: ( _value: number, propertyValue: number, valueOnStart: number ) =>
+            ControlPanel.createSliderChangeAlert(
+              model,
+              describer,
+              resistanceOnStart,
+              propertyValue,
+              valueOnStart,
+              'length'
+            )
         }
       }
     );
 
     // Create and add the area slider with readout and labels. For keyboard dragging, the range doesn't split into
     // even steps, so SliderUnit's default round-to-step behavior is used.
-    let areaOnStart = model.areaProperty.get();
     const areaUnitStringProperty = new DerivedStringProperty( [ cmStringProperty ], cmString => `${cmString}<sup>2</sup>`, {
       tandem: tandem.createTandem( 'areaUnitStringProperty' )
     } );
@@ -219,28 +200,22 @@ export default class ControlPanel extends Panel {
       areaSliderAccessibleNameStringProperty,
       tandem.createTandem( 'areaSlider' ), {
         startDrag: () => {
-          areaOnStart = model.areaProperty.get();
           resistanceOnStart = model.resistanceProperty.get();
         },
-        endDrag: () => {
-          const resistance = model.resistanceProperty.get();
-          const deltaArea = model.areaProperty.get() - areaOnStart;
-          const deltaResistance = resistance - resistanceOnStart;
-
-          // announce to assistive technology if there is a change - no need to queue many alerts when pressing keys
-          // rapidly
-          if ( deltaArea && deltaResistance ) {
-            changeUtterance.alert = describer.getSliderChangeAlert(
-              resistance,
-              deltaResistance,
-              deltaArea,
-              'area'
-            );
-            areaSlider.addAccessibleContextResponse( changeUtterance );
-          }
-        },
         sliderOptions: {
-          createAriaValueText: ( value: number ) => centimetersSquaredUnit.getAccessibleString( value, ACCESSIBLE_SLIDER_VALUE_OPTIONS )
+          createAriaValueText: ( value: number ) => centimetersSquaredUnit.getAccessibleString(
+            value,
+            ACCESSIBLE_SLIDER_VALUE_OPTIONS
+          ),
+          createContextResponseAlert: ( _value: number, propertyValue: number, valueOnStart: number ) =>
+            ControlPanel.createSliderChangeAlert(
+              model,
+              describer,
+              resistanceOnStart,
+              propertyValue,
+              valueOnStart,
+              'area'
+            )
         }
       }
     );
@@ -274,5 +249,32 @@ export default class ControlPanel extends Panel {
     } );
 
     super( content, options );
+  }
+
+  /**
+   * Creates the end-of-interaction context response for a slider change. The slider provides its current and starting
+   * values, while this method compares the current resistance to the resistance captured at the beginning of the
+   * interaction. If either the slider variable or resistance did not change, there is no useful response to announce.
+   */
+  private static createSliderChangeAlert(
+    model: ResistanceInAWireModel,
+    describer: ResistanceInAWireDescriber,
+    resistanceOnStart: number,
+    propertyValue: number,
+    valueOnStart: number,
+    letterKey: SliderLetterKey
+  ): string | null {
+    const resistance = model.resistanceProperty.get();
+    const deltaVariable = propertyValue - valueOnStart;
+    const deltaResistance = resistance - resistanceOnStart;
+
+    return deltaVariable && deltaResistance ?
+           describer.getSliderChangeAlert(
+             resistance,
+             deltaResistance,
+             deltaVariable,
+             letterKey
+           ) :
+           null;
   }
 }

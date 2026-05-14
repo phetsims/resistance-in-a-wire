@@ -14,10 +14,11 @@ a11y:
   resistanceInAWireScreen:
     screenSummary:
       playArea:        >-
-                       In the Play Area you find the Resistance equation, <b>R</b> equals
+                       You find the Resistance equation, <b>R</b> equals
                        <b>rho</b> times <b>L</b> over <b>A</b>, and a piece of wire. Sliders for
                        resistivity, length, and area allow changes to the equation and the piece
-                       of wire. The Control Area has a button to reset the sim.
+                       of wire.
+      controlArea:     There is a button to reset the sim.
       currentDetails:
         currently:          Currently,
         resistancePattern:  resistance, <b>R</b>, is { $value }
@@ -29,9 +30,9 @@ a11y:
                        details about equation and wire.
   formulaNode:
     accessibleHeading:  Resistance Equation
-    accessibleHelpText: >-
-                         Resistance, <b>R</b>, is equal to resistivity, <b>rho</b>, times length,
-                         <b>L</b>, over area, <b>A</b>.
+    accessibleParagraph: >-
+                        Resistance, <b>R</b>, is equal to resistivity, <b>rho</b>, times length,
+                        <b>L</b>, over area, <b>A</b>.
     accessibleParagraphPattern:
       rhoLAndAComparable: >-
                           Size of letter R is { $rToAll } the size of the letter rho, letter L, and

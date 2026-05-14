@@ -8,9 +8,9 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  */
 
-import Disposable from '../../../../axon/js/Disposable.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js';
+import Disposable from '../../../../axon/js/Disposable.js';
 import type ReadOnlyProperty from '../../../../axon/js/ReadOnlyProperty.js';
 import type { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import Range from '../../../../dot/js/Range.js';
@@ -101,9 +101,9 @@ const RESISTIVITY_TO_DESCRIPTION_MAP = generateDescriptionMap( IMPURITIES_DESCRI
 
 // If resistance changes by more than this threshold, the accessible alert describes it as a large change.
 const LARGE_RESISTANCE_DELTA = (
-  ResistanceInAWireConstants.RESISTANCE_RANGE.getLength() /
-  RELATIVE_SIZE_DESCRIPTION_KEYS.length
-) * 2;
+                                 ResistanceInAWireConstants.RESISTANCE_RANGE.getLength() /
+                                 RELATIVE_SIZE_DESCRIPTION_KEYS.length
+                               ) * 2;
 
 /**
  * Returns the stable description key for the range that contains the provided value.
@@ -152,8 +152,8 @@ export default class ResistanceInAWireDescriber extends Disposable {
     const fixedDecimalOptions = {
       numberFormatOptions: {
         decimalPlaces: ResistanceInAWireConstants.SLIDER_READOUT_DECIMALS,
-        showTrailingZeros: false,
-        showIntegersAsIntegers: true
+        showTrailingZeros: true,
+        showIntegersAsIntegers: false
       }
     };
 
@@ -311,12 +311,9 @@ export default class ResistanceInAWireDescriber extends Disposable {
   public static resistanceSummaryStringProperty(
     resistanceAccessibleStringProperty: TReadOnlyProperty<string>
   ): ReadOnlyProperty<string> {
-    const resistanceSummaryStringProperty =
-      ResistanceInAWireFluent.a11y.resistanceInAWireScreen.screenSummary.currentDetails.resistancePattern.createProperty( {
-        value: resistanceAccessibleStringProperty
-      } );
-    resistanceSummaryStringProperty.isDisposable = false;
-    return resistanceSummaryStringProperty;
+    return ResistanceInAWireFluent.a11y.resistanceInAWireScreen.screenSummary.currentDetails.resistancePattern.createProperty( {
+      value: resistanceAccessibleStringProperty
+    } );
   }
 
   /**
@@ -325,12 +322,9 @@ export default class ResistanceInAWireDescriber extends Disposable {
   public static resistivitySummaryStringProperty(
     resistivityAccessibleStringProperty: TReadOnlyProperty<string>
   ): ReadOnlyProperty<string> {
-    const resistivitySummaryStringProperty =
-      ResistanceInAWireFluent.a11y.resistanceInAWireScreen.screenSummary.currentDetails.resistivityPattern.createProperty( {
-        value: resistivityAccessibleStringProperty
-      } );
-    resistivitySummaryStringProperty.isDisposable = false;
-    return resistivitySummaryStringProperty;
+    return ResistanceInAWireFluent.a11y.resistanceInAWireScreen.screenSummary.currentDetails.resistivityPattern.createProperty( {
+      value: resistivityAccessibleStringProperty
+    } );
   }
 
   /**
@@ -339,12 +333,9 @@ export default class ResistanceInAWireDescriber extends Disposable {
   public static lengthSummaryStringProperty(
     lengthAccessibleStringProperty: TReadOnlyProperty<string>
   ): ReadOnlyProperty<string> {
-    const lengthSummaryStringProperty =
-      ResistanceInAWireFluent.a11y.resistanceInAWireScreen.screenSummary.currentDetails.lengthPattern.createProperty( {
-        value: lengthAccessibleStringProperty
-      } );
-    lengthSummaryStringProperty.isDisposable = false;
-    return lengthSummaryStringProperty;
+    return ResistanceInAWireFluent.a11y.resistanceInAWireScreen.screenSummary.currentDetails.lengthPattern.createProperty( {
+      value: lengthAccessibleStringProperty
+    } );
   }
 
   /**
@@ -353,26 +344,21 @@ export default class ResistanceInAWireDescriber extends Disposable {
   public static areaSummaryStringProperty(
     areaAccessibleStringProperty: TReadOnlyProperty<string>
   ): ReadOnlyProperty<string> {
-    const areaSummaryStringProperty =
-      ResistanceInAWireFluent.a11y.resistanceInAWireScreen.screenSummary.currentDetails.areaPattern.createProperty( {
-        value: areaAccessibleStringProperty
-      } );
-    areaSummaryStringProperty.isDisposable = false;
-    return areaSummaryStringProperty;
+    return ResistanceInAWireFluent.a11y.resistanceInAWireScreen.screenSummary.currentDetails.areaPattern.createProperty( {
+      value: areaAccessibleStringProperty
+    } );
   }
 
   /**
    * Creates the accessible description for the wire from current physical values.
    */
   private createWireDescriptionProperty(): ReadOnlyProperty<string> {
-    const wireDescriptionStringProperty = ResistanceInAWireFluent.a11y.wireNode.accessibleParagraphPattern.createProperty( {
+    return ResistanceInAWireFluent.a11y.wireNode.accessibleParagraphPattern.createProperty( {
       length: this.lengthDescriptionKeyProperty,
       thickness: this.thicknessDescriptionKeyProperty,
       impurities: this.impuritiesDescriptionKeyProperty,
       resistance: this.resistanceAccessibleStringProperty
     } );
-    wireDescriptionStringProperty.isDisposable = false;
-    return wireDescriptionStringProperty;
   }
 
   /**

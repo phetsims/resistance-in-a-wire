@@ -9,11 +9,12 @@
  */
 
 import ScreenSummaryContent from '../../../../joist/js/ScreenSummaryContent.js';
-import Node from '../../../../scenery/js/nodes/Node.js';
+import AccessibleList, { type AccessibleListOptions } from '../../../../scenery-phet/js/accessibility/AccessibleList.js';
 import ResistanceInAWireFluent from '../../ResistanceInAWireFluent.js';
 import type ResistanceInAWireDescriber from './ResistanceInAWireDescriber.js';
 
 const summaryPlayAreaStringProperty = ResistanceInAWireFluent.a11y.resistanceInAWireScreen.screenSummary.playAreaStringProperty;
+const summaryControlAreaStringProperty = ResistanceInAWireFluent.a11y.resistanceInAWireScreen.screenSummary.controlAreaStringProperty;
 const summaryCurrentlyStringProperty = ResistanceInAWireFluent.a11y.resistanceInAWireScreen.screenSummary.currentDetails.currentlyStringProperty;
 const summaryInteractionHintStringProperty = ResistanceInAWireFluent.a11y.resistanceInAWireScreen.screenSummary.interactionHintStringProperty;
 
@@ -21,27 +22,22 @@ export default class ResistanceInAWireScreenSummaryNode extends ScreenSummaryCon
 
   public constructor( describer: ResistanceInAWireDescriber ) {
 
+    const currentDetailsListOptions: AccessibleListOptions = {
+      leadingParagraphStringProperty: summaryCurrentlyStringProperty,
+      listItems: [
+        describer.resistanceSummaryStringProperty,
+        describer.resistivitySummaryStringProperty,
+        describer.lengthSummaryStringProperty,
+        describer.areaSummaryStringProperty
+      ],
+      renderFormattingTags: true
+    };
+
     super( {
-      additionalContent: summaryPlayAreaStringProperty
+      playAreaContent: summaryPlayAreaStringProperty,
+      controlAreaContent: summaryControlAreaStringProperty,
+      currentDetailsContent: AccessibleList.createTemplateProperty( currentDetailsListOptions ),
+      interactionHintContent: summaryInteractionHintStringProperty
     } );
-
-    this.addChild( new Node( { tagName: 'p', innerContent: summaryCurrentlyStringProperty } ) );
-
-    // list that updates according to model Properties
-    const listNode = new Node( { tagName: 'ul' } );
-    const resistanceItemNode = new Node( { tagName: 'li' } );
-    const resistivityItemNode = new Node( { tagName: 'li' } );
-    const lengthItemNode = new Node( { tagName: 'li' } );
-    const areaItemNode = new Node( { tagName: 'li' } );
-    this.addChild( listNode );
-    listNode.children = [ resistanceItemNode, resistivityItemNode, lengthItemNode, areaItemNode ];
-
-    // hint to look for other elements in the UI
-    this.addChild( new Node( { tagName: 'p', innerContent: summaryInteractionHintStringProperty } ) );
-
-    resistivityItemNode.innerContent = describer.resistivitySummaryStringProperty;
-    lengthItemNode.innerContent = describer.lengthSummaryStringProperty;
-    areaItemNode.innerContent = describer.areaSummaryStringProperty;
-    resistanceItemNode.innerContent = describer.resistanceSummaryStringProperty;
   }
 }

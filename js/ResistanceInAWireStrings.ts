@@ -51,6 +51,8 @@ type StringsType = {
       'screenSummary': {
         'playArea': string;
         'playAreaStringProperty': LocalizedStringProperty;
+        'controlArea': string;
+        'controlAreaStringProperty': LocalizedStringProperty;
         'currentDetails': {
           'currently': string;
           'currentlyStringProperty': LocalizedStringProperty;
@@ -70,8 +72,8 @@ type StringsType = {
     'formulaNode': {
       'accessibleHeading': string;
       'accessibleHeadingStringProperty': LocalizedStringProperty;
-      'accessibleHelpText': string;
-      'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      'accessibleParagraph': string;
+      'accessibleParagraphStringProperty': LocalizedStringProperty;
       'accessibleParagraphPattern': {
         'rhoLAndAComparable': string;
         'rhoLAndAComparableStringProperty': LocalizedStringProperty;
