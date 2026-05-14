@@ -1,8 +1,9 @@
 // Copyright 2026, University of Colorado Boulder
 
 /**
- * Creates localized descriptions for Resistance in a Wire view components. The model owns the physical values, while
- * this describer maps those values and view scale Properties to Fluent-backed strings for PDOM content.
+ * Centralizes the accessible-description logic for Resistance in a Wire. The model owns the physical values, while
+ * this describer owns the mappings from model and view values to stable Fluent keys and long-lived string Properties.
+ * Instances are created for the lifetime of the screen and are not intended to be disposed.
  *
  * @author Jesse Greenberg (PhET Interactive Simulations)
  */
@@ -12,6 +13,8 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js';
 import type ReadOnlyProperty from '../../../../axon/js/ReadOnlyProperty.js';
 import type { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
+import Range from '../../../../dot/js/Range.js';
+import type RangeWithValue from '../../../../dot/js/RangeWithValue.js';
 import { getFormattedAccessibleNumber } from '../../../../scenery-phet/js/NumberFormatting.js';
 import { centimetersSquaredUnit } from '../../../../scenery-phet/js/units/centimetersSquaredUnit.js';
 import { centimetersUnit } from '../../../../scenery-phet/js/units/centimetersUnit.js';
@@ -19,22 +22,51 @@ import { ohmCentimetersUnit } from '../../../../scenery-phet/js/units/ohmCentime
 import { ohmsUnit } from '../../../../scenery-phet/js/units/ohmsUnit.js';
 import ResistanceInAWireFluent from '../../ResistanceInAWireFluent.js';
 import ResistanceInAWireModel from '../model/ResistanceInAWireModel.js';
-import ResistanceInAWireConstants, { type ImpuritiesDescriptionKey, type LengthDescriptionKey, type RelativeSizeKey, type ThicknessDescriptionKey } from '../ResistanceInAWireConstants.js';
+import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 
 export type FormulaScaleKey = 'resistance' | 'resistivity' | 'area' | 'length';
 export type SliderLetterKey = 'rho' | 'length' | 'area';
 
-export type FormulaScaleProperties = Record<FormulaScaleKey, TReadOnlyProperty<number>>;
+// Keys used to describe the length of the wire.
+const LENGTH_DESCRIPTION_KEYS = [
+  'extremelyShort', 'veryShort', 'short', 'medium', 'long', 'veryLong', 'extremelyLong'
+] as const;
 
-export type ScreenSummaryItemStringProperties = {
-  resistanceStringProperty: ReadOnlyProperty<string>;
-  resistivityStringProperty: ReadOnlyProperty<string>;
-  lengthStringProperty: ReadOnlyProperty<string>;
-  areaStringProperty: ReadOnlyProperty<string>;
+// Keys used to describe the thickness of the wire.
+const THICKNESS_DESCRIPTION_KEYS = [
+  'extremelyThin', 'veryThin', 'thin', 'medium', 'thick', 'veryThick', 'extremelyThick'
+] as const;
+
+// Keys used to describe the amount of impurities in the wire.
+const IMPURITIES_DESCRIPTION_KEYS = [
+  'tiny', 'verySmall', 'small', 'medium', 'large', 'veryLarge', 'huge'
+] as const;
+
+// Keys used to describe the relative visual sizes of equation letters.
+const RELATIVE_SIZE_DESCRIPTION_KEYS = [
+  'muchMuchSmaller', 'muchSmaller', 'slightlySmaller', 'comparable',
+  'slightlyLarger', 'muchLarger', 'muchMuchLarger'
+] as const;
+
+type LengthDescriptionKey = typeof LENGTH_DESCRIPTION_KEYS[ number ];
+type ThicknessDescriptionKey = typeof THICKNESS_DESCRIPTION_KEYS[ number ];
+type ImpuritiesDescriptionKey = typeof IMPURITIES_DESCRIPTION_KEYS[ number ];
+type RelativeSizeKey = typeof RELATIVE_SIZE_DESCRIPTION_KEYS[ number ];
+
+type SizeChangeKey = 'grows' | 'shrinks' | 'growsALot' | 'shrinksALot';
+
+type DescriptionEntry<T extends string> = {
+  descriptionKey: T;
+  range: Range;
 };
 
+type DescriptionMap<T extends string> = Record<string, DescriptionEntry<T>>;
+type RelativeSizeMap = Record<RelativeSizeKey, DescriptionEntry<RelativeSizeKey>>;
+
+export type FormulaScaleProperties = Record<FormulaScaleKey, TReadOnlyProperty<number>>;
+
 const wireDescriptionPattern = ResistanceInAWireFluent.a11y.wire.wireDescriptionPattern;
-const relativeSizeDescription = ResistanceInAWireFluent.a11y.equation.relativeSizeDescription;
+const relativeSizeDescriptionPattern = ResistanceInAWireFluent.a11y.equation.relativeSizeDescription;
 const rhoLAndAComparablePattern = ResistanceInAWireFluent.a11y.equation.rhoLAndAComparablePattern;
 const lAndAComparablePattern = ResistanceInAWireFluent.a11y.equation.lAndAComparablePattern;
 const noneComparablePattern = ResistanceInAWireFluent.a11y.equation.noneComparablePattern;
@@ -44,18 +76,98 @@ const summaryLengthPattern = ResistanceInAWireFluent.a11y.summary.lengthPattern;
 const summaryAreaPattern = ResistanceInAWireFluent.a11y.summary.areaPattern;
 const sizeChangeAlertPattern = ResistanceInAWireFluent.a11y.controls.sizeChangeAlertPattern;
 
+/**
+ * Generates a map from physical value to accessible description. Each described range has a length of
+ * valueRange / descriptionArray.length.
+ */
+const generateDescriptionMap = <T extends string>(
+  descriptionArray: readonly T[],
+  valueRange: RangeWithValue
+): DescriptionMap<T> => {
+  const map: DescriptionMap<T> = {};
+
+  let minValue = valueRange.min;
+  for ( let i = 0; i < descriptionArray.length; i++ ) {
+    const nextMin = minValue + valueRange.getLength() / descriptionArray.length;
+
+    // Correct for any precision issues in the final interval.
+    const range = i === descriptionArray.length - 1 ?
+                  new Range( minValue, valueRange.max ) :
+                  new Range( minValue, nextMin );
+
+    map[ i ] = {
+      descriptionKey: descriptionArray[ i ],
+      range: range
+    };
+
+    minValue = nextMin;
+  }
+
+  return map;
+};
+
+const LENGTH_TO_DESCRIPTION_MAP = generateDescriptionMap( LENGTH_DESCRIPTION_KEYS, ResistanceInAWireConstants.LENGTH_RANGE );
+const AREA_TO_DESCRIPTION_MAP = generateDescriptionMap( THICKNESS_DESCRIPTION_KEYS, ResistanceInAWireConstants.AREA_RANGE );
+const RESISTIVITY_TO_DESCRIPTION_MAP = generateDescriptionMap( IMPURITIES_DESCRIPTION_KEYS, ResistanceInAWireConstants.RESISTIVITY_RANGE );
+
+// Maps relative scale magnitudes of the formula letters to stable relative-size description keys.
+const RELATIVE_SIZE_MAP: RelativeSizeMap = {
+  muchMuchSmaller: {
+    descriptionKey: 'muchMuchSmaller',
+    range: new Range( 0, 0.1 )
+  },
+  muchSmaller: {
+    descriptionKey: 'muchSmaller',
+    range: new Range( 0.1, 0.4 )
+  },
+  slightlySmaller: {
+    descriptionKey: 'slightlySmaller',
+    range: new Range( 0.4, 0.7 )
+  },
+  comparable: {
+    descriptionKey: 'comparable',
+    range: new Range( 0.7, 1.3 )
+  },
+  slightlyLarger: {
+    descriptionKey: 'slightlyLarger',
+    range: new Range( 1.3, 2 )
+  },
+  muchLarger: {
+    descriptionKey: 'muchLarger',
+    range: new Range( 2, 20 )
+  },
+  muchMuchLarger: {
+    descriptionKey: 'muchMuchLarger',
+    range: new Range( 20, Number.MAX_VALUE )
+  }
+};
+
 // If resistance changes by more than this threshold, the accessible alert describes it as a large change.
 const LARGE_RESISTANCE_DELTA = (
   ( ResistanceInAWireModel.getResistanceRange().max - ResistanceInAWireModel.getResistanceRange().min ) /
-  ResistanceInAWireConstants.RELATIVE_SIZE_KEYS.length
+  RELATIVE_SIZE_DESCRIPTION_KEYS.length
 ) * 2;
 
-type SizeChangeKey = 'grows' | 'shrinks' | 'growsALot' | 'shrinksALot';
+/**
+ * Returns the stable description key for the range that contains the provided value.
+ */
+const getValueDescriptionFromMap = <T extends string>( value: number, map: DescriptionMap<T> ): T => {
+
+  const keys = Object.keys( map );
+  for ( let i = 0; i < keys.length; i++ ) {
+    const entry = map[ keys[ i ] ];
+
+    if ( entry.range.contains( value ) ) {
+      return entry.descriptionKey;
+    }
+  }
+  throw new Error( `no description for value: ${value}` );
+};
 
 /**
- * Owns long-lived Properties that generate accessible descriptions for the screen. Model-derived description Properties
- * are created once in the constructor, while formula scale descriptions are created when FormulaNode provides its
- * view-derived scale Properties.
+ * Owns long-lived accessible description Properties for the screen. It translates model values into wire-description
+ * keys, formats accessible value strings, and creates descriptions for formula-letter size relationships provided by
+ * FormulaNode. Since it is created for the lifetime of the screen, returned Properties are marked as non-disposable.
  */
 export default class ResistanceInAWireDescriber extends Disposable {
 
@@ -71,12 +183,14 @@ export default class ResistanceInAWireDescriber extends Disposable {
   // Description for the wire display, owned by the Describer because it is shared for the lifetime of the screen.
   public readonly wireDescriptionStringProperty: ReadOnlyProperty<string>;
 
-  // Dynamic screen summary item text, grouped together so the summary node can assign PDOM content without creating
-  // additional derived Properties.
-  public readonly screenSummaryItemStringProperties: ScreenSummaryItemStringProperties;
+  // Dynamic screen summary item text.
+  public readonly resistanceSummaryStringProperty: ReadOnlyProperty<string>;
+  public readonly resistivitySummaryStringProperty: ReadOnlyProperty<string>;
+  public readonly lengthSummaryStringProperty: ReadOnlyProperty<string>;
+  public readonly areaSummaryStringProperty: ReadOnlyProperty<string>;
 
   public constructor( model: ResistanceInAWireModel ) {
-    super();
+    super( { isDisposable: false } );
 
     const fixedDecimalOptions = {
       numberFormatOptions: {
@@ -87,85 +201,46 @@ export default class ResistanceInAWireDescriber extends Disposable {
     };
 
     this.lengthDescriptionKeyProperty = new DerivedProperty( [ model.lengthProperty ], lengthValue =>
-      ResistanceInAWireConstants.getValueDescriptionFromMap<LengthDescriptionKey>( lengthValue, ResistanceInAWireConstants.LENGTH_TO_DESCRIPTION_MAP )
+      getValueDescriptionFromMap<LengthDescriptionKey>( lengthValue, LENGTH_TO_DESCRIPTION_MAP )
     );
 
     this.thicknessDescriptionKeyProperty = new DerivedProperty( [ model.areaProperty ], areaValue =>
-      ResistanceInAWireConstants.getValueDescriptionFromMap<ThicknessDescriptionKey>( areaValue, ResistanceInAWireConstants.AREA_TO_DESCRIPTION_MAP )
+      getValueDescriptionFromMap<ThicknessDescriptionKey>( areaValue, AREA_TO_DESCRIPTION_MAP )
     );
 
     this.impuritiesDescriptionKeyProperty = new DerivedProperty( [ model.resistivityProperty ], resistivityValue =>
-      ResistanceInAWireConstants.getValueDescriptionFromMap<ImpuritiesDescriptionKey>( resistivityValue, ResistanceInAWireConstants.RESISTIVITY_TO_DESCRIPTION_MAP )
+      getValueDescriptionFromMap<ImpuritiesDescriptionKey>( resistivityValue, RESISTIVITY_TO_DESCRIPTION_MAP )
     );
 
-    this.resistivityAccessibleStringProperty = ohmCentimetersUnit.getAccessibleStringProperty( model.resistivityProperty, fixedDecimalOptions );
-    this.lengthAccessibleStringProperty = centimetersUnit.getAccessibleStringProperty( model.lengthProperty, fixedDecimalOptions );
-    this.areaAccessibleStringProperty = centimetersSquaredUnit.getAccessibleStringProperty( model.areaProperty, fixedDecimalOptions );
-    this.resistanceAccessibleStringProperty = ResistanceInAWireDescriber.createAccessibleResistanceStringProperty( model.resistanceProperty );
+    this.resistivityAccessibleStringProperty = ohmCentimetersUnit.getAccessibleStringProperty(
+      model.resistivityProperty,
+      fixedDecimalOptions
+    );
+    this.lengthAccessibleStringProperty = centimetersUnit.getAccessibleStringProperty(
+      model.lengthProperty,
+      fixedDecimalOptions
+    );
+    this.areaAccessibleStringProperty = centimetersSquaredUnit.getAccessibleStringProperty(
+      model.areaProperty,
+      fixedDecimalOptions
+    );
+    this.resistanceAccessibleStringProperty = ResistanceInAWireDescriber.createAccessibleResistanceStringProperty(
+      model.resistanceProperty
+    );
 
     this.wireDescriptionStringProperty = this.createWireDescriptionProperty();
-    this.screenSummaryItemStringProperties = this.createScreenSummaryItemStringProperties();
-
-    this.addDisposable(
-      this.wireDescriptionStringProperty,
-      this.screenSummaryItemStringProperties.resistanceStringProperty,
-      this.screenSummaryItemStringProperties.resistivityStringProperty,
-      this.screenSummaryItemStringProperties.lengthStringProperty,
-      this.screenSummaryItemStringProperties.areaStringProperty,
-      this.lengthDescriptionKeyProperty,
-      this.thicknessDescriptionKeyProperty,
-      this.impuritiesDescriptionKeyProperty,
-      this.resistivityAccessibleStringProperty,
-      this.lengthAccessibleStringProperty,
-      this.areaAccessibleStringProperty,
+    this.resistanceSummaryStringProperty = ResistanceInAWireDescriber.resistanceSummaryStringProperty(
       this.resistanceAccessibleStringProperty
     );
-  }
-
-  /**
-   * Creates a reactive accessible resistance string with dynamic decimal precision.
-   */
-  private static createAccessibleResistanceStringProperty( resistanceProperty: TReadOnlyProperty<number> ): ReadOnlyProperty<string> {
-    assert && assert( ohmsUnit.accessiblePattern, 'ohmsUnit should have an accessible pattern' );
-
-    const formattedResistanceValueProperty = new DerivedProperty( [ resistanceProperty ], resistance =>
-      getFormattedAccessibleNumber( resistance, {
-        decimalPlaces: ResistanceInAWireConstants.getResistanceDecimals( resistance ),
-        showTrailingZeros: false,
-        showIntegersAsIntegers: true
-      } )
+    this.resistivitySummaryStringProperty = ResistanceInAWireDescriber.resistivitySummaryStringProperty(
+      this.resistivityAccessibleStringProperty
     );
-
-    const resistanceStringProperty = ohmsUnit.accessiblePattern!.createProperty( {
-      value: formattedResistanceValueProperty
-    } );
-
-    resistanceStringProperty.addDisposable( formattedResistanceValueProperty );
-
-    return resistanceStringProperty;
-  }
-
-  /**
-   * Returns an accessible resistance string with dynamic decimal precision.
-   */
-  private static getAccessibleResistanceString( resistance: number ): string {
-    return ohmsUnit.getAccessibleString( resistance, {
-      decimalPlaces: ResistanceInAWireConstants.getResistanceDecimals( resistance ),
-      showTrailingZeros: false,
-      showIntegersAsIntegers: true
-    } );
-  }
-
-  /**
-   * Creates the accessible description for the wire from current physical values.
-   */
-  private createWireDescriptionProperty(): ReadOnlyProperty<string> {
-    return wireDescriptionPattern.createProperty( {
-      length: this.lengthDescriptionKeyProperty,
-      thickness: this.thicknessDescriptionKeyProperty,
-      impurities: this.impuritiesDescriptionKeyProperty,
-      resistance: this.resistanceAccessibleStringProperty
-    } );
+    this.lengthSummaryStringProperty = ResistanceInAWireDescriber.lengthSummaryStringProperty(
+      this.lengthAccessibleStringProperty
+    );
+    this.areaSummaryStringProperty = ResistanceInAWireDescriber.areaSummaryStringProperty(
+      this.areaAccessibleStringProperty
+    );
   }
 
   /**
@@ -177,18 +252,30 @@ export default class ResistanceInAWireDescriber extends Disposable {
     const areaScaleProperty = scaleProperties.area;
     const lengthScaleProperty = scaleProperties.length;
 
-    const rToRhoKeyProperty = new DerivedProperty( [ resistanceScaleProperty, resistivityScaleProperty ],
-      ( resistanceScale, resistivityScale ) => ResistanceInAWireDescriber.getRelativeSizeKey( resistanceScale / resistivityScale ) );
+    const rToRhoKeyProperty = new DerivedProperty(
+      [ resistanceScaleProperty, resistivityScaleProperty ],
+      ( resistanceScale, resistivityScale ) => ResistanceInAWireDescriber.getRelativeSizeKey( resistanceScale / resistivityScale )
+    );
 
-    const rToAKeyProperty = new DerivedProperty( [ resistanceScaleProperty, areaScaleProperty ],
-      ( resistanceScale, areaScale ) => ResistanceInAWireDescriber.getRelativeSizeKey( resistanceScale / areaScale ) );
+    const rToAKeyProperty = new DerivedProperty(
+      [ resistanceScaleProperty, areaScaleProperty ],
+      ( resistanceScale, areaScale ) => ResistanceInAWireDescriber.getRelativeSizeKey( resistanceScale / areaScale )
+    );
 
-    const rToLKeyProperty = new DerivedProperty( [ resistanceScaleProperty, lengthScaleProperty ],
-      ( resistanceScale, lengthScale ) => ResistanceInAWireDescriber.getRelativeSizeKey( resistanceScale / lengthScale ) );
+    const rToLKeyProperty = new DerivedProperty(
+      [ resistanceScaleProperty, lengthScaleProperty ],
+      ( resistanceScale, lengthScale ) => ResistanceInAWireDescriber.getRelativeSizeKey( resistanceScale / lengthScale )
+    );
 
-    const rToRhoDescriptionProperty = relativeSizeDescription.createProperty( { relativeSize: rToRhoKeyProperty } );
-    const rToADescriptionProperty = relativeSizeDescription.createProperty( { relativeSize: rToAKeyProperty } );
-    const rToLDescriptionProperty = relativeSizeDescription.createProperty( { relativeSize: rToLKeyProperty } );
+    const rToRhoDescriptionProperty = relativeSizeDescriptionPattern.createProperty( {
+      relativeSize: rToRhoKeyProperty
+    } );
+    const rToADescriptionProperty = relativeSizeDescriptionPattern.createProperty( {
+      relativeSize: rToAKeyProperty
+    } );
+    const rToLDescriptionProperty = relativeSizeDescriptionPattern.createProperty( {
+      relativeSize: rToLKeyProperty
+    } );
 
     const rhoLAndAComparableDescriptionProperty = rhoLAndAComparablePattern.createProperty( {
       rToAll: rToRhoDescriptionProperty // any size description will work
@@ -207,7 +294,8 @@ export default class ResistanceInAWireDescriber extends Disposable {
 
     // The relative-size description chooses from fully reactive FluentPattern Properties so both model and locale
     // changes are reflected in the PDOM.
-    const relativeSizeDescriptionProperty = new DerivedStringProperty( [
+    return new DerivedStringProperty(
+      [
         resistanceScaleProperty,
         resistivityScaleProperty,
         areaScaleProperty,
@@ -232,46 +320,9 @@ export default class ResistanceInAWireDescriber extends Disposable {
         rhoLAndAComparableDescription,
         lAndAComparableDescription,
         noneComparableDescription
-      ) );
-
-    relativeSizeDescriptionProperty.addDisposable(
-      noneComparableDescriptionProperty,
-      lAndAComparableDescriptionProperty,
-      rhoLAndAComparableDescriptionProperty,
-      rToLDescriptionProperty,
-      rToADescriptionProperty,
-      rToRhoDescriptionProperty,
-      rToRhoKeyProperty,
-      rToAKeyProperty,
-      rToLKeyProperty
+      ),
+      { isDisposable: false }
     );
-
-    return relativeSizeDescriptionProperty;
-  }
-
-  /**
-   * Creates the reactive string Properties for the dynamic values listed in the screen summary.
-   */
-  private createScreenSummaryItemStringProperties(): ScreenSummaryItemStringProperties {
-    const resistivityStringProperty = summaryResistivityPattern.createProperty( {
-      value: this.resistivityAccessibleStringProperty
-    } );
-    const lengthStringProperty = summaryLengthPattern.createProperty( {
-      value: this.lengthAccessibleStringProperty
-    } );
-    const areaStringProperty = summaryAreaPattern.createProperty( {
-      value: this.areaAccessibleStringProperty
-    } );
-    const resistanceStringProperty = summaryResistancePattern.createProperty( {
-      value: this.resistanceAccessibleStringProperty
-    } );
-
-    return {
-      resistanceStringProperty: resistanceStringProperty,
-      resistivityStringProperty: resistivityStringProperty,
-      lengthStringProperty: lengthStringProperty,
-      areaStringProperty: areaStringProperty
-    };
   }
 
   /**
@@ -295,15 +346,114 @@ export default class ResistanceInAWireDescriber extends Disposable {
   }
 
   /**
+   * Creates a reactive string Property for the resistance item in the screen summary.
+   */
+  public static resistanceSummaryStringProperty(
+    resistanceAccessibleStringProperty: TReadOnlyProperty<string>
+  ): ReadOnlyProperty<string> {
+    const resistanceSummaryStringProperty = summaryResistancePattern.createProperty( {
+      value: resistanceAccessibleStringProperty
+    } );
+    resistanceSummaryStringProperty.isDisposable = false;
+    return resistanceSummaryStringProperty;
+  }
+
+  /**
+   * Creates a reactive string Property for the resistivity item in the screen summary.
+   */
+  public static resistivitySummaryStringProperty(
+    resistivityAccessibleStringProperty: TReadOnlyProperty<string>
+  ): ReadOnlyProperty<string> {
+    const resistivitySummaryStringProperty = summaryResistivityPattern.createProperty( {
+      value: resistivityAccessibleStringProperty
+    } );
+    resistivitySummaryStringProperty.isDisposable = false;
+    return resistivitySummaryStringProperty;
+  }
+
+  /**
+   * Creates a reactive string Property for the length item in the screen summary.
+   */
+  public static lengthSummaryStringProperty(
+    lengthAccessibleStringProperty: TReadOnlyProperty<string>
+  ): ReadOnlyProperty<string> {
+    const lengthSummaryStringProperty = summaryLengthPattern.createProperty( {
+      value: lengthAccessibleStringProperty
+    } );
+    lengthSummaryStringProperty.isDisposable = false;
+    return lengthSummaryStringProperty;
+  }
+
+  /**
+   * Creates a reactive string Property for the area item in the screen summary.
+   */
+  public static areaSummaryStringProperty(
+    areaAccessibleStringProperty: TReadOnlyProperty<string>
+  ): ReadOnlyProperty<string> {
+    const areaSummaryStringProperty = summaryAreaPattern.createProperty( {
+      value: areaAccessibleStringProperty
+    } );
+    areaSummaryStringProperty.isDisposable = false;
+    return areaSummaryStringProperty;
+  }
+
+  /**
+   * Creates the accessible description for the wire from current physical values.
+   */
+  private createWireDescriptionProperty(): ReadOnlyProperty<string> {
+    const wireDescriptionStringProperty = wireDescriptionPattern.createProperty( {
+      length: this.lengthDescriptionKeyProperty,
+      thickness: this.thicknessDescriptionKeyProperty,
+      impurities: this.impuritiesDescriptionKeyProperty,
+      resistance: this.resistanceAccessibleStringProperty
+    } );
+    wireDescriptionStringProperty.isDisposable = false;
+    return wireDescriptionStringProperty;
+  }
+
+  /**
+   * Creates a reactive accessible resistance string with dynamic decimal precision.
+   */
+  private static createAccessibleResistanceStringProperty(
+    resistanceProperty: TReadOnlyProperty<number>
+  ): ReadOnlyProperty<string> {
+    assert && assert( ohmsUnit.accessiblePattern, 'ohmsUnit should have an accessible pattern' );
+
+    const formattedResistanceValueProperty = new DerivedProperty( [ resistanceProperty ], resistance =>
+      getFormattedAccessibleNumber( resistance, {
+        decimalPlaces: ResistanceInAWireConstants.getResistanceDecimals( resistance ),
+        showTrailingZeros: false,
+        showIntegersAsIntegers: true
+      } )
+    );
+
+    const resistanceStringProperty = ohmsUnit.accessiblePattern!.createProperty( {
+      value: formattedResistanceValueProperty
+    } );
+    resistanceStringProperty.isDisposable = false;
+    return resistanceStringProperty;
+  }
+
+  /**
+   * Returns an accessible resistance string with dynamic decimal precision.
+   */
+  private static getAccessibleResistanceString( resistance: number ): string {
+    return ohmsUnit.getAccessibleString( resistance, {
+      decimalPlaces: ResistanceInAWireConstants.getResistanceDecimals( resistance ),
+      showTrailingZeros: false,
+      showIntegersAsIntegers: true
+    } );
+  }
+
+  /**
    * Get a relative size key from a relative scale, used to describe letters relative to each other.
    */
   private static getRelativeSizeKey( relativeScale: number ): RelativeSizeKey {
 
     // Get described ranges of each relative scale.
-    const keys = Object.keys( ResistanceInAWireConstants.RELATIVE_SIZE_MAP ) as
-      ( keyof typeof ResistanceInAWireConstants.RELATIVE_SIZE_MAP )[];
+    const keys = Object.keys( RELATIVE_SIZE_MAP ) as ( keyof typeof RELATIVE_SIZE_MAP )[];
     for ( let i = 0; i < keys.length; i++ ) {
-      const relativeEntry = ResistanceInAWireConstants.RELATIVE_SIZE_MAP[ keys[ i ] ];
+      const relativeEntry = RELATIVE_SIZE_MAP[ keys[ i ] ];
 
       if ( relativeEntry.range.contains( relativeScale ) ) {
         return relativeEntry.descriptionKey;
@@ -343,16 +493,15 @@ export default class ResistanceInAWireDescriber extends Disposable {
     const lToA = lengthScale / areaScale;
     const lToRho = lengthScale / resistivityScale;
 
-    const comparableRange = ResistanceInAWireConstants.RELATIVE_SIZE_MAP.comparable.range;
+    const comparableRange = RELATIVE_SIZE_MAP.comparable.range;
 
     // Even if right hand side variables are not comparable in size, if R is relatively larger or smaller than all
     // by the same amount, combine size description.
-    const relativeSizeKeys = Object.keys( ResistanceInAWireConstants.RELATIVE_SIZE_MAP ) as
-      ( keyof typeof ResistanceInAWireConstants.RELATIVE_SIZE_MAP )[];
+    const relativeSizeKeys = Object.keys( RELATIVE_SIZE_MAP ) as ( keyof typeof RELATIVE_SIZE_MAP )[];
     let allRelativeSizesSame = false;
     for ( let i = 0; i < relativeSizeKeys.length; i++ ) {
       const key = relativeSizeKeys[ i ];
-      const sizeRange = ResistanceInAWireConstants.RELATIVE_SIZE_MAP[ key ].range;
+      const sizeRange = RELATIVE_SIZE_MAP[ key ].range;
       const containsRToRho = sizeRange.contains( rToRho );
       const containsRToA = sizeRange.contains( rToA );
       const containsRToL = sizeRange.contains( rToL );

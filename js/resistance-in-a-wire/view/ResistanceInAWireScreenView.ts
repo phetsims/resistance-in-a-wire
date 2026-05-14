@@ -31,7 +31,6 @@ export default class ResistanceInAWireScreenView extends ScreenView {
       tandem: tandem,
       screenSummaryContent: new ResistanceInAWireScreenSummaryNode( describer )
     } );
-    this.addDisposable( describer );
 
     // Create the control panel with sliders that change the values of the equation's variables. Hard coded
     const controlPanel = new ControlPanel( model, describer, tandem.createTandem( 'controlPanel' ), {

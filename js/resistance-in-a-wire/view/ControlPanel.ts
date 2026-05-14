@@ -42,7 +42,6 @@ const resistanceStringProperty = ResistanceInAWireFluent.resistanceStringPropert
 const resistivityStringProperty = ResistanceInAWireFluent.resistivityStringProperty;
 const symbolOhmsStringProperty = SceneryPhetFluent.symbol.ohmsStringProperty;
 const symbolResistivityStringProperty = SceneryPhetFluent.symbol.resistivityStringProperty;
-
 const resistivitySliderLabelStringProperty = ResistanceInAWireFluent.a11y.controls.resistivitySliderLabelStringProperty;
 const lengthSliderLabelStringProperty = ResistanceInAWireFluent.a11y.controls.lengthSliderLabelStringProperty;
 const areaSliderLabelStringProperty = ResistanceInAWireFluent.a11y.controls.areaSliderLabelStringProperty;

@@ -39,11 +39,9 @@ export default class ResistanceInAWireScreenSummaryNode extends ScreenSummaryCon
     // hint to look for other elements in the UI
     this.addChild( new Node( { tagName: 'p', innerContent: summaryInteractionHintStringProperty } ) );
 
-    const summaryItemStringProperties = describer.screenSummaryItemStringProperties;
-
-    resistivityItemNode.innerContent = summaryItemStringProperties.resistivityStringProperty;
-    lengthItemNode.innerContent = summaryItemStringProperties.lengthStringProperty;
-    areaItemNode.innerContent = summaryItemStringProperties.areaStringProperty;
-    resistanceItemNode.innerContent = summaryItemStringProperties.resistanceStringProperty;
+    resistivityItemNode.innerContent = describer.resistivitySummaryStringProperty;
+    lengthItemNode.innerContent = describer.lengthSummaryStringProperty;
+    areaItemNode.innerContent = describer.areaSummaryStringProperty;
+    resistanceItemNode.innerContent = describer.resistanceSummaryStringProperty;
   }
 }
