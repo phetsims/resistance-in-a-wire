@@ -65,21 +65,6 @@ type DescriptionMap<T extends string> = Record<string, DescriptionEntry<T>>;
 
 export type FormulaScaleProperties = Record<FormulaScaleKey, TReadOnlyProperty<number>>;
 
-const formulaNodeStrings = ResistanceInAWireFluent.a11y.formulaNode;
-const formulaDescriptionPatterns = formulaNodeStrings.lettersNode.descriptionContentPattern;
-const screenSummaryCurrentDetails = ResistanceInAWireFluent.a11y.resistanceInAWireScreen.screenSummary.currentDetails;
-const sliderChangeStrings = ResistanceInAWireFluent.a11y.controlPanel.sliderChange;
-const wireDescriptionPattern = ResistanceInAWireFluent.a11y.wireNode.descriptionContentPattern;
-const relativeSizeDescriptionPattern = formulaNodeStrings.relativeSizeDescription;
-const rhoLAndAComparablePattern = formulaDescriptionPatterns.rhoLAndAComparable;
-const lAndAComparablePattern = formulaDescriptionPatterns.lAndAComparable;
-const noneComparablePattern = formulaDescriptionPatterns.noneComparable;
-const summaryResistancePattern = screenSummaryCurrentDetails.resistancePattern;
-const summaryResistivityPattern = screenSummaryCurrentDetails.resistivityPattern;
-const summaryLengthPattern = screenSummaryCurrentDetails.lengthPattern;
-const summaryAreaPattern = screenSummaryCurrentDetails.areaPattern;
-const sizeChangeAlertPattern = sliderChangeStrings.accessibleContextResponsePattern;
-
 /**
  * Generates a map from physical value to accessible description. Each described range has a length of
  * valueRange / descriptionArray.length.
@@ -239,30 +224,33 @@ export default class ResistanceInAWireDescriber extends Disposable {
       ( resistanceScale, lengthScale ) => ResistanceInAWireDescriber.getRelativeSizeKey( resistanceScale / lengthScale )
     );
 
-    const rToRhoDescriptionProperty = relativeSizeDescriptionPattern.createProperty( {
+    const rToRhoDescriptionProperty = ResistanceInAWireFluent.a11y.formulaNode.relativeSizeDescription.createProperty( {
       relativeSize: rToRhoKeyProperty
     } );
-    const rToADescriptionProperty = relativeSizeDescriptionPattern.createProperty( {
+    const rToADescriptionProperty = ResistanceInAWireFluent.a11y.formulaNode.relativeSizeDescription.createProperty( {
       relativeSize: rToAKeyProperty
     } );
-    const rToLDescriptionProperty = relativeSizeDescriptionPattern.createProperty( {
+    const rToLDescriptionProperty = ResistanceInAWireFluent.a11y.formulaNode.relativeSizeDescription.createProperty( {
       relativeSize: rToLKeyProperty
     } );
 
-    const rhoLAndAComparableDescriptionProperty = rhoLAndAComparablePattern.createProperty( {
-      rToAll: rToRhoDescriptionProperty // any size description will work
-    } );
+    const rhoLAndAComparableDescriptionProperty =
+      ResistanceInAWireFluent.a11y.formulaNode.accessibleParagraphPattern.rhoLAndAComparable.createProperty( {
+        rToAll: rToRhoDescriptionProperty // any size description will work
+      } );
 
-    const lAndAComparableDescriptionProperty = lAndAComparablePattern.createProperty( {
-      rToRho: rToRhoDescriptionProperty,
-      rToLAndA: rToLDescriptionProperty // either length or area relative descriptions will work
-    } );
+    const lAndAComparableDescriptionProperty =
+      ResistanceInAWireFluent.a11y.formulaNode.accessibleParagraphPattern.lAndAComparable.createProperty( {
+        rToRho: rToRhoDescriptionProperty,
+        rToLAndA: rToLDescriptionProperty // either length or area relative descriptions will work
+      } );
 
-    const noneComparableDescriptionProperty = noneComparablePattern.createProperty( {
-      rToRho: rToRhoDescriptionProperty,
-      rToL: rToLDescriptionProperty,
-      rToA: rToADescriptionProperty
-    } );
+    const noneComparableDescriptionProperty =
+      ResistanceInAWireFluent.a11y.formulaNode.accessibleParagraphPattern.noneComparable.createProperty( {
+        rToRho: rToRhoDescriptionProperty,
+        rToL: rToLDescriptionProperty,
+        rToA: rToADescriptionProperty
+      } );
 
     // The relative-size description chooses from fully reactive FluentPattern Properties so both model and locale
     // changes are reflected in the PDOM.
@@ -309,7 +297,7 @@ export default class ResistanceInAWireDescriber extends Disposable {
     const resistanceChangeKey = ResistanceInAWireDescriber.getSizeChangeKey( deltaResistance, true );
     const letterChangeKey = ResistanceInAWireDescriber.getSizeChangeKey( deltaVariable, false );
 
-    return sizeChangeAlertPattern.format( {
+    return ResistanceInAWireFluent.a11y.controlPanel.sliderChange.accessibleContextResponsePattern.format( {
       letter: letterKey,
       letterChange: letterChangeKey,
       rChange: resistanceChangeKey,
@@ -323,9 +311,10 @@ export default class ResistanceInAWireDescriber extends Disposable {
   public static resistanceSummaryStringProperty(
     resistanceAccessibleStringProperty: TReadOnlyProperty<string>
   ): ReadOnlyProperty<string> {
-    const resistanceSummaryStringProperty = summaryResistancePattern.createProperty( {
-      value: resistanceAccessibleStringProperty
-    } );
+    const resistanceSummaryStringProperty =
+      ResistanceInAWireFluent.a11y.resistanceInAWireScreen.screenSummary.currentDetails.resistancePattern.createProperty( {
+        value: resistanceAccessibleStringProperty
+      } );
     resistanceSummaryStringProperty.isDisposable = false;
     return resistanceSummaryStringProperty;
   }
@@ -336,9 +325,10 @@ export default class ResistanceInAWireDescriber extends Disposable {
   public static resistivitySummaryStringProperty(
     resistivityAccessibleStringProperty: TReadOnlyProperty<string>
   ): ReadOnlyProperty<string> {
-    const resistivitySummaryStringProperty = summaryResistivityPattern.createProperty( {
-      value: resistivityAccessibleStringProperty
-    } );
+    const resistivitySummaryStringProperty =
+      ResistanceInAWireFluent.a11y.resistanceInAWireScreen.screenSummary.currentDetails.resistivityPattern.createProperty( {
+        value: resistivityAccessibleStringProperty
+      } );
     resistivitySummaryStringProperty.isDisposable = false;
     return resistivitySummaryStringProperty;
   }
@@ -349,9 +339,10 @@ export default class ResistanceInAWireDescriber extends Disposable {
   public static lengthSummaryStringProperty(
     lengthAccessibleStringProperty: TReadOnlyProperty<string>
   ): ReadOnlyProperty<string> {
-    const lengthSummaryStringProperty = summaryLengthPattern.createProperty( {
-      value: lengthAccessibleStringProperty
-    } );
+    const lengthSummaryStringProperty =
+      ResistanceInAWireFluent.a11y.resistanceInAWireScreen.screenSummary.currentDetails.lengthPattern.createProperty( {
+        value: lengthAccessibleStringProperty
+      } );
     lengthSummaryStringProperty.isDisposable = false;
     return lengthSummaryStringProperty;
   }
@@ -362,9 +353,10 @@ export default class ResistanceInAWireDescriber extends Disposable {
   public static areaSummaryStringProperty(
     areaAccessibleStringProperty: TReadOnlyProperty<string>
   ): ReadOnlyProperty<string> {
-    const areaSummaryStringProperty = summaryAreaPattern.createProperty( {
-      value: areaAccessibleStringProperty
-    } );
+    const areaSummaryStringProperty =
+      ResistanceInAWireFluent.a11y.resistanceInAWireScreen.screenSummary.currentDetails.areaPattern.createProperty( {
+        value: areaAccessibleStringProperty
+      } );
     areaSummaryStringProperty.isDisposable = false;
     return areaSummaryStringProperty;
   }
@@ -373,7 +365,7 @@ export default class ResistanceInAWireDescriber extends Disposable {
    * Creates the accessible description for the wire from current physical values.
    */
   private createWireDescriptionProperty(): ReadOnlyProperty<string> {
-    const wireDescriptionStringProperty = wireDescriptionPattern.createProperty( {
+    const wireDescriptionStringProperty = ResistanceInAWireFluent.a11y.wireNode.accessibleParagraphPattern.createProperty( {
       length: this.lengthDescriptionKeyProperty,
       thickness: this.thicknessDescriptionKeyProperty,
       impurities: this.impuritiesDescriptionKeyProperty,

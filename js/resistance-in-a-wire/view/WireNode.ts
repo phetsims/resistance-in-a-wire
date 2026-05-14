@@ -18,7 +18,6 @@ import type Tandem from '../../../../tandem/js/Tandem.js';
 import ResistanceInAWireFluent from '../../ResistanceInAWireFluent.js';
 import type ResistanceInAWireModel from '../model/ResistanceInAWireModel.js';
 import DotsCanvasNode from './DotsCanvasNode.js';
-import type ResistanceInAWireDescriber from './ResistanceInAWireDescriber.js';
 import WireShapeConstants from './WireShapeConstants.js';
 
 export default class WireNode extends Node {
@@ -29,7 +28,6 @@ export default class WireNode extends Node {
    */
   public constructor(
     model: ResistanceInAWireModel,
-    describer: ResistanceInAWireDescriber,
     tandem: Tandem,
     providedOptions?: NodeOptions
   ) {
@@ -41,8 +39,6 @@ export default class WireNode extends Node {
       accessibleHeading: ResistanceInAWireFluent.a11y.wireNode.accessibleHeadingStringProperty,
       isDisposable: false
     } );
-
-    this.descriptionContent = describer.wireDescriptionStringProperty;
 
     // See https://github.com/phetsims/resistance-in-a-wire/issues/158
     const wireBodyRenderer = platform.android ? 'canvas' : null;

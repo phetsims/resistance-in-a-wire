@@ -42,12 +42,16 @@ const resistanceStringProperty = ResistanceInAWireFluent.resistanceStringPropert
 const resistivityStringProperty = ResistanceInAWireFluent.resistivityStringProperty;
 const symbolOhmsStringProperty = SceneryPhetFluent.symbol.ohmsStringProperty;
 const symbolResistivityStringProperty = SceneryPhetFluent.symbol.resistivityStringProperty;
-const controlPanelStrings = ResistanceInAWireFluent.a11y.controlPanel;
-const resistivitySliderLabelStringProperty = controlPanelStrings.resistivitySlider.labelContentStringProperty;
-const lengthSliderLabelStringProperty = controlPanelStrings.lengthSlider.labelContentStringProperty;
-const areaSliderLabelStringProperty = controlPanelStrings.areaSlider.labelContentStringProperty;
-const controlPanelAccessibleHeadingStringProperty = controlPanelStrings.accessibleHeadingStringProperty;
-const controlPanelAccessibleHelpTextStringProperty = controlPanelStrings.accessibleHelpTextStringProperty;
+const resistivitySliderAccessibleNameStringProperty =
+  ResistanceInAWireFluent.a11y.controlPanel.resistivitySlider.accessibleNameStringProperty;
+const lengthSliderAccessibleNameStringProperty =
+  ResistanceInAWireFluent.a11y.controlPanel.lengthSlider.accessibleNameStringProperty;
+const areaSliderAccessibleNameStringProperty =
+  ResistanceInAWireFluent.a11y.controlPanel.areaSlider.accessibleNameStringProperty;
+const controlPanelAccessibleHeadingStringProperty =
+  ResistanceInAWireFluent.a11y.controlPanel.accessibleHeadingStringProperty;
+const controlPanelAccessibleHelpTextStringProperty =
+  ResistanceInAWireFluent.a11y.controlPanel.accessibleHelpTextStringProperty;
 
 // constants
 const SLIDER_SPACING = 50;
@@ -132,7 +136,7 @@ export default class ControlPanel extends Panel {
       symbolResistivityStringProperty,
       resistivityStringProperty,
       resistivityUnitStringProperty,
-      resistivitySliderLabelStringProperty,
+      resistivitySliderAccessibleNameStringProperty,
       tandem.createTandem( 'resistivitySlider' ), {
         startDrag: () => {
           rhoOnStart = model.resistivityProperty.get();
@@ -170,7 +174,7 @@ export default class ControlPanel extends Panel {
       lengthSymbolStringProperty,
       lengthStringProperty,
       cmStringProperty,
-      lengthSliderLabelStringProperty,
+      lengthSliderAccessibleNameStringProperty,
       tandem.createTandem( 'lengthSlider' ), {
         startDrag: () => {
           lengthOnStart = model.lengthProperty.get();
@@ -212,7 +216,7 @@ export default class ControlPanel extends Panel {
       areaSymbolStringProperty,
       areaStringProperty,
       areaUnitStringProperty,
-      areaSliderLabelStringProperty,
+      areaSliderAccessibleNameStringProperty,
       tandem.createTandem( 'areaSlider' ), {
         startDrag: () => {
           areaOnStart = model.areaProperty.get();

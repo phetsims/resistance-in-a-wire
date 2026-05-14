@@ -46,10 +46,11 @@ export default class ResistanceInAWireScreenView extends ScreenView {
     this.pdomPlayAreaNode.addChild( formulaNode );
 
     // Create the wire display to represent the formula
-    const wireNode = new WireNode( model, describer, tandem.createTandem( 'wireNode' ), {
+    const wireNode = new WireNode( model, tandem.createTandem( 'wireNode' ), {
       centerX: formulaNode.centerX,
       centerY: formulaNode.centerY + 270
     } );
+    wireNode.accessibleParagraph = describer.wireDescriptionStringProperty;
     this.pdomPlayAreaNode.addChild( wireNode );
 
     const tailX = wireNode.centerX - ResistanceInAWireConstants.TAIL_LENGTH / 2;

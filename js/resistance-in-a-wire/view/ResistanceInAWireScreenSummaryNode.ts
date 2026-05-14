@@ -13,10 +13,9 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import ResistanceInAWireFluent from '../../ResistanceInAWireFluent.js';
 import type ResistanceInAWireDescriber from './ResistanceInAWireDescriber.js';
 
-const screenSummary = ResistanceInAWireFluent.a11y.resistanceInAWireScreen.screenSummary;
-const summaryPlayAreaStringProperty = screenSummary.playAreaStringProperty;
-const summaryCurrentlyStringProperty = screenSummary.currentDetails.currentlyStringProperty;
-const summaryInteractionHintStringProperty = screenSummary.interactionHintStringProperty;
+const summaryPlayAreaStringProperty = ResistanceInAWireFluent.a11y.resistanceInAWireScreen.screenSummary.playAreaStringProperty;
+const summaryCurrentlyStringProperty = ResistanceInAWireFluent.a11y.resistanceInAWireScreen.screenSummary.currentDetails.currentlyStringProperty;
+const summaryInteractionHintStringProperty = ResistanceInAWireFluent.a11y.resistanceInAWireScreen.screenSummary.interactionHintStringProperty;
 
 export default class ResistanceInAWireScreenSummaryNode extends ScreenSummaryContent {
 

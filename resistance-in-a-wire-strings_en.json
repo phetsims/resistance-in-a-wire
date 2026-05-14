@@ -70,17 +70,15 @@
       "accessibleHelpText": {
         "value": "Resistance, <b>R</b>, is equal to resistivity, <b>rho</b>, times length, <b>L</b>, over area, <b>A</b>."
       },
-      "lettersNode": {
-        "descriptionContentPattern": {
-          "rhoLAndAComparable": {
-            "value": "Size of letter R is { $rToAll } the size of the letter rho, letter L, and letter A."
-          },
-          "lAndAComparable": {
-            "value": "Size of letter R is { $rToRho } the size of letter rho, and { $rToLAndA } letter L and letter A."
-          },
-          "noneComparable": {
-            "value": "Size of letter R is { $rToRho } the size of letter rho, { $rToL } letter L, and { $rToA } letter A."
-          }
+      "accessibleParagraphPattern": {
+        "rhoLAndAComparable": {
+          "value": "Size of letter R is { $rToAll } the size of the letter rho, letter L, and letter A."
+        },
+        "lAndAComparable": {
+          "value": "Size of letter R is { $rToRho } the size of letter rho, and { $rToLAndA } letter L and letter A."
+        },
+        "noneComparable": {
+          "value": "Size of letter R is { $rToRho } the size of letter rho, { $rToL } letter L, and { $rToA } letter A."
         }
       },
       "relativeSizeDescription": {
@@ -91,7 +89,7 @@
       "accessibleHeading": {
         "value": "The Wire"
       },
-      "descriptionContentPattern": {
+      "accessibleParagraphPattern": {
         "value": "Currently, { a11y_wireNode_lengthClause }, { a11y_wireNode_thicknessClause }, and { a11y_wireNode_impuritiesClause }. Resistance is { $resistance }."
       },
       "lengthClause": {
@@ -112,17 +110,17 @@
         "value": "Resistivity, Length, and Area sliders allow changes to equation and wire."
       },
       "resistivitySlider": {
-        "labelContent": {
+        "accessibleName": {
           "value": "rho, Resistivity"
         }
       },
       "lengthSlider": {
-        "labelContent": {
+        "accessibleName": {
           "value": "L, Length"
         }
       },
       "areaSlider": {
-        "labelContent": {
+        "accessibleName": {
           "value": "A, Area"
         }
       },

@@ -72,15 +72,13 @@ type StringsType = {
       'accessibleHeadingStringProperty': LocalizedStringProperty;
       'accessibleHelpText': string;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      'lettersNode': {
-        'descriptionContentPattern': {
-          'rhoLAndAComparable': string;
-          'rhoLAndAComparableStringProperty': LocalizedStringProperty;
-          'lAndAComparable': string;
-          'lAndAComparableStringProperty': LocalizedStringProperty;
-          'noneComparable': string;
-          'noneComparableStringProperty': LocalizedStringProperty;
-        }
+      'accessibleParagraphPattern': {
+        'rhoLAndAComparable': string;
+        'rhoLAndAComparableStringProperty': LocalizedStringProperty;
+        'lAndAComparable': string;
+        'lAndAComparableStringProperty': LocalizedStringProperty;
+        'noneComparable': string;
+        'noneComparableStringProperty': LocalizedStringProperty;
       };
       'relativeSizeDescription': string;
       'relativeSizeDescriptionStringProperty': LocalizedStringProperty;
@@ -88,8 +86,8 @@ type StringsType = {
     'wireNode': {
       'accessibleHeading': string;
       'accessibleHeadingStringProperty': LocalizedStringProperty;
-      'descriptionContentPattern': string;
-      'descriptionContentPatternStringProperty': LocalizedStringProperty;
+      'accessibleParagraphPattern': string;
+      'accessibleParagraphPatternStringProperty': LocalizedStringProperty;
       'lengthClause': string;
       'lengthClauseStringProperty': LocalizedStringProperty;
       'thicknessClause': string;
@@ -103,16 +101,16 @@ type StringsType = {
       'accessibleHelpText': string;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
       'resistivitySlider': {
-        'labelContent': string;
-        'labelContentStringProperty': LocalizedStringProperty;
+        'accessibleName': string;
+        'accessibleNameStringProperty': LocalizedStringProperty;
       };
       'lengthSlider': {
-        'labelContent': string;
-        'labelContentStringProperty': LocalizedStringProperty;
+        'accessibleName': string;
+        'accessibleNameStringProperty': LocalizedStringProperty;
       };
       'areaSlider': {
-        'labelContent': string;
-        'labelContentStringProperty': LocalizedStringProperty;
+        'accessibleName': string;
+        'accessibleNameStringProperty': LocalizedStringProperty;
       };
       'sliderChange': {
         'accessibleContextResponsePattern': string;

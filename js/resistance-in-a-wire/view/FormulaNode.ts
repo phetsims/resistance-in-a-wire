@@ -32,9 +32,8 @@ const areaSymbolStringProperty = ResistanceInAWireFluent.areaSymbolStringPropert
 const lengthSymbolStringProperty = ResistanceInAWireFluent.lengthSymbolStringProperty;
 const resistanceSymbolStringProperty = ResistanceInAWireFluent.resistanceSymbolStringProperty;
 const symbolResistivityStringProperty = SceneryPhetFluent.symbol.resistivityStringProperty;
-const formulaNodeStrings = ResistanceInAWireFluent.a11y.formulaNode;
-const formulaNodeAccessibleHeadingStringProperty = formulaNodeStrings.accessibleHeadingStringProperty;
-const formulaNodeAccessibleHelpTextStringProperty = formulaNodeStrings.accessibleHelpTextStringProperty;
+const formulaNodeAccessibleHeadingStringProperty = ResistanceInAWireFluent.a11y.formulaNode.accessibleHeadingStringProperty;
+const formulaNodeAccessibleHelpTextStringProperty = ResistanceInAWireFluent.a11y.formulaNode.accessibleHelpTextStringProperty;
 
 type FormulaSymbolEntry = {
   labelStringProperty: TReadOnlyProperty<string>;
@@ -72,9 +71,8 @@ export default class FormulaNode extends Node {
       tandem: tandem.createTandem( 'equalsSignText' )
     } );
 
-    // Parent for all letters in the equation - given a 'p' tag for a11y because this node will hold the relative
-    // size description, see getRelativeSizeDescription()
-    const lettersNode = new Node( { tagName: 'p' } );
+    // Parent for all letters in the equation.
+    const lettersNode = new Node();
 
     // If we are on a safari platform render with canvas to prevent these issues, but only on safari because
     // canvas doesn't perform as well on other browsers
@@ -149,7 +147,7 @@ export default class FormulaNode extends Node {
       tandemName: 'areaSymbolText'
     } );
 
-    lettersNode.descriptionContent = describer.createFormulaRelativeSizeDescriptionProperty( {
+    lettersNode.accessibleParagraph = describer.createFormulaRelativeSizeDescriptionProperty( {
       resistance: resistanceMagnitudeProperty,
       resistivity: resistivityMagnitudeProperty,
       area: areaMagnitudeProperty,

@@ -40,7 +40,7 @@ export default class SliderUnit extends Node {
                       symbolString: TReadOnlyProperty<string>,
                       nameStringProperty: TReadOnlyProperty<string>,
                       unitString: TReadOnlyProperty<string>,
-                      labelContent: PDOMValueType,
+                      accessibleName: PDOMValueType,
                       tandem: Tandem,
                       providedOptions?: SliderUnitOptions ) {
 
@@ -67,8 +67,7 @@ export default class SliderUnit extends Node {
         shiftKeyboardStep: 0.01, // delta when holding shift
         roundToStepSize: true, // default keyboard step rounds to pedagogically useful values
         containerTagName: 'li',
-        labelContent: labelContent,
-        labelTagName: 'label',
+        accessibleName: accessibleName,
         mapPDOMValue: ( value: number ) => Utils.toFixedNumber( value, 2 ),
 
         // phet-io
