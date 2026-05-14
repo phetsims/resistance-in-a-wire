@@ -112,7 +112,7 @@ const RESISTIVITY_TO_DESCRIPTION_MAP = generateDescriptionMap( IMPURITIES_DESCRI
 
 // If resistance changes by more than this threshold, the accessible alert describes it as a large change.
 const LARGE_RESISTANCE_DELTA = (
-  ( ResistanceInAWireModel.getResistanceRange().max - ResistanceInAWireModel.getResistanceRange().min ) /
+  ResistanceInAWireConstants.RESISTANCE_RANGE.getLength() /
   RELATIVE_SIZE_DESCRIPTION_KEYS.length
 ) * 2;
 
