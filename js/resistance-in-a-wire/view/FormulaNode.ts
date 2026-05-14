@@ -32,8 +32,9 @@ const areaSymbolStringProperty = ResistanceInAWireFluent.areaSymbolStringPropert
 const lengthSymbolStringProperty = ResistanceInAWireFluent.lengthSymbolStringProperty;
 const resistanceSymbolStringProperty = ResistanceInAWireFluent.resistanceSymbolStringProperty;
 const symbolResistivityStringProperty = SceneryPhetFluent.symbol.resistivityStringProperty;
-const equationResistanceEquationStringProperty = ResistanceInAWireFluent.a11y.equation.resistanceEquationStringProperty;
-const resistanceEquationDescriptionStringProperty = ResistanceInAWireFluent.a11y.equation.resistanceEquationDescriptionStringProperty;
+const formulaNodeStrings = ResistanceInAWireFluent.a11y.formulaNode;
+const formulaNodeAccessibleHeadingStringProperty = formulaNodeStrings.accessibleHeadingStringProperty;
+const formulaNodeAccessibleHelpTextStringProperty = formulaNodeStrings.accessibleHelpTextStringProperty;
 
 type FormulaSymbolEntry = {
   labelStringProperty: TReadOnlyProperty<string>;
@@ -58,8 +59,8 @@ export default class FormulaNode extends Node {
       isDisposable: false,
 
       // pdom
-      accessibleHeading: equationResistanceEquationStringProperty,
-      accessibleHelpText: resistanceEquationDescriptionStringProperty,
+      accessibleHeading: formulaNodeAccessibleHeadingStringProperty,
+      accessibleHelpText: formulaNodeAccessibleHelpTextStringProperty,
       accessibleHelpTextBehavior: ParallelDOM.HELP_TEXT_BEFORE_CONTENT
     } );
 

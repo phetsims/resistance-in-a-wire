@@ -65,16 +65,20 @@ type DescriptionMap<T extends string> = Record<string, DescriptionEntry<T>>;
 
 export type FormulaScaleProperties = Record<FormulaScaleKey, TReadOnlyProperty<number>>;
 
-const wireDescriptionPattern = ResistanceInAWireFluent.a11y.wire.wireDescriptionPattern;
-const relativeSizeDescriptionPattern = ResistanceInAWireFluent.a11y.equation.relativeSizeDescription;
-const rhoLAndAComparablePattern = ResistanceInAWireFluent.a11y.equation.rhoLAndAComparablePattern;
-const lAndAComparablePattern = ResistanceInAWireFluent.a11y.equation.lAndAComparablePattern;
-const noneComparablePattern = ResistanceInAWireFluent.a11y.equation.noneComparablePattern;
-const summaryResistancePattern = ResistanceInAWireFluent.a11y.summary.resistancePattern;
-const summaryResistivityPattern = ResistanceInAWireFluent.a11y.summary.resistivityPattern;
-const summaryLengthPattern = ResistanceInAWireFluent.a11y.summary.lengthPattern;
-const summaryAreaPattern = ResistanceInAWireFluent.a11y.summary.areaPattern;
-const sizeChangeAlertPattern = ResistanceInAWireFluent.a11y.controls.sizeChangeAlertPattern;
+const formulaNodeStrings = ResistanceInAWireFluent.a11y.formulaNode;
+const formulaDescriptionPatterns = formulaNodeStrings.lettersNode.descriptionContentPattern;
+const screenSummaryCurrentDetails = ResistanceInAWireFluent.a11y.resistanceInAWireScreen.screenSummary.currentDetails;
+const sliderChangeStrings = ResistanceInAWireFluent.a11y.controlPanel.sliderChange;
+const wireDescriptionPattern = ResistanceInAWireFluent.a11y.wireNode.descriptionContentPattern;
+const relativeSizeDescriptionPattern = formulaNodeStrings.relativeSizeDescription;
+const rhoLAndAComparablePattern = formulaDescriptionPatterns.rhoLAndAComparable;
+const lAndAComparablePattern = formulaDescriptionPatterns.lAndAComparable;
+const noneComparablePattern = formulaDescriptionPatterns.noneComparable;
+const summaryResistancePattern = screenSummaryCurrentDetails.resistancePattern;
+const summaryResistivityPattern = screenSummaryCurrentDetails.resistivityPattern;
+const summaryLengthPattern = screenSummaryCurrentDetails.lengthPattern;
+const summaryAreaPattern = screenSummaryCurrentDetails.areaPattern;
+const sizeChangeAlertPattern = sliderChangeStrings.accessibleContextResponsePattern;
 
 /**
  * Generates a map from physical value to accessible description. Each described range has a length of

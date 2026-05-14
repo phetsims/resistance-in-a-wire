@@ -13,16 +13,17 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import ResistanceInAWireFluent from '../../ResistanceInAWireFluent.js';
 import type ResistanceInAWireDescriber from './ResistanceInAWireDescriber.js';
 
-const summarySimStringProperty = ResistanceInAWireFluent.a11y.summary.simStringProperty;
-const summaryCurrentlyStringProperty = ResistanceInAWireFluent.a11y.summary.currentlyStringProperty;
-const summaryInteractionHintStringProperty = ResistanceInAWireFluent.a11y.summary.interactionHintStringProperty;
+const screenSummary = ResistanceInAWireFluent.a11y.resistanceInAWireScreen.screenSummary;
+const summaryPlayAreaStringProperty = screenSummary.playAreaStringProperty;
+const summaryCurrentlyStringProperty = screenSummary.currentDetails.currentlyStringProperty;
+const summaryInteractionHintStringProperty = screenSummary.interactionHintStringProperty;
 
 export default class ResistanceInAWireScreenSummaryNode extends ScreenSummaryContent {
 
   public constructor( describer: ResistanceInAWireDescriber ) {
 
     super( {
-      additionalContent: summarySimStringProperty
+      additionalContent: summaryPlayAreaStringProperty
     } );
 
     this.addChild( new Node( { tagName: 'p', innerContent: summaryCurrentlyStringProperty } ) );

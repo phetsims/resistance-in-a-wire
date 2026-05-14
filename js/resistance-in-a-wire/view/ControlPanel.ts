@@ -42,11 +42,12 @@ const resistanceStringProperty = ResistanceInAWireFluent.resistanceStringPropert
 const resistivityStringProperty = ResistanceInAWireFluent.resistivityStringProperty;
 const symbolOhmsStringProperty = SceneryPhetFluent.symbol.ohmsStringProperty;
 const symbolResistivityStringProperty = SceneryPhetFluent.symbol.resistivityStringProperty;
-const resistivitySliderLabelStringProperty = ResistanceInAWireFluent.a11y.controls.resistivitySliderLabelStringProperty;
-const lengthSliderLabelStringProperty = ResistanceInAWireFluent.a11y.controls.lengthSliderLabelStringProperty;
-const areaSliderLabelStringProperty = ResistanceInAWireFluent.a11y.controls.areaSliderLabelStringProperty;
-const sliderControlsStringProperty = ResistanceInAWireFluent.a11y.controls.sliderControlsStringProperty;
-const slidersDescriptionStringProperty = ResistanceInAWireFluent.a11y.controls.slidersDescriptionStringProperty;
+const controlPanelStrings = ResistanceInAWireFluent.a11y.controlPanel;
+const resistivitySliderLabelStringProperty = controlPanelStrings.resistivitySlider.labelContentStringProperty;
+const lengthSliderLabelStringProperty = controlPanelStrings.lengthSlider.labelContentStringProperty;
+const areaSliderLabelStringProperty = controlPanelStrings.areaSlider.labelContentStringProperty;
+const controlPanelAccessibleHeadingStringProperty = controlPanelStrings.accessibleHeadingStringProperty;
+const controlPanelAccessibleHelpTextStringProperty = controlPanelStrings.accessibleHelpTextStringProperty;
 
 // constants
 const SLIDER_SPACING = 50;
@@ -74,8 +75,8 @@ export default class ControlPanel extends Panel {
 
       // pdom
       tagName: 'ul',
-      accessibleHeading: sliderControlsStringProperty,
-      accessibleHelpText: slidersDescriptionStringProperty
+      accessibleHeading: controlPanelAccessibleHeadingStringProperty,
+      accessibleHelpText: controlPanelAccessibleHelpTextStringProperty
     }, providedOptions );
 
     const resistanceReadoutStringProperty = new PatternStringProperty( pattern0Label1Value2UnitsStringProperty, {

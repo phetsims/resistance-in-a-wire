@@ -11,34 +11,38 @@ resistance:                            resistance
 resistanceSymbol:                      R
 resistivity:                           resistivity
 a11y:
-  summary:
-    sim:                >-
-                        In the Play Area you find the Resistance equation, <b>R</b> equals
-                        <b>rho</b> times <b>L</b> over <b>A</b>, and a piece of wire. Sliders for
-                        resistivity, length, and area allow changes to the equation and the piece
-                        of wire. The Control Area has a button to reset the sim.
-    currently:          Currently,
-    resistancePattern:  resistance, <b>R</b>, is { $value }
-    resistivityPattern: resistivity, <b>rho</b>, is { $value }
-    lengthPattern:      length, <b>L</b>, is { $value }
-    areaPattern:        area, <b>A</b>, is { $value }
-    interactionHint:    >-
-                        Look for resistivity, length, and area sliders to play, or read on for
-                        details about equation and wire.
-  equation:
-    resistanceEquation:            Resistance Equation
-    resistanceEquationDescription: >-
-                                   Resistance, <b>R</b>, is equal to resistivity, <b>rho</b>, times length,
-                                   <b>L</b>, over area, <b>A</b>.
-    rhoLAndAComparablePattern:     >-
-                                   Size of letter R is { $rToAll } the size of the letter rho, letter L, and
-                                   letter A.
-    lAndAComparablePattern:        >-
-                                   Size of letter R is { $rToRho } the size of letter rho, and { $rToLAndA }
-                                   letter L and letter A.
-    noneComparablePattern:         >-
-                                   Size of letter R is { $rToRho } the size of letter rho, { $rToL } letter L,
-                                   and { $rToA } letter A.
+  resistanceInAWireScreen:
+    screenSummary:
+      playArea:        >-
+                       In the Play Area you find the Resistance equation, <b>R</b> equals
+                       <b>rho</b> times <b>L</b> over <b>A</b>, and a piece of wire. Sliders for
+                       resistivity, length, and area allow changes to the equation and the piece
+                       of wire. The Control Area has a button to reset the sim.
+      currentDetails:
+        currently:          Currently,
+        resistancePattern:  resistance, <b>R</b>, is { $value }
+        resistivityPattern: resistivity, <b>rho</b>, is { $value }
+        lengthPattern:      length, <b>L</b>, is { $value }
+        areaPattern:        area, <b>A</b>, is { $value }
+      interactionHint: >-
+                       Look for resistivity, length, and area sliders to play, or read on for
+                       details about equation and wire.
+  formulaNode:
+    accessibleHeading:  Resistance Equation
+    accessibleHelpText: >-
+                         Resistance, <b>R</b>, is equal to resistivity, <b>rho</b>, times length,
+                         <b>L</b>, over area, <b>A</b>.
+    lettersNode:
+      descriptionContentPattern:
+        rhoLAndAComparable: >-
+                            Size of letter R is { $rToAll } the size of the letter rho, letter L, and
+                            letter A.
+        lAndAComparable:    >-
+                            Size of letter R is { $rToRho } the size of letter rho, and { $rToLAndA }
+                            letter L and letter A.
+        noneComparable:     >-
+                            Size of letter R is { $rToRho } the size of letter rho, { $rToL } letter L,
+                            and { $rToA } letter A.
     relativeSizeDescription:
       select_relativeSize:
         muchMuchSmaller: much much smaller than
@@ -48,11 +52,11 @@ a11y:
         slightlyLarger:  slightly larger than
         muchLarger:      much larger than
         muchMuchLarger:  much much larger than
-  wire:
-    accessibleHeading: The Wire
-    wireDescriptionPattern:  >-
-                             Currently, { a11y.wire.lengthClause }, { a11y.wire.thicknessClause },
-                             and { a11y.wire.impuritiesClause }. Resistance is { $resistance }.
+  wireNode:
+    accessibleHeading:          The Wire
+    descriptionContentPattern:  >-
+                                Currently, { a11y.wireNode.lengthClause }, { a11y.wireNode.thicknessClause },
+                                and { a11y.wireNode.impuritiesClause }. Resistance is { $resistance }.
     lengthClause:
       select_length:
         extremelyShort: wire is extremely short
@@ -80,31 +84,35 @@ a11y:
         large:     there is a large amount of impurities in wire
         veryLarge: there is a very large amount of impurities in wire
         huge:      there is a huge amount of impurities in wire
-  controls:
-    resistivitySliderLabel: rho, Resistivity
-    lengthSliderLabel:      L, Length
-    areaSliderLabel:        A, Area
-    sliderControls:         Slider Controls
-    slidersDescription:     Resistivity, Length, and Area sliders allow changes to equation and wire.
-    sizeChangeAlertPattern: >-
-                            As { a11y.controls.changedLetterClause }, { a11y.controls.resistanceLetterClause }. Resistance now
-                            { $resistance }.
-    changedLetterClause:    letter { a11y.controls.letterName } { a11y.controls.letterSizeChange }
-    resistanceLetterClause: letter R { a11y.controls.resistanceSizeChange }
-    letterName:
-      select_letter:
-        rho:    rho
-        length: L
-        area:   A
-    letterSizeChange:
-      select_letterChange:
-        grows:       grows
-        shrinks:     shrinks
-        growsALot:   grows a lot
-        shrinksALot: shrinks a lot
-    resistanceSizeChange:
-      select_rChange:
-        grows:       grows
-        shrinks:     shrinks
-        growsALot:   grows a lot
-        shrinksALot: shrinks a lot
+  controlPanel:
+    accessibleHeading:  Slider Controls
+    accessibleHelpText: Resistivity, Length, and Area sliders allow changes to equation and wire.
+    resistivitySlider:
+      labelContent: rho, Resistivity
+    lengthSlider:
+      labelContent: L, Length
+    areaSlider:
+      labelContent: A, Area
+    sliderChange:
+      accessibleContextResponsePattern: >-
+                                        As { a11y.controlPanel.sliderChange.changedLetterClause }, { a11y.controlPanel.sliderChange.resistanceLetterClause }. Resistance now
+                                        { $resistance }.
+      changedLetterClause:              letter { a11y.controlPanel.sliderChange.letterName } { a11y.controlPanel.sliderChange.letterSizeChange }
+      resistanceLetterClause:           letter R { a11y.controlPanel.sliderChange.resistanceSizeChange }
+      letterName:
+        select_letter:
+          rho:    rho
+          length: L
+          area:   A
+      letterSizeChange:
+        select_letterChange:
+          grows:       grows
+          shrinks:     shrinks
+          growsALot:   grows a lot
+          shrinksALot: shrinks a lot
+      resistanceSizeChange:
+        select_rChange:
+          grows:       grows
+          shrinks:     shrinks
+          growsALot:   grows a lot
+          shrinksALot: shrinks a lot

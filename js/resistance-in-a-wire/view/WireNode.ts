@@ -38,7 +38,7 @@ export default class WireNode extends Node {
       tandem: tandem,
 
       // pdom
-      accessibleHeading: ResistanceInAWireFluent.a11y.wire.accessibleHeadingStringProperty,
+      accessibleHeading: ResistanceInAWireFluent.a11y.wireNode.accessibleHeadingStringProperty,
       isDisposable: false
     } );
 

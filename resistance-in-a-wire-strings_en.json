@@ -36,55 +36,63 @@
     "value": "resistivity"
   },
   "a11y": {
-    "summary": {
-      "sim": {
-        "value": "In the Play Area you find the Resistance equation, <b>R</b> equals <b>rho</b> times <b>L</b> over <b>A</b>, and a piece of wire. Sliders for resistivity, length, and area allow changes to the equation and the piece of wire. The Control Area has a button to reset the sim."
-      },
-      "currently": {
-        "value": "Currently,"
-      },
-      "resistancePattern": {
-        "value": "resistance, <b>R</b>, is { $value }"
-      },
-      "resistivityPattern": {
-        "value": "resistivity, <b>rho</b>, is { $value }"
-      },
-      "lengthPattern": {
-        "value": "length, <b>L</b>, is { $value }"
-      },
-      "areaPattern": {
-        "value": "area, <b>A</b>, is { $value }"
-      },
-      "interactionHint": {
-        "value": "Look for resistivity, length, and area sliders to play, or read on for details about equation and wire."
+    "resistanceInAWireScreen": {
+      "screenSummary": {
+        "playArea": {
+          "value": "In the Play Area you find the Resistance equation, <b>R</b> equals <b>rho</b> times <b>L</b> over <b>A</b>, and a piece of wire. Sliders for resistivity, length, and area allow changes to the equation and the piece of wire. The Control Area has a button to reset the sim."
+        },
+        "currentDetails": {
+          "currently": {
+            "value": "Currently,"
+          },
+          "resistancePattern": {
+            "value": "resistance, <b>R</b>, is { $value }"
+          },
+          "resistivityPattern": {
+            "value": "resistivity, <b>rho</b>, is { $value }"
+          },
+          "lengthPattern": {
+            "value": "length, <b>L</b>, is { $value }"
+          },
+          "areaPattern": {
+            "value": "area, <b>A</b>, is { $value }"
+          }
+        },
+        "interactionHint": {
+          "value": "Look for resistivity, length, and area sliders to play, or read on for details about equation and wire."
+        }
       }
     },
-    "equation": {
-      "resistanceEquation": {
+    "formulaNode": {
+      "accessibleHeading": {
         "value": "Resistance Equation"
       },
-      "resistanceEquationDescription": {
+      "accessibleHelpText": {
         "value": "Resistance, <b>R</b>, is equal to resistivity, <b>rho</b>, times length, <b>L</b>, over area, <b>A</b>."
       },
-      "rhoLAndAComparablePattern": {
-        "value": "Size of letter R is { $rToAll } the size of the letter rho, letter L, and letter A."
-      },
-      "lAndAComparablePattern": {
-        "value": "Size of letter R is { $rToRho } the size of letter rho, and { $rToLAndA } letter L and letter A."
-      },
-      "noneComparablePattern": {
-        "value": "Size of letter R is { $rToRho } the size of letter rho, { $rToL } letter L, and { $rToA } letter A."
+      "lettersNode": {
+        "descriptionContentPattern": {
+          "rhoLAndAComparable": {
+            "value": "Size of letter R is { $rToAll } the size of the letter rho, letter L, and letter A."
+          },
+          "lAndAComparable": {
+            "value": "Size of letter R is { $rToRho } the size of letter rho, and { $rToLAndA } letter L and letter A."
+          },
+          "noneComparable": {
+            "value": "Size of letter R is { $rToRho } the size of letter rho, { $rToL } letter L, and { $rToA } letter A."
+          }
+        }
       },
       "relativeSizeDescription": {
         "value": "{ $relativeSize ->\n  [muchMuchSmaller] much much smaller than\n  [muchSmaller] much smaller than\n  [slightlySmaller] slightly smaller than\n  [comparable] comparable to\n  [slightlyLarger] slightly larger than\n  [muchLarger] much larger than\n  *[muchMuchLarger] much much larger than\n}"
       }
     },
-    "wire": {
+    "wireNode": {
       "accessibleHeading": {
         "value": "The Wire"
       },
-      "wireDescriptionPattern": {
-        "value": "Currently, { a11y_wire_lengthClause }, { a11y_wire_thicknessClause }, and { a11y_wire_impuritiesClause }. Resistance is { $resistance }."
+      "descriptionContentPattern": {
+        "value": "Currently, { a11y_wireNode_lengthClause }, { a11y_wireNode_thicknessClause }, and { a11y_wireNode_impuritiesClause }. Resistance is { $resistance }."
       },
       "lengthClause": {
         "value": "{ $length ->\n  [extremelyShort] wire is extremely short\n  [veryShort] wire is very short\n  [short] wire is short\n  [medium] wire is of medium length\n  [long] wire is long\n  [veryLong] wire is very long\n  *[extremelyLong] wire is extremely long\n}"
@@ -96,39 +104,47 @@
         "value": "{ $impurities ->\n  [tiny] there is a tiny amount of impurities in wire\n  [verySmall] there is a very small amount of impurities in wire\n  [small] there is a small amount of impurities in wire\n  [medium] there is a medium amount of impurities in wire\n  [large] there is a large amount of impurities in wire\n  [veryLarge] there is a very large amount of impurities in wire\n  *[huge] there is a huge amount of impurities in wire\n}"
       }
     },
-    "controls": {
-      "resistivitySliderLabel": {
-        "value": "rho, Resistivity"
-      },
-      "lengthSliderLabel": {
-        "value": "L, Length"
-      },
-      "areaSliderLabel": {
-        "value": "A, Area"
-      },
-      "sliderControls": {
+    "controlPanel": {
+      "accessibleHeading": {
         "value": "Slider Controls"
       },
-      "slidersDescription": {
+      "accessibleHelpText": {
         "value": "Resistivity, Length, and Area sliders allow changes to equation and wire."
       },
-      "sizeChangeAlertPattern": {
-        "value": "As { a11y_controls_changedLetterClause }, { a11y_controls_resistanceLetterClause }. Resistance now { $resistance }."
+      "resistivitySlider": {
+        "labelContent": {
+          "value": "rho, Resistivity"
+        }
       },
-      "changedLetterClause": {
-        "value": "letter { a11y_controls_letterName } { a11y_controls_letterSizeChange }"
+      "lengthSlider": {
+        "labelContent": {
+          "value": "L, Length"
+        }
       },
-      "resistanceLetterClause": {
-        "value": "letter R { a11y_controls_resistanceSizeChange }"
+      "areaSlider": {
+        "labelContent": {
+          "value": "A, Area"
+        }
       },
-      "letterName": {
-        "value": "{ $letter ->\n  [rho] rho\n  [length] L\n  *[area] A\n}"
-      },
-      "letterSizeChange": {
-        "value": "{ $letterChange ->\n  [grows] grows\n  [shrinks] shrinks\n  [growsALot] grows a lot\n  *[shrinksALot] shrinks a lot\n}"
-      },
-      "resistanceSizeChange": {
-        "value": "{ $rChange ->\n  [grows] grows\n  [shrinks] shrinks\n  [growsALot] grows a lot\n  *[shrinksALot] shrinks a lot\n}"
+      "sliderChange": {
+        "accessibleContextResponsePattern": {
+          "value": "As { a11y_controlPanel_sliderChange_changedLetterClause }, { a11y_controlPanel_sliderChange_resistanceLetterClause }. Resistance now { $resistance }."
+        },
+        "changedLetterClause": {
+          "value": "letter { a11y_controlPanel_sliderChange_letterName } { a11y_controlPanel_sliderChange_letterSizeChange }"
+        },
+        "resistanceLetterClause": {
+          "value": "letter R { a11y_controlPanel_sliderChange_resistanceSizeChange }"
+        },
+        "letterName": {
+          "value": "{ $letter ->\n  [rho] rho\n  [length] L\n  *[area] A\n}"
+        },
+        "letterSizeChange": {
+          "value": "{ $letterChange ->\n  [grows] grows\n  [shrinks] shrinks\n  [growsALot] grows a lot\n  *[shrinksALot] shrinks a lot\n}"
+        },
+        "resistanceSizeChange": {
+          "value": "{ $rChange ->\n  [grows] grows\n  [shrinks] shrinks\n  [growsALot] grows a lot\n  *[shrinksALot] shrinks a lot\n}"
+        }
       }
     }
   }

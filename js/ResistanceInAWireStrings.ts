@@ -47,41 +47,49 @@ type StringsType = {
   'resistivity': string;
   'resistivityStringProperty': LocalizedStringProperty;
   'a11y': {
-    'summary': {
-      'sim': string;
-      'simStringProperty': LocalizedStringProperty;
-      'currently': string;
-      'currentlyStringProperty': LocalizedStringProperty;
-      'resistancePattern': string;
-      'resistancePatternStringProperty': LocalizedStringProperty;
-      'resistivityPattern': string;
-      'resistivityPatternStringProperty': LocalizedStringProperty;
-      'lengthPattern': string;
-      'lengthPatternStringProperty': LocalizedStringProperty;
-      'areaPattern': string;
-      'areaPatternStringProperty': LocalizedStringProperty;
-      'interactionHint': string;
-      'interactionHintStringProperty': LocalizedStringProperty;
+    'resistanceInAWireScreen': {
+      'screenSummary': {
+        'playArea': string;
+        'playAreaStringProperty': LocalizedStringProperty;
+        'currentDetails': {
+          'currently': string;
+          'currentlyStringProperty': LocalizedStringProperty;
+          'resistancePattern': string;
+          'resistancePatternStringProperty': LocalizedStringProperty;
+          'resistivityPattern': string;
+          'resistivityPatternStringProperty': LocalizedStringProperty;
+          'lengthPattern': string;
+          'lengthPatternStringProperty': LocalizedStringProperty;
+          'areaPattern': string;
+          'areaPatternStringProperty': LocalizedStringProperty;
+        };
+        'interactionHint': string;
+        'interactionHintStringProperty': LocalizedStringProperty;
+      }
     };
-    'equation': {
-      'resistanceEquation': string;
-      'resistanceEquationStringProperty': LocalizedStringProperty;
-      'resistanceEquationDescription': string;
-      'resistanceEquationDescriptionStringProperty': LocalizedStringProperty;
-      'rhoLAndAComparablePattern': string;
-      'rhoLAndAComparablePatternStringProperty': LocalizedStringProperty;
-      'lAndAComparablePattern': string;
-      'lAndAComparablePatternStringProperty': LocalizedStringProperty;
-      'noneComparablePattern': string;
-      'noneComparablePatternStringProperty': LocalizedStringProperty;
+    'formulaNode': {
+      'accessibleHeading': string;
+      'accessibleHeadingStringProperty': LocalizedStringProperty;
+      'accessibleHelpText': string;
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      'lettersNode': {
+        'descriptionContentPattern': {
+          'rhoLAndAComparable': string;
+          'rhoLAndAComparableStringProperty': LocalizedStringProperty;
+          'lAndAComparable': string;
+          'lAndAComparableStringProperty': LocalizedStringProperty;
+          'noneComparable': string;
+          'noneComparableStringProperty': LocalizedStringProperty;
+        }
+      };
       'relativeSizeDescription': string;
       'relativeSizeDescriptionStringProperty': LocalizedStringProperty;
     };
-    'wire': {
+    'wireNode': {
       'accessibleHeading': string;
       'accessibleHeadingStringProperty': LocalizedStringProperty;
-      'wireDescriptionPattern': string;
-      'wireDescriptionPatternStringProperty': LocalizedStringProperty;
+      'descriptionContentPattern': string;
+      'descriptionContentPatternStringProperty': LocalizedStringProperty;
       'lengthClause': string;
       'lengthClauseStringProperty': LocalizedStringProperty;
       'thicknessClause': string;
@@ -89,29 +97,37 @@ type StringsType = {
       'impuritiesClause': string;
       'impuritiesClauseStringProperty': LocalizedStringProperty;
     };
-    'controls': {
-      'resistivitySliderLabel': string;
-      'resistivitySliderLabelStringProperty': LocalizedStringProperty;
-      'lengthSliderLabel': string;
-      'lengthSliderLabelStringProperty': LocalizedStringProperty;
-      'areaSliderLabel': string;
-      'areaSliderLabelStringProperty': LocalizedStringProperty;
-      'sliderControls': string;
-      'sliderControlsStringProperty': LocalizedStringProperty;
-      'slidersDescription': string;
-      'slidersDescriptionStringProperty': LocalizedStringProperty;
-      'sizeChangeAlertPattern': string;
-      'sizeChangeAlertPatternStringProperty': LocalizedStringProperty;
-      'changedLetterClause': string;
-      'changedLetterClauseStringProperty': LocalizedStringProperty;
-      'resistanceLetterClause': string;
-      'resistanceLetterClauseStringProperty': LocalizedStringProperty;
-      'letterName': string;
-      'letterNameStringProperty': LocalizedStringProperty;
-      'letterSizeChange': string;
-      'letterSizeChangeStringProperty': LocalizedStringProperty;
-      'resistanceSizeChange': string;
-      'resistanceSizeChangeStringProperty': LocalizedStringProperty;
+    'controlPanel': {
+      'accessibleHeading': string;
+      'accessibleHeadingStringProperty': LocalizedStringProperty;
+      'accessibleHelpText': string;
+      'accessibleHelpTextStringProperty': LocalizedStringProperty;
+      'resistivitySlider': {
+        'labelContent': string;
+        'labelContentStringProperty': LocalizedStringProperty;
+      };
+      'lengthSlider': {
+        'labelContent': string;
+        'labelContentStringProperty': LocalizedStringProperty;
+      };
+      'areaSlider': {
+        'labelContent': string;
+        'labelContentStringProperty': LocalizedStringProperty;
+      };
+      'sliderChange': {
+        'accessibleContextResponsePattern': string;
+        'accessibleContextResponsePatternStringProperty': LocalizedStringProperty;
+        'changedLetterClause': string;
+        'changedLetterClauseStringProperty': LocalizedStringProperty;
+        'resistanceLetterClause': string;
+        'resistanceLetterClauseStringProperty': LocalizedStringProperty;
+        'letterName': string;
+        'letterNameStringProperty': LocalizedStringProperty;
+        'letterSizeChange': string;
+        'letterSizeChangeStringProperty': LocalizedStringProperty;
+        'resistanceSizeChange': string;
+        'resistanceSizeChangeStringProperty': LocalizedStringProperty;
+      }
     }
   }
 };
