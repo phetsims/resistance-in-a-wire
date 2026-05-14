@@ -11,7 +11,8 @@ import type PhetioProperty from '../../../../axon/js/PhetioProperty.js';
 import type { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import Dimension2 from '../../../../dot/js/Dimension2.js';
 import type RangeWithValue from '../../../../dot/js/RangeWithValue.js';
-import Utils from '../../../../dot/js/Utils.js';
+import { toFixed } from '../../../../dot/js/util/toFixed.js';
+import { toFixedNumber } from '../../../../dot/js/util/toFixedNumber.js';
 import optionize from '../../../../phet-core/js/optionize.js';
 import type { PDOMValueType } from '../../../../scenery/js/accessibility/pdom/ParallelDOM.js';
 import type SceneryEvent from '../../../../scenery/js/input/SceneryEvent.js';
@@ -56,7 +57,7 @@ export default class SliderUnit extends Node {
         thumbFillHighlighted: '#dedede',
 
         // physical values in this sim can have up to 2 decimals
-        constrainValue: ( value: number ) => Utils.toFixedNumber( value, 2 ),
+        constrainValue: ( value: number ) => toFixedNumber( value, 2 ),
         startDrag: _.noop,
         endDrag: _.noop,
 
@@ -69,7 +70,7 @@ export default class SliderUnit extends Node {
         roundToStepSize: true, // default keyboard step rounds to pedagogically useful values
         containerTagName: 'li',
         accessibleName: accessibleName,
-        mapPDOMValue: ( value: number ) => Utils.toFixedNumber( value, 2 ),
+        mapPDOMValue: ( value: number ) => toFixedNumber( value, 2 ),
 
         // phet-io
         tandem: tandem.createTandem( 'slider' )
@@ -116,7 +117,7 @@ export default class SliderUnit extends Node {
 
     const slider = new VSlider( property, range, options.sliderOptions );
 
-    const valueText = new Text( Utils.toFixed( range.max, 2 ), {
+    const valueText = new Text( toFixed( range.max, 2 ), {
       font: ResistanceInAWireConstants.READOUT_FONT,
       fill: ResistanceInAWireConstants.BLACK_COLOR,
       maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH,
@@ -162,7 +163,7 @@ export default class SliderUnit extends Node {
 
     // Update value of the readout. No need to unlink, present for the lifetime of the simulation.
     property.link( ( value: number ) => {
-      valueText.string = Utils.toFixed( value, 2 );
+      valueText.string = toFixed( value, 2 );
       valueText.centerX = slider.centerX;
     } );
 

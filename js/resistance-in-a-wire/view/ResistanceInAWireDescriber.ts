@@ -372,8 +372,8 @@ export default class ResistanceInAWireDescriber extends Disposable {
     const formattedResistanceValueProperty = new DerivedProperty( [ resistanceProperty ], resistance =>
       getFormattedAccessibleNumber( resistance, {
         decimalPlaces: ResistanceInAWireConstants.getResistanceDecimals( resistance ),
-        showTrailingZeros: false,
-        showIntegersAsIntegers: true
+        showTrailingZeros: true,
+        showIntegersAsIntegers: false
       } )
     );
 
@@ -390,8 +390,8 @@ export default class ResistanceInAWireDescriber extends Disposable {
   private static getAccessibleResistanceString( resistance: number ): string {
     return ohmsUnit.getAccessibleString( resistance, {
       decimalPlaces: ResistanceInAWireConstants.getResistanceDecimals( resistance ),
-      showTrailingZeros: false,
-      showIntegersAsIntegers: true
+      showTrailingZeros: true,
+      showIntegersAsIntegers: false
     } );
   }
 
