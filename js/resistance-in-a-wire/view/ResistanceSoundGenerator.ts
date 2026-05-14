@@ -16,10 +16,6 @@ import brightMarimbaShort_mp3 from '../../../../tambo/sounds/brightMarimbaShort_
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 import type SliderUnit from './SliderUnit.js';
 
-type KeyboardDraggingSliderUnit = SliderUnit & {
-  keyboardDragging: boolean;
-};
-
 type SelfOptions = {
   resistanceProperty: TReadOnlyProperty<number>;
   resistivityProperty: TReadOnlyProperty<number>;
@@ -159,7 +155,6 @@ class ParameterMonitor {
                       parameterRange: Range,
                       generateSound: () => void ) {
     const binSelector = new BinSelector( parameterRange.min, parameterRange.max, BINS_PER_SLIDER );
-    const keyboardDraggingSliderUnit = sliderUnit as KeyboardDraggingSliderUnit;
     let selectedBin = binSelector.selectBin( valueProperty.value );
 
     this.valueProperty = valueProperty;
@@ -169,7 +164,7 @@ class ParameterMonitor {
 
       // Play the sound if a change has occurred due to keyboard interaction, if the area value has moved to a new bin,
       // or if a min or max has been reached.
-      if ( keyboardDraggingSliderUnit.keyboardDragging || bin !== selectedBin ||
+      if ( sliderUnit.keyboardDraggingProperty.value || bin !== selectedBin ||
            parameterValue === parameterRange.min || parameterValue === parameterRange.max ) {
         generateSound();
       }

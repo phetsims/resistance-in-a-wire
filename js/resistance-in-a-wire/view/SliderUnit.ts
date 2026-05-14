@@ -6,6 +6,7 @@
  * @author Martin Veillette (Berea College)
  */
 
+import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import type PhetioProperty from '../../../../axon/js/PhetioProperty.js';
 import type { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import Dimension2 from '../../../../dot/js/Dimension2.js';
@@ -32,8 +33,8 @@ type SliderUnitOptions = SelfOptions & NodeOptions;
 
 export default class SliderUnit extends Node {
 
-  // Whether the slider is currently being dragged by the keyboard. Used by the sound generator.
-  public keyboardDragging: boolean;
+  // Whether the slider is currently being dragged by alternative input. Used by the sound generator.
+  public readonly keyboardDraggingProperty: BooleanProperty;
 
   public constructor( property: PhetioProperty<number>,
                       range: RangeWithValue,
@@ -81,17 +82,19 @@ export default class SliderUnit extends Node {
       endDrag: _.noop
     }, providedOptions );
 
+    this.keyboardDraggingProperty = new BooleanProperty( false );
+
     // override the start and end drag functions in the slider options
     const providedStartDragFunction = options.startDrag;
     options.sliderOptions.startDrag = ( event: SceneryEvent ) => {
-      if ( event.type === 'keydown' ) {
-        this.keyboardDragging = true;
+      if ( event.isFromPDOM() ) {
+        this.keyboardDraggingProperty.value = true;
       }
       providedStartDragFunction && providedStartDragFunction();
     };
     const providedEndDragFunction = options.endDrag;
     options.sliderOptions.endDrag = () => {
-      this.keyboardDragging = false;
+      this.keyboardDraggingProperty.value = false;
       providedEndDragFunction && providedEndDragFunction();
     };
 
@@ -110,8 +113,6 @@ export default class SliderUnit extends Node {
       maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH,
       tandem: tandem.createTandem( 'nameText' )
     } );
-
-    this.keyboardDragging = false;
 
     const slider = new VSlider( property, range, options.sliderOptions );
 
