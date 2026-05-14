@@ -111,6 +111,7 @@ const AREA_TO_DESCRIPTION_MAP = generateDescriptionMap( THICKNESS_DESCRIPTION_KE
 const RESISTIVITY_TO_DESCRIPTION_MAP = generateDescriptionMap( IMPURITIES_DESCRIPTION_KEYS, ResistanceInAWireConstants.RESISTIVITY_RANGE );
 
 // Maps relative scale magnitudes of the formula letters to stable relative-size description keys.
+// These range values were determined by visual inspection to match the accessible descriptions.
 const RELATIVE_SIZE_MAP: RelativeSizeMap = {
   muchMuchSmaller: {
     descriptionKey: 'muchMuchSmaller',
