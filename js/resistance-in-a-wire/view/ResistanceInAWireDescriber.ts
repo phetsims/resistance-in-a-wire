@@ -60,8 +60,8 @@ type DescriptionEntry<T extends string> = {
   range: Range;
 };
 
+// Maps numeric ranges to Fluent description keys for accessible descriptions of continuous values.
 type DescriptionMap<T extends string> = Record<string, DescriptionEntry<T>>;
-type RelativeSizeMap = Record<RelativeSizeKey, DescriptionEntry<RelativeSizeKey>>;
 
 export type FormulaScaleProperties = Record<FormulaScaleKey, TReadOnlyProperty<number>>;
 
@@ -109,39 +109,6 @@ const generateDescriptionMap = <T extends string>(
 const LENGTH_TO_DESCRIPTION_MAP = generateDescriptionMap( LENGTH_DESCRIPTION_KEYS, ResistanceInAWireConstants.LENGTH_RANGE );
 const AREA_TO_DESCRIPTION_MAP = generateDescriptionMap( THICKNESS_DESCRIPTION_KEYS, ResistanceInAWireConstants.AREA_RANGE );
 const RESISTIVITY_TO_DESCRIPTION_MAP = generateDescriptionMap( IMPURITIES_DESCRIPTION_KEYS, ResistanceInAWireConstants.RESISTIVITY_RANGE );
-
-// Maps relative scale magnitudes of the formula letters to stable relative-size description keys.
-// These range values were determined by visual inspection to match the accessible descriptions.
-const RELATIVE_SIZE_MAP: RelativeSizeMap = {
-  muchMuchSmaller: {
-    descriptionKey: 'muchMuchSmaller',
-    range: new Range( 0, 0.1 )
-  },
-  muchSmaller: {
-    descriptionKey: 'muchSmaller',
-    range: new Range( 0.1, 0.4 )
-  },
-  slightlySmaller: {
-    descriptionKey: 'slightlySmaller',
-    range: new Range( 0.4, 0.7 )
-  },
-  comparable: {
-    descriptionKey: 'comparable',
-    range: new Range( 0.7, 1.3 )
-  },
-  slightlyLarger: {
-    descriptionKey: 'slightlyLarger',
-    range: new Range( 1.3, 2 )
-  },
-  muchLarger: {
-    descriptionKey: 'muchLarger',
-    range: new Range( 2, 20 )
-  },
-  muchMuchLarger: {
-    descriptionKey: 'muchMuchLarger',
-    range: new Range( 20, Number.MAX_VALUE )
-  }
-};
 
 // If resistance changes by more than this threshold, the accessible alert describes it as a large change.
 const LARGE_RESISTANCE_DELTA = (
@@ -451,16 +418,32 @@ export default class ResistanceInAWireDescriber extends Disposable {
    */
   private static getRelativeSizeKey( relativeScale: number ): RelativeSizeKey {
 
-    // Get described ranges of each relative scale.
-    const keys = Object.keys( RELATIVE_SIZE_MAP ) as ( keyof typeof RELATIVE_SIZE_MAP )[];
-    for ( let i = 0; i < keys.length; i++ ) {
-      const relativeEntry = RELATIVE_SIZE_MAP[ keys[ i ] ];
-
-      if ( relativeEntry.range.contains( relativeScale ) ) {
-        return relativeEntry.descriptionKey;
-      }
+    if ( relativeScale < 0 || relativeScale > Number.MAX_VALUE || Number.isNaN( relativeScale ) ) {
+      throw new Error( `no description found for relativeScale: ${relativeScale}` );
     }
-    throw new Error( `no description found for relativeScale: ${relativeScale}` );
+
+    // These threshold values were determined by visual inspection to match the accessible descriptions.
+    if ( relativeScale <= 0.1 ) {
+      return 'muchMuchSmaller';
+    }
+    else if ( relativeScale <= 0.4 ) {
+      return 'muchSmaller';
+    }
+    else if ( relativeScale <= 0.7 ) {
+      return 'slightlySmaller';
+    }
+    else if ( relativeScale <= 1.3 ) {
+      return 'comparable';
+    }
+    else if ( relativeScale <= 2 ) {
+      return 'slightlyLarger';
+    }
+    else if ( relativeScale <= 20 ) {
+      return 'muchLarger';
+    }
+    else {
+      return 'muchMuchLarger';
+    }
   }
 
   /**
@@ -494,29 +477,20 @@ export default class ResistanceInAWireDescriber extends Disposable {
     const lToA = lengthScale / areaScale;
     const lToRho = lengthScale / resistivityScale;
 
-    const comparableRange = RELATIVE_SIZE_MAP.comparable.range;
+    const rToRhoKey = ResistanceInAWireDescriber.getRelativeSizeKey( rToRho );
+    const rToAKey = ResistanceInAWireDescriber.getRelativeSizeKey( rToA );
+    const rToLKey = ResistanceInAWireDescriber.getRelativeSizeKey( rToL );
+    const lToAKey = ResistanceInAWireDescriber.getRelativeSizeKey( lToA );
+    const lToRhoKey = ResistanceInAWireDescriber.getRelativeSizeKey( lToRho );
 
     // Even if right hand side variables are not comparable in size, if R is relatively larger or smaller than all
     // by the same amount, combine size description.
-    const relativeSizeKeys = Object.keys( RELATIVE_SIZE_MAP ) as ( keyof typeof RELATIVE_SIZE_MAP )[];
-    let allRelativeSizesSame = false;
-    for ( let i = 0; i < relativeSizeKeys.length; i++ ) {
-      const key = relativeSizeKeys[ i ];
-      const sizeRange = RELATIVE_SIZE_MAP[ key ].range;
-      const containsRToRho = sizeRange.contains( rToRho );
-      const containsRToA = sizeRange.contains( rToA );
-      const containsRToL = sizeRange.contains( rToL );
+    const allRelativeSizesSame = rToRhoKey === rToAKey && rToRhoKey === rToLKey;
 
-      if ( containsRToRho && containsRToA && containsRToL ) {
-        allRelativeSizesSame = true;
-        break;
-      }
-    }
-
-    if ( ( comparableRange.contains( lToA ) && comparableRange.contains( lToRho ) ) || allRelativeSizesSame ) {
+    if ( ( lToAKey === 'comparable' && lToRhoKey === 'comparable' ) || allRelativeSizesSame ) {
       return rhoLAndAComparableDescription;
     }
-    else if ( comparableRange.contains( lToA ) ) {
+    else if ( lToAKey === 'comparable' ) {
       return lAndAComparableDescription;
     }
     else {
