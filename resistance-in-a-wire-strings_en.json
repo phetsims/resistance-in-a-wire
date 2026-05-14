@@ -77,17 +77,14 @@
       },
       "relativeSizeDescription": {
         "value": "{ $relativeSize ->\n  [muchMuchSmaller] much much smaller than\n  [muchSmaller] much smaller than\n  [slightlySmaller] slightly smaller than\n  [comparable] comparable to\n  [slightlyLarger] slightly larger than\n  [muchLarger] much larger than\n  *[muchMuchLarger] much much larger than\n}"
-      },
-      "sizeChange": {
-        "value": "{ $sizeChange ->\n  [grows] grows\n  [shrinks] shrinks\n  [growsALot] grows a lot\n  *[shrinksALot] shrinks a lot\n}"
       }
     },
     "wire": {
+      "accessibleHeading": {
+        "value": "The Wire"
+      },
       "wireDescriptionPattern": {
         "value": "Currently, { a11y_wire_lengthClause }, { a11y_wire_thicknessClause }, and { a11y_wire_impuritiesClause }. Resistance is { $resistance }."
-      },
-      "resistivityUnitsPattern": {
-        "value": "{ $value } ohm centimeters"
       },
       "lengthClause": {
         "value": "{ $length ->\n  [extremelyShort] wire is extremely short\n  [veryShort] wire is very short\n  [short] wire is short\n  [medium] wire is of medium length\n  [long] wire is long\n  [veryLong] wire is very long\n  *[extremelyLong] wire is extremely long\n}"
@@ -100,12 +97,6 @@
       }
     },
     "controls": {
-      "lengthUnitsPattern": {
-        "value": "{ $value } centimeters"
-      },
-      "areaUnitsPattern": {
-        "value": "{ $value } centimeters squared"
-      },
       "resistivitySliderLabel": {
         "value": "rho, Resistivity"
       },

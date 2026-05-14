@@ -14,7 +14,6 @@ import SceneryPhetFluent from '../../../../scenery-phet/js/SceneryPhetFluent.js'
 import { centimetersSquaredUnit } from '../../../../scenery-phet/js/units/centimetersSquaredUnit.js';
 import { centimetersUnit } from '../../../../scenery-phet/js/units/centimetersUnit.js';
 import { ohmCentimetersUnit } from '../../../../scenery-phet/js/units/ohmCentimetersUnit.js';
-import { ohmsUnit } from '../../../../scenery-phet/js/units/ohmsUnit.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import Panel, { type PanelOptions } from '../../../../sun/js/Panel.js';
@@ -22,8 +21,9 @@ import soundManager from '../../../../tambo/js/soundManager.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import Utterance from '../../../../utterance-queue/js/Utterance.js';
 import ResistanceInAWireFluent from '../../ResistanceInAWireFluent.js';
-import ResistanceInAWireModel from '../model/ResistanceInAWireModel.js';
+import type ResistanceInAWireModel from '../model/ResistanceInAWireModel.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
+import type ResistanceInAWireDescriber from './ResistanceInAWireDescriber.js';
 import ResistanceSoundGenerator from './ResistanceSoundGenerator.js';
 import SliderUnit from './SliderUnit.js';
 
@@ -48,7 +48,6 @@ const lengthSliderLabelStringProperty = ResistanceInAWireFluent.a11y.controls.le
 const areaSliderLabelStringProperty = ResistanceInAWireFluent.a11y.controls.areaSliderLabelStringProperty;
 const sliderControlsStringProperty = ResistanceInAWireFluent.a11y.controls.sliderControlsStringProperty;
 const slidersDescriptionStringProperty = ResistanceInAWireFluent.a11y.controls.slidersDescriptionStringProperty;
-const sizeChangeAlertPattern = ResistanceInAWireFluent.a11y.controls.sizeChangeAlertPattern;
 
 // constants
 const SLIDER_SPACING = 50;
@@ -59,15 +58,13 @@ const ACCESSIBLE_SLIDER_VALUE_OPTIONS = {
   showIntegersAsIntegers: true
 };
 
-// pdom - if resistance changes 2 * the range of the resistance / the number of relative size descriptions, larger change
-// is signified in description
-const LARGE_RESISTANCE_DELTA = ( ( ResistanceInAWireModel.getResistanceRange().max - ResistanceInAWireModel.getResistanceRange().min ) / ResistanceInAWireConstants.RELATIVE_SIZE_KEYS.length ) * 2;
-
-type LetterKey = 'rho' | 'length' | 'area';
-type SizeChangeKey = 'grows' | 'shrinks' | 'growsALot' | 'shrinksALot';
-
 export default class ControlPanel extends Panel {
-  public constructor( model: ResistanceInAWireModel, tandem: Tandem, providedOptions?: ControlPanelOptions ) {
+  public constructor(
+    model: ResistanceInAWireModel,
+    describer: ResistanceInAWireDescriber,
+    tandem: Tandem,
+    providedOptions?: ControlPanelOptions
+  ) {
     const options = optionize<ControlPanelOptions, SelfOptions, PanelOptions>()( {
       xMargin: 30,
       yMargin: 20,
@@ -149,7 +146,12 @@ export default class ControlPanel extends Panel {
           // announce to assistive technology if there is a change - no need to queue many alerts when pressing keys
           // rapidly
           if ( deltaRho && deltaResistance ) {
-            changeUtterance.alert = getSizeChangeAlert( resistance, deltaResistance, deltaRho, 'rho' );
+            changeUtterance.alert = describer.getSliderChangeAlert(
+              resistance,
+              deltaResistance,
+              deltaRho,
+              'rho'
+            );
             resistivitySlider.addAccessibleContextResponse( changeUtterance );
           }
         },
@@ -182,7 +184,12 @@ export default class ControlPanel extends Panel {
           // announce to assistive technology if there is a change - no need to queue many alerts when pressing keys
           // rapidly
           if ( deltaLength && deltaResistance ) {
-            changeUtterance.alert = getSizeChangeAlert( resistance, deltaResistance, deltaLength, 'length' );
+            changeUtterance.alert = describer.getSliderChangeAlert(
+              resistance,
+              deltaResistance,
+              deltaLength,
+              'length'
+            );
             lengthSlider.addAccessibleContextResponse( changeUtterance );
           }
         },
@@ -219,7 +226,12 @@ export default class ControlPanel extends Panel {
           // announce to assistive technology if there is a change - no need to queue many alerts when pressing keys
           // rapidly
           if ( deltaArea && deltaResistance ) {
-            changeUtterance.alert = getSizeChangeAlert( resistance, deltaResistance, deltaArea, 'area' );
+            changeUtterance.alert = describer.getSliderChangeAlert(
+              resistance,
+              deltaResistance,
+              deltaArea,
+              'area'
+            );
             areaSlider.addAccessibleContextResponse( changeUtterance );
           }
         },
@@ -259,44 +271,4 @@ export default class ControlPanel extends Panel {
 
     super( content, options );
   }
-}
-
-/**
- * Returns a description for whether a letter grows or shrinks. For resistance changes, an additional phrase is
- * included when the change is large enough to be pedagogically useful. Will return something like:
- *
- * 'grows'
- * 'shrinks'
- * 'grows a lot'
- * 'shrinks a lot'
- */
-function getSizeChangeFromDelta( delta: number, describeLargeChanges: boolean ): SizeChangeKey {
-  assert && assert( delta !== 0, 'trying to describe no change in size' );
-
-  const useALot = ( describeLargeChanges && Math.abs( delta ) > LARGE_RESISTANCE_DELTA );
-
-  return delta > 0 ? ( useALot ? 'growsALot' : 'grows' ) :
-         ( useALot ? 'shrinksALot' : 'shrinks' );
-}
-
-/**
- * Returns a full alert for a variable's size change and how R changes as well. Will return something like:
- *
- * "As letter rho grows, letter R grows. Resistance now 0.667 ohms." or
- * "As letter A grows, letter R shrinks a lot. Resistance now 1.20 ohms."
- */
-function getSizeChangeAlert( resistance: number, deltaResistance: number, otherDelta: number, letterKey: LetterKey ): string {
-  const resistanceChangeKey = getSizeChangeFromDelta( deltaResistance, true /* include 'a lot' */ );
-  const letterChangeKey = getSizeChangeFromDelta( otherDelta, false /* don't include 'a lot */ );
-
-  return sizeChangeAlertPattern.format( {
-    letter: letterKey,
-    letterChange: letterChangeKey,
-    rChange: resistanceChangeKey,
-    resistance: ohmsUnit.getAccessibleString( resistance, {
-      decimalPlaces: ResistanceInAWireConstants.getResistanceDecimals( resistance ),
-      showTrailingZeros: false,
-      showIntegersAsIntegers: true
-    } )
-  } );
 }

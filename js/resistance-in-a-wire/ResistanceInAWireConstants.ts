@@ -11,10 +11,10 @@ import RangeWithValue from '../../../dot/js/RangeWithValue.js';
 import Utils from '../../../dot/js/Utils.js';
 import PhetFont from '../../../scenery-phet/js/PhetFont.js';
 
-type LengthDescriptionKey = 'extremelyShort' | 'veryShort' | 'short' | 'medium' | 'long' | 'veryLong' | 'extremelyLong';
-type ThicknessDescriptionKey = 'extremelyThin' | 'veryThin' | 'thin' | 'medium' | 'thick' | 'veryThick' | 'extremelyThick';
-type ImpuritiesDescriptionKey = 'tiny' | 'verySmall' | 'small' | 'medium' | 'large' | 'veryLarge' | 'huge';
-type RelativeSizeKey = 'muchMuchSmaller' | 'muchSmaller' | 'slightlySmaller' | 'comparable' | 'slightlyLarger' | 'muchLarger' | 'muchMuchLarger';
+export type LengthDescriptionKey = 'extremelyShort' | 'veryShort' | 'short' | 'medium' | 'long' | 'veryLong' | 'extremelyLong';
+export type ThicknessDescriptionKey = 'extremelyThin' | 'veryThin' | 'thin' | 'medium' | 'thick' | 'veryThick' | 'extremelyThick';
+export type ImpuritiesDescriptionKey = 'tiny' | 'verySmall' | 'small' | 'medium' | 'large' | 'veryLarge' | 'huge';
+export type RelativeSizeKey = 'muchMuchSmaller' | 'muchSmaller' | 'slightlySmaller' | 'comparable' | 'slightlyLarger' | 'muchLarger' | 'muchMuchLarger';
 
 type DescriptionEntry<T extends string> = {
   descriptionKey: T;

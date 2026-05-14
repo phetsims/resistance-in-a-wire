@@ -10,6 +10,7 @@
  * @author Michael Kauzmann (PhET Interactive Simulations)
  */
 
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import type { TReadOnlyProperty } from '../../../../axon/js/TReadOnlyProperty.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import Shape from '../../../../kite/js/Shape.js';
@@ -27,6 +28,8 @@ import type Tandem from '../../../../tandem/js/Tandem.js';
 import ResistanceInAWireFluent from '../../ResistanceInAWireFluent.js';
 import type ResistanceInAWireModel from '../model/ResistanceInAWireModel.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
+import type ResistanceInAWireDescriber from './ResistanceInAWireDescriber.js';
+import type { FormulaScaleKey } from './ResistanceInAWireDescriber.js';
 
 const areaSymbolStringProperty = ResistanceInAWireFluent.areaSymbolStringProperty;
 const lengthSymbolStringProperty = ResistanceInAWireFluent.lengthSymbolStringProperty;
@@ -34,38 +37,34 @@ const resistanceSymbolStringProperty = ResistanceInAWireFluent.resistanceSymbolS
 const symbolResistivityStringProperty = SceneryPhetFluent.symbol.resistivityStringProperty;
 const equationResistanceEquationStringProperty = ResistanceInAWireFluent.a11y.equation.resistanceEquationStringProperty;
 const resistanceEquationDescriptionStringProperty = ResistanceInAWireFluent.a11y.equation.resistanceEquationDescriptionStringProperty;
-const rhoLAndAComparablePattern = ResistanceInAWireFluent.a11y.equation.rhoLAndAComparablePattern;
-const lAndAComparablePattern = ResistanceInAWireFluent.a11y.equation.lAndAComparablePattern;
-const noneComparablePattern = ResistanceInAWireFluent.a11y.equation.noneComparablePattern;
-const relativeSizeDescription = ResistanceInAWireFluent.a11y.equation.relativeSizeDescription;
 
-// constants - rather than keep a reference to each letter node, a map from key to scale magnitude is used
-// to track letter scales
-type ScaleKey = 'resistance' | 'resistivity' | 'area' | 'length';
-
-const RESISTANCE_KEY: ScaleKey = 'resistance';
-const RESISTIVITY_KEY: ScaleKey = 'resistivity';
-const AREA_KEY: ScaleKey = 'area';
-const LENGTH_KEY: ScaleKey = 'length';
+// Rather than keep a reference to each letter node, scale Properties are mapped by key for accessible descriptions.
+const RESISTANCE_KEY: FormulaScaleKey = 'resistance';
+const RESISTIVITY_KEY: FormulaScaleKey = 'resistivity';
+const AREA_KEY: FormulaScaleKey = 'area';
+const LENGTH_KEY: FormulaScaleKey = 'length';
 
 type SymbolTextEntry = PickRequired<PhetioObjectOptions, 'tandem'> & {
   labelStringProperty: TReadOnlyProperty<string>;
   center: Vector2;
   property: TReadOnlyProperty<number>;
   color: string;
-  scaleKey: ScaleKey;
+  scaleKey: FormulaScaleKey;
   cappedSize?: boolean;
 };
 
 export default class FormulaNode extends Node {
 
-  // Maps each equation symbol to its current scale magnitude for accessible relative-size descriptions.
-  private readonly a11yScaleMap: Record<ScaleKey, number>;
-
-  public constructor( model: ResistanceInAWireModel, tandem: Tandem, providedOptions?: NodeOptions ) {
+  public constructor(
+    model: ResistanceInAWireModel,
+    describer: ResistanceInAWireDescriber,
+    tandem: Tandem,
+    providedOptions?: NodeOptions
+  ) {
 
     super( {
       tandem: tandem,
+      isDisposable: false,
 
       // pdom
       accessibleHeading: equationResistanceEquationStringProperty,
@@ -81,12 +80,7 @@ export default class FormulaNode extends Node {
       tandem: tandem.createTandem( 'equalsSignText' )
     } );
 
-    this.a11yScaleMap = {
-      resistance: 0,
-      resistivity: 0,
-      area: 0,
-      length: 0
-    };
+    const a11yScalePropertyMap: Partial<Record<FormulaScaleKey, TReadOnlyProperty<number>>> = {};
 
     // An array of attributes related to text
     const symbolTexts: SymbolTextEntry[] = [ {
@@ -155,22 +149,21 @@ export default class FormulaNode extends Node {
 
       // Set the scale based on the default value of the property; normalize the scale for all letters.
       const scale = 7 / entry.property.value; // empirically determined '7'
+      const scaleMagnitudeProperty = new DerivedProperty( [ entry.property ], value => scale * value + 1 );
+      a11yScalePropertyMap[ entry.scaleKey ] = scaleMagnitudeProperty;
 
-      // The size of the formula letter will scale with the value the letter represents. The accessible description for
-      // the equation will also update. This does not need an unlink because it exists for the life of the sim.
-      entry.property.link( ( value: number ) => {
-        const scaleMagnitude = scale * value + 1;
+      // The size of the formula letter scales with the value the letter represents.
+      scaleMagnitudeProperty.link( ( scaleMagnitude: number ) => {
         letterNode.setScaleMagnitude( scaleMagnitude );
         letterNode.center = entry.center;
-
-        // for lookup when describing relative letter sizes
-        this.a11yScaleMap[ entry.scaleKey ] = scaleMagnitude;
       } );
+    } );
 
-      // linked lazily so that relative scales are defined
-      entry.property.lazyLink( () => {
-        lettersNode.setDescriptionContent( this.getRelativeSizeDescription() );
-      } );
+    lettersNode.descriptionContent = describer.createFormulaRelativeSizeDescriptionProperty( {
+      resistance: a11yScalePropertyMap[ RESISTANCE_KEY ]!,
+      resistivity: a11yScalePropertyMap[ RESISTIVITY_KEY ]!,
+      area: a11yScalePropertyMap[ AREA_KEY ]!,
+      length: a11yScalePropertyMap[ LENGTH_KEY ]!
     } );
 
     this.addChild( lettersNode );
@@ -186,107 +179,5 @@ export default class FormulaNode extends Node {
     } ) );
 
     this.mutate( providedOptions );
-
-    // pdom - set the initial description
-    lettersNode.setDescriptionContent( this.getRelativeSizeDescription() );
-  }
-
-
-  /**
-   * Get a description of the relative size of various letters. Size of each letter is described relative to
-   * resistance R. When all or L and A letters are the same size, a simplified sentence is used to reduce verbosity,
-   * so this function might return something like:
-   *
-   * "Size of letter R is comparable to the size of letter rho, letter L, and letter A" or
-   * "Size of letter R is much larger than the size of letter rho, and slightly larger than letter L and letter A." or
-   * "Size of letter R is much smaller than letter rho, comparable to letter L, and much much larger than letter A."
-   */
-  private getRelativeSizeDescription(): string {
-    const resistanceScale = this.a11yScaleMap[ RESISTANCE_KEY ];
-    const resistivityScale = this.a11yScaleMap[ RESISTIVITY_KEY ];
-    const areaScale = this.a11yScaleMap[ AREA_KEY ];
-    const lengthScale = this.a11yScaleMap[ LENGTH_KEY ];
-
-    const rToRho = resistanceScale / resistivityScale;
-    const rToA = resistanceScale / areaScale;
-    const rToL = resistanceScale / lengthScale;
-    const lToA = lengthScale / areaScale;
-    const lToRho = lengthScale / resistivityScale;
-
-    const rToRhoDescription = getRelativeSizeDescription( rToRho );
-    const roTLDescription = getRelativeSizeDescription( rToL );
-    const rToADescription = getRelativeSizeDescription( rToA );
-
-    let description: string;
-    const comparableRange = ResistanceInAWireConstants.RELATIVE_SIZE_MAP.comparable.range;
-
-    // even if right hand side variables are not comparable in size, if R is relatively larger or smaller than all
-    // by the same amount, combine size description
-    const relativeSizeKeys = Object.keys( ResistanceInAWireConstants.RELATIVE_SIZE_MAP ) as
-      ( keyof typeof ResistanceInAWireConstants.RELATIVE_SIZE_MAP )[];
-    let allRelativeSizesSame = false;
-    for ( let i = 0; i < relativeSizeKeys.length; i++ ) {
-      const key = relativeSizeKeys[ i ];
-      const sizeRange = ResistanceInAWireConstants.RELATIVE_SIZE_MAP[ key ].range;
-      const containsRToRho = sizeRange.contains( rToRho );
-      const containsRToA = sizeRange.contains( rToA );
-      const containsRToL = sizeRange.contains( rToL );
-
-      if ( containsRToRho && containsRToA && containsRToL ) {
-        allRelativeSizesSame = true;
-        break;
-      }
-    }
-
-    if ( ( comparableRange.contains( lToA ) && comparableRange.contains( lToRho ) ) || allRelativeSizesSame ) {
-
-      // all right hand side letters are comparable in size
-      description = rhoLAndAComparablePattern.format( {
-        rToAll: rToRhoDescription // any size description will work
-      } );
-    }
-    else if ( comparableRange.contains( lToA ) ) {
-
-      // L and A are comparable, so they are the same size relative to R
-      description = lAndAComparablePattern.format( {
-        rToRho: rToRhoDescription,
-        rToLAndA: roTLDescription // either length or area relative descriptions will work
-      } );
-    }
-    else {
-
-      // all relative sizes could be unique
-      description = noneComparablePattern.format( {
-        rToRho: rToRhoDescription,
-        rToL: roTLDescription,
-        rToA: rToADescription
-      } );
-    }
-
-    return description;
   }
 }
-
-/**
- * Get a relative size description from a relative scale, used to describe letters relative to each other. Will return
- * something like
- *
- * "comparable to" or
- * "much much larger than"
- */
-const getRelativeSizeDescription = ( relativeScale: number ): string => {
-
-  // get described ranges of each relative scale
-  const keys = Object.keys( ResistanceInAWireConstants.RELATIVE_SIZE_MAP ) as
-    ( keyof typeof ResistanceInAWireConstants.RELATIVE_SIZE_MAP )[];
-  for ( let i = 0; i < keys.length; i++ ) {
-    const relativeEntry = ResistanceInAWireConstants.RELATIVE_SIZE_MAP[ keys[ i ] ];
-
-    if ( relativeEntry.range.contains( relativeScale ) ) {
-      return relativeSizeDescription.format( {
-        relativeSize: relativeEntry.descriptionKey
-      } );
-    }
-  }
-  throw new Error( `no description found for relativeScale: ${relativeScale}` );
-};

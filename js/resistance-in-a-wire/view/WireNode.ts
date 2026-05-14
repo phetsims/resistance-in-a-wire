@@ -11,38 +11,38 @@
 import Multilink from '../../../../axon/js/Multilink.js';
 import Shape from '../../../../kite/js/Shape.js';
 import platform from '../../../../phet-core/js/platform.js';
-import { ohmsUnit } from '../../../../scenery-phet/js/units/ohmsUnit.js';
 import Node, { type NodeOptions } from '../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
 import LinearGradient from '../../../../scenery/js/util/LinearGradient.js';
 import type Tandem from '../../../../tandem/js/Tandem.js';
 import ResistanceInAWireFluent from '../../ResistanceInAWireFluent.js';
 import type ResistanceInAWireModel from '../model/ResistanceInAWireModel.js';
-import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 import DotsCanvasNode from './DotsCanvasNode.js';
+import type ResistanceInAWireDescriber from './ResistanceInAWireDescriber.js';
 import WireShapeConstants from './WireShapeConstants.js';
 
-const wireDescriptionPattern = ResistanceInAWireFluent.a11y.wire.wireDescriptionPattern;
-
 export default class WireNode extends Node {
-
-  // Model Properties determine the wire dimensions, dot density, and accessible description.
-  private readonly model: ResistanceInAWireModel;
 
   /**
    * The position is set using center values since this can grow or shrink in width and height as the area and length of
    * the wire changes.
    */
-  public constructor( model: ResistanceInAWireModel, tandem: Tandem, providedOptions?: NodeOptions ) {
+  public constructor(
+    model: ResistanceInAWireModel,
+    describer: ResistanceInAWireDescriber,
+    tandem: Tandem,
+    providedOptions?: NodeOptions
+  ) {
 
     super( {
       tandem: tandem,
 
       // pdom
-      accessibleHeading: 'The Wire'
+      accessibleHeading: ResistanceInAWireFluent.a11y.wire.accessibleHeadingStringProperty,
+      isDisposable: false
     } );
 
-    this.model = model;
+    this.descriptionContent = describer.wireDescriptionStringProperty;
 
     // See https://github.com/phetsims/resistance-in-a-wire/issues/158
     const wireBodyRenderer = platform.android ? 'canvas' : null;
@@ -97,37 +97,12 @@ export default class WireNode extends Node {
           .addColorStop( 0.8, '#F8E8D9' )
           .addColorStop( 1, '#8C4828' );
 
-        // redraw the dots representing resistivity
+        // Redraw the dots representing resistivity.
         dotsNode.invalidatePaint();
-
-        this.descriptionContent = this.getWireDescription();
       }
     );
 
     this.mutate( providedOptions );
   }
 
-  /**
-   * Returns an accessible description of the current wire length, thickness, impurity level, and resistance.
-   */
-  private getWireDescription(): string {
-    const lengthValue = this.model.lengthProperty.get();
-    const areaValue = this.model.areaProperty.get();
-    const resistivityValue = this.model.resistivityProperty.get();
-
-    const lengthKey = ResistanceInAWireConstants.getValueDescriptionFromMap( lengthValue, ResistanceInAWireConstants.LENGTH_TO_DESCRIPTION_MAP );
-    const thicknessKey = ResistanceInAWireConstants.getValueDescriptionFromMap( areaValue, ResistanceInAWireConstants.AREA_TO_DESCRIPTION_MAP );
-    const impuritiesKey = ResistanceInAWireConstants.getValueDescriptionFromMap( resistivityValue, ResistanceInAWireConstants.RESISTIVITY_TO_DESCRIPTION_MAP );
-
-    return wireDescriptionPattern.format( {
-      length: lengthKey,
-      thickness: thicknessKey,
-      impurities: impuritiesKey,
-      resistance: ohmsUnit.getAccessibleString( this.model.resistanceProperty.get(), {
-        decimalPlaces: ResistanceInAWireConstants.getResistanceDecimals( this.model.resistanceProperty.get() ),
-        showTrailingZeros: false,
-        showIntegersAsIntegers: true
-      } )
-    } );
-  }
 }

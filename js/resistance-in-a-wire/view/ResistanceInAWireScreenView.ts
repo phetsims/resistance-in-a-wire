@@ -18,33 +18,36 @@ import type ResistanceInAWireModel from '../model/ResistanceInAWireModel.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
 import ControlPanel from './ControlPanel.js';
 import FormulaNode from './FormulaNode.js';
+import ResistanceInAWireDescriber from './ResistanceInAWireDescriber.js';
 import ResistanceInAWireScreenSummaryNode from './ResistanceInAWireScreenSummaryNode.js';
 import WireNode from './WireNode.js';
 
 export default class ResistanceInAWireScreenView extends ScreenView {
 
   public constructor( model: ResistanceInAWireModel, tandem: Tandem ) {
+    const describer = new ResistanceInAWireDescriber( model );
 
     super( {
       tandem: tandem,
-      screenSummaryContent: new ResistanceInAWireScreenSummaryNode( model )
+      screenSummaryContent: new ResistanceInAWireScreenSummaryNode( describer )
     } );
+    this.addDisposable( describer );
 
     // Create the control panel with sliders that change the values of the equation's variables. Hard coded
-    const controlPanel = new ControlPanel( model, tandem.createTandem( 'controlPanel' ), {
+    const controlPanel = new ControlPanel( model, describer, tandem.createTandem( 'controlPanel' ), {
       right: this.layoutBounds.right - 30,
       top: 40
     } );
 
     // Create the formula node that holds the equation with size changing variables.
-    const formulaNode = new FormulaNode( model, tandem.createTandem( 'formulaNode' ), {
+    const formulaNode = new FormulaNode( model, describer, tandem.createTandem( 'formulaNode' ), {
       centerX: controlPanel.left / 2,
       centerY: 190
     } );
     this.pdomPlayAreaNode.addChild( formulaNode );
 
     // Create the wire display to represent the formula
-    const wireNode = new WireNode( model, tandem.createTandem( 'wireNode' ), {
+    const wireNode = new WireNode( model, describer, tandem.createTandem( 'wireNode' ), {
       centerX: formulaNode.centerX,
       centerY: formulaNode.centerY + 270
     } );

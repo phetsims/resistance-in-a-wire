@@ -76,14 +76,12 @@ type StringsType = {
       'noneComparablePatternStringProperty': LocalizedStringProperty;
       'relativeSizeDescription': string;
       'relativeSizeDescriptionStringProperty': LocalizedStringProperty;
-      'sizeChange': string;
-      'sizeChangeStringProperty': LocalizedStringProperty;
     };
     'wire': {
+      'accessibleHeading': string;
+      'accessibleHeadingStringProperty': LocalizedStringProperty;
       'wireDescriptionPattern': string;
       'wireDescriptionPatternStringProperty': LocalizedStringProperty;
-      'resistivityUnitsPattern': string;
-      'resistivityUnitsPatternStringProperty': LocalizedStringProperty;
       'lengthClause': string;
       'lengthClauseStringProperty': LocalizedStringProperty;
       'thicknessClause': string;
@@ -92,10 +90,6 @@ type StringsType = {
       'impuritiesClauseStringProperty': LocalizedStringProperty;
     };
     'controls': {
-      'lengthUnitsPattern': string;
-      'lengthUnitsPatternStringProperty': LocalizedStringProperty;
-      'areaUnitsPattern': string;
-      'areaUnitsPatternStringProperty': LocalizedStringProperty;
       'resistivitySliderLabel': string;
       'resistivitySliderLabelStringProperty': LocalizedStringProperty;
       'lengthSliderLabel': string;
