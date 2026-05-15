@@ -95,8 +95,7 @@ export default class ControlPanel extends Panel {
       formatNames: [ 'label', 'value', 'units' ],
       maps: {
         value: resistance => ResistanceInAWireConstants.getFormattedResistanceValue( resistance )
-      },
-      tandem: tandem.createTandem( 'resistanceReadoutStringProperty' )
+      }
     } );
 
     // Add the dynamic title that indicates the resistance.
@@ -123,8 +122,7 @@ export default class ControlPanel extends Panel {
 
       // This pattern still uses StringUtils.format placeholders ({0}, {1}) in the string file. formatNames maps those
       // numbered placeholders to named values so we can keep the existing key and pattern intact for translations.
-      formatNames: [ 'resistanceUnits', 'lengthUnits' ],
-      tandem: tandem.createTandem( 'resistivityUnitStringProperty' )
+      formatNames: [ 'resistanceUnits', 'lengthUnits' ]
     } );
 
     const resistivityControl = new SliderUnit(
@@ -189,9 +187,10 @@ export default class ControlPanel extends Panel {
 
     // Create and add the area slider with readout and labels. For keyboard dragging, the range doesn't split into
     // even steps, so SliderUnit's default round-to-step behavior is used.
-    const areaUnitStringProperty = new DerivedStringProperty( [ cmStringProperty ], cmString => `${cmString}<sup>2</sup>`, {
-      tandem: tandem.createTandem( 'areaUnitStringProperty' )
-    } );
+    const areaUnitStringProperty = new DerivedStringProperty(
+      [ cmStringProperty ],
+      cmString => `${cmString}<sup>2</sup>`
+    );
 
     const areaControl = new SliderUnit(
       model.areaProperty,
