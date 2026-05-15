@@ -46,7 +46,12 @@ export default class SliderUnit extends Node {
                       tandem: Tandem,
                       providedOptions?: SliderUnitOptions ) {
 
-    super();
+    // visiblePropertyOptions must be passed to the Node constructor so the instrumented visibleProperty is created
+    // with this metadata. Passing it later through mutate() is too late.
+    super( {
+      tandem: tandem,
+      visiblePropertyOptions: { phetioFeatured: true }
+    } );
 
     const options = optionize<SliderUnitOptions, SelfOptions, NodeOptions>()( {
       sliderOptions: {
