@@ -104,7 +104,8 @@ export default class ControlPanel extends Panel {
       font: ResistanceInAWireConstants.READOUT_FONT,
       fill: ResistanceInAWireConstants.RED_COLOR,
       maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH * 4.7,
-      tandem: tandem.createTandem( 'resistanceText' )
+      tandem: tandem.createTandem( 'resistanceText' ),
+      visiblePropertyOptions: { phetioFeatured: true }
     } );
 
     // Previously, the readout position was re-centered every time the resistance changed, but it was decided that this
