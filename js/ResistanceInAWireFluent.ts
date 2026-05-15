@@ -58,15 +58,15 @@ addToMapIfDefined( 'a11y_wireNode_thicknessClause', 'a11y.wireNode.thicknessClau
 addToMapIfDefined( 'a11y_wireNode_impuritiesClause', 'a11y.wireNode.impuritiesClauseStringProperty' );
 addToMapIfDefined( 'a11y_controlPanel_accessibleHeading', 'a11y.controlPanel.accessibleHeadingStringProperty' );
 addToMapIfDefined( 'a11y_controlPanel_accessibleHelpText', 'a11y.controlPanel.accessibleHelpTextStringProperty' );
-addToMapIfDefined( 'a11y_controlPanel_resistivitySlider_accessibleName', 'a11y.controlPanel.resistivitySlider.accessibleNameStringProperty' );
-addToMapIfDefined( 'a11y_controlPanel_lengthSlider_accessibleName', 'a11y.controlPanel.lengthSlider.accessibleNameStringProperty' );
-addToMapIfDefined( 'a11y_controlPanel_areaSlider_accessibleName', 'a11y.controlPanel.areaSlider.accessibleNameStringProperty' );
-addToMapIfDefined( 'a11y_controlPanel_sliderChange_accessibleContextResponsePattern', 'a11y.controlPanel.sliderChange.accessibleContextResponsePatternStringProperty' );
-addToMapIfDefined( 'a11y_controlPanel_sliderChange_changedLetterClause', 'a11y.controlPanel.sliderChange.changedLetterClauseStringProperty' );
-addToMapIfDefined( 'a11y_controlPanel_sliderChange_resistanceLetterClause', 'a11y.controlPanel.sliderChange.resistanceLetterClauseStringProperty' );
-addToMapIfDefined( 'a11y_controlPanel_sliderChange_letterName', 'a11y.controlPanel.sliderChange.letterNameStringProperty' );
-addToMapIfDefined( 'a11y_controlPanel_sliderChange_letterSizeChange', 'a11y.controlPanel.sliderChange.letterSizeChangeStringProperty' );
-addToMapIfDefined( 'a11y_controlPanel_sliderChange_resistanceSizeChange', 'a11y.controlPanel.sliderChange.resistanceSizeChangeStringProperty' );
+addToMapIfDefined( 'a11y_controlPanel_resistivityControl_accessibleName', 'a11y.controlPanel.resistivityControl.accessibleNameStringProperty' );
+addToMapIfDefined( 'a11y_controlPanel_lengthControl_accessibleName', 'a11y.controlPanel.lengthControl.accessibleNameStringProperty' );
+addToMapIfDefined( 'a11y_controlPanel_areaControl_accessibleName', 'a11y.controlPanel.areaControl.accessibleNameStringProperty' );
+addToMapIfDefined( 'a11y_controlPanel_controlChange_accessibleContextResponsePattern', 'a11y.controlPanel.controlChange.accessibleContextResponsePatternStringProperty' );
+addToMapIfDefined( 'a11y_controlPanel_controlChange_changedLetterClause', 'a11y.controlPanel.controlChange.changedLetterClauseStringProperty' );
+addToMapIfDefined( 'a11y_controlPanel_controlChange_resistanceLetterClause', 'a11y.controlPanel.controlChange.resistanceLetterClauseStringProperty' );
+addToMapIfDefined( 'a11y_controlPanel_controlChange_letterName', 'a11y.controlPanel.controlChange.letterNameStringProperty' );
+addToMapIfDefined( 'a11y_controlPanel_controlChange_letterSizeChange', 'a11y.controlPanel.controlChange.letterSizeChangeStringProperty' );
+addToMapIfDefined( 'a11y_controlPanel_controlChange_resistanceSizeChange', 'a11y.controlPanel.controlChange.resistanceSizeChangeStringProperty' );
 
 // A function that creates contents for a new Fluent file, which will be needed if any string changes.
 const createFluentFile = (): string => {
@@ -137,22 +137,22 @@ const ResistanceInAWireFluent = {
     controlPanel: {
       accessibleHeadingStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_controlPanel_accessibleHeading', _.get( ResistanceInAWireStrings, 'a11y.controlPanel.accessibleHeadingStringProperty' ) ),
       accessibleHelpTextStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_controlPanel_accessibleHelpText', _.get( ResistanceInAWireStrings, 'a11y.controlPanel.accessibleHelpTextStringProperty' ) ),
-      resistivitySlider: {
-        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_controlPanel_resistivitySlider_accessibleName', _.get( ResistanceInAWireStrings, 'a11y.controlPanel.resistivitySlider.accessibleNameStringProperty' ) )
+      resistivityControl: {
+        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_controlPanel_resistivityControl_accessibleName', _.get( ResistanceInAWireStrings, 'a11y.controlPanel.resistivityControl.accessibleNameStringProperty' ) )
       },
-      lengthSlider: {
-        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_controlPanel_lengthSlider_accessibleName', _.get( ResistanceInAWireStrings, 'a11y.controlPanel.lengthSlider.accessibleNameStringProperty' ) )
+      lengthControl: {
+        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_controlPanel_lengthControl_accessibleName', _.get( ResistanceInAWireStrings, 'a11y.controlPanel.lengthControl.accessibleNameStringProperty' ) )
       },
-      areaSlider: {
-        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_controlPanel_areaSlider_accessibleName', _.get( ResistanceInAWireStrings, 'a11y.controlPanel.areaSlider.accessibleNameStringProperty' ) )
+      areaControl: {
+        accessibleNameStringProperty: new FluentConstant( fluentSupport.bundleProperty, 'a11y_controlPanel_areaControl_accessibleName', _.get( ResistanceInAWireStrings, 'a11y.controlPanel.areaControl.accessibleNameStringProperty' ) )
       },
-      sliderChange: {
-        accessibleContextResponsePattern: new FluentPattern<{ letter: 'rho' | 'length' | 'area' | TReadOnlyProperty<'rho' | 'length' | 'area'>, letterChange: 'grows' | 'shrinks' | 'growsALot' | 'shrinksALot' | TReadOnlyProperty<'grows' | 'shrinks' | 'growsALot' | 'shrinksALot'>, rChange: 'grows' | 'shrinks' | 'growsALot' | 'shrinksALot' | TReadOnlyProperty<'grows' | 'shrinks' | 'growsALot' | 'shrinksALot'>, resistance: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_controlPanel_sliderChange_accessibleContextResponsePattern', _.get( ResistanceInAWireStrings, 'a11y.controlPanel.sliderChange.accessibleContextResponsePatternStringProperty' ), [{"name":"letter","variants":["rho","length","area"]},{"name":"letterChange","variants":["grows","shrinks","growsALot","shrinksALot"]},{"name":"rChange","variants":["grows","shrinks","growsALot","shrinksALot"]},{"name":"resistance"}] ),
-        changedLetterClause: new FluentPattern<{ letter: 'rho' | 'length' | 'area' | TReadOnlyProperty<'rho' | 'length' | 'area'>, letterChange: 'grows' | 'shrinks' | 'growsALot' | 'shrinksALot' | TReadOnlyProperty<'grows' | 'shrinks' | 'growsALot' | 'shrinksALot'> }>( fluentSupport.bundleProperty, 'a11y_controlPanel_sliderChange_changedLetterClause', _.get( ResistanceInAWireStrings, 'a11y.controlPanel.sliderChange.changedLetterClauseStringProperty' ), [{"name":"letter","variants":["rho","length","area"]},{"name":"letterChange","variants":["grows","shrinks","growsALot","shrinksALot"]}] ),
-        resistanceLetterClause: new FluentPattern<{ rChange: 'grows' | 'shrinks' | 'growsALot' | 'shrinksALot' | TReadOnlyProperty<'grows' | 'shrinks' | 'growsALot' | 'shrinksALot'> }>( fluentSupport.bundleProperty, 'a11y_controlPanel_sliderChange_resistanceLetterClause', _.get( ResistanceInAWireStrings, 'a11y.controlPanel.sliderChange.resistanceLetterClauseStringProperty' ), [{"name":"rChange","variants":["grows","shrinks","growsALot","shrinksALot"]}] ),
-        letterName: new FluentPattern<{ letter: 'rho' | 'length' | 'area' | TReadOnlyProperty<'rho' | 'length' | 'area'> }>( fluentSupport.bundleProperty, 'a11y_controlPanel_sliderChange_letterName', _.get( ResistanceInAWireStrings, 'a11y.controlPanel.sliderChange.letterNameStringProperty' ), [{"name":"letter","variants":["rho","length","area"]}] ),
-        letterSizeChange: new FluentPattern<{ letterChange: 'grows' | 'shrinks' | 'growsALot' | 'shrinksALot' | TReadOnlyProperty<'grows' | 'shrinks' | 'growsALot' | 'shrinksALot'> }>( fluentSupport.bundleProperty, 'a11y_controlPanel_sliderChange_letterSizeChange', _.get( ResistanceInAWireStrings, 'a11y.controlPanel.sliderChange.letterSizeChangeStringProperty' ), [{"name":"letterChange","variants":["grows","shrinks","growsALot","shrinksALot"]}] ),
-        resistanceSizeChange: new FluentPattern<{ rChange: 'grows' | 'shrinks' | 'growsALot' | 'shrinksALot' | TReadOnlyProperty<'grows' | 'shrinks' | 'growsALot' | 'shrinksALot'> }>( fluentSupport.bundleProperty, 'a11y_controlPanel_sliderChange_resistanceSizeChange', _.get( ResistanceInAWireStrings, 'a11y.controlPanel.sliderChange.resistanceSizeChangeStringProperty' ), [{"name":"rChange","variants":["grows","shrinks","growsALot","shrinksALot"]}] )
+      controlChange: {
+        accessibleContextResponsePattern: new FluentPattern<{ letter: 'rho' | 'length' | 'area' | TReadOnlyProperty<'rho' | 'length' | 'area'>, letterChange: 'grows' | 'shrinks' | 'growsALot' | 'shrinksALot' | TReadOnlyProperty<'grows' | 'shrinks' | 'growsALot' | 'shrinksALot'>, rChange: 'grows' | 'shrinks' | 'growsALot' | 'shrinksALot' | TReadOnlyProperty<'grows' | 'shrinks' | 'growsALot' | 'shrinksALot'>, resistance: FluentVariable }>( fluentSupport.bundleProperty, 'a11y_controlPanel_controlChange_accessibleContextResponsePattern', _.get( ResistanceInAWireStrings, 'a11y.controlPanel.controlChange.accessibleContextResponsePatternStringProperty' ), [{"name":"letter","variants":["rho","length","area"]},{"name":"letterChange","variants":["grows","shrinks","growsALot","shrinksALot"]},{"name":"rChange","variants":["grows","shrinks","growsALot","shrinksALot"]},{"name":"resistance"}] ),
+        changedLetterClause: new FluentPattern<{ letter: 'rho' | 'length' | 'area' | TReadOnlyProperty<'rho' | 'length' | 'area'>, letterChange: 'grows' | 'shrinks' | 'growsALot' | 'shrinksALot' | TReadOnlyProperty<'grows' | 'shrinks' | 'growsALot' | 'shrinksALot'> }>( fluentSupport.bundleProperty, 'a11y_controlPanel_controlChange_changedLetterClause', _.get( ResistanceInAWireStrings, 'a11y.controlPanel.controlChange.changedLetterClauseStringProperty' ), [{"name":"letter","variants":["rho","length","area"]},{"name":"letterChange","variants":["grows","shrinks","growsALot","shrinksALot"]}] ),
+        resistanceLetterClause: new FluentPattern<{ rChange: 'grows' | 'shrinks' | 'growsALot' | 'shrinksALot' | TReadOnlyProperty<'grows' | 'shrinks' | 'growsALot' | 'shrinksALot'> }>( fluentSupport.bundleProperty, 'a11y_controlPanel_controlChange_resistanceLetterClause', _.get( ResistanceInAWireStrings, 'a11y.controlPanel.controlChange.resistanceLetterClauseStringProperty' ), [{"name":"rChange","variants":["grows","shrinks","growsALot","shrinksALot"]}] ),
+        letterName: new FluentPattern<{ letter: 'rho' | 'length' | 'area' | TReadOnlyProperty<'rho' | 'length' | 'area'> }>( fluentSupport.bundleProperty, 'a11y_controlPanel_controlChange_letterName', _.get( ResistanceInAWireStrings, 'a11y.controlPanel.controlChange.letterNameStringProperty' ), [{"name":"letter","variants":["rho","length","area"]}] ),
+        letterSizeChange: new FluentPattern<{ letterChange: 'grows' | 'shrinks' | 'growsALot' | 'shrinksALot' | TReadOnlyProperty<'grows' | 'shrinks' | 'growsALot' | 'shrinksALot'> }>( fluentSupport.bundleProperty, 'a11y_controlPanel_controlChange_letterSizeChange', _.get( ResistanceInAWireStrings, 'a11y.controlPanel.controlChange.letterSizeChangeStringProperty' ), [{"name":"letterChange","variants":["grows","shrinks","growsALot","shrinksALot"]}] ),
+        resistanceSizeChange: new FluentPattern<{ rChange: 'grows' | 'shrinks' | 'growsALot' | 'shrinksALot' | TReadOnlyProperty<'grows' | 'shrinks' | 'growsALot' | 'shrinksALot'> }>( fluentSupport.bundleProperty, 'a11y_controlPanel_controlChange_resistanceSizeChange', _.get( ResistanceInAWireStrings, 'a11y.controlPanel.controlChange.resistanceSizeChangeStringProperty' ), [{"name":"rChange","variants":["grows","shrinks","growsALot","shrinksALot"]}] )
       }
     }
   }

@@ -29,11 +29,11 @@ import type SliderUnit from './SliderUnit.js';
 type SelfOptions = {
   resistanceProperty: TReadOnlyProperty<number>;
   resistivityProperty: TReadOnlyProperty<number>;
-  resistivitySlider: SliderUnit;
+  resistivityControl: SliderUnit;
   lengthProperty: TReadOnlyProperty<number>;
-  lengthSlider: SliderUnit;
+  lengthControl: SliderUnit;
   areaProperty: TReadOnlyProperty<number>;
-  areaSlider: SliderUnit;
+  areaControl: SliderUnit;
 };
 
 type ResistanceSoundGeneratorConfig = SelfOptions & SoundClipOptions;
@@ -85,19 +85,19 @@ export default class ResistanceSoundGenerator extends SoundClip {
     // Objects that monitor the parameter and play the sound, references kept for disposal.
     const resistivityMonitor = new ParameterMonitor(
       resolvedConfig.resistivityProperty,
-      resolvedConfig.resistivitySlider,
+      resolvedConfig.resistivityControl,
       new Range( MIN_RESISTIVITY, MAX_RESISTIVITY ),
       playResistanceSound
     );
     const lengthMonitor = new ParameterMonitor(
       resolvedConfig.lengthProperty,
-      resolvedConfig.lengthSlider,
+      resolvedConfig.lengthControl,
       new Range( MIN_LENGTH, MAX_LENGTH ),
       playResistanceSound
     );
     const areaMonitor = new ParameterMonitor(
       resolvedConfig.areaProperty,
-      resolvedConfig.areaSlider,
+      resolvedConfig.areaControl,
       new Range( MIN_AREA, MAX_AREA ),
       playResistanceSound
     );

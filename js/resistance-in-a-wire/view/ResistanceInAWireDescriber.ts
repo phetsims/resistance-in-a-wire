@@ -297,7 +297,7 @@ export default class ResistanceInAWireDescriber extends Disposable {
     const resistanceChangeKey = ResistanceInAWireDescriber.getSizeChangeKey( deltaResistance, true );
     const letterChangeKey = ResistanceInAWireDescriber.getSizeChangeKey( deltaVariable, false );
 
-    return ResistanceInAWireFluent.a11y.controlPanel.sliderChange.accessibleContextResponsePattern.format( {
+    return ResistanceInAWireFluent.a11y.controlPanel.controlChange.accessibleContextResponsePattern.format( {
       letter: letterKey,
       letterChange: letterChangeKey,
       rChange: resistanceChangeKey,

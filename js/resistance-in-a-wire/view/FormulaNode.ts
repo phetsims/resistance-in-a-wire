@@ -17,7 +17,7 @@ import Shape from '../../../../kite/js/Shape.js';
 import platform from '../../../../phet-core/js/platform.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import SceneryPhetFluent from '../../../../scenery-phet/js/SceneryPhetFluent.js';
-import Node, { type NodeOptions } from '../../../../scenery/js/nodes/Node.js';
+import Node, { type NodeTranslationOptions } from '../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
@@ -49,12 +49,13 @@ export default class FormulaNode extends Node {
     model: ResistanceInAWireModel,
     describer: ResistanceInAWireDescriber,
     tandem: Tandem,
-    providedOptions?: NodeOptions
+    providedOptions?: NodeTranslationOptions
   ) {
 
     super( {
       tandem: tandem,
       isDisposable: false,
+      visiblePropertyOptions: { phetioFeatured: true },
 
       // pdom
       accessibleHeading: formulaNodeAccessibleHeadingStringProperty,

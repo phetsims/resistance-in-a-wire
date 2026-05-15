@@ -33,18 +33,21 @@ export default class ResistanceInAWireModel implements TModel {
 
     this.resistivityProperty = new NumberProperty( ResistanceInAWireConstants.RESISTIVITY_RANGE.defaultValue, {
       tandem: tandem.createTandem( 'resistivityProperty' ),
+      phetioFeatured: true,
       units: '\u03A9\u00b7cm', // Ohm-centimeters
       range: ResistanceInAWireConstants.RESISTIVITY_RANGE
     } );
 
     this.lengthProperty = new NumberProperty( ResistanceInAWireConstants.LENGTH_RANGE.defaultValue, {
       tandem: tandem.createTandem( 'lengthProperty' ),
+      phetioFeatured: true,
       units: 'cm',
       range: ResistanceInAWireConstants.LENGTH_RANGE
     } );
 
     this.areaProperty = new NumberProperty( ResistanceInAWireConstants.AREA_RANGE.defaultValue, {
       tandem: tandem.createTandem( 'areaProperty' ),
+      phetioFeatured: true,
       units: 'cm^2',
       range: ResistanceInAWireConstants.AREA_RANGE
     } );
@@ -52,6 +55,7 @@ export default class ResistanceInAWireModel implements TModel {
     this.resistanceProperty = new DerivedProperty( [ this.resistivityProperty, this.lengthProperty, this.areaProperty ],
       ( resistivity, length, area ) => resistivity * length / area, {
         tandem: tandem.createTandem( 'resistanceProperty' ),
+        phetioFeatured: true,
         units: '\u03A9', // ohms
         phetioValueType: NumberIO
       }

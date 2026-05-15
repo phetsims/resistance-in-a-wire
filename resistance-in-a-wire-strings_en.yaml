@@ -87,18 +87,18 @@ a11y:
   controlPanel:
     accessibleHeading:  Slider Controls
     accessibleHelpText: Resistivity, Length, and Area sliders allow changes to equation and wire.
-    resistivitySlider:
+    resistivityControl:
       accessibleName: rho, Resistivity
-    lengthSlider:
+    lengthControl:
       accessibleName: L, Length
-    areaSlider:
+    areaControl:
       accessibleName: A, Area
-    sliderChange:
+    controlChange:
       accessibleContextResponsePattern: >-
-                                        As { a11y.controlPanel.sliderChange.changedLetterClause }, { a11y.controlPanel.sliderChange.resistanceLetterClause }. Resistance now
+                                        As { a11y.controlPanel.controlChange.changedLetterClause }, { a11y.controlPanel.controlChange.resistanceLetterClause }. Resistance now
                                         { $resistance }.
-      changedLetterClause:              letter { a11y.controlPanel.sliderChange.letterName } { a11y.controlPanel.sliderChange.letterSizeChange }
-      resistanceLetterClause:           letter R { a11y.controlPanel.sliderChange.resistanceSizeChange }
+      changedLetterClause:              letter { a11y.controlPanel.controlChange.letterName } { a11y.controlPanel.controlChange.letterSizeChange }
+      resistanceLetterClause:           letter R { a11y.controlPanel.controlChange.resistanceSizeChange }
       letterName:
         select_letter:
           rho:    rho

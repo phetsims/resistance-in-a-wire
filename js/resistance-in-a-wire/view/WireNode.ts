@@ -11,7 +11,7 @@
 import Multilink from '../../../../axon/js/Multilink.js';
 import Shape from '../../../../kite/js/Shape.js';
 import platform from '../../../../phet-core/js/platform.js';
-import Node, { type NodeOptions } from '../../../../scenery/js/nodes/Node.js';
+import Node, { type NodeTranslationOptions } from '../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
 import LinearGradient from '../../../../scenery/js/util/LinearGradient.js';
 import type Tandem from '../../../../tandem/js/Tandem.js';
@@ -29,11 +29,12 @@ export default class WireNode extends Node {
   public constructor(
     model: ResistanceInAWireModel,
     tandem: Tandem,
-    providedOptions?: NodeOptions
+    providedOptions?: NodeTranslationOptions
   ) {
 
     super( {
       tandem: tandem,
+      visiblePropertyOptions: { phetioFeatured: true },
 
       // pdom
       accessibleHeading: ResistanceInAWireFluent.a11y.wireNode.accessibleHeadingStringProperty,

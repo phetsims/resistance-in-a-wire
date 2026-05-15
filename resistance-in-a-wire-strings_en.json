@@ -112,30 +112,30 @@
       "accessibleHelpText": {
         "value": "Resistivity, Length, and Area sliders allow changes to equation and wire."
       },
-      "resistivitySlider": {
+      "resistivityControl": {
         "accessibleName": {
           "value": "rho, Resistivity"
         }
       },
-      "lengthSlider": {
+      "lengthControl": {
         "accessibleName": {
           "value": "L, Length"
         }
       },
-      "areaSlider": {
+      "areaControl": {
         "accessibleName": {
           "value": "A, Area"
         }
       },
-      "sliderChange": {
+      "controlChange": {
         "accessibleContextResponsePattern": {
-          "value": "As { a11y_controlPanel_sliderChange_changedLetterClause }, { a11y_controlPanel_sliderChange_resistanceLetterClause }. Resistance now { $resistance }."
+          "value": "As { a11y_controlPanel_controlChange_changedLetterClause }, { a11y_controlPanel_controlChange_resistanceLetterClause }. Resistance now { $resistance }."
         },
         "changedLetterClause": {
-          "value": "letter { a11y_controlPanel_sliderChange_letterName } { a11y_controlPanel_sliderChange_letterSizeChange }"
+          "value": "letter { a11y_controlPanel_controlChange_letterName } { a11y_controlPanel_controlChange_letterSizeChange }"
         },
         "resistanceLetterClause": {
-          "value": "letter R { a11y_controlPanel_sliderChange_resistanceSizeChange }"
+          "value": "letter R { a11y_controlPanel_controlChange_resistanceSizeChange }"
         },
         "letterName": {
           "value": "{ $letter ->\n  [rho] rho\n  [length] L\n  *[area] A\n}"

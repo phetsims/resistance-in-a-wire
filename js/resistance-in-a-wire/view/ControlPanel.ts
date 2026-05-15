@@ -14,7 +14,7 @@ import SceneryPhetFluent from '../../../../scenery-phet/js/SceneryPhetFluent.js'
 import { centimetersSquaredUnit } from '../../../../scenery-phet/js/units/centimetersSquaredUnit.js';
 import { centimetersUnit } from '../../../../scenery-phet/js/units/centimetersUnit.js';
 import { ohmCentimetersUnit } from '../../../../scenery-phet/js/units/ohmCentimetersUnit.js';
-import Node from '../../../../scenery/js/nodes/Node.js';
+import Node, { type NodeTranslationOptions } from '../../../../scenery/js/nodes/Node.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import Panel, { type PanelOptions } from '../../../../sun/js/Panel.js';
 import soundManager from '../../../../tambo/js/soundManager.js';
@@ -27,7 +27,7 @@ import ResistanceSoundGenerator from './ResistanceSoundGenerator.js';
 import SliderUnit from './SliderUnit.js';
 
 type SelfOptions = EmptySelfOptions;
-type ControlPanelOptions = SelfOptions & PanelOptions;
+type ControlPanelOptions = SelfOptions & NodeTranslationOptions;
 
 const areaStringProperty = ResistanceInAWireFluent.areaStringProperty;
 const areaSymbolStringProperty = ResistanceInAWireFluent.areaSymbolStringProperty;
@@ -41,12 +41,12 @@ const resistanceStringProperty = ResistanceInAWireFluent.resistanceStringPropert
 const resistivityStringProperty = ResistanceInAWireFluent.resistivityStringProperty;
 const symbolOhmsStringProperty = SceneryPhetFluent.symbol.ohmsStringProperty;
 const symbolResistivityStringProperty = SceneryPhetFluent.symbol.resistivityStringProperty;
-const resistivitySliderAccessibleNameStringProperty =
-  ResistanceInAWireFluent.a11y.controlPanel.resistivitySlider.accessibleNameStringProperty;
-const lengthSliderAccessibleNameStringProperty =
-  ResistanceInAWireFluent.a11y.controlPanel.lengthSlider.accessibleNameStringProperty;
-const areaSliderAccessibleNameStringProperty =
-  ResistanceInAWireFluent.a11y.controlPanel.areaSlider.accessibleNameStringProperty;
+const resistivityControlAccessibleNameStringProperty =
+  ResistanceInAWireFluent.a11y.controlPanel.resistivityControl.accessibleNameStringProperty;
+const lengthControlAccessibleNameStringProperty =
+  ResistanceInAWireFluent.a11y.controlPanel.lengthControl.accessibleNameStringProperty;
+const areaControlAccessibleNameStringProperty =
+  ResistanceInAWireFluent.a11y.controlPanel.areaControl.accessibleNameStringProperty;
 const controlPanelAccessibleHeadingStringProperty =
   ResistanceInAWireFluent.a11y.controlPanel.accessibleHeadingStringProperty;
 const controlPanelAccessibleHelpTextStringProperty =
@@ -76,6 +76,7 @@ export default class ControlPanel extends Panel {
       resize: false,
       tandem: tandem,
       preventFit: true,
+      visiblePropertyOptions: { phetioFeatured: true },
 
       // pdom
       tagName: 'ul',
@@ -125,14 +126,14 @@ export default class ControlPanel extends Panel {
       tandem: tandem.createTandem( 'resistivityUnitStringProperty' )
     } );
 
-    const resistivitySlider = new SliderUnit(
+    const resistivityControl = new SliderUnit(
       model.resistivityProperty,
       ResistanceInAWireConstants.RESISTIVITY_RANGE,
       symbolResistivityStringProperty,
       resistivityStringProperty,
       resistivityUnitStringProperty,
-      resistivitySliderAccessibleNameStringProperty,
-      tandem.createTandem( 'resistivitySlider' ), {
+      resistivityControlAccessibleNameStringProperty,
+      tandem.createTandem( 'resistivityControl' ), {
         startDrag: () => {
           resistanceOnStart = model.resistanceProperty.get();
         },
@@ -156,14 +157,14 @@ export default class ControlPanel extends Panel {
     );
 
     // Create and add the length slider with readout and labels.
-    const lengthSlider = new SliderUnit(
+    const lengthControl = new SliderUnit(
       model.lengthProperty,
       ResistanceInAWireConstants.LENGTH_RANGE,
       lengthSymbolStringProperty,
       lengthStringProperty,
       cmStringProperty,
-      lengthSliderAccessibleNameStringProperty,
-      tandem.createTandem( 'lengthSlider' ), {
+      lengthControlAccessibleNameStringProperty,
+      tandem.createTandem( 'lengthControl' ), {
         startDrag: () => {
           resistanceOnStart = model.resistanceProperty.get();
         },
@@ -191,14 +192,14 @@ export default class ControlPanel extends Panel {
       tandem: tandem.createTandem( 'areaUnitStringProperty' )
     } );
 
-    const areaSlider = new SliderUnit(
+    const areaControl = new SliderUnit(
       model.areaProperty,
       ResistanceInAWireConstants.AREA_RANGE,
       areaSymbolStringProperty,
       areaStringProperty,
       areaUnitStringProperty,
-      areaSliderAccessibleNameStringProperty,
-      tandem.createTandem( 'areaSlider' ), {
+      areaControlAccessibleNameStringProperty,
+      tandem.createTandem( 'areaControl' ), {
         startDrag: () => {
           resistanceOnStart = model.resistanceProperty.get();
         },
@@ -221,23 +222,23 @@ export default class ControlPanel extends Panel {
     );
 
     const sliders = new Node( {
-      children: [ resistivitySlider, lengthSlider, areaSlider ]
+      children: [ resistivityControl, lengthControl, areaControl ]
     } );
 
     // add the sound generator for the resistance level
     soundManager.addSoundGenerator( new ResistanceSoundGenerator( {
       resistanceProperty: model.resistanceProperty,
       resistivityProperty: model.resistivityProperty,
-      resistivitySlider: resistivitySlider,
+      resistivityControl: resistivityControl,
       lengthProperty: model.lengthProperty,
-      lengthSlider: lengthSlider,
+      lengthControl: lengthControl,
       areaProperty: model.areaProperty,
-      areaSlider: areaSlider
+      areaControl: areaControl
     } ) );
 
     // layout for the panel, HBox cannot be used because 'bottom' alignment cannot align RichText in SliderUnit
-    lengthSlider.left = resistivitySlider.right + SLIDER_SPACING;
-    areaSlider.left = lengthSlider.right + SLIDER_SPACING;
+    lengthControl.left = resistivityControl.right + SLIDER_SPACING;
+    areaControl.left = lengthControl.right + SLIDER_SPACING;
     sliders.centerX = 0;
     resistanceText.bottom = sliders.top - 12;
 

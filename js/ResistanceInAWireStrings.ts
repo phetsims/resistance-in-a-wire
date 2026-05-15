@@ -102,19 +102,19 @@ type StringsType = {
       'accessibleHeadingStringProperty': LocalizedStringProperty;
       'accessibleHelpText': string;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
-      'resistivitySlider': {
+      'resistivityControl': {
         'accessibleName': string;
         'accessibleNameStringProperty': LocalizedStringProperty;
       };
-      'lengthSlider': {
+      'lengthControl': {
         'accessibleName': string;
         'accessibleNameStringProperty': LocalizedStringProperty;
       };
-      'areaSlider': {
+      'areaControl': {
         'accessibleName': string;
         'accessibleNameStringProperty': LocalizedStringProperty;
       };
-      'sliderChange': {
+      'controlChange': {
         'accessibleContextResponsePattern': string;
         'accessibleContextResponsePatternStringProperty': LocalizedStringProperty;
         'changedLetterClause': string;

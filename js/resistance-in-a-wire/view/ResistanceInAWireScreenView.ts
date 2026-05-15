@@ -65,7 +65,8 @@ export default class ResistanceInAWireScreenView extends ScreenView {
       fill: ResistanceInAWireConstants.WHITE_COLOR,
       stroke: ResistanceInAWireConstants.BLACK_COLOR,
       lineWidth: 1,
-      tandem: tandem.createTandem( 'arrowNode' )
+      tandem: tandem.createTandem( 'arrowNode' ),
+      visiblePropertyOptions: { phetioFeatured: true }
     } );
     this.pdomPlayAreaNode.addChild( arrowNode );
 
