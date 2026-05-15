@@ -47,7 +47,6 @@ export default class WireNode extends Node {
     // Body of the wire
     const wireBody = new Path( null, {
       stroke: 'black',
-      tandem: tandem.createTandem( 'wireBody' ),
       renderer: wireBodyRenderer
     } );
 
@@ -55,7 +54,6 @@ export default class WireNode extends Node {
     const wireEnd = new Path( null, {
       stroke: 'black',
       fill: '#E8B282',
-      tandem: tandem.createTandem( 'wireEnd' ),
       renderer: wireBodyRenderer
     } );
 

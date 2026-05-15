@@ -245,8 +245,7 @@ export default class ControlPanel extends Panel {
     // Because ControlPanel extends Panel, it needs pass a content node into its constructor to surround.
     // Add everything to the content node, then pass content to the Panel.call().
     const content = new Node( {
-      children: [ resistanceText, sliders ],
-      tandem: tandem.createTandem( 'content' )
+      children: [ resistanceText, sliders ]
     } );
 
     super( content, options );

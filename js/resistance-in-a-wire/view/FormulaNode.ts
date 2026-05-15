@@ -161,8 +161,7 @@ export default class FormulaNode extends Node {
     // dividing line, hard coded
     this.addChild( new Path( Shape.lineSegment( 150, 8, 400, 8 ), {
       stroke: 'black',
-      lineWidth: 6,
-      tandem: tandem.createTandem( 'dividingLine' )
+      lineWidth: 6
     } ) );
 
     this.mutate( providedOptions );
