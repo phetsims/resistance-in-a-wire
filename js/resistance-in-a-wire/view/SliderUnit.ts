@@ -109,15 +109,13 @@ export default class SliderUnit extends Node {
       font: ResistanceInAWireConstants.SYMBOL_FONT,
       fill: ResistanceInAWireConstants.BLUE_COLOR,
       maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH,
-      boundsMethod: 'accurate',
-      tandem: tandem.createTandem( 'symbolText' )
+      boundsMethod: 'accurate'
     } );
 
     const nameText = new Text( nameStringProperty, {
       font: ResistanceInAWireConstants.NAME_FONT,
       fill: ResistanceInAWireConstants.BLUE_COLOR,
-      maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH,
-      tandem: tandem.createTandem( 'nameText' )
+      maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH
     } );
 
     const slider = new VSlider( property, range, options.sliderOptions );
@@ -125,16 +123,14 @@ export default class SliderUnit extends Node {
     const valueText = new Text( toFixed( range.max, 2 ), {
       font: ResistanceInAWireConstants.READOUT_FONT,
       fill: ResistanceInAWireConstants.BLACK_COLOR,
-      maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH,
-      tandem: tandem.createTandem( 'valueText' )
+      maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH
     } );
 
     const unitText = new RichText( unitString, {
       font: ResistanceInAWireConstants.UNIT_FONT,
       fill: ResistanceInAWireConstants.BLUE_COLOR,
       maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH,
-      boundsMethod: 'accurate',
-      tandem: tandem.createTandem( 'unitText' )
+      boundsMethod: 'accurate'
     } );
 
     // The slider is the stable anchor for the unit. Dynamic locale can change text bounds at runtime, but that should

@@ -39,7 +39,6 @@ type FormulaSymbolEntry = {
   center: Vector2;
   property: TReadOnlyProperty<number>;
   color: string;
-  tandemName: string;
   cappedSize?: boolean;
 };
 
@@ -66,8 +65,7 @@ export default class FormulaNode extends Node {
     const equalsSignText = new Text( '=', { // we never internationalize the '=' sign
       font: new PhetFont( { family: ResistanceInAWireConstants.FONT_FAMILY, size: 90 } ),
       fill: ResistanceInAWireConstants.BLACK_COLOR,
-      center: new Vector2( 100, 0 ),
-      tandem: tandem.createTandem( 'equalsSignText' )
+      center: new Vector2( 100, 0 )
     } );
 
     // Parent for all letters in the equation.
@@ -83,8 +81,7 @@ export default class FormulaNode extends Node {
       const text = new Text( entry.labelStringProperty, {
         font: new PhetFont( { family: ResistanceInAWireConstants.FONT_FAMILY, size: 15 } ),
         fill: entry.color,
-        center: entry.center,
-        tandem: tandem.createTandem( entry.tandemName )
+        center: entry.center
       } );
 
       // Add an invisible rectangle with bounds slightly larger than the text so that artifacts aren't left on the
@@ -117,33 +114,31 @@ export default class FormulaNode extends Node {
       labelStringProperty: resistanceSymbolStringProperty,
       center: new Vector2( equalsSignText.centerX - 100, 0 ),
       property: model.resistanceProperty,
+
+      // To make sure that the 'R' doesn't get too big, see https://github.com/phetsims/resistance-in-a-wire/issues/28.
       color: ResistanceInAWireConstants.RED_COLOR,
-      cappedSize: true, // To make sure that the 'R' doesn't get too big, see https://github.com/phetsims/resistance-in-a-wire/issues/28
-      tandemName: 'resistanceSymbolText'
+      cappedSize: true
     } );
 
     const resistivityMagnitudeProperty = addFormulaSymbol( {
       labelStringProperty: symbolResistivityStringProperty,
       center: new Vector2( equalsSignText.centerX + 120, -90 ),
       property: model.resistivityProperty,
-      color: ResistanceInAWireConstants.BLUE_COLOR,
-      tandemName: 'resistivitySymbolText'
+      color: ResistanceInAWireConstants.BLUE_COLOR
     } );
 
     const lengthMagnitudeProperty = addFormulaSymbol( {
       labelStringProperty: lengthSymbolStringProperty,
       center: new Vector2( equalsSignText.centerX + 220, -90 ),
       property: model.lengthProperty,
-      color: ResistanceInAWireConstants.BLUE_COLOR,
-      tandemName: 'lengthSymbolText'
+      color: ResistanceInAWireConstants.BLUE_COLOR
     } );
 
     const areaMagnitudeProperty = addFormulaSymbol( {
       labelStringProperty: areaSymbolStringProperty,
       center: new Vector2( equalsSignText.centerX + 170, 90 ),
       property: model.areaProperty,
-      color: ResistanceInAWireConstants.BLUE_COLOR,
-      tandemName: 'areaSymbolText'
+      color: ResistanceInAWireConstants.BLUE_COLOR
     } );
 
     lettersNode.accessibleParagraph = describer.createFormulaRelativeSizeDescriptionProperty( {
