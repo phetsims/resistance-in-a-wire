@@ -43,7 +43,7 @@ export default class ResistanceInAWireScreenView extends ScreenView {
       centerX: controlPanel.left / 2,
       centerY: 190
     } );
-    this.pdomPlayAreaNode.addChild( formulaNode );
+    this.addChild( formulaNode );
 
     // Create the wire display to represent the formula
     const wireNode = new WireNode( model, tandem.createTandem( 'wireNode' ), {
@@ -51,7 +51,7 @@ export default class ResistanceInAWireScreenView extends ScreenView {
       centerY: formulaNode.centerY + 270
     } );
     wireNode.accessibleParagraph = describer.wireDescriptionStringProperty;
-    this.pdomPlayAreaNode.addChild( wireNode );
+    this.addChild( wireNode );
 
     const tailX = wireNode.centerX - ResistanceInAWireConstants.TAIL_LENGTH / 2;
     const tipX = wireNode.centerX + ResistanceInAWireConstants.TAIL_LENGTH / 2;
@@ -68,7 +68,7 @@ export default class ResistanceInAWireScreenView extends ScreenView {
       tandem: tandem.createTandem( 'arrowNode' ),
       visiblePropertyOptions: { phetioFeatured: true }
     } );
-    this.pdomPlayAreaNode.addChild( arrowNode );
+    this.addChild( arrowNode );
 
     const resetAllButton = new ResetAllButton( {
       listener: () => { model.reset(); },
@@ -77,7 +77,7 @@ export default class ResistanceInAWireScreenView extends ScreenView {
       bottom: this.layoutBounds.bottom - 20,
       tandem: tandem.createTandem( 'resetAllButton' )
     } );
-    this.pdomControlAreaNode.addChild( resetAllButton );
+    this.addChild( resetAllButton );
 
     // the outer stroke of the ResetAllButton focus highlight is black so that it is visible when the equation
     // resistance letter grows too large
@@ -86,6 +86,16 @@ export default class ResistanceInAWireScreenView extends ScreenView {
     resetAllButton.focusHighlight = new HighlightPath( highlightShape, { outerStroke: 'black' } );
 
     // add the control panel last so it is always on top.
-    this.pdomPlayAreaNode.addChild( controlPanel );
+    this.addChild( controlPanel );
+
+    // Keep visual layering independent from Play/Control Area PDOM sections. The formula can scale beyond its
+    // nominal bounds, so Reset All must be layered above it even though it belongs to the Control Area.
+    this.pdomPlayAreaNode.pdomOrder = [
+      formulaNode,
+      wireNode,
+      arrowNode,
+      controlPanel
+    ];
+    this.pdomControlAreaNode.pdomOrder = [ resetAllButton ];
   }
 }
