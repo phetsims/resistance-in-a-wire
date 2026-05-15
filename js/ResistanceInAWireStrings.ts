@@ -13,119 +13,77 @@ import resistanceInAWire from './resistanceInAWire.js';
 
 type StringsType = {
   'resistance-in-a-wire': {
-    'title': string;
     'titleStringProperty': LocalizedStringProperty;
   };
-  'area': string;
   'areaStringProperty': LocalizedStringProperty;
-  'areaSymbol': string;
   'areaSymbolStringProperty': LocalizedStringProperty;
-  'cm': string;
   'cmStringProperty': LocalizedStringProperty;
-  'length': string;
   'lengthStringProperty': LocalizedStringProperty;
-  'lengthSymbol': string;
   'lengthSymbolStringProperty': LocalizedStringProperty;
-  'ohm': string;
   'ohmStringProperty': LocalizedStringProperty;
   'pattern': {
     '0label': {
       '1value': {
-        '2units': string;
         '2unitsStringProperty': LocalizedStringProperty;
       }
     };
     '0resistanceUnits': {
-      '1lengthUnits': string;
       '1lengthUnitsStringProperty': LocalizedStringProperty;
     }
   };
-  'resistance': string;
   'resistanceStringProperty': LocalizedStringProperty;
-  'resistanceSymbol': string;
   'resistanceSymbolStringProperty': LocalizedStringProperty;
-  'resistivity': string;
   'resistivityStringProperty': LocalizedStringProperty;
   'a11y': {
     'resistanceInAWireScreen': {
       'screenSummary': {
-        'playArea': string;
         'playAreaStringProperty': LocalizedStringProperty;
-        'controlArea': string;
         'controlAreaStringProperty': LocalizedStringProperty;
         'currentDetails': {
-          'currently': string;
           'currentlyStringProperty': LocalizedStringProperty;
-          'resistancePattern': string;
           'resistancePatternStringProperty': LocalizedStringProperty;
-          'resistivityPattern': string;
           'resistivityPatternStringProperty': LocalizedStringProperty;
-          'lengthPattern': string;
           'lengthPatternStringProperty': LocalizedStringProperty;
-          'areaPattern': string;
           'areaPatternStringProperty': LocalizedStringProperty;
         };
-        'interactionHint': string;
         'interactionHintStringProperty': LocalizedStringProperty;
       }
     };
     'formulaNode': {
-      'accessibleHeading': string;
       'accessibleHeadingStringProperty': LocalizedStringProperty;
-      'accessibleParagraph': string;
       'accessibleParagraphStringProperty': LocalizedStringProperty;
       'accessibleParagraphPattern': {
-        'rhoLAndAComparable': string;
         'rhoLAndAComparableStringProperty': LocalizedStringProperty;
-        'lAndAComparable': string;
         'lAndAComparableStringProperty': LocalizedStringProperty;
-        'noneComparable': string;
         'noneComparableStringProperty': LocalizedStringProperty;
       };
-      'relativeSizeDescription': string;
       'relativeSizeDescriptionStringProperty': LocalizedStringProperty;
     };
     'wireNode': {
-      'accessibleHeading': string;
       'accessibleHeadingStringProperty': LocalizedStringProperty;
-      'accessibleParagraphPattern': string;
       'accessibleParagraphPatternStringProperty': LocalizedStringProperty;
-      'lengthClause': string;
       'lengthClauseStringProperty': LocalizedStringProperty;
-      'thicknessClause': string;
       'thicknessClauseStringProperty': LocalizedStringProperty;
-      'impuritiesClause': string;
       'impuritiesClauseStringProperty': LocalizedStringProperty;
     };
     'controlPanel': {
-      'accessibleHeading': string;
       'accessibleHeadingStringProperty': LocalizedStringProperty;
-      'accessibleHelpText': string;
       'accessibleHelpTextStringProperty': LocalizedStringProperty;
       'resistivityControl': {
-        'accessibleName': string;
         'accessibleNameStringProperty': LocalizedStringProperty;
       };
       'lengthControl': {
-        'accessibleName': string;
         'accessibleNameStringProperty': LocalizedStringProperty;
       };
       'areaControl': {
-        'accessibleName': string;
         'accessibleNameStringProperty': LocalizedStringProperty;
       };
       'controlChange': {
-        'accessibleContextResponsePattern': string;
         'accessibleContextResponsePatternStringProperty': LocalizedStringProperty;
-        'changedLetterClause': string;
         'changedLetterClauseStringProperty': LocalizedStringProperty;
-        'resistanceLetterClause': string;
         'resistanceLetterClauseStringProperty': LocalizedStringProperty;
-        'letterName': string;
         'letterNameStringProperty': LocalizedStringProperty;
-        'letterSizeChange': string;
         'letterSizeChangeStringProperty': LocalizedStringProperty;
-        'resistanceSizeChange': string;
         'resistanceSizeChangeStringProperty': LocalizedStringProperty;
       }
     }
