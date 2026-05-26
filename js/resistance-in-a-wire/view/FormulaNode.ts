@@ -71,11 +71,12 @@ export default class FormulaNode extends Node {
     // Parent for all letters in the equation.
     const lettersNode = new Node();
 
-    // If we are on a safari platform render with canvas to prevent these issues, but only on safari because
-    // canvas doesn't perform as well on other browsers
+    // If we are on a safari or ChromeOS platform render with canvas to prevent these issues, but only on
+    // affected platforms because canvas doesn't perform as well on other browsers.
     // https://github.com/phetsims/resistance-in-a-wire/issues/108 and
-    // https://github.com/phetsims/resistance-in-a-wire/issues/112
-    if ( platform.safari ) { lettersNode.renderer = 'canvas'; }
+    // https://github.com/phetsims/resistance-in-a-wire/issues/112 and
+    // https://github.com/phetsims/resistance-in-a-wire/issues/233
+    if ( platform.safari || platform.chromeOS ) { lettersNode.renderer = 'canvas'; }
 
     const addFormulaSymbol = ( entry: FormulaSymbolEntry ): TReadOnlyProperty<number> => {
       const text = new Text( entry.labelStringProperty, {
