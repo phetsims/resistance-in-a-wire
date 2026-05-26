@@ -29,8 +29,7 @@ export default class ResistanceInAWireScreenSummaryNode extends ScreenSummaryCon
         describer.resistivitySummaryStringProperty,
         describer.lengthSummaryStringProperty,
         describer.areaSummaryStringProperty
-      ],
-      renderFormattingTags: true
+      ]
     };
 
     super( {
