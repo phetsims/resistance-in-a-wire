@@ -20,11 +20,11 @@ import SceneryPhetFluent from '../../../../scenery-phet/js/SceneryPhetFluent.js'
 import Node, { type NodeTranslationOptions } from '../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
-import Text from '../../../../scenery/js/nodes/Text.js';
 import type Tandem from '../../../../tandem/js/Tandem.js';
 import ResistanceInAWireFluent from '../../ResistanceInAWireFluent.js';
 import type ResistanceInAWireModel from '../model/ResistanceInAWireModel.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
+import OutlinedTextNode from './OutlinedTextNode.js';
 import type ResistanceInAWireDescriber from './ResistanceInAWireDescriber.js';
 
 const areaSymbolStringProperty = ResistanceInAWireFluent.areaSymbolStringProperty;
@@ -61,8 +61,8 @@ export default class FormulaNode extends Node {
       accessibleParagraph: formulaNodeAccessibleParagraphStringProperty
     } );
 
-    // Equals sign, hard coded.
-    const equalsSignText = new Text( '=', { // we never internationalize the '=' sign
+    // Equals sign, hard coded. We never internationalize the '=' sign.
+    const equalsSignText = new OutlinedTextNode( '=', {
       font: new PhetFont( { family: ResistanceInAWireConstants.FONT_FAMILY, size: 90 } ),
       fill: ResistanceInAWireConstants.BLACK_COLOR,
       center: new Vector2( 100, 0 )
@@ -79,7 +79,7 @@ export default class FormulaNode extends Node {
     if ( platform.safari || platform.chromeOS ) { lettersNode.renderer = 'canvas'; }
 
     const addFormulaSymbol = ( entry: FormulaSymbolEntry ): TReadOnlyProperty<number> => {
-      const text = new Text( entry.labelStringProperty, {
+      const text = new OutlinedTextNode( entry.labelStringProperty, {
         font: new PhetFont( { family: ResistanceInAWireConstants.FONT_FAMILY, size: 15 } ),
         fill: entry.color,
         center: entry.center

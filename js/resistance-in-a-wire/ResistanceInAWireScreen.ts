@@ -11,6 +11,7 @@ import Property from '../../../axon/js/Property.js';
 import Screen from '../../../joist/js/Screen.js';
 import SliderControlsAndBasicActionsKeyboardHelpContent from '../../../scenery-phet/js/keyboard/help/SliderControlsAndBasicActionsKeyboardHelpContent.js';
 import Tandem from '../../../tandem/js/Tandem.js';
+import ResistanceInAWireConstants from './ResistanceInAWireConstants.js';
 import ResistanceInAWireModel from './model/ResistanceInAWireModel.js';
 import ResistanceInAWireScreenView from './view/ResistanceInAWireScreenView.js';
 
@@ -19,7 +20,7 @@ export default class ResistanceInAWireScreen extends Screen<ResistanceInAWireMod
   public constructor( tandem: Tandem ) {
 
     const options = {
-      backgroundColorProperty: new Property( '#ffffdf' ),
+      backgroundColorProperty: new Property( ResistanceInAWireConstants.BACKGROUND_COLOR ),
       tandem: tandem,
       createKeyboardHelpNode: () => new SliderControlsAndBasicActionsKeyboardHelpContent()
     };

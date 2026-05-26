@@ -18,6 +18,7 @@ const AREA_RANGE = new RangeWithValue( 0.01, 15, 7.5 ); // in cm^2
 const ResistanceInAWireConstants = {
 
   // colors
+  BACKGROUND_COLOR: '#ffffdf',
   BLUE_COLOR: '#0f0ffb',
   BLACK_COLOR: '#000',
   RED_COLOR: '#F22',
