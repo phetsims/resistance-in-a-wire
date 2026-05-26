@@ -104,6 +104,7 @@ export default class ControlPanel extends Panel {
       fill: ResistanceInAWireConstants.RED_COLOR,
       maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH * 4.7,
       tandem: tandem.createTandem( 'resistanceText' ),
+      phetioVisiblePropertyInstrumented: true,
       visiblePropertyOptions: { phetioFeatured: true }
     } );
 
