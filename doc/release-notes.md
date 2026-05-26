@@ -41,7 +41,6 @@ For an exemplar, see https://github.com/phetsims/balancing-chemical-equations/bl
 
 ### Other Changes
 * Improved color contrast.
-* Use tambo sound libraries.
 * Ported strings to yaml and string patterns to Fluent.
 * Re-implement descriptions using the higher-level scenery functions for accessibility.
 * Updated deprecated code patterns.
