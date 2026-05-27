@@ -13,6 +13,7 @@ import affirm from '../../../../perennial-alias/js/browser-and-node/affirm.js';
 import ArrowNode from '../../../../scenery-phet/js/ArrowNode.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import HighlightPath from '../../../../scenery/js/accessibility/HighlightPath.js';
+import ManualConstraint from '../../../../scenery/js/layout/constraints/ManualConstraint.js';
 import type Tandem from '../../../../tandem/js/Tandem.js';
 import type ResistanceInAWireModel from '../model/ResistanceInAWireModel.js';
 import ResistanceInAWireConstants from '../ResistanceInAWireConstants.js';
@@ -21,6 +22,9 @@ import FormulaNode from './FormulaNode.js';
 import ResistanceInAWireDescriber from './ResistanceInAWireDescriber.js';
 import ResistanceInAWireScreenSummaryNode from './ResistanceInAWireScreenSummaryNode.js';
 import WireNode from './WireNode.js';
+
+const CONTROL_PANEL_TOP = 40;
+const CONTROL_PANEL_RIGHT_MARGIN = 30;
 
 export default class ResistanceInAWireScreenView extends ScreenView {
 
@@ -32,33 +36,20 @@ export default class ResistanceInAWireScreenView extends ScreenView {
       screenSummaryContent: new ResistanceInAWireScreenSummaryNode( describer )
     } );
 
-    // Create the control panel with sliders that change the values of the equation's variables. Hard coded
-    const controlPanel = new ControlPanel( model, describer, tandem.createTandem( 'controlPanel' ), {
-      right: this.layoutBounds.right - 30,
-      top: 40
-    } );
+    // Create the control panel with sliders that change the values of the equation's variables.
+    const controlPanel = new ControlPanel( model, describer, tandem.createTandem( 'controlPanel' ) );
 
     // Create the formula node that holds the equation with size changing variables.
-    const formulaNode = new FormulaNode( model, describer, tandem.createTandem( 'formulaNode' ), {
-      centerX: controlPanel.left / 2,
-      centerY: 190
-    } );
+    const formulaNode = new FormulaNode( model, describer, tandem.createTandem( 'formulaNode' ) );
     this.addChild( formulaNode );
 
     // Create the wire display to represent the formula
-    const wireNode = new WireNode( model, tandem.createTandem( 'wireNode' ), {
-      centerX: formulaNode.centerX,
-      centerY: formulaNode.centerY + 270
-    } );
+    const wireNode = new WireNode( model, tandem.createTandem( 'wireNode' ) );
     wireNode.accessibleParagraph = describer.wireDescriptionStringProperty;
     this.addChild( wireNode );
 
-    const tailX = wireNode.centerX - ResistanceInAWireConstants.TAIL_LENGTH / 2;
-    const tipX = wireNode.centerX + ResistanceInAWireConstants.TAIL_LENGTH / 2;
-    const arrowHeight = this.layoutBounds.bottom - 47;
-
     // create static arrow below the wire
-    const arrowNode = new ArrowNode( tailX, arrowHeight, tipX, arrowHeight, {
+    const arrowNode = new ArrowNode( 0, 0, 0, 0, {
       headHeight: ResistanceInAWireConstants.HEAD_HEIGHT,
       headWidth: ResistanceInAWireConstants.HEAD_WIDTH,
       tailWidth: ResistanceInAWireConstants.TAIL_WIDTH,
@@ -73,8 +64,6 @@ export default class ResistanceInAWireScreenView extends ScreenView {
     const resetAllButton = new ResetAllButton( {
       listener: () => { model.reset(); },
       radius: 30,
-      right: controlPanel.right,
-      bottom: this.layoutBounds.bottom - 20,
       tandem: tandem.createTandem( 'resetAllButton' )
     } );
     this.addChild( resetAllButton );
@@ -87,6 +76,31 @@ export default class ResistanceInAWireScreenView extends ScreenView {
 
     // add the control panel last so it is always on top.
     this.addChild( controlPanel );
+
+    //-------------------------------------------------------------------
+    // Layout code
+    //-------------------------------------------------------------------
+    const controlPanelConstraint = ManualConstraint.create( this, [ resetAllButton, controlPanel ], ( resetAllButtonProxy, controlPanelProxy ) => {
+      controlPanelProxy.right = resetAllButtonProxy.right;
+      controlPanelProxy.top = CONTROL_PANEL_TOP;
+    } );
+
+    resetAllButton.right = this.layoutBounds.right - CONTROL_PANEL_RIGHT_MARGIN;
+    resetAllButton.bottom = this.layoutBounds.bottom - 20;
+
+    // Force the constraint to run after positioning Reset All, so subsequent layout can use controlPanel.left.
+    controlPanelConstraint.updateLayout();
+
+    formulaNode.centerX = controlPanel.left / 2;
+    formulaNode.centerY = 190;
+
+    wireNode.centerX = formulaNode.centerX;
+    wireNode.centerY = formulaNode.centerY + 270;
+
+    const tailX = wireNode.centerX - ResistanceInAWireConstants.TAIL_LENGTH / 2;
+    const tipX = wireNode.centerX + ResistanceInAWireConstants.TAIL_LENGTH / 2;
+    const arrowHeight = this.layoutBounds.bottom - 47;
+    arrowNode.setTailAndTip( tailX, arrowHeight, tipX, arrowHeight );
 
     // Keep visual layering independent from Play/Control Area PDOM sections. The formula can scale beyond its
     // nominal bounds, so Reset All must be layered above it even though it belongs to the Control Area.

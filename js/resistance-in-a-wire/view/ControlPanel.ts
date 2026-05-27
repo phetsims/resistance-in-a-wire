@@ -9,6 +9,7 @@
 
 import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js';
 import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
+import Bounds2 from '../../../../dot/js/Bounds2.js';
 import optionize, { type EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import SceneryPhetFluent from '../../../../scenery-phet/js/SceneryPhetFluent.js';
 import { centimetersSquaredUnit } from '../../../../scenery-phet/js/units/centimetersSquaredUnit.js';
@@ -73,7 +74,7 @@ export default class ControlPanel extends Panel {
       xMargin: 30,
       yMargin: 20,
       lineWidth: 3,
-      resize: false,
+      resize: true,
       tandem: tandem,
       preventFit: true,
       visiblePropertyOptions: { phetioFeatured: true },
@@ -222,8 +223,11 @@ export default class ControlPanel extends Panel {
       }
     );
 
+    const sliderControls = [ resistivityControl, lengthControl, areaControl ];
+
     const sliders = new Node( {
-      children: [ resistivityControl, lengthControl, areaControl ]
+      excludeInvisibleChildrenFromBounds: true,
+      children: sliderControls
     } );
 
     // add the sound generator for the resistance level
@@ -237,16 +241,56 @@ export default class ControlPanel extends Panel {
       areaControl: areaControl
     } ) );
 
-    // layout for the panel, HBox cannot be used because 'bottom' alignment cannot align RichText in SliderUnit
-    lengthControl.left = resistivityControl.right + SLIDER_SPACING;
-    areaControl.left = lengthControl.right + SLIDER_SPACING;
-    sliders.centerX = 0;
-    resistanceText.bottom = sliders.top - 12;
-
     // Because ControlPanel extends Panel, it needs pass a content node into its constructor to surround.
     // Add everything to the content node, then pass content to the Panel.call().
     const content = new Node( {
+
+      // To support dynamic layout, so that contents resize as components become invisible.
+      excludeInvisibleChildrenFromBounds: true,
       children: [ resistanceText, sliders ]
+    } );
+
+    // Usually excludeInvisibleChildrenFromBounds would let Scenery compute this automatically. Since this layout
+    // intentionally overrides localBounds so value text changes do not resize the panel, take a visible-child bounds
+    // snapshot only when visibility changes.
+    const getVisibleChildBounds = ( node: Node ): Bounds2 => {
+      return node.children.reduce( ( bounds, child ) => {
+        return child.visible && child.bounds.isValid() ? bounds.includeBounds( child.bounds ) : bounds;
+      }, Bounds2.NOTHING.copy() );
+    };
+
+    const updateLayoutForVisibility = () => {
+
+      // Layout for the panel, HBox cannot be used because 'bottom' alignment cannot align RichText in SliderUnit.
+      // We also do not want layout to change as labels change size.
+      let previousVisibleControl: SliderUnit | null = null;
+      sliderControls.forEach( sliderControl => {
+        if ( sliderControl.visible ) {
+          sliderControl.left = previousVisibleControl ? previousVisibleControl.right + SLIDER_SPACING : 0;
+          previousVisibleControl = sliderControl;
+        }
+      } );
+
+      sliders.localBounds = getVisibleChildBounds( sliders );
+      if ( sliders.localBounds.isValid() ) {
+        sliders.centerX = 0;
+      }
+
+      if ( resistanceText.visible ) {
+        resistanceText.centerX = 0;
+        if ( sliders.localBounds.isValid() ) {
+          resistanceText.bottom = sliders.top - 12;
+        }
+      }
+
+      // These localBounds are intentionally only updated from visibility changes. This allows the Panel to resize when
+      // PhET-iO hides components, without resizing when dynamic value text changes bounds.
+      content.localBounds = getVisibleChildBounds( content );
+    };
+
+    updateLayoutForVisibility();
+    [ resistanceText, ...sliderControls ].forEach( node => {
+      node.visibleProperty.lazyLink( updateLayoutForVisibility );
     } );
 
     super( content, options );
