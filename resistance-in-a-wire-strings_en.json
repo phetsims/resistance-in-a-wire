@@ -39,7 +39,7 @@
     "resistanceInAWireScreen": {
       "screenSummary": {
         "playArea": {
-          "value": "You find the Resistance equation, <b>R</b> equals <b>rho</b> times <b>L</b> over <b>A</b>, and a piece of wire. Sliders for resistivity, length, and area allow changes to the equation and the piece of wire."
+          "value": "You find the Resistance equation, R equals rho times L over A, and a piece of wire. Sliders for resistivity, length, and area allow changes to the equation and the piece of wire."
         },
         "controlArea": {
           "value": "There is a button to reset the sim."
@@ -49,16 +49,16 @@
             "value": "Currently,"
           },
           "resistancePattern": {
-            "value": "resistance, <b>R</b>, is { $value }"
+            "value": "resistance, R, is { $value }"
           },
           "resistivityPattern": {
-            "value": "resistivity, <b>rho</b>, is { $value }"
+            "value": "resistivity, rho, is { $value }"
           },
           "lengthPattern": {
-            "value": "length, <b>L</b>, is { $value }"
+            "value": "length, L, is { $value }"
           },
           "areaPattern": {
-            "value": "area, <b>A</b>, is { $value }"
+            "value": "area, A, is { $value }"
           }
         },
         "interactionHint": {
@@ -71,7 +71,7 @@
         "value": "Resistance Equation"
       },
       "accessibleParagraph": {
-        "value": "Resistance, <b>R</b>, is equal to resistivity, <b>rho</b>, times length, <b>L</b>, over area, <b>A</b>."
+        "value": "Resistance, R, is equal to resistivity, rho, times length, L, over area, A."
       },
       "accessibleParagraphPattern": {
         "rhoLAndAComparable": {
