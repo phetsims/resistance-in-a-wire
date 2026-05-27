@@ -34,6 +34,10 @@ const symbolResistivityStringProperty = SceneryPhetFluent.symbol.resistivityStri
 const formulaNodeAccessibleHeadingStringProperty = ResistanceInAWireFluent.a11y.formulaNode.accessibleHeadingStringProperty;
 const formulaNodeAccessibleParagraphStringProperty = ResistanceInAWireFluent.a11y.formulaNode.accessibleParagraphStringProperty;
 
+// On ChromeOS, the 'A' has slightly different bounds and can overlap the fraction line.
+// See https://github.com/phetsims/resistance-in-a-wire/issues/233.
+const AREA_SYMBOL_Y_OFFSET = platform.chromeOS ? 5 : 0;
+
 type FormulaSymbolEntry = {
   labelStringProperty: TReadOnlyProperty<string>;
   center: Vector2;
@@ -136,7 +140,7 @@ export default class FormulaNode extends Node {
 
     const areaMagnitudeProperty = addFormulaSymbol( {
       labelStringProperty: areaSymbolStringProperty,
-      center: new Vector2( equalsSignText.centerX + 170, 90 ),
+      center: new Vector2( equalsSignText.centerX + 170, 90 + AREA_SYMBOL_Y_OFFSET ),
       property: model.areaProperty,
       color: ResistanceInAWireConstants.BLUE_COLOR
     } );
