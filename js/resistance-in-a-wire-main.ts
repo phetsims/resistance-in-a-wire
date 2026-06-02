@@ -21,10 +21,12 @@ const simOptions: SimOptions = {
   credits: {
     leadDesign: 'Michael Dubson',
     softwareDevelopment: 'Michael Dubson, John Blanco, Jesse Greenberg, Michael Kauzmann',
-    team: 'Wendy Adams, Mindy Gratny, Emily B. Moore, Ariel Paul, Taliesin Smith, Brianna Tomlinson',
+    team: 'Wendy Adams, Mindy Gratny, Emily B. Moore, Ariel Paul, Kathy Perkins, Amy Rouinfar, ' +
+          'Taliesin Smith, Brianna Tomlinson',
     qualityAssurance: 'Steele Dalton, Kerrie Dochen, Alex Dornan, Bryce Griebenow, Ethan Johnson, Megan Lai, ' +
-                      'Elise Morgan, Liam Mulhall, Oliver Orejola, Arnab Purkayastha, Laura Rea, Benjamin Roberts, ' +
-                      'Jacob Romero, Clara Wilson, Kathryn Woessner, Kelly Wurtz, Bryan Yoelin',
+                      'Elise Morgan, Matthew Moore, Liam Mulhall, Oliver Orejola, Valentina P\u00E9rez, ' +
+                      'Arnab Purkayastha, Laura Rea, Benjamin Roberts, Jacob Romero, Nancy Salpepi, Clara Wilson, ' +
+                      'Kathryn Woessner, Kelly Wurtz, Bryan Yoelin',
     thanks: 'Thanks to Mobile Learner Labs for working with the PhET development team to convert this ' +
             'simulation to HTML5.',
     soundDesign: 'Ashton Morris, Mike Winters'
