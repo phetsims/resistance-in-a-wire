@@ -103,7 +103,7 @@ export default class ControlPanel extends Panel {
     const resistanceText = new Text( resistanceReadoutStringProperty, {
       font: ResistanceInAWireConstants.READOUT_FONT,
       fill: ResistanceInAWireConstants.RED_COLOR,
-      maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH * 4.7,
+      maxWidth: ResistanceInAWireConstants.SLIDER_WIDTH * 4.5,
       tandem: tandem.createTandem( 'resistanceText' ),
       phetioVisiblePropertyInstrumented: true,
       visiblePropertyOptions: { phetioFeatured: true }
@@ -225,6 +225,13 @@ export default class ControlPanel extends Panel {
 
     const sliderControls = [ resistivityControl, lengthControl, areaControl ];
 
+    // String Properties whose translated values affect resistance readout bounds. Exclude the resistance value Property
+    // so the readout still does not relayout continuously while sliders are dragged.
+    const layoutStringProperties = [
+      resistanceStringProperty,
+      ohmStringProperty
+    ];
+
     const sliders = new Node( {
       excludeInvisibleChildrenFromBounds: true,
       children: sliderControls
@@ -259,10 +266,10 @@ export default class ControlPanel extends Panel {
       }, Bounds2.NOTHING.copy() );
     };
 
-    const updateLayoutForVisibility = () => {
+    const updateLayoutForVisibilityOrLocale = () => {
 
       // Layout for the panel, HBox cannot be used because 'bottom' alignment cannot align RichText in SliderUnit.
-      // We also do not want layout to change as labels change size.
+      // We also do not want layout to change as value text changes size during interaction.
       let previousVisibleControl: SliderUnit | null = null;
       sliderControls.forEach( sliderControl => {
         if ( sliderControl.visible ) {
@@ -283,14 +290,18 @@ export default class ControlPanel extends Panel {
         }
       }
 
-      // These localBounds are intentionally only updated from visibility changes. This allows the Panel to resize when
-      // PhET-iO hides components, without resizing when dynamic value text changes bounds.
+      // These localBounds are intentionally only updated from visibility changes or locale string changes. This allows
+      // the Panel to resize when PhET-iO hides components or labels change language, without resizing when dynamic
+      // value text changes bounds.
       content.localBounds = getVisibleChildBounds( content );
     };
 
-    updateLayoutForVisibility();
+    updateLayoutForVisibilityOrLocale();
     [ resistanceText, ...sliderControls ].forEach( node => {
-      node.visibleProperty.lazyLink( updateLayoutForVisibility );
+      node.visibleProperty.lazyLink( updateLayoutForVisibilityOrLocale );
+    } );
+    layoutStringProperties.forEach( stringProperty => {
+      stringProperty.lazyLink( updateLayoutForVisibilityOrLocale );
     } );
 
     super( content, options );
