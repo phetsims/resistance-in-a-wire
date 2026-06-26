@@ -29,7 +29,7 @@ For an exemplar, see https://github.com/phetsims/balancing-chemical-equations/bl
 *
 -->
 
-## 1.7 (YYYY-MM-DD)
+## 1.7 (2026-06-26)
 
 ### New Features
 * Preferences
